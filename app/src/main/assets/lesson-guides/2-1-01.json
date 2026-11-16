@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-01",
+  "source": {
+    "id": "2-1-01",
+    "partId": "2-1",
+    "number": 1,
+    "title": "DDL의 개념과 CREATE문",
+    "lectureMinutes": 21,
+    "easy": "CREATE TABLE은 데이터를 넣을 빈 표의 구조를 만드는 명령이다. 어떤 열이 어떤 자료형과 규칙을 가지는지 적는다.",
+    "why": "학생 한 명을 등록하는 INSERT와 달리, 먼저 등록할 틀 자체가 있어야 한다.",
+    "concepts": [
+      {
+        "term": "CREATE TABLE",
+        "meaning": "새 표 구조를 정의",
+        "example": "학생(학번, 이름, 학년)"
+      },
+      {
+        "term": "열 정의",
+        "meaning": "열 이름과 자료형을 순서대로 적음",
+        "example": "이름 VARCHAR2(30 CHAR)"
+      },
+      {
+        "term": "테이블 제약조건",
+        "meaning": "여러 열에 걸친 키 등 규칙",
+        "example": "PRIMARY KEY(학번, 과목코드)"
+      },
+      {
+        "term": "CONSTRAINT",
+        "meaning": "제약조건에 관리용 이름을 붙임",
+        "example": "CONSTRAINT PK_학생 PRIMARY KEY(학번)"
+      },
+      {
+        "term": "CTAS",
+        "meaning": "조회 결과를 이용해 새 표를 만듦",
+        "example": "CREATE TABLE 복사 AS SELECT ..."
+      },
+      {
+        "term": "객체 이름과 값",
+        "meaning": "표·열 이름은 식별자, 문자 데이터는 작은따옴표",
+        "example": "학생과 '컴퓨터' 구별"
+      },
+      {
+        "term": "암묵적 COMMIT",
+        "meaning": "Oracle DDL은 트랜잭션 경계를 만든다",
+        "example": "미확정 DML 뒤 DDL 실행에 주의"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-01-E01",
+        "title": "빈 학생표 만들기",
+        "question": "학번은 기본키, 이름은 필수, 학년은 1~4이고 생략 시 1로 만들자.",
+        "tables": [
+          {
+            "title": "요구설계",
+            "columns": [
+              "속성",
+              "자료형",
+              "규칙"
+            ],
+            "rows": [
+              [
+                "학번",
+                "NUMBER(6)",
+                "PK"
+              ],
+              [
+                "이름",
+                "VARCHAR2(30 CHAR)",
+                "NOT NULL"
+              ],
+              [
+                "학년",
+                "NUMBER(1)",
+                "DEFAULT 1, CHECK 1~4"
+              ]
+            ]
+          }
+        ],
+        "sql": "CREATE TABLE 학생 (\n  학번 NUMBER(6) PRIMARY KEY,\n  이름 VARCHAR2(30 CHAR) NOT NULL,\n  학년 NUMBER(1) DEFAULT 1 CHECK (학년 BETWEEN 1 AND 4)\n);",
+        "steps": [
+          "학번·이름·학년 세 속성을 정의한다. 데이터 행은 아직 넣지 않는다.",
+          "PK는 학번에 중복·NULL이 없게 한다. 이름은 필수로 둔다.",
+          "학년 기본값은 1이고, CHECK로 1~4만 허용한다. 이 CHECK만으로 NULL까지 막히지는 않는다."
+        ],
+        "results": [
+          {
+            "title": "생성 직후 학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학년"
+            ],
+            "rows": []
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 예상 결과를 설명한 자료입니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "CREATE는 빈 틀, INSERT는 그 틀에 한 줄.",
+    "traps": [
+      "CTAS는 데이터와 일부 구조를 복사하지만 원본의 PK·FK·인덱스 등이 모두 자동 복제된다고 생각하지 않는다.",
+      "자료형 길이의 BYTE/CHAR 의미는 DBMS·설정에 따라 다르므로 한글은 CHAR 표기를 명확히 한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-01-Q1",
+        "question": "CREATE TABLE만 실행한 직후 행수는?",
+        "answer": "0",
+        "explanation": "틀만 만들고 데이터는 넣지 않았다."
+      },
+      {
+        "id": "2-1-01-Q2",
+        "question": "문자값 컴퓨터는 SQL에서 어떻게 쓰는가?",
+        "answer": "'컴퓨터'",
+        "explanation": "문자 리터럴은 작은따옴표로 감싼다."
+      },
+      {
+        "id": "2-1-01-Q3",
+        "question": "CTAS가 원본의 모든 제약과 인덱스를 복사하는가?",
+        "answer": "아니다",
+        "explanation": "복사되는 구조의 범위를 별도 확인해야 한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S23"
+    ],
+    "sourceIds": [
+      "create",
+      "constraint",
+      "commit"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"DDL의 개념과 CREATE문 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념을 먼저</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">용어를 쉬운 말로</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실제 예시 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 값·행·열인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과와 이유</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">왜 이 답인가?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">CREATE는 빈 틀, INSERT는 그 틀에 한 줄.</text></svg>",
+    "version": 1
+  },
+  "purpose": "학생 정보를 담을 빈 표를 먼저 설계하고 학번·이름·학년에 어떤 입력을 허용할지 정한다.",
+  "overview": "CREATE TABLE은 학생이라는 테이블 하나를 만든다. 학번·이름·학년은 컬럼 정의이며 괄호 안 숫자는 저장 규칙이다. 실제 학생 등록은 INSERT로 별도로 한다.",
+  "terms": [
+    {
+      "token": "CREATE TABLE",
+      "kind": "키워드",
+      "meaning": "create = 만들다, table = 데이터를 담는 표",
+      "role": "학생 표의 구조를 새로 만든다. 기존 학생 값 수정은 하지 않는다."
+    },
+    {
+      "token": "NUMBER(6)",
+      "kind": "자료형",
+      "meaning": "숫자 정밀도 6, 소수 자리 0",
+      "role": "학번에 1001도 저장할 수 있다. 6명 제한이나 자동 증가를 뜻하지 않으며 소수는 반올림 후 범위도 확인한다."
+    },
+    {
+      "token": "VARCHAR2(30 CHAR)",
+      "kind": "자료형",
+      "meaning": "최대 30문자 가변 문자열",
+      "role": "이름의 길이 제한이다. CHAR를 명시했으므로 BYTE 길이와 구분한다."
+    },
+    {
+      "token": "DEFAULT 1",
+      "kind": "기본값 설정",
+      "meaning": "default = 따로 지정하지 않을 때 쓸 값",
+      "role": "새 학생 입력에서 학년을 생략하면 1을 쓰도록 정의한다. 지금 1학년 행이 생기는 것은 아니다."
+    }
+  ],
+  "pitfalls": [
+    "기본키는 학번 한 열의 규칙이다. 이름 NOT NULL은 이름의 중복을 금지하지 않는다.",
+    "Oracle DDL의 커밋 특성을 다른 DBMS 전체의 규칙으로 일반화하지 않는다.",
+    "일반 DEFAULT와 명시적 NULL은 다르다. CHECK만 있는 학년은 NULL도 거부하지 않는다."
+  ],
+  "questions": [
+    {
+      "question": "CREATE TABLE는 여기서 무엇을 뜻하나요?",
+      "answer": "학생 표의 구조를 새로 만든다. 기존 학생 값 수정은 하지 않는다."
+    },
+    {
+      "question": "NUMBER(6)는 여기서 무엇을 뜻하나요?",
+      "answer": "학번에 1001도 저장할 수 있다. 6명 제한이나 자동 증가를 뜻하지 않으며 소수는 반올림 후 범위도 확인한다."
+    },
+    {
+      "question": "VARCHAR2(30 CHAR)는 여기서 무엇을 뜻하나요?",
+      "answer": "이름의 길이 제한이다. CHAR를 명시했으므로 BYTE 길이와 구분한다."
+    },
+    {
+      "question": "DEFAULT 1는 여기서 무엇을 뜻하나요?",
+      "answer": "새 학생 입력에서 학년을 생략하면 1을 쓰도록 정의한다. 지금 1학년 행이 생기는 것은 아니다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 1,
+      "toPage": 4,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-01-E01",
+      "why": "학번으로 학생을 구분하고 필수 이름과 기본 학년을 정해 잘못된 입력을 줄인다.",
+      "effect": "구조 정의: 학생 생성. 데이터 0행, 컬럼 3개.",
+      "prerequisites": [
+        "같은 이름의 학생 테이블이 아직 없다고 가정한다. 요구설계 표는 데이터 행이 아니라 설계 명세다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "표 이름과 컬럼 이름 나누기",
+          "text": "CREATE TABLE 학생의 학생은 테이블명이다. 안쪽 학번·이름·학년은 세 컬럼명이다. CREATE가 세 번 쓰이지 않았으므로 표 세 개를 만드는 코드가 아니다.",
+          "codeFocus": [
+            {
+              "needle": "CREATE TABLE 학생",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학번·이름·학년"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "설계 대상",
+            "columns": [
+              "테이블",
+              "컬럼 수",
+              "컬럼 이름"
+            ],
+            "rows": [
+              [
+                "학생",
+                "3",
+                "학번·이름·학년"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "학번의 수와 식별 규칙",
+          "text": "학번 NUMBER(6) PRIMARY KEY에서 6은 숫자 정밀도이고 PRIMARY KEY는 중복·NULL 금지 규칙이다. 1001은 작은 숫자여도 허용 범위다. 번호를 자동 생성하라는 문법은 없다.",
+          "codeFocus": [
+            {
+              "needle": "학번 NUMBER(6) PRIMARY KEY",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "숫자 정밀도"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "규칙 해석",
+            "columns": [
+              "조각",
+              "해석"
+            ],
+            "rows": [
+              [
+                "학번",
+                "학생.학번 컬럼"
+              ],
+              [
+                "NUMBER(6)",
+                "숫자 정밀도6"
+              ],
+              [
+                "PRIMARY KEY",
+                "행 식별, 중복·NULL 금지"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "학년 기본값과 범위는 별개",
+          "text": "DEFAULT 1은 학년을 생략한 입력의 기본값을 1로 정한다. CHECK는 저장할 학년이 1~4 범위인지 검사한다. 학년 NULL은 비교가 UNKNOWN이므로 CHECK만으로 금지되지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "학년 NUMBER(1) DEFAULT 1 CHECK (학년 BETWEEN 1 AND 4)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "DEFAULT 1",
+            "UNKNOWN"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "서로 독립된 가상 입력 판단",
+            "columns": [
+              "학년 입력",
+              "적용 값",
+              "규칙 판정"
+            ],
+            "rows": [
+              [
+                "컬럼 생략",
+                "1",
+                "허용"
+              ],
+              [
+                "4",
+                "4",
+                "허용"
+              ],
+              [
+                "5",
+                "5",
+                "거부"
+              ],
+              [
+                null,
+                null,
+                "허용: NOT NULL 없음"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-04",
+          "title": "세 머리글이 있는 빈 결과",
+          "text": "CREATE에는 VALUES나 데이터 조회를 이용한 AS SELECT가 없다. 따라서 결과는 학번·이름·학년 머리글만 있는 0행이다. 규칙 속 1·4·6·30을 학생 데이터로 세면 안 된다.",
+          "codeFocus": [
+            {
+              "needle": "CREATE TABLE 학생",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "0행"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "생성 직후 학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학년"
+            ],
+            "rows": []
+          }
+        }
+      ],
+      "comparison": "CREATE TABLE 학생은 새 틀을 만들고, INSERT INTO 학생은 이미 있는 틀에 한 행을 넣는다. CTAS는 조회 결과로 만드는 별도 형태이므로 모든 제약·인덱스 복사를 가정하지 않는다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-01-Q1",
+      "hint": "지금 SQL에 학생 한 명의 실제 입력값이 있는지 찾아보자.",
+      "reasoning": "컬럼 정의만 있으므로 생성 직후 데이터는 0행이다. 세 컬럼이 있다는 사실과 행수는 별개다."
+    },
+    {
+      "checkId": "2-1-01-Q2",
+      "hint": "테이블 이름과 실제 문자값을 어떻게 구분할지 생각해 보자.",
+      "reasoning": "컴퓨터라는 문자값은 작은따옴표로 감싼 '컴퓨터'다. 따옴표 없는 식별자와 다르다."
+    },
+    {
+      "checkId": "2-1-01-Q3",
+      "hint": "테이블을 조회 결과로 만들 때 무엇이 복사되는지 규칙을 따로 확인해야 한다.",
+      "reasoning": "CTAS는 SELECT 결과에 따라 구조·행을 만들지만 PK·FK·인덱스 등 원본의 모든 객체 정의를 그대로 복제하는 명령은 아니다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-TABLE.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html"
+  ],
+  "reviewNotes": [
+    "원본 PDF p2의 영문 시작만 허용한다는 설명은 Oracle 식별자의 세부 규칙을 축약했다. 이 앱 원본의 한글 식별자를 영문으로 임의 변경하지 않는다."
+  ]
+}

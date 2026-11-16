@@ -1,0 +1,462 @@
+{
+  "schemaVersion": 1,
+  "inputSha256": "6710f0bbea33e1c979d820f5c82ddd22efea68b8174387ce8ab628057464f166",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "reviewer": "content_a",
+  "reviewedAt": "2026-09-14T05:17:39.118502+00:00",
+  "boundary": "Masked choice IDs/order only; no original answer, explanation, expected value or hidden mapping viewed before recording. No engine/human expert review.",
+  "decisions": [
+    {
+      "questionId": "mock-2-S09-m2-distinct-order-ambiguity",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "부서 한 행에 여러 급여가 대응하므로 대표 급여 집계를 정의해야 하고 DISTINCT의 선택하지 않은 정렬식 제약도 확인해야 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S10-m2-missing-join-predicate",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "모든 조합은 상품3행과 주문4행의 곱12행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S10-m2-condition-or-expands",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "flag1인 A1은 B1과B2 두 쌍, A2는 키2 한 쌍으로 합3쌍이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S11-m2-null-note-false-anti",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "실제 주문의 memo NULL과 미매칭 NULL 확장이 모두 IS NULL을 통과하여 두 고객이 나온다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S11-m2-right-to-left-rewrite",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "RIGHT가 보존하던 B를 LEFT의 왼쪽으로 두고 같은 조건과 열 의미를 유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S12-m2-scalar-no-group-count",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "GROUP BY 없는 COUNT(*)는 빈 입력에도 한 집계 행에0을 반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S12-m2-all-null-veto",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "20>10 TRUE와20>NULL UNKNOWN의 AND는 UNKNOWN이어서 WHERE 통과하지 못한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S12-m2-uncorrelated-exists-mistake",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "상관 조건 없는 EXISTS는 주문이 한 건 있는 전체 집합에 대해 두 고객 모두 TRUE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S13-m2-set-arity-error",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "UNION ALL도 대응 열 개수는 같아야 하므로2열 대1열은 성립하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S13-m2-set-datatype-groups",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle 집합 연산은 숫자와 문자 자료형 그룹 사이를 무조건 암묵 변환하지 않으므로 명시 호환이 필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S14-m2-rollup-order-business",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "ROLLUP(store,region)은(store,region),(store),() 수준이며 region만의 소계는 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S14-m2-cube-empty-full",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "빈 입력에서도 빈 그룹인 전체 합계 수준은COUNT(*)0을 낸다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S15-m2-rank-added-key-effect",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "분석 정렬에 유일 id를 더하면90 동점을 서로 다른 복합키로 나누어 순위가 달라진다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S15-m2-row-number-where-scope",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "일반 WHERE는 같은 블록의 분석 별칭 이전에 평가되므로 안쪽 분석/바깥 필터로 분리한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S16-m2-rows-peers-nondeterminism",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "ROWS는 행 위치를 보므로 timestamp 동점의 순서 미결정이 개별 누적합을 달라지게 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S16-m2-range-offset-keys",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "값 오프셋2를 쓰는 RANGE는 다중 정렬식 허용의 특정 무한/현재 경계 예외에 속하지 않아 한 정렬식 제약을 확인해야 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S17-m2-with-ties-needs-order",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "동점을 비교하려면 ORDER BY 키를 지정해야 한다. 다만 생략 시 구문 오류라고 단정하는 표현은 공식 규칙 재확인이 필요하다.",
+      "conditionsOrIssues": [
+        "Avoid implying WITH TIES without ORDER BY necessarily raises a syntax error; verifying documented fallback."
+      ]
+    },
+    {
+      "questionId": "mock-2-S17-m2-fetch-zero",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "요청 행 수0은 입력이 많아도 반환 행이0개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S18-m2-cycle-without-guard",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "NOCYCLE 없는 CONNECT BY가 순환을 만나면 루프 오류가 발생할 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S18-m2-hierarchy-pruning-location",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "WHERE는 계층 결과에서 해당 행을 제거하므로 하위 가지 확장 차단과 같지 않다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S19-m2-unpivot-type-family",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "UNPIVOT의 하나의 값 열로 모으는 NUMBER와DATE 입력은 자료형 그룹 호환 검사가 필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S19-m2-pivot-implicit-count-star",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "COUNT(*)는 amt를 집계 인수 열로 참조하지 않아 남은 amt가 암묵 GROUP BY 키가 된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S20-m2-regex-question-mark",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "u?는u를0회 또는1회 허용하므로color와colour, 두u인colouur는 거부된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S21-m2-insert-default-null",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "열 생략은 기본값9를 적용하나 일반 DEFAULT는 명시NULL을 대체하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S21-m2-update-target-key-conflict",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "id1을2로 바꾸면 기존2와 즉시PK 중복이 되어 해당문장만 실패하며1,2가 유지된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S22-m2-commit-then-savepoint-invalid",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "COMMIT으로 a savepoint가 지워져ROLLBACK TO a는 유효 대상이 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S23-m2-check-multiple-null",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "a 또는b NULL이면CHECK UNKNOWN으로 통과하므로 두NOT NULL을 추가해야 필수값을 보장한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S24-m2-role-grant-object-option",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "역할은 권한들을 묶어 여러 사용자에게 관리하기 쉽게 부여하는 수단이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S09-m3-case-null-order-equivalent",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "NULL에0, 그외1을 부여해 먼저오게 하고 비NULL 내부는x ASC로 정렬한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S10-m3-join-exists-equivalence-condition",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "JOIN은매칭개수만큼 C행을반복하고 EXISTS는존재만보므로 각C매칭이최대1이어야 같은중복수를보장한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S10-m3-band-gaps-no-match",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "15는0~10과20~30 어느구간에도없으며 INNER JOIN은미매칭을보존하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S11-m3-filtered-count-preserve",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "유료일때만 비NULL주문키를내고 나머지는NULL인CASE를COUNT해야 비유료/NULL확장행을세지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S11-m3-outer-swapped-column-null",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "LEFT의왼쪽입력을바꾸면미매칭보존대상이A에서B로달라진다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S12-m3-in-duplicates-no-extra",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "IN은소속판정이며 B의2중복세행이A의한2행을증식시키지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S12-m3-correlated-min-ties",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "부서7의최솟값10과같은급여를가진id1과2가모두선택된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S12-m3-exists-null-only-rewrite",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "NULL값이어도B행은존재하여EXISTS TRUE지만1=NULL은UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S13-m3-intersection-symmetry",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "중복제거교집합은대칭적이므로좌우를바꿔도동일한행집합이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S13-m3-difference-reconstruct-union",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "차집합은{1}, 교집합은{2}이며UNION하면1,2각한행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S14-m3-summing-rollup-double",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "같은원본합30이그룹합과전체합에한번씩나오므로둘을다시더하면60으로이중집계다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S14-m3-grouping-null-count-fields",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "실제NULL그룹에는한행, 비NULL금액0개, d는그룹키에포함되어GROUPING0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S15-m3-ntile-more-buckets",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "버킷5개보다행3개가적으면앞의버킷1,2,3에한행씩배치되고빈버킷행은생성하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S15-m3-null-partition-count",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "d NULL두행은같은분석파티션을이루므로각행COUNT(*)는2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S16-m3-range-current-peers-only",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "ORDER BY k를의도했다면 CURRENT~CURRENT RANGE는현재정렬값동료행5와7을함께합쳐두행모두12다. 단지문에분석ORDER BY k가명시되지않았다.",
+      "conditionsOrIssues": [
+        "Missing explicit analytic ORDER BY k; expected peer grouping depends on the order key."
+      ]
+    },
+    {
+      "questionId": "mock-3-S16-m3-moving-average-null-denominator",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "마지막프레임은NULL과30이고AVG는NULL을분모에서제외하여30/1=30이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S17-m3-offset-beyond-result",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "전체3행보다많은5행을건너뛰어남은행은0개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S17-m3-percent-rounding",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "7행의50퍼센트3.5는반환행수계산에서올림하여4행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S18-m3-overlapping-starts",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "루트1경로와루트2경로가각각id3에도달하여같은원본행이경로별로나올수있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S18-m3-level-not-global-number",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "LEVEL2는각선택루트의한단계자식이며전체표시순번이나id2가아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S19-m3-pivot-unlisted-category",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "명시목록월1과2만출력하며월1합10, 월2매칭없어SUM NULL이고월3열은생기지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S19-m3-pivot-count-expression-null",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "월1두NULL은COUNT(amt)0, 월2의5한개는1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S20-m3-regex-repeat-bounds",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "대문자2~3개후숫자정확히2개전체조건이AB12와ABC12에만맞는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S21-m3-delete-exists-no-cascade",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "C대상DELETE이고FK나연쇄삭제가없으므로O의기존행은변경되지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S21-m3-insert-from-self-count",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "단일INSERT SELECT의입력원본1,2에10을더한11,12만삽입하며스스로무한읽지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S22-m3-rollback-later-savepoint",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "a로부분롤백하면그뒤생긴b savepoint는지워져복구에쓸수없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S23-m3-composite-primary-key",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "복합PK는전체조합의유일성이므로서로다른year,no조합은no단독중복에도허용된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S24-m3-insert-select-source-right",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "대상쓰기INSERT와소스읽기SELECT는별도이므로소스S SELECT가필요하다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

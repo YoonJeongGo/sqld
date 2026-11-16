@@ -1,0 +1,3720 @@
+[
+  {
+    "questionId": "S07-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S07-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S07-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S07-A01",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S07-A02",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S07-A03",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S06-A01",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S06-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S08-A01",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "having"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S08-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S02-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S02-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S02-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S02-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S03-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S03-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S03-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S03-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S04-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S04-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S04-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S04-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S05-R01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S05-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S05-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S05-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S06-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S06-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S07-R04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S08-R02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S08-R03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S07-R05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-R05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S02-R05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S04-R05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S05-R05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M01-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M03-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M04-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M05-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M06-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M07-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M08-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M09-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M10-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-A01",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-A02",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-A03",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-A04",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S01-A05",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S02-A01",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S02-A02",
+    "status": "applied",
+    "categories": [
+      "distinct"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S02-A03",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S02-A04",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S02-A05",
+    "status": "applied",
+    "categories": [
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S02-A06",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S03-A01",
+    "status": "existing-explanation",
+    "reason": "SUBSTR의 시작 위치/문자 길이 DBMS 차이를 별도 확인해야 함"
+  },
+  {
+    "questionId": "S03-A02",
+    "status": "existing-explanation",
+    "reason": "ROUND/TRUNC의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S03-A03",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S03-A04",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S03-A05",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S03-A06",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S04-A01",
+    "status": "existing-explanation",
+    "reason": "TO_CHAR/TO_DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S04-A02",
+    "status": "existing-explanation",
+    "reason": "DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S04-A03",
+    "status": "existing-explanation",
+    "reason": "TO_CHAR/DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S04-A04",
+    "status": "existing-explanation",
+    "reason": "TO_CHAR/ADD_MONTHS/DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S04-A05",
+    "status": "existing-explanation",
+    "reason": "MONTHS_BETWEEN/DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S04-A06",
+    "status": "existing-explanation",
+    "reason": "TO_DATE/DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S05-A01",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S05-A02",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S05-A03",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S05-A04",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S05-A05",
+    "status": "existing-explanation",
+    "reason": "빈 문자열·문자 결합·나눗셈의 DBMS 차이를 별도 검증하지 않아 기존 해설 유지"
+  },
+  {
+    "questionId": "S05-A06",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S06-A02",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S06-A03",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S06-A04",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S06-A05",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S06-A06",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S07-A04",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S07-A05",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S07-A06",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S07-A07",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S07-A08",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S08-A02",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "filter",
+      "group"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S08-A03",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S08-A04",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "having"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S08-A05",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S08-A06",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "having"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S08-A07",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "having"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-M01-view-consistency",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M02-inspection-finding",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M03-age-birth",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M04-relationship-direction",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M05-candidate-fd-closure",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M06-insertion-course",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M07-count-child-meaning",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M08-isolation-invariant",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M09-missing-aggregation-target",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-M10-reservation-timeslot",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M01-metadata-definition",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M02-price-change-event",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M03-status-domain",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M04-self-relationship",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M05-minimal-superkey-remove",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M06-update-mismatch",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M07-missing-join-condition",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M08-audit-history",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M09-blank-string-cross-db",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-M10-external-identifier-stability",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M01-denormalization-evidence",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M02-file-version",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M03-nullable-default",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M04-participation-parent-limit",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M05-key-business-lifetime",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M06-two-nf-not-three",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M07-foreign-id-meaning",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M08-save-state-failure",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M09-unknown-vs-unbounded",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-M10-composite-reference-cost",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M01-model-validation-data",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M02-entity-boundary-account",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M03-tax-amount-rounding",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M04-relationship-role-two-fk",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M05-unique-scope-tenant",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M06-no-fd-split",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M07-null-fk-join-inner",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M08-commit-boundary-report",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M09-optional-field-default",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-M10-surrogate-exposure",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M01-change-impact",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M02-fact-grain",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M03-attribute-source-fact",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M04-mandatory-nonidentifying-review",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M05-immutable-identifier",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M06-normalization-performance",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M07-association-count",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M08-transaction-vs-lifecycle",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M09-null-unique-meaning",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-M10-serial-not-count",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S02-mock-coalesced-distinct",
+    "status": "applied",
+    "categories": [
+      "distinct"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S02-mock-distinct-constant-tuple",
+    "status": "applied",
+    "categories": [
+      "distinct"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S03-mock-nested-clean",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S03-mock-negative-round",
+    "status": "existing-explanation",
+    "reason": "ROUND/TRUNC의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-1-S04-mock-format-month-minute",
+    "status": "existing-explanation",
+    "reason": "TO_CHAR/TO_DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-1-S05-mock-case-count-else-zero",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S05-mock-nullif-coalesce",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S06-mock-null-or-false",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S06-mock-like-escape-literal",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S07-mock-count-sum-expression",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S07-mock-avg-zero-sum",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-1-S08-mock-two-stage-group",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "filter",
+      "group",
+      "having"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S02-mock-distinct-null-two-cols",
+    "status": "applied",
+    "categories": [
+      "distinct"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S02-mock-star-vs-expression",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S03-mock-round-then-mod",
+    "status": "existing-explanation",
+    "reason": "ROUND의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-2-S03-mock-substr-beyond",
+    "status": "existing-explanation",
+    "reason": "SQLite는 범위 밖 SUBSTR을 빈 문자열로 반환하지만 원본 Oracle 예상값은 NULL: 다른 엔진 결과를 채택하지 않고 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-2-S04-mock-half-open-day",
+    "status": "existing-explanation",
+    "reason": "TO_DATE/DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-2-S05-mock-case-null-arithmetic",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S05-mock-nullif-different",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S06-mock-not-parenthesized",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S06-mock-in-subset-null",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S07-mock-count-distinct-expression",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S07-mock-sum-vs-summed-columns",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-2-S08-mock-having-average-zero",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "having"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-3-S02-mock-arithmetic-precedence",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-3-S02-mock-projection-retains-input",
+    "status": "applied",
+    "categories": [
+      "distinct"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-3-S03-mock-substr-zero-length",
+    "status": "existing-explanation",
+    "reason": "SUBSTR 길이 0의 Oracle NULL 반환과 SQLite 빈 문자열 차이"
+  },
+  {
+    "questionId": "mock-3-S03-mock-replace-removal",
+    "status": "existing-explanation",
+    "reason": "Oracle REPLACE의 생략 인자 동작을 SQLite 원문으로 검증할 수 없어 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-3-S04-mock-date-fraction-difference",
+    "status": "existing-explanation",
+    "reason": "DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-3-S05-mock-case-range-gap",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-3-S05-mock-empty-coalesce",
+    "status": "existing-explanation",
+    "reason": "빈 문자열·문자 결합·나눗셈의 DBMS 차이를 별도 검증하지 않아 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-3-S06-mock-between-reversed",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-3-S06-mock-impossible-or-null",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-3-S07-mock-distinct-null-replacement-count",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-3-S07-mock-conditional-sum-amount",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-3-S08-mock-complete-group",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "having"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S02-mock-unary-null",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S02-mock-where-expression-equality",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S03-mock-case-normalization",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S03-mock-substr-zero-start",
+    "status": "existing-explanation",
+    "reason": "SUBSTR의 시작 위치/문자 길이 DBMS 차이를 별도 확인해야 함"
+  },
+  {
+    "questionId": "mock-4-S04-mock-year-boundary",
+    "status": "existing-explanation",
+    "reason": "TO_CHAR/DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-4-S05-mock-zero-conflation-case",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S05-mock-case-negative-fallback",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S06-mock-like-intersection",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S06-mock-not-and-priority",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S07-mock-distinct-constant-counts",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S07-mock-null-aggregate-subtract",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-4-S08-mock-group-computed-band",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-5-S02-mock-quoted-alias",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-5-S02-mock-number-division",
+    "status": "existing-explanation",
+    "reason": "TRUNC의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-5-S03-mock-double-rounding",
+    "status": "existing-explanation",
+    "reason": "ROUND의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-5-S03-mock-concat-null-space",
+    "status": "existing-explanation",
+    "reason": "빈 문자열·문자 결합·나눗셈의 DBMS 차이를 별도 검증하지 않아 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-5-S04-mock-trunc-month-date",
+    "status": "existing-explanation",
+    "reason": "TO_CHAR/TRUNC/TO_DATE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-5-S05-mock-space-not-null",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-5-S05-mock-rounded-nullif",
+    "status": "existing-explanation",
+    "reason": "ROUND의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-5-S06-mock-negated-between-null",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-5-S06-mock-null-equality-disjunction",
+    "status": "applied",
+    "categories": [
+      "filter"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-5-S07-mock-count-quotient-nullif",
+    "status": "existing-explanation",
+    "reason": "빈 문자열·문자 결합·나눗셈의 DBMS 차이를 별도 검증하지 않아 기존 해설 유지"
+  },
+  {
+    "questionId": "mock-5-S07-mock-average-vs-nonzero",
+    "status": "applied",
+    "categories": [
+      "aggregate"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "mock-5-S08-mock-empty-versus-grouped",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "filter",
+      "group"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "M11-R01-external-view",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M11-R02-physical-independence",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M11-R03-process-versus-layer",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M11-A01-split-preserved-view",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M11-A02-index-stable-meaning",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M12-R01-endpoint-direction",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M12-R02-cardinality-minimum",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M12-R03-erd-first-business",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M12-A01-optional-parent-not-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M12-A02-association-history-key",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M13-R01-deliberate-redundancy",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M13-R02-measure-before-choice",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M13-R03-snapshot-meaning",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M13-A01-total-cancellation",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M13-A02-frequent-master-update",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S25-R01-char-varchar-storage",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S25-R02-number-precision-scale",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S25-R03-date-timestamp-fields",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S25-A01-explicit-char-length",
+    "status": "existing-explanation",
+    "reason": "CAST의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S25-A02-numeric-cast-scales",
+    "status": "existing-explanation",
+    "reason": "CAST의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S26-R01-add-modify-update",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S26-R02-rename-column-vs-alias",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S26-R03-drop-column-versus-delete",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S26-A01-add-null-existing-row",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S26-A02-rename-retains-values",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S03-R07-instr-result-kind",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S03-A07-instr-occurrence-missing",
+    "status": "existing-explanation",
+    "reason": "INSTR의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S03-A08-padding-final-length",
+    "status": "existing-explanation",
+    "reason": "LPAD/RPAD의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S03-A09-negative-integer-directions",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S03-A10-lower-uppercase-sequence",
+    "status": "applied",
+    "categories": [],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S05-R06-nvl2-return-branch",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S05-A07-decode-null-versus-case",
+    "status": "existing-explanation",
+    "reason": "DECODE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S05-A08-decode-default-omitted",
+    "status": "existing-explanation",
+    "reason": "DECODE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "M06-R06-bcnf-superkey",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "M02-R06-classification-two-axes",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S09-R01-guarantee",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S09-R02-null-asc",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S09-R03-tie-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S09-R04-alias-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S09-R05-multi-key",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S10-R01-pair-product",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S10-R02-null-equality",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S10-R03-cross-product",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S10-R04-non-equi",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S10-R05-join-union",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S11-R01-left-preservation",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S11-R02-on-where",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S11-R03-natural-columns",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S11-R04-using-coalesced",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S11-R05-anti-null-key",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S12-R01-scalar-empty",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S12-R02-scalar-many",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S12-R03-exists-projection",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S12-R04-not-in-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S12-R05-any-all",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S13-R01-all-duplicates",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S13-R02-minus-direction",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S13-R03-column-compatibility",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S13-R04-set-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S14-R01-rollup-levels",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S14-R02-cube-levels",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S14-R03-grouping-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S14-R04-sets-explicit",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S15-R01-rank-gaps",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S15-R02-dense-rank",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S15-R03-partition-reset",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S15-R04-lag-offset",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S15-R05-analytic-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S16-R01-rows-range",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S16-R02-default-frame",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S16-R03-last-full",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S16-R04-moving-window",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S16-R05-first-boundary",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S17-R01-ties-key",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S17-R02-rownum-greater",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S17-R03-top-before-sort",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S17-R04-offset-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S17-R05-distinct-ranks",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S18-R01-level-root",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S18-R02-prior-parent",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S18-R03-siblings",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S18-R04-self-roles",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S18-R05-nocycle",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S19-R01-pivot-group",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S19-R02-unpivot-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S19-R03-pivot-loss",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S19-R04-unpivot-shape",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S20-R01-anchors",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S20-R02-class-group",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S20-R03-regexp-functions",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S20-R04-case-param",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S21-R01-delete-no-where",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S21-R02-update-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S21-R03-insert-column",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S21-R04-merge-branch",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S21-R05-statement-atomic",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S22-R01-savepoint-not-commit",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S22-R02-rollback-to",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S22-R03-commit-savepoint",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S22-R04-ddl-implicit",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S22-R05-own-changes",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-R01-pk-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-R02-check-unknown",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-R03-truncate-definition",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-R04-fk-optional",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-R05-delete-cascade",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-R01-object-system",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-R02-grant-option",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-R03-revoke-paths",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-R04-least-privilege",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S09-A01-mixed-sort",
+    "status": "applied",
+    "categories": [
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S09-A02-case-priority",
+    "status": "applied",
+    "categories": [
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S09-A03-alias-derived",
+    "status": "applied",
+    "categories": [
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S09-A04-null-explicit-desc",
+    "status": "applied",
+    "categories": [
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S09-A05-group-sort-total",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S09-A06-distinct-position",
+    "status": "applied",
+    "categories": [
+      "distinct",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S10-A01-duplicate-multiplication",
+    "status": "applied",
+    "categories": [
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S10-A02-null-pair-filter",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "join"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S10-A03-overlap-band",
+    "status": "applied",
+    "categories": [
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S10-A04-cross-filter",
+    "status": "applied",
+    "categories": [
+      "filter",
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S10-A05-aggregate-after-join",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S10-A06-two-key-matching",
+    "status": "applied",
+    "categories": [
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S10-A07-empty-cross",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "join"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S11-A01-on-paid-preserve",
+    "status": "applied",
+    "categories": [
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S11-A02-where-paid-remove",
+    "status": "applied",
+    "categories": [
+      "filter",
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S11-A03-count-outer-null",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S11-A04-full-both-unmatched",
+    "status": "applied",
+    "categories": [
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S11-A05-using-key-result",
+    "status": "applied",
+    "categories": [
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S11-A06-natural-extra-key",
+    "status": "applied",
+    "categories": [
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S11-A07-anti-exists-key",
+    "status": "applied",
+    "categories": [
+      "filter",
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S12-A01-above-own-dept-average",
+    "status": "applied",
+    "categories": [
+      "subquery",
+      "correlated"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S12-A02-exists-no-multiply",
+    "status": "applied",
+    "categories": [
+      "subquery"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S12-A03-null-safe-not-exists",
+    "status": "applied",
+    "categories": [
+      "subquery"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S12-A04-not-in-empty",
+    "status": "applied",
+    "categories": [
+      "subquery"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S12-A05-scalar-aggregate-empty",
+    "status": "applied",
+    "categories": [
+      "subquery"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S12-A06-any-null-mixed",
+    "status": "applied",
+    "categories": [
+      "subquery"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S12-A07-all-empty",
+    "status": "applied",
+    "categories": [
+      "subquery"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S12-A08-tuple-in",
+    "status": "applied",
+    "categories": [
+      "subquery"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S13-A01-union-null-combined",
+    "status": "applied",
+    "categories": [
+      "set"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S13-A02-all-count",
+    "status": "applied",
+    "categories": [
+      "set"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S13-A03-intersection-two-columns",
+    "status": "applied",
+    "categories": [
+      "set"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S13-A04-minus-dedup",
+    "status": "applied",
+    "categories": [
+      "set"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S13-A05-parenthesized-difference",
+    "status": "applied",
+    "categories": [
+      "set"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S13-A06-difference-count-empty",
+    "status": "applied",
+    "categories": [
+      "set"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S14-A01-rollup-original-null",
+    "status": "existing-explanation",
+    "reason": "GROUPING/ROLLUP의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S14-A02-rollup-two-keys",
+    "status": "existing-explanation",
+    "reason": "ROLLUP의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S14-A03-cube-cross-subtotals",
+    "status": "existing-explanation",
+    "reason": "CUBE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S14-A04-chosen-grouping-sets",
+    "status": "existing-explanation",
+    "reason": "GROUPING의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S14-A05-having-total-only",
+    "status": "existing-explanation",
+    "reason": "ROLLUP/GROUPING의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S14-A06-repeated-sets",
+    "status": "existing-explanation",
+    "reason": "GROUPING의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S15-A01-ranks-side-by-side",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S15-A02-unique-number-with-tie-key",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S15-A03-partition-sum-maintains-rows",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S15-A04-lag-null-default",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S15-A05-lead-gap-not-id",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S15-A06-ntile-unequal",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S16-A01-range-peer-cumulative",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S16-A02-rows-two-window",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S16-A03-range-value-distance",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S16-A04-last-value-full",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S16-A05-future-count-boundary",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S16-A06-partition-boundaries",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S17-A01-fetch-only-key",
+    "status": "existing-explanation",
+    "reason": "FETCH의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S17-A02-fetch-ties-last-score",
+    "status": "existing-explanation",
+    "reason": "FETCH의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S17-A03-offset-page",
+    "status": "existing-explanation",
+    "reason": "OFFSET/FETCH의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S17-A04-per-dept-top",
+    "status": "existing-explanation",
+    "reason": "분석 함수 앞의 필터·집계가 있는 조합은 중간 입력 별도 작성 필요"
+  },
+  {
+    "questionId": "S17-A05-rownum-lower-bound-empty",
+    "status": "existing-explanation",
+    "reason": "ROWNUM의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S17-A06-rank-versus-dense-cut",
+    "status": "existing-explanation",
+    "reason": "분석 함수 앞의 필터·집계가 있는 조합은 중간 입력 별도 작성 필요"
+  },
+  {
+    "questionId": "S18-A01-hierarchy-levels",
+    "status": "existing-explanation",
+    "reason": "START/CONNECT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S18-A02-self-manager-name",
+    "status": "applied",
+    "categories": [
+      "join",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S18-A03-subtree-start",
+    "status": "existing-explanation",
+    "reason": "START/CONNECT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S18-A04-ancestor-direction",
+    "status": "existing-explanation",
+    "reason": "START/CONNECT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S18-A05-where-after-path",
+    "status": "existing-explanation",
+    "reason": "START/CONNECT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S18-A06-leaf-flags",
+    "status": "existing-explanation",
+    "reason": "START/CONNECT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S19-A01-pivot-sum-groups",
+    "status": "existing-explanation",
+    "reason": "PIVOT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S19-A02-pivot-count-missing",
+    "status": "existing-explanation",
+    "reason": "PIVOT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S19-A03-pivot-extra-id",
+    "status": "existing-explanation",
+    "reason": "PIVOT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S19-A04-unpivot-default",
+    "status": "existing-explanation",
+    "reason": "UNPIVOT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S19-A05-unpivot-include-count",
+    "status": "existing-explanation",
+    "reason": "UNPIVOT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S19-A06-conditional-pivot",
+    "status": "applied",
+    "categories": [
+      "aggregate",
+      "group",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S20-A01-regexp-whole-digits",
+    "status": "existing-explanation",
+    "reason": "REGEXP_LIKE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-A02-regexp-second-token",
+    "status": "existing-explanation",
+    "reason": "REGEXP_SUBSTR의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-A03-regexp-clean-replace",
+    "status": "existing-explanation",
+    "reason": "REGEXP_REPLACE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-A04-regexp-class-group-difference",
+    "status": "existing-explanation",
+    "reason": "REGEXP_LIKE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-A05-regexp-case-insensitive",
+    "status": "existing-explanation",
+    "reason": "REGEXP_LIKE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-A06-regexp-no-match-null",
+    "status": "existing-explanation",
+    "reason": "REGEXP_SUBSTR의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S21-A01-update-filter-rows",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S21-A02-delete-null-condition",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S21-A03-insert-column-order",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S21-A04-update-all-original-expressions",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S21-A05-insert-select-filter",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S21-A06-merge-update-insert",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S22-A01-partial-then-commit",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S22-A02-full-after-partial",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S22-A03-commit-boundary",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S22-A04-savepoint-name-reuse",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S22-A05-ddl-commits-prior",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S22-A06-delete-insert-rollback",
+    "status": "existing-explanation",
+    "reason": "DDL/DML/트랜잭션 문항: 상태 변경·커밋 경계를 Oracle 엔진에서 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S23-A01-check-null-versus-negative",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-A02-unique-null-single",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-A03-fk-parent-required",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-A04-parent-delete-set-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-A05-truncate-versus-delete-rollback",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S23-A06-drop-versus-recreate",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-A01-read-only-grant",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-A02-grant-chain-revoke",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-A03-role-survives-direct-revoke",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-A04-column-update-only",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-A05-system-not-data-read",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S24-A06-public-revoke-scope",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S09-m1-null-and-limited-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S10-m1-header-amount-inflation",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S10-m1-unique-pairs-self",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S11-m1-outer-or-null-leak",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S11-m1-full-null-double",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S12-m1-not-in-correct-filter",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S12-m1-scalar-grouping-cardinality",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S12-m1-universal-using-not-exists",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S13-m1-projection-then-dedup",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S13-m1-all-filter-stage",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S14-m1-grouping-id-mask",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S14-m1-null-nvl-subtotal",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S15-m1-aggregate-window-logical",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S15-m1-lag-filter-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S16-m1-nullable-window-count",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S16-m1-last-null-respect",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S17-m1-dense-cut-groups",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S17-m1-rownum-projected-page",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S18-m1-hierarchy-multiple-roots",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S18-m1-root-versus-parent",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S19-m1-pivot-avg-weight",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S19-m1-unpivot-zero-versus-missing",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S20-m1-alternation-anchors",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S21-m1-update-subquery-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S21-m1-merge-unmatched-delete",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S22-m1-failed-statement-prior-change",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S23-m1-unique-fk-not-one-to-one",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-1-S24-m1-grant-option-not-admin",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S09-m2-distinct-order-ambiguity",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S10-m2-missing-join-predicate",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S10-m2-condition-or-expands",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S11-m2-null-note-false-anti",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S11-m2-right-to-left-rewrite",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S12-m2-scalar-no-group-count",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S12-m2-all-null-veto",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S12-m2-uncorrelated-exists-mistake",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S13-m2-set-arity-error",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S13-m2-set-datatype-groups",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S14-m2-rollup-order-business",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S14-m2-cube-empty-full",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S15-m2-rank-added-key-effect",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S15-m2-row-number-where-scope",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S16-m2-rows-peers-nondeterminism",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S16-m2-range-offset-keys",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S17-m2-with-ties-needs-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S17-m2-fetch-zero",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S18-m2-cycle-without-guard",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S18-m2-hierarchy-pruning-location",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S19-m2-unpivot-type-family",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S19-m2-pivot-implicit-count-star",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S20-m2-regex-question-mark",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S21-m2-insert-default-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S21-m2-update-target-key-conflict",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S22-m2-commit-then-savepoint-invalid",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S23-m2-check-multiple-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-2-S24-m2-role-grant-object-option",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S09-m3-case-null-order-equivalent",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S10-m3-join-exists-equivalence-condition",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S10-m3-band-gaps-no-match",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S11-m3-filtered-count-preserve",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S11-m3-outer-swapped-column-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S12-m3-in-duplicates-no-extra",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S12-m3-correlated-min-ties",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S12-m3-exists-null-only-rewrite",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S13-m3-intersection-symmetry",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S13-m3-difference-reconstruct-union",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S14-m3-summing-rollup-double",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S14-m3-grouping-null-count-fields",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S15-m3-ntile-more-buckets",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S15-m3-null-partition-count",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S16-m3-range-current-peers-only",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S16-m3-moving-average-null-denominator",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S17-m3-offset-beyond-result",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S17-m3-percent-rounding",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S18-m3-overlapping-starts",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S18-m3-level-not-global-number",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S19-m3-pivot-unlisted-category",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S19-m3-pivot-count-expression-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S20-m3-regex-repeat-bounds",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S21-m3-delete-exists-no-cascade",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S21-m3-insert-from-self-count",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S22-m3-rollback-later-savepoint",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S23-m3-composite-primary-key",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-3-S24-m3-insert-select-source-right",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S09-m4-collation-condition",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S10-m4-multi-stage-cartesian",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S10-m4-join-range-time-exclusive",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S11-m4-left-chain-preservation",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S11-m4-outer-filter-left-on",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S12-m4-in-outer-duplicates",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S12-m4-correlated-grand-average-choice",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S12-m4-exists-all-null-policy",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S13-m4-union-count-distinct-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S13-m4-minus-column-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S14-m4-cube-versus-explicit-union",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S14-m4-having-level-total-filter",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S15-m4-rank-null-desc-oracle",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S15-m4-ntile-tie-split",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S16-m4-sum-empty-following-frame",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S16-m4-range-date-distance",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S17-m4-ties-composite-key",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S17-m4-top-average-stage",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S18-m4-siblings-non-global-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S18-m4-manager-count-self",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S19-m4-unpivot-count-roundtrip",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S19-m4-pivot-two-measures",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S20-m4-regex-space-not-trim",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S21-m4-update-correlated-all-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S21-m4-delete-having-target",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S22-m4-read-committed-two-sessions",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S23-m4-fk-default-delete-protect",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-4-S24-m4-revoke-one-object-only",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S09-m5-sort-arithmetic-null",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S10-m5-distinct-after-project-join",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S10-m5-nvl-null-sentinel-collision",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S11-m5-full-on-true-empty",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S11-m5-full-unmatched-where-side",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S12-m5-null-left-in-mixed",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S12-m5-exists-aggregate-no-group",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S12-m5-relational-division-empty-required",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S13-m5-unionall-group-frequency",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S13-m5-intersect-not-join-product",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S14-m5-rollup-composite-unit",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S14-m5-aggregate-null-all-levels",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S15-m5-lag-offset-partition",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S15-m5-lead-ignore-null-values",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S16-m5-negative-values-window",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S16-m5-frame-whole-without-order",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S17-m5-bottom-n-null-policy",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S17-m5-top-after-distinct",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S18-m5-leaf-before-where",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S18-m5-hierarchy-path-versus-id",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S19-m5-filter-before-pivot-group",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S19-m5-unpivot-detect-missing",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S20-m5-regexp-backreference",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S21-m5-zero-update-and-rollback",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S21-m5-merge-on-column-update",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S22-m5-valid-ddl-failure-precommit",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S23-m5-alter-not-null-existing-data",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "mock-5-S24-m5-system-revoke-not-object-chain",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S27-SUP-R01-logical-definition",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S27-SUP-R02-drop-definition",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S27-SUP-R03-check-readonly",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S27-SUP-A01-base-change-visible",
+    "status": "existing-explanation",
+    "reason": "초기 설정에 뷰·UPDATE·COMMIT이 포함되어 세션/트랜잭션 의미를 Oracle에서 검증하지 못함"
+  },
+  {
+    "questionId": "S27-SUP-A02-check-option-exit",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S28-SUP-R01-selection-projection",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S28-SUP-R02-union-compatible",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S28-SUP-R03-division-universal",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S28-SUP-A01-project-after-select",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S28-SUP-A02-division-required-courses",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S12-SUP-R01-classification-axes",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S12-SUP-A01-paired-membership",
+    "status": "applied",
+    "categories": [
+      "subquery"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S15-SUP-A01-percent-rank-top-tie",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S15-SUP-A02-cume-desc-peers",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S16-SUP-A01-first-value-null-frame",
+    "status": "existing-explanation",
+    "reason": "분석 함수의 NULL 무시/비율 전용 의미를 독립 실행으로 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S16-SUP-A02-first-value-moving-frame",
+    "status": "applied",
+    "categories": [
+      "window",
+      "sort"
+    ],
+    "reason": "현재 입력값 및 fixture 일치. SQLite 비교 검산; Oracle 19c 실행 미실시."
+  },
+  {
+    "questionId": "S16-SUP-A03-ratio-partition-null",
+    "status": "existing-explanation",
+    "reason": "분석 함수의 NULL 무시/비율 전용 의미를 독립 실행으로 확인하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S16-SUP-R01-ratio-over-syntax",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S18-SUP-A01-root-to-node-path",
+    "status": "existing-explanation",
+    "reason": "START/CONNECT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S18-SUP-A02-cycle-current-parent",
+    "status": "existing-explanation",
+    "reason": "START/CONNECT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S18-SUP-R01-nocycle-query-scope",
+    "status": "existing-concept-explanation",
+    "reason": "SQL 코드 없음: 기존 개념·표 해설 보존. 가짜 SQL 단계 미생성."
+  },
+  {
+    "questionId": "S20-SUP-A01-instr-after-end",
+    "status": "existing-explanation",
+    "reason": "REGEXP_INSTR의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-SUP-A02-instr-subexpression",
+    "status": "existing-explanation",
+    "reason": "REGEXP_INSTR의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-SUP-A03-count-nonoverlap",
+    "status": "existing-explanation",
+    "reason": "REGEXP_COUNT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-SUP-A04-flags-newline-dot",
+    "status": "existing-explanation",
+    "reason": "REGEXP_COUNT의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  },
+  {
+    "questionId": "S20-SUP-A05-replace-captured-parts",
+    "status": "existing-explanation",
+    "reason": "REGEXP_REPLACE의 DBMS별 구문·값 의미를 새 단계자료로 검증하지 못하여 기존 해설 유지"
+  }
+]

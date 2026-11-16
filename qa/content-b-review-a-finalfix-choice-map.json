@@ -1,0 +1,14 @@
+{
+  "mock-1-M10-reservation-timeslot": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "b",
+    "r4": "c"
+  },
+  "mock-2-S06-mock-in-subset-null": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  }
+}

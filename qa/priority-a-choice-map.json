@@ -1,0 +1,212 @@
+{
+  "M11-R01-external-view": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "M11-R02-physical-independence": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "M11-R03-process-versus-layer": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "M11-A01-split-preserved-view": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "M11-A02-index-stable-meaning": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "M12-R01-endpoint-direction": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "M12-R02-cardinality-minimum": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "M12-R03-erd-first-business": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "M12-A01-optional-parent-not-null": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "M12-A02-association-history-key": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "M13-R01-deliberate-redundancy": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "M13-R02-measure-before-choice": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "M13-R03-snapshot-meaning": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "M13-A01-total-cancellation": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "M13-A02-frequent-master-update": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S25-R01-char-varchar-storage": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S25-R02-number-precision-scale": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S25-R03-date-timestamp-fields": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S25-A01-explicit-char-length": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S25-A02-numeric-cast-scales": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S26-R01-add-modify-update": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S26-R02-rename-column-vs-alias": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S26-R03-drop-column-versus-delete": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S26-A01-add-null-existing-row": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S26-A02-rename-retains-values": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S03-R07-instr-result-kind": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S03-A07-instr-occurrence-missing": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S03-A08-padding-final-length": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S03-A09-negative-integer-directions": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S03-A10-lower-uppercase-sequence": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S05-R06-nvl2-return-branch": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S05-A07-decode-null-versus-case": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S05-A08-decode-default-omitted": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "b",
+    "r4": "c"
+  },
+  "M06-R06-bcnf-superkey": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "M02-R06-classification-two-axes": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  }
+}

@@ -1,0 +1,1801 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-14T05:15:38.441968+00:00",
+  "method": "allowlist_without_answers_explanations_expected_results_and_masked_choice_ids",
+  "questions": [
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8b593c2575e50fce211116659e9f85ef1631626aa115550e68dfea8b452a83b1",
+      "publicInputSha256": "a3ed4b0bdfe7051d9579ab8a5b3652751569b35614b09e647a4c8decbf4c4ba2",
+      "question": {
+        "id": "mock-2-S09-m2-distinct-order-ambiguity",
+        "version": 1,
+        "title": "조회는 DISTINCT dept만 반환한다. 한 부서에 서로 다른 salary가 여러 개 있다. 부서별 대표 급여 정의 없이",
+        "stem": "조회는 DISTINCT dept만 반환한다. 한 부서에 서로 다른 salary가 여러 개 있다. 부서별 대표 급여 정의 없이 원본 salary로 정렬 하려는 설계의 문제는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "DISTINCT가 최솟값 급여를 자동 선택한다"
+          },
+          {
+            "id": "r2",
+            "text": "salary가 숫자이면 언제나 명확하다"
+          },
+          {
+            "id": "r3",
+            "text": "어떤 부서 급여로 정렬 할지 결정되지 않았고 Oracle DISTINCT 정렬식 제약에도 맞지 않을 수 있다"
+          },
+          {
+            "id": "r4",
+            "text": "DISTINCT가 최댓값 급여를 자동 선택한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "1b8e9e7c81268f64c4241f689b418d4c3afc3bb99d51f4dc475046b3c651ddc1",
+      "publicInputSha256": "4e739d4513366da66e050658c360320d49efaba1111ff2acea201d9f9917b868",
+      "question": {
+        "id": "mock-2-S10-m2-missing-join-predicate",
+        "version": 1,
+        "title": "상품 P(id PK) 3행과 주문 O(id PK,pid) 4행을 결합했는데 상품 연결 조건을 빠뜨려 모든 조합을 만들 었다. 행",
+        "stem": "상품 P(id PK) 3행과 주문 O(id PK,pid) 4행을 결합했는데 상품 연결 조건을 빠뜨려 모든 조합을 만들 었다. 행 수는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "12행"
+          },
+          {
+            "id": "r2",
+            "text": "7행"
+          },
+          {
+            "id": "r3",
+            "text": "3행"
+          },
+          {
+            "id": "r4",
+            "text": "4행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "377e6c0bd49b83c4f1e190d867512fdee5cd836196f7178d9f189b40ac15061c",
+      "publicInputSha256": "7f3668c32933c9471a37390e6aae0a23183a341348ed959e9214c0deda779998",
+      "question": {
+        "id": "mock-2-S10-m2-condition-or-expands",
+        "version": 1,
+        "title": "A(k,flag)에(1,1),(2,0), B(k)에 1,2가 있다. ON이 A.k=B.k OR A.flag=1이면 매칭 쌍 수는",
+        "stem": "A(k,flag)에(1,1),(2,0), B(k)에 1,2가 있다. ON이 A.k=B.k OR A.flag=1이면 매칭 쌍 수는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "3쌍"
+          },
+          {
+            "id": "r2",
+            "text": "2쌍"
+          },
+          {
+            "id": "r3",
+            "text": "4쌍"
+          },
+          {
+            "id": "r4",
+            "text": "1쌍"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bc9809b4e10a207f8079f992bb7d08c1f235808a3f384695e3ac9a69cd144d00",
+      "publicInputSha256": "a063aa79ef74424b63a24bfec705a503b20bc4377984dd9831891d7714853b61",
+      "question": {
+        "id": "mock-2-S11-m2-null-note-false-anti",
+        "version": 1,
+        "title": "고객 1은 실제 주문(id10,memo NULL)이 있고 고객 2는 주문이 없다. LEFT JOIN 후 O.memo IS NULL",
+        "stem": "고객 1은 실제 주문(id10,memo NULL)이 있고 고객 2는 주문이 없다. LEFT JOIN 후 O.memo IS NULL로 주문 없는 고객을 찾았다. 나오는 고객과 결함은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "고객 1만나온다"
+          },
+          {
+            "id": "r2",
+            "text": "고객 1,2 모두 나오며 실제 주문의 NULL 메모를 미매칭과 혼동 한다"
+          },
+          {
+            "id": "r3",
+            "text": "아무도나오지 않는다"
+          },
+          {
+            "id": "r4",
+            "text": "고객 2만나오므로 항상 정확"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "970932b9f1fedc74a0b613cf1221b20fb4b3b2e44314018117ea9e9cb7e84794",
+      "publicInputSha256": "1e43bcb53af093f4387c9dd3849b2c09133a96662c183150a94261e09cba8069",
+      "question": {
+        "id": "mock-2-S11-m2-right-to-left-rewrite",
+        "version": 1,
+        "title": "A RIGHT OUTER JOIN B ON A.k=B.k를 같은 결과 열 의미로 재작성 하려 한다. 보존 방향을 유지 하는 것은?",
+        "stem": "A RIGHT OUTER JOIN B ON A.k=B.k를 같은 결과 열 의미로 재작성 하려 한다. 보존 방향을 유지 하는 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "B INNER JOIN A"
+          },
+          {
+            "id": "r2",
+            "text": "A LEFT OUTER JOIN B"
+          },
+          {
+            "id": "r3",
+            "text": "A CROSS JOIN B"
+          },
+          {
+            "id": "r4",
+            "text": "B LEFT OUTER JOIN A에 동일한 키 조건 사용"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bdd9d0b315e4fb8dc86551f2e751b04b5c32c0263ca1492a5d53b94cca836a4f",
+      "publicInputSha256": "538d39fd3f39198a847f1f328275d3809358b453b54306e05b67dcd3c86ea597",
+      "question": {
+        "id": "mock-2-S12-m2-scalar-no-group-count",
+        "version": 1,
+        "title": "서브쿼리는 빈 주문 표에서 GROUP BY 없이 COUNT(*)만 반환한다. 스칼라 위치에서 받는 값은?",
+        "stem": "서브쿼리는 빈 주문 표에서 GROUP BY 없이 COUNT(*)만 반환한다. 스칼라 위치에서 받는 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "두 행이 상 오류"
+          },
+          {
+            "id": "r2",
+            "text": "NULL"
+          },
+          {
+            "id": "r3",
+            "text": "0 한 값"
+          },
+          {
+            "id": "r4",
+            "text": "스칼라 0행오류"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "297aeb9ca185e889126bfb38a50209d683f9796524828ebc0c6522688b14f954",
+      "publicInputSha256": "1e5e9b175c7ce0f82bbd38dfe0e11d88d6e0da26cd1eec92fe05bdaf9e2b989f",
+      "question": {
+        "id": "mock-2-S12-m2-all-null-veto",
+        "version": 1,
+        "title": "비NULLx=20을값 집합{10,NULL}의 모든 값보다 큰지 >ALL로 비교한다. WHERE에서 통과 하는가?",
+        "stem": "비NULLx=20을값 집합{10,NULL}의 모든 값보다 큰지 >ALL로 비교한다. WHERE에서 통과 하는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "FALSE이므로 NULL과 무관하다"
+          },
+          {
+            "id": "r2",
+            "text": "문법 오류로 실패한다"
+          },
+          {
+            "id": "r3",
+            "text": "통과하지 않는다. TRUE AND UNKNOWN은 UNKNOWN이다"
+          },
+          {
+            "id": "r4",
+            "text": "통과한다.10보다 크기만 하면 된다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bf8197ee6d7661a172ccbc07f85dcb118ffa1c2c76ce243f8a72243c9610d191",
+      "publicInputSha256": "17a8b1efc43a8fba517730b3a53d900485db56c28d0773de39f0fa6657ce1f84",
+      "question": {
+        "id": "mock-2-S12-m2-uncorrelated-exists-mistake",
+        "version": 1,
+        "title": "C 고객 1,2가 있고 O에는 고객 1의 주문만 있다. EXISTS 내부에 C와 O를 연결하는 상관 조건이 없고 O의 전체 행 존재만",
+        "stem": "C 고객 1,2가 있고 O에는 고객 1의 주문만 있다. EXISTS 내부에 C와 O를 연결하는 상관 조건이 없고 O의 전체 행 존재만 검사한다. 반환 고객은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "고객 1과 고객 2"
+          },
+          {
+            "id": "r2",
+            "text": "고객 2만"
+          },
+          {
+            "id": "r3",
+            "text": "고객 1만"
+          },
+          {
+            "id": "r4",
+            "text": "0행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "57ca04a57880ae4b2e908406cb32013d21193fa816fc320db636bc44dc27184f",
+      "publicInputSha256": "228e8e0cf71b131e2402674861f2d007eb0f2faee2c0cf3f7f0c6bd0500e2a39",
+      "question": {
+        "id": "mock-2-S13-m2-set-arity-error",
+        "version": 1,
+        "title": "왼쪽 SELECT는 id,name 두 열이고 오른쪽 SELECT는 id 한 열이다. UNION ALL로 결합하려는 문장의 판단",
+        "stem": "왼쪽 SELECT는 id,name 두 열이고 오른쪽 SELECT는 id 한 열이다. UNION ALL로 결합하려는 문장의 판단은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ALL이므로 열 개수가 달라 도 된다"
+          },
+          {
+            "id": "r2",
+            "text": "열 개수가 달라 집합 연산이 성립하지 않는다"
+          },
+          {
+            "id": "r3",
+            "text": "name을 자동 NULL로 추가한다"
+          },
+          {
+            "id": "r4",
+            "text": "오른쪽 id를 두 열에 복사 한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d5ae6d254edb5c556cfae36c3072524e4f52327b82fe292b217ab4ab48abc9aa",
+      "publicInputSha256": "dcad3c7c466c0956888c4d21ea5de4bd4b6673b5b12793905a22f0ec38e58322",
+      "question": {
+        "id": "mock-2-S13-m2-set-datatype-groups",
+        "version": 1,
+        "title": "Oracle19c에 서 한 SELECT의 대응 열은 NUMBER, 다른 SELECT의 대응 열은 VARCHAR2 문자열 리터럴이",
+        "stem": "Oracle19c에 서 한 SELECT의 대응 열은 NUMBER, 다른 SELECT의 대응 열은 VARCHAR2 문자열 리터럴이다. 명시 변환 없이 집합 연산에서 이를 무조건 호환된다고 해도 되는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "안 된다. 숫자와 문자 자료형 그룹의 호환을 명시 적으로 맞춰야 한다"
+          },
+          {
+            "id": "r2",
+            "text": "문자가 숫자처럼 보이면 항상 자동 호환"
+          },
+          {
+            "id": "r3",
+            "text": "UNION을 쓰면 모두 문자로 자동 변환"
+          },
+          {
+            "id": "r4",
+            "text": "열 별칭을 같게하면해결"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "85a336de88b27724d7621c393e3e61e3d99b3198720c62a4e4f5f77b0ac6fea0",
+      "publicInputSha256": "76e591e490d2a2403749338f790c2b12f6fa6274b4de8c250c9eff3390ac3f5a",
+      "question": {
+        "id": "mock-2-S14-m2-rollup-order-business",
+        "version": 1,
+        "title": "지역별 소계가 필요하지 만 GROUP BY ROLLUP(store,region)을 사용했다. store가 지역마다 유일한 번호라",
+        "stem": "지역별 소계가 필요하지 만 GROUP BY ROLLUP(store,region)을 사용했다. store가 지역마다 유일한 번호 라는 추가 규칙은 없다. 왜 요구와 다를 수 있는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "전체 합계는 어떤 ROLLUP에 도 없다"
+          },
+          {
+            "id": "r2",
+            "text": "region이 두 번째이므로 region 소계만 생긴다"
+          },
+          {
+            "id": "r3",
+            "text": "ROLLUP은 키 순서를 무시한다"
+          },
+          {
+            "id": "r4",
+            "text": "중간 소계가 store 별이며 region 단독 소계는 생성하지 않는다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "faa1268e80ad15b71c0eea457960e4c925602798877f2e7c99cd2fceb9e24b73",
+      "publicInputSha256": "fd62323406bd84e10f45a1c5af0ffafe71d0979dd0f05d19e34d8c75b4811734",
+      "question": {
+        "id": "mock-2-S14-m2-cube-empty-full",
+        "version": 1,
+        "title": "입력이 완전히 비어 있는 표에서 CUBE(d)의 그룹 결과를 만든다. GROUPING(d)=1인 전체 합계 행의 COUNT(*)",
+        "stem": "입력이 완전히 비어 있는 표에서 CUBE(d)의 그룹 결과를 만든다. GROUPING(d)=1인 전체 합계 행의 COUNT(*) 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0"
+          },
+          {
+            "id": "r2",
+            "text": "NULL"
+          },
+          {
+            "id": "r3",
+            "text": "원본 dNULL 행 수에 따라 달라진다"
+          },
+          {
+            "id": "r4",
+            "text": "1"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "057b0896501fdc25081858e02b5e04151adb4f3131a8517b47514a0dd058332a",
+      "publicInputSha256": "3888ddc33640ea5a6c43c3d1cba82c0c207f4a913f0dc1a1058aeca178218a01",
+      "question": {
+        "id": "mock-2-S15-m2-rank-added-key-effect",
+        "version": 1,
+        "title": "점수 90인 서로 다른 학생 id1,2가 있다. RANK의 OVER ORDER BY를 score DESC에 서 score DESC,",
+        "stem": "점수 90인 서로 다른 학생 id1,2가 있다. RANK의 OVER ORDER BY를 score DESC에 서 score DESC,id로 바꾸면 어떤 변화가 생기는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "둘다 순위 0이된다"
+          },
+          {
+            "id": "r2",
+            "text": "출력 행이한 개로 줄어든다"
+          },
+          {
+            "id": "r3",
+            "text": "점수 동점이 id로 해소 되어 서로 다른 순위를 받는다"
+          },
+          {
+            "id": "r4",
+            "text": "점수가 같으므로 항상 같은 순위"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bba217702068a487234d0d6e757e0f094d33fee5ddc4f93456e1ce458643d7d8",
+      "publicInputSha256": "4c5d2eb72882b14dc15d8d454bb23585dfd2dd9826f8e88d923758342a5857bd",
+      "question": {
+        "id": "mock-2-S15-m2-row-number-where-scope",
+        "version": 1,
+        "title": "같은 SELECT 블록에서 계산한 ROW_NUMBER 별칭 rn을 일반 WHERE rn<=3으로 바로 참조 하려 한다. 일반적 인",
+        "stem": "같은 SELECT 블록에서 계산한 ROW_NUMBER 별칭 rn을 일반 WHERE rn<=3으로 바로 참조 하려 한다. 일반적 인 수정 방향은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "분석 계산을 안쪽 쿼리에 두고 바깥 WHERE에 서 rn을 필터한다"
+          },
+          {
+            "id": "r2",
+            "text": "rn을 문자열상수로감싸면동일해진다"
+          },
+          {
+            "id": "r3",
+            "text": "ROW_NUMBER를 SUM으로 바꾸면 된다"
+          },
+          {
+            "id": "r4",
+            "text": "ORDER BY만 삭제하면 rn을 WHERE에 서 사용 가능"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "31fd932485392e5f919b5bdab62feee948e9653eb10e40eda8486ef19eba776b",
+      "publicInputSha256": "8dac0b1005e2272a3d993a424dcabc2269fbb12f694588d942107f073897a405",
+      "question": {
+        "id": "mock-2-S16-m2-rows-peers-nondeterminism",
+        "version": 1,
+        "title": "id는 고유하지만 분석 ORDER BY에는 중복되는 timestamp만 두었다. ROWS로 현재까지 누 적합을 계산할 때 같은",
+        "stem": "id는 고유하지만 분석 ORDER BY에는 중복되는 timestamp만 두었다. ROWS로 현재까지 누 적합을 계산할 때 같은 timestamp 행별 누적 값의 문제는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "고유 id가 자동 정렬 키로 추가된다"
+          },
+          {
+            "id": "r2",
+            "text": "SUM은 언제나 각 행원래 값만 낸다"
+          },
+          {
+            "id": "r3",
+            "text": "ROWS가 timestamp 동점 모두 를 항상 동시포함"
+          },
+          {
+            "id": "r4",
+            "text": "동점 내부 순서가 고정되지 않아 행별 누적 값이 달라질 수 있다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "948514dab3b4f2ff9202982049fbf4ded339b5a347ecd88ea8fbd240ca460cc3",
+      "publicInputSha256": "78a39f2ee4afd3f6b745a667fc928f957fcd76374d616aa08c57a6003b256db9",
+      "question": {
+        "id": "mock-2-S16-m2-range-offset-keys",
+        "version": 1,
+        "title": "숫자 key1,key2 두 열로 분석 정렬하며 RANGE BETWEEN 2 PRECEDING AND CURRENT ROW를 쓰",
+        "stem": "숫자 key1,key2 두 열로 분석 정렬하며 RANGE BETWEEN 2 PRECEDING AND CURRENT ROW를 쓰려 한다. Oracle19c에 서 먼저 확인할 제약은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "값 오프셋 RANGE에서 는 여러 정렬 키 사용이 제한 된다"
+          },
+          {
+            "id": "r2",
+            "text": "ROWS도 항상 한 키만 가능"
+          },
+          {
+            "id": "r3",
+            "text": "모든 RANGE 프레임은 여러 키가 절대 불가능"
+          },
+          {
+            "id": "r4",
+            "text": "정렬 별칭을 바꾸면 제약이 사라진다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8f5a17e5da59f962e818a9666deb6521a279e6b87f8caa48fa18c810037ff82d",
+      "publicInputSha256": "673979fc7ee3ac3f29d61256b71496dd0dc46ad59348387489795c68365b23c3",
+      "question": {
+        "id": "mock-2-S17-m2-with-ties-needs-order",
+        "version": 1,
+        "title": "FETCH FIRST 3 ROWS WITH TIES로 동점 포함을 요청하면 서 ORDER BY를 생략하려 한다. 문법 설계상 문",
+        "stem": "FETCH FIRST 3 ROWS WITH TIES로 동점 포함을 요청하면 서 ORDER BY를 생략하려 한다. 문법 설계상 문제는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "SELECT 첫열 동점을 자동 사용한다"
+          },
+          {
+            "id": "r2",
+            "text": "조건이 없으면 항상 모든 행을 낸다"
+          },
+          {
+            "id": "r3",
+            "text": "WITH TIES에는 동점을 정할 ORDER BY가 필요하다"
+          },
+          {
+            "id": "r4",
+            "text": "기본키 동점을 자동 사용한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ad36cbc4c195af21255027980c070205dfeb758626982e3729eccfeb2021b710",
+      "publicInputSha256": "b225253f007571f8ad187798086cdadbbe97049988ea7a6f09c0dac9450b5c2a",
+      "question": {
+        "id": "mock-2-S17-m2-fetch-zero",
+        "version": 1,
+        "title": "Oracle19c에 서 적법한 정렬 뒤 FETCH FIRST 0 ROWS ONLY를 지정 했다. 입력은 여러 행이다. 결과는?",
+        "stem": "Oracle19c에 서 적법한 정렬 뒤 FETCH FIRST 0 ROWS ONLY를 지정 했다. 입력은 여러 행이다. 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "모든 행"
+          },
+          {
+            "id": "r2",
+            "text": "NULL 한 행"
+          },
+          {
+            "id": "r3",
+            "text": "0행"
+          },
+          {
+            "id": "r4",
+            "text": "첫 행한 개"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a39918ca05b967e158bc0c9c3d7afa886f70cb97b47d3301fc3daab63c21b73a",
+      "publicInputSha256": "8552bf19e346a9c744005c7165adaa0522f6993976d01de55484a630632d7118",
+      "question": {
+        "id": "mock-2-S18-m2-cycle-without-guard",
+        "version": 1,
+        "title": "N의 부모 연결이 1→2→1로 순환 한다. 이 경로를 시작점에서 NOCYCLE 없이 계속 확장 하려는 Oracle 계층 질의의 위",
+        "stem": "N의 부모 연결이 1→2→1로 순환 한다. 이 경로를 시작점에서 NOCYCLE 없이 계속 확장 하려는 Oracle 계층 질의의 위험은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "DISTINCT가 탐색전순환을 항상 제거"
+          },
+          {
+            "id": "r2",
+            "text": "LEVEL이 자동 0으로초기화 되어 정상 완료"
+          },
+          {
+            "id": "r3",
+            "text": "순환 관계로 오류가 발생할 수 있다"
+          },
+          {
+            "id": "r4",
+            "text": "두 행중하나를 자동 삭제"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "b0bf8872388dee371b2dfb6e6bdc488edc9de08f25d5caededc4c6bfbf891c11",
+      "publicInputSha256": "798db3f81611cfbcdfa38da07791f675e1434e4417db6460d32a93ec605dc554",
+      "question": {
+        "id": "mock-2-S18-m2-hierarchy-pruning-location",
+        "version": 1,
+        "title": "루트 1→중간 2→잎 3 경로에서 중간 2를 통과한 가지 전체를 확장하지 않으려 한다. 단순 WHERE id<>2와 다른 설계가 필요",
+        "stem": "루트 1→중간 2→잎 3 경로에서 중간 2를 통과한 가지 전체를 확장하지 않으려 한다. 단순 WHERE id<>2와 다른 설계가 필요한 이유는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "START WITH가 항상 모든 행을 루트로 만든다"
+          },
+          {
+            "id": "r2",
+            "text": "LEVEL은 원본값이라 조건에 못쓴다"
+          },
+          {
+            "id": "r3",
+            "text": "WHERE는 어떤 계층 쿼리에도 쓸수 없다"
+          },
+          {
+            "id": "r4",
+            "text": "WHERE의 결과 행 제거만으로 자손 확장 자체를 차단하지 않기 때문이다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "edeea4cda738f8d9ac96921ad7a6b11156a1f121c748a4811b14c5f247ae28ae",
+      "publicInputSha256": "05892f182314f724f0c52cc198d692a4d2d4ebb1d9d56eda2e7006586541d65e",
+      "question": {
+        "id": "mock-2-S19-m2-unpivot-type-family",
+        "version": 1,
+        "title": "q1은 NUMBER, q2는 DATE다. 한 amt 값 열로 UNPIVOT 하려는 설계에서 필요한 검토는?",
+        "stem": "q1은 NUMBER, q2는 DATE다. 한 amt 값 열로 UNPIVOT 하려는 설계에서 필요한 검토는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "q1,q2 값이 우연히하나씩이면 된다"
+          },
+          {
+            "id": "r2",
+            "text": "UNPIVOT이 모두 문자로 자동 변환한다"
+          },
+          {
+            "id": "r3",
+            "text": "변환할 값 열의 자료형 그룹 호환"
+          },
+          {
+            "id": "r4",
+            "text": "열 이름 길이가 같아야 한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6ba63ba6fd9e7d8d08c0804ee56b2c4b494142c5a6b6821150db7d034409860d",
+      "publicInputSha256": "b5e3682f7abd965821b42de88f8d068f5ae3f7c0b096af4e924162cc2961f587",
+      "question": {
+        "id": "mock-2-S19-m2-pivot-implicit-count-star",
+        "version": 1,
+        "title": "PIVOT(COUNT(*) FOR mon ...) 입력에 mon 이외에 금액 amt까지 남아 있다. 의도는 shop 별 월별 건",
+        "stem": "PIVOT(COUNT(*) FOR mon ...) 입력에 mon 이외에 금액 amt까지 남아 있다. 의도는 shop 별 월별 건수인데 결과가 amt 별로 나뉜다. 원인은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "COUNT(*)는 amt를 집계 인수 열로 제거하지 않으므로 amt가 암묵 그룹 키로 남는다"
+          },
+          {
+            "id": "r2",
+            "text": "PIVOT은 shop 열을 전혀 그룹 화할 수 없다"
+          },
+          {
+            "id": "r3",
+            "text": "amt가 숫자여서 항상 합계가 된다"
+          },
+          {
+            "id": "r4",
+            "text": "COUNT가 항상 SUM으로 변환된다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8ebe4f1f12079b373e4efaae6b742f741c3f96de415509121dcddbd6efd8a2b2",
+      "publicInputSha256": "b06441342b7c1c70ec2f68a5b86dd6819e171a65c8238a45081dd307061b9305",
+      "question": {
+        "id": "mock-2-S20-m2-regex-question-mark",
+        "version": 1,
+        "title": "ASCII 패턴 ^colou?r$를 c 옵션으로 적용한다. color,colour,colouur 중 맞는 문자열은?",
+        "stem": "ASCII 패턴 ^colou?r$를 c 옵션으로 적용한다. color,colour,colouur 중 맞는 문자열은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "colour만"
+          },
+          {
+            "id": "r2",
+            "text": "color와 colouur"
+          },
+          {
+            "id": "r3",
+            "text": "color와 colour"
+          },
+          {
+            "id": "r4",
+            "text": "세 문자열 모두"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "dbd981f0d6fe02b445e90edcb6366023b3283bc07bb8f8f7e6786b45baa96643",
+      "publicInputSha256": "5835626b3b06a97ed7995214cc0a4e4b42b6ab80e9f3e3e461e44743aa206a7c",
+      "question": {
+        "id": "mock-2-S21-m2-insert-default-null",
+        "version": 1,
+        "title": "T(id PK, v NUMBER DEFAULT 9)이며 v는 NULL 허용이다. 첫 INSERT는 v 열을 생략하고 둘째 INSERT는 v에 명",
+        "stem": "T(id PK, v NUMBER DEFAULT 9)이며 v는 NULL 허용이다. 첫 INSERT는 v 열을 생략하고 둘째 INSERT는 v에 명시 NULL을 넣었다. DEFAULT ON NULL은 없다. 두 v 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "두 행모두 NULL"
+          },
+          {
+            "id": "r2",
+            "text": "생략 행 9, 명시 NULL 행 NULL"
+          },
+          {
+            "id": "r3",
+            "text": "두 행모두 9"
+          },
+          {
+            "id": "r4",
+            "text": "생략행 NULL,명시 NULL 행 9"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f087c78c1cbb5ceee44981569672d15fa71246411395354eaa505752a6d4f149",
+      "publicInputSha256": "6e2a8ae532e9426a9315c143abde6259e6230bfbc1d4a184a2fd7058a490e75e",
+      "question": {
+        "id": "mock-2-S21-m2-update-target-key-conflict",
+        "version": 1,
+        "title": "T(id PRIMARY KEY)에는 1,2가 있다. 한 UPDATE로 id1을 2로바꾸려 한다. 즉시 검사 제약이며 다른 조건 없다. 결과는?",
+        "stem": "T(id PRIMARY KEY)에는 1,2가 있다. 한 UPDATE로 id1을 2로바꾸려 한다. 즉시 검사 제약이며 다른 조건 없다. 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "표 전체가 자동 삭제된다"
+          },
+          {
+            "id": "r2",
+            "text": "두 id2행을 허용한다"
+          },
+          {
+            "id": "r3",
+            "text": "id2 기존 행을 자동 덮어쓴다"
+          },
+          {
+            "id": "r4",
+            "text": "기본키 중복으로 그 UPDATE가 실패하고 기존 두 행이 유지 된다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9cf4508553ce9a09f18c08865ce01591bf28c39e4d24b1fb7928e707e4fff4ed",
+      "publicInputSha256": "aa4f4caac423065c843f1543a1f4e94cbafac4fa5c046f08f062225f799eadf6",
+      "question": {
+        "id": "mock-2-S22-m2-commit-then-savepoint-invalid",
+        "version": 1,
+        "title": "SAVEPOINT a 이후 UPDATE 하고 COMMIT했다. 바로 ROLLBACK TO a를 시도 했다. 기대할 결과는?",
+        "stem": "SAVEPOINT a 이후 UPDATE 하고 COMMIT했다. 바로 ROLLBACK TO a를 시도 했다. 기대할 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "최근 UPDATE가 자동 취소되어 NULL"
+          },
+          {
+            "id": "r2",
+            "text": "savepoint가 소멸했으므로 되돌릴 수 없다"
+          },
+          {
+            "id": "r3",
+            "text": "COMMIT 전 상태로 정상 복구"
+          },
+          {
+            "id": "r4",
+            "text": "새 savepoint를 자동 생성 후 롤백"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "1d775d669656801fa923918c2f582df8fd7990fe1d888d48f19c66c5c5236b7e",
+      "publicInputSha256": "29d9c889ea6a9fac8af57e325a01f8c763dd0d308b6c173f0b3892586fc520b4",
+      "question": {
+        "id": "mock-2-S23-m2-check-multiple-null",
+        "version": 1,
+        "title": "T의 CHECK(a<b)만 으로 반드시 a와 b가 둘다 존재하고 a가 작다는 업무 규칙을 보장 하려 한다. 추가로 필요한 것은?",
+        "stem": "T의 CHECK(a<b)만 으로 반드시 a와 b가 둘다 존재하고 a가 작다는 업무 규칙을 보장 하려 한다. 추가로 필요한 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ORDER BY a,b"
+          },
+          {
+            "id": "r2",
+            "text": "CHECK만 으로 이미 둘다 필수"
+          },
+          {
+            "id": "r3",
+            "text": "두 열의 이름을 같게만들기"
+          },
+          {
+            "id": "r4",
+            "text": "a와 b 각각의 NOT NULL 제약"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a1263c189561cec74fd99a874a6cc7f430fcd4f5661062f00abcf811015d990a",
+      "publicInputSha256": "1b608fdad1ac076802cb23912b2fe26faebe6c1322e18e869d04a2c0c5743947",
+      "question": {
+        "id": "mock-2-S24-m2-role-grant-object-option",
+        "version": 1,
+        "title": "관리 자는 여러 객체 권한을 역할 R에 묶어 B에게 전달하려 한다. 역할의 목적에 가장 맞는 설명은?",
+        "stem": "관리 자는 여러 객체 권한을 역할 R에 묶어 B에게 전달하려 한다. 역할의 목적에 가장 맞는 설명은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "역할은 항상 표 데이터를 복사 한다"
+          },
+          {
+            "id": "r2",
+            "text": "권한을 묶어 사용 자에게 관리 하기 쉽게 부여한다"
+          },
+          {
+            "id": "r3",
+            "text": "역할을 받으면 모든 시스템 권한을 얻는다"
+          },
+          {
+            "id": "r4",
+            "text": "역할은 로그인암호를대신 한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d5910cce006a97b3b1795e1d23b9dc8851c44e2b776796174d4b26f72a156310",
+      "publicInputSha256": "bfe7026fcdcd1a7fc3b7728739911209dde3ee9b884ceef8f2133a24e0e7ce40",
+      "question": {
+        "id": "mock-3-S09-m3-case-null-order-equivalent",
+        "version": 1,
+        "title": "정렬값 x는 NUMBER다. x ASC NULLS FIRST와 같은 NULL 우선 규칙을 CASE로 표현 하려 한다. 올바른 정",
+        "stem": "정렬값 x는 NUMBER다. x ASC NULLS FIRST와 같은 NULL 우선 규칙을 CASE로 표현 하려 한다. 올바른 정렬 키 조합은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "CASE WHEN x IS NULL THEN 0 ELSE 1 END ASC,x DESC"
+          },
+          {
+            "id": "r2",
+            "text": "CASE WHEN x IS NULL THEN 1 ELSE 0 END ASC,x ASC"
+          },
+          {
+            "id": "r3",
+            "text": "CASE WHEN x IS NULL THEN 0 ELSE 1 END ASC, x ASC"
+          },
+          {
+            "id": "r4",
+            "text": "x ASC만 사용"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2d36084ad5511613a865c862c3dbc345d5d54fd8f5277d4498619a9bc7f36d2a",
+      "publicInputSha256": "a9684dc48a914591e9e3272166f27dc42eeef84d894ecffecb84f727144598ce",
+      "question": {
+        "id": "mock-3-S10-m3-join-exists-equivalence-condition",
+        "version": 1,
+        "title": "C의 각 행을 O와 내부 조인한 뒤 C 열만 반환하는 결과와 C에 서 O의 존재만 검사한 결과가 같은 중복 개수를 가지려면 중요한",
+        "stem": "C의 각 행을 O와 내부 조인한 뒤 C 열만 반환하는 결과와 C에 서 O의 존재만 검사한 결과가 같은 중복 개수를 가지려면 중요한 조건은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "O에 같은 고객 주문이 여러 개 있어 야 한다"
+          },
+          {
+            "id": "r2",
+            "text": "각 C 행에 대해 O의 매칭 행이 최대 한 개여야 한다"
+          },
+          {
+            "id": "r3",
+            "text": "두 표의 전체 행 수가 같아야 한다"
+          },
+          {
+            "id": "r4",
+            "text": "C에 NULL 열이 전혀 없어 야 한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a9bcdf131d247fc9520776f15845a6db6690c8c1084503ba0c1375151463fb7d",
+      "publicInputSha256": "9cce8f709f06aa17e27f3602f8fb2a70705aeed2c9cdafe67ca4fc84e402a34b",
+      "question": {
+        "id": "mock-3-S10-m3-band-gaps-no-match",
+        "version": 1,
+        "title": "등급 구간은[0,10],[20,30] 두 개이며 양끝을 포함한다. 급여 15인 직원 한 행을 범위 INNER JOIN 한 결과는?",
+        "stem": "등급 구간은[0,10],[20,30] 두 개이며 양끝을 포함한다. 급여 15인 직원 한 행을 범위 INNER JOIN 한 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "가까운첫등급으로 자동 매칭"
+          },
+          {
+            "id": "r2",
+            "text": "NULL 등급한 행보존"
+          },
+          {
+            "id": "r3",
+            "text": "둘째 등급으로 자동 매칭"
+          },
+          {
+            "id": "r4",
+            "text": "매칭이 없어 0행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "e3ec31f0d34c141af1c104f7df71d102f708224d35cf0b54b73e5a23180ba01c",
+      "publicInputSha256": "5e6e6ce1288f392e8d18cf0eb71ffb482e2c18e4bc4b951ad0c0f0daded79fb2",
+      "question": {
+        "id": "mock-3-S11-m3-filtered-count-preserve",
+        "version": 1,
+        "title": "모든 고객을 남기면서 유료주문 건수만 세려 한다. LEFT JOIN으로 전체 주문을 붙인 뒤 조건부 COUNT를 쓰는 설계에서",
+        "stem": "모든 고객을 남기면서 유료주문 건수만 세려 한다. LEFT JOIN으로 전체 주문을 붙인 뒤 조건부 COUNT를 쓰는 설계에서 적절한 집계 대상은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "CASE WHEN paid=1 THEN 1 ELSE 0 END"
+          },
+          {
+            "id": "r2",
+            "text": "CASE WHEN paid=1 THEN 주문의 비NULL 키 END"
+          },
+          {
+            "id": "r3",
+            "text": "COUNT(*)만 사용"
+          },
+          {
+            "id": "r4",
+            "text": "고객 키만 COUNT"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5b0e1ee79d438a66c80ca8fe12993195e791172d60c449982277104de1b33b95",
+      "publicInputSha256": "1d4ce307dd62db8fac733d2ca21cc06f6495193cdb8bacbbf7746a3d01a4fd34",
+      "question": {
+        "id": "mock-3-S11-m3-outer-swapped-column-null",
+        "version": 1,
+        "title": "A LEFT JOIN B에 서 B에 매칭이 없는 A 행은 B 열이 NULL이다. 표 위치만 B LEFT JOIN A로 바꾸고 나머지",
+        "stem": "A LEFT JOIN B에 서 B에 매칭이 없는 A 행은 B 열이 NULL이다. 표 위치만 B LEFT JOIN A로 바꾸고 나머지를 같은 뜻이라 설명하면 왜 틀릴 수 있는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NULL은 항상 A 열에 만 생긴다"
+          },
+          {
+            "id": "r2",
+            "text": "LEFT JOIN은 표 순서와 항상 무관하다"
+          },
+          {
+            "id": "r3",
+            "text": "INNER JOIN으로 자동 변환된다"
+          },
+          {
+            "id": "r4",
+            "text": "보존되는 입력이 A에 서 B로 바뀐다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "21804b56193b6403625b9c49c0ff49e1603575a13a8f67dd1600154aa9965253",
+      "publicInputSha256": "ffbb5eae1773a9bfb3628beee8ba3d0bb6dcca7fcd5297bf491e520ec1e36104",
+      "question": {
+        "id": "mock-3-S12-m3-in-duplicates-no-extra",
+        "version": 1,
+        "title": "A(x)에 1,2가 있고 B(v)에 2,2,2가 있다. A에 서 x IN(B의 v)로 고른 결과의 x2는 몇 번 나오는 가?",
+        "stem": "A(x)에 1,2가 있고 B(v)에 2,2,2가 있다. A에 서 x IN(B의 v)로 고른 결과의 x2는 몇 번 나오는 가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0번"
+          },
+          {
+            "id": "r2",
+            "text": "한 번"
+          },
+          {
+            "id": "r3",
+            "text": "두 번"
+          },
+          {
+            "id": "r4",
+            "text": "세 번"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "cde392b7b1ae8a1c3a87cebb9953739bd4a60573d7b1439c13b69cf41e6e560b",
+      "publicInputSha256": "b3fe63cb48680c8f744c04fe49b0270b1a5b57291cf737b1f14dc68f6c5eb2b7",
+      "question": {
+        "id": "mock-3-S12-m3-correlated-min-ties",
+        "version": 1,
+        "title": "E(id,d,sal)는(1,7,10),(2,7,10),(3,7,20)이다. 부서별 MIN(sal)와 같은 급여인 모든 행을 상",
+        "stem": "E(id,d,sal)는(1,7,10),(2,7,10),(3,7,20)이다. 부서별 MIN(sal)와 같은 급여인 모든 행을 상관 서브쿼리로 선택하면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "id1과 id2"
+          },
+          {
+            "id": "r2",
+            "text": "id1만"
+          },
+          {
+            "id": "r3",
+            "text": "id3만"
+          },
+          {
+            "id": "r4",
+            "text": "스칼라 오류"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d555c23b11fe8bafa0bb6628bc96fd9c151d4eb0e5dcba06bafd7cb71a3a8a06",
+      "publicInputSha256": "8720872dc814e296808552c95bf7002341b58b9e9c0989e41c7ff7c26da52855",
+      "question": {
+        "id": "mock-3-S12-m3-exists-null-only-rewrite",
+        "version": 1,
+        "title": "B(v)에는 NULL만 있다. 비상관 EXISTS로 B 행 존재를 묻는 것과 숫자 1 IN(B의 v)를 묻는것의 판정은?",
+        "stem": "B(v)에는 NULL만 있다. 비상관 EXISTS로 B 행 존재를 묻는 것과 숫자 1 IN(B의 v)를 묻는것의 판정은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "둘다 FALSE"
+          },
+          {
+            "id": "r2",
+            "text": "둘다 TRUE"
+          },
+          {
+            "id": "r3",
+            "text": "EXISTS는 TRUE, IN은 UNKNOWN"
+          },
+          {
+            "id": "r4",
+            "text": "EXISTS는 UNKNOWN,IN은 FALSE"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "42107cd6c2e0a587990bb09b174a6b26dabaae0d8095e0cabb49d8ccf4789631",
+      "publicInputSha256": "febcefdba8da7159a543bace54614afb879869fd9e7bc27a8bfc960358b22634",
+      "question": {
+        "id": "mock-3-S13-m3-intersection-symmetry",
+        "version": 1,
+        "title": "같은 호환 열 구조의 결과 A,B에 대해 A INTERSECT B와 B INTERSECT A를 정렬 없는 중복 제거 집합으로",
+        "stem": "같은 호환 열 구조의 결과 A,B에 대해 A INTERSECT B와 B INTERSECT A를 정렬 없는 중복 제거 집합으로 비교하면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "항상 반대부호가 된다"
+          },
+          {
+            "id": "r2",
+            "text": "NULL이 있으면 반드시 다르다"
+          },
+          {
+            "id": "r3",
+            "text": "A가 더많은행이면첫 식만 중복 유지"
+          },
+          {
+            "id": "r4",
+            "text": "같은 행 집합이다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "322cb4e260399bf4ff5a692b6719036d3c0c59b46cc38a2a2d236612b7903516",
+      "publicInputSha256": "0b86bc9ad5f51546d00b43a2923529568057b0dace18c158aba9126ba0c9679b",
+      "question": {
+        "id": "mock-3-S13-m3-difference-reconstruct-union",
+        "version": 1,
+        "title": "A에 1,1,2, B에 2,3이 있다. (A MINUS B) UNION (A INTERSECT B)의 결과는?",
+        "stem": "A에 1,1,2, B에 2,3이 있다. (A MINUS B) UNION (A INTERSECT B)의 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "1,2,3 각한 행"
+          },
+          {
+            "id": "r2",
+            "text": "1,2 각 한 행"
+          },
+          {
+            "id": "r3",
+            "text": "1,1,2 세 행"
+          },
+          {
+            "id": "r4",
+            "text": "2만한 행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "76f3d665bb013eef4bf93f71822b5d56c23933147e1dbe10447053eaa192ff2a",
+      "publicInputSha256": "be8daa905de8174d39ac1b195b780c5987412500bb5d16a124d1f0156507c25e",
+      "question": {
+        "id": "mock-3-S14-m3-summing-rollup-double",
+        "version": 1,
+        "title": "d1의 원본 금액 10,20을 ROLLUP(d)로 집계하면 상세 소계 30과전체 합계 30이 있다. 이두 집계 결과의 SUM을 다시 구해 원본총액이라고 하면?",
+        "stem": "d1의 원본 금액 10,20을 ROLLUP(d)로 집계하면 상세 소계 30과전체 합계 30이 있다. 이두 집계 결과의 SUM을 다시 구해 원본총액이라고 하면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0이된다"
+          },
+          {
+            "id": "r2",
+            "text": "NULL이 된다"
+          },
+          {
+            "id": "r3",
+            "text": "60으로 이중 계산되어 원본 총액 30과 다르다"
+          },
+          {
+            "id": "r4",
+            "text": "항상 30이므로 올바르다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ea2503570a038d0a47eca030aee7b199381f5cd4c92d4ef9cf5b76cb507c9da5",
+      "publicInputSha256": "b10574d87039f862eb524966a0f98a5d928a8bf0c1777ba27ac09842962277fd",
+      "question": {
+        "id": "mock-3-S14-m3-grouping-null-count-fields",
+        "version": 1,
+        "title": "NULL 부서에 금액 NULL 한 행이 있다. ROLLUP(d)의 실제 NULL 그룹에서 COUNT(*)와 COUNT(amount),GROUPIN",
+        "stem": "NULL 부서에 금액 NULL 한 행이 있다. ROLLUP(d)의 실제 NULL 그룹에서 COUNT(*)와 COUNT(amount),GROUPING(d)는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(0,0,1)"
+          },
+          {
+            "id": "r2",
+            "text": "(1,1,0)"
+          },
+          {
+            "id": "r3",
+            "text": "(1,0,0)"
+          },
+          {
+            "id": "r4",
+            "text": "(1,0,1)"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bdf16d16ff9455e959b14b0ebaf78f253a7b006db84c2a9edae564cf361cfaa6",
+      "publicInputSha256": "d24f52e9a16d18f642789cbaa910fe83cf9b27bd8fb91a7b6b5b240e89102763",
+      "question": {
+        "id": "mock-3-S15-m3-ntile-more-buckets",
+        "version": 1,
+        "title": "행이 3개이고 고유 id 순으로 NTILE(5)를 계산한다. 실제 반환 버킷 번호는?",
+        "stem": "행이 3개이고 고유 id 순으로 NTILE(5)를 계산한다. 실제 반환 버킷 번호는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "1,2,3,4,5다섯행"
+          },
+          {
+            "id": "r2",
+            "text": "1,3,5"
+          },
+          {
+            "id": "r3",
+            "text": "1,2,3"
+          },
+          {
+            "id": "r4",
+            "text": "1,1,1"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "285d2aa22fa65284688c5a288652fa9bc594e561b2343f403ec55b36e71356b9",
+      "publicInputSha256": "dc3896a9bf8a1eb18d1838ddc5a12ca017ccf13365a83a59e5ccd7cd1456d0e3",
+      "question": {
+        "id": "mock-3-S15-m3-null-partition-count",
+        "version": 1,
+        "title": "d가 NULL 인행두 개와 d1행한 개가 있다. COUNT(*) OVER(PARTITION BY d)를 계산 할 때 NULL 행에 붙는 값은?",
+        "stem": "d가 NULL 인행두 개와 d1행한 개가 있다. COUNT(*) OVER(PARTITION BY d)를 계산 할 때 NULL 행에 붙는 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "모든 행에 3"
+          },
+          {
+            "id": "r2",
+            "text": "각 NULL 행에 1"
+          },
+          {
+            "id": "r3",
+            "text": "각 NULL 행에 2"
+          },
+          {
+            "id": "r4",
+            "text": "각 NULL 행에 0"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "23dae465480568df2dfb881fa610e8c5df0a1d12cba4eec3020627f4ea9d432b",
+      "publicInputSha256": "c7188b8046ba827cdaa1a25ee6bf857a77ca165e4b276e2f8bb77f95e7a7c112",
+      "question": {
+        "id": "mock-3-S16-m3-range-current-peers-only",
+        "version": 1,
+        "title": "k,v 행이(1,5),(1,7),(2,10)이다. RANGE BETWEEN CURRENT ROW AND CURRENT ROW로",
+        "stem": "k,v 행이(1,5),(1,7),(2,10)이다. RANGE BETWEEN CURRENT ROW AND CURRENT ROW로 SUM(v)를 계산하면 k1 두 행에 붙는 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "각각 0"
+          },
+          {
+            "id": "r2",
+            "text": "각각 12"
+          },
+          {
+            "id": "r3",
+            "text": "각각 22"
+          },
+          {
+            "id": "r4",
+            "text": "5와 7각각"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ae149cb29355e0176a7b2877ab60ac3223705c61e0e028e3f10b3af4cc7c5ec3",
+      "publicInputSha256": "9df6366f0379782fdbb57727cec160d284d1ee611d72ee84345377bdf17bf401",
+      "question": {
+        "id": "mock-3-S16-m3-moving-average-null-denominator",
+        "version": 1,
+        "title": "고유 id 순 v 값은 10,NULL,30이다. 현재와 앞 한 행 ROWS 프레임의 AVG(v)에 서 마지막 행값은?",
+        "stem": "고유 id 순 v 값은 10,NULL,30이다. 현재와 앞 한 행 ROWS 프레임의 AVG(v)에 서 마지막 행값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NULL"
+          },
+          {
+            "id": "r2",
+            "text": "20"
+          },
+          {
+            "id": "r3",
+            "text": "30"
+          },
+          {
+            "id": "r4",
+            "text": "15"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5335e60397f634ee8f9e75a84be6b506b9813dac0ef9c66c2a57c9015a7512b4",
+      "publicInputSha256": "3c38868755c4f7c30978d4bbb4a8c969ee03ed91e1d05ce64dd018b8ea609c98",
+      "question": {
+        "id": "mock-3-S17-m3-offset-beyond-result",
+        "version": 1,
+        "title": "필터 후 결과가 3행인데 안정 정렬 뒤 OFFSET 5 ROWS FETCH NEXT 2 ROWS ONLY를 적용했다. 결과는?",
+        "stem": "필터 후 결과가 3행인데 안정 정렬 뒤 OFFSET 5 ROWS FETCH NEXT 2 ROWS ONLY를 적용했다. 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "마지막 두 행을 반환"
+          },
+          {
+            "id": "r2",
+            "text": "NULL 두 행 생성"
+          },
+          {
+            "id": "r3",
+            "text": "0행"
+          },
+          {
+            "id": "r4",
+            "text": "앞에서 다시 순환해두 행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "62cc2b552f869a06e731ae3d32c18bd64d40f8f08de64f33b58bf85ed59073e6",
+      "publicInputSha256": "e532314b0f8cf9151e701c875c32220777083576b5287275662a753928f5eb04",
+      "question": {
+        "id": "mock-3-S17-m3-percent-rounding",
+        "version": 1,
+        "title": "Oracle19c에 서 결과 7행에 FETCH FIRST 50 PERCENT ROWS ONLY를 적용한다. 양수 비율이고 그외 필터 없다",
+        "stem": "Oracle19c에 서 결과 7행에 FETCH FIRST 50 PERCENT ROWS ONLY를 적용한다. 양수 비율이고 그외 필터 없다. 선택 행 수는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0행"
+          },
+          {
+            "id": "r2",
+            "text": "7행"
+          },
+          {
+            "id": "r3",
+            "text": "4행"
+          },
+          {
+            "id": "r4",
+            "text": "3행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0977c020183176090bb67ba7dd645855349dd010168541fc6c580d5c2dc73f09",
+      "publicInputSha256": "da9343bd4aa7a4a3fde24e115a82ccaf7260b5f94d21c90aa267c9ba5a5a7b20",
+      "question": {
+        "id": "mock-3-S18-m3-overlapping-starts",
+        "version": 1,
+        "title": "N은 1→2→3의 연결이며 START WITH가 id1과 id2를 모두 선택한다. 같은 id3이 결과에 여러 번나올수있는가?",
+        "stem": "N은 1→2→3의 연결이며 START WITH가 id1과 id2를 모두 선택한다. 같은 id3이 결과에 여러 번나올수있는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "불가능.id가 유일하면 출력도 자동 유일"
+          },
+          {
+            "id": "r2",
+            "text": "항상 순환 오류다"
+          },
+          {
+            "id": "r3",
+            "text": "SELECT가 id3 원본을 복제 저장한다"
+          },
+          {
+            "id": "r4",
+            "text": "가능하다. 서로 다른 시작 경로에서 각각 도달할 수 있다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "730d7b46ed9febf092c6c0790f9873ea1b7381bae7a420cf04fc7826a322d156",
+      "publicInputSha256": "f6722804f35c063c0433476de58455f32f7b23f9e4c570d0ab49ce4d9f54d8aa",
+      "question": {
+        "id": "mock-3-S18-m3-level-not-global-number",
+        "version": 1,
+        "title": "두 루트의 각 자식 한 명씩을 포함한 숲에서 LEVEL=2로 필터하면 무엇을 뜻하는 가?",
+        "stem": "두 루트의 각 자식 한 명씩을 포함한 숲에서 LEVEL=2로 필터하면 무엇을 뜻하는 가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "최종 표시 순서두 번째한 행"
+          },
+          {
+            "id": "r2",
+            "text": "각 시작 루트에서 한 단계 아래인 모든 행"
+          },
+          {
+            "id": "r3",
+            "text": "모든 잎행"
+          },
+          {
+            "id": "r4",
+            "text": "id 값 2인행만"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "78388f30d82103401114e7556d33963bfe87c7dfc5827856f063cf095f3b9ce8",
+      "publicInputSha256": "991185e4e0bcf50ab7f7af126817426d60cca3e2d7105dedcee0980deef9c43f",
+      "question": {
+        "id": "mock-3-S19-m3-pivot-unlisted-category",
+        "version": 1,
+        "title": "shop1의 mon1 금액 10,mon3 금액 30이 있다. PIVOT은 SUM(amt)를 mon IN(1 AS m1,2 AS m2)로 만펼친",
+        "stem": "shop1의 mon1 금액 10,mon3 금액 30이 있다. PIVOT은 SUM(amt)를 mon IN(1 AS m1,2 AS m2)로 만펼친다. 출력 월 열은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "m1=10, m2=NULL이며 mon3 용 열은 생성되지 않는다"
+          },
+          {
+            "id": "r2",
+            "text": "m1=10,m2=30"
+          },
+          {
+            "id": "r3",
+            "text": "자동 m3 열 30이 추가된다"
+          },
+          {
+            "id": "r4",
+            "text": "m1=40,m2=40"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d5ad36df92d0a9816821f93b10bbbe333a19f22b6739cc014939aca95fe8e133",
+      "publicInputSha256": "a5b328ef9766401acfca5660c423b5dd20214d6538bd862d048cade0466c5730",
+      "question": {
+        "id": "mock-3-S19-m3-pivot-count-expression-null",
+        "version": 1,
+        "title": "shop1·mon1의 amt가 NULL,NULL이고 mon2의 amt는 5다. COUNT(amt) PIVOT의 m1,m2 값은?",
+        "stem": "shop1·mon1의 amt가 NULL,NULL이고 mon2의 amt는 5다. COUNT(amt) PIVOT의 m1,m2 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NULL,1"
+          },
+          {
+            "id": "r2",
+            "text": "2,5"
+          },
+          {
+            "id": "r3",
+            "text": "0,1"
+          },
+          {
+            "id": "r4",
+            "text": "2,1"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a221fdbd93e6d1f0438f953ad7efdb6b9e8c2b98d2547dd0d0cea683fd117d71",
+      "publicInputSha256": "834822fad104ec786fe684e29c81e98c1efb30d9b277110408eab2f8687701c8",
+      "question": {
+        "id": "mock-3-S20-m3-regex-repeat-bounds",
+        "version": 1,
+        "title": "정규식 ^[A-Z]{2,3}[0-9]{2}$, c 옵션을 적용한다. AB12,ABC12,AB123 중 일치하는 문자열은?",
+        "stem": "정규식 ^[A-Z]{2,3}[0-9]{2}$, c 옵션을 적용한다. AB12,ABC12,AB123 중 일치하는 문자열은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "세 문자열 모두"
+          },
+          {
+            "id": "r2",
+            "text": "AB12와 ABC12"
+          },
+          {
+            "id": "r3",
+            "text": "ABC12와 AB123"
+          },
+          {
+            "id": "r4",
+            "text": "AB12만"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "7592ef11f1d599f53ca90e1e8fb91ed8ca142f42b75e74b4ecb796af13506af5",
+      "publicInputSha256": "2252f7d7c5816c4f845eaabf2d6554d01a09d300a421990ffa514cc09d54db4b",
+      "question": {
+        "id": "mock-3-S21-m3-delete-exists-no-cascade",
+        "version": 1,
+        "title": "고객 C에 1,2가 있고 주문 O에는 고객 1의행이 있다. 주문 존재가 TRUE 인 고객을 DELETE했다. FK·트리거·연쇄 삭제는 없다. O의",
+        "stem": "고객 C에 1,2가 있고 주문 O에는 고객 1의행이 있다. 주문 존재가 TRUE 인 고객을 DELETE했다. FK·트리거·연쇄 삭제는 없다. O의 행은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "고객 삭제가 언제나 주문도 삭제"
+          },
+          {
+            "id": "r2",
+            "text": "고객 번호가 자동 NULL"
+          },
+          {
+            "id": "r3",
+            "text": "새고객 2에게 자동 이동"
+          },
+          {
+            "id": "r4",
+            "text": "그대로 남는다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9fa69750df1349c8c1cc9ae6e681bcf3b290aa8232dff16ea76f48ad0f688332",
+      "publicInputSha256": "eec146869a2b4cf437b2f4122dbc1b98b5a396d8858ec44f1d6829de13ef0d17",
+      "question": {
+        "id": "mock-3-S21-m3-insert-from-self-count",
+        "version": 1,
+        "title": "T에 1,2두 행이 있고 중복 허용이다. T를 한 번읽은 SELECT의 각 v+10을같은 T에 INSERT하는 단일 문장을 실행했다. 새로 추가하는 값은?",
+        "stem": "T에 1,2두 행이 있고 중복 허용이다. T를 한 번읽은 SELECT의 각 v+10을같은 T에 INSERT하는 단일 문장을 실행했다. 새로 추가하는 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "11과 12 두 값"
+          },
+          {
+            "id": "r2",
+            "text": "10한 행"
+          },
+          {
+            "id": "r3",
+            "text": "1과 2"
+          },
+          {
+            "id": "r4",
+            "text": "11,12,21,22를계속 생성"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "1df5d60d1ac7d1881e4bc69bdc61be547f4f0114d41050ca28483ea1fcca17e5",
+      "publicInputSha256": "c86eab43d353687973b9840ec78eb050a95fde9f3dcb6286fe81838a390681bb",
+      "question": {
+        "id": "mock-3-S22-m3-rollback-later-savepoint",
+        "version": 1,
+        "title": "SAVEPOINT a 후변경, SAVEPOINT b 후 변경을 했다. ROLLBACK TO a 이후 b로 다시 ROLLBACK TO 하",
+        "stem": "SAVEPOINT a 후변경, SAVEPOINT b 후 변경을 했다. ROLLBACK TO a 이후 b로 다시 ROLLBACK TO 하려 한다. b의 상태는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "b가 자동 COMMIT 된다"
+          },
+          {
+            "id": "r2",
+            "text": "a도 반드시 COMMIT 되어 끝난다"
+          },
+          {
+            "id": "r3",
+            "text": "b가 남아 취소한 변경을 자동 다시 살린다"
+          },
+          {
+            "id": "r4",
+            "text": "a 이후의 savepoint b는 소멸하여 유효하지 않다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "fbed9038187874d7e30396454f203aa48292bd95a1751dc9dee3d386b0fadc5a",
+      "publicInputSha256": "f7de9431ee55a196828ebdcace5646c32f3e6e7ef1ccfa87870f8da95dde3c61",
+      "question": {
+        "id": "mock-3-S23-m3-composite-primary-key",
+        "version": 1,
+        "title": "PRIMARY KEY(year,no) 인 표에(2025,1),(2026,1)이 있다. 각 열단독 중복과 키 유일성의 판정은?",
+        "stem": "PRIMARY KEY(year,no) 인 표에(2025,1),(2026,1)이 있다. 각 열단독 중복과 키 유일성의 판정은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "no1 중복만으로 반드시 실패"
+          },
+          {
+            "id": "r2",
+            "text": "복합 PK는 두 열 모두 각각 UNIQUE를 자동 요구"
+          },
+          {
+            "id": "r3",
+            "text": "no가 같아도 두 열 조합이 달라 허용된다"
+          },
+          {
+            "id": "r4",
+            "text": "year 열은 PK에 포함되어도 NULL 허용"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2489395236a0bdb755191ed6f5ad1165c2fe32f71cd11819cdf0adcf0ac49a38",
+      "publicInputSha256": "f9d4723e22176767e088b53c5e26afa2e18c35c31b9983241903bbca37a151bb",
+      "question": {
+        "id": "mock-3-S24-m3-insert-select-source-right",
+        "version": 1,
+        "title": "B가 대상 D의 INSERT 권한은 있지만 소스 S의 SELECT 권한은 없다. S를 조회한 결과를 D에 INSERT 하려면현재부족한 능력은?",
+        "stem": "B가 대상 D의 INSERT 권한은 있지만 소스 S의 SELECT 권한은 없다. S를 조회한 결과를 D에 INSERT 하려면현재부족한 능력은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "D의 INSERT 권한을 한 번더주기"
+          },
+          {
+            "id": "r2",
+            "text": "S를 읽는 SELECT 권한"
+          },
+          {
+            "id": "r3",
+            "text": "D의 DROP 권한"
+          },
+          {
+            "id": "r4",
+            "text": "S의 DELETE 권한"
+          }
+        ]
+      }
+    }
+  ],
+  "inputSha256": "6710f0bbea33e1c979d820f5c82ddd22efea68b8174387ce8ab628057464f166",
+  "choiceMapSha256": "af9acf1029f666a361302a90c6cedbf3c425aed2a72e14eca09ba513044d12c4"
+}

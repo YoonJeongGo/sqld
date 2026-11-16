@@ -1,0 +1,2409 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-14T05:06:42.293161+00:00",
+  "method": "allowlist_without_answers_explanations_expected_results_and_masked_choice_ids",
+  "questions": [
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "3f5bc28d88d521152119146540cc7848f7adaaecbcfe29e979d8aa4bf3a128d3",
+      "publicInputSha256": "fa3dc6390b1fa29398537bbe15b671c4c38f2f16c6cf92263495999f61604377",
+      "question": {
+        "id": "S09-R01-guarantee",
+        "version": 1,
+        "title": "결과 행의 순서를 요구사항대로 보장하는 수단은?",
+        "stem": "결과 행의 순서를 요구사항대로 보장하는 수단은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "최종 SELECT의 ORDER BY"
+          },
+          {
+            "id": "r2",
+            "text": "GROUP BY만 사용"
+          },
+          {
+            "id": "r3",
+            "text": "기본키가 존재한다는 사실"
+          },
+          {
+            "id": "r4",
+            "text": "INSERT를 실행한 순서"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "50df5d2a90ef6896d31a99637d5c42abb3023520b88cecf697d27a45746d6966",
+      "publicInputSha256": "38a9e985d875660085c0914b5e229915e50b317e7df2e4542b3f071769ae4ba2",
+      "question": {
+        "id": "S09-R02-null-asc",
+        "version": 1,
+        "title": "Oracle 19c에서 ASC를 쓰고 NULLS FIRST/LAST를 생략하면 NULL은?",
+        "stem": "Oracle 19c에서 ASC를 쓰고 NULLS FIRST/LAST를 생략하면 NULL은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "숫자 0으로 바뀐다"
+          },
+          {
+            "id": "r2",
+            "text": "행에서 제거된다"
+          },
+          {
+            "id": "r3",
+            "text": "비NULL 값 뒤에 배치된다"
+          },
+          {
+            "id": "r4",
+            "text": "비NULL 값 앞에 배치된다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a5667bf75a1c7f48dd6f712970ca7252d1e4ec299ba1d9820ff963178b21ae27",
+      "publicInputSha256": "fb233fc99a5d493cdb48ddb545cc612698caa51022dacecf88842210b2309187",
+      "question": {
+        "id": "S09-R03-tie-order",
+        "version": 1,
+        "title": "점수가 같은 사람끼리도 실행마다 동일한 순서를 얻으려면?",
+        "stem": "점수가 같은 사람끼리도 실행마다 동일한 순서를 얻으려면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ORDER BY score DESC만 지정"
+          },
+          {
+            "id": "r2",
+            "text": "score에 DISTINCT를 적용"
+          },
+          {
+            "id": "r3",
+            "text": "ORDER BY score DESC, 고유한 id ASC"
+          },
+          {
+            "id": "r4",
+            "text": "WHERE score IS NOT NULL만 지정"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5ec0a02a5e65ec45b01de85e7461a84f56c938f7492df242275438664a913eae",
+      "publicInputSha256": "6ba88b0b8bea339b7879b46e7ec27f7c2c3cccc88388b3491f5adc81473008b2",
+      "question": {
+        "id": "S09-R04-alias-order",
+        "version": 1,
+        "title": "SELECT amount*2 AS doubled FROM T 결과를 계산 별칭으로 정렬할 수 있는 위치는?",
+        "stem": "SELECT amount*2 AS doubled FROM T 결과를 계산 별칭으로 정렬할 수 있는 위치는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "FROM doubled"
+          },
+          {
+            "id": "r2",
+            "text": "ORDER BY doubled"
+          },
+          {
+            "id": "r3",
+            "text": "같은 SELECT의 WHERE doubled > 0"
+          },
+          {
+            "id": "r4",
+            "text": "JOIN doubled USING(amount)"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f4637c1419f250beb8a6a63f57bc328a82173fc22eb989cf27e6ab2255bf549d",
+      "publicInputSha256": "4dad4c5d72b89a194bc78f8a9691269f08928a1bf1b1da5854e4e02916bdd276",
+      "question": {
+        "id": "S09-R05-multi-key",
+        "version": 1,
+        "title": "ORDER BY dept ASC, salary DESC의 의미는?",
+        "stem": "ORDER BY dept ASC, salary DESC의 의미는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "dept와 salary 모두 내림차순이다"
+          },
+          {
+            "id": "r2",
+            "text": "salary를 먼저 정렬한 뒤 dept를 무시한다"
+          },
+          {
+            "id": "r3",
+            "text": "dept를 먼저 오름차순, 같은 dept 안에서 salary를 내림차순 정렬한다"
+          },
+          {
+            "id": "r4",
+            "text": "dept마다 salary 합계를 만든다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "3951a259c25178cd40caaf93f091488958f904dd78e85facd6a1a04dd3f21f0b",
+      "publicInputSha256": "998f931527884c7f79cd50db81faeb92de89a5e2bec6a31f787f5b61afa0091f",
+      "question": {
+        "id": "S10-R01-pair-product",
+        "version": 1,
+        "title": "INNER JOIN에서 같은 키가 왼쪽 2행, 오른쪽 3행에 있고 다른 매칭은 없으면 결과 행 수는?",
+        "stem": "INNER JOIN에서 같은 키가 왼쪽 2행, 오른쪽 3행에 있고 다른 매칭은 없으면 결과 행 수는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "2행"
+          },
+          {
+            "id": "r2",
+            "text": "3행"
+          },
+          {
+            "id": "r3",
+            "text": "6행"
+          },
+          {
+            "id": "r4",
+            "text": "5행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bd0bf4e2ed908fdffdc8f6bba023d2ed307d4d07b2326fae39cd7cea2e05df90",
+      "publicInputSha256": "d6c4812c47b76a05c12ef0aa57eaa04c3d31b2d460c78fb07140896341fc43b3",
+      "question": {
+        "id": "S10-R02-null-equality",
+        "version": 1,
+        "title": "일반적인 A.k=B.k 내부 조인에서 두 열이 모두 NULL인 행 쌍은?",
+        "stem": "일반적인 A.k=B.k 내부 조인에서 두 열이 모두 NULL인 행 쌍은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NULL끼리는 항상 매칭된다"
+          },
+          {
+            "id": "r2",
+            "text": "비교만으로 쿼리가 문법 오류가 된다"
+          },
+          {
+            "id": "r3",
+            "text": "0끼리 비교한 것으로 매칭된다"
+          },
+          {
+            "id": "r4",
+            "text": "등호 조건이 UNKNOWN이므로 매칭되지 않는다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2b9b0c9ffca9838e0062a99dd6086ee056000c7d25470914658d1202175eaa16",
+      "publicInputSha256": "4ed27d1e4ba28f49548cab5cfa167bd3f5182239c21bd0414efdfd4574757a97",
+      "question": {
+        "id": "S10-R03-cross-product",
+        "version": 1,
+        "title": "CROSS JOIN은 두 입력을 어떻게 결합하는가?",
+        "stem": "CROSS JOIN은 두 입력을 어떻게 결합하는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "왼쪽 각 행과 오른쪽 모든 행의 조합을 만든다"
+          },
+          {
+            "id": "r2",
+            "text": "중복을 제거하여 세로로 합친다"
+          },
+          {
+            "id": "r3",
+            "text": "매칭되지 않은 왼쪽 행만 남긴다"
+          },
+          {
+            "id": "r4",
+            "text": "동일 이름의 열만 자동 비교한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "df8f0ca112b750339bef25160e824df2d596ec004c8fc8a1bdd46cdb59ac3f43",
+      "publicInputSha256": "16af9a5df2d0483bb742856efd52a9ac8e155a80fd111417491d0872f6879ff3",
+      "question": {
+        "id": "S10-R04-non-equi",
+        "version": 1,
+        "title": "급여가 등급표의 최솟값 이상·최댓값 이하인 행을 붙이는 조인은?",
+        "stem": "급여가 등급표의 최솟값 이상·최댓값 이하인 행을 붙이는 조인은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "범위 조건을 사용하는 비등가 조인"
+          },
+          {
+            "id": "r2",
+            "text": "항상 NATURAL JOIN"
+          },
+          {
+            "id": "r3",
+            "text": "UNION ALL 조인"
+          },
+          {
+            "id": "r4",
+            "text": "등호만 허용되므로 구현 불가능"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a9fa423b4bc18efdcf2dafc3f031f97e88929270af7f2178fed8fdd3700c5e1a",
+      "publicInputSha256": "e4197bbb1f2e767936d2279eddae818bd567d1cf1f759da14e0c1819cf97344f",
+      "question": {
+        "id": "S10-R05-join-union",
+        "version": 1,
+        "title": "JOIN과 UNION의 기능 차이로 적절한 것은?",
+        "stem": "JOIN과 UNION의 기능 차이로 적절한 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "JOIN은 행 쌍의 열을 결합하고 UNION은 호환되는 결과 행을 합친다"
+          },
+          {
+            "id": "r2",
+            "text": "UNION은 두 표의 열을 가로로 붙인다"
+          },
+          {
+            "id": "r3",
+            "text": "둘 다 반드시 기본키가 있어야 한다"
+          },
+          {
+            "id": "r4",
+            "text": "JOIN은 언제나 중복을 제거한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a672d6235222552b5c1977af5083b58e17e4038f4d5c69679ec154f4aa636df6",
+      "publicInputSha256": "0fa15abbcec6552834acefce0c3cf5d5832c1d01bd84028f8f5aa7d78fc5c81d",
+      "question": {
+        "id": "S11-R01-left-preservation",
+        "version": 1,
+        "title": "LEFT OUTER JOIN이 매칭 실패 때 보존하는 행은?",
+        "stem": "LEFT OUTER JOIN이 매칭 실패 때 보존하는 행은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "임의 오른쪽 행 하나"
+          },
+          {
+            "id": "r2",
+            "text": "오른쪽 행과 NULL로 채운 왼쪽 열"
+          },
+          {
+            "id": "r3",
+            "text": "매칭된 행만"
+          },
+          {
+            "id": "r4",
+            "text": "왼쪽 행과 NULL로 채운 오른쪽 열"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "3d81c41b4cb8c972d8acd5027681dec6213e2398797905eee0ff658cb71c1b8d",
+      "publicInputSha256": "312a0f3689bb08cdc5aa1aab916c5e088398eaf1bdbd7c35d0c877b0ed227ed1",
+      "question": {
+        "id": "S11-R02-on-where",
+        "version": 1,
+        "title": "왼쪽 고객을 모두 유지하면서 유료 주문만 붙이려면 유료 조건을 둘 위치는?",
+        "stem": "왼쪽 고객을 모두 유지하면서 유료 주문만 붙이려면 유료 조건을 둘 위치는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ORDER BY에만 지정"
+          },
+          {
+            "id": "r2",
+            "text": "LEFT JOIN의 ON 조건"
+          },
+          {
+            "id": "r3",
+            "text": "SELECT 별칭 이름에만 기재"
+          },
+          {
+            "id": "r4",
+            "text": "오른쪽 유료 열에 대한 WHERE 조건"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "df40cb62ae85835c15bdda59e847711d4ec04a57751fcfb2569bec37e4dacd17",
+      "publicInputSha256": "eb3e258eed65d944026353a0b21f50e2f667f371ffac5c7c23040807d53a19d1",
+      "question": {
+        "id": "S11-R03-natural-columns",
+        "version": 1,
+        "title": "NATURAL JOIN이 자동으로 등호 비교에 사용하는 열은?",
+        "stem": "NATURAL JOIN이 자동으로 등호 비교에 사용하는 열은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "양쪽 기본키만"
+          },
+          {
+            "id": "r2",
+            "text": "이름이 다른 모든 열"
+          },
+          {
+            "id": "r3",
+            "text": "각 표의 첫 번째 열만"
+          },
+          {
+            "id": "r4",
+            "text": "양쪽 입력에서 이름이 같은 모든 열"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "06b5c7cb0621395c963a8577b898e0ff7191f2ea7f5f1b5325c9ca2ebc8dcf4f",
+      "publicInputSha256": "07b6fbd852c589d94504eb7b85ce57201c43b1ab92194e4ef834664d662dacf6",
+      "question": {
+        "id": "S11-R04-using-coalesced",
+        "version": 1,
+        "title": "A FULL JOIN B USING(k)에서 SELECT k의 k는?",
+        "stem": "A FULL JOIN B USING(k)에서 SELECT k의 k는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "항상 NULL"
+          },
+          {
+            "id": "r2",
+            "text": "항상 A.k만 그대로 선택"
+          },
+          {
+            "id": "r3",
+            "text": "두 k를 문자열로 연결한 값"
+          },
+          {
+            "id": "r4",
+            "text": "조인 키를 한 열로 표현한 결과"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "35b328d91ccdc7fb9847cfaa9a1afccd1a5501fc75a479d5035f46d61476fbd7",
+      "publicInputSha256": "4026e299aeab11991ad75d7c47b719e088831d60d0e89ff9ac15a367d3dbbedc",
+      "question": {
+        "id": "S11-R05-anti-null-key",
+        "version": 1,
+        "title": "외부 조인 후 미매칭 여부를 오른쪽 열 IS NULL로 검사할 때 가장 명확한 열은?",
+        "stem": "외부 조인 후 미매칭 여부를 오른쪽 열 IS NULL로 검사할 때 가장 명확한 열은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "왼쪽 고객 이름"
+          },
+          {
+            "id": "r2",
+            "text": "매칭된 행에서는 NULL이 될 수 없는 오른쪽 기본키"
+          },
+          {
+            "id": "r3",
+            "text": "상수 NULL 표현식"
+          },
+          {
+            "id": "r4",
+            "text": "원래 NULL이 가능한 메모 열"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0ceb7f2c003bf7acd3610cd1074e3d2985f21a92e958bff435976d2f17b26c3c",
+      "publicInputSha256": "3ce057287d39f5f48d629b8f076c64e7ef835d3938591cd5be3e66982c5852c1",
+      "question": {
+        "id": "S12-R01-scalar-empty",
+        "version": 1,
+        "title": "스칼라 서브쿼리가 0행을 반환하면 스칼라 값은?",
+        "stem": "스칼라 서브쿼리가 0행을 반환하면 스칼라 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "숫자 0"
+          },
+          {
+            "id": "r2",
+            "text": "반드시 다중행 오류"
+          },
+          {
+            "id": "r3",
+            "text": "NULL"
+          },
+          {
+            "id": "r4",
+            "text": "빈 문자열이라는 별도 값"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f393ee689834938b6c84dd3c29c5ebb2dc26e7af95b76958b8b7d7da1a6c4b4e",
+      "publicInputSha256": "380cf5b154d0d03d5c4e891d8f9397785d6c636f48aac4df2976e0c58788e4ab",
+      "question": {
+        "id": "S12-R02-scalar-many",
+        "version": 1,
+        "title": "단일값 위치의 서브쿼리가 같은 값 2행을 반환하면?",
+        "stem": "단일값 위치의 서브쿼리가 같은 값 2행을 반환하면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "두 값을 더한다"
+          },
+          {
+            "id": "r2",
+            "text": "첫 번째 행만 사용한다"
+          },
+          {
+            "id": "r3",
+            "text": "다중행 스칼라 서브쿼리 오류"
+          },
+          {
+            "id": "r4",
+            "text": "두 값이 같으므로 자동 하나로 줄인다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4403c39cf34644131265a3432aae4b5f5e226b9dcc5baa4bff42ab976f4eea83",
+      "publicInputSha256": "fb518bdd8d18e164f3e37729f5c8e073f7cd971037c2162864d7086444b6251b",
+      "question": {
+        "id": "S12-R03-exists-projection",
+        "version": 1,
+        "title": "EXISTS (SELECT NULL FROM T WHERE ...)가 TRUE인 조건은?",
+        "stem": "EXISTS (SELECT NULL FROM T WHERE ...)가 TRUE인 조건은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "서브쿼리가 최소 한 행을 반환한다"
+          },
+          {
+            "id": "r2",
+            "text": "SELECT 값이 NULL이 아니어야 한다"
+          },
+          {
+            "id": "r3",
+            "text": "반드시 정확히 한 행이어야 한다"
+          },
+          {
+            "id": "r4",
+            "text": "T 전체 행이 조건에 맞아야 한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f73e5a22d3e832d4acc533665150d84eeb949ccddae8402381926cd2d70dff01",
+      "publicInputSha256": "628d06ab989b79b5fe1894abfb9daaa7ff1ebf2d41b5e6d410ee7755fd69c9a2",
+      "question": {
+        "id": "S12-R04-not-in-null",
+        "version": 1,
+        "title": "비NULL x에 대해 x NOT IN (1,NULL)의 설명으로 맞는 것은?",
+        "stem": "비NULL x에 대해 x NOT IN (1,NULL)의 설명으로 맞는 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "x가1과 다르면 언제나 TRUE"
+          },
+          {
+            "id": "r2",
+            "text": "NULL을 자동 무시한다"
+          },
+          {
+            "id": "r3",
+            "text": "문법 오류다"
+          },
+          {
+            "id": "r4",
+            "text": "x=1이면 FALSE, x가1과 달라도 UNKNOWN이라 WHERE를 통과하지 못한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4c395aadcae843081913226d048bf13f271e09c380d47cb6e7ea17cea9fdbd18",
+      "publicInputSha256": "f4809cbd74032710ee20efe24fbc6606ce82b418ddff15bdfc27b0f19f087895",
+      "question": {
+        "id": "S12-R05-any-all",
+        "version": 1,
+        "title": "비어 있지 않은 숫자 집합에서 x > ALL은 어떤 뜻인가?",
+        "stem": "비어 있지 않은 숫자 집합에서 x > ALL은 어떤 뜻인가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "집합 안 값과 같아야 한다"
+          },
+          {
+            "id": "r2",
+            "text": "집합 행 수보다 크면 된다"
+          },
+          {
+            "id": "r3",
+            "text": "집합의 값 하나보다 크면 된다"
+          },
+          {
+            "id": "r4",
+            "text": "집합의 모든 값보다 커야 한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "61c459ab51e48438501ad724c6292735985fe407169628caf96289ea50fc3cae",
+      "publicInputSha256": "711fb6162783fef52a1e65554dd46fcc4c71cd8cdfd28c47d05fa42adf91d707",
+      "question": {
+        "id": "S13-R01-all-duplicates",
+        "version": 1,
+        "title": "두 결과의 중복 행까지 모두 보존하는 집합 연산자는?",
+        "stem": "두 결과의 중복 행까지 모두 보존하는 집합 연산자는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "MINUS"
+          },
+          {
+            "id": "r2",
+            "text": "UNION"
+          },
+          {
+            "id": "r3",
+            "text": "INTERSECT"
+          },
+          {
+            "id": "r4",
+            "text": "UNION ALL"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "e30dd080c0dfdacabe6474b727b5b075c21faa269a6844aa0ee47ad559fe7aed",
+      "publicInputSha256": "8fb80faafc6ede91c7273aff9b42d77faeeff255ceeaa330059ba692e6aacc24",
+      "question": {
+        "id": "S13-R02-minus-direction",
+        "version": 1,
+        "title": "A MINUS B의 의미는?",
+        "stem": "A MINUS B의 의미는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "B에 있지만 A에는 없는 행"
+          },
+          {
+            "id": "r2",
+            "text": "양쪽 모두에 있는 행"
+          },
+          {
+            "id": "r3",
+            "text": "A와 B의 모든 중복 행"
+          },
+          {
+            "id": "r4",
+            "text": "A에 있지만 B에는 없는 서로 다른 행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "fb3a0c08432817b6573e35f219ff4ae02f947161818a67f790011cf2e0bca6f4",
+      "publicInputSha256": "d24f08704918329ccdaa218230af4f612bb9f7dbf2837b139741531a048c91e4",
+      "question": {
+        "id": "S13-R03-column-compatibility",
+        "version": 1,
+        "title": "집합 연산 SELECT들 사이에 요구되는 기본 조건은?",
+        "stem": "집합 연산 SELECT들 사이에 요구되는 기본 조건은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "각 SELECT의 행 수가 같아야 한다"
+          },
+          {
+            "id": "r2",
+            "text": "열 별칭이 모두 같아야 한다"
+          },
+          {
+            "id": "r3",
+            "text": "테이블 이름이 같아야 한다"
+          },
+          {
+            "id": "r4",
+            "text": "열 개수가 같고 대응 열의 자료형 그룹이 호환된다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d3a3882acb1bed32bb60d6e7e51da146048c916385346fc4dececf91f92105ea",
+      "publicInputSha256": "5da625b0ded03779f096e411421b272b547c26510dfd50fed8f57fe697c1a0cc",
+      "question": {
+        "id": "S13-R04-set-null",
+        "version": 1,
+        "title": "UNION의 중복 제거에서 두 입력의 동일한 한 열 NULL 행은?",
+        "stem": "UNION의 중복 제거에서 두 입력의 동일한 한 열 NULL 행은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "한 행의 NULL로 합쳐진다"
+          },
+          {
+            "id": "r2",
+            "text": "NULL=NULL이 UNKNOWN이므로 반드시 두 행 유지"
+          },
+          {
+            "id": "r3",
+            "text": "NULL 행을 전부 제거한다"
+          },
+          {
+            "id": "r4",
+            "text": "0 한 행으로 바뀐다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5388826f99f398be0b7245ed7ce2e6ee3bbc9e50865c854d0ef659c47fcdd0ba",
+      "publicInputSha256": "f384d748a08817254d48604fdb7015ec3248601d38f2cec01073f2f82b64110d",
+      "question": {
+        "id": "S14-R01-rollup-levels",
+        "version": 1,
+        "title": "ROLLUP(a,b)가 생성하는 그룹 수준은?",
+        "stem": "ROLLUP(a,b)가 생성하는 그룹 수준은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(a,b)만"
+          },
+          {
+            "id": "r2",
+            "text": "(a,b), (a), ()"
+          },
+          {
+            "id": "r3",
+            "text": "(a,b), (a), (b), ()"
+          },
+          {
+            "id": "r4",
+            "text": "(a,b), (b), ()"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "eb667c9f42a5ea07f95351d043b792062d18e2f981575e3fe71f92d5df5ab3e9",
+      "publicInputSha256": "acd5d08e03030e80667e28054722d8f59c60efef4e9d3a22c2ba1858bf082d4e",
+      "question": {
+        "id": "S14-R02-cube-levels",
+        "version": 1,
+        "title": "독립 키 a,b의 CUBE가 나타내는 그룹 수준 수는?",
+        "stem": "독립 키 a,b의 CUBE가 나타내는 그룹 수준 수는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "2개"
+          },
+          {
+            "id": "r2",
+            "text": "3개"
+          },
+          {
+            "id": "r3",
+            "text": "4개"
+          },
+          {
+            "id": "r4",
+            "text": "항상 입력 행 수와 같다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "c8b7d7c01b3a332b89788081bc8de39da8e74e91c9b6d0e6df57f589c0c0ae5b",
+      "publicInputSha256": "98a16ad9345cd38155015d290b82da0c35bd91b84d215214a9feabc50d67be92",
+      "question": {
+        "id": "S14-R03-grouping-null",
+        "version": 1,
+        "title": "집계 결과의 NULL이 원래 데이터인지 소계 때문에 생긴 것인지 구분하는 함수는?",
+        "stem": "집계 결과의 NULL이 원래 데이터인지 소계 때문에 생긴 것인지 구분하는 함수는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ROWNUM"
+          },
+          {
+            "id": "r2",
+            "text": "COUNT(*)"
+          },
+          {
+            "id": "r3",
+            "text": "GROUPING(열)"
+          },
+          {
+            "id": "r4",
+            "text": "IS NULL만 검사"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "54e5116cf1cd5e7cb0ac781a331a88d231d023420a30b3072d792b9326f9b86c",
+      "publicInputSha256": "0f36bacec9de66bb9f5071a11906a73f6baf0c2a5c05a5d94cba3bbd0399d3c0",
+      "question": {
+        "id": "S14-R04-sets-explicit",
+        "version": 1,
+        "title": "(부서) 소계와 전체 합계만 원할 때 직접 표현할 수 있는 것은?",
+        "stem": "(부서) 소계와 전체 합계만 원할 때 직접 표현할 수 있는 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "GROUP BY dept,team"
+          },
+          {
+            "id": "r2",
+            "text": "GROUP BY GROUPING SETS((dept),())"
+          },
+          {
+            "id": "r3",
+            "text": "GROUP BY team"
+          },
+          {
+            "id": "r4",
+            "text": "GROUP BY CUBE(dept,team)"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "73e2eec9ba82eb8ecc3c4b83b4d1b7c45e09f0b36e3dcaafc7d21866154ab76f",
+      "publicInputSha256": "efac759c3a9aee3b7d2d9fe9319a18e279b6bf00b3bc2cc997b036fc0d39ea35",
+      "question": {
+        "id": "S15-R01-rank-gaps",
+        "version": 1,
+        "title": "점수가90,90,70일 때 score DESC의 RANK 값은?",
+        "stem": "점수가90,90,70일 때 score DESC의 RANK 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0,0,2"
+          },
+          {
+            "id": "r2",
+            "text": "1,1,2"
+          },
+          {
+            "id": "r3",
+            "text": "1,2,3"
+          },
+          {
+            "id": "r4",
+            "text": "1,1,3"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "22815711af68dbfb5048c7aa06df36ef52c12b69aeebf612a2f6b00e04163d42",
+      "publicInputSha256": "67ec87745620dbc4f33f4e0b999ff17c5147b5ca8e63dd08ad44eab50436fa3f",
+      "question": {
+        "id": "S15-R02-dense-rank",
+        "version": 1,
+        "title": "DENSE_RANK가 RANK와 다른 점은?",
+        "stem": "DENSE_RANK가 RANK와 다른 점은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "순위를0부터 시작한다"
+          },
+          {
+            "id": "r2",
+            "text": "항상 행 수를 줄인다"
+          },
+          {
+            "id": "r3",
+            "text": "동점 뒤 다음 순위에 빈 번호가 없다"
+          },
+          {
+            "id": "r4",
+            "text": "동점을 서로 다른 순위로 만든다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4a57f1a790c1b027a491aa41cf6a22b49baf598b2f83ae97b28553681f6239de",
+      "publicInputSha256": "fbebe549d76220942c9f78b88de62385a650f92e682e90681bc0347a99336937",
+      "question": {
+        "id": "S15-R03-partition-reset",
+        "version": 1,
+        "title": "ROW_NUMBER() OVER(PARTITION BY dept ORDER BY id)의 번호가 다시1이 되는 경계는?",
+        "stem": "ROW_NUMBER() OVER(PARTITION BY dept ORDER BY id)의 번호가 다시1이 되는 경계는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NULL이 나타날 때마다 무조건"
+          },
+          {
+            "id": "r2",
+            "text": "id가 짝수인 행마다"
+          },
+          {
+            "id": "r3",
+            "text": "전체 결과에서 한 번만"
+          },
+          {
+            "id": "r4",
+            "text": "dept별 파티션의 시작"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "83bfc6d403a61f49469e49e907e9e4da24bfd9b9b26d2ae882ff80787a3e259c",
+      "publicInputSha256": "eb03c5f54830a4836e793ae160cddf9a14e736cafda9bdf87a5e2dd4a08c0c80",
+      "question": {
+        "id": "S15-R04-lag-offset",
+        "version": 1,
+        "title": "LAG(v,1,0) OVER(ORDER BY id)가 뜻하는 것은?",
+        "stem": "LAG(v,1,0) OVER(ORDER BY id)가 뜻하는 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "id 값이 정확히1 작은 행의 v"
+          },
+          {
+            "id": "r2",
+            "text": "현재 v가 NULL이면 항상0"
+          },
+          {
+            "id": "r3",
+            "text": "id 순서로 한 행 앞의 v, 앞 행이 없으면0"
+          },
+          {
+            "id": "r4",
+            "text": "한 행 뒤의 v"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "97622ac3d65aa73855b9c8f55ff6f3b8463e22165e13e28f14965e3b52af38c2",
+      "publicInputSha256": "b14ff13b09566099caf93efd5a1cf922de307547aa07486fffde3ae1ac8b9149",
+      "question": {
+        "id": "S15-R05-analytic-order",
+        "version": 1,
+        "title": "OVER(ORDER BY score DESC)만 있고 최종 ORDER BY가 없으면?",
+        "stem": "OVER(ORDER BY score DESC)만 있고 최종 ORDER BY가 없으면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "분석 함수 자체가 문법 오류다"
+          },
+          {
+            "id": "r2",
+            "text": "최종 결과도 반드시 score DESC다"
+          },
+          {
+            "id": "r3",
+            "text": "score를 합산한다"
+          },
+          {
+            "id": "r4",
+            "text": "분석 계산 순서는 정하지만 최종 표시 순서는 보장하지 않는다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "29461ddef66b568c73ddfe3b41c44cee552c4c6fd7334f2e074280ba50ff017d",
+      "publicInputSha256": "54fbd8ea3f277eed912b83c3e92f9c94848febb236ea30c5fff037aeeb82341a",
+      "question": {
+        "id": "S16-R01-rows-range",
+        "version": 1,
+        "title": "ROWS와 RANGE의 핵심 차이는?",
+        "stem": "ROWS와 RANGE의 핵심 차이는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ROWS는 행 위치, RANGE는 정렬값 범위 기준이다"
+          },
+          {
+            "id": "r2",
+            "text": "ROWS는 문자열만, RANGE는 숫자만 허용"
+          },
+          {
+            "id": "r3",
+            "text": "둘은 동점이 있어도 언제나 같다"
+          },
+          {
+            "id": "r4",
+            "text": "RANGE는 항상 전체 표를 계산"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "b075ae0c1b33ded990663bc4ef18cfb058021ce6be11c5049ee2f77e2a64731c",
+      "publicInputSha256": "cd9cec26d3bb295be460ab3bbd423f415107600f55adc1a522c729953905d0a1",
+      "question": {
+        "id": "S16-R02-default-frame",
+        "version": 1,
+        "title": "Oracle에서 프레임 지원 분석 함수에 ORDER BY가 있고 프레임을 생략하면 기본은?",
+        "stem": "Oracle에서 프레임 지원 분석 함수에 ORDER BY가 있고 프레임을 생략하면 기본은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ROWS BETWEEN 1 PRECEDING AND CURRENT ROW"
+          },
+          {
+            "id": "r2",
+            "text": "프레임을 생략하면 항상 문법 오류"
+          },
+          {
+            "id": "r3",
+            "text": "RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW"
+          },
+          {
+            "id": "r4",
+            "text": "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "cee2c89a4aeb284125dd2897ac637895c767c20a8c0e9b1a9d12a5d77add25f4",
+      "publicInputSha256": "3874825bb927af320b2da190ab8eaa380c1373de7da99d9401503322e6f3450c",
+      "question": {
+        "id": "S16-R03-last-full",
+        "version": 1,
+        "title": "LAST_VALUE로 파티션 전체의 마지막 값을 반복 표시하려면 끝 경계를 무엇으로 설정하는가?",
+        "stem": "LAST_VALUE로 파티션 전체의 마지막 값을 반복 표시하려면 끝 경계를 무엇으로 설정하는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "UNBOUNDED PRECEDING만 지정"
+          },
+          {
+            "id": "r2",
+            "text": "CURRENT ROW"
+          },
+          {
+            "id": "r3",
+            "text": "UNBOUNDED FOLLOWING"
+          },
+          {
+            "id": "r4",
+            "text": "1 PRECEDING"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2387c1918dbe3572422ce3e5410ed74106fed389f822ea2d8ec75b7399b03469",
+      "publicInputSha256": "cf1b9a2b37a5367608dd363b30cf824978a521f212b5d3ce56fcb8d4cc148000",
+      "question": {
+        "id": "S16-R04-moving-window",
+        "version": 1,
+        "title": "현재 행과 바로 앞 두 행의 합계를 위한 프레임은?",
+        "stem": "현재 행과 바로 앞 두 행의 합계를 위한 프레임은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ROWS BETWEEN CURRENT ROW AND 2 FOLLOWING"
+          },
+          {
+            "id": "r2",
+            "text": "RANGE BETWEEN 2 PRECEDING AND CURRENT ROW"
+          },
+          {
+            "id": "r3",
+            "text": "ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW"
+          },
+          {
+            "id": "r4",
+            "text": "ROWS BETWEEN 2 PRECEDING AND CURRENT ROW"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d1441bccd86c5d98b7b3c50d8de270015e4764b1feebe49b128b50a894928954",
+      "publicInputSha256": "354cbf3b0fea91c68796e2c0ad877a9bfbbfa5cd0749f502ecad8dc22bd1fefd",
+      "question": {
+        "id": "S16-R05-first-boundary",
+        "version": 1,
+        "title": "ROWS BETWEEN 1 PRECEDING AND CURRENT ROW에서 파티션 첫 행은 몇 행을 포함하는가?",
+        "stem": "ROWS BETWEEN 1 PRECEDING AND CURRENT ROW에서 파티션 첫 행은 몇 행을 포함하는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "가상의 이전 행까지2개"
+          },
+          {
+            "id": "r2",
+            "text": "0개"
+          },
+          {
+            "id": "r3",
+            "text": "전체 파티션"
+          },
+          {
+            "id": "r4",
+            "text": "현재 행1개"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8f0e0c775aa98ac37db347e972ce440a646288d58e7cfbe5fffd209d9f33965f",
+      "publicInputSha256": "893ce54cfc158f48359e5c27e03c508b548453002dd5baa7ec5f12d4b2137fd2",
+      "question": {
+        "id": "S17-R01-ties-key",
+        "version": 1,
+        "title": "FETCH FIRST 2 ROWS WITH TIES의 추가 동점 여부는 무엇으로 판단하는가?",
+        "stem": "FETCH FIRST 2 ROWS WITH TIES의 추가 동점 여부는 무엇으로 판단하는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "SELECT 첫 열만"
+          },
+          {
+            "id": "r2",
+            "text": "테이블 기본키만"
+          },
+          {
+            "id": "r3",
+            "text": "마지막 숫자 열만"
+          },
+          {
+            "id": "r4",
+            "text": "ORDER BY에 나열한 정렬 키 전체"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8a1be9b4e22887d7bc09c4a1e0d7198b83282735a31112c8f9c37ed5c1cec37b",
+      "publicInputSha256": "a8620e41e3a3c9bd35723065328db0bf4f7ad7a51d13c16204f72e3774b716a6",
+      "question": {
+        "id": "S17-R02-rownum-greater",
+        "version": 1,
+        "title": "같은 쿼리 블록의 단순 WHERE ROWNUM > 1 결과는?",
+        "stem": "같은 쿼리 블록의 단순 WHERE ROWNUM > 1 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "첫 행만 제외한 나머지"
+          },
+          {
+            "id": "r2",
+            "text": "첫 행1개"
+          },
+          {
+            "id": "r3",
+            "text": "문법 오류"
+          },
+          {
+            "id": "r4",
+            "text": "0행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d6067a12ee1f0ad584b2475a9ff8c3c9c6b6b9c4dbda61931a842ae9ef910365",
+      "publicInputSha256": "9747a68322fedc14f0541b08322f7b1b5781df62faf838148a985b35b57c35ca",
+      "question": {
+        "id": "S17-R03-top-before-sort",
+        "version": 1,
+        "title": "ROWNUM<=3과 ORDER BY를 같은 블록에 둔 전형적 쿼리의 주의점은?",
+        "stem": "ROWNUM<=3과 ORDER BY를 같은 블록에 둔 전형적 쿼리의 주의점은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "항상 전체 최하위3행을 준다"
+          },
+          {
+            "id": "r2",
+            "text": "Oracle에서 ORDER BY를 쓸 수 없다"
+          },
+          {
+            "id": "r3",
+            "text": "전체를 정렬한 뒤 상위3행을 자른다는 보장이 없다"
+          },
+          {
+            "id": "r4",
+            "text": "반드시3행을 초과한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2bd926925420afdb65e6fed9c086b5e54ea2820d7de7ae438f1641fae5186a01",
+      "publicInputSha256": "cd4a024e19dd8d74e2d0539f500c4b2115ba72e2da7ef9aacad1d1857cf4924e",
+      "question": {
+        "id": "S17-R04-offset-order",
+        "version": 1,
+        "title": "페이지를 반복 조회할 때 ORDER BY score만 있고 동점자가 있다면?",
+        "stem": "페이지를 반복 조회할 때 ORDER BY score만 있고 동점자가 있다면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "항상 PK순이 자동 추가된다"
+          },
+          {
+            "id": "r2",
+            "text": "OFFSET이 동점자를 제거한다"
+          },
+          {
+            "id": "r3",
+            "text": "동점 내부 순서가 고정되지 않아 페이지 행 구성이 바뀔 수 있다"
+          },
+          {
+            "id": "r4",
+            "text": "FETCH가 모든 동점자를 자동 포함한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "70a67afe87062dee642e8d50495e9b603b81e62992bb35b4aa32573bb1c47bf5",
+      "publicInputSha256": "f5e6bc9e77f3936e0fe2aee3cd3ede219f6391d68a6da65855c71c33633a40db",
+      "question": {
+        "id": "S17-R05-distinct-ranks",
+        "version": 1,
+        "title": "서로 다른 상위2개 점수에 속한 모든 사람을 고르는 순위 조건은?",
+        "stem": "서로 다른 상위2개 점수에 속한 모든 사람을 고르는 순위 조건은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "RANK 값=2만"
+          },
+          {
+            "id": "r2",
+            "text": "ROWNUM=2"
+          },
+          {
+            "id": "r3",
+            "text": "점수 DESC DENSE_RANK 값<=2"
+          },
+          {
+            "id": "r4",
+            "text": "ROW_NUMBER 값<=2"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0229dd2d7e6de7f94cbe650841c161b5e319050bba49c190c368d603991ad7e0",
+      "publicInputSha256": "f7e4b4dbbe615c670e574b0ad938eb4da93adcb1721a8f3139088d9097289e63",
+      "question": {
+        "id": "S18-R01-level-root",
+        "version": 1,
+        "title": "Oracle 계층 질의의 루트 행 LEVEL은?",
+        "stem": "Oracle 계층 질의의 루트 행 LEVEL은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "1"
+          },
+          {
+            "id": "r2",
+            "text": "NULL"
+          },
+          {
+            "id": "r3",
+            "text": "루트 id와 같다"
+          },
+          {
+            "id": "r4",
+            "text": "0"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6429b4fb792557cfba3663cb3d6e3bc48037134d6147b12e3571e37fc962c0b7",
+      "publicInputSha256": "7401d53bd013aef28730c7ca1f3ec6fa747737b21efda986861335b2c8246382",
+      "question": {
+        "id": "S18-R02-prior-parent",
+        "version": 1,
+        "title": "CONNECT BY PRIOR id=parent_id에서 PRIOR id는 어느 행의 id인가?",
+        "stem": "CONNECT BY PRIOR id=parent_id에서 PRIOR id는 어느 행의 id인가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "자식 행의 id"
+          },
+          {
+            "id": "r2",
+            "text": "항상 최초 루트의 id"
+          },
+          {
+            "id": "r3",
+            "text": "직전 물리 저장 행의 id"
+          },
+          {
+            "id": "r4",
+            "text": "현재 관계에서 부모 행의 id"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "958826b0f092433a80f30ca5c5c76b4a525763b632298dbc216c1ebdab54eded",
+      "publicInputSha256": "963f21055a85465bfc823e5790e940ccad89c00b0d7ddd68a611499d81d06874",
+      "question": {
+        "id": "S18-R03-siblings",
+        "version": 1,
+        "title": "계층 구조를 유지하며 같은 부모의 자식끼리 정렬하는 절은?",
+        "stem": "계층 구조를 유지하며 같은 부모의 자식끼리 정렬하는 절은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "전체 ORDER BY만"
+          },
+          {
+            "id": "r2",
+            "text": "START WITH 정렬식"
+          },
+          {
+            "id": "r3",
+            "text": "GROUP BY LEVEL"
+          },
+          {
+            "id": "r4",
+            "text": "ORDER SIBLINGS BY"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "c29fb69df9480dc2dc4131c8beb24b01fddf22043ac3bf4e69a31b6f95fabd2b",
+      "publicInputSha256": "c01f438411ebb33dd7825fe6e377189959ae8c284f480cdfa36e22e3daa2fa23",
+      "question": {
+        "id": "S18-R04-self-roles",
+        "version": 1,
+        "title": "직원 표를 직원과 상사 역할로 한 번씩 참조하는 데 필요한 것은?",
+        "stem": "직원 표를 직원과 상사 역할로 한 번씩 참조하는 데 필요한 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "반드시 동일 데이터를 새 표로 복사"
+          },
+          {
+            "id": "r2",
+            "text": "기본키 삭제"
+          },
+          {
+            "id": "r3",
+            "text": "UNION으로 두 번 더하기"
+          },
+          {
+            "id": "r4",
+            "text": "같은 표에 서로 다른 별칭을 부여한 셀프 조인"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ac48acc72141d2c5b17d4e6c741b57dfbda46c8635c1cef5486fbd2dbcac6d46",
+      "publicInputSha256": "49e4d4165295d6ed9350eed8fb608aaf70aaa82ed03751a186e1711b40d351a1",
+      "question": {
+        "id": "S18-R05-nocycle",
+        "version": 1,
+        "title": "순환이 있을 수 있는 Oracle 계층 관계 탐색에서 관련된 옵션은?",
+        "stem": "순환이 있을 수 있는 Oracle 계층 관계 탐색에서 관련된 옵션은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "COMMIT 추가"
+          },
+          {
+            "id": "r2",
+            "text": "ORDER BY LEVEL DESC만"
+          },
+          {
+            "id": "r3",
+            "text": "DISTINCT만 지정"
+          },
+          {
+            "id": "r4",
+            "text": "CONNECT BY NOCYCLE"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4eed8bdf51c482843aa2c472b308fe4d6a946e772a66fab3a4c5a81c9442fb10",
+      "publicInputSha256": "b3563380f783acf29939aeda04a76427b93a6361bbc8a44c97b11610c5a5c4cc",
+      "question": {
+        "id": "S19-R01-pivot-group",
+        "version": 1,
+        "title": "PIVOT의 암묵적 그룹 키가 되는 입력 열은?",
+        "stem": "PIVOT의 암묵적 그룹 키가 되는 입력 열은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "집계 대상 값 열만"
+          },
+          {
+            "id": "r2",
+            "text": "PIVOT의 집계·FOR 참조에 사용되지 않은 열"
+          },
+          {
+            "id": "r3",
+            "text": "모든 열이 무조건 제거된다"
+          },
+          {
+            "id": "r4",
+            "text": "항상 첫 번째 열만"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d5675a41f4d86d88bbf346e33567e164f109a2980002e24ac321c8c5d0521842",
+      "publicInputSha256": "e6b87ec42302c8fcdf22a596a5c583d2834e0b287d211996241d13eea22b2ae2",
+      "question": {
+        "id": "S19-R02-unpivot-null",
+        "version": 1,
+        "title": "Oracle UNPIVOT에서 NULL 행 포함 옵션을 생략하면?",
+        "stem": "Oracle UNPIVOT에서 NULL 행 포함 옵션을 생략하면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "값이 NULL인 변환 행을 제외한다"
+          },
+          {
+            "id": "r2",
+            "text": "NULL을0으로 치환한다"
+          },
+          {
+            "id": "r3",
+            "text": "원래 행 전체를 삭제한다"
+          },
+          {
+            "id": "r4",
+            "text": "모두 포함한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "70ad7d599719a6371ac0bb94efe5a1ece8736675636a3e2ad0919cfef262e6c7",
+      "publicInputSha256": "93d0e14b525b51dd922297c576bbd340829b93e1cde3e40bdd7327658022bea3",
+      "question": {
+        "id": "S19-R03-pivot-loss",
+        "version": 1,
+        "title": "집계 PIVOT 다음 UNPIVOT을 수행하면 항상 원래 상세 행을 복원하는가?",
+        "stem": "집계 PIVOT 다음 UNPIVOT을 수행하면 항상 원래 상세 행을 복원하는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "테이블 이름만 같으면 복원한다"
+          },
+          {
+            "id": "r2",
+            "text": "UNPIVOT이 원래 기본키를 자동 생성한다"
+          },
+          {
+            "id": "r3",
+            "text": "아니다. 집계로 합쳐진 상세 행 구분은 잃을 수 있다"
+          },
+          {
+            "id": "r4",
+            "text": "항상 완전히 복원한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "1c24d4db32f7e188e166328f35049f0f6654618ce74fa5796622b1b922f2f973",
+      "publicInputSha256": "059b9a739b28253c857c0cc8606ddf581d2e30606bbc2384ce60b72333f05359",
+      "question": {
+        "id": "S19-R04-unpivot-shape",
+        "version": 1,
+        "title": "Q1,Q2 매출 열을 quarter,amount 두 열의 행으로 바꾸는 목적에 맞는 연산은?",
+        "stem": "Q1,Q2 매출 열을 quarter,amount 두 열의 행으로 바꾸는 목적에 맞는 연산은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "CUBE"
+          },
+          {
+            "id": "r2",
+            "text": "TRUNCATE"
+          },
+          {
+            "id": "r3",
+            "text": "PIVOT"
+          },
+          {
+            "id": "r4",
+            "text": "UNPIVOT"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "fba715a60e70f77ea453ac1e12eea61378d8fb409edcca64889d024b627d311d",
+      "publicInputSha256": "50d93ebaefc09001eb57a1398ddbcf1479d5ecf482767044e6c4d0b7dda208d4",
+      "question": {
+        "id": "S20-R01-anchors",
+        "version": 1,
+        "title": "ASCII 숫자로만 구성된 비어 있지 않은 전체 문자열을 검사할 패턴은?",
+        "stem": "ASCII 숫자로만 구성된 비어 있지 않은 전체 문자열을 검사할 패턴은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "^[0-9]*$"
+          },
+          {
+            "id": "r2",
+            "text": "^[0-9]$"
+          },
+          {
+            "id": "r3",
+            "text": "[0-9]+"
+          },
+          {
+            "id": "r4",
+            "text": "^[0-9]+$"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "448cc35d9fcef15ad191f0dd201ab5eac556dd3120f7d27a0f4bc49067cab85c",
+      "publicInputSha256": "be0bd005adf4d0cd952d3e0ca3b53bc9a9b51bf829754675a78e53ad8df37a03",
+      "question": {
+        "id": "S20-R02-class-group",
+        "version": 1,
+        "title": "[ab]+의 의미는?",
+        "stem": "[ab]+의 의미는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ab 두 글자 덩어리만 반복된다"
+          },
+          {
+            "id": "r2",
+            "text": "a 또는 b 한 문자가 한 번 이상 반복된다"
+          },
+          {
+            "id": "r3",
+            "text": "a와 b가 각각 한 번만 나온다"
+          },
+          {
+            "id": "r4",
+            "text": "a 뒤에 숫자 b개가 온다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "dc722812792fa976e21a4f5b2276a4f58ba0d79500ed11692ea352cc21601ff5",
+      "publicInputSha256": "84f1937ea60ea1660a208fa8ae91f2d73114ad15bb277d318a138a68ac721ed7",
+      "question": {
+        "id": "S20-R03-regexp-functions",
+        "version": 1,
+        "title": "일치한 부분 문자열 자체를 반환하는 Oracle 함수는?",
+        "stem": "일치한 부분 문자열 자체를 반환하는 Oracle 함수는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "REGEXP_LIKE"
+          },
+          {
+            "id": "r2",
+            "text": "REGEXP_INSTR"
+          },
+          {
+            "id": "r3",
+            "text": "REGEXP_SUBSTR"
+          },
+          {
+            "id": "r4",
+            "text": "REGEXP_REPLACE"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "b3e0eeb51a340fcfa61a60b32ac60a88f42c1875262f2a02721bab5688b2a456",
+      "publicInputSha256": "839bbdae47963cb6ea0bfb189729999b3df9a893af3fa19458fb993de6a45f39",
+      "question": {
+        "id": "S20-R04-case-param",
+        "version": 1,
+        "title": "Oracle 정규식에서 대소문자 무시를 명시하는 match_param은?",
+        "stem": "Oracle 정규식에서 대소문자 무시를 명시하는 match_param은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "i"
+          },
+          {
+            "id": "r2",
+            "text": "m"
+          },
+          {
+            "id": "r3",
+            "text": "n"
+          },
+          {
+            "id": "r4",
+            "text": "c"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "418d44689982e101332d2533cf4cbf57576e84859c4d3a335f4c4bd65416f235",
+      "publicInputSha256": "8c7bc352565600a60e3693b397a20faed96b71e597c7e502e6bfa4ecc8fe025f",
+      "question": {
+        "id": "S21-R01-delete-no-where",
+        "version": 1,
+        "title": "DELETE FROM T에서 WHERE가 없으면 대상은?",
+        "stem": "DELETE FROM T에서 WHERE가 없으면 대상은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "문법 오류"
+          },
+          {
+            "id": "r2",
+            "text": "마지막 삽입 행만"
+          },
+          {
+            "id": "r3",
+            "text": "T의 모든 행"
+          },
+          {
+            "id": "r4",
+            "text": "T의 열 정의까지 삭제"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2ee5c195dc052a1297dc9428a675a0dc66b01afa77399494651d9173abc581ee",
+      "publicInputSha256": "595d9d35e635c212d7455a6c6ba52bdbbe9e6ac71763b8d2a488344b77ac966d",
+      "question": {
+        "id": "S21-R02-update-null",
+        "version": 1,
+        "title": "NULL인 v만0으로 바꾸려면 WHERE 조건은?",
+        "stem": "NULL인 v만0으로 바꾸려면 WHERE 조건은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "v = 0"
+          },
+          {
+            "id": "r2",
+            "text": "v IS NULL"
+          },
+          {
+            "id": "r3",
+            "text": "v IS NOT NULL"
+          },
+          {
+            "id": "r4",
+            "text": "v = NULL"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "21b7e0cf51b292aa876e6bd869c21519abc7a2c5247764ea58b055f385ee24ff",
+      "publicInputSha256": "a4252bc75fd151177746edadbe215ebfba07d53448934efc4a655d5d35a6a26c",
+      "question": {
+        "id": "S21-R03-insert-column",
+        "version": 1,
+        "title": "INSERT에서 열 목록을 명시하는 주요 이점은?",
+        "stem": "INSERT에서 열 목록을 명시하는 주요 이점은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "삽입과 동시에 자동 COMMIT된다"
+          },
+          {
+            "id": "r2",
+            "text": "각 값이 어느 열에 대응하는지 명확히 지정한다"
+          },
+          {
+            "id": "r3",
+            "text": "모든 제약조건을 자동 무시한다"
+          },
+          {
+            "id": "r4",
+            "text": "중복 기본키를 허용한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "b38140a582507fe1af5ee37c4e8d71c129f51da95511cb4fb506e7d19ee1cc57",
+      "publicInputSha256": "c1f74b8d9eee1f949637526bedaf04fc1760a64a996370d8e18a0ecbbdc40f18",
+      "question": {
+        "id": "S21-R04-merge-branch",
+        "version": 1,
+        "title": "MERGE가 MATCHED와 NOT MATCHED 분기를 결정하는 기준은?",
+        "stem": "MERGE가 MATCHED와 NOT MATCHED 분기를 결정하는 기준은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "소스와 대상 사이의 ON 매칭 조건"
+          },
+          {
+            "id": "r2",
+            "text": "COMMIT 시각"
+          },
+          {
+            "id": "r3",
+            "text": "테이블의 생성 순서"
+          },
+          {
+            "id": "r4",
+            "text": "소스 행의 첫 글자"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a601d534e65c86a9d7bc179596e65028fb009a4213ffad118b1dae083d6ed895",
+      "publicInputSha256": "1fe97ad2a2d077c3d3b6047aeb5f37029062676531ac7463f41524bfb5ae7b99",
+      "question": {
+        "id": "S21-R05-statement-atomic",
+        "version": 1,
+        "title": "여러 행을 바꾸는 UPDATE 한 문장에서 즉시 검사 제약 위반이 발생했다. 기본 설명은?",
+        "stem": "여러 행을 바꾸는 UPDATE 한 문장에서 즉시 검사 제약 위반이 발생했다. 기본 설명은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "테이블이 자동 DROP된다"
+          },
+          {
+            "id": "r2",
+            "text": "현재 세션의 모든 과거 COMMIT도 취소된다"
+          },
+          {
+            "id": "r3",
+            "text": "그 문장의 변경은 취소되지만 앞선 성공 문장의 미확정 변경까지 자동 전부 취소된다고 단정하지 않는다"
+          },
+          {
+            "id": "r4",
+            "text": "위반 전 행 변경은 일부 확정된다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "59ea649fc01307b2cb395dc0cb19ead859d6b8f2aad9aabba53de03418ae932d",
+      "publicInputSha256": "35da1acd4f68e49a75bb34cec34ef65e95e89413f07935a7e52affe974edc2c4",
+      "question": {
+        "id": "S22-R01-savepoint-not-commit",
+        "version": 1,
+        "title": "SAVEPOINT s를 실행하면 무엇이 일어나는가?",
+        "stem": "SAVEPOINT s를 실행하면 무엇이 일어나는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "현재 변경을 영구 확정한다"
+          },
+          {
+            "id": "r2",
+            "text": "모든 이전 변경을 취소한다"
+          },
+          {
+            "id": "r3",
+            "text": "현재 트랜잭션 안에 부분 롤백 지점을 만든다"
+          },
+          {
+            "id": "r4",
+            "text": "새 테이블을 만든다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "24b2f446ae67940147e40e4214b3d56eec2458c3ed8ed3e9e2c0e7d8980f6945",
+      "publicInputSha256": "ffc1aa028891f9627ffd7f2988accf937bbcef5e3cbd1148803f2614c811f43c",
+      "question": {
+        "id": "S22-R02-rollback-to",
+        "version": 1,
+        "title": "ROLLBACK TO s의 설명으로 옳은 것은?",
+        "stem": "ROLLBACK TO s의 설명으로 옳은 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "s 이전 변경을 영구 확정한다"
+          },
+          {
+            "id": "r2",
+            "text": "s 이후 변경을 취소하고 트랜잭션은 계속된다"
+          },
+          {
+            "id": "r3",
+            "text": "트랜잭션 전체를 반드시 종료한다"
+          },
+          {
+            "id": "r4",
+            "text": "이전 COMMIT까지 되돌린다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f3e993c32b8874bc258b4049bcddd27c01c97c0b3955b6738ad2387c9e56d1f1",
+      "publicInputSha256": "dbf51f88022c5b77ba483c35f81db7e201aa9ac5e7b42648497b213a703b02ca",
+      "question": {
+        "id": "S22-R03-commit-savepoint",
+        "version": 1,
+        "title": "COMMIT 직후 이전 트랜잭션의 savepoint를 대상으로 ROLLBACK TO를 하면?",
+        "stem": "COMMIT 직후 이전 트랜잭션의 savepoint를 대상으로 ROLLBACK TO를 하면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "그 savepoint는 더 이상 유효하지 않다"
+          },
+          {
+            "id": "r2",
+            "text": "현재 모든 테이블이 비워진다"
+          },
+          {
+            "id": "r3",
+            "text": "자동으로 동일 savepoint를 복원한다"
+          },
+          {
+            "id": "r4",
+            "text": "이전 트랜잭션으로 이동한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ca220c354abae25c583b97941ad35852ed1a4e7e6a1213d78a05fee8bb86bd27",
+      "publicInputSha256": "257f98d6d2cd05a23e90d7c7526ee1ce550c7c1150c60098bf0764cda68b69ff",
+      "question": {
+        "id": "S22-R04-ddl-implicit",
+        "version": 1,
+        "title": "Oracle에서 적법한 DDL이 실행될 때 앞선 미확정 DML에 대한 주의점은?",
+        "stem": "Oracle에서 적법한 DDL이 실행될 때 앞선 미확정 DML에 대한 주의점은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "DDL 전에 암묵적 COMMIT될 수 있어 뒤의 ROLLBACK으로 되돌리지 못한다"
+          },
+          {
+            "id": "r2",
+            "text": "모든 DBMS가 똑같이 동작한다"
+          },
+          {
+            "id": "r3",
+            "text": "DDL은 SAVEPOINT와 동일하다"
+          },
+          {
+            "id": "r4",
+            "text": "DDL은 언제나 앞선 DML을 자동 취소한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "91cd67f4c664b8bf449cfe9e94b7e023c9643144b1adb6323f540cf3d87d813d",
+      "publicInputSha256": "580170283175340999705cf6c8f4f61dc79bbee7cde3c32caf44e1e7cab42c1f",
+      "question": {
+        "id": "S22-R05-own-changes",
+        "version": 1,
+        "title": "자신이 UPDATE한 뒤 COMMIT 전 같은 세션에서 SELECT하면 일반적으로?",
+        "stem": "자신이 UPDATE한 뒤 COMMIT 전 같은 세션에서 SELECT하면 일반적으로?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "SELECT 자체가 반드시 자동 COMMIT된다"
+          },
+          {
+            "id": "r2",
+            "text": "자신의 미확정 변경을 볼 수 있다"
+          },
+          {
+            "id": "r3",
+            "text": "언제나 이전 값만 보인다"
+          },
+          {
+            "id": "r4",
+            "text": "테이블 잠금 때문에 자신의 SELECT가 영원히 대기한다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "e1e98af03d8d7a312e827394eaf6c09472d8e6456206d4098ed5d16ab456c467",
+      "publicInputSha256": "020e2171388560c7d466513d6e523e0eb472188b4174aabe7903bf1b19973f63",
+      "question": {
+        "id": "S23-R01-pk-null",
+        "version": 1,
+        "title": "PRIMARY KEY에 대한 기본 조건은?",
+        "stem": "PRIMARY KEY에 대한 기본 조건은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NULL만 금지하고 중복은 허용"
+          },
+          {
+            "id": "r2",
+            "text": "유일하며 구성 열은 NULL일 수 없다"
+          },
+          {
+            "id": "r3",
+            "text": "중복만 금지하고 NULL은 허용"
+          },
+          {
+            "id": "r4",
+            "text": "반드시 숫자 한 열이다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "efffc3db5a29f391a89ddb1f8d3b4c0a8d12b80147005ee5e167cf572e0739fc",
+      "publicInputSha256": "b7ad6943b7529ade5a8b196b1f0d2b14e41fdbd8a188a776aa7cd43524501a9f",
+      "question": {
+        "id": "S23-R02-check-unknown",
+        "version": 1,
+        "title": "CHECK(v>=0)만 있는 열에 NULL을 넣을 때의 기본 판단은?",
+        "stem": "CHECK(v>=0)만 있는 열에 NULL을 넣을 때의 기본 판단은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "조건이 UNKNOWN이므로 CHECK만으로 거부되지 않는다"
+          },
+          {
+            "id": "r2",
+            "text": "FALSE와 같아서 반드시 거부"
+          },
+          {
+            "id": "r3",
+            "text": "PRIMARY KEY가 자동 추가된다"
+          },
+          {
+            "id": "r4",
+            "text": "NULL을 자동0으로 바꾼다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5ac266db4c35f7772824abf91dc951ff0a5fcf7a40331ea59516884376874f27",
+      "publicInputSha256": "4c1ab8f1f1a870b50255846b4afa4a781f9b65bd9f960408d20e800e7986abdb",
+      "question": {
+        "id": "S23-R03-truncate-definition",
+        "version": 1,
+        "title": "TRUNCATE TABLE 뒤 유지되는 것은?",
+        "stem": "TRUNCATE TABLE 뒤 유지되는 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "테이블의 열 정의"
+          },
+          {
+            "id": "r2",
+            "text": "WHERE로 선택되지 않은 행"
+          },
+          {
+            "id": "r3",
+            "text": "현재 트랜잭션에서의 일반 DML 롤백 가능성"
+          },
+          {
+            "id": "r4",
+            "text": "기존 모든 행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d4e8644f2004ced96462faf6d8bf99701f1f102a5bd5d38d7e5603af5bab1732",
+      "publicInputSha256": "a68c55a6216a79c7ec45486b477403a7b802318d4ab05c35de86e3c026b1561f",
+      "question": {
+        "id": "S23-R04-fk-optional",
+        "version": 1,
+        "title": "외래키 열에 NOT NULL이 별도로 없을 때 올바른 판단은?",
+        "stem": "외래키 열에 NOT NULL이 별도로 없을 때 올바른 판단은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NULL은 반드시 부모 NULL 행과 매칭돼야 한다"
+          },
+          {
+            "id": "r2",
+            "text": "외래키는 중복을 항상 금지한다"
+          },
+          {
+            "id": "r3",
+            "text": "외래키라고 해서 반드시 값 입력을 강제하는 것은 아니다"
+          },
+          {
+            "id": "r4",
+            "text": "FK가 자동 NOT NULL을 만든다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "31ad958e75158178d3087103638256f5381439fa6ee64de43b87c9be19218756",
+      "publicInputSha256": "add078e318c644a2d4b534a7e13f93d56aac4035f8a62478e7d57b57ef89bfb6",
+      "question": {
+        "id": "S23-R05-delete-cascade",
+        "version": 1,
+        "title": "부모 삭제 시 자식 행도 자동 삭제되도록 명시하는 참조 옵션은?",
+        "stem": "부모 삭제 시 자식 행도 자동 삭제되도록 명시하는 참조 옵션은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ON DELETE CASCADE"
+          },
+          {
+            "id": "r2",
+            "text": "PRIMARY KEY만 지정"
+          },
+          {
+            "id": "r3",
+            "text": "WITH GRANT OPTION"
+          },
+          {
+            "id": "r4",
+            "text": "ON DELETE SET NULL"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2893d90e3d2064f36ed84326346593effc07b1afa0e3a3889ab3f8d769598b0a",
+      "publicInputSha256": "33f32f19c097c0c17e0d81f7e1ed4e64c12230f4761cef724fc8f5f3987caa46",
+      "question": {
+        "id": "S24-R01-object-system",
+        "version": 1,
+        "title": "특정 T 테이블의 SELECT와 CREATE TABLE 권한의 구분은?",
+        "stem": "특정 T 테이블의 SELECT와 CREATE TABLE 권한의 구분은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "둘 다 데이터 행이다"
+          },
+          {
+            "id": "r2",
+            "text": "SELECT는 시스템, CREATE TABLE은 객체 권한"
+          },
+          {
+            "id": "r3",
+            "text": "둘 다 T의 객체 권한"
+          },
+          {
+            "id": "r4",
+            "text": "SELECT ON T는 객체 권한, CREATE TABLE은 시스템 권한"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ac1790ba8d11924d40b835ce632fca22b6075a07285a08d35357a49ff9847f36",
+      "publicInputSha256": "416cdff0093cb10ec54e30915c95b6621f1c6707eb0b2a06846a11dba1aece0b",
+      "question": {
+        "id": "S24-R02-grant-option",
+        "version": 1,
+        "title": "받은 객체 SELECT 권한을 다른 사용자에게 다시 부여할 수 있게 하는 절은?",
+        "stem": "받은 객체 SELECT 권한을 다른 사용자에게 다시 부여할 수 있게 하는 절은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "WITH ADMIN OPTION만 동일하게 사용"
+          },
+          {
+            "id": "r2",
+            "text": "ON DELETE CASCADE"
+          },
+          {
+            "id": "r3",
+            "text": "WITH GRANT OPTION"
+          },
+          {
+            "id": "r4",
+            "text": "WITH TIES"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "7b9abbbed526d9f6c7ffc5ffed91320b737eca32d49471c1b5625839a0f1e1d1",
+      "publicInputSha256": "7cd276b57e6c50623cd6adb889107a78faad0ca02b32feec8b39847289788737",
+      "question": {
+        "id": "S24-R03-revoke-paths",
+        "version": 1,
+        "title": "직접 SELECT 권한을 회수했는데 사용자가 T를 여전히 읽을 수 있다. 가능한 이유는?",
+        "stem": "직접 SELECT 권한을 회수했는데 사용자가 T를 여전히 읽을 수 있다. 가능한 이유는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "SELECT가 자동으로 INSERT 권한을 만든다"
+          },
+          {
+            "id": "r2",
+            "text": "REVOKE는 언제나 아무 효과가 없다"
+          },
+          {
+            "id": "r3",
+            "text": "유효한 역할 등 다른 권한 경로가 남아 있다"
+          },
+          {
+            "id": "r4",
+            "text": "권한 검사 없이 모든 테이블을 읽는다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a6442db1a42de24acd6049703952c933dfe52dabbc2e650b03f48c977214b2ec",
+      "publicInputSha256": "f267c6d2ed193db059b3dd702cee8c73e7c02ffa123dfd596e5dbdd085aedc2d",
+      "question": {
+        "id": "S24-R04-least-privilege",
+        "version": 1,
+        "title": "조회만 필요한 계정에 적용할 최소 권한의 예는?",
+        "stem": "조회만 필요한 계정에 적용할 최소 권한의 예는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "DBA 역할을 기본 제공한다"
+          },
+          {
+            "id": "r2",
+            "text": "필요한 테이블의 SELECT만 부여한다"
+          },
+          {
+            "id": "r3",
+            "text": "모든 테이블의 변경 권한도 함께 준다"
+          },
+          {
+            "id": "r4",
+            "text": "테이블 소유권을 모두 넘긴다"
+          }
+        ]
+      }
+    }
+  ],
+  "inputSha256": "56a9682e6290171b113539a1423b87ac6a5b7dc30054b666061c06d4f2d1a47c",
+  "choiceMapSha256": "0fb0169fd027610a2b1499a83bec1f35ba9f466feb6f0320991a3ed2e713e4a5"
+}

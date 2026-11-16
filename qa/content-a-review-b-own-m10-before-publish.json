@@ -1,0 +1,92 @@
+{
+  "id": "mock-1-M10-reservation-timeslot",
+  "version": 2,
+  "subjectId": "model",
+  "topicId": "B",
+  "objectiveIds": [
+    "M10",
+    "M06"
+  ],
+  "familyId": "M10-surrogate-candidate-partial-dependency",
+  "kind": "mock",
+  "title": "수강 R(인조 ID,학생 ID,과목 ID,과목명)의 값은 원자적이다. 인조 ID를 PK로 추가한 뒤에도 (학생 ID",
+  "stem": "수강 R(인조 ID,학생 ID,과목 ID,과목명)의 값은 원자적이다. 인조 ID를 PK로 추가한 뒤에도 (학생 ID,과목 ID)는 최소 업무 후보키이며 과목 ID→과목명이 성립한다. 과목 ID는 슈퍼키가 아니고 과목명은 비주요 속성이다. 단일 인조 PK가 있으므로 자동으로 제 2정규형이라는 판단은?",
+  "choices": [
+    {
+      "id": "a",
+      "text": "옳지 않다. 업무 후보키의 일부인 과목 ID에 과목명이 종속하므로 제 2정규형을 위반한다.",
+      "reason": "제 2정규형은 선택한 PK뿐 아니라 모든 후보키에 대한 비주요 속성의 부분 종속을 검사한다."
+    },
+    {
+      "id": "b",
+      "text": "옳다. 선택한 PK가 단일 열이면 다른 후보키의 부분 종속은 검사하지 않는다.",
+      "reason": "업무 후보키 (학생 ID,과목 ID)가 여전히 존재하므로 그 진부분집합 과목 ID의 종속도 검사해야 한다."
+    },
+    {
+      "id": "c",
+      "text": "제 2정규형은 충족하지만 제 3정규형만 위반한다.",
+      "reason": "과목명은 복합 후보키 전체가 아닌 과목 ID만으로 결정되어 제 2정규형부터 위반한다."
+    },
+    {
+      "id": "d",
+      "text": "인조 ID를 추가하면 원자성이 사라지므로 제 1정규형부터 반드시 위반한다.",
+      "reason": "인조 ID 추가 자체는 원자성을 깨지 않으며 지문은 모든 값이 원자적이라고 명시했다."
+    }
+  ],
+  "correctChoiceIds": [
+    "a"
+  ],
+  "explanation": {
+    "summary": "인조 PK를 추가해도 업무 후보키와 함수 종속은 남는다. 과목명은 업무 후보키의 일부인 과목 ID에 종속하므로 제 2정규형을 위반한다.",
+    "prerequisites": [
+      "본질식별자와 인조식별자",
+      "후보키와 비주요 속성",
+      "제2정규형과 부분 함수 종속"
+    ],
+    "conditions": [
+      "후보키는 단일 인조ID와 (학생ID,과목ID)이다. 모든 값은 원자적이다.",
+      "과목ID→과목명이며 과목ID는 슈퍼키가 아니다. 과목명은 어떤 후보키에도 속하지 않는 비주요 속성이다."
+    ],
+    "steps": [
+      {
+        "title": "후보키 모두 확인",
+        "text": "PK로 선택한 인조 ID와 별개로 (학생 ID,과목 ID)도 업무상 최소 후보키로 남아 있다."
+      },
+      {
+        "title": "부분 종속 확인",
+        "text": "과목 ID는 복합 후보키의 진부분집합이며 비주요 속성 과목명을 결정한다."
+      },
+      {
+        "title": "정규형 판정",
+        "text": "이 부분 종속은 단일 인조 PK를 추가해도 사라지지 않는다. 따라서 제 2정규형을 충족하지 않는다."
+      }
+    ],
+    "memory": "인조 PK 추가는 업무 함수 종속을 제거하지 않는다. 제2정규형은 모든 후보키를 기준으로 확인한다.",
+    "relatedNoteId": "note-M06"
+  },
+  "sourceIds": [
+    "waterloo-normalization",
+    "sfu-normalization",
+    "oracle-modeler243"
+  ],
+  "sourceType": "original_mock",
+  "verification": "document_review",
+  "status": "quarantined",
+  "dialect": "conceptual",
+  "dialectVersion": "n/a",
+  "difficulty": "intermediate",
+  "difficultyReason": "주어진 조건을 적용해 중간 판단과 결론을 연결한다.",
+  "importanceReason": "선수 개념과 연결되는 학습상 중요도이며 출제 빈도 수치를 뜻하지 않는다.",
+  "tables": [],
+  "validationEvidence": [
+    "저자 자체 풀이 및 보기별 반례 검토. DBMS 엔진 실행·사람 검수는 미실시."
+  ],
+  "mockSetId": "mock-1",
+  "correction": {
+    "previousVersion": 1,
+    "previousFamilyId": "M10-reservation-timeslot",
+    "previousEquivalentPracticeFamilyId": "M10-surrogate-enroll-unique",
+    "reason": "버전1은 M10-A01의 복합 업무 UNIQUE 판단과 이름만 다른 구조였다. 모의 독립성 결함으로 폐기하고 인조 PK 추가 후 모든 후보키의 부분 종속을 검토하는 별도 판단 문제로 교체했다.",
+    "date": "2026-09-14"
+  }
+}

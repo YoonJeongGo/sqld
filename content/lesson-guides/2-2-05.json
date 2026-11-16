@@ -1,0 +1,870 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-05",
+  "source": {
+    "id": "2-2-05",
+    "partId": "2-2",
+    "number": 5,
+    "title": "스칼라&인라인뷰&상관 서브쿼리",
+    "lectureMinutes": 44,
+    "easy": "서브쿼리를 값처럼 쓰면 스칼라, 표처럼 쓰면 인라인뷰, 바깥 행을 참조하면 상관 서브쿼리다.",
+    "why": "이 분류들은 서로 배타적이지 않다. 바깥 직원의 부서번호를 이용해 부서명 한 개를 반환하면 스칼라이면서 상관 서브쿼리다.",
+    "concepts": [
+      {
+        "term": "스칼라",
+        "meaning": "한 열·최대 한 행을 값으로 사용",
+        "example": "SELECT 목록에 부서명"
+      },
+      {
+        "term": "스칼라 0행·여러 행",
+        "meaning": "0행은 NULL, Oracle 다중행은 오류",
+        "example": "조인키 고유성 확인"
+      },
+      {
+        "term": "인라인뷰",
+        "meaning": "FROM에 놓은 조회 결과",
+        "example": "학과별 평균표 a"
+      },
+      {
+        "term": "상관 서브쿼리",
+        "meaning": "안쪽이 바깥 별칭의 값을 참조",
+        "example": "i.학과=o.학과"
+      },
+      {
+        "term": "논리적 반복",
+        "meaning": "바깥 행에 맞춰 안쪽 조건을 해석",
+        "example": "실제 엔진 실행이 반드시 행마다 반복은 아님"
+      },
+      {
+        "term": "EXISTS·NOT EXISTS",
+        "meaning": "관련 행이 있음·없음 검사",
+        "example": "미수강 학생 찾기"
+      },
+      {
+        "term": "표 별칭",
+        "meaning": "어느 쿼리 단계 열인지 명시",
+        "example": "o.점수, i.학과"
+      },
+      {
+        "term": "뷰와 차이",
+        "meaning": "인라인뷰는 그 SQL 안에서 쓰는 조회식",
+        "example": "CREATE VIEW로 저장한 객체와 다름"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-05-E01",
+        "title": "자기 학과 평균보다 높은 사람",
+        "question": "전체 평균이 아니라 각자의 학과 평균과 비교하자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "1002",
+                "김현수",
+                "컴퓨터",
+                "70"
+              ],
+              [
+                "1003",
+                "장정훈",
+                "전자",
+                "80"
+              ],
+              [
+                "1004",
+                "박상현",
+                "전자",
+                "60"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT o.이름, o.점수 FROM 성적 o WHERE o.점수 > (SELECT AVG(i.점수) FROM 성적 i WHERE i.학과=o.학과) ORDER BY o.학번;",
+        "steps": [
+          "바깥 유성재·김현수를 볼 때 안쪽 학과 조건은 컴퓨터다. 평균80과 비교하므로 유성재만 통과한다.",
+          "바깥 장정훈·박상현을 볼 때 안쪽은 전자 평균70이다. 장정훈만 통과한다.",
+          "바깥 별칭 o.학과가 안쪽 조건에 사용되는 지점이 상관의 핵심이다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "90"
+              ],
+              [
+                "장정훈",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-2-05-E02",
+        "title": "학과별 평균을 임시 표처럼 사용",
+        "question": "평균표를 만든 뒤 평균 75 이상 학과만 조회하자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "컴퓨터",
+                "70"
+              ],
+              [
+                "전자",
+                "80"
+              ],
+              [
+                "전자",
+                "60"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT a.학과, a.평균 FROM (SELECT 학과, AVG(점수) AS 평균 FROM 성적 GROUP BY 학과) a WHERE a.평균>=75 ORDER BY a.학과;",
+        "steps": [
+          "안쪽 GROUP BY 결과는 컴퓨터80, 전자70의 두 행이다.",
+          "FROM의 a는 이 두 행짜리 임시 입력을 가리키는 별칭이다.",
+          "바깥 WHERE 평균>=75에 컴퓨터만 남는다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "학과",
+              "평균"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-2-05-E03",
+        "title": "수강이 하나도 없는 학생",
+        "question": "수강표에 대응 행이 없는 학생을 NOT EXISTS로 찾자.",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재"
+              ],
+              [
+                "1002",
+                "김현수"
+              ],
+              [
+                "1003",
+                "장정훈"
+              ]
+            ]
+          },
+          {
+            "title": "수강",
+            "columns": [
+              "학번",
+              "과목"
+            ],
+            "rows": [
+              [
+                "1001",
+                "DB"
+              ],
+              [
+                "1001",
+                "JAVA"
+              ],
+              [
+                "1002",
+                "DB"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT s.이름 FROM 학생 s WHERE NOT EXISTS (SELECT 1 FROM 수강 e WHERE e.학번=s.학번) ORDER BY s.학번;",
+        "steps": [
+          "유성재는 대응 두 행이 있고 김현수는 한 행이 있으므로 NOT EXISTS가 거짓이다.",
+          "장정훈의 1003을 가진 수강 행은 0개이므로 NOT EXISTS가 참이다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름"
+            ],
+            "rows": [
+              [
+                "장정훈"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "값으로 스칼라 / 표로 인라인뷰 / 바깥 값에 의존하면 상관.",
+    "traps": [
+      "상관과 스칼라는 서로 다른 기준의 분류라 동시에 해당할 수 있다.",
+      "EXISTS의 SELECT 1은 1을 비교하려는 것이 아니라 대응 행의 존재를 확인하는 관례다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-05-Q1",
+        "question": "스칼라 서브쿼리가 상관 서브쿼리일 수 있는가?",
+        "answer": "그렇다",
+        "explanation": "결과 형태와 바깥 참조 여부는 별개다."
+      },
+      {
+        "id": "2-2-05-Q2",
+        "question": "수강이 없는 학생을 찾는 표현은?",
+        "answer": "NOT EXISTS",
+        "explanation": "관련 수강 행이 존재하지 않음을 검사한다."
+      },
+      {
+        "id": "2-2-05-Q3",
+        "question": "인라인뷰는 영구 저장된 표인가?",
+        "answer": "아니다",
+        "explanation": "해당 SQL에서 조회 결과를 표처럼 사용하는 표현이다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S12"
+    ],
+    "sourceIds": [
+      "subquery",
+      "scalar",
+      "select"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"스칼라&amp;인라인뷰&amp;상관 서브쿼리 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 질문</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">평균·목록·존재?</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 결과</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값 / 여러 행 / 존재</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">바깥 질문</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">결과를 기준으로 검사</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">값으로 스칼라 / 표로 인라인뷰 / 바깥 값에 의존하면 상관.</text></svg>",
+    "version": 1
+  },
+  "purpose": "학생마다 자기 학과의 평균을 적용하거나, 집계표를 다시 조회하거나, 관련 수강이 없는 학생을 찾기 위해 써요.",
+  "overview": "세 예제 모두 조회예요. 상관은 먼저 바깥 행을 정하고 그 값으로 안쪽 조건을 읽어요. 인라인뷰 a는 조회 결과를 부르는 이름이며 영구 테이블을 만들지 않아요.",
+  "terms": [
+    {
+      "token": "o / i",
+      "kind": "테이블 별칭",
+      "meaning": "outer / inner를 연상시키는 역할명",
+      "role": "같은 성적표를 바깥 학생o와 평균 계산 대상i로 구별해요."
+    },
+    {
+      "token": "i.학과=o.학과",
+      "kind": "상관 조건",
+      "meaning": "안쪽 후보의 학과가 현재 바깥 학생의 학과인지",
+      "role": "유성재를 볼 때 오른쪽 o.학과는 컴퓨터로 정해져요."
+    },
+    {
+      "token": "a.평균",
+      "kind": "인라인뷰 컬럼",
+      "meaning": "안쪽에서 AS 평균으로 붙인 결과 이름",
+      "role": "바깥 단계에서는 입력 a의 컬럼이라 WHERE에서 비교할 수 있어요."
+    },
+    {
+      "token": "NOT EXISTS",
+      "kind": "존재 조건",
+      "meaning": "관련 결과 행이 존재하지 않음",
+      "role": "학생 학번을 넣어 찾은 수강 행이0개인지 검사해요."
+    },
+    {
+      "token": "SELECT 1",
+      "kind": "상수 선택",
+      "meaning": "결과 각 행에서 숫자1을 표현",
+      "role": "존재 검사에 사용하는 관용 표현이에요. 첫 행만 가져오거나 수강수를1로 고정한다는 뜻이 아니에요."
+    }
+  ],
+  "pitfalls": [
+    "행마다 값을 대입하는 설명은 논리적 의미예요. 실제 DB가 반드시 매 행마다 쿼리를 독립 실행한다고 단정하지 않아요.",
+    "NOT EXISTS는 안쪽에 NULL값이 있어도 행의 존재로 판정하지만, 안쪽 WHERE의 NULL 비교는 일치 여부에 영향을 줘요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "세 예제 모두 조회예요. 상관은 먼저 바깥 행을 정하고 그 값으로 안쪽 조건을 읽어요. 인라인뷰 a는 조회 결과를 부르는 이름이며 영구 테이블을 만들지 않아요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 28,
+      "toPage": 28,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-05-E01",
+      "why": "같은 학과 안에서 평균보다 높은 학생을 찾아 학과별 점수 차이를 비교해요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-05-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·학과·점수 4개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "바깥 유성재 행 먼저",
+          "text": "현재 o행을 학번 1001 유성재로 잡으면 o.학과=컴퓨터, o.점수=90이에요. o·i는 같은 성적표의 서로 다른 조회 역할이에요.",
+          "codeFocus": [
+            {
+              "needle": "FROM 성적 o",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "성적"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 바깥 유성재 행 먼저",
+            "columns": [
+              "현재o.학번",
+              "o.이름",
+              "o.학과",
+              "o.점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "컴퓨터",
+                "90"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "그 값으로 안쪽 조건",
+          "text": "i.학과=o.학과의 오른쪽에 컴퓨터를 넣어요. 안쪽 후보 중 유성재 90·김현수 70이 맞아 평균 80이에요.",
+          "codeFocus": [
+            {
+              "needle": "i.학과=o.학과",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "i.학과=o.학과"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 그 값으로 안쪽 조건",
+            "columns": [
+              "i.이름",
+              "i.학과",
+              "컴퓨터와비교",
+              "점수"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "컴퓨터",
+                "참",
+                "90"
+              ],
+              [
+                "김현수",
+                "컴퓨터",
+                "참",
+                "70"
+              ],
+              [
+                "장정훈",
+                "전자",
+                "거짓",
+                "80"
+              ],
+              [
+                "박상현",
+                "전자",
+                "거짓",
+                "60"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "학과 평균과 각 학생 비교",
+          "text": "컴퓨터 평균 (90+70)/2=80이므로 유성재 90은 참, 김현수 70은 거짓이에요. 전자 평균 (80+60)/2=70에서는 장정훈 80만 참이에요.",
+          "codeFocus": [
+            {
+              "needle": "o.점수 >",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 학과 평균과 각 학생 비교",
+            "columns": [
+              "바깥학생",
+              "해당평균",
+              "비교",
+              "판정"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "80",
+                "90>80",
+                "참"
+              ],
+              [
+                "김현수",
+                "80",
+                "70>80",
+                "거짓"
+              ],
+              [
+                "장정훈",
+                "70",
+                "80>70",
+                "참"
+              ],
+              [
+                "박상현",
+                "70",
+                "60>70",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "통과 결과와 실행 의미",
+          "text": "유성재 90·장정훈 80을 학번순으로 조회해요. 행별 대입은 의미를 이해하는 과정이며 실제 DB 실행 횟수를 측정한 것은 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY o.학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름·점수, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "90"
+              ],
+              [
+                "장정훈",
+                "80"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "전체 평균 75를 모든 학생에게 적용하는 비상관 쿼리와 달라요. o.학과가 현재 누구를 보는지에 따라 안쪽 평균 대상을 정해요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-2-05-E02",
+      "why": "학과 평균이라는 중간 결과를 만든 뒤 그 결과값으로 학과를 고르려 해요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-05-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학과·점수 2개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "안쪽 학과 묶음",
+          "text": "성적을 컴퓨터 90·70, 전자 80·60으로 나눠 AVG를 계산해요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학과, AVG(점수) AS 평균 FROM 성적 GROUP BY 학과",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "AVG",
+            "성적"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 안쪽 학과 묶음",
+            "columns": [
+              "학과",
+              "계산",
+              "평균"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "(90+70)/2",
+                "80"
+              ],
+              [
+                "전자",
+                "(80+60)/2",
+                "70"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "a의 실제 뜻",
+          "text": "괄호 뒤 a는 컴퓨터 80·전자 70의 두 행짜리 조회 결과에 붙인 별칭이에요. a.평균은 그 결과의 평균 열이며 영구 표 생성이 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "a WHERE a.평균>=75",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "a.평균"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-02"
+        },
+        {
+          "title": "평균 열로 바깥 필터",
+          "text": "컴퓨터 80>=75는 참, 전자 70>=75는 거짓이라 컴퓨터 한 행만 남아요. 안쪽 학생 개개인의 점수>=75를 검사한 것과 달라요.",
+          "codeFocus": [
+            {
+              "needle": "WHERE a.평균>=75",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 평균 열로 바깥 필터",
+            "columns": [
+              "학과",
+              "대입",
+              "판정"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "80>=75",
+                "참·유지"
+              ],
+              [
+                "전자",
+                "70>=75",
+                "거짓·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 학과·평균, 결과는 1행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "학과",
+              "평균"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "80"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "안쪽 AS 평균은 안쪽 SELECT의 WHERE 별칭이 아니에요. 바깥 단계에서는 a의 입력 컬럼이 되므로 a.평균>=75로 검사할 수 있어요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-2-05-E03",
+      "why": "수강건수 자체보다 수강이 하나도 없는 학생의 명단이 필요할 때 써요.",
+      "effect": "조회 · 학생, 수강의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-05-E03의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "학생: 컬럼 학번·이름 2개, 표시 입력 3행.",
+        "수강: 컬럼 학번·과목 2개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "현재 학생과 수강 연결",
+          "text": "바깥 s는 학생, 안쪽 e는 수강이에요. 유성재를 볼 때 s.학번=1001을 안쪽 e.학번과 비교해요.",
+          "codeFocus": [
+            {
+              "needle": "e.학번=s.학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "s.학번",
+            "e.학번"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "존재하는 학생은 제외",
+          "text": "유성재 1001은 DB·JAVA 두 행, 김현수 1002는 DB 한 행이 존재해요. EXISTS는 참이고 NOT EXISTS는 거짓이라 둘은 제외해요.",
+          "codeFocus": [
+            {
+              "needle": "NOT EXISTS",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "NOT EXISTS"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 존재하는 학생은 제외",
+            "columns": [
+              "학생",
+              "안쪽관련행",
+              "EXISTS",
+              "NOT EXISTS"
+            ],
+            "rows": [
+              [
+                "유성재1001",
+                "DB·JAVA(2)",
+                "참",
+                "거짓·제외"
+              ],
+              [
+                "김현수1002",
+                "DB(1)",
+                "참",
+                "거짓·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "없는 학생만 유지",
+          "text": "장정훈 1003을 넣으면 수강표에 같은 학번이 0행이에요. NOT EXISTS가 참이라 바깥 장정훈 한 행을 유지해요.",
+          "codeFocus": [
+            {
+              "needle": "NOT EXISTS",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "NOT EXISTS"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 없는 학생만 유지",
+            "columns": [
+              "학생",
+              "안쪽행수",
+              "판정"
+            ],
+            "rows": [
+              [
+                "장정훈1003",
+                "0",
+                "참·유지"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름, 결과는 1행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름"
+            ],
+            "rows": [
+              [
+                "장정훈"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "안쪽 SELECT 1은 1행만 제한하라는 뜻이 아니에요. 관련 행 존재 여부만 보므로 유성재 수강 2행이 바깥 학생을 2행으로 늘리지 않아요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-05-Q1",
+      "hint": "한 값 반환과 바깥값 참조라는 두 분류 기준을 따로 보세요.",
+      "reasoning": "자기 학과 평균은 평균 한 값이라 스칼라이며 o.학과를 참조해서 상관이기도 해요."
+    },
+    {
+      "checkId": "2-2-05-Q2",
+      "hint": "현재 학생 학번으로 찾은 수강이0행인지 검사하는 표현을 찾아요.",
+      "reasoning": "NOT EXISTS는 관련 행이 없을 때 참이에요. 장정훈1003은 수강0행이라 남고1001·1002는 제외돼요."
+    },
+    {
+      "checkId": "2-2-05-Q3",
+      "hint": "SQL 안에서 붙인 별칭a와 CREATE TABLE의 차이를 생각해요.",
+      "reasoning": "a는 컴퓨터80·전자70이라는 조회 결과를 가리켜요. 영구 테이블이나 저장된 평균 컬럼을 생성하지 않아요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Scalar-Subquery-Expressions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

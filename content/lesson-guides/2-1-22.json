@@ -1,0 +1,729 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-22",
+  "source": {
+    "id": "2-1-22",
+    "partId": "2-1",
+    "number": 22,
+    "title": "JOIN의 개념",
+    "lectureMinutes": 31,
+    "easy": "서로 다른 표의 행을 조건에 맞춰 옆으로 연결한다. 단순히 아래로 쌓는 집합 연산과 다르다.",
+    "why": "학생표의 이름과 수강표의 과목을 함께 보려면 학번 같은 연결 기준으로 같은 학생의 정보를 붙인다.",
+    "concepts": [
+      {
+        "term": "INNER JOIN",
+        "meaning": "조건에 맞는 조합만 남김",
+        "example": "학번이 같은 학생과 수강"
+      },
+      {
+        "term": "ON",
+        "meaning": "어떤 행끼리 연결할지",
+        "example": "학생.학번=수강.학번"
+      },
+      {
+        "term": "동등 조인",
+        "meaning": "같음 조건으로 연결",
+        "example": "="
+      },
+      {
+        "term": "비동등·세타 조인",
+        "meaning": "크기·범위 등 조건으로 연결",
+        "example": "점수가 등급 범위 사이"
+      },
+      {
+        "term": "별칭",
+        "meaning": "표를 짧게 부르는 이름",
+        "example": "학생 s, 수강 e"
+      },
+      {
+        "term": "1:N 연결",
+        "meaning": "한 행이 여러 상대 행과 연결",
+        "example": "학생 한 명이 과목 두 개 수강"
+      },
+      {
+        "term": "다대다 일치 수",
+        "meaning": "같은 키가 양쪽에 여러 줄이면 모두 조합",
+        "example": "2줄×3줄=6줄"
+      },
+      {
+        "term": "열 이름의 모호성",
+        "meaning": "어느 표 열인지 표/별칭으로 지정",
+        "example": "s.학번, e.학번"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-22-E01",
+        "title": "한 학생에 수강 두 건 연결",
+        "question": "학생 이름과 수강 과목을 함께 출력하자.",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재"
+              ],
+              [
+                "1002",
+                "노우성"
+              ],
+              [
+                "1003",
+                "양지훈"
+              ]
+            ]
+          },
+          {
+            "title": "수강",
+            "columns": [
+              "학번",
+              "과목"
+            ],
+            "rows": [
+              [
+                "1001",
+                "DB"
+              ],
+              [
+                "1001",
+                "JAVA"
+              ],
+              [
+                "1002",
+                "DB"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT s.이름, e.과목 FROM 학생 s JOIN 수강 e ON s.학번=e.학번 ORDER BY s.학번, e.과목;",
+        "steps": [
+          "1001번 유성재는 수강표의 1001/DB, 1001/JAVA 두 줄과 각각 연결되어 두 결과 행이 된다.",
+          "1002번 노우성은 DB 한 줄과 연결된다.",
+          "1003번 양지훈은 대응 수강이 없어 INNER JOIN 결과에 나오지 않는다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "과목"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "DB"
+              ],
+              [
+                "유성재",
+                "JAVA"
+              ],
+              [
+                "노우성",
+                "DB"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-1-22-E02",
+        "title": "범위로 연결하는 조인",
+        "question": "점수에 해당하는 등급 구간을 붙이자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "95"
+              ],
+              [
+                "1002",
+                "노우성",
+                "80"
+              ]
+            ]
+          },
+          {
+            "title": "등급",
+            "columns": [
+              "등급명",
+              "하한",
+              "상한"
+            ],
+            "rows": [
+              [
+                "A",
+                "90",
+                "100"
+              ],
+              [
+                "B",
+                "80",
+                "89"
+              ],
+              [
+                "C",
+                "0",
+                "79"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT s.이름, g.등급명 FROM 성적 s JOIN 등급 g ON s.점수 BETWEEN g.하한 AND g.상한 ORDER BY s.학번;",
+        "steps": [
+          "유성재의 95는 90~100 구간에 들어가 A와 연결된다.",
+          "노우성의 80은 80~89 구간에 들어가 B와 연결된다.",
+          "연결 기준이 = 하나가 아니라 범위라는 점이 다르다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "등급명"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "A"
+              ],
+              [
+                "노우성",
+                "B"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "JOIN은 조건에 맞는 행끼리 옆으로. 한 사람도 수강 수만큼 여러 줄.",
+    "traps": [
+      "조인 결과가 무조건 두 표 중 작은 행수 이하인 것은 아니다. 일치하는 조합이 여러 개면 늘어난다.",
+      "범위 구간이 겹치면 한 점수가 등급 여러 행에 연결될 수도 있다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-22-Q1",
+        "question": "1001번 수강이 DB·JAVA 두 개면 1001번 결과 행수는?",
+        "answer": "2",
+        "explanation": "각 수강 행과 따로 연결한다."
+      },
+      {
+        "id": "2-1-22-Q2",
+        "question": "연결 조건에 맞는 행이 없으면 INNER JOIN에서 남는가?",
+        "answer": "남지 않는다",
+        "explanation": "일치하는 조합만 반환한다."
+      },
+      {
+        "id": "2-1-22-Q3",
+        "question": "같은 연결키가 왼쪽 2행·오른쪽 3행이면?",
+        "answer": "6행",
+        "explanation": "일치 조합 2×3이다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S10",
+      "note-M07"
+    ],
+    "sourceIds": [
+      "joins",
+      "tableexpressions"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"JOIN의 개념 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"117.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">왼쪽 표</text><text x=\"117.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">학번 1001 · 1002</text><rect x=\"267\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"359.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">조건으로 연결</text><text x=\"359.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">같은 학번끼리</text><rect x=\"510\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"602.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과 표</text><text x=\"602.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">미대응 처리도 확인</text><path d=\"M218 100 L257 100\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M460 100 L500 100\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">INNER는 맞는 조합 · OUTER는 지정한 쪽의 미대응 행도 남긴다</text></svg>",
+    "version": 1
+  },
+  "purpose": "학생 이름과 수강 과목처럼 서로 다른 표에 나뉜 정보를 한 결과에서 함께 읽기 위해 연결해요.",
+  "overview": "조회예요. 학생·수강의 저장값은 그대로이고, 학번이 맞는 행 조합의 이름·과목을 결과에 붙여요. 두 번째 예제는 성적.점수를 등급의 하한·상한과 비교해요.",
+  "terms": [
+    {
+      "token": "JOIN",
+      "kind": "키워드",
+      "meaning": "join = 연결하다",
+      "role": "학생 한 행과 수강의 일치 행을 각각 연결해요."
+    },
+    {
+      "token": "ON",
+      "kind": "키워드",
+      "meaning": "연결 조건을 적는 자리",
+      "role": "s.학번=e.학번은 학생 쪽 학번과 수강 쪽 학번이 같은지 비교해요."
+    },
+    {
+      "token": "s / e",
+      "kind": "테이블 별칭",
+      "meaning": "표를 짧게 부르는 이름",
+      "role": "첫 예제 s는 학생, e는 수강이에요. 새 표가 생기지 않아요."
+    },
+    {
+      "token": "s.학번",
+      "kind": "컬럼 참조",
+      "meaning": "점 왼쪽 별칭이 소속을 뜻함",
+      "role": "학생에 있는 학번이에요. e.학번은 다른 표인 수강의 학번이에요."
+    },
+    {
+      "token": "BETWEEN ... AND ...",
+      "kind": "조건식",
+      "meaning": "두 경계 사이, 양 끝 포함",
+      "role": "두 번째 예제의 80은 B등급의 하한80을 포함하므로 B에 연결돼요."
+    }
+  ],
+  "pitfalls": [
+    "조인 조건의 =는 값을 복사하는 대입이 아니라 비교예요. JOIN 자체가 외래키 제약을 생성하지 않아요.",
+    "같은 키에 두 수강 행이 맞으면 학생 이름도 두 번 나와요. 중복처럼 보여도 서로 다른 수강 조합이에요.",
+    "PDF p121 문제2는 입력표상 5행인데 설명에 7행, p123 문제5는 서울 소속 4명인데 설명에 6명이 적혀 있어요. 입력표와 정답을 기준으로 별도 주의해야 해요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. 학생·수강의 저장값은 그대로이고, 학번이 맞는 행 조합의 이름·과목을 결과에 붙여요. 두 번째 예제는 성적.점수를 등급의 하한·상한과 비교해요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "흥달쌤 원본 교재 · SQL 기본",
+      "fromPage": 119,
+      "toPage": 119,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-22-E01",
+      "why": "학생표의 이름만으로는 과목을 알 수 없어 학번으로 수강표를 연결해요.",
+      "effect": "조회 · 학생, 수강의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-1-22-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "학생: 컬럼 학번·이름 2개, 표시 입력 3행.",
+        "수강: 컬럼 학번·과목 2개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "두 별칭의 소속",
+          "text": "FROM 학생 s에서 s는 학생, JOIN 수강 e에서 e는 수강이에요. 학생 학번 1001과 수강 학번 1001은 서로 다른 표의 컬럼이에요.",
+          "codeFocus": [
+            {
+              "needle": "FROM 학생 s JOIN 수강 e",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "FROM",
+            "JOIN",
+            "학생"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 두 별칭의 소속",
+            "columns": [
+              "별칭",
+              "표",
+              "읽을컬럼"
+            ],
+            "rows": [
+              [
+                "s",
+                "학생",
+                "학번·이름"
+              ],
+              [
+                "e",
+                "수강",
+                "학번·과목"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "1001의 두 연결",
+          "text": "s.학번=e.학번은 비교예요. 유성재 1001은 수강 1001/DB와 1001/JAVA 두 행 각각에 참이라 두 조합이 생겨요.",
+          "codeFocus": [
+            {
+              "needle": "s.학번=e.학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "두 조합"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 1001의 두 연결",
+            "columns": [
+              "s.이름",
+              "s.학번",
+              "e.학번",
+              "e.과목",
+              "판정"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "1001",
+                "1001",
+                "DB",
+                "참·연결"
+              ],
+              [
+                "유성재",
+                "1001",
+                "1001",
+                "JAVA",
+                "참·연결"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 4
+            },
+            {
+              "row": 1,
+              "column": 4
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "다른 학생의 연결",
+          "text": "노우성 1002는 DB 한 행과 맞아요. 양지훈 1003과 같은 수강 학번은 없어서 조회 결과에 남지 않아요. 원본 학생은 삭제되지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "JOIN 수강 e",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "수강"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 다른 학생의 연결",
+            "columns": [
+              "학생",
+              "일치수강",
+              "판정"
+            ],
+            "rows": [
+              [
+                "노우성1002",
+                "1002/DB",
+                "참·1행"
+              ],
+              [
+                "양지훈1003",
+                "없음",
+                "연결0행·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "출력 열과 순서",
+          "text": "이름은 s에서, 과목은 e에서 꺼내요. ORDER BY의 첫 기준 s.학번으로 1001→1002, 같은 학생 안에서는 e.과목으로 DB→JAVA예요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY s.학번, e.과목",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ORDER",
+            "s.학번",
+            "e.과목"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름·과목, 결과는 3행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "과목"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "DB"
+              ],
+              [
+                "유성재",
+                "JAVA"
+              ],
+              [
+                "노우성",
+                "DB"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "INNER는 맞는 조합만 남겨요. LEFT라면 양지훈도 과목 NULL로 남지만 이 SQL은 INNER예요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-1-22-E02",
+      "why": "95점과 80점이 어느 등급 범위에 드는지 조회에서 붙여요.",
+      "effect": "조회 · 성적, 등급의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-1-22-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·점수 3개, 표시 입력 2행.",
+        "등급: 컬럼 등급명·하한·상한 3개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "표와 컬럼 구분",
+          "text": "s는 성적표로 점수를 가지고, g는 등급표로 등급명·하한·상한을 가져요. 95라는 점수를 등급 A라는 문자와 직접 비교하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "FROM 성적 s JOIN 등급 g",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "성적",
+            "등급"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "95의 범위 판정",
+          "text": "유성재 95는 90 이상 100 이하라 A에 맞아요. B의 80~89와 C의 0~79에는 들지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "s.점수 BETWEEN g.하한 AND g.상한",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 95의 범위 판정",
+            "columns": [
+              "점수",
+              "등급",
+              "실제비교",
+              "판정"
+            ],
+            "rows": [
+              [
+                "95",
+                "A",
+                "90<=95<=100",
+                "참"
+              ],
+              [
+                "95",
+                "B",
+                "80<=95<=89",
+                "거짓"
+              ],
+              [
+                "95",
+                "C",
+                "0<=95<=79",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "80의 경계 포함",
+          "text": "노우성 80은 B 하한 80과 같아요. BETWEEN은 양 끝 포함이라 B가 참이고, A와 C는 거짓이에요.",
+          "codeFocus": [
+            {
+              "needle": "BETWEEN",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "BETWEEN"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 80의 경계 포함",
+            "columns": [
+              "점수",
+              "등급",
+              "실제비교",
+              "판정"
+            ],
+            "rows": [
+              [
+                "80",
+                "A",
+                "90<=80<=100",
+                "거짓"
+              ],
+              [
+                "80",
+                "B",
+                "80<=80<=89",
+                "참"
+              ],
+              [
+                "80",
+                "C",
+                "0<=80<=79",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "이름과 등급을 조회",
+          "text": "s.이름은 학생 이름, g.등급명은 조건에 맞은 등급표 값이에요. 학번순으로 유성재 A, 노우성 B를 표시하고 원본 점수는 유지해요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT s.이름, g.등급명",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "g.등급명",
+            "s.이름"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름·등급명, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "등급명"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "A"
+              ],
+              [
+                "노우성",
+                "B"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "BETWEEN은 하한·상한을 모두 포함해요. 등급 범위가 겹치면 한 점수가 두 등급과 연결될 수 있지만 원본 범위는 겹치지 않아요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-22-Q1",
+      "hint": "학생 한 줄과 연결되는 수강표의 줄을 각각 표시해 봐요.",
+      "reasoning": "학번1001의 유성재는 DB 한 줄, JAVA 한 줄과 연결되므로 결과 두 줄이에요. 이름이 같아도 과목이 달라요."
+    },
+    {
+      "checkId": "2-1-22-Q2",
+      "hint": "INNER가 보존하는 것은 원본 행 전체인지, 조건을 만족한 조합인지 생각해 봐요.",
+      "reasoning": "학번1003 양지훈과 일치하는 수강이 없어서 연결 조합이0개예요. 원본 학생에서 지워지는 것은 아니에요."
+    },
+    {
+      "checkId": "2-1-22-Q3",
+      "hint": "왼쪽 첫 줄과 둘째 줄이 각각 오른쪽 몇 줄에 맞는지 세어 봐요.",
+      "reasoning": "왼쪽 두 줄 각각 오른쪽 세 줄에 맞아 3+3=6개 조합이에요. 단순히 2+3으로 세지 않아요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

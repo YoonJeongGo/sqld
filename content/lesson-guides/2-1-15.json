@@ -1,0 +1,536 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-15",
+  "source": {
+    "id": "2-1-15",
+    "partId": "2-1",
+    "number": 15,
+    "title": "NULL의 개념과 처리방식(1)",
+    "lectureMinutes": 28,
+    "easy": "NULL은 0이나 빈칸이라는 값이 아니라, 값을 알 수 없거나 해당 값이 없다는 표시다.",
+    "why": "0점은 실제로 0점을 받은 것이지만 점수 NULL은 아직 점수가 없다는 뜻일 수 있다. 평균의 분모도 달라진다.",
+    "concepts": [
+      {
+        "term": "NULL",
+        "meaning": "알 수 없거나 적용할 값이 없음",
+        "example": "아직 채점하지 않은 점수"
+      },
+      {
+        "term": "0과 NULL",
+        "meaning": "0은 실제 숫자, NULL은 값의 부재",
+        "example": "0점은 평균에 들어감"
+      },
+      {
+        "term": "IS NULL",
+        "meaning": "NULL인지 검사",
+        "example": "점수 IS NULL"
+      },
+      {
+        "term": "= NULL",
+        "meaning": "일반 비교는 UNKNOWN",
+        "example": "NULL=NULL도 TRUE가 아님"
+      },
+      {
+        "term": "NULL 산술",
+        "meaning": "일반 산술에서 NULL이 섞이면 NULL",
+        "example": "90 + NULL → NULL"
+      },
+      {
+        "term": "집계의 NULL",
+        "meaning": "COUNT(열)·SUM·AVG 등은 NULL을 제외",
+        "example": "COUNT(*)는 모든 행을 셈"
+      },
+      {
+        "term": "빈 입력 집합",
+        "meaning": "GROUP BY 없는 집계는 보통 한 결과 행",
+        "example": "COUNT=0, SUM·AVG=NULL"
+      },
+      {
+        "term": "Oracle 빈 문자열",
+        "meaning": "길이 0 문자열 ''을 NULL로 취급",
+        "example": "' ' 공백 한 칸과 구별"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-15-E01",
+        "title": "0점과 미입력을 다르게 세기",
+        "question": "네 학생의 점수를 세고 평균을 구하자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "한창주",
+                "90"
+              ],
+              [
+                "1002",
+                "양지훈",
+                null
+              ],
+              [
+                "1003",
+                "박보성",
+                "70"
+              ],
+              [
+                "1004",
+                "장정훈",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT COUNT(*) AS 전체행, COUNT(점수) AS 점수개수, SUM(점수) AS 합계, ROUND(AVG(점수),2) AS 평균 FROM 성적;",
+        "steps": [
+          "튜플은 한창주·양지훈·박보성·장정훈 네 줄이므로 COUNT(*)=4다.",
+          "점수가 실제로 있는 값은 90·70·0 세 개이므로 COUNT(점수)=3이다.",
+          "합계는 160, 평균은 160÷3≈53.33이다. NULL인 양지훈을 0점처럼 분모에 넣지 않는다."
+        ],
+        "results": [
+          {
+            "title": "집계 결과",
+            "columns": [
+              "전체행",
+              "점수개수",
+              "합계",
+              "평균"
+            ],
+            "rows": [
+              [
+                "4",
+                "3",
+                "160",
+                "53.33"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-1-15-E02",
+        "title": "입력이 한 줄도 없는 집계",
+        "question": "100점 초과 학생이 없을 때 COUNT와 SUM은?",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "90"
+              ],
+              [
+                "1002",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT COUNT(*) AS 인원, SUM(점수) AS 합계 FROM 성적 WHERE 점수>100;",
+        "steps": [
+          "WHERE 점수>100을 통과한 행은 0개다.",
+          "GROUP BY 없는 COUNT는 0이라는 값을 가진 한 결과 행을 만든다. SUM은 NULL이다.",
+          "값 0과 결과표의 행수 1을 혼동하지 않는다."
+        ],
+        "results": [
+          {
+            "title": "집계 결과",
+            "columns": [
+              "인원",
+              "합계"
+            ],
+            "rows": [
+              [
+                "0",
+                null
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "0은 값, NULL은 모름. COUNT(*)는 행, COUNT(열)은 값 있는 행.",
+    "traps": [
+      "COUNT 결과값이 0이어도 결과표가 0행이라는 뜻은 아니다.",
+      "Oracle에서 문자열 결합은 NULL의 일반 산술과 같은 규칙으로 단순 처리하지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-15-Q1",
+        "question": "90, NULL, 70, 0의 COUNT(점수)는?",
+        "answer": "3",
+        "explanation": "NULL만 제외하고 0은 포함한다."
+      },
+      {
+        "id": "2-1-15-Q2",
+        "question": "위 네 값의 AVG 분모는?",
+        "answer": "3",
+        "explanation": "실제 값이 있는 세 개로 나눈다."
+      },
+      {
+        "id": "2-1-15-Q3",
+        "question": "GROUP BY 없는 COUNT가 빈 입력에서 반환하는 값과 행수는?",
+        "answer": "값 0, 결과 1행",
+        "explanation": "0이라는 집계값을 보여주는 한 줄이다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-M09",
+      "note-S07"
+    ],
+    "sourceIds": [
+      "null",
+      "aggregate"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"NULL의 개념과 처리방식(1) 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">0</text><text x=\"120.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값이 실제로 0</text><rect x=\"265\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">NULL</text><text x=\"360.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값을 알 수 없거나 없음</text><rect x=\"505\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">IS NULL</text><text x=\"600.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">없음 여부를 검사</text><text x=\"240\" y=\"110\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"30\" fill=\"#ae5e00\" font-weight=\"400\">≠</text><path d=\"M463 101 L495 101\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">COUNT(*)는 행 · COUNT(열)은 NULL 아닌 값 · NULL = NULL은 UNKNOWN</text></svg>",
+    "version": 1
+  },
+  "purpose": "미입력 점수와 실제 0점을 다르게 세고 아무 행도 통과하지 않은 집계에서 값과 행수를 구별한다.",
+  "overview": "COUNT(*)는 학생 정보 행을 세고 COUNT(점수)·AVG(점수)는 점수가 NULL인 입력을 제외한다. 집계값 0과 조회결과 0행은 서로 다른 상태다.",
+  "terms": [
+    {
+      "token": "NULL",
+      "kind": "특수 상태",
+      "meaning": "값이 없거나 알 수 없음",
+      "role": "양지훈의 미입력 점수다. 장정훈의 숫자 0과 다르다."
+    },
+    {
+      "token": "COUNT(*)",
+      "kind": "집계 함수",
+      "meaning": "count = 개수를 세다",
+      "role": "점수NULL 여부와 무관하게 학생 정보 네 행을 센다."
+    },
+    {
+      "token": "COUNT(점수)",
+      "kind": "집계 함수",
+      "meaning": "NULL이 아닌 점수 개수",
+      "role": "90·70·0 세 값을 센다."
+    },
+    {
+      "token": "AVG",
+      "kind": "집계 함수",
+      "meaning": "average = 평균",
+      "role": "NULL이 아닌 점수 합을 NULL이 아닌 점수 개수로 나눈다."
+    }
+  ],
+  "pitfalls": [
+    "NULL은 숫자 0이나 스페이스 문자열이 아니다.",
+    "GROUP BY 없는 단순 집계는 빈 입력에도 집계값을 담은 한 행을 만들지만 HAVING으로 그 요약행을 제외하면 결과가 달라질 수 있다."
+  ],
+  "questions": [
+    {
+      "question": "NULL는 여기서 무엇을 뜻하나요?",
+      "answer": "양지훈의 미입력 점수다. 장정훈의 숫자 0과 다르다."
+    },
+    {
+      "question": "COUNT(*)는 여기서 무엇을 뜻하나요?",
+      "answer": "점수NULL 여부와 무관하게 학생 정보 네 행을 센다."
+    },
+    {
+      "question": "COUNT(점수)는 여기서 무엇을 뜻하나요?",
+      "answer": "90·70·0 세 값을 센다."
+    },
+    {
+      "question": "AVG는 여기서 무엇을 뜻하나요?",
+      "answer": "NULL이 아닌 점수 합을 NULL이 아닌 점수 개수로 나눈다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 72,
+      "toPage": 82,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-15-E01",
+      "why": "미응시자는 평균에서 제외하되 0점 응시자는 포함하는 성적 통계를 구한다.",
+      "effect": "조회 집계:4학생 정보를 한 요약 행으로 표시.",
+      "prerequisites": [
+        "양지훈 점수는 원본에서NULL이며 0점으로 대체하지 않는다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "행 자체와 점수 칸 나누기",
+          "text": "(1002, 양지훈, NULL)도 학번·이름·점수로 된 한 행이다. 그래서 COUNT(*)에는 포함한다. 다만 점수값은 없어 COUNT(점수)의 대상에서는 빠진다.",
+          "codeFocus": [
+            {
+              "needle": "COUNT(*)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "한 행"
+          ],
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 1,
+              "column": 1
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "table": {
+            "title": "행별 집계 참여",
+            "columns": [
+              "이름",
+              "점수",
+              "COUNT(*)",
+              "COUNT(점수)"
+            ],
+            "rows": [
+              [
+                "한창주",
+                "90",
+                "포함",
+                "포함"
+              ],
+              [
+                "양지훈",
+                null,
+                "포함",
+                "제외"
+              ],
+              [
+                "박보성",
+                "70",
+                "포함",
+                "포함"
+              ],
+              [
+                "장정훈",
+                "0",
+                "포함",
+                "포함"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "0점은 실제 값",
+          "text": "장정훈의 0은 입력된 숫자라 점수 개수와 평균 분모에 들어간다. NULL인 양지훈을 포함해 4로 나누면 원본AVG와 다른 계산이다.",
+          "codeFocus": [
+            {
+              "needle": "COUNT(점수)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "평균 분모"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "평균 대상 값",
+            "columns": [
+              "사용 값",
+              "합",
+              "개수"
+            ],
+            "rows": [
+              [
+                "90,70,0",
+                "160",
+                "3"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "합과 평균을 계산",
+          "text": "90+70+0=160이고 160÷3=53.333…이다. ROUND(...,2)로 소수 둘째 자리까지 53.33을 표시한다. 결과 열은 전체행·점수개수·합계·평균 네 개이고 행은 한 개다.",
+          "codeFocus": [
+            {
+              "needle": "ROUND(AVG(점수),2)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "160÷3"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "집계 결과",
+            "columns": [
+              "전체행",
+              "점수개수",
+              "합계",
+              "평균"
+            ],
+            "rows": [
+              [
+                "4",
+                "3",
+                "160",
+                "53.33"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "AVG(COALESCE(점수,0))처럼 먼저NULL을 0으로 대체하면 분모가 4가 된다. 원본의 미입력 제외 평균과 다르다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    },
+    {
+      "exampleId": "2-1-15-E02",
+      "why": "조건을 만족한 학생이 없을 때 0명과 합계없음을 한 번에 확인한다.",
+      "effect": "조회 집계:필터 뒤 0행에서 COUNT0·SUM NULL의 한 행 반환.",
+      "prerequisites": [
+        "GROUP BY와 HAVING이 없는 원본 쿼리다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "조건을 먼저 실제 점수에 대입",
+          "text": "90>100은 거짓이고 70>100도 거짓이다. 따라서 집계에 들어갈 성적 행은 0개다.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 점수>100",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "0개"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "행 조건",
+            "columns": [
+              "학번",
+              "점수",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1001",
+                "90",
+                "거짓·제외"
+              ],
+              [
+                "1002",
+                "70",
+                "거짓·제외"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "빈 입력을 집계",
+          "text": "COUNT(*)는 센 행이 없어 0이다. SUM(점수)는 더할 숫자가 없어NULL이다. SUM이 자동으로 0을 넣는 것은 아니다.",
+          "codeFocus": [
+            {
+              "needle": "COUNT(*) AS 인원, SUM(점수) AS 합계",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "더할 숫자가 없어NULL"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "집계값",
+            "columns": [
+              "함수",
+              "빈 입력의 값"
+            ],
+            "rows": [
+              [
+                "COUNT(*)",
+                "0"
+              ],
+              [
+                "SUM(점수)",
+                null
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "값 0을 담은 행은 존재",
+          "text": "결과는 (인원 0, 합계NULL) 한 행이다. 화면에 아무 행도 없는 공집합과 다르다. SELECT 집계 결과의 행수와 COUNT가 센 입력 행수를 따로 읽는다.",
+          "codeFocus": [
+            {
+              "needle": "SELECT COUNT(*)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "한 행"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "집계 결과",
+            "columns": [
+              "인원",
+              "합계"
+            ],
+            "rows": [
+              [
+                "0",
+                null
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "GROUP BY가 있는 빈 입력의 그룹 수 0과 이 쿼리의 전체 집계 한 행은 다르다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-15-Q1",
+      "hint": "NULL과 0을 서로 다른 값으로 표시해 세어 보자.",
+      "reasoning": "90·70·0은 세 값이고NULL만 제외한다. 따라서COUNT(점수)=3이다."
+    },
+    {
+      "checkId": "2-1-15-Q2",
+      "hint": "평균에 들어간 숫자의 개수를 세어 보자.",
+      "reasoning": "90,70,0의 합 160을 3으로 나눈다. 전체 학생 4명으로 나누지 않는다."
+    },
+    {
+      "checkId": "2-1-15-Q3",
+      "hint": "COUNT의 숫자와 결과표 자체의 줄을 따로 세자.",
+      "reasoning": "입력은 0행이고COUNT값은 0이다. GROUP BY 없는 이 집계는 그 0을 보여주는 결과 1행을 만든다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html"
+  ],
+  "reviewNotes": []
+}

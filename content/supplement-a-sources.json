@@ -1,0 +1,308 @@
+{
+  "sources": [
+    {
+      "sourceId": "oracle19-decode",
+      "publisher": "Oracle",
+      "title": "DECODE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/DECODE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-nvl2",
+      "publisher": "Oracle",
+      "title": "NVL2",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/NVL2.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-rename",
+      "publisher": "Oracle",
+      "title": "RENAME",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/RENAME.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-abs",
+      "publisher": "Oracle",
+      "title": "ABS",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ABS.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-sign",
+      "publisher": "Oracle",
+      "title": "SIGN",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SIGN.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-ceil",
+      "publisher": "Oracle",
+      "title": "CEIL",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CEIL.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-floor",
+      "publisher": "Oracle",
+      "title": "FLOOR",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/FLOOR.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-instr",
+      "publisher": "Oracle",
+      "title": "INSTR",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/INSTR.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-lpad",
+      "publisher": "Oracle",
+      "title": "LPAD",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LPAD.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-rpad",
+      "publisher": "Oracle",
+      "title": "RPAD",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/RPAD.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-lower",
+      "publisher": "Oracle",
+      "title": "LOWER",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LOWER.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-cast",
+      "publisher": "Oracle",
+      "title": "CAST",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CAST.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "ucdavis-three-schema",
+      "publisher": "University of California, Davis",
+      "title": "ECS 165A Introduction: database schemas and data independence",
+      "url": "https://www.cs.ucdavis.edu/~green/courses/ecs165a/1-intro.pdf",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Different Views of Data",
+        "Data Models, Schemas, and Instances",
+        "Data Independence"
+      ],
+      "usageScope": "DB/DBMS, 추상화 3단계 및 논리적·물리적 독립성",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "uiowa-erd-conceptual",
+      "publisher": "University of Iowa",
+      "title": "Conceptual Model – Fundamentals of Database Management",
+      "url": "https://pressbooks.uiowa.edu/fundamentalsofdatabasemanagement/chapter/chapter-2/",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Entities",
+        "Relationships",
+        "Cardinality and Modality"
+      ],
+      "usageScope": "ERD의 실체·속성·관계, Crow’s Foot 각 끝점의 최소·최대 해석",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "juniata-bcnf",
+      "publisher": "Juniata College",
+      "title": "Normalization: Boyce/Codd Normal Form",
+      "url": "https://jcsites.juniata.edu/faculty/rhodes/dbms/normalization.htm",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Boyce/Codd Normal Form"
+      ],
+      "usageScope": "비자명 함수 종속 결정자가 슈퍼키라는 BCNF 정의와 3NF 차이",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "cornell-denormalization",
+      "publisher": "Cornell University",
+      "title": "Denormalization – Cornell Virtual Workshop",
+      "url": "https://cvw.cac.cornell.edu/RelationalDBs/design-create/denormalization",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Denormalization"
+      ],
+      "usageScope": "반정규화의 성능·일관성 교환 및 먼저 측정하는 판단",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "aalto-denormalization",
+      "publisher": "Aalto University",
+      "title": "Denormalization as a Deliberate Trade-Off",
+      "url": "https://opencs.aalto.fi/en/courses/databases/part-8/5-denormalization-as-a-deliberate-trade-off",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Denormalization as a Deliberate Trade-Off"
+      ],
+      "usageScope": "중복·파생값 관리, 변경 전파와 재계산",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "kimnbuk-entity-classification",
+      "publisher": "김앤북 (알라딘 공개 배포)",
+      "title": "내일은 SQL 개발자 요약집: Section 02 엔터티 분류",
+      "url": "https://image.aladin.co.kr/img/banner/cid/react/K352036335.pdf",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "PDF 5쪽 Section 02, 3. 분류"
+      ],
+      "usageScope": "PDF 5쪽의 두 분류축 명칭만 대조. 이 자료의 다른 단순화된 정의·문항은 검증 근거로 사용하지 않는다.",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_summary_review_limited_section"
+    }
+  ]
+}

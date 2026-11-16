@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- build.ps1 writes valid Java-properties Unicode escapes for the Korean
+         SDK path. PropertyEscape mistakes these for Windows separators;
+         doubling them would break SDK lookup. Both APK builds verify lookup.
+         Keep all other files and all other lint checks enabled. -->
+    <issue id="PropertyEscape">
+        <ignore path="../local.properties" />
+    </issue>
+</lint>

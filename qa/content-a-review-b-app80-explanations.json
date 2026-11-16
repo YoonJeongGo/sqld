@@ -1,0 +1,898 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "content_a",
+  "reviewedAt": "2026-09-14T04:57:51.276117+00:00",
+  "method": "independent_ai_explanation_comparison_after_recorded_reasoning",
+  "boundary": "68 authored explanations, all steps and option reasons were read after independent answer decisions had been saved. Does not claim DBMS execution or expert/human review. The initial80 review did not mask choice identifiers; authors use a predictable correct ID. This is a potential bias limitation, so these are not counted as fully identifier-masked blind reviews.",
+  "reviewedCount": 68,
+  "results": [
+    {
+      "questionId": "S09-A01-mixed-sort",
+      "sourceQuestionSha256": "409e42ab0b906dfa7697e5884e965b4e8a6f2e50a79be925828168cb30e9aeed",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S09-A02-case-priority",
+      "sourceQuestionSha256": "7a61dfdf2947d0c441292d323bfa2c8f0fcf1b32b81bf77bf87fb82b8e63451b",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S09-A03-alias-derived",
+      "sourceQuestionSha256": "ac2d30cafe4a67e22253b9d6d826074188c677fdb36e3638313d46ad3bb3f347",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S09-A04-null-explicit-desc",
+      "sourceQuestionSha256": "879a963f6e5bc5b549e595db55a014051867063c1b3d78d4261477d9e380a170",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S09-A05-group-sort-total",
+      "sourceQuestionSha256": "502adc0870fb1eaf617d77fc3980a7366097d1711b45e091c5fa6d5b3a571d3d",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S09-A06-distinct-position",
+      "sourceQuestionSha256": "e7d3e59237abd1d2feb33a501ff7856a2c565973c88ef61f8b023d946d25e2bb",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S10-A01-duplicate-multiplication",
+      "sourceQuestionSha256": "09a5017b91b364de6ff573518a007b133048f88148fe94da02e525cf063fba7d",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S10-A02-null-pair-filter",
+      "sourceQuestionSha256": "2184b21de6caa29fcfea39dec5cb06b8a152d2ef8b9eb9a761196ec16e658683",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S10-A03-overlap-band",
+      "sourceQuestionSha256": "2b7c19adb563fa5336ba9783b5565f3e6cc9995005a3ce1b0f004cdd20470953",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S10-A04-cross-filter",
+      "sourceQuestionSha256": "5d996961b477d369ddec5f20e982bb98843eb05221f1ec7f62fd278eddfe72d6",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S10-A05-aggregate-after-join",
+      "sourceQuestionSha256": "6a54b35c17bd09186e861d5d8cd0c20aede0e816d20bcc77b2b7b1d3f348eafb",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S10-A06-two-key-matching",
+      "sourceQuestionSha256": "ec57ac6b7c3a9dbc212c9d5601a2e8f6c52a43213ecdc0454d5ad3390cc4f268",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S10-A07-empty-cross",
+      "sourceQuestionSha256": "e0726bcd8c0569700cd77bdade301740a7d8676a9d78202f10737e487fb493f3",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S11-A01-on-paid-preserve",
+      "sourceQuestionSha256": "0a7bfa161ad741d10f4b5be8e8f2eb96d2b3c85f241e34daba0eba90295342b9",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S11-A02-where-paid-remove",
+      "sourceQuestionSha256": "cd682063ccd4d15414f5cd8e607b5724e5cb60726ba652d44fdcc6f979d2dbd5",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S11-A04-full-both-unmatched",
+      "sourceQuestionSha256": "d4a71ad728e558b2ffd9a34ddcf75dc3c7eaebcedcff022da38649827639638c",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S11-A05-using-key-result",
+      "sourceQuestionSha256": "2e0a763037df5403121dad8e76aa89dcbc4d4fa52a7a2acd1cc69abc96b588c3",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S11-A06-natural-extra-key",
+      "sourceQuestionSha256": "eedc1f4b2d793cf7b99ec277de63723120a85e9272d37a5b5a4c6a91f1c42ed0",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S11-A07-anti-exists-key",
+      "sourceQuestionSha256": "00ab97d76b527f8d04393d4332ecfd6479bd1e682db8442e9491e0eacfc42306",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S12-A01-above-own-dept-average",
+      "sourceQuestionSha256": "996cbdd667d9cba78f537d95c0fce5383a370629f77a53b65344b7d25d8990d9",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S12-A02-exists-no-multiply",
+      "sourceQuestionSha256": "bdd570cf7b3de2301a1b58c201eb388c9a8824dcdb9f12c23ba13be147b406e3",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S12-A05-scalar-aggregate-empty",
+      "sourceQuestionSha256": "cf6e00ae08e07961930c4045d6edffd2a8dc2dbaae6dec4abb55181cf293cec0",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S12-A06-any-null-mixed",
+      "sourceQuestionSha256": "5146d24a40b43f3bf3c711fe1866d9e3eb04210fd9fae569871fcbd4065153d1",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S12-A08-tuple-in",
+      "sourceQuestionSha256": "ab2641642270b68cf43e8350652335dcd856ffa66f261ac848f96fedf6bd1da2",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S13-A01-union-null-combined",
+      "sourceQuestionSha256": "020649801d3c934a6b168b158fe1d7b8dd597d91a7ab232248df1456e97c273a",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S13-A02-all-count",
+      "sourceQuestionSha256": "3aa78f158a29f0fef46d8aa55ca80926f968b1d801c907baad7ab114b7be464a",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S13-A03-intersection-two-columns",
+      "sourceQuestionSha256": "8ed944898ee5777ef2543a538f4172270fcfd0f48e44570f9320322d9275a05b",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S13-A04-minus-dedup",
+      "sourceQuestionSha256": "55c900761b3891c044bedd5966d87300c88a47a7f9c46ff15c97538bf3c39b84",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S13-A05-parenthesized-difference",
+      "sourceQuestionSha256": "bcdfd1b5e438b022b097a9a658a5b33fd460310c37d258cb921b7ac6c519d00a",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S13-A06-difference-count-empty",
+      "sourceQuestionSha256": "7a39d6e97ab3011c99e08a819a3af28757425b43baa3c756bef8b2a34e479d38",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S14-A02-rollup-two-keys",
+      "sourceQuestionSha256": "0f0ff8a266df8c7d6b45ec78586122a113d5d674e23301490e3e58e18d48b3f1",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S14-A03-cube-cross-subtotals",
+      "sourceQuestionSha256": "589f3dc1f20bf313cb574b73f6564f27e755ef8a6c7bf798dc02acc52c3ef9ce",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S14-A04-chosen-grouping-sets",
+      "sourceQuestionSha256": "fe08220fb87d42843db64865ff57d89a5a212bc6265444dccb68face41179678",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S14-A05-having-total-only",
+      "sourceQuestionSha256": "3f224283eac04618e3d8eed24462c4b17c63f056c1c90fa1343b206d9c9af6b7",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S15-A01-ranks-side-by-side",
+      "sourceQuestionSha256": "6e8de65d37e9c846347395de9abdbe413742ff218471b901789557eaaa092939",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S15-A02-unique-number-with-tie-key",
+      "sourceQuestionSha256": "15b3775722c5bf582e1050daeded411070762be704544e4101a69d4072d2a138",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S15-A03-partition-sum-maintains-rows",
+      "sourceQuestionSha256": "de88ec2f87c86d6dbdd8086174e76539a14331481ba80930c97d45aea778531f",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S15-A05-lead-gap-not-id",
+      "sourceQuestionSha256": "96e3f9ab707f9e356474aacafb0ec0fedef028f06a65860b65f5847324b08bfc",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": [
+        "Minor wording: last row exists but its next row does not. Prefer 마지막 행은 다음 행이 없어."
+      ]
+    },
+    {
+      "questionId": "S16-A02-rows-two-window",
+      "sourceQuestionSha256": "d839de2f260292615f3af86206d0b60420bf814c4f34375bf8553cdb6a44b079",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S16-A03-range-value-distance",
+      "sourceQuestionSha256": "6e1e4c03a6b10023ccf47749ebdf30b4d57250b4df5ec8e802501b3daf753c2d",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S16-A04-last-value-full",
+      "sourceQuestionSha256": "59996d8087777488d853b115cd0d8ff7832c6e6ced1bcef7f0ebd7f0418be730",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S16-A06-partition-boundaries",
+      "sourceQuestionSha256": "4b2a634d16859c0d1a98e4582b52cd6fc344b174f6fa446c9ac1c65f446b4ca4",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S17-A01-fetch-only-key",
+      "sourceQuestionSha256": "1f23fa6214973d6472aa5a76880c5e34e4cc13873f9d562d2949eb8bb91e0ee4",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S17-A02-fetch-ties-last-score",
+      "sourceQuestionSha256": "65e26bc61802bb4088996822b36a0c0bfef914d96efdee516a3e977d499b64e8",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S17-A03-offset-page",
+      "sourceQuestionSha256": "af0eff380f2886508a7b070375714cf171c173483da106f39661e89360868898",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S17-A04-per-dept-top",
+      "sourceQuestionSha256": "beca664ca5c26c866049d9c9df667693705b7bfa1a1cb90c6b842b575979421e",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S17-A05-rownum-lower-bound-empty",
+      "sourceQuestionSha256": "6a1219b4d6d8ff57f604d72ffc92b02919aafe69889a81b69ae80ee0e943090f",
+      "status": "correction_requested",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": [
+        "memory overgeneralizes all ROWNUM lower bounds. Restrict to ROWNUM>1 / ROWNUM>=2 that exclude first candidate1. ROWNUM>=1 and >0 do permit rows. Sent to author for correction."
+      ]
+    },
+    {
+      "questionId": "S17-A06-rank-versus-dense-cut",
+      "sourceQuestionSha256": "31a0636929009ae7711b0e6809d89e04c5d061da60721d20e1bed37e99fbe084",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S18-A01-hierarchy-levels",
+      "sourceQuestionSha256": "fbe21864c4f99fb4fd21e44ff9202e8e445b1d50b521324b64d7ca031287b717",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S18-A02-self-manager-name",
+      "sourceQuestionSha256": "a0d1b98aa0b8d27d1094c5b9012ce84794c6e73c47b60a5e7e33a64e0dcbec1d",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S18-A03-subtree-start",
+      "sourceQuestionSha256": "7a15f8a008913df1b8c566faed3f9ac3a479b2f874b496a98696f96dad42ea75",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S18-A04-ancestor-direction",
+      "sourceQuestionSha256": "2e404ed7201d6076f488483b54394ec522862f729f766125fcc886caa163ed66",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S18-A06-leaf-flags",
+      "sourceQuestionSha256": "4be40aca01d6960d3780ee729c26df320387167e062d5abb0df3ecf984e1609c",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S19-A01-pivot-sum-groups",
+      "sourceQuestionSha256": "16e732fcc2b5b5bae96c1d9aba0ee462a3c327f9ccb8a73f642ca0a79ad5bc16",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S19-A02-pivot-count-missing",
+      "sourceQuestionSha256": "8ba5833ca6e9a4526cadcde2290ed8739eca0f8c9c4b6d4db59e21cf5585efda",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S19-A04-unpivot-default",
+      "sourceQuestionSha256": "17181e4c60d8cac167bfaaa8bf351f409de08180ef3d2884dd12a0b1ccd90e3c",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S19-A05-unpivot-include-count",
+      "sourceQuestionSha256": "77ffdb167a0943cb59c6247b15ef4e399c7fffc9d64ae8a1a101389da5d3b5c2",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S19-A06-conditional-pivot",
+      "sourceQuestionSha256": "9ff65c8fd7003087def07d04dbf7eb152d2553590daa77f8427093de166d9107",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S20-A01-regexp-whole-digits",
+      "sourceQuestionSha256": "6955d69636a6de9c03401699d56c8f2d73e269fb7e14fba466211460411a158c",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S20-A02-regexp-second-token",
+      "sourceQuestionSha256": "a9311fc0371d6629e9f2af0939f351d7e7a878d021f50591f6f93926b7f1588a",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S20-A03-regexp-clean-replace",
+      "sourceQuestionSha256": "6bcc524f885831b376178dbe002571510c01c139b543e8dde572f8a72621057b",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S20-A04-regexp-class-group-difference",
+      "sourceQuestionSha256": "ab5ec6974ca448f4dab1c8dc1d76e48ef2045b860282983b55380f06f92d705e",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S20-A05-regexp-case-insensitive",
+      "sourceQuestionSha256": "d7bc012e6c23f25988e7c6aaa8d77824a277470adba1f1c3b22d4357ca87df44",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S20-A06-regexp-no-match-null",
+      "sourceQuestionSha256": "2fd16c4bc13145aa076b07708df28ad2df11b767f3c06bd2bbaa9e3100847835",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S21-A01-update-filter-rows",
+      "sourceQuestionSha256": "4101f5319cb1e44bf30488eeb76c9287b9c03e946eb783f34a3f4e74ea11ecad",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S21-A02-delete-null-condition",
+      "sourceQuestionSha256": "8c4e0aaed59465cd3205e2e946165f82fae12d08581aeb4be8a7a3741e5fcdf3",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S21-A03-insert-column-order",
+      "sourceQuestionSha256": "d9e1ed1924478a39a38f0165a1ba1e44c903b3a12148a35108b925a519ab8e15",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "S21-A04-update-all-original-expressions",
+      "sourceQuestionSha256": "933b554e296b147f3f9995738e83b6efb78bb6c206462ba031ac0d5eb87fbcaa",
+      "status": "calculation_and_explanation_agree",
+      "checks": [
+        "independent result vs summary",
+        "step calculations vs fixture inputs",
+        "final table vs computed result",
+        "each choice rationale",
+        "memory conditions"
+      ],
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,712 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-08",
+  "source": {
+    "id": "2-2-08",
+    "partId": "2-2",
+    "number": 8,
+    "title": "CUBE & GROUPING SETS",
+    "lectureMinutes": 30,
+    "easy": "CUBE는 기준들의 가능한 모든 조합을 집계하고, GROUPING SETS는 내가 고른 조합만 집계한다.",
+    "why": "지역 소계뿐 아니라 과목 소계도 필요하면 CUBE, 둘 중 필요한 것만 골라 계산하려면 GROUPING SETS를 쓴다.",
+    "concepts": [
+      {
+        "term": "CUBE(a,b)",
+        "meaning": "(a,b),(a),(b),() 모든 조합",
+        "example": "지역·과목 상세와 양쪽 소계"
+      },
+      {
+        "term": "2의 n승",
+        "meaning": "일반 독립 n열의 그룹 집합 수",
+        "example": "두 열4가지, 세 열8가지"
+      },
+      {
+        "term": "GROUPING SETS",
+        "meaning": "지정한 묶음만 집계",
+        "example": "((지역),(과목))"
+      },
+      {
+        "term": "() 지정",
+        "meaning": "전체 합계가 필요하면 빈 묶음 추가",
+        "example": "GROUPING SETS((지역),())"
+      },
+      {
+        "term": "복합 묶음",
+        "meaning": "괄호로 함께 취급할 열 지정",
+        "example": "((지역,과목),(지역))"
+      },
+      {
+        "term": "UNION ALL과 관계",
+        "meaning": "그룹별 집계 결과를 이어 붙인 의미",
+        "example": "중복 그룹 집합 지정에 주의"
+      },
+      {
+        "term": "결과 크기",
+        "meaning": "입력 그룹 수에 따라 실제 행수 증가",
+        "example": "조합4가지와 결과9행 구별"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-08-E01",
+        "title": "지역 소계와 과목 소계까지 전부",
+        "question": "CUBE(지역,과목)의 결과를 네 그룹 집합으로 나누어 보자.",
+        "tables": [
+          {
+            "title": "매출",
+            "columns": [
+              "지역",
+              "과목",
+              "금액"
+            ],
+            "rows": [
+              [
+                "부산",
+                "DB",
+                "100"
+              ],
+              [
+                "부산",
+                "JAVA",
+                "200"
+              ],
+              [
+                "서울",
+                "DB",
+                "300"
+              ],
+              [
+                "서울",
+                "JAVA",
+                "400"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 지역,과목,SUM(금액) AS 합계 FROM 매출 GROUP BY CUBE(지역,과목) ORDER BY 지역 NULLS LAST,과목 NULLS LAST;",
+        "steps": [
+          "(지역,과목)은 원래 네 상세 합계다.",
+          "(지역)은 부산300·서울700, (과목)은 DB400·JAVA600이다.",
+          "()는 전체1000이다. 총4+2+2+1=9행이다."
+        ],
+        "results": [
+          {
+            "title": "CUBE 결과",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                "DB",
+                "100"
+              ],
+              [
+                "부산",
+                "JAVA",
+                "200"
+              ],
+              [
+                "부산",
+                null,
+                "300"
+              ],
+              [
+                "서울",
+                "DB",
+                "300"
+              ],
+              [
+                "서울",
+                "JAVA",
+                "400"
+              ],
+              [
+                "서울",
+                null,
+                "700"
+              ],
+              [
+                null,
+                "DB",
+                "400"
+              ],
+              [
+                null,
+                "JAVA",
+                "600"
+              ],
+              [
+                null,
+                null,
+                "1000"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 원자료의 SQLite 대체식 확인과 Oracle 실제 실행은 다릅니다. Oracle 실행 미확인."
+      },
+      {
+        "id": "2-2-08-E02",
+        "title": "필요한 소계만 고르기",
+        "question": "GROUPING SETS((지역),(과목))에는 어떤 행만 있는가?",
+        "tables": [
+          {
+            "title": "매출",
+            "columns": [
+              "지역",
+              "과목",
+              "금액"
+            ],
+            "rows": [
+              [
+                "부산",
+                "DB",
+                "100"
+              ],
+              [
+                "부산",
+                "JAVA",
+                "200"
+              ],
+              [
+                "서울",
+                "DB",
+                "300"
+              ],
+              [
+                "서울",
+                "JAVA",
+                "400"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 지역,과목,SUM(금액) AS 합계 FROM 매출 GROUP BY GROUPING SETS((지역),(과목)) ORDER BY 지역 NULLS LAST,과목 NULLS LAST;",
+        "steps": [
+          "지역만 묶은 부산300·서울700 두 줄을 만든다.",
+          "과목만 묶은 DB400·JAVA600 두 줄을 만든다.",
+          "상세와 전체()를 요청하지 않았으므로 없다. 총4행이다."
+        ],
+        "results": [
+          {
+            "title": "선택 집계 결과",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                null,
+                "300"
+              ],
+              [
+                "서울",
+                null,
+                "700"
+              ],
+              [
+                null,
+                "DB",
+                "400"
+              ],
+              [
+                null,
+                "JAVA",
+                "600"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 원자료의 SQLite 대체식 확인과 Oracle 실제 실행은 다릅니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "ROLLUP 단계적으로 / CUBE 전부 / GROUPING SETS 골라서.",
+    "traps": [
+      "GROUPING SETS에서 ()를 쓰지 않았는데 전체 합계가 자동으로 붙는다고 생각하지 않는다.",
+      "CUBE n열의 2^n은 일반적인 독립 열 기준 그룹 집합 수이지 결과 행수 공식이 아니다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-08-Q1",
+        "question": "CUBE(a,b)의 그룹 집합은?",
+        "answer": "(a,b), (a), (b), ()",
+        "explanation": "가능한 모든 부분 조합이다."
+      },
+      {
+        "id": "2-2-08-Q2",
+        "question": "GROUPING SETS((지역),(과목))에 전체 합계가 있는가?",
+        "answer": "없다",
+        "explanation": "빈 그룹 ()를 따로 지정하지 않았다."
+      },
+      {
+        "id": "2-2-08-Q3",
+        "question": "세 개의 일반 열 CUBE의 그룹 집합 수는?",
+        "answer": "8",
+        "explanation": "2의 3승이다. 실제 결과 행수는 별개다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S14"
+    ],
+    "sourceIds": [
+      "select",
+      "grouping"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"CUBE &amp; GROUPING SETS 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">상세</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">지역 + 과목</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">지역 소계</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">지역만 남김</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">전체 합계</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">기준 모두 제거</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">ROLLUP(지역, 과목) 기본 예 · CUBE는 과목만의 소계도 포함</text></svg>",
+    "version": 1
+  },
+  "purpose": "지역 소계와 과목 소계가 둘 다 필요한지, 원하는 소계만 필요한지 정해서 조회해요.",
+  "overview": "조회 집계예요. CUBE는 지역·과목의 가능한 그룹 조합을, GROUPING SETS는 괄호에 직접 요청한 조합만 만들어요.",
+  "terms": [
+    {
+      "token": "CUBE",
+      "kind": "그룹 확장",
+      "meaning": "cube = 여러 축의 조합",
+      "role": "지역·과목 두 축에서 상세·지역·과목·전체를 모두 요청해요."
+    },
+    {
+      "token": "GROUPING SETS",
+      "kind": "그룹 확장",
+      "meaning": "grouping sets = 그룹 기준들의 목록",
+      "role": "((지역),(과목))는 두 종류의 소계만 요청해요."
+    },
+    {
+      "token": "2의 n승",
+      "kind": "개수 설명",
+      "meaning": "각 일반 열을 포함하거나 빼는 선택 수",
+      "role": "두 열이면4가지 그룹 집합이며 실제9행과 다른 수예요."
+    }
+  ],
+  "pitfalls": [
+    "GROUPING SETS에 적지 않은 상세나 전체가 자동으로 생기는 것은 아니에요.",
+    "CUBE의 그룹 집합 수와 실제 결과 행수를 구분해요. 같은 값의 중복·복합 열 표현이 있으면 단순 행수 공식으로 추정하지 않아요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회 집계예요. CUBE는 지역·과목의 가능한 그룹 조합을, GROUPING SETS는 괄호에 직접 요청한 조합만 만들어요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 52,
+      "toPage": 52,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-08-E01",
+      "why": "지역별 소계뿐 아니라 과목별 소계도 필요할 때 모든 조합을 요청해요.",
+      "effect": "조회 · 매출의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-08-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "매출: 컬럼 지역·과목·금액 3개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "네 그룹 집합",
+          "text": "CUBE(지역,과목)는 상세 (지역,과목), 지역, 과목, 전체 ()를 만들어요.",
+          "codeFocus": [
+            {
+              "needle": "CUBE(지역,과목)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "CUBE(지역,과목)"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "상세와 지역 소계",
+          "text": "상세 4행 금액 100·200·300·400을 지역으로 모으면 부산 300, 서울 700 두 행이에요.",
+          "codeFocus": [
+            {
+              "needle": "SUM(금액)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "금액"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 상세와 지역 소계",
+            "columns": [
+              "그룹집합",
+              "묶음",
+              "계산",
+              "합계"
+            ],
+            "rows": [
+              [
+                "지역",
+                "부산",
+                "100+200",
+                "300"
+              ],
+              [
+                "지역",
+                "서울",
+                "300+400",
+                "700"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "과목 소계 추가",
+          "text": "DB는 부산 100+서울 300=400, JAVA는 200+400=600이에요. 지역을 구별하지 않는 소계라 지역 칸은 NULL로 표시해요.",
+          "codeFocus": [
+            {
+              "needle": "GROUP BY CUBE(지역,과목)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "지역"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 과목 소계 추가",
+            "columns": [
+              "지역",
+              "과목",
+              "계산",
+              "합계"
+            ],
+            "rows": [
+              [
+                null,
+                "DB",
+                "100+300",
+                "400"
+              ],
+              [
+                null,
+                "JAVA",
+                "200+400",
+                "600"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "전체까지 9행",
+          "text": "전체는 1000 한 행이에요. 4+2+2+1=9행을 ORDER BY의 지역·과목 및 NULLS LAST 규칙으로 보여줘요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 지역 NULLS LAST,과목 NULLS LAST",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ORDER",
+            "NULLS",
+            "LAST"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "CUBE 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 CUBE 결과와 대조해요. 표시 컬럼은 지역·과목·합계, 결과는 9행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "CUBE 결과",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                "DB",
+                "100"
+              ],
+              [
+                "부산",
+                "JAVA",
+                "200"
+              ],
+              [
+                "부산",
+                null,
+                "300"
+              ],
+              [
+                "서울",
+                "DB",
+                "300"
+              ],
+              [
+                "서울",
+                "JAVA",
+                "400"
+              ],
+              [
+                "서울",
+                null,
+                "700"
+              ],
+              [
+                null,
+                "DB",
+                "400"
+              ],
+              [
+                null,
+                "JAVA",
+                "600"
+              ],
+              [
+                null,
+                null,
+                "1000"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "두 열 CUBE는 4그룹 집합이지만 실제 결과는 9행이에요. 집합수 4를 결과행수로 쓰면 틀려요.",
+      "verification": "원본 값의 단계별 대입·산술을 검토하고 Oracle 19c 공식 문서의 해당 구문과 대조했어요. Oracle DB 엔진에서는 실행하지 않았어요."
+    },
+    {
+      "exampleId": "2-2-08-E02",
+      "why": "세부 내역이나 전체 합계 없이 지역 소계와 과목 소계만 뽑으려 해요.",
+      "effect": "조회 · 매출의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-08-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "매출: 컬럼 지역·과목·금액 3개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "요청한 두 기준",
+          "text": "GROUPING SETS((지역),(과목))에 적힌 것은 지역 단독과 과목 단독이에요. 상세 쌍이나 빈 그룹 ()는 적혀 있지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "GROUPING SETS((지역),(과목))",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "GROUPING SETS((지역),(과목))"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "지역으로 더하기",
+          "text": "부산 100+200=300, 서울 300+400=700이에요. 이 집계에서 과목을 빼서 과목 칸은 NULL이에요.",
+          "codeFocus": [
+            {
+              "needle": "SUM(금액)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 지역으로 더하기",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                null,
+                "300"
+              ],
+              [
+                "서울",
+                null,
+                "700"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "과목으로 더하기",
+          "text": "DB 100+300=400, JAVA 200+400=600이에요. 이번에는 지역을 빼서 지역 NULL이고 총 두 줄이 추가되어 4행이에요.",
+          "codeFocus": [
+            {
+              "needle": "GROUP BY",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 과목으로 더하기",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                null,
+                "DB",
+                "400"
+              ],
+              [
+                null,
+                "JAVA",
+                "600"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "요청하지 않은 수준은 없음",
+          "text": "전체 1000이나 부산 DB 100 상세행은 추가되지 않아요. 최종 정렬만 하고 원본 매출 4행은 유지해요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 지역 NULLS LAST,과목 NULLS LAST",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "선택 집계 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 선택 집계 결과와 대조해요. 표시 컬럼은 지역·과목·합계, 결과는 4행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "선택 집계 결과",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                null,
+                "300"
+              ],
+              [
+                "서울",
+                null,
+                "700"
+              ],
+              [
+                null,
+                "DB",
+                "400"
+              ],
+              [
+                null,
+                "JAVA",
+                "600"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "GROUPING SETS의 각 괄호는 별개의 그룹 기준이에요. ((지역,과목)) 하나와 ((지역),(과목)) 두 개는 달라요.",
+      "verification": "원본 값의 단계별 대입·산술을 검토하고 Oracle 19c 공식 문서의 해당 구문과 대조했어요. Oracle DB 엔진에서는 실행하지 않았어요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-08-Q1",
+      "hint": "a와b 각각을 넣는 경우와 빼는 경우를 조합해요.",
+      "reasoning": "둘 다 넣은(a,b),a만,b만,둘 다 없는()까지4가지예요. 각 집합은 자체로 여러 그룹 행을 낼 수 있어요."
+    },
+    {
+      "checkId": "2-2-08-Q2",
+      "hint": "목록에 빈 괄호가 실제로 적혀 있는지 보세요.",
+      "reasoning": "((지역),(과목))에는()가 없어요. 부산300·서울700·DB400·JAVA600만 있고 전체1000은 없어요."
+    },
+    {
+      "checkId": "2-2-08-Q3",
+      "hint": "각 열마다 포함·미포함 두 선택을 곱해 봐요.",
+      "reasoning": "서로 다른 일반 열3개는2×2×2=8가지 집합이에요. 각 집합의 실제 행수를 합해야 최종 행수를 알 수 있어요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

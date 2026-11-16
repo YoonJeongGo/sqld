@@ -1,0 +1,604 @@
+{
+  "id": "S10-A01-duplicate-multiplication",
+  "source": {
+    "id": "S10-A01-duplicate-multiplication",
+    "version": 1,
+    "title": "각 주문과 각 태그를 고객 번호로 결합 하면 id,tag 결과는?",
+    "stem": "각 주문과 각 태그를 고객 번호로 결합 하면 id,tag 결과는?",
+    "sql": "SELECT O.id,G.tag FROM O JOIN G ON O.cid=G.cid ORDER BY O.id,G.tag",
+    "tables": [
+      {
+        "title": "O",
+        "columns": [
+          "id",
+          "cid"
+        ],
+        "rows": [
+          [
+            "1",
+            "7"
+          ],
+          [
+            "2",
+            "7"
+          ],
+          [
+            "3",
+            "8"
+          ]
+        ]
+      },
+      {
+        "title": "G",
+        "columns": [
+          "cid",
+          "tag"
+        ],
+        "rows": [
+          [
+            "7",
+            "10"
+          ],
+          [
+            "7",
+            "20"
+          ]
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "id": "d",
+        "text": "(1, 10) / (2, 10)",
+        "reason": "태그 20 매칭을 누락했다."
+      },
+      {
+        "id": "a",
+        "text": "(1, 10) / (1, 20) / (2, 10) / (2, 20)",
+        "reason": "최종 결과는 (1, 10) / (1, 20) / (2, 10) / (2, 20)이다."
+      },
+      {
+        "id": "b",
+        "text": "(1, 10) / (2, 20)",
+        "reason": "매칭마다 임의 한 행만 붙였다."
+      },
+      {
+        "id": "c",
+        "text": "(1, 10) / (1, 20) / (2, 10) / (2, 20) / (3, NULL)",
+        "reason": "INNER JOIN에는 미매칭 보존이 없다."
+      }
+    ],
+    "correctChoiceIds": [
+      "a"
+    ],
+    "dialect": "Oracle",
+    "dialectVersion": "19c"
+  },
+  "intro": "입력 표의 값으로 SQL의 뜻을 따라 읽는 학습용 논리 과정입니다. 실제 DB의 물리 실행 순서나 실행계획을 측정한 자료가 아닙니다. 이전·다음으로 한 단계씩 확인하세요.",
+  "steps": [
+    {
+      "id": "step-01",
+      "title": "ON · 어느 행끼리 연결되는가",
+      "text": "O.cid=G.cid에 양쪽 행의 값을 대입합니다. 각 TRUE 행 쌍마다 조인 결과 한 행이 생깁니다. 같은 키의 행이 여러 개면 그 조합을 모두 남깁니다.\n7=7 → TRUE → 통과\n7=7 → TRUE → 통과\n7=7 → TRUE → 통과\n7=7 → TRUE → 통과\n8=7 → FALSE → 제외\n8=7 → FALSE → 제외",
+      "codeFocus": [
+        {
+          "needle": "O.cid=G.cid",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "O.cid=G.cid",
+        "O.cid",
+        "G.cid"
+      ],
+      "focusRows": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 조인 후보와 조건 판단",
+        "columns": [
+          "O.id",
+          "O.cid",
+          "G.cid",
+          "G.tag",
+          "ON 판단"
+        ],
+        "rows": [
+          [
+            "1",
+            "7",
+            "7",
+            "10",
+            "TRUE → 통과"
+          ],
+          [
+            "1",
+            "7",
+            "7",
+            "20",
+            "TRUE → 통과"
+          ],
+          [
+            "2",
+            "7",
+            "7",
+            "10",
+            "TRUE → 통과"
+          ],
+          [
+            "2",
+            "7",
+            "7",
+            "20",
+            "TRUE → 통과"
+          ],
+          [
+            "3",
+            "8",
+            "7",
+            "10",
+            "FALSE → 제외"
+          ],
+          [
+            "3",
+            "8",
+            "7",
+            "20",
+            "FALSE → 제외"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-02",
+      "title": "FROM · 조인 후 입력",
+      "text": "O JOIN G ON O.cid=G.cid 결과는 4행입니다. 조건을 통과한 모든 행 쌍을 유지합니다. 중복을 임의로 하나로 줄이지 않습니다.",
+      "codeFocus": [
+        {
+          "needle": "FROM O JOIN G ON O.cid=G.cid",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "O.cid",
+        "G.cid"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 조인 후 행",
+        "columns": [
+          "O.id",
+          "O.cid",
+          "G.cid",
+          "G.tag"
+        ],
+        "rows": [
+          [
+            "1",
+            "7",
+            "7",
+            "10"
+          ],
+          [
+            "1",
+            "7",
+            "7",
+            "20"
+          ],
+          [
+            "2",
+            "7",
+            "7",
+            "10"
+          ],
+          [
+            "2",
+            "7",
+            "7",
+            "20"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-03",
+      "title": "SELECT · 남은 1번째 행 계산",
+      "text": "1 = 1\n10 = 10\n원본 값을 고쳐 쓰는 것이 아니라 출력할 값으로 계산합니다.",
+      "codeFocus": [
+        {
+          "needle": "O.id,G.tag",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 4
+        },
+        {
+          "row": 0,
+          "column": 5
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 입력값과 출력식",
+        "columns": [
+          "O.id",
+          "O.cid",
+          "G.cid",
+          "G.tag",
+          "O.id",
+          "G.tag"
+        ],
+        "rows": [
+          [
+            "1",
+            "7",
+            "7",
+            "10",
+            "1",
+            "10"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-04",
+      "title": "SELECT · 남은 2번째 행 계산",
+      "text": "1 = 1\n20 = 20\n원본 값을 고쳐 쓰는 것이 아니라 출력할 값으로 계산합니다.",
+      "codeFocus": [
+        {
+          "needle": "O.id,G.tag",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 4
+        },
+        {
+          "row": 0,
+          "column": 5
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 입력값과 출력식",
+        "columns": [
+          "O.id",
+          "O.cid",
+          "G.cid",
+          "G.tag",
+          "O.id",
+          "G.tag"
+        ],
+        "rows": [
+          [
+            "1",
+            "7",
+            "7",
+            "20",
+            "1",
+            "20"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-05",
+      "title": "SELECT · 남은 3번째 행 계산",
+      "text": "2 = 2\n10 = 10\n원본 값을 고쳐 쓰는 것이 아니라 출력할 값으로 계산합니다.",
+      "codeFocus": [
+        {
+          "needle": "O.id,G.tag",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 4
+        },
+        {
+          "row": 0,
+          "column": 5
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 입력값과 출력식",
+        "columns": [
+          "O.id",
+          "O.cid",
+          "G.cid",
+          "G.tag",
+          "O.id",
+          "G.tag"
+        ],
+        "rows": [
+          [
+            "2",
+            "7",
+            "7",
+            "10",
+            "2",
+            "10"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-06",
+      "title": "SELECT · 남은 4번째 행 계산",
+      "text": "2 = 2\n20 = 20\n원본 값을 고쳐 쓰는 것이 아니라 출력할 값으로 계산합니다.",
+      "codeFocus": [
+        {
+          "needle": "O.id,G.tag",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 4
+        },
+        {
+          "row": 0,
+          "column": 5
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 입력값과 출력식",
+        "columns": [
+          "O.id",
+          "O.cid",
+          "G.cid",
+          "G.tag",
+          "O.id",
+          "G.tag"
+        ],
+        "rows": [
+          [
+            "2",
+            "7",
+            "7",
+            "20",
+            "2",
+            "20"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-07",
+      "title": "SELECT · 결과 열 확인",
+      "text": "id, tag 순서로 4행을 출력합니다. SELECT만으로 중복 행을 없애지는 않습니다.",
+      "codeFocus": [
+        {
+          "needle": "O.id,G.tag",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "id",
+        "tag"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 출력 열",
+        "columns": [
+          "id",
+          "tag"
+        ],
+        "rows": [
+          [
+            "1",
+            "10"
+          ],
+          [
+            "1",
+            "20"
+          ],
+          [
+            "2",
+            "10"
+          ],
+          [
+            "2",
+            "20"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-08",
+      "title": "ORDER BY · 마지막 표시 순서",
+      "text": "O.id,G.tag의 왼쪽 키부터 비교하고 같을 때 다음 키를 봅니다. ASC는 오름차순, DESC는 내림차순입니다. Oracle의 NULL 기본 위치는 ASC 마지막, DESC 처음이며 명시한 NULLS 절이 우선합니다.",
+      "codeFocus": [
+        {
+          "needle": "ORDER BY O.id,G.tag",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "O.id",
+        "G.tag"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 정렬한 결과",
+        "columns": [
+          "id",
+          "tag"
+        ],
+        "rows": [
+          [
+            "1",
+            "10"
+          ],
+          [
+            "1",
+            "20"
+          ],
+          [
+            "2",
+            "10"
+          ],
+          [
+            "2",
+            "20"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-09",
+      "title": "최종 결과와 원래 답 연결",
+      "text": "최종 4행입니다. 바깥 ORDER BY로 정한 순서를 따릅니다. 원래 보기별 해설에서 같은 결과인지 확인하세요.",
+      "codeFocus": [
+        {
+          "needle": "O.id,G.tag",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 최종 결과",
+        "columns": [
+          "id",
+          "tag"
+        ],
+        "rows": [
+          [
+            "1",
+            "10"
+          ],
+          [
+            "1",
+            "20"
+          ],
+          [
+            "2",
+            "10"
+          ],
+          [
+            "2",
+            "20"
+          ]
+        ]
+      }
+    }
+  ],
+  "terms": [
+    {
+      "token": "SELECT",
+      "kind": "키워드",
+      "meaning": "결과에 보여 줄 열과 계산식을 고른다.",
+      "role": "이 문제의 최종 출력 열을 정한다."
+    },
+    {
+      "token": "FROM",
+      "kind": "키워드",
+      "meaning": "값을 읽을 표 또는 조회 결과를 지정한다.",
+      "role": "원본 표에서 설명을 시작하는 위치다."
+    },
+    {
+      "token": "ON",
+      "kind": "키워드",
+      "meaning": "두 표의 어떤 행을 짝지을지 지정하는 조인 조건이다.",
+      "role": "이 문제에서는 행 쌍의 일치 여부를 검사한다."
+    },
+    {
+      "token": "ORDER BY",
+      "kind": "키워드",
+      "meaning": "지정한 키에 따라 순서를 정한다.",
+      "role": "OVER 내부 정렬은 계산용이며 최종 결과 순서는 바깥 ORDER BY가 정한다."
+    },
+    {
+      "token": "JOIN",
+      "kind": "키워드",
+      "meaning": "두 입력의 조건에 맞는 행 쌍을 결합한다.",
+      "role": "한 행이 여러 행과 맞으면 여러 결과 행이 생긴다."
+    },
+    {
+      "token": "O",
+      "kind": "테이블명",
+      "meaning": "관련 정보를 행과 열로 저장한 표의 이름이다.",
+      "role": "원본의 id, cid 열을 제공한다."
+    },
+    {
+      "token": "id",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "O 표의 id 값을 읽는다."
+    },
+    {
+      "token": "cid",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "O 표의 cid 값을 읽는다."
+    },
+    {
+      "token": "G",
+      "kind": "테이블명",
+      "meaning": "관련 정보를 행과 열로 저장한 표의 이름이다.",
+      "role": "원본의 cid, tag 열을 제공한다."
+    },
+    {
+      "token": "cid",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "G 표의 cid 값을 읽는다."
+    },
+    {
+      "token": "tag",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "G 표의 tag 값을 읽는다."
+    },
+    {
+      "token": "=",
+      "kind": "연산자",
+      "meaning": "두 값을 같은지 비교한다.",
+      "role": "현재 파란 구문의 실제 값 대입을 함께 확인한다."
+    }
+  ],
+  "verification": {
+    "method": "독립 값 계산 및 원본 fixture 대조",
+    "engine": "SQLite",
+    "engineVersion": "3.50.4",
+    "oracleEngineExecuted": false,
+    "queryMode": "SQLite에서 호환 SELECT 실행; Oracle NULL 정렬 기본값 명시; 숫자 NVL/MOD는 등록 함수",
+    "expectedRowsMatch": true,
+    "notes": [
+      "Oracle 19c 원문 엔진 실행은 미실시. 원본 정답·보기·입력표는 변경하지 않았다.",
+      "아래 중간표는 설명용이며 실제 엔진 내부에 같은 임시표가 생긴다는 뜻이 아니다."
+    ]
+  },
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Aggregate-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Using-Subqueries.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/IN-Condition.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Comparison-Conditions.html"
+  ]
+}

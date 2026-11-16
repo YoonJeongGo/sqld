@@ -1,0 +1,422 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-04",
+  "source": {
+    "id": "2-2-04",
+    "partId": "2-2",
+    "number": 4,
+    "title": "다중컬럼 서브쿼리",
+    "lectureMinutes": 28,
+    "easy": "열 하나가 아니라 여러 열의 조합을 하나의 묶음으로 비교하는 서브쿼리다.",
+    "why": "“각 학과의 최고점 학생”은 학과와 점수를 짝지어 비교해야 한다. 학과 목록과 점수 목록을 따로 비교하면 잘못 연결될 수 있다.",
+    "concepts": [
+      {
+        "term": "행값 비교",
+        "meaning": "(열1,열2)를 한 조합으로 비교",
+        "example": "(학과,점수) IN (...)"
+      },
+      {
+        "term": "열수 일치",
+        "meaning": "왼쪽 항목 수와 안쪽 SELECT 열수가 같아야 함",
+        "example": "두 항목에는 두 열"
+      },
+      {
+        "term": "순서 일치",
+        "meaning": "첫 항목끼리, 둘째 항목끼리 대응",
+        "example": "학과·점수 순서를 유지"
+      },
+      {
+        "term": "PAIRWISE",
+        "meaning": "안쪽의 같은 한 행에 있는 값 조합과 비교",
+        "example": "(컴퓨터,90) 한 쌍"
+      },
+      {
+        "term": "NON-PAIRWISE 위험",
+        "meaning": "각 열의 목록을 따로 비교하면 조합이 섞임",
+        "example": "전자80을 컴퓨터80에 잘못 적용"
+      },
+      {
+        "term": "NULL 비교",
+        "meaning": "조합 일부가 NULL이면 3값 논리 적용",
+        "example": "무조건 같은 것으로 보지 않음"
+      },
+      {
+        "term": "DBMS 문법 차이",
+        "meaning": "Oracle 행값 IN과 SQL Server의 지원 문법은 다름",
+        "example": "EXISTS 등으로 표현 가능"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-04-E01",
+        "title": "학과와 최고점을 짝지어 비교",
+        "question": "학과별 최고점 학생을 모두 찾자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "한창주",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "1002",
+                "장정훈",
+                "컴퓨터",
+                "80"
+              ],
+              [
+                "1003",
+                "김현수",
+                "전자",
+                "80"
+              ],
+              [
+                "1004",
+                "박상현",
+                "전자",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름, 학과, 점수 FROM 성적 WHERE (학과,점수) IN (SELECT 학과, MAX(점수) FROM 성적 GROUP BY 학과) ORDER BY 학번;",
+        "steps": [
+          "안쪽 결과는 (컴퓨터,90), (전자,80) 두 조합이다.",
+          "한창주의 (컴퓨터,90)과 김현수의 (전자,80)은 조합이 일치한다.",
+          "장정훈의 점수80이 목록에 있어도 (컴퓨터,80) 조합은 없으므로 제외한다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "한창주",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "김현수",
+                "전자",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "여러 열은 한 쌍으로. 서로 다른 행의 값을 섞어 짝짓지 않는다.",
+    "traps": [
+      "학과 IN(...) AND 점수 IN(...)로 무조건 바꾸면 잘못된 조합이 통과할 수 있다.",
+      "반환 열수와 왼쪽 열수를 먼저 맞춘다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-04-Q1",
+        "question": "컴퓨터 최고90·전자 최고80일 때 컴퓨터80은 최고점 학생인가?",
+        "answer": "아니다",
+        "explanation": "(컴퓨터,80)은 안쪽 결과 조합에 없다."
+      },
+      {
+        "id": "2-2-04-Q2",
+        "question": "두 열 비교 서브쿼리가 한 열만 반환하면?",
+        "answer": "열수 불일치",
+        "explanation": "각 항목의 대응값이 필요하다."
+      },
+      {
+        "id": "2-2-04-Q3",
+        "question": "다중컬럼이 반드시 다중행을 뜻하는가?",
+        "answer": "아니다",
+        "explanation": "열수와 행수는 별개의 분류다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S12"
+    ],
+    "sourceIds": [
+      "subquery",
+      "select"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"다중컬럼 서브쿼리 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 질문</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">평균·목록·존재?</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 결과</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값 / 여러 행 / 존재</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">바깥 질문</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">결과를 기준으로 검사</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">여러 열은 한 쌍으로. 서로 다른 행의 값을 섞어 짝짓지 않는다.</text></svg>",
+    "version": 1
+  },
+  "purpose": "학과별 최고점처럼 학과와 점수의 짝이 맞는 사람을 찾기 위해 써요.",
+  "overview": "조회예요. 안쪽에서 학과·최고점의 두 열을 만들고 바깥의 같은 두 열을 같은 순서의 한 쌍으로 비교해요.",
+  "terms": [
+    {
+      "token": "(학과,점수)",
+      "kind": "열 묶음",
+      "meaning": "두 값을 순서대로 함께 비교",
+      "role": "컴퓨터80과 전자80은 점수만 같고 서로 다른 쌍이에요."
+    },
+    {
+      "token": "GROUP BY 학과",
+      "kind": "그룹 기준",
+      "meaning": "같은 학과 값을 가진 행끼리 묶기",
+      "role": "컴퓨터90·80과 전자80·70을 분리해 최고점을 구해요."
+    },
+    {
+      "token": "IN",
+      "kind": "조건식",
+      "meaning": "안쪽 목록에 일치하는 항목이 있는지",
+      "role": "여기서 항목 하나는 점수 하나가 아니라 학과와 점수의 쌍이에요."
+    }
+  ],
+  "pitfalls": [
+    "다중컬럼은 열 개수에 대한 말이에요. 결과 행이 여러 개인지와는 별개예요.",
+    "SQL Server에 Oracle의 (a,b) IN(SELECT a,b...) 형태가 그대로 적용된다고 가정하지 않아요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. 안쪽에서 학과·최고점의 두 열을 만들고 바깥의 같은 두 열을 같은 순서의 한 쌍으로 비교해요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 23,
+      "toPage": 23,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-04-E01",
+      "why": "전체 최고점 한 명만이 아니라 각 학과의 최고점 학생을 찾아요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-04-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·학과·점수 4개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "학과별 최대값",
+          "text": "안쪽은 컴퓨터 90·80에서 90, 전자 80·70에서 80을 골라 두 열짜리 기준표를 만들어요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학과, MAX(점수) FROM 성적 GROUP BY 학과",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 학과별 최대값",
+            "columns": [
+              "학과",
+              "입력점수",
+              "최댓값"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "90·80",
+                "90"
+              ],
+              [
+                "전자",
+                "80·70",
+                "80"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "왼쪽 두 값의 순서",
+          "text": "(학과,점수)는 첫 값을 학과, 둘째 값을 점수로 맞춰요. 한창주 (컴퓨터,90)는 참, 장정훈 (컴퓨터,80)은 맞는 쌍이 없어요.",
+          "codeFocus": [
+            {
+              "needle": "(학과,점수) IN",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학과",
+            "점수"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 왼쪽 두 값의 순서",
+            "columns": [
+              "학생",
+              "바깥쌍",
+              "판정"
+            ],
+            "rows": [
+              [
+                "한창주",
+                "(컴퓨터,90)",
+                "참"
+              ],
+              [
+                "장정훈",
+                "(컴퓨터,80)",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "전자도 쌍으로 판정",
+          "text": "김현수 (전자,80)는 전자 기준쌍과 같아서 참이고, 박상현 (전자,70)은 거짓이에요. 점수 80이 기준 목록 어딘가에 있다는 것만으로는 충분하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "IN (SELECT 학과, MAX(점수)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "점수"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 전자도 쌍으로 판정",
+            "columns": [
+              "학생",
+              "바깥쌍",
+              "판정"
+            ],
+            "rows": [
+              [
+                "김현수",
+                "(전자,80)",
+                "참"
+              ],
+              [
+                "박상현",
+                "(전자,70)",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "통과 학생 두 행",
+          "text": "학번순으로 한창주와 김현수의 이름·학과·점수를 보여줘요. 그룹 계산을 했다고 원본 성적표가 두 행으로 줄어들지는 않아요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학번"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름·학과·점수, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "한창주",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "김현수",
+                "전자",
+                "80"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "학과 IN 목록과 점수 IN 목록을 따로 검사하면 컴퓨터 80이 잘못 통과할 수 있어요. 현재는 같은 결과행의 한 쌍이어야 해요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-04-Q1",
+      "hint": "점수80만 찾지 말고 학과도 같은 결과 행에 있는지 봐요.",
+      "reasoning": "안쪽 목록은(컴퓨터,90),(전자,80)이에요. 컴퓨터80은 어느 쌍에도 일치하지 않아 제외돼요."
+    },
+    {
+      "checkId": "2-2-04-Q2",
+      "hint": "왼쪽 두 값과 오른쪽 반환 열을 순서대로 대응시켜 봐요.",
+      "reasoning": "학과와 점수에 대응할 두 열이 필요해요. 한 열만 반환하면 열수 불일치라 비교할 수 없어요."
+    },
+    {
+      "checkId": "2-2-04-Q3",
+      "hint": "열의 수와 행의 수를 각각 세어 봐요.",
+      "reasoning": "두 열 한 행도 다중컬럼이에요. 다중행인지 여부는 안쪽 결과가 몇 줄인지 따로 확인해요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Comparison-Conditions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

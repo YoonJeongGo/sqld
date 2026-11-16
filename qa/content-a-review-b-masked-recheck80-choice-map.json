@@ -1,0 +1,482 @@
+{
+  "S09-A01-mixed-sort": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S09-A02-case-priority": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S09-A03-alias-derived": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S09-A04-null-explicit-desc": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S09-A05-group-sort-total": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S09-A06-distinct-position": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S10-A01-duplicate-multiplication": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S10-A02-null-pair-filter": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S10-A03-overlap-band": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S10-A04-cross-filter": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S10-A05-aggregate-after-join": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S10-A06-two-key-matching": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S10-A07-empty-cross": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S11-A01-on-paid-preserve": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S11-A02-where-paid-remove": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S11-A03-count-outer-null": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S11-A04-full-both-unmatched": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S11-A05-using-key-result": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S11-A06-natural-extra-key": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S11-A07-anti-exists-key": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S12-A01-above-own-dept-average": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S12-A02-exists-no-multiply": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S12-A03-null-safe-not-exists": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S12-A04-not-in-empty": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S12-A05-scalar-aggregate-empty": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S12-A06-any-null-mixed": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S12-A07-all-empty": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S12-A08-tuple-in": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S13-A01-union-null-combined": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S13-A02-all-count": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S13-A03-intersection-two-columns": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S13-A04-minus-dedup": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S13-A05-parenthesized-difference": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S13-A06-difference-count-empty": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S14-A01-rollup-original-null": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S14-A02-rollup-two-keys": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S14-A03-cube-cross-subtotals": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S14-A04-chosen-grouping-sets": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S14-A05-having-total-only": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S14-A06-repeated-sets": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S15-A01-ranks-side-by-side": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S15-A02-unique-number-with-tie-key": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S15-A03-partition-sum-maintains-rows": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S15-A04-lag-null-default": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S15-A05-lead-gap-not-id": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S15-A06-ntile-unequal": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S16-A01-range-peer-cumulative": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S16-A02-rows-two-window": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S16-A03-range-value-distance": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S16-A04-last-value-full": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S16-A05-future-count-boundary": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S16-A06-partition-boundaries": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S17-A01-fetch-only-key": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S17-A02-fetch-ties-last-score": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S17-A03-offset-page": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S17-A04-per-dept-top": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S17-A05-rownum-lower-bound-empty": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S17-A06-rank-versus-dense-cut": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S18-A01-hierarchy-levels": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S18-A02-self-manager-name": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S18-A03-subtree-start": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S18-A04-ancestor-direction": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S18-A05-where-after-path": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S18-A06-leaf-flags": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S19-A01-pivot-sum-groups": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S19-A02-pivot-count-missing": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S19-A03-pivot-extra-id": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S19-A04-unpivot-default": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S19-A05-unpivot-include-count": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S19-A06-conditional-pivot": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S20-A01-regexp-whole-digits": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S20-A02-regexp-second-token": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S20-A03-regexp-clean-replace": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S20-A04-regexp-class-group-difference": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S20-A05-regexp-case-insensitive": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S20-A06-regexp-no-match-null": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S21-A01-update-filter-rows": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S21-A02-delete-null-condition": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S21-A03-insert-column-order": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S21-A04-update-all-original-expressions": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  }
+}

@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-01",
+  "source": {
+    "id": "2-2-01",
+    "partId": "2-2",
+    "number": 1,
+    "title": "서브쿼리의 개념과 분류",
+    "lectureMinutes": 30,
+    "easy": "SQL 안에 들어 있는 또 하나의 조회문이다. 안쪽에서 구한 값이나 목록을 바깥 조건·출력·표처럼 사용한다.",
+    "why": "“평균보다 점수가 높은 학생”을 찾으려면 먼저 평균이라는 기준이 필요하다. 그 기준을 서브쿼리로 만들 수 있다.",
+    "concepts": [
+      {
+        "term": "단일행 서브쿼리",
+        "meaning": "결과가 최대 한 행인 비교 대상",
+        "example": "최댓값 하나"
+      },
+      {
+        "term": "다중행 서브쿼리",
+        "meaning": "여러 행을 반환하는 목록",
+        "example": "컴퓨터 학과 학생 학번 목록"
+      },
+      {
+        "term": "다중컬럼 서브쿼리",
+        "meaning": "한 행에 여러 열을 반환",
+        "example": "학과와 최고점수 조합"
+      },
+      {
+        "term": "스칼라 서브쿼리",
+        "meaning": "한 열·최대 한 행을 값처럼 사용",
+        "example": "SELECT 목록의 부서명 하나"
+      },
+      {
+        "term": "인라인뷰",
+        "meaning": "FROM 안의 서브쿼리를 표처럼 사용",
+        "example": "학과별 평균표를 다시 조회"
+      },
+      {
+        "term": "상관 서브쿼리",
+        "meaning": "안쪽이 바깥 행의 값을 참조",
+        "example": "각 학생의 자기 학과 평균"
+      },
+      {
+        "term": "비상관 서브쿼리",
+        "meaning": "바깥 행의 값 없이 의미를 계산",
+        "example": "전체 평균"
+      },
+      {
+        "term": "논리적 추적",
+        "meaning": "안쪽 결과를 바깥에 대입해 이해",
+        "example": "실제 실행계획은 최적화될 수 있음"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-01-E01",
+        "title": "평균이라는 기준을 먼저 만들기",
+        "question": "전체 평균보다 높은 학생을 찾자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양지훈",
+                "90"
+              ],
+              [
+                "1002",
+                "김현수",
+                "70"
+              ],
+              [
+                "1003",
+                "유성재",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름, 점수 FROM 성적 WHERE 점수 > (SELECT AVG(점수) FROM 성적) ORDER BY 학번;",
+        "steps": [
+          "안쪽 SELECT AVG(점수)는 (90+70+80)/3=80을 만든다.",
+          "바깥 조건은 점수>80으로 읽는다.",
+          "양지훈의 90만 통과한다. 유성재의 80은 평균과 같아서 > 조건에는 통과하지 않는다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "양지훈",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "안쪽에서 기준을 만들고, 바깥에서 그 기준을 사용한다.",
+    "traps": [
+      "상관 서브쿼리는 바깥의 현재 행을 함께 보아야 하므로 무조건 전체를 한 번 계산해서 끝낼 수 있다고 이해하지 않는다.",
+      "단일행과 단일열은 다른 개념이다. 스칼라는 둘 다 제약한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-01-Q1",
+        "question": "FROM 안의 조회문을 표처럼 쓰면?",
+        "answer": "인라인뷰",
+        "explanation": "그 결과를 바깥 쿼리의 입력으로 사용한다."
+      },
+      {
+        "id": "2-2-01-Q2",
+        "question": "바깥 학생의 학과를 안쪽 조건에서 쓰면?",
+        "answer": "상관 서브쿼리",
+        "explanation": "바깥 행의 값에 의존한다."
+      },
+      {
+        "id": "2-2-01-Q3",
+        "question": "평균80에서 점수>평균이면 80점은 포함되는가?",
+        "answer": "아니다",
+        "explanation": "같음을 포함하지 않는 > 조건이다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S12"
+    ],
+    "sourceIds": [
+      "subquery",
+      "select"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"서브쿼리의 개념과 분류 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 질문</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">평균·목록·존재?</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 결과</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값 / 여러 행 / 존재</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">바깥 질문</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">결과를 기준으로 검사</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">안쪽에서 기준을 만들고, 바깥에서 그 기준을 사용한다.</text></svg>",
+    "version": 1
+  },
+  "purpose": "평균을 미리 외우지 않고 현재 성적표에서 계산한 값을 기준으로 학생을 고르기 위해 써요.",
+  "overview": "조회예요. 안쪽 성적표에서 평균80이라는 한 값을 만들고, 바깥 성적표의 각 점수를 그 기준과 비교해요. 점수를 수정하지 않아요.",
+  "terms": [
+    {
+      "token": "서브쿼리",
+      "kind": "구조",
+      "meaning": "sub = 안에 들어 있는 조회",
+      "role": "괄호 안 SELECT가 바깥 WHERE의 비교 기준을 제공해요."
+    },
+    {
+      "token": "AVG(점수)",
+      "kind": "함수",
+      "meaning": "average = 평균",
+      "role": "점수 90·70·80의 합 240을 3으로 나눠 80을 만들어요."
+    },
+    {
+      "token": "점수 > (...)",
+      "kind": "조건식",
+      "meaning": "왼쪽 점수가 오른쪽 계산값보다 큰지 비교",
+      "role": "90>80은 참,80>80은 거짓이에요."
+    },
+    {
+      "token": "( )",
+      "kind": "기호",
+      "meaning": "안쪽 조회의 범위를 묶음",
+      "role": "괄호는 실행 횟수나 테이블 행수가 아니라 서브쿼리의 경계를 표시해요."
+    }
+  ],
+  "pitfalls": [
+    "설명의 안쪽→바깥 순서는 이 비상관 예제의 의미를 이해하는 순서예요. 실제 DB 실행계획을 측정한 순서가 아니에요.",
+    "스칼라는 결과 모양, 상관 여부는 바깥값 참조 여부예요. 서로 배타적인 분류가 아니에요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. 안쪽 성적표에서 평균80이라는 한 값을 만들고, 바깥 성적표의 각 점수를 그 기준과 비교해요. 점수를 수정하지 않아요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 1,
+      "toPage": 1,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-01-E01",
+      "why": "성적표가 바뀌어도 현재 전체 평균보다 높은 학생을 찾아요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-01-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·점수 3개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "출력과 기준의 두 역할",
+          "text": "바깥 SELECT는 이름·점수를 보여줘요. 안쪽 SELECT AVG(점수)는 출력 학생 목록이 아니라 WHERE에 넣을 비교 기준이에요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT AVG(점수) FROM 성적",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "SELECT",
+            "AVG",
+            "점수"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "평균 80 만들기",
+          "text": "성적의 90·70·80 세 값을 더해 240, 값 개수 3으로 나누면 80이에요. 현재 입력에는 NULL이 없어요.",
+          "codeFocus": [
+            {
+              "needle": "AVG(점수)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 평균 80 만들기",
+            "columns": [
+              "더할점수",
+              "합계",
+              "개수",
+              "평균"
+            ],
+            "rows": [
+              [
+                "90+70+80",
+                "240",
+                "3",
+                "80"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "각 학생을 80과 비교",
+          "text": "양지훈 90>80은 참, 김현수 70>80과 유성재 80>80은 거짓이에요. >에는 같음을 포함하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 점수 >",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 각 학생을 80과 비교",
+            "columns": [
+              "학생",
+              "대입",
+              "판정"
+            ],
+            "rows": [
+              [
+                "양지훈",
+                "90>80",
+                "참·통과"
+              ],
+              [
+                "김현수",
+                "70>80",
+                "거짓·제외"
+              ],
+              [
+                "유성재",
+                "80>80",
+                "거짓·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "남은 행을 보여주기",
+          "text": "남은 양지훈의 이름과 90을 보여줘요. 학번순 정렬을 명시했고 다른 학생의 원본 행은 삭제하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학번"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름·점수, 결과는 1행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "양지훈",
+                "90"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "안쪽은 전체 평균 한 값이라 학생마다 다른 기준이 아니에요. 상관 서브쿼리의 자기 학과 평균과 구별해요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-01-Q1",
+      "hint": "괄호 안 SELECT가 어느 절의 자리에 들어갔는지 확인해요.",
+      "reasoning": "FROM은 입력 표를 적는 자리예요. 그 자리에 조회 결과를 넣어 표처럼 쓰는 것이 인라인뷰예요."
+    },
+    {
+      "checkId": "2-2-01-Q2",
+      "hint": "안쪽 조건에 바깥 행의 컬럼을 가리키는 별칭이 있는지 봐요.",
+      "reasoning": "안쪽이 바깥 학생의 학과값에 의존하면 상관 서브쿼리예요. 전체평균 예제에는 그런 참조가 없어요."
+    },
+    {
+      "checkId": "2-2-01-Q3",
+      "hint": "비교 기호에 같음을 포함하는 선이 있는지 보세요.",
+      "reasoning": "유성재80과 평균80은 같아요. >는 같은 값을 포함하지 않아 제외되고 >=였다면 포함돼요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Scalar-Subquery-Expressions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

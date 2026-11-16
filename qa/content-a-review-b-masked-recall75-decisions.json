@@ -1,0 +1,610 @@
+{
+  "schemaVersion": 1,
+  "inputSha256": "56a9682e6290171b113539a1423b87ac6a5b7dc30054b666061c06d4f2d1a47c",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "reviewer": "content_a",
+  "reviewedAt": "2026-09-14T05:10:35.929262+00:00",
+  "boundary": "Choices were randomly reordered and identifiers masked. Mapping file, original answer keys, explanations and expected results were not read before decisions. No DBMS or human expert validation.",
+  "decisions": [
+    {
+      "questionId": "S09-R01-guarantee",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "출력 순서는 최종 ORDER BY로 요구한다. PK·삽입 순서·GROUP BY만으로 보장되지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-R02-null-asc",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "Oracle ASC 기본 NULL 위치는 LAST라서 비NULL 뒤에 둔다. NULL 값 자체를 바꾸지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-R03-tie-order",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "점수 동률에도 고유id라는 보조 키를 정하면 전체 순서가 확정된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-R04-alias-order",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "같은 SELECT 블록의 출력 별칭을 ORDER BY에서 사용할 수 있다. FROM/WHERE의 다른 용도와 구분한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-R05-multi-key",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "복합 정렬은 dept를 우선 비교하고 같은 dept 안에서만 salary DESC를 적용한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-R01-pair-product",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "왼쪽2행 각각 오른쪽3행과 매칭되어2×3=6쌍이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-R02-null-equality",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NULL=NULL의 일반 비교는 UNKNOWN이므로 INNER JOIN의 TRUE 조건을 만족하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-R03-cross-product",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "CROSS JOIN은 두 입력의 모든 행 쌍을 만든다. 세로 집합 합치기나 자연 조인과 다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-R04-non-equi",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "급여 BETWEEN 최솟값 AND 최댓값은 등호가 아닌 범위 매칭인 비등가 조인이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-R05-join-union",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "JOIN은 행 쌍의 속성을 결합하고 UNION은 호환되는 출력 행의 집합을 합친다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-R01-left-preservation",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "LEFT OUTER JOIN은 왼쪽을 보존하며 미매칭 오른쪽 속성을NULL로 확장한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-R02-on-where",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "오른쪽 유료 조건을ON에 두면 비유료만 존재하는 고객도 미매칭왼쪽으로 보존한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-R03-natural-columns",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NATURAL JOIN은 같은 이름인 모든 공통 열을 동등 비교한다. 키나 열 위치로 제한하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-R04-using-coalesced",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "USING의 공통k는FULL JOIN 양쪽 키를 한 출력열로 통합한다. 항상A.k만인 것은 아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-R05-anti-null-key",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "실제 오른쪽 행에서 비NULL인 키를 검사하면 미매칭 확장과 원본NULL값을 혼동하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-R01-scalar-empty",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "스칼라 서브쿼리의0행 결과는NULL 스칼라 값으로 취급된다. 숫자0이 아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-R02-scalar-many",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "스칼라 위치는최대1행이어야 한다. 값이 같아도2행이면자동DISTINCT하지 않고 오류다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-R03-exists-projection",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "EXISTS는선택된 값이 아니라 행이 하나라도 있는지 검사한다. SELECT NULL도 유효하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-R04-not-in-null",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "x1은명시값과같아NOT IN이FALSE이고다른비NULL x는NULL과의비교UNKNOWN때문에TRUE가되지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-R05-any-all",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": ">ALL의TRUE는각집합값과의>비교가모두TRUE임을요구한다. ANY의하나이상과구분한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-R01-all-duplicates",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "UNION ALL만두입력의중복행을모두보존한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-R02-minus-direction",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "MINUS는왼쪽에있고오른쪽에없는서로다른행을반환하며방향이중요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-R03-column-compatibility",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "집합연산은대응하는출력열개수와자료형호환성을요구하고행수·이름일치를요구하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-R04-set-null",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "UNION의중복제거에서는같은NULL출력행을한행으로합친다. 일반=비교와다른중복판정이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-R01-rollup-levels",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "ROLLUP(a,b)는오른쪽키부터제거하는(a,b),(a),()단계이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-R02-cube-levels",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "독립키두개의CUBE는부분집합2^2=4수준이다. 실제결과행수와는다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-R03-grouping-null",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "GROUPING은해당열이소계에서제외되어생긴NULL인지표시한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-R04-sets-explicit",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "GROUPING SETS((dept),())는부서소계와전체합계두수준만명시한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-R01-rank-gaps",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "90동점은RANK1,1이고다음70은그앞행수2를반영해3이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-R02-dense-rank",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "DENSE_RANK는동점다음에도빈순위번호없이다음서로다른값에이어매긴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-R03-partition-reset",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "PARTITION BY의각부서파티션에서ROW_NUMBER가1부터재시작한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-R04-lag-offset",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "LAG는정렬된행위치로직전행값을보며해당행자체가없을때default0을쓴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-R05-analytic-order",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "분석함수안ORDER BY는계산순서를정한다. 최종출력순서는최종ORDER BY가필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-R01-rows-range",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "ROWS는행위치거리,RANGE는정렬키값범위를사용하여동점일때대상이다를수있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-R02-default-frame",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "ORDER BY가있는프레임지원Oracle분석함수의생략프레임은RANGE UNBOUNDED PRECEDING TO CURRENT ROW이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-R03-last-full",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "파티션끝의값을보려면프레임끝이UNBOUNDED FOLLOWING이어야한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-R04-moving-window",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "현재와직전두행은물리행기준ROWS 2 PRECEDING부터CURRENT ROW이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-R05-first-boundary",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "파티션첫행에는앞행이없으므로가상행을만들지않고현재행하나만포함한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-R01-ties-key",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "WITH TIES의동점은경계행의전체ORDER BY키가같은지로판단한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-R02-rownum-greater",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "단순ROWNUM>1은첫후보1이통과하지못하므로끝까지0행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-R03-top-before-sort",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "같은 블록 ROWNUM 조건은 최종 ORDER BY보다 먼저 행을 제한하므로 전체 정렬 후 상위 3행을 보장하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-R04-offset-order",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "점수 동점에서 추가 유일 키가 없으면 같은 점수 내부의 페이지 소속이 안정적이지 않다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-R05-distinct-ranks",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "DENSE_RANK는 서로 다른 점수마다 연속 순위를 부여하므로 2 이하가 상위 두 점수 집합이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-R01-level-root",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle 계층 질의 LEVEL은 루트에서 1로 시작한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-R02-prior-parent",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "PRIOR는 현재 연결을 평가하는 부모 행 쪽 식을 나타낸다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-R03-siblings",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "ORDER SIBLINGS BY는 형제 간 순서를 지정하면서 계층 탐색 구조를 유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-R04-self-roles",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "같은 테이블을 서로 다른 역할의 별칭으로 조인하면 직원과 상사를 대응시킬 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-R05-nocycle",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "CONNECT BY NOCYCLE은 순환이 있는 계층 데이터에서도 순환을 다루며 결과를 반환하도록 하는 옵션이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-R01-pivot-group",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "PIVOT 집계식과 FOR에서 사용하지 않는 나머지 입력 열들이 암묵적 그룹 키다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-R02-unpivot-null",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "UNPIVOT 기본 동작은 EXCLUDE NULLS이므로 NULL 값으로 변환되는 행이 빠진다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-R03-pivot-loss",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "여러 상세 행이 같은 집계 셀로 합쳐지면 역변환만으로 상세 행을 복원할 수 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-R04-unpivot-shape",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "여러 분기 열을 분기 이름과 값의 세로 행으로 만드는 연산은 UNPIVOT이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-R01-anchors",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "양끝 앵커와 숫자 클래스의 1회 이상 반복이 비어 있지 않은 전체 숫자 문자열 조건이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-R02-class-group",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "문자 클래스 [ab]는 a 또는 b 한 문자이며 +가 그 클래스의 한 번 이상 반복을 뜻한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-R03-regexp-functions",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "REGEXP_SUBSTR는 일치하는 부분 문자열을 반환하며 INSTR는 위치를 반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-R04-case-param",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "match_param i는 대소문자 무시, c는 구분이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-R01-delete-no-where",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "WHERE 없는 DELETE는 대상 테이블 모든 행을 삭제 대상으로 삼으며 테이블 정의는 남긴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-R02-update-null",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NULL 여부는 등호가 아니라 IS NULL로 검사한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-R03-insert-column",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "열 목록은 값과 대상 열의 대응을 명확히 하며 제약이나 커밋을 변경하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-R04-merge-branch",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "MERGE의 ON 조건이 소스와 대상의 매칭 여부를 결정한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-R05-statement-atomic",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "즉시 제약 위반은 해당 문장의 변경을 원자적으로 취소하지만 이미 성공한 앞선 미확정 문장까지 자동 전체 롤백되는 것은 아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-R01-savepoint-not-commit",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "SAVEPOINT는 현 트랜잭션 내부의 부분 롤백 지점을 지정하며 확정하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-R02-rollback-to",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "ROLLBACK TO는 지점 이후 변경을 취소하고 트랜잭션은 유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-R03-commit-savepoint",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "COMMIT으로 트랜잭션이 종료되면 그 트랜잭션의 savepoint들은 지워진다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-R04-ddl-implicit",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle의 적법한 DDL 전 암묵 커밋 때문에 앞선 DML을 이후 롤백할 수 없는 경우가 생긴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-R05-own-changes",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "동일 세션은 자신의 트랜잭션에서 수행한 미확정 변경을 볼 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-R01-pk-null",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "기본키는 유일성과 구성 열의 NOT NULL을 모두 요구한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-R02-check-unknown",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "CHECK는 FALSE인 행을 거부하며 NULL 비교로 UNKNOWN이면 NOT NULL 없는 CHECK만으로 거부하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-R03-truncate-definition",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "TRUNCATE는 데이터를 비우되 테이블 열 정의를 보존한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-R04-fk-optional",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "외래키 제약만으로 값 입력이 필수가 되지 않으며 별도 NOT NULL이 필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-R05-delete-cascade",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "부모 삭제를 자식 삭제로 전파하는 참조 옵션은 ON DELETE CASCADE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-R01-object-system",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "개별 테이블 SELECT는 객체 권한이고 CREATE TABLE은 객체 생성에 관한 시스템 권한이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-R02-grant-option",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "객체 권한을 다시 부여하는 권한은 WITH GRANT OPTION으로 부여한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-R03-revoke-paths",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "직접 부여 한 경로만 회수해도 유효한 역할 등 다른 경로의 접근 권한이 남을 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-R04-least-privilege",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "조회만 필요한 계정은 필요한 테이블 SELECT만 갖도록 해야 최소 권한이다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

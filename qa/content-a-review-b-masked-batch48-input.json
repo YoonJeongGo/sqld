@@ -1,0 +1,1814 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-14T05:11:38.534329+00:00",
+  "method": "allowlist_without_answers_explanations_expected_results_and_masked_choice_ids",
+  "questions": [
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6c10160c37a5b1303f6ce456dd8701f79dfcc9d04c4e2f527de09cf9f88452a4",
+      "publicInputSha256": "e3e03ac96ebfe4ff197e48fcb8794f6cc4fda9aca1dc4400f5b6ca2d18b96579",
+      "question": {
+        "id": "S21-A05-insert-select-filter",
+        "version": 1,
+        "title": "SELECT 결과를 새 표에 INSERT 한 행은?",
+        "stem": "SELECT 결과를 새 표에 INSERT 한 행은?",
+        "sql": "INSERT INTO D(id,v) SELECT id,v*2 FROM S WHERE v>=10;\nSELECT id,v FROM D",
+        "tables": [
+          {
+            "title": "S",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "5"
+              ],
+              [
+                "2",
+                "15"
+              ],
+              [
+                "3",
+                null
+              ]
+            ]
+          },
+          {
+            "title": "D",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": []
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(2, 30)"
+          },
+          {
+            "id": "r2",
+            "text": "(2, 15)"
+          },
+          {
+            "id": "r3",
+            "text": "(1, 10) / (2, 30) / (3, NULL)"
+          },
+          {
+            "id": "r4",
+            "text": "(1, 10) / (2, 30)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE S (id NUMBER, v NUMBER);\nCREATE TABLE D (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO S VALUES (1, 5);\nINSERT INTO S VALUES (2, 15);\nINSERT INTO S VALUES (3, NULL);\nCOMMIT;\nINSERT INTO D(id,v) SELECT id,v*2 FROM S WHERE v>=10;",
+          "query": "SELECT id,v FROM D",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "7b57ceb50896363fa23351be8a94ac75c9b8b5af03bfdda4b459b287ea15ed8d",
+      "publicInputSha256": "c6732deff070eb6bb0fae3b096bcd8b7ee99e69680c72b306a2ae12cb8c642d6",
+      "question": {
+        "id": "S21-A06-merge-update-insert",
+        "version": 1,
+        "title": "키가 유일한 소스와 대상에 MERGE 한 결과는?",
+        "stem": "키가 유일한 소스와 대상에 MERGE 한 결과는?",
+        "sql": "MERGE INTO D USING S ON(D.id=S.id) WHEN MATCHED THEN UPDATE SET D.v=S.v WHEN NOT MATCHED THEN INSERT(id,v) VALUES(S.id,S.v);\nSELECT id,v FROM D ORDER BY id",
+        "tables": [
+          {
+            "title": "D",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "20"
+              ]
+            ]
+          },
+          {
+            "title": "S",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "2",
+                "7"
+              ],
+              [
+                "3",
+                "9"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(2, 7) / (3, 9)"
+          },
+          {
+            "id": "r2",
+            "text": "(1, 10) / (2, 20) / (2, 7) / (3, 9)"
+          },
+          {
+            "id": "r3",
+            "text": "(1, 10) / (2, 7) / (3, 9)"
+          },
+          {
+            "id": "r4",
+            "text": "(1, 10) / (2, 7)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE D (id NUMBER, v NUMBER);\nCREATE TABLE S (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO D VALUES (1, 10);\nINSERT INTO D VALUES (2, 20);\nINSERT INTO S VALUES (2, 7);\nINSERT INTO S VALUES (3, 9);\nCOMMIT;\nMERGE INTO D USING S ON(D.id=S.id) WHEN MATCHED THEN UPDATE SET D.v=S.v WHEN NOT MATCHED THEN INSERT(id,v) VALUES(S.id,S.v);",
+          "query": "SELECT id,v FROM D ORDER BY id",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ce5d80701c889c7c33b9a2bf7bc70e5dccd7b21bd2ad15131fe5d3d74e907a6b",
+      "publicInputSha256": "54b0bbe4d7f5c273f1be0b6e0c2f9087cfc6cfa497ff13b586d6c1db6d3fa5ab",
+      "question": {
+        "id": "S22-A01-partial-then-commit",
+        "version": 1,
+        "title": "부분 롤백 후 COMMIT 한 최종 값은?",
+        "stem": "부분 롤백 후 COMMIT 한 최종 값은?",
+        "sql": "UPDATE T SET v=20 WHERE id=1;\nSAVEPOINT s;\nUPDATE T SET v=30 WHERE id=1;\nROLLBACK TO s;\nCOMMIT;\nSELECT v FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(20)"
+          },
+          {
+            "id": "r2",
+            "text": "(30)"
+          },
+          {
+            "id": "r3",
+            "text": "(NULL)"
+          },
+          {
+            "id": "r4",
+            "text": "(10)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nCOMMIT;\nUPDATE T SET v=20 WHERE id=1;\nSAVEPOINT s;\nUPDATE T SET v=30 WHERE id=1;\nROLLBACK TO s;\nCOMMIT;",
+          "query": "SELECT v FROM T",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "e70737c1e93c7969a85a624e7dbaefab862ee5ef7e91e91ac6bb4c4123ddf511",
+      "publicInputSha256": "763dd02bf151485c6db7fed352ffb3fc332af3ba56ef2b321fddab2c2e58618e",
+      "question": {
+        "id": "S22-A02-full-after-partial",
+        "version": 1,
+        "title": "부분 롤백 뒤 전체 ROLLBACK까지 실행하면?",
+        "stem": "부분 롤백 뒤 전체 ROLLBACK까지 실행하면?",
+        "sql": "UPDATE T SET v=20 WHERE id=1;\nSAVEPOINT s;\nUPDATE T SET v=30 WHERE id=1;\nROLLBACK TO s;\nROLLBACK;\nSELECT v FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(20)"
+          },
+          {
+            "id": "r2",
+            "text": "(30)"
+          },
+          {
+            "id": "r3",
+            "text": "0행"
+          },
+          {
+            "id": "r4",
+            "text": "(10)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nCOMMIT;\nUPDATE T SET v=20 WHERE id=1;\nSAVEPOINT s;\nUPDATE T SET v=30 WHERE id=1;\nROLLBACK TO s;\nROLLBACK;",
+          "query": "SELECT v FROM T",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "b9244465d3a74eae613c06f3c0e9c73e84fe9bebf6d6cafe6195121f9fefbd3a",
+      "publicInputSha256": "f771cfeb7720f84a23922fd4541bb8b10329dee6da988d4dc0441def29df66bd",
+      "question": {
+        "id": "S22-A03-commit-boundary",
+        "version": 1,
+        "title": "COMMIT 전후 두 UPDATE 중 롤백되는 변경은?",
+        "stem": "COMMIT 전후 두 UPDATE 중 롤백되는 변경은?",
+        "sql": "UPDATE T SET v=20 WHERE id=1;\nCOMMIT;\nUPDATE T SET v=30 WHERE id=1;\nROLLBACK;\nSELECT v FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(50)"
+          },
+          {
+            "id": "r2",
+            "text": "(10)"
+          },
+          {
+            "id": "r3",
+            "text": "(30)"
+          },
+          {
+            "id": "r4",
+            "text": "(20)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nCOMMIT;\nUPDATE T SET v=20 WHERE id=1;\nCOMMIT;\nUPDATE T SET v=30 WHERE id=1;\nROLLBACK;",
+          "query": "SELECT v FROM T",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "3d9cc2d8a6de4261ed826e0d372267ca09c04ff0ac0027cf66dedcc2b2ed0a07",
+      "publicInputSha256": "63d68c2f3097d70d36a6f4c9b1184be9d35f97628cab3e4bde2ed7fbc7e2d527",
+      "question": {
+        "id": "S22-A04-savepoint-name-reuse",
+        "version": 1,
+        "title": "같은 savepoint 이름을 다시 사용한 뒤 롤백하면?",
+        "stem": "같은 savepoint 이름을 다시 사용한 뒤 롤백하면?",
+        "sql": "SAVEPOINT s;\nUPDATE T SET v=20 WHERE id=1;\nSAVEPOINT s;\nUPDATE T SET v=30 WHERE id=1;\nROLLBACK TO s;\nSELECT v FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0행"
+          },
+          {
+            "id": "r2",
+            "text": "(30)"
+          },
+          {
+            "id": "r3",
+            "text": "(20)"
+          },
+          {
+            "id": "r4",
+            "text": "(10)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nCOMMIT;\nSAVEPOINT s;\nUPDATE T SET v=20 WHERE id=1;\nSAVEPOINT s;\nUPDATE T SET v=30 WHERE id=1;\nROLLBACK TO s;",
+          "query": "SELECT v FROM T",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4b9cdcb463e6ad97e4aeff9214a6ee411f94f1bb4b5adc4a5fc81b3244e7937c",
+      "publicInputSha256": "6e62da5fbc23171cd0f4ff79fce676f9e1317c7b7f2f10c54b7dc09a1c38b01d",
+      "question": {
+        "id": "S22-A05-ddl-commits-prior",
+        "version": 1,
+        "title": "정상 CREATE TABLE 뒤 ROLLBACK을 수 행 했다. T의 값은?",
+        "stem": "정상 CREATE TABLE 뒤 ROLLBACK을 수 행 했다. T의 값은?",
+        "sql": "UPDATE T SET v=20 WHERE id=1;\nCREATE TABLE X(flag NUMBER);\nROLLBACK;\nSELECT v FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(20)"
+          },
+          {
+            "id": "r2",
+            "text": "(10)"
+          },
+          {
+            "id": "r3",
+            "text": "0행"
+          },
+          {
+            "id": "r4",
+            "text": "(NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nCOMMIT;\nUPDATE T SET v=20 WHERE id=1;\nCREATE TABLE X(flag NUMBER);\nROLLBACK;",
+          "query": "SELECT v FROM T",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "74b72f1b28c9b468437055ed1aba5aee95dd29c0b2da4046d1f00fe8b239aee7",
+      "publicInputSha256": "f2dab88fcb83f403f85d19d113494e259e0b81de7d263749baab69ea5a80dfbd",
+      "question": {
+        "id": "S22-A06-delete-insert-rollback",
+        "version": 1,
+        "title": "삭제와 삽입을 한 트랜잭션에서 취소한 최종 행은?",
+        "stem": "삭제와 삽입을 한 트랜잭션에서 취소한 최종 행은?",
+        "sql": "DELETE FROM T WHERE id=1;\nINSERT INTO T VALUES(2,99);\nROLLBACK;\nSELECT id,v FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(1, 10)"
+          },
+          {
+            "id": "r2",
+            "text": "(1, 10) / (2, 99)"
+          },
+          {
+            "id": "r3",
+            "text": "0행"
+          },
+          {
+            "id": "r4",
+            "text": "(2, 99)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nCOMMIT;\nDELETE FROM T WHERE id=1;\nINSERT INTO T VALUES(2,99);\nROLLBACK;",
+          "query": "SELECT id,v FROM T ORDER BY id",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8e4b639dcdd9c88e12afc60b8c067e4437be89b01b2c5f0625b7147cb3016047",
+      "publicInputSha256": "21e40a377c09918807f94114cab861e23ebe1079763bc8eca90f3303fa1c9645",
+      "question": {
+        "id": "S23-A01-check-null-versus-negative",
+        "version": 1,
+        "title": "T(id 기본키, age NUMBER CHECK(age>=0))이며 age에 는 NOT NULL이 없다. 독립 적인 새 행 (1,",
+        "stem": "T(id 기본키, age NUMBER CHECK(age>=0))이며 age에 는 NOT NULL이 없다. 독립 적인 새 행 (1,NULL), (2,-1), (NULL,20)의 삽입 가능 여부는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(1,NULL),(NULL,20) 가능"
+          },
+          {
+            "id": "r2",
+            "text": "세 행 모두 가능"
+          },
+          {
+            "id": "r3",
+            "text": "(2,-1)만 가능"
+          },
+          {
+            "id": "r4",
+            "text": "(1,NULL)만 가능"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "76d9206710ab68c0f7157b06b8fee9f8ddc08d500546c74bd83049a9836b5968",
+      "publicInputSha256": "01fd5397761ed78fb199e6923935b1ac91daa97775722d87fafe717512a2b965",
+      "question": {
+        "id": "S23-A02-unique-null-single",
+        "version": 1,
+        "title": "T(code NUMBER UNIQUE)만 정의 했다. code에 NULL, NULL, 5, 5를 순서대로 독립 INSERT 하고",
+        "stem": "T(code NUMBER UNIQUE)만 정의 했다. code에 NULL, NULL, 5, 5를 순서대로 독립 INSERT 하고 성공 문장은 유지한다. 성공하는 삽입은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "앞의 NULL 두 번과 첫 5"
+          },
+          {
+            "id": "r2",
+            "text": "네 번 모두"
+          },
+          {
+            "id": "r3",
+            "text": "첫 5만"
+          },
+          {
+            "id": "r4",
+            "text": "첫 NULL과 첫 5"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5940fb59d2d018a837f0dcf3b81cf01e1dd30b333f5cfb3aeb008f2f4927c13d",
+      "publicInputSha256": "9f7ee8272ea110b5dd116ea05fabdc0c6908286a23cc42d5af4713d210d7b1a1",
+      "question": {
+        "id": "S23-A03-fk-parent-required",
+        "version": 1,
+        "title": "부모 P(id PK)에 1이 있고, 자식 C(id PK,pid FK→P.id)는 비어 있다. pid는 NULL 허용이다. 새",
+        "stem": "부모 P(id PK)에 1이 있고, 자식 C(id PK,pid FK→P.id)는 비어 있다. pid는 NULL 허용이다. 새 자식 (10,1),(11,2),(12,NULL) 중 삽입 가능한 행은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(10,1)과 (12,NULL)"
+          },
+          {
+            "id": "r2",
+            "text": "세 행 모두"
+          },
+          {
+            "id": "r3",
+            "text": "(11,2)와 (12,NULL)"
+          },
+          {
+            "id": "r4",
+            "text": "(10,1)만"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8d8c50e37bdbfb19ab8245f92f60b1512b57f8a688e825d082a4cfe3c910a662",
+      "publicInputSha256": "71d86fe3597117b0f60c2c71a0580787e8eb896cb1eb0a094d8c8eb6fe134d96",
+      "question": {
+        "id": "S23-A04-parent-delete-set-null",
+        "version": 1,
+        "title": "C.pid가 NULL 허용이고 P.id를 ON DELETE SET NULL로 참조한다. 부모 1과 자식(10,1),(11,1)이",
+        "stem": "C.pid가 NULL 허용이고 P.id를 ON DELETE SET NULL로 참조한다. 부모 1과 자식(10,1),(11,1)이 있다. 부모 1 삭제 후 자식 상태는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "항상 부모 삭제 거부"
+          },
+          {
+            "id": "r2",
+            "text": "자식 두 행도 삭제"
+          },
+          {
+            "id": "r3",
+            "text": "자식 pid가 모두 0"
+          },
+          {
+            "id": "r4",
+            "text": "자식 두 행이 남고 pid는 모두 NULL"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a48fe2b10f495d60c1a934dd7be2ca7db23d8e04cbe8ec87deb00a864a0974e3",
+      "publicInputSha256": "d4ccf11718117aa5cc06e74c9f28b6f2ec67eaa313abe873c9927c2bc10811e0",
+      "question": {
+        "id": "S23-A05-truncate-versus-delete-rollback",
+        "version": 1,
+        "title": "Oracle19c에 서 이미 확정된 T의 모든 행을 TRUNCATE 한 뒤 ROLLBACK했다. 결과는?",
+        "stem": "Oracle19c에 서 이미 확정된 T의 모든 행을 TRUNCATE 한 뒤 ROLLBACK했다. 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "행은 비어 있고 T의 열 정의는 남는다"
+          },
+          {
+            "id": "r2",
+            "text": "T 객체와 열 정의가사라진다"
+          },
+          {
+            "id": "r3",
+            "text": "모든 행이 ROLLBACK으로 복구"
+          },
+          {
+            "id": "r4",
+            "text": "WHERE가 없어 TRUNCATE 문법 오류"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bf35050883c5bcdb0c72443c7d7630333fef70ca3fb4bee0fa43eeb0c8b7436f",
+      "publicInputSha256": "b1f66730be4d8c1950ae33b9dc19127242654676dd70221e2312d9a70afa61c2",
+      "question": {
+        "id": "S23-A06-drop-versus-recreate",
+        "version": 1,
+        "title": "T를 정상 DROP TABLE 한 직후 같은 이름으로 SELECT 하려 한다. T와 같은 이름의 다른 객체·동의어는 없다. 판정은",
+        "stem": "T를 정상 DROP TABLE 한 직후 같은 이름으로 SELECT 하려 한다. T와 같은 이름의 다른 객체·동의어는 없다. 판정은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "기존 T 객체가 없어 조회할 수 없다"
+          },
+          {
+            "id": "r2",
+            "text": "열 정의는남아 0행조회"
+          },
+          {
+            "id": "r3",
+            "text": "최근 COMMIT 행을 자동 조회"
+          },
+          {
+            "id": "r4",
+            "text": "같은 이름으로 자동 CREATE"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "1e2ea6a4ac018fa080a2f2f7f1e67faf6efb32ba95b43f96d8764fc5c6926ae4",
+      "publicInputSha256": "03560592ad705ee4bfc5ae9303cceb0297fb007753ed6966c5ce5d7409d4af3c",
+      "question": {
+        "id": "S24-A01-read-only-grant",
+        "version": 1,
+        "title": "B는 A.T의 SELECT 권한만 직접 받았고 다른 권한 경로는 없다. B가 할 수 있는 작업은?",
+        "stem": "B는 A.T의 SELECT 권한만 직접 받았고 다른 권한 경로는 없다. B가 할 수 있는 작업은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "A.T 조회 권한을 C에 게 재부여"
+          },
+          {
+            "id": "r2",
+            "text": "A.T 행삽입"
+          },
+          {
+            "id": "r3",
+            "text": "A.T 행갱신"
+          },
+          {
+            "id": "r4",
+            "text": "A.T 조회"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5f9b567c6fb521286990cc3d47225ffba6eee229875f54a125f0be6e218a1724",
+      "publicInputSha256": "681e08ec154210334dc0ce323a5166bb8d3dabd59950f146142f8bff24a6bf70",
+      "question": {
+        "id": "S24-A02-grant-chain-revoke",
+        "version": 1,
+        "title": "A가 B에 게 객체 SELECT를 WITH GRANT OPTION으로 주고, B만 이 C에 게 이를 재부여 했다. A가 B의 그 객체",
+        "stem": "A가 B에 게 객체 SELECT를 WITH GRANT OPTION으로 주고, B만 이 C에 게 이를 재부여 했다. A가 B의 그 객체 권한을 회수하면 C의 이 경로는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "C가 자동으로 표소유자가 된다"
+          },
+          {
+            "id": "r2",
+            "text": "C의 권한은 항상 독립적으로 영구유지"
+          },
+          {
+            "id": "r3",
+            "text": "B에 게 의존한 C의 권한도 회수된다"
+          },
+          {
+            "id": "r4",
+            "text": "C의 모든 다른 표 권한도 자동 회수"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "16f99129621f8fa7045c69e1d555fb0b18dfe51f42cc2162058c6264b456df24",
+      "publicInputSha256": "bdcbe409925f804d9d812a1d86834e830020f1d67dc13a7dcccc03921e45c7bd",
+      "question": {
+        "id": "S24-A03-role-survives-direct-revoke",
+        "version": 1,
+        "title": "B가 A.T의 SELECT를 직접 받고 활성 역할 R을 통해서도 받았다. 직접 SELECT만 회수하고 R의 부여는 유지 했다.",
+        "stem": "B가 A.T의 SELECT를 직접 받고 활성 역할 R을 통해서도 받았다. 직접 SELECT만 회수하고 R의 부여는 유지 했다. B의 조회 가능 성은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "B가 T를 DROP 해야 조회 가능"
+          },
+          {
+            "id": "r2",
+            "text": "모든 경로가 자동 회수되어 불가능"
+          },
+          {
+            "id": "r3",
+            "text": "활성 역할 R의 경로로 조회 가능"
+          },
+          {
+            "id": "r4",
+            "text": "UPDATE만 가능"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d4f75866765a626580e19109392832b6e1d39628366a2de1c7b96c1c1c4cca9d",
+      "publicInputSha256": "eef69ae518f9d0f605037a0e305aaf684d7221df607bee6796623f3c179338fc",
+      "question": {
+        "id": "S24-A04-column-update-only",
+        "version": 1,
+        "title": "B에 게 T의 salary 열 UPDATE 권한만 주었다. 다른 권한 경로가 없다. 이 권한이 직접 허용하는 수정 범위는?",
+        "stem": "B에 게 T의 salary 열 UPDATE 권한만 주었다. 다른 권한 경로가 없다. 이 권한이 직접 허용하는 수정 범위는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "salary와 name 두 열 수정"
+          },
+          {
+            "id": "r2",
+            "text": "salary 열의 수정"
+          },
+          {
+            "id": "r3",
+            "text": "새 행의 모든 열 INSERT"
+          },
+          {
+            "id": "r4",
+            "text": "테이블 열 추가"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "e960a98bfd954ea7dfffdcf0c4d224b8a6ed2f5c0258d2c33fbeccc52bf8ec98",
+      "publicInputSha256": "dc16bdbf5954adbeb0c1e6ec2c88d0fea8da3d5196818eabacd13bdbed15ea87",
+      "question": {
+        "id": "S24-A05-system-not-data-read",
+        "version": 1,
+        "title": "B에 게 CREATE TABLE 시스템 권한과 충분한 자기 tablespace quota만 있다. A.T에 대한 다른 권한은 없",
+        "stem": "B에 게 CREATE TABLE 시스템 권한과 충분한 자기 tablespace quota만 있다. A.T에 대한 다른 권한은 없다. 이 사실만으로 가능하다 고 할 수 있는 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "자기 스키마에 허용 조건의 테이블 생성"
+          },
+          {
+            "id": "r2",
+            "text": "모든 사용자의암호 변경"
+          },
+          {
+            "id": "r3",
+            "text": "A.T의 소유권 이전"
+          },
+          {
+            "id": "r4",
+            "text": "A.T의 모든 행조회"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9b3ee4764beb6a8f8c1f6335d37ed180ca180fafc1d352c582852d41f498eb12",
+      "publicInputSha256": "568c69e568428379ccb752aa507263ecf73d0f11442f899256054c73c38e8f4b",
+      "question": {
+        "id": "S24-A06-public-revoke-scope",
+        "version": 1,
+        "title": "A.T의 SELECT가 PUBLIC과 B 직접 경로로 부여되어 있다. A가 PUBLIC의 SELECT만 회수 했다. B의 직접",
+        "stem": "A.T의 SELECT가 PUBLIC과 B 직접 경로로 부여되어 있다. A가 PUBLIC의 SELECT만 회수 했다. B의 직접 경로는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "직접 부여도 자동으로 동시에 회수"
+          },
+          {
+            "id": "r2",
+            "text": "직접 부여가 남으므로 B는 계속 조회 가능"
+          },
+          {
+            "id": "r3",
+            "text": "A의 소유권도 회수"
+          },
+          {
+            "id": "r4",
+            "text": "B만 자동 INSERT 권한 획득"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0a8d63ae0cb0598a0d4b6a1505f5b692525189978fed3edf58acefec5a2b2d67",
+      "publicInputSha256": "e41ccd7857cd7908ebfc3436a5a7dd77b73016a72eaefe93ff66bd003a766007",
+      "question": {
+        "id": "mock-1-S09-m1-null-and-limited-order",
+        "version": 1,
+        "title": "배송목록에서 미정 ETA(NULL)를 마지막에 두고, ETA가 빠른 것부터 표시하며 ETA까지 같은 행은 고유 order_id",
+        "stem": "배송목록에서 미정 ETA(NULL)를 마지막에 두고, ETA가 빠른 것부터 표시하며 ETA까지 같은 행은 고유 order_id 오름차순으로 고른다. 상위 10행 조회를 반복 해도 경계가 흔들리지 않을 설계는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "ETA ASC만 정렬 후 10행 제한"
+          },
+          {
+            "id": "r2",
+            "text": "ETA DESC NULLS LAST 후 10행 제한"
+          },
+          {
+            "id": "r3",
+            "text": "ETA ASC NULLS LAST 다음 order_id ASC로 정렬 후 10행 제한"
+          },
+          {
+            "id": "r4",
+            "text": "10행을 먼저 임의 선택 한뒤 ETA 정렬"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "54d7a7f81b808635a9a094d7899a7eff71f7bbe3e38a51f863af75a83eb78897",
+      "publicInputSha256": "d6c9fa0c389e7a9f9cd2a9e79ccb2e88b075031e4a45a3a6b1a0779e6d36a258",
+      "question": {
+        "id": "mock-1-S10-m1-header-amount-inflation",
+        "version": 1,
+        "title": "주문 H(id PK,total)에 (1,100),(2,50), 상세 L(hid,qty)에 (1,1),(1,2),(2,1)가 있",
+        "stem": "주문 H(id PK,total)에 (1,100),(2,50), 상세 L(hid,qty)에 (1,1),(1,2),(2,1)가 있다. H.id=L.hid 내부 조인 후 H.total을 SUM했다. 합계가 주문 총액 150과 달라 지는 이유는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "조인은 모든 중복을 없애므로 합계 150이다"
+          },
+          {
+            "id": "r2",
+            "text": "주문 1의 total100이 상세 두 행에 반복되어 합계 250이 된다"
+          },
+          {
+            "id": "r3",
+            "text": "상세 qty를 곱 하므로 합계 350이다"
+          },
+          {
+            "id": "r4",
+            "text": "기본키가 있으면 상세는 한 개만 매칭된다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f1f2d42116e36b4a4f09a2d0a877d0a3e9d480f6d9cd407dcfb83352f529a4a7",
+      "publicInputSha256": "b8b7d97582f7dd14ec6335e4e65b99de6683231b9e79d0f9034f0a271ed32bff",
+      "question": {
+        "id": "mock-1-S10-m1-unique-pairs-self",
+        "version": 1,
+        "title": "서로 다른 두 학생의 조합을 순서 없이 한 번씩 만들려 한다. 학생 id는 1,2,3이며 유일·비NULL이다. 같은 표의 별칭 A",
+        "stem": "서로 다른 두 학생의 조합을 순서 없이 한 번씩 만들려 한다. 학생 id는 1,2,3이며 유일·비NULL이다. 같은 표의 별칭 A,B를 결합해 A.id<B.id 인 쌍만 고르면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(1,2),(2,3) 두 쌍"
+          },
+          {
+            "id": "r2",
+            "text": "(1,1),(2,2),(3,3) 세 쌍"
+          },
+          {
+            "id": "r3",
+            "text": "(1,2),(1,3),(2,3) 세 쌍"
+          },
+          {
+            "id": "r4",
+            "text": "(1,2),(2,1),(1,3),(3,1),(2,3),(3,2) 여섯 쌍"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4e4934c8804060db3073605baa78e837864fcb83a6c7eef1e003b9c99cfbd9a3",
+      "publicInputSha256": "e2cc4e826f2e7aa045c207dc7a177b9ce312d48339fc2f735cc43457cf92e199",
+      "question": {
+        "id": "mock-1-S11-m1-outer-or-null-leak",
+        "version": 1,
+        "title": "고객 C(id)에 1,2, 주문 O(cid,status)에(1,0)이 있다. C LEFT JOIN O를 cid로 매칭한 후 WHERE",
+        "stem": "고객 C(id)에 1,2, 주문 O(cid,status)에(1,0)이 있다. C LEFT JOIN O를 cid로 매칭한 후 WHERE에 status=1 OR O.cid IS NULL을 두었다. 이 방법이 유료주문(status1)이 없는 고객도 모두 보존하는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "그렇다.OR IS NULL은 언제나 ON 필터와 같다"
+          },
+          {
+            "id": "r2",
+            "text": "아니다. 비유료 주문만 있는 고객 1은 이미 매칭되어 NULL 확장되지 않고 필터에서 사라진다"
+          },
+          {
+            "id": "r3",
+            "text": "고객 1만남고 2는사라진다"
+          },
+          {
+            "id": "r4",
+            "text": "두고객 모두 반드시 사라진다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "799bab7a56e3c397878324cd285942815967aa48248a21b96339afae049cd840",
+      "publicInputSha256": "3a3a40b32204f3a68579fbddc2bcf43ea3a060a8711022b2f337ed18360a0990",
+      "question": {
+        "id": "mock-1-S11-m1-full-null-double",
+        "version": 1,
+        "title": "A(k)에 NULL 한 행, B(k)에 NULL 한 행이 있다. k 등호로 FULL OUTER JOIN 하면 결과 행 수와 키 상태는",
+        "stem": "A(k)에 NULL 한 행, B(k)에 NULL 한 행이 있다. k 등호로 FULL OUTER JOIN 하면 결과 행 수와 키 상태는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0행이다.NULL은 모두 제거된다"
+          },
+          {
+            "id": "r2",
+            "text": "두 행이며 한쪽 NULL을 0으로채운다"
+          },
+          {
+            "id": "r3",
+            "text": "한 행이다.NULL 끼리 매칭된다"
+          },
+          {
+            "id": "r4",
+            "text": "두 행이며 두 행 모두 양쪽 k가 NULL이다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "200f95eebf201dc65bc4ed75a81195926a991cc1b00e3da8ae9f0ceb648f58a0",
+      "publicInputSha256": "deac3d2a9cf583fd607d0179f7395e81ce08c8e78266548bde59bdcad4691ec1",
+      "question": {
+        "id": "mock-1-S12-m1-not-in-correct-filter",
+        "version": 1,
+        "title": "등급 A(code 비NULL)에 1,2,3이 있고 차단표 B(code)에 2,NULL이 있다. 차단표의 실제 코드만 제외해 1,3을",
+        "stem": "등급 A(code 비NULL)에 1,2,3이 있고 차단표 B(code)에 2,NULL이 있다. 차단표의 실제 코드만 제외해 1,3을얻으려면 적절한 수정은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "바깥 A.code에 IS NOT NULL만 추가"
+          },
+          {
+            "id": "r2",
+            "text": "NOT IN의 서브쿼리에서 B.code IS NOT NULL을 적용한다"
+          },
+          {
+            "id": "r3",
+            "text": "차단표 NULL을 1로치환"
+          },
+          {
+            "id": "r4",
+            "text": "NOT IN을 그대로두고 ORDER BY 추가"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bdb440429f4e0ab227bbdc14e7b8908cb56dcab54750efdbcb272dc956296d77",
+      "publicInputSha256": "f3414b1e2391762a2d6eca36696bbeae7481c8404b166559bbcacc52caf2a535",
+      "question": {
+        "id": "mock-1-S12-m1-scalar-grouping-cardinality",
+        "version": 1,
+        "title": "단일값 위치의 서브쿼리가 부서별 MAX(salary)를 GROUP BY dept로 반환한다. 실제 부서는 두 개이고 각 MAX 값이 모두 1",
+        "stem": "단일값 위치의 서브쿼리가 부서별 MAX(salary)를 GROUP BY dept로 반환한다. 실제 부서는 두 개이고 각 MAX 값이 모두 100이다. 바깥 비교의 판정은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "두 MAX를 더해 200사용"
+          },
+          {
+            "id": "r2",
+            "text": "두 값이 같으므로 100한 값으로 자동 축약"
+          },
+          {
+            "id": "r3",
+            "text": "같은 값이 어도 두 그룹 행이므로 스칼라 다중행 오류"
+          },
+          {
+            "id": "r4",
+            "text": "MAX가 있으므로 항상 한 행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9b64dfcbf6554f3229f45812953f94f8acec4b38619ff2a542881c51dabbcf62",
+      "publicInputSha256": "f4324df9ef46b9493df5de710cff2a38dd737fc8248d09782194a8e865d7bf72",
+      "question": {
+        "id": "mock-1-S12-m1-universal-using-not-exists",
+        "version": 1,
+        "title": "사용자 U의 모든 주문이 paid=1인지 검사 하려 한다. paid는 NOT NULL이며 주문 0개도 조건을 충족한다고정 했다. 적절",
+        "stem": "사용자 U의 모든 주문이 paid=1인지 검사 하려 한다. paid는 NOT NULL이며 주문 0개도 조건을 충족한다고정 했다. 적절한 논리 식은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "주문 수가 정확히 1"
+          },
+          {
+            "id": "r2",
+            "text": "paid<>1인 주문이 NOT EXISTS"
+          },
+          {
+            "id": "r3",
+            "text": "paid=1인 주문이 NOT EXISTS"
+          },
+          {
+            "id": "r4",
+            "text": "paid=1인 주문이 EXISTS"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "196b9dc11f94df67eebc002ec2d5d404347479056bdbff48a90aec454bfb15b4",
+      "publicInputSha256": "8d1da2cf7ec17eef253b4d42755c9d180daad1d2a1b41daf2c097da17f8f94a4",
+      "question": {
+        "id": "mock-1-S13-m1-projection-then-dedup",
+        "version": 1,
+        "title": "첫결과(id,name)는(1,A),(2,A), 둘째 결과는(3,A)다. 각 SELECT에서 name만 선택하여 UNION 하면 몇 행인가?",
+        "stem": "첫결과(id,name)는(1,A),(2,A), 둘째 결과는(3,A)다. 각 SELECT에서 name만 선택하여 UNION 하면 몇 행인가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0행"
+          },
+          {
+            "id": "r2",
+            "text": "A 세 행"
+          },
+          {
+            "id": "r3",
+            "text": "A 한 행"
+          },
+          {
+            "id": "r4",
+            "text": "서로 다른 id 세 개이므로 세 행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8ba4f6cdcf2aefa6cc1ee7d7356f116cd5bd04e18a3c16556c022e6af2c869b3",
+      "publicInputSha256": "d174265c333b8a083ccd7f3a38c09572170bfbeda51393212687f99572d6f0e7",
+      "question": {
+        "id": "mock-1-S13-m1-all-filter-stage",
+        "version": 1,
+        "title": "A(v)에 는 1,1,2; B(v)에 는 1,3이 있다. 각 입력을 v>=2로 필터 한뒤 UNION ALL 한 결과의 COUNT(*)는?",
+        "stem": "A(v)에 는 1,1,2; B(v)에 는 1,3이 있다. 각 입력을 v>=2로 필터 한뒤 UNION ALL 한 결과의 COUNT(*)는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "2"
+          },
+          {
+            "id": "r2",
+            "text": "1"
+          },
+          {
+            "id": "r3",
+            "text": "5"
+          },
+          {
+            "id": "r4",
+            "text": "3"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bd2c19c01a3ce9ef381b00970144f9a359242a7591b4436f3138aeb815377423",
+      "publicInputSha256": "45a3ba0a2e7dbcb362816e88ca748417817ce43922ceaaf7ae94d077128a2671",
+      "question": {
+        "id": "mock-1-S14-m1-grouping-id-mask",
+        "version": 1,
+        "title": "ROLLUP(region,store)에 서 region은 유지 되고 store만 소계 NULL 인행이 있다. GROUPING(region),",
+        "stem": "ROLLUP(region,store)에 서 region은 유지 되고 store만 소계 NULL 인행이 있다. GROUPING(region),GROUPING(store)의 쌍은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(1,1)"
+          },
+          {
+            "id": "r2",
+            "text": "(0,0)"
+          },
+          {
+            "id": "r3",
+            "text": "(0,1)"
+          },
+          {
+            "id": "r4",
+            "text": "(1,0)"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5fc915e3862806249f057f994b0cb25133fd7aac72af5c6672f9c43d240809a8",
+      "publicInputSha256": "40a1a5e3ebe4e960e7a107f7538000b342b9d7049adb316bba858bc7057499b4",
+      "question": {
+        "id": "mock-1-S14-m1-null-nvl-subtotal",
+        "version": 1,
+        "title": "ROLLUP(dept)의 dept에 실제 NULL 데이터도 있다. dept가 NULL이면 일괄적으로 전체 합계 라 표시하는 NVL 설계의 결함은?",
+        "stem": "ROLLUP(dept)의 dept에 실제 NULL 데이터도 있다. dept가 NULL이면 일괄적으로 전체 합계 라 표시하는 NVL 설계의 결함은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NVL은 문자열을 반환할 수 없다"
+          },
+          {
+            "id": "r2",
+            "text": "실제 NULL 부서 그룹도 전체 합계로 잘못 표시한다"
+          },
+          {
+            "id": "r3",
+            "text": "GROUPING은 원본값을 삭제한다"
+          },
+          {
+            "id": "r4",
+            "text": "ROLLUP은 원본 NULL 행을 무조건버린다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0de6554df1e19b6d30faf366ad1ed99ba69abf2efd4a974c6858f5cf3db28345",
+      "publicInputSha256": "f6ebb8a921938dbaf934c3ab24806dcaa8bbf60f5cbe3ddc08e53f89f9e661f6",
+      "question": {
+        "id": "mock-1-S15-m1-aggregate-window-logical",
+        "version": 1,
+        "title": "부서별 SUM(sales)를 GROUP BY로 구한 뒤 그 합계를 기준으로 RANK를 붙이려 한다. 분석 함수가 번호를 붙이는 대상은?",
+        "stem": "부서별 SUM(sales)를 GROUP BY로 구한 뒤 그 합계를 기준으로 RANK를 붙이려 한다. 분석 함수가 번호를 붙이는 대상은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "그룹 집계 후의 부서별 결과 행"
+          },
+          {
+            "id": "r2",
+            "text": "항상 원본 매출개별행"
+          },
+          {
+            "id": "r3",
+            "text": "RANK는 GROUP BY와 같이못쓴다"
+          },
+          {
+            "id": "r4",
+            "text": "데이터 파일 블록"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f8dac942d2e37de1f7204d5ba84674dd39bb1f4c65b5eb13ac9f8adc3a96628d",
+      "publicInputSha256": "b5c7070ddc53c2a1ab306dd0e39bef459d880c0945efe8f79385282b8dc80895",
+      "question": {
+        "id": "mock-1-S15-m1-lag-filter-order",
+        "version": 1,
+        "title": "id1 값 10,id2 값 20,id3 값 30에서 WHERE id>=2를 먼저 적용한 쿼리 블록이 id 순 LAG(v,1,0)를 계산한다. id2의 L",
+        "stem": "id1 값 10,id2 값 20,id3 값 30에서 WHERE id>=2를 먼저 적용한 쿼리 블록이 id 순 LAG(v,1,0)를 계산한다. id2의 LAG는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0"
+          },
+          {
+            "id": "r2",
+            "text": "20"
+          },
+          {
+            "id": "r3",
+            "text": "10"
+          },
+          {
+            "id": "r4",
+            "text": "NULL"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "c99eb7e904f6ef9035a110f6fa62b1535bc750a228fde0cb645e16da93c841d7",
+      "publicInputSha256": "ffe54bf929c49f3793478f9435a1fb1f570a69d35de657ff27eb1c36e275c968",
+      "question": {
+        "id": "mock-1-S16-m1-nullable-window-count",
+        "version": 1,
+        "title": "id 순값이 NULL,5,NULL이다. 현재 행부터 다음 행까지 ROWS 프레임에서 COUNT(*)와 COUNT(v)를 계산할때첫 행의 값은?",
+        "stem": "id 순값이 NULL,5,NULL이다. 현재 행부터 다음 행까지 ROWS 프레임에서 COUNT(*)와 COUNT(v)를 계산할때첫 행의 값은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(2,1)"
+          },
+          {
+            "id": "r2",
+            "text": "(1,1)"
+          },
+          {
+            "id": "r3",
+            "text": "(2,2)"
+          },
+          {
+            "id": "r4",
+            "text": "(3,1)"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "fb423065c48bef2fe0fd4aa1afa9f1361f3c590cf71857941818f2826c287f0d",
+      "publicInputSha256": "8dcf16b3726574a1ee6c72014281a9e9337d1f762f19677dc070caec7bb6f7bc",
+      "question": {
+        "id": "mock-1-S16-m1-last-null-respect",
+        "version": 1,
+        "title": "id 순값 10,20,NULL에 전체 파티션 ROWS 프레임을 지정한 LAST_VALUE(v)는 IGNORE NULLS를 쓰지 않았다. 첫 행에 붙는",
+        "stem": "id 순값 10,20,NULL에 전체 파티션 ROWS 프레임을 지정한 LAST_VALUE(v)는 IGNORE NULLS를 쓰지 않았다. 첫 행에 붙는 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "10"
+          },
+          {
+            "id": "r2",
+            "text": "NULL"
+          },
+          {
+            "id": "r3",
+            "text": "0"
+          },
+          {
+            "id": "r4",
+            "text": "20"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9a796a1c7b9bd7905b0966dc1f61889f4422dc9aa46b82e86b81fd85b8a72b0e",
+      "publicInputSha256": "4c9c51ece6215f11d8e9eacd00290028bc40b826ac46375311e978b48841867c",
+      "question": {
+        "id": "mock-1-S17-m1-dense-cut-groups",
+        "version": 1,
+        "title": "매출이 100,90,90,80이다. 서로 다른 상위 두매출 값의 행만 보존 한뒤 COUNT(*) 하면?",
+        "stem": "매출이 100,90,90,80이다. 서로 다른 상위 두매출 값의 행만 보존 한뒤 COUNT(*) 하면?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "1"
+          },
+          {
+            "id": "r2",
+            "text": "2"
+          },
+          {
+            "id": "r3",
+            "text": "4"
+          },
+          {
+            "id": "r4",
+            "text": "3"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0466e024ffd5bec4cfb6fb22cc6e025e09fa25804a5cc6b78d635d4ab71e42f6",
+      "publicInputSha256": "b8b373783e3fa144d9c1e98497a597cd68b2119f77bf17b61e69cae9e253b593",
+      "question": {
+        "id": "mock-1-S17-m1-rownum-projected-page",
+        "version": 1,
+        "title": "정렬된 인라인뷰에 바깥 블록이 ROWNUM 별칭 rn을 붙이고그보다 바깥 블록에서 rn BETWEEN 2 AND 3을 필터한다. 번호가 이미 고정된 1",
+        "stem": "정렬된 인라인뷰에 바깥 블록이 ROWNUM 별칭 rn을 붙이고그보다 바깥 블록에서 rn BETWEEN 2 AND 3을 필터한다. 번호가 이미 고정된 1,2,3,4행중남는것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "rn2와 rn3 두 행"
+          },
+          {
+            "id": "r2",
+            "text": "rn3와 rn4"
+          },
+          {
+            "id": "r3",
+            "text": "rn1만"
+          },
+          {
+            "id": "r4",
+            "text": "0행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6d24c8a2a6d1cb6e72d6cc2d3153a228761eda533a62beb6b9865172480fc7ac",
+      "publicInputSha256": "cfe536dd340306f3e9334d54639d085088c7538aa3e3a92967966f33488d0551",
+      "question": {
+        "id": "mock-1-S18-m1-hierarchy-multiple-roots",
+        "version": 1,
+        "title": "N(id,pid)는(1,NULL),(2,NULL),(3,1),(4,2)다. pid IS NULL 인모든 행을 시작점으로 하향 탐색하면 L",
+        "stem": "N(id,pid)는(1,NULL),(2,NULL),(3,1),(4,2)다. pid IS NULL 인모든 행을 시작점으로 하향 탐색하면 LEVEL1행 수와 전체 행 수는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "LEVEL1 두 행, 전체 네 행"
+          },
+          {
+            "id": "r2",
+            "text": "LEVEL1 네 행, 전체네 행"
+          },
+          {
+            "id": "r3",
+            "text": "LEVEL1 두 행, 전체두 행"
+          },
+          {
+            "id": "r4",
+            "text": "LEVEL1 한 행, 전체세 행"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f8d434403c3d3cb57f2ae09247d63340a7b90a475b4a671385ad3435bcecc08c",
+      "publicInputSha256": "b61677d1eaf265443662360292e09756e3b2e9d117361349fcabbab4d690f75c",
+      "question": {
+        "id": "mock-1-S18-m1-root-versus-parent",
+        "version": 1,
+        "title": "경로 1→2→3에서 현재 행 3의직접 부모 id와 CONNECT_BY_ROOT id는?",
+        "stem": "경로 1→2→3에서 현재 행 3의직접 부모 id와 CONNECT_BY_ROOT id는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "직접 부모 1,루트 2"
+          },
+          {
+            "id": "r2",
+            "text": "직접 부모 2,루트 3"
+          },
+          {
+            "id": "r3",
+            "text": "직접 부모 2, 루트 1"
+          },
+          {
+            "id": "r4",
+            "text": "직접 부모 3,루트 1"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4348bad3753742d9ca04e74e4ecf1f2ddd81d6160453d0df13fc5dd0e5367b79",
+      "publicInputSha256": "b60370516731a511bd2183e25d3b8ef1dbba5ac4950a48275ddeb0c7f4698e22",
+      "question": {
+        "id": "mock-1-S19-m1-pivot-avg-weight",
+        "version": 1,
+        "title": "원본월 1금액은 10,30이고월 2금액은 90이다. 월별 AVG PIVOT 결과 20,90을 단순 평균하면 55다. 이 값이 원본 전체 AVG와 다른이유",
+        "stem": "원본월 1금액은 10,30이고월 2금액은 90이다. 월별 AVG PIVOT 결과 20,90을 단순 평균하면 55다. 이 값이 원본 전체 AVG와 다른이유는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "PIVOT이 항상 원본 평균을 보존한다"
+          },
+          {
+            "id": "r2",
+            "text": "AVG는 NULL 외 모든 값을 무시한다"
+          },
+          {
+            "id": "r3",
+            "text": "월별 건수가 달라 그룹 평균의 단순 평균은 원본 평균 130/3과 다르다"
+          },
+          {
+            "id": "r4",
+            "text": "원본 평균도 55다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9d067164cc5d459e63b39a5e04857515953c0be5ba66f15eb2ba95f65d227c8e",
+      "publicInputSha256": "b0c944a0f777bebaa48f63c28b0315365326ef225d376b563b3fb60ff731509f",
+      "question": {
+        "id": "mock-1-S19-m1-unpivot-zero-versus-missing",
+        "version": 1,
+        "title": "한 행의 Q1=0,Q2=NULL,Q3=5를기본 UNPIVOT 한뒤 amount>=0을 필터한다. 남는 분기는?",
+        "stem": "한 행의 Q1=0,Q2=NULL,Q3=5를기본 UNPIVOT 한뒤 amount>=0을 필터한다. 남는 분기는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "Q1과 Q3"
+          },
+          {
+            "id": "r2",
+            "text": "Q3만"
+          },
+          {
+            "id": "r3",
+            "text": "Q1만"
+          },
+          {
+            "id": "r4",
+            "text": "Q1,Q2,Q3 모두"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bcae6393329f9e9263a06f83ac620f1a69b94dd07c639c3874632001f26111d4",
+      "publicInputSha256": "b947ec46bed28fe47de28241e4a8196a225823942abf747d73e5f5a4e59f1671",
+      "question": {
+        "id": "mock-1-S20-m1-alternation-anchors",
+        "version": 1,
+        "title": "ASCII에 서 패턴 ^A|B$ 를 c 옵션으로 검색 한다. 문자열 AX와 XB에 대한 판정은?",
+        "stem": "ASCII에 서 패턴 ^A|B$ 를 c 옵션으로 검색 한다. 문자열 AX와 XB에 대한 판정은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "둘 다 일치한다"
+          },
+          {
+            "id": "r2",
+            "text": "AX만 일치"
+          },
+          {
+            "id": "r3",
+            "text": "XB만 일치"
+          },
+          {
+            "id": "r4",
+            "text": "둘다 불일치"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "fe70bb6ffe7558dd00154661b6ca2e49bf63236973a039d2e15beaf10e359364",
+      "publicInputSha256": "9c85e8af91750f83e3826b354026dc74f09c5a8e177135ca3c7d352623c2b4f6",
+      "question": {
+        "id": "mock-1-S21-m1-update-subquery-null",
+        "version": 1,
+        "title": "T(id,v)에(1,10)이 있다. UPDATE의 v 대입식은 행을 반환하지 않는 스칼라 서브쿼리다. v는 NULL 허용이며 다른 제약 없다. 같은세",
+        "stem": "T(id,v)에(1,10)이 있다. UPDATE의 v 대입식은 행을 반환하지 않는 스칼라 서브쿼리다. v는 NULL 허용이며 다른 제약 없다. 같은 세션의 변경 결과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "행 1을삭제"
+          },
+          {
+            "id": "r2",
+            "text": "다중행 스칼라 오류"
+          },
+          {
+            "id": "r3",
+            "text": "id1의 v가 NULL이 된다"
+          },
+          {
+            "id": "r4",
+            "text": "v10을 그대로 유지"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8b8c81a1a17dee1eb2c768cb556813214f87bf5fa8fe9adb18dc8c7387a4a8b7",
+      "publicInputSha256": "ffad27f444f35aa48106247ebcd5f3cf5e86ba59f3d0f0df4b5c708f339db341",
+      "question": {
+        "id": "mock-1-S21-m1-merge-unmatched-delete",
+        "version": 1,
+        "title": "대상 D에 키 1,2가 있고 소스 S에 는키 2만 있다. MERGE가 매칭 UPDATE와 미매칭 INSERT만 정의 하며 DELETE 절은 없다. 대상키 1은?",
+        "stem": "대상 D에 키 1,2가 있고 소스 S에 는키 2만 있다. MERGE가 매칭 UPDATE와 미매칭 INSERT만 정의 하며 DELETE 절은 없다. 대상키 1은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "INSERT 분기로 중복한 행추가"
+          },
+          {
+            "id": "r2",
+            "text": "키 2로 자동 변경"
+          },
+          {
+            "id": "r3",
+            "text": "그대로 남는다"
+          },
+          {
+            "id": "r4",
+            "text": "소스에 없으므로 자동 삭제"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f3ba9fdbe0787ed9f9476bf21966a23c3f3db71f08b99abd75576fb1a07c57a8",
+      "publicInputSha256": "0e68b67dcfac469d1c49b952936fbd67bfdbf775df2147e2d4a9958b350897cc",
+      "question": {
+        "id": "mock-1-S22-m1-failed-statement-prior-change",
+        "version": 1,
+        "title": "초기 확정 v10을 UPDATE로 20에바꾼 뒤 다른 UPDATE 한 문장이 즉시 검사 CHECK 위반으로 실패 했다. DDL·COMMIT·전체 ROLLB",
+        "stem": "초기 확정 v10을 UPDATE로 20에바꾼 뒤 다른 UPDATE 한 문장이 즉시 검사 CHECK 위반으로 실패 했다. DDL·COMMIT·전체 ROLLBACK은 없다. 첫변경 20의 상태는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "자동 COMMIT 되어 영구 확정"
+          },
+          {
+            "id": "r2",
+            "text": "NULL로 변경"
+          },
+          {
+            "id": "r3",
+            "text": "초기 10으로 전체 자동 롤백"
+          },
+          {
+            "id": "r4",
+            "text": "현재 트랜잭션의 미확정 변경으로 남는다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "c6923da4f3d8ebcdfeff99bb8a206a61d0696e06a5a50a1d0a3700b6d7bdb2df",
+      "publicInputSha256": "28954c6a6da2c805ecc49ab6e78de4a520064d5ec1ad62a1efa83cf4fda5b337",
+      "question": {
+        "id": "mock-1-S23-m1-unique-fk-not-one-to-one",
+        "version": 1,
+        "title": "자식 C(pid)가 부모 P(id PK)를 참조하는 FK이지만 C.pid에 는 UNIQUE가 없다. 부모 1을 여러 자식이 참조 할수있는가?",
+        "stem": "자식 C(pid)가 부모 P(id PK)를 참조하는 FK이지만 C.pid에 는 UNIQUE가 없다. 부모 1을 여러 자식이 참조 할수있는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "부모 PK를 삭제해야 가능하다"
+          },
+          {
+            "id": "r2",
+            "text": "가능하다. FK는 자식 참조 값의 유일성을 요구하지 않는다"
+          },
+          {
+            "id": "r3",
+            "text": "불가능.FK가 자동 UNIQUE다"
+          },
+          {
+            "id": "r4",
+            "text": "자식 pid가 NULL 일때만 가능하다"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "cef966dfdd3400277fc15f7bda854def4d7d3fd79d22904fd95c396c05d85ac7",
+      "publicInputSha256": "e0ed912fb0080b46ca03a4f7a05258ece9257669574420ab3c7960f2df360c40",
+      "question": {
+        "id": "mock-1-S24-m1-grant-option-not-admin",
+        "version": 1,
+        "title": "B가 A.T의 SELECT를 WITH GRANT OPTION으로 받았다. 이것만으로 B가 새사용자를만들거나 CREATE TABLE 시스템 권",
+        "stem": "B가 A.T의 SELECT를 WITH GRANT OPTION으로 받았다. 이것만으로 B가 새사용자를만들거나 CREATE TABLE 시스템 권한을 부여 할수있는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "모든 시스템 권한을 재부여 가능"
+          },
+          {
+            "id": "r2",
+            "text": "T 소유자가 자동 B로 바뀐다"
+          },
+          {
+            "id": "r3",
+            "text": "SELECT 권한도 재부여 불가능"
+          },
+          {
+            "id": "r4",
+            "text": "아니다. 부여 받은 객체 SELECT의 재부여 범위다"
+          }
+        ]
+      }
+    }
+  ],
+  "inputSha256": "d423a8d6dcb92539a42db6e43512f0fb4dc515850f39d5a2a6a48013c903c7e0",
+  "choiceMapSha256": "45595150bb08ef6e9aa68473b830cd801bd061d5edbc85be8b24b6299b022cb5"
+}

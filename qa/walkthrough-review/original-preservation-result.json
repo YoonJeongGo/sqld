@@ -1,0 +1,533 @@
+{
+  "status": "PASS",
+  "baseline": "evidence/sql-reader-20261006/source-before.json",
+  "filesChecked": 131,
+  "changed": [],
+  "checks": [
+    {
+      "path": "app/schemas/kr.sqld.study.StudyDatabase/1.json",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/content-pack.json",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-pack.json",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-01.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-01.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-02.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-02.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-03.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-03.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-04.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-04.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-05.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-05.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-06.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-06.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-07.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-07.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-08.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-08.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-09.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-09.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-10.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-10.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-11.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-11.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-12.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-12.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-13.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-13.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-14.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-14.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-15.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-15.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-16.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-16.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-17.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-17.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-18.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-18.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-19.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-19.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-20.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-20.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-21.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-21.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-22.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-22.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-23.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-23.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-24.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-24.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-25.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-25.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-26.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-26.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-27.png",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals/visual-27.svg",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/course-visuals.json",
+      "unchanged": true
+    },
+    {
+      "path": "app/src/main/assets/study-plan.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/CONTRACT.md",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-pack.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visual-corrections.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/originals/visual-20.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/originals/visual-20.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-01.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-01.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-02.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-02.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-03.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-03.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-04.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-04.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-05.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-05.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-06.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-06.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-07.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-07.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-08.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-08.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-09.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-09.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-10.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-10.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-11.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-11.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-12.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-12.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-13.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-13.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-14.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-14.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-15.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-15.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-16.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-16.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-17.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-17.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-18.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-18.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-19.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-19.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-20.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-20.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-21.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-21.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-22.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-22.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-23.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-23.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-24.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-24.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-25.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-25.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-26.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-26.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-27.png",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals/visual-27.svg",
+      "unchanged": true
+    },
+    {
+      "path": "content/course-visuals.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/legacy-note-versions.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/part-a.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/part-b.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/sources.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/study-plan-pdf-map.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/study-plan.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/study-priorities.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/supplement-a-sources.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/supplement-b-sources.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/visual-source/manifest.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/visual-source/scenes.json",
+      "unchanged": true
+    },
+    {
+      "path": "content/visual-source/sources.json",
+      "unchanged": true
+    }
+  ],
+  "scope": "All pre-existing content/, app assets and Room schema files included in parent source-before inventory. New walkthrough files are additional, not replacements."
+}

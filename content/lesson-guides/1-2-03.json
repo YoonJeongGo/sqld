@@ -1,0 +1,580 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "1-2-03",
+  "source": {
+    "id": "1-2-03",
+    "partId": "1-2",
+    "number": 3,
+    "title": "무결성 제약조건",
+    "lectureMinutes": 27,
+    "easy": "잘못된 데이터가 저장되지 않도록 지켜야 할 규칙이다. 무결성은 데이터가 규칙에 맞고 일관된 상태라는 뜻이다.",
+    "why": "없는 학과를 참조하거나 학년을 9로 저장하면 표가 있어도 믿고 사용할 수 없다.",
+    "concepts": [
+      {
+        "term": "개체 무결성",
+        "meaning": "기본키는 중복·NULL 금지",
+        "example": "학생 학번이 빠지거나 같으면 안 됨"
+      },
+      {
+        "term": "참조 무결성",
+        "meaning": "FK는 유효한 참조 값이어야 함",
+        "example": "학생 D01은 학과표 D01에 있어야 함"
+      },
+      {
+        "term": "도메인 무결성",
+        "meaning": "자료형과 허용 범위를 지킴",
+        "example": "학년 1~4, 점수 0~100"
+      },
+      {
+        "term": "UNIQUE",
+        "meaning": "지정 열·조합의 중복을 제한",
+        "example": "이메일 중복 금지"
+      },
+      {
+        "term": "NOT NULL",
+        "meaning": "값이 반드시 있어야 함",
+        "example": "이름을 비울 수 없음"
+      },
+      {
+        "term": "CHECK",
+        "meaning": "조건을 위반한 값은 거절",
+        "example": "CHECK(점수 BETWEEN 0 AND 100)"
+      },
+      {
+        "term": "DEFAULT",
+        "meaning": "값을 생략했을 때 넣는 기본값",
+        "example": "학년을 생략하면 1"
+      },
+      {
+        "term": "참조 동작",
+        "meaning": "부모 삭제 때 자식을 어떻게 할지",
+        "example": "거절, CASCADE, SET NULL"
+      }
+    ],
+    "examples": [
+      {
+        "id": "1-2-03-E01",
+        "title": "입력 후보를 하나씩 검사",
+        "question": "학생 학번 PK, 이름 NOT NULL, 학년 1~4, 학과코드 FK일 때 각 입력은?",
+        "tables": [
+          {
+            "title": "학과",
+            "columns": [
+              "학과코드",
+              "학과명"
+            ],
+            "rows": [
+              [
+                "D01",
+                "컴퓨터"
+              ],
+              [
+                "D02",
+                "전자"
+              ]
+            ]
+          },
+          {
+            "title": "기존학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학년",
+              "학과코드"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "2",
+                "D01"
+              ]
+            ]
+          },
+          {
+            "title": "입력후보",
+            "columns": [
+              "학번",
+              "이름",
+              "학년",
+              "학과코드"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박보성",
+                "3",
+                "D01"
+              ],
+              [
+                "1002",
+                "김현수",
+                "9",
+                "D02"
+              ],
+              [
+                "1003",
+                "양선규",
+                "1",
+                "D99"
+              ],
+              [
+                "1004",
+                "유성재",
+                "4",
+                "D02"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "1001번 박보성은 기존 학번과 중복되므로 개체 무결성 위반이다.",
+          "1002번 김현수는 학년 9이므로 도메인 무결성 위반이다.",
+          "1003번 양선규는 없는 학과 D99를 참조하므로 참조 무결성 위반이다.",
+          "1004번 유성재는 모든 규칙을 지키므로 허용된다. 각 시도는 독립적으로 검사한다."
+        ],
+        "results": [
+          {
+            "title": "입력 판정",
+            "columns": [
+              "학번",
+              "판정",
+              "이유"
+            ],
+            "rows": [
+              [
+                "1001",
+                "거절",
+                "학번 중복"
+              ],
+              [
+                "1002",
+                "거절",
+                "학년 범위 위반"
+              ],
+              [
+                "1003",
+                "거절",
+                "참조 학과 없음"
+              ],
+              [
+                "1004",
+                "허용",
+                "규칙 충족"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "개체=PK / 참조=FK / 도메인=값의 종류와 범위.",
+    "traps": [
+      "CHECK(점수>=0)만으로 NULL까지 막지는 못한다. NULL도 막으려면 NOT NULL이 필요하다.",
+      "DEFAULT는 제약조건과 똑같은 개념이 아니며 일반 DEFAULT는 명시적으로 입력한 NULL을 항상 바꾸지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "1-2-03-Q1",
+        "question": "없는 학과 D99 참조는?",
+        "answer": "참조 무결성 위반",
+        "explanation": "부모표에 대응 값이 없다."
+      },
+      {
+        "id": "1-2-03-Q2",
+        "question": "CHECK(점수>=0)만 걸면 점수 NULL도 금지인가?",
+        "answer": "아니다",
+        "explanation": "CHECK는 FALSE를 거절하며 UNKNOWN은 통과할 수 있다."
+      },
+      {
+        "id": "1-2-03-Q3",
+        "question": "기본키가 중복되면?",
+        "answer": "개체 무결성 위반",
+        "explanation": "한 행을 유일하게 식별할 수 없게 된다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S23"
+    ],
+    "sourceIds": [
+      "constraint",
+      "pgconstraint"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"무결성 제약조건 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">저장할 값</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">INSERT · UPDATE 시 검사</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">CHECK 조건</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">FALSE이면 거부</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">제약조건 충족</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">TRUE · UNKNOWN 허용</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">개체=PK / 참조=FK / 도메인=값의 종류와 범위.</text></svg>",
+    "version": 1
+  },
+  "purpose": "입력하려는 행을 기존학생과 학과표에 대조해 정확히 어느 컬럼이 규칙을 어겼는지 말하자.",
+  "overview": "새 테이블을 만드는 코드가 아니라 네 입력 후보를 독립적으로 판정하는 개념 예제다. 거부된 후보는 정상 저장된 학생표에 넣지 않는다.",
+  "terms": [
+    {
+      "token": "개체 무결성",
+      "kind": "개념",
+      "meaning": "기본키는 중복·NULL 금지",
+      "role": "학생 학번이 빠지거나 같으면 안 됨"
+    },
+    {
+      "token": "참조 무결성",
+      "kind": "개념",
+      "meaning": "FK는 유효한 참조 값이어야 함",
+      "role": "학생 D01은 학과표 D01에 있어야 함"
+    },
+    {
+      "token": "도메인 무결성",
+      "kind": "개념",
+      "meaning": "자료형과 허용 범위를 지킴",
+      "role": "학년 1~4, 점수 0~100"
+    },
+    {
+      "token": "UNIQUE",
+      "kind": "개념",
+      "meaning": "지정 열·조합의 중복을 제한",
+      "role": "이메일 중복 금지"
+    },
+    {
+      "token": "NOT NULL",
+      "kind": "개념",
+      "meaning": "값이 반드시 있어야 함",
+      "role": "이름을 비울 수 없음"
+    },
+    {
+      "token": "CHECK",
+      "kind": "개념",
+      "meaning": "조건을 위반한 값은 거절",
+      "role": "CHECK(점수 BETWEEN 0 AND 100)"
+    },
+    {
+      "token": "DEFAULT",
+      "kind": "개념",
+      "meaning": "값을 생략했을 때 넣는 기본값",
+      "role": "학년을 생략하면 1"
+    },
+    {
+      "token": "참조 동작",
+      "kind": "개념",
+      "meaning": "부모 삭제 때 자식을 어떻게 할지",
+      "role": "거절, CASCADE, SET NULL"
+    }
+  ],
+  "pitfalls": [
+    "Oracle에서 부모 삭제 옵션은 ON DELETE CASCADE/SET NULL 등 실제 지원 문법을 확인한다. PDF의 ON UPDATE·SET DEFAULT 옵션 나열을 Oracle 문법으로 그대로 실행하면 안 된다.",
+    "NULL은 공백 문자와 다르다. 화면 입력칸을 클릭했는지가 아니라 DB에 전달한 값과 DBMS의 처리 규칙이 중요하다."
+  ],
+  "questions": [
+    {
+      "question": "DEFAULT면 NULL을 넣어도 기본값이야?",
+      "answer": "일반 DEFAULT는 컬럼 생략이나 DEFAULT 키워드 요청 때 적용할 수 있지만 명시적 NULL을 자동으로 기본값으로 바꾸는 것은 아니다. DEFAULT ON NULL은 별도 문법이다."
+    },
+    {
+      "question": "이름 필수면 동명이인도 금지야?",
+      "answer": "아니다. NOT NULL은 값을 넣으라는 규칙이고 UNIQUE는 중복을 제한한다. 이 원본에는 이름 UNIQUE가 없다."
+    },
+    {
+      "question": "FK는 NULL을 절대 못 넣어?",
+      "answer": "FK 자체와 NOT NULL은 다른 규칙이다. NULL 허용 여부는 해당 컬럼의 필수 제약을 확인한다. 이 네 입력후보에는 학과코드 NULL이 없다."
+    },
+    {
+      "question": "입력 후보 네 명이 최종 학생표야?",
+      "answer": "아니다. 후보는 시도이고 세 후보는 거부된다. 각 시도는 원래 박강열 한 행에서 독립적으로 검사한다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "1-2",
+      "title": "데이터 모델과 SQL",
+      "fromPage": 7,
+      "toPage": 11,
+      "note": "흥달쌤 원본 PDF의 해당 단원과 문제를 대조했습니다. 아래 앱 예제의 이름·표·값은 PDF 문제와 별도 데이터이며, 원본 PDF의 보기를 옮겨 채점하지 않습니다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "1-2-03-E01",
+      "why": "새 학생을 등록하기 전에 중복 학번·허용 밖 학년·없는 학과를 걸러야 한다.",
+      "effect": "개념: 입력 시도의 PK·NOT NULL·범위·FK 규칙을 판정한다.",
+      "prerequisites": [
+        "학과 D01=컴퓨터,D02=전자가 있다. 기존학생은 (1001,박강열,2,D01) 한 행이다.",
+        "입력후보 네 행은 각각 같은 초기 상태에서 독립적으로 시도한다. 원문에 이름 NOT NULL,학년1~4,학과코드FK 규칙이 있다.",
+        "학과코드의 NULL 여부나 부모 삭제 정책은 이 예제의 네 후보에 드러나지 않으므로 별도 조건을 확인해야 한다."
+      ],
+      "steps": [
+        {
+          "title": "규칙을 어느 표의 열에 붙였는지",
+          "text": "기존학생.학번은 PK이고 기존학생.이름은 필수다. 학년은 1~4 범위, 학생의 학과코드는 부모 학과.학과코드를 참조한다. 학과에 D01이 있다는 사실을 학생의 학번 1001 중복 허용과 혼동하지 않는다.",
+          "codeFocus": [],
+          "highlights": [
+            "기존학생.학번",
+            "학과.학과코드"
+          ],
+          "table": {
+            "title": "검사 대상",
+            "columns": [
+              "학생 쪽 열",
+              "확인할 규칙",
+              "대조 위치"
+            ],
+            "rows": [
+              [
+                "학번",
+                "중복·NULL 금지",
+                "기존학생.학번"
+              ],
+              [
+                "이름",
+                "NULL 금지",
+                "입력후보.이름"
+              ],
+              [
+                "학년",
+                "1~4",
+                "입력후보.학년"
+              ],
+              [
+                "학과코드",
+                "유효한 부모 참조",
+                "학과.학과코드"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "1001번 박보성의 입력 시도",
+          "text": "기존 박강열의 학번이 1001인데 박보성도 1001을 요청했다. 이름은 달라도 PK인 학번이 같으므로 거부다. 기존 박강열을 박보성으로 덮어쓰는 UPDATE가 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "PK인 학번이 같으므로 거부"
+          ],
+          "table": {
+            "title": "입력 시도 · 저장되지 않음",
+            "columns": [
+              "학번",
+              "이름",
+              "학년",
+              "학과코드",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박보성",
+                "3",
+                "D01",
+                "거부 · PK 중복"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 0
+            },
+            {
+              "row": 0,
+              "column": 4
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "1002번 김현수의 학년 대입",
+          "text": "학번 1002는 새 번호이고 D02도 부모에 있다. 하지만 학년 9는 1~4 밖이므로 거부다. 이름 김현수 때문이 아니라 학년 컬럼의 허용 범위를 어긴 것이다.",
+          "codeFocus": [],
+          "highlights": [
+            "학년 9",
+            "학년 컬럼"
+          ],
+          "table": {
+            "title": "입력 시도 · 저장되지 않음",
+            "columns": [
+              "학번",
+              "이름",
+              "학년",
+              "학과코드",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1002",
+                "김현수",
+                "9",
+                "D02",
+                "거부 · 9는 1~4 밖"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 0,
+              "column": 4
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "1003번 양선규의 참조 방향",
+          "text": "학생 쪽 D99를 부모 학과표의 D01·D02와 비교하면 일치하는 코드가 없다. 따라서 거부다. 학생 입력이 D99 학과를 자동으로 만드는 것은 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "학생 쪽 D99",
+            "부모 학과표"
+          ],
+          "table": {
+            "title": "입력 시도 · 저장되지 않음",
+            "columns": [
+              "학번",
+              "이름",
+              "학년",
+              "학과코드",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1003",
+                "양선규",
+                "1",
+                "D99",
+                "거부 · 부모 D99 없음"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 0,
+              "column": 4
+            }
+          ],
+          "id": "read-04"
+        },
+        {
+          "title": "1004번 유성재는 모두 통과",
+          "text": "학번 1004는 기존 1001과 다르고 이름 유성재가 있다. 학년 4는 허용 범위이고 학과 D02도 존재하므로 허용한다. 이 독립 시도가 성공한 상태라면 기존 박강열은 유지되고 유성재 한 행만 추가된다.",
+          "codeFocus": [],
+          "highlights": [
+            "유성재 한 행만 추가"
+          ],
+          "table": {
+            "title": "허용된 독립 시도의 저장 상태",
+            "columns": [
+              "학번",
+              "이름",
+              "학년",
+              "학과코드",
+              "변화"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "2",
+                "D01",
+                "유지"
+              ],
+              [
+                "1004",
+                "유성재",
+                "4",
+                "D02",
+                "추가"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 1,
+              "column": 0
+            },
+            {
+              "row": 1,
+              "column": 4
+            }
+          ],
+          "id": "read-05"
+        },
+        {
+          "title": "그림과 원본의 기준을 분리",
+          "text": "기존 무결성 그림도 기준표 → 입력 시도 → 거부 이유 순으로 읽는다. 그림의 학번1·D01만 있는 학과표와 현재 학번1001·D01/D02 표는 다르다. 현재 네 후보 판정은 이 원본의 실제 값으로 한다.",
+          "codeFocus": [],
+          "highlights": [
+            "이 원본의 실제 값"
+          ],
+          "table": {
+            "title": "입력 판정",
+            "columns": [
+              "학번",
+              "판정",
+              "이유"
+            ],
+            "rows": [
+              [
+                "1001",
+                "거절",
+                "학번 중복"
+              ],
+              [
+                "1002",
+                "거절",
+                "학년 범위 위반"
+              ],
+              [
+                "1003",
+                "거절",
+                "참조 학과 없음"
+              ],
+              [
+                "1004",
+                "허용",
+                "규칙 충족"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-06"
+        }
+      ],
+      "comparison": "PK는 행 식별, FK는 참조 대상, CHECK는 조건, NOT NULL은 값의 부재를 제한한다. CHECK(점수>=0)에서 NULL 비교는 알 수 없음이고 FALSE와 다르므로 NULL까지 금지하려면 NOT NULL을 따로 확인한다.",
+      "verification": "원본 표·업무 규칙과 추가 설명을 대조한 개념 검토입니다. SQL을 실행하는 예제가 아닙니다. 실제 DBMS 실행·사람 전문가 검수는 하지 않았습니다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "1-2-03-Q1",
+      "hint": "입력값 D99를 어느 부모 컬럼에서 찾아야 하는지 보자.",
+      "reasoning": "학생.학과코드가 참조하는 학과.학과코드에는 D01·D02만 있다. D99가 없으므로 참조 무결성 위반이다."
+    },
+    {
+      "checkId": "1-2-03-Q2",
+      "hint": "NULL>=0을 참 또는 거짓으로 단정할 수 있는가?",
+      "reasoning": "NULL>=0은 UNKNOWN이다. Oracle CHECK는 FALSE를 거부하고 UNKNOWN은 통과할 수 있으므로 CHECK만으로 NULL을 막지 못한다. NOT NULL은 별도다."
+    },
+    {
+      "checkId": "1-2-03-Q3",
+      "hint": "중복된 값이 행 식별자인지 참조값인지 먼저 보자.",
+      "reasoning": "기본키 중복은 개체 무결성 위반이다. 1001 박보성은 기존 1001 박강열과 학번이 같아 학생 한 명을 유일하게 구별할 수 없게 한다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/constraint.html"
+  ],
+  "reviewNotes": [
+    "PDF 1-2 10쪽 입사일·퇴사일 선후 문구는 일반적인 업무 규칙과 반대 방향으로 읽힐 수 있다. 해당 원문 보기를 앱의 정상 업무 규칙으로 새로 채택하지 않았다.",
+    "DEFAULT는 허용 범위 위반 값을 거부하는 CHECK와 역할이 다르다. PDF의 제약 분류 용어는 보존하되 실제 역할은 분리해 설명한다."
+  ]
+}

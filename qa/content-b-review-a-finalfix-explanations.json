@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "content_b",
+  "completedAt": "2026-09-14T05:26:30.406480+00:00",
+  "method": "manual_explanation_reread_after_sealed_masked_decisions",
+  "boundary": "Another AI review only; no DBMS execution or human expert review. IN is a recheck with prior exposure.",
+  "records": [
+    {
+      "questionId": "mock-1-M10-reservation-timeslot",
+      "sourceQuestionSha256": "849657efef32073997ed12518dbb513ded79df51c5c29c115f651613cbf36e5a",
+      "verdict": "consistent",
+      "reasoning": "모든 후보키 기준의 2NF를 적용하는 새 문항이다. 인조 PK 도입 전후에도 업무 복합 후보키가 남고 과목 ID→과목명의 부분 종속을 확인한다. 네 보기 이유와 3단계 설명이 이 정의에 맞고 원자값 전제와 모순되지 않는다. 이전 UNIQUE(두 업무열) 선택 문항과 풀이 핵심이 달라졌다.",
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "explanation",
+        "fixture.expectedRows_when_present"
+      ],
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S06-mock-in-subset-null",
+      "sourceQuestionSha256": "15a7579da38f3bd9d1bf9bc12ceb19329e76409c52439cc178852dcb2232372f",
+      "verdict": "consistent",
+      "reasoning": "x=2일 때만 IN 조건이 TRUE이며 최종 예상 표는 한 행 [2]이다. 요약·정답 이유·마지막 단계가 모두 x=2인 한 행으로 명시되어 2개 행 오해를 해소했다.",
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "explanation",
+        "fixture.expectedRows_when_present"
+      ],
+      "issues": []
+    }
+  ]
+}

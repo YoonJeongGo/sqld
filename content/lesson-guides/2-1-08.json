@@ -1,0 +1,375 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-08",
+  "source": {
+    "id": "2-1-08",
+    "partId": "2-1",
+    "number": 8,
+    "title": "UPDATE",
+    "lectureMinutes": 15,
+    "easy": "이미 존재하는 행의 값을 바꾼다. SET은 무엇으로 고칠지, WHERE는 누구를 고칠지 정한다.",
+    "why": "WHERE를 빠뜨리면 원하는 한 사람이 아니라 표의 모든 행이 바뀔 수 있다.",
+    "concepts": [
+      {
+        "term": "UPDATE 대상",
+        "meaning": "수정할 표",
+        "example": "UPDATE 성적"
+      },
+      {
+        "term": "SET",
+        "meaning": "바꿀 열과 새 값",
+        "example": "SET 점수=95"
+      },
+      {
+        "term": "WHERE",
+        "meaning": "수정 대상 행 조건",
+        "example": "WHERE 학번=1002"
+      },
+      {
+        "term": "계산식 수정",
+        "meaning": "기존 값을 이용해 변경",
+        "example": "급여=급여*1.1"
+      },
+      {
+        "term": "여러 열 수정",
+        "meaning": "쉼표로 수정 항목 나열",
+        "example": "SET 점수=90, 등급='A'"
+      },
+      {
+        "term": "서브쿼리 활용",
+        "meaning": "다른 표의 조건·값을 이용",
+        "example": "특정 부서 직원만 인상"
+      },
+      {
+        "term": "트랜잭션",
+        "meaning": "변경 확정 전 취소 가능한 범위를 확인",
+        "example": "COMMIT, ROLLBACK"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-08-E01",
+        "title": "한 사람 점수만 수정",
+        "question": "1002번 유성재의 점수를 95로 고치자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "90"
+              ],
+              [
+                "1002",
+                "유성재",
+                "70"
+              ],
+              [
+                "1003",
+                "노우성",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "sql": "UPDATE 성적 SET 점수=95 WHERE 학번=1002;\nSELECT 학번, 이름, 점수 FROM 성적 ORDER BY 학번;",
+        "steps": [
+          "학번=1002에 해당하는 행은 유성재의 한 줄이다.",
+          "그 줄의 점수 70을 95로 바꾼다.",
+          "박강열의 90, 노우성의 80은 그대로다. 행을 추가한 것이 아니므로 카디널리티는 3이다."
+        ],
+        "results": [
+          {
+            "title": "수정 후 성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "90"
+              ],
+              [
+                "1002",
+                "유성재",
+                "95"
+              ],
+              [
+                "1003",
+                "노우성",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "SET 무엇으로, WHERE 누구를. WHERE 없으면 전체 수정.",
+    "traps": [
+      "이름으로 수정하면 동명이인이 여러 명 변경될 수 있다. 의도가 한 사람이면 식별자를 확인한다.",
+      "UPDATE는 자료형·PK·FK·CHECK 같은 기존 제약조건을 무시하지 못한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-08-Q1",
+        "question": "점수만 바꾸면 행수가 늘어나는가?",
+        "answer": "아니다",
+        "explanation": "기존 행의 값만 변경한다."
+      },
+      {
+        "id": "2-1-08-Q2",
+        "question": "UPDATE 성적 SET 점수=0에 WHERE가 없으면?",
+        "answer": "모든 행의 점수가 0으로 수정된다",
+        "explanation": "대상 필터가 없다."
+      },
+      {
+        "id": "2-1-08-Q3",
+        "question": "급여 10% 인상 식은?",
+        "answer": "급여 = 급여 * 1.1",
+        "explanation": "기존 금액의 110%로 변경한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S21"
+    ],
+    "sourceIds": [
+      "update"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"UPDATE 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실행 전</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">원래 데이터 확인</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">조건 대상 선택</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">WHERE를 먼저 확인</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실행 후</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">변경·삭제한 행 확인</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">SET 무엇으로, WHERE 누구를. WHERE 없으면 전체 수정.</text></svg>",
+    "version": 1
+  },
+  "purpose": "1002번 유성재의 잘못 기록된 70점을 95점으로 고치면서 다른 학생 점수는 유지한다.",
+  "overview": "UPDATE는 성적이라는 기존 표의 선택된 행에서 점수 값만 바꾼다. WHERE는 고를 행, SET은 그 행의 어떤 컬럼에 무엇을 넣을지 정한다.",
+  "terms": [
+    {
+      "token": "UPDATE",
+      "kind": "키워드",
+      "meaning": "update = 기존 정보를 갱신하다",
+      "role": "성적의 행을 새로 만들지 않고 값만 바꾼다."
+    },
+    {
+      "token": "SET 점수=95",
+      "kind": "값 지정",
+      "meaning": "set = 설정하다",
+      "role": "오른쪽 숫자 95를 왼쪽 성적.점수 칸에 넣는다. 같음을 검사하는 조건이 아니다."
+    },
+    {
+      "token": "WHERE 학번=1002",
+      "kind": "행 조건",
+      "meaning": "where = 조건에 맞는 곳",
+      "role": "학번의 현재 값이 1002와 같은 행만 수정 대상으로 고른다."
+    }
+  ],
+  "pitfalls": [
+    "WHERE가 없으면 모든 행이 대상이다. SET에 없는 이름·학번은 유지한다.",
+    "UPDATE 성공과 COMMIT으로 확정되는 것은 다른 단계다. 실행 환경의 자동 커밋 설정도 구분한다."
+  ],
+  "questions": [
+    {
+      "question": "UPDATE는 여기서 무엇을 뜻하나요?",
+      "answer": "성적의 행을 새로 만들지 않고 값만 바꾼다."
+    },
+    {
+      "question": "SET 점수=95는 여기서 무엇을 뜻하나요?",
+      "answer": "오른쪽 숫자 95를 왼쪽 성적.점수 칸에 넣는다. 같음을 검사하는 조건이 아니다."
+    },
+    {
+      "question": "WHERE 학번=1002는 여기서 무엇을 뜻하나요?",
+      "answer": "학번의 현재 값이 1002와 같은 행만 수정 대상으로 고른다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 33,
+      "toPage": 37,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-08-E01",
+      "why": "특정 학생 한 명의 성적 정정이 필요하다.",
+      "effect": "수정: 성적의 1002번 점수 70→95, 행수 3 유지.",
+      "prerequisites": [
+        "학번 1002는 원본에서 한 행뿐이다. 점수 95를 허용하는 제약조건이라고 가정한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "수정할 표와 고를 행",
+          "text": "UPDATE 성적은 바뀔 표다. WHERE 학번=1002에 1001·1002·1003을 각각 대입하면 가운데 1002만 참이다. 이름이 유성재인지로 고르는 조건이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 학번=1002",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "가운데 1002만 참"
+          ],
+          "focusRows": [
+            1
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "행 선택",
+            "columns": [
+              "학번",
+              "이름",
+              "학번=1002",
+              "처리"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "거짓",
+                "유지"
+              ],
+              [
+                "1002",
+                "유성재",
+                "참",
+                "수정 대상"
+              ],
+              [
+                "1003",
+                "노우성",
+                "거짓",
+                "유지"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "오른쪽 95를 왼쪽 점수로",
+          "text": "SET 점수=95는 1002번 행의 성적.점수에 95를 넣는다. 이전 70과 95가 같은지 묻는 식이 아니다. 학번 1002와 이름 유성재는 SET에 적지 않아 유지한다.",
+          "codeFocus": [
+            {
+              "needle": "SET 점수=95",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "이전 70"
+          ],
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 2,
+              "column": 1
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "table": {
+            "title": "1002번 변경 전후",
+            "columns": [
+              "컬럼",
+              "전",
+              "후"
+            ],
+            "rows": [
+              [
+                "학번",
+                "1002",
+                "1002"
+              ],
+              [
+                "이름",
+                "유성재",
+                "유성재"
+              ],
+              [
+                "점수",
+                "70",
+                "95"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "세 학생 결과 확인",
+          "text": "뒤 SELECT는 학번 순으로 변경 후 표를 보여준다. 박강열 90, 유성재 95, 노우성 80이며 행수는 3 그대로다. SQL 한 문장 안의 SET·WHERE를 별도 실행문으로 읽지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학번, 이름, 점수 FROM 성적 ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "행수는 3 그대로"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "수정 후 성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "90"
+              ],
+              [
+                "1002",
+                "유성재",
+                "95"
+              ],
+              [
+                "1003",
+                "노우성",
+                "80"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "WHERE의 =는 비교, SET의 =는 대입이다. 같은 모양의 기호라도 주변 절에 따라 역할이 다르다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-08-Q1",
+      "hint": "새 학생을 추가했는지 기존 학생의 칸만 바꿨는지 보자.",
+      "reasoning": "기존 1002번의 점수만 바꿨기 때문에 3행 그대로다. 새 행 추가는 INSERT의 역할이다."
+    },
+    {
+      "checkId": "2-1-08-Q2",
+      "hint": "모든 행 가운데 일부를 고르는 조건이 있는지 찾아보자.",
+      "reasoning": "WHERE가 없어서 성적의 모든 행이 대상이며 각 행의 점수가 0이 된다. 이름·학번까지 0이 되는 것은 아니다."
+    },
+    {
+      "checkId": "2-1-08-Q3",
+      "hint": "기존 급여에 10%를 더한 값인지 10%만 남긴 값인지 계산해 보자.",
+      "reasoning": "가상 급여 100이면 100×1.1=110이다. 오른쪽 기존 급여*1.1을 계산해 왼쪽 급여에 넣는다. *0.1은 10만 남겨 인상이 아니다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html"
+  ],
+  "reviewNotes": []
+}

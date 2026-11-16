@@ -1,0 +1,520 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-11",
+  "source": {
+    "id": "2-2-11",
+    "partId": "2-2",
+    "number": 11,
+    "title": "순위 함수",
+    "lectureMinutes": 29,
+    "easy": "정해진 정렬 기준으로 행에 등수 또는 일련번호를 붙인다. 동점일 때 어떻게 번호를 줄지가 핵심이다.",
+    "why": "같은90점 두 명 다음의80점이3등인지2등인지, 사람마다 서로 다른 번호를 붙일 것인지 구분한다.",
+    "concepts": [
+      {
+        "term": "RANK",
+        "meaning": "동점 동일 순위, 다음 순위 건너뜀",
+        "example": "1,1,3,4"
+      },
+      {
+        "term": "DENSE_RANK",
+        "meaning": "동점 동일 순위, 다음 순위 연속",
+        "example": "1,1,2,3"
+      },
+      {
+        "term": "ROW_NUMBER",
+        "meaning": "각 행마다 다른 일련번호",
+        "example": "1,2,3,4"
+      },
+      {
+        "term": "PARTITION BY",
+        "meaning": "그룹별로 순위를 다시 시작",
+        "example": "학과별 1등"
+      },
+      {
+        "term": "동점 결정 기준",
+        "meaning": "OVER의 ORDER BY 전체 조합",
+        "example": "점수만 비교할지 학번까지 비교할지"
+      },
+      {
+        "term": "결정적 일련번호",
+        "meaning": "ROW_NUMBER에 유일한 보조 정렬 기준 추가",
+        "example": "점수 DESC, 학번 ASC"
+      },
+      {
+        "term": "동점과 보조키",
+        "meaning": "RANK에 학번까지 넣으면 동점이 깨질 수 있음",
+        "example": "점수만 같은 사람도 다른 순위"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-11-E01",
+        "title": "90·90·80·70의 세 번호",
+        "question": "동점 정책이 다른 세 함수를 비교하자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "이승현",
+                "90"
+              ],
+              [
+                "1002",
+                "박강열",
+                "90"
+              ],
+              [
+                "1003",
+                "김현수",
+                "80"
+              ],
+              [
+                "1004",
+                "박상현",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름,점수,RANK() OVER(ORDER BY 점수 DESC) AS R,DENSE_RANK() OVER(ORDER BY 점수 DESC) AS D,ROW_NUMBER() OVER(ORDER BY 점수 DESC,학번) AS RN FROM 성적 ORDER BY 점수 DESC,학번;",
+        "steps": [
+          "RANK: 두90점이 공동1등이므로 다음80점은3등, 70점은4등이다.",
+          "DENSE_RANK: 점수 단계90·80·70을 1·2·3으로 센다.",
+          "ROW_NUMBER: 같은90점도 학번1001을 먼저 두어 서로1·2를 부여한다."
+        ],
+        "results": [
+          {
+            "title": "순위 결과",
+            "columns": [
+              "이름",
+              "점수",
+              "R",
+              "D",
+              "RN"
+            ],
+            "rows": [
+              [
+                "이승현",
+                "90",
+                "1",
+                "1",
+                "1"
+              ],
+              [
+                "박강열",
+                "90",
+                "1",
+                "1",
+                "2"
+              ],
+              [
+                "김현수",
+                "80",
+                "3",
+                "2",
+                "3"
+              ],
+              [
+                "박상현",
+                "70",
+                "4",
+                "3",
+                "4"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "RANK 1·1·3 / DENSE 1·1·2 / ROW_NUMBER 1·2·3.",
+    "traps": [
+      "동점을 유지할 RANK의 ORDER BY에 고유 학번을 추가하면 모든 정렬값 조합이 달라져 동점이 사라진다.",
+      "“상위2등”이 정확히 두 사람을 뜻하는지, 동점 포함 등수를 뜻하는지 문제를 확인한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-11-Q1",
+        "question": "90,90,80의 RANK는?",
+        "answer": "1,1,3",
+        "explanation": "공동1등이 둘이어서2등을 건너뛴다."
+      },
+      {
+        "id": "2-2-11-Q2",
+        "question": "같은 점수라도 일련번호를 다르게 부여하는 함수는?",
+        "answer": "ROW_NUMBER",
+        "explanation": "행마다 하나의 번호를 준다."
+      },
+      {
+        "id": "2-2-11-Q3",
+        "question": "점수 동점을 유지할 RANK에 고유 학번을 추가하면?",
+        "answer": "동점이 깨질 수 있다",
+        "explanation": "정렬 기준 전체가 다르기 때문이다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S15"
+    ],
+    "sourceIds": [
+      "rank",
+      "denserank",
+      "rownumber",
+      "window"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"순위 함수 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><text x=\"360\" y=\"25\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">동점 다음 번호가 어떻게 다른가?</text><rect x=\"25\" y=\"40\" width=\"167\" height=\"34\" fill=\"#007d7a\" stroke=\"#d3e0e7\"/><text x=\"108.5\" y=\"63\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"400\">점수</text><rect x=\"192\" y=\"40\" width=\"167\" height=\"34\" fill=\"#007d7a\" stroke=\"#d3e0e7\"/><text x=\"275.5\" y=\"63\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"400\">RANK</text><rect x=\"359\" y=\"40\" width=\"167\" height=\"34\" fill=\"#007d7a\" stroke=\"#d3e0e7\"/><text x=\"442.5\" y=\"63\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"400\">DENSE_RANK</text><rect x=\"526\" y=\"40\" width=\"167\" height=\"34\" fill=\"#007d7a\" stroke=\"#d3e0e7\"/><text x=\"609.5\" y=\"63\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"400\">ROW_NUMBER</text><rect x=\"25\" y=\"74\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"108.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">90</text><rect x=\"192\" y=\"74\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"275.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"359\" y=\"74\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"442.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"526\" y=\"74\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"609.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"25\" y=\"108\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"108.5\" y=\"131\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">90</text><rect x=\"192\" y=\"108\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"275.5\" y=\"131\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"359\" y=\"108\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"442.5\" y=\"131\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"526\" y=\"108\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"609.5\" y=\"131\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">2</text><rect x=\"25\" y=\"142\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"108.5\" y=\"165\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">80</text><rect x=\"192\" y=\"142\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"275.5\" y=\"165\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">3</text><rect x=\"359\" y=\"142\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"442.5\" y=\"165\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">2</text><rect x=\"526\" y=\"142\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"609.5\" y=\"165\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">3</text><text x=\"360\" y=\"199\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">ROW_NUMBER 동점 순서는 별도 정렬 기준 필요 · 개념도용 3행</text></svg>",
+    "version": 1
+  },
+  "purpose": "동점에 같은 등수를 줄지, 점수 단계만 셀지, 각 행에 다른 번호를 줄지 구분해요.",
+  "overview": "조회 계산이에요. 이승현90·박강열90·김현수80·박상현70의 행을 유지하면서R·D·RN세 결과 열을 붙여요.",
+  "terms": [
+    {
+      "token": "RANK",
+      "kind": "함수",
+      "meaning": "rank = 등수",
+      "role": "동점 90 두 명은 공동 1등, 그다음 80은 3등이에요."
+    },
+    {
+      "token": "DENSE_RANK",
+      "kind": "함수",
+      "meaning": "dense = 빈틈없이 조밀한 등수",
+      "role": "서로 다른 점수 90·80·70을 1·2·3으로 세요."
+    },
+    {
+      "token": "ROW_NUMBER",
+      "kind": "함수",
+      "meaning": "row number = 각 행의 번호",
+      "role": "점수가 같아도 학번으로 순서를 정해 1·2라는 다른 번호를 줘요."
+    },
+    {
+      "token": "DESC",
+      "kind": "정렬 방향",
+      "meaning": "descending = 내림차순",
+      "role": "점수 90부터 70쪽으로 큰 값을 먼저 놓아요. 생략한 학번의 방향은 오름차순이에요."
+    }
+  ],
+  "pitfalls": [
+    "RANK의 동점 기준에 학번까지 넣으면 90점 두 명의 전체 정렬키가 달라져 동점이 깨져요. ROW_NUMBER에는 학번을 넣어 동점 순서까지 정했어요.",
+    "이 예제 점수에는 NULL이 없어요. Oracle에서 DESC의 기본 NULL 위치는 FIRST이므로 NULL 점수를 추가하면 별도 조건을 정해야 해요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회 계산이에요. 이승현90·박강열90·김현수80·박상현70의 행을 유지하면서R·D·RN세 결과 열을 붙여요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 67,
+      "toPage": 67,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-11-E01",
+      "why": "공동등수·빈틈없는 등수·일련번호가 같은 입력에서 어떻게 달라지는지 봐요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-11-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·점수 3개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "DESC와 학번의 역할",
+          "text": "점수 DESC는 90→80→70으로 큰 점수 먼저예요. 90 동점의 ROW_NUMBER 순서는 학번 1001이 1002보다 앞이에요.",
+          "codeFocus": [
+            {
+              "needle": "ROW_NUMBER() OVER(ORDER BY 점수 DESC,학번)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ROW_NUMBER",
+            "DESC",
+            "점수"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "RANK는 앞선 사람 수",
+          "text": "90 두 명은 앞에 높은 점수가 없어 공동 1등, 80 앞에는 2명이라 3등, 70 앞에는 3명이라 4등이에요.",
+          "codeFocus": [
+            {
+              "needle": "RANK() OVER(ORDER BY 점수 DESC)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "점수"
+          ],
+          "table": {
+            "title": "학습용 중간표 · RANK는 앞선 사람 수",
+            "columns": [
+              "점수",
+              "앞선행수",
+              "RANK"
+            ],
+            "rows": [
+              [
+                "90",
+                "0",
+                "1"
+              ],
+              [
+                "90",
+                "0",
+                "1"
+              ],
+              [
+                "80",
+                "2",
+                "3"
+              ],
+              [
+                "70",
+                "3",
+                "4"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 3,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "DENSE_RANK는 점수 단계",
+          "text": "서로 다른 점수 90·80·70이 첫째·둘째·셋째 단계예요. 90 두 명 모두 1, 80은 2, 70은 3이에요.",
+          "codeFocus": [
+            {
+              "needle": "DENSE_RANK() OVER(ORDER BY 점수 DESC)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "점수"
+          ],
+          "table": {
+            "title": "학습용 중간표 · DENSE_RANK는 점수 단계",
+            "columns": [
+              "점수",
+              "점수단계",
+              "DENSE_RANK"
+            ],
+            "rows": [
+              [
+                "90",
+                "첫째",
+                "1"
+              ],
+              [
+                "90",
+                "첫째",
+                "1"
+              ],
+              [
+                "80",
+                "둘째",
+                "2"
+              ],
+              [
+                "70",
+                "셋째",
+                "3"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 3,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "ROW_NUMBER는 한 행 한 번호",
+          "text": "이승현 1001은 1, 박강열 1002는 2, 김현수 1003은 3, 박상현 1004는 4예요. 원본 학번을 1·2·3·4로 수정하는 것이 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "ROW_NUMBER()",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · ROW_NUMBER는 한 행 한 번호",
+            "columns": [
+              "학번",
+              "이름",
+              "RN"
+            ],
+            "rows": [
+              [
+                "1001",
+                "이승현",
+                "1"
+              ],
+              [
+                "1002",
+                "박강열",
+                "2"
+              ],
+              [
+                "1003",
+                "김현수",
+                "3"
+              ],
+              [
+                "1004",
+                "박상현",
+                "4"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 3,
+              "column": 2
+            }
+          ],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "순위 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 순위 결과와 대조해요. 표시 컬럼은 이름·점수·R·D·RN, 결과는 4행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "순위 결과",
+            "columns": [
+              "이름",
+              "점수",
+              "R",
+              "D",
+              "RN"
+            ],
+            "rows": [
+              [
+                "이승현",
+                "90",
+                "1",
+                "1",
+                "1"
+              ],
+              [
+                "박강열",
+                "90",
+                "1",
+                "1",
+                "2"
+              ],
+              [
+                "김현수",
+                "80",
+                "3",
+                "2",
+                "3"
+              ],
+              [
+                "박상현",
+                "70",
+                "4",
+                "3",
+                "4"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "RANK·DENSE_RANK는 점수만 비교하고 ROW_NUMBER는 점수·학번을 비교해요. 동일한 정렬키를 쓴 세 함수라고 오해하지 않아요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-11-Q1",
+      "hint": "앞에 있는 사람 수에 1을 더하는 등수와 서로 다른 점수 단계를 구별해요.",
+      "reasoning": "두 90점이 공동 1등이고 80점 앞에는 2명이 있어 3등이에요. 1·1·2는 DENSE_RANK 정책이에요."
+    },
+    {
+      "checkId": "2-2-11-Q2",
+      "hint": "동점이라도 행마다 다른 일련번호가 필요한지 보세요.",
+      "reasoning": "ROW_NUMBER가 행마다 다른 번호를 줘요. 이 예제는 점수 다음 학번까지 정해 90점 두 명의 번호도 구분해요."
+    },
+    {
+      "checkId": "2-2-11-Q3",
+      "hint": "동점 판단은 ORDER BY에 적힌 모든 값이라는 점을 적용해요.",
+      "reasoning": "90과 90은 같지만 (90,1001)과 (90,1002)는 달라요. 고유 학번을 RANK에 넣으면 점수 동점이 유지되지 않아요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

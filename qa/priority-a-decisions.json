@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "root independent AI",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "priorAnswerExposure": false,
+  "inputSha256": "b44faabd1cbc4f2c034e8eaa783be8a740bdf74854f60e980563e2dc3add5a2f",
+  "reviewedAt": "2026-09-14T10:37:15.600366+00:00",
+  "decisions": [
+    {
+      "questionId": "M11-R01-external-view",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "사용자별로 보이는 열과 데이터 관점은 외부 스키마다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M11-R02-physical-independence",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "저장 배치 변경과 논리 구조의 분리가 물리적 독립성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M11-R03-process-versus-layer",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "설계 구체화 과정과 DB 관점 계층을 구분한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M11-A01-split-preserved-view",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "논리 표 분리를 기존 사용자 뷰로 감싸므로 논리적 독립성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M11-A02-index-stable-meaning",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "인덱스가 논리 의미를 유지해도 실행 계획과 성능은 바뀔 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M12-R01-endpoint-direction",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "예약 쪽 0..N 끝점은 회원 한 명에 연결되는 예약의 개수다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M12-R02-cardinality-minimum",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "최대 개수와 최소 참여는 별도 조건이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M12-R03-erd-first-business",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "관계선의 근거는 양쪽 업무 의미와 최소·최대 참여다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M12-A01-optional-parent-not-null",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "점검은 반드시 존재하는 장비 하나를 참조하므로 FK와 NOT NULL이 필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M12-A02-association-history-key",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "같은 참가자·행사 쌍의 이력을 구분할 추가 식별 규칙이 필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M13-R01-deliberate-redundancy",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "계산 가능한 합계를 중복 보관하면 원본 변경과 동기화 책임이 생긴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M13-R02-measure-before-choice",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "측정과 대안 검토 및 일관성 비용 평가 후 반정규화를 결정한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M13-R03-snapshot-meaning",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "계약 당시 사실과 현재값 사본은 업무 시점이 다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M13-A01-total-cancellation",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "남은 상세 합은 30, 저장 합은 80이므로 불일치다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M13-A02-frequent-master-update",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "현재 전화번호 사본마다 변경을 반영하는 비용과 오류를 고려한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S25-R01-char-varchar-storage",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "CHAR 고정 길이는 공백으로 4자리, VARCHAR2는 입력 두 문자다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S25-R02-number-precision-scale",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "정밀도 5와 양수 스케일 2이므로 정수부 최대 세 자리다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S25-R03-date-timestamp-fields",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "DATE도 초까지 저장하며 TIMESTAMP는 소수 초가 가능하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S25-A01-explicit-char-length",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "명시적 CHAR 캐스트는 공백을 채워 길이4, VARCHAR2는 길이2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S25-A02-numeric-cast-scales",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "소수 둘째 자리 반올림 12.35, 음수 스케일은 십의 자리 반올림250이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S26-R01-add-modify-update",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "열 추가는 ADD, 정의 수정은 MODIFY, 행 값 변경은 UPDATE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S26-R02-rename-column-vs-alias",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "열 이름 변경은 ALTER TABLE T RENAME COLUMN 구문이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S26-R03-drop-column-versus-delete",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "DROP COLUMN은 열 정의와 값을 제거하고 DELETE는 행을 지운다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S26-A01-add-null-existing-row",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "기본값 없는 nullable 열을 추가하면 기존 행의 새 값은 NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S26-A02-rename-retains-values",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "이름 변경은 기존 값8을 보존한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-R07-instr-result-kind",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "INSTR는 위치, SUBSTR는 문자열 조각을 반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A07-instr-occurrence-missing",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "BANANA에서 AN은2,4위치이며 두번째4, ZX는없어0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A08-padding-final-length",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "지정 길이4에 맞춘 결과는 0007과 Q...이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A09-negative-integer-directions",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "절댓값2.4, 부호-1, 올림-2, 내림-3이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A10-lower-uppercase-sequence",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "대문자 SQL을 다시 소문자로 바꾸면 sql이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-R06-nvl2-return-branch",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "0은 NULL이 아니므로 NVL2의 두번째 인수7이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-A07-decode-null-versus-case",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "DECODE는 두 NULL을 같은 검색으로 보고 단순 CASE의 등호 비교는 참이 아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-A08-decode-default-omitted",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "검색값1과2에3이 없고 기본값 생략이면 NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-R06-bcnf-superkey",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "BCNF는 비자명 종속의 결정자가 슈퍼키여야 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-R06-classification-two-axes",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "자료의 유무형 축과 발생시점 축을 정확히 대응한다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "S27-SUP-R01-logical-definition": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S27-SUP-R02-drop-definition": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S27-SUP-R03-check-readonly": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S27-SUP-A01-base-change-visible": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S27-SUP-A02-check-option-exit": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S28-SUP-R01-selection-projection": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S28-SUP-R02-union-compatible": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S28-SUP-R03-division-universal": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S28-SUP-A01-project-after-select": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S28-SUP-A02-division-required-courses": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S12-SUP-R01-classification-axes": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S12-SUP-A01-paired-membership": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S15-SUP-A01-percent-rank-top-tie": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S15-SUP-A02-cume-desc-peers": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S16-SUP-A01-first-value-null-frame": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S16-SUP-A02-first-value-moving-frame": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S16-SUP-A03-ratio-partition-null": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S16-SUP-R01-ratio-over-syntax": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S18-SUP-A01-root-to-node-path": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S18-SUP-A02-cycle-current-parent": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S18-SUP-R01-nocycle-query-scope": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S20-SUP-A01-instr-after-end": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S20-SUP-A02-instr-subexpression": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S20-SUP-A03-count-nonoverlap": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S20-SUP-A04-flags-newline-dot": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S20-SUP-A05-replace-captured-parts": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  }
+}

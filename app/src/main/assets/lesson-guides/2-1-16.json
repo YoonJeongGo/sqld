@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-16",
+  "source": {
+    "id": "2-1-16",
+    "partId": "2-1",
+    "number": 16,
+    "title": "NULL의 개념과 처리방식(2)",
+    "lectureMinutes": 27,
+    "easy": "SQL의 조건에는 참·거짓뿐 아니라 UNKNOWN이라는 “판단할 수 없음”도 있다. WHERE는 TRUE만 남긴다.",
+    "why": "NULL인 점수에 “90점이 아니다”를 물어도 점수를 모르므로 맞다고 할 수 없다.",
+    "concepts": [
+      {
+        "term": "TRUE",
+        "meaning": "조건을 만족함",
+        "example": "90>=80"
+      },
+      {
+        "term": "FALSE",
+        "meaning": "조건을 만족하지 않음",
+        "example": "70>=80"
+      },
+      {
+        "term": "UNKNOWN",
+        "meaning": "값이 없어 판정할 수 없음",
+        "example": "NULL>=80"
+      },
+      {
+        "term": "WHERE의 통과 규칙",
+        "meaning": "TRUE만 통과, FALSE·UNKNOWN 탈락",
+        "example": "점수<>90은 NULL을 찾지 못함"
+      },
+      {
+        "term": "NOT UNKNOWN",
+        "meaning": "여전히 UNKNOWN",
+        "example": "모른다는 사실을 뒤집어도 참이 아님"
+      },
+      {
+        "term": "AND의 결정",
+        "meaning": "한쪽 FALSE이면 전체 FALSE",
+        "example": "UNKNOWN AND FALSE = FALSE"
+      },
+      {
+        "term": "OR의 결정",
+        "meaning": "한쪽 TRUE이면 전체 TRUE",
+        "example": "UNKNOWN OR TRUE = TRUE"
+      },
+      {
+        "term": "CHECK와 차이",
+        "meaning": "CHECK는 FALSE를 거절",
+        "example": "WHERE와 NULL 통과 규칙을 구별"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-16-E01",
+        "title": "NULL을 포함하려면 조건을 따로 쓰기",
+        "question": "90점이 아닌 학생과 점수가 없는 학생을 함께 찾자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "90"
+              ],
+              [
+                "1002",
+                "김현수",
+                "70"
+              ],
+              [
+                "1003",
+                "양선규",
+                null
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름, 점수 FROM 성적 WHERE 점수<>90 OR 점수 IS NULL ORDER BY 학번;",
+        "steps": [
+          "박강열의 90<>90은 FALSE이므로 제외한다.",
+          "김현수의 70<>90은 TRUE이므로 통과한다.",
+          "양선규의 NULL<>90은 UNKNOWN이지만 점수 IS NULL은 TRUE이다. UNKNOWN OR TRUE는 TRUE이므로 통과한다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "김현수",
+                "70"
+              ],
+              [
+                "양선규",
+                null
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-1-16-E02",
+        "title": "3값 논리 핵심 조합",
+        "question": "모르는 값이 있어도 판정이 끝나는 조합을 보자.",
+        "tables": [
+          {
+            "title": "논리 입력",
+            "columns": [
+              "왼쪽",
+              "오른쪽"
+            ],
+            "rows": [
+              [
+                "TRUE",
+                "UNKNOWN"
+              ],
+              [
+                "FALSE",
+                "UNKNOWN"
+              ],
+              [
+                "UNKNOWN",
+                "UNKNOWN"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "OR는 TRUE 한 개만 있어도 전체가 참이다.",
+          "AND는 FALSE 한 개만 있어도 전체가 거짓이다.",
+          "그 외 NULL이 결과를 결정해야 하는 경우에는 UNKNOWN이 남는다."
+        ],
+        "results": [
+          {
+            "title": "논리 결과",
+            "columns": [
+              "왼쪽",
+              "오른쪽",
+              "AND",
+              "OR"
+            ],
+            "rows": [
+              [
+                "TRUE",
+                "UNKNOWN",
+                "UNKNOWN",
+                "TRUE"
+              ],
+              [
+                "FALSE",
+                "UNKNOWN",
+                "FALSE",
+                "UNKNOWN"
+              ],
+              [
+                "UNKNOWN",
+                "UNKNOWN",
+                "UNKNOWN",
+                "UNKNOWN"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "WHERE는 참만. 모름의 반대도 모름. OR에 참, AND에 거짓이면 결정.",
+    "traps": [
+      "점수<>90 조건이 자동으로 NULL까지 포함한다고 생각하지 않는다.",
+      "NULL=NULL을 TRUE로 취급하는 특수 기능(Oracle DECODE 등)을 일반 비교에 적용하지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-16-Q1",
+        "question": "NOT UNKNOWN은 TRUE인가?",
+        "answer": "아니다. UNKNOWN",
+        "explanation": "판정 불가를 뒤집어도 판정 불가다."
+      },
+      {
+        "id": "2-1-16-Q2",
+        "question": "FALSE AND UNKNOWN은?",
+        "answer": "FALSE",
+        "explanation": "한 조건이 거짓이면 AND 전체는 거짓이다."
+      },
+      {
+        "id": "2-1-16-Q3",
+        "question": "WHERE가 UNKNOWN 행을 남기는가?",
+        "answer": "남기지 않는다",
+        "explanation": "TRUE인 행만 통과한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S06",
+      "note-S23"
+    ],
+    "sourceIds": [
+      "null",
+      "conditions"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"NULL의 개념과 처리방식(2) 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">0</text><text x=\"120.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값이 실제로 0</text><rect x=\"265\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">NULL</text><text x=\"360.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값을 알 수 없거나 없음</text><rect x=\"505\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">IS NULL</text><text x=\"600.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">없음 여부를 검사</text><text x=\"240\" y=\"110\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"30\" fill=\"#ae5e00\" font-weight=\"400\">≠</text><path d=\"M463 101 L495 101\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">COUNT(*)는 행 · COUNT(열)은 NULL 아닌 값 · NULL = NULL은 UNKNOWN</text></svg>",
+    "version": 1
+  },
+  "purpose": "90점이 아닌 학생을 찾을 때 미입력 학생까지 포함할지 조건에 분명히 적고 3값 논리를 확인한다.",
+  "overview": "NULL과 90의 일반 비교는 UNKNOWN이다. WHERE는 TRUE만 남기므로 NULL 학생을 포함하려면 IS NULL 조건을 따로 결합한다. UNKNOWN과 FALSE는 같은 논리값이 아니다.",
+  "terms": [
+    {
+      "token": "<>",
+      "kind": "비교 연산자",
+      "meaning": "같지 않다",
+      "role": "70<>90은 TRUE지만 NULL<>90은 UNKNOWN이다."
+    },
+    {
+      "token": "IS NULL",
+      "kind": "상태 검사",
+      "meaning": "NULL인지 확인",
+      "role": "양선규의 미입력 점수에서 TRUE를 돌려준다."
+    },
+    {
+      "token": "UNKNOWN",
+      "kind": "논리값",
+      "meaning": "비교 결과를 알 수 없음",
+      "role": "FALSE와 다르다. NOT을 적용해도 UNKNOWN이며 OR TRUE는 TRUE가 된다."
+    },
+    {
+      "token": "OR",
+      "kind": "논리 연산자",
+      "meaning": "어느 한쪽이라도 참",
+      "role": "90점 아님 또는 NULL 상태 가운데 하나가 TRUE이면 남긴다."
+    }
+  ],
+  "pitfalls": [
+    "NOT UNKNOWN은 TRUE가 아니라 UNKNOWN이다.",
+    "PDF p74의 NOT IN 예시에서 모든 전체 조건이 UNKNOWN이라는 설명은 부정확하다. 50 NOT IN(50,NULL)은 FALSE AND UNKNOWN으로 FALSE다. 20의 경우는 UNKNOWN이다. 둘 다 WHERE에서 제외된다."
+  ],
+  "questions": [
+    {
+      "question": "<>는 여기서 무엇을 뜻하나요?",
+      "answer": "70<>90은 TRUE지만 NULL<>90은 UNKNOWN이다."
+    },
+    {
+      "question": "IS NULL는 여기서 무엇을 뜻하나요?",
+      "answer": "양선규의 미입력 점수에서 TRUE를 돌려준다."
+    },
+    {
+      "question": "UNKNOWN는 여기서 무엇을 뜻하나요?",
+      "answer": "FALSE와 다르다. NOT을 적용해도 UNKNOWN이며 OR TRUE는 TRUE가 된다."
+    },
+    {
+      "question": "OR는 여기서 무엇을 뜻하나요?",
+      "answer": "90점 아님 또는 NULL 상태 가운데 하나가 TRUE이면 남긴다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 74,
+      "toPage": 82,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-16-E01",
+      "why": "90점 제외 명단에 아직 점수가 없는 학생도 함께 넣는다.",
+      "effect": "조회: 박강열 제외, 김현수와 양선규 출력. 원본 유지.",
+      "prerequisites": [
+        "양선규 점수는 NULL 그대로 출력하며 0으로 변경하지 않는다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "같지 않음 조건만 계산",
+          "text": "박강열 90<>90은 거짓, 김현수 70<>90은 참이다. 양선규 NULL<>90은 알 수 없음이다. NULL을 무조건 90과 다른 값이라고 판정하지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "점수<>90",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "알 수 없음"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "첫 조건",
+            "columns": [
+              "이름",
+              "점수",
+              "점수<>90"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "90",
+                "거짓"
+              ],
+              [
+                "김현수",
+                "70",
+                "참"
+              ],
+              [
+                "양선규",
+                null,
+                "알 수 없음"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "NULL 상태를 별도로 확인",
+          "text": "IS NULL은 양선규에게 참이다. 앞 조건 UNKNOWN과 OR로 결합하면 UNKNOWN OR TRUE가 TRUE가 되어 통과한다. 박강열은 FALSE OR FALSE여서 제외한다.",
+          "codeFocus": [
+            {
+              "needle": "점수 IS NULL",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "UNKNOWN OR TRUE"
+          ],
+          "focusRows": [
+            2
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "OR 결합",
+            "columns": [
+              "이름",
+              "<>90",
+              "IS NULL",
+              "OR"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "거짓",
+                "거짓",
+                "거짓·제외"
+              ],
+              [
+                "김현수",
+                "참",
+                "거짓",
+                "참·통과"
+              ],
+              [
+                "양선규",
+                "알 수 없음",
+                "참",
+                "참·통과"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "통과 여부와 출력값은 별개",
+          "text": "양선규는 조건을 통과해 결과에 있지만 점수는 여전히 NULL이다. 김현수 70과 양선규 NULL을 학번 순으로 보여준다.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "여전히 NULL"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "김현수",
+                "70"
+              ],
+              [
+                "양선규",
+                null
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "WHERE 점수<>90만 쓰면 양선규는 UNKNOWN이라 남지 않는다. 원본처럼 OR IS NULL을 써야 포함된다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    },
+    {
+      "exampleId": "2-1-16-E02",
+      "why": "한 조건을 몰라도 다른 조건이 결론을 정하는 경우를 판단한다.",
+      "effect": "개념: TRUE/FALSE/UNKNOWN 논리값 조합.",
+      "prerequisites": [
+        "원본은 SQL 없는 진릿값 설명이다. UNKNOWN은 실제 숫자나 문자열을 뜻하지 않는다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "AND는 거짓 하나로 결론",
+          "text": "FALSE AND UNKNOWN은 FALSE다. 둘 다 참이어야 하는데 한쪽이 이미 거짓이기 때문이다. TRUE AND UNKNOWN은 나머지 조건을 몰라 UNKNOWN이다.",
+          "codeFocus": [],
+          "highlights": [
+            "FALSE AND UNKNOWN"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "AND 판단",
+            "columns": [
+              "왼쪽",
+              "오른쪽",
+              "결과"
+            ],
+            "rows": [
+              [
+                "거짓",
+                "알 수 없음",
+                "거짓"
+              ],
+              [
+                "참",
+                "알 수 없음",
+                "알 수 없음"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "OR는 참 하나로 결론",
+          "text": "TRUE OR UNKNOWN은 TRUE다. 하나만 참이어도 되므로 이미 조건을 충족했다. FALSE OR UNKNOWN은 남은 조건을 몰라 UNKNOWN이다.",
+          "codeFocus": [],
+          "highlights": [
+            "TRUE OR UNKNOWN"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "OR 판단",
+            "columns": [
+              "왼쪽",
+              "오른쪽",
+              "결과"
+            ],
+            "rows": [
+              [
+                "참",
+                "알 수 없음",
+                "참"
+              ],
+              [
+                "거짓",
+                "알 수 없음",
+                "알 수 없음"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "둘 다 모르거나 부정해도 모름",
+          "text": "UNKNOWN AND UNKNOWN과 UNKNOWN OR UNKNOWN은 둘 다 UNKNOWN이다. NOT UNKNOWN도 판정 불가 상태를 뒤집은 것이어서 UNKNOWN이다. WHERE 통과 여부는 TRUE인지로 결정한다.",
+          "codeFocus": [],
+          "highlights": [
+            "NOT UNKNOWN"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "논리 결과",
+            "columns": [
+              "왼쪽",
+              "오른쪽",
+              "AND",
+              "OR"
+            ],
+            "rows": [
+              [
+                "TRUE",
+                "UNKNOWN",
+                "UNKNOWN",
+                "TRUE"
+              ],
+              [
+                "FALSE",
+                "UNKNOWN",
+                "FALSE",
+                "UNKNOWN"
+              ],
+              [
+                "UNKNOWN",
+                "UNKNOWN",
+                "UNKNOWN",
+                "UNKNOWN"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "WHERE에서 FALSE와 UNKNOWN 모두 제외되지만 논리 연산에서는 다른 값이다. 같은 결과 행수를 이유로 둘을 같다고 외우지 않는다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-16-Q1",
+      "hint": "참·거짓으로 판정하지 못한 것을 부정하면 무엇을 알 수 있는지 보자.",
+      "reasoning": "NOT UNKNOWN은 UNKNOWN이다. 원래 거짓인 조건의 NOT처럼 TRUE가 되지 않는다."
+    },
+    {
+      "checkId": "2-1-16-Q2",
+      "hint": "AND가 통과하려면 무엇이 모두 필요할지 생각해 보자.",
+      "reasoning": "하나가 FALSE이면 둘 다 TRUE일 수 없어서 FALSE AND UNKNOWN=FALSE다."
+    },
+    {
+      "checkId": "2-1-16-Q3",
+      "hint": "WHERE가 남기는 논리값 한 가지를 떠올려 보자.",
+      "reasoning": "WHERE는 TRUE만 남긴다. FALSE와 UNKNOWN 모두 남기지 않되 두 논리값을 동일시하지 않는다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html"
+  ],
+  "reviewNotes": [
+    "원문 오류 주의: PDF p74 NOT IN의 전체조건이 항상UNKNOWN이라는 문장은 FALSE인 일치값 사례를 누락했다. 원본은 바꾸지 않고 조건별로 보완했다."
+  ]
+}

@@ -1,0 +1,452 @@
+{
+  "S09-R01-guarantee": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S09-R02-null-asc": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S09-R03-tie-order": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S09-R04-alias-order": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S09-R05-multi-key": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S10-R01-pair-product": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S10-R02-null-equality": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S10-R03-cross-product": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S10-R04-non-equi": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S10-R05-join-union": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S11-R01-left-preservation": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S11-R02-on-where": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S11-R03-natural-columns": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S11-R04-using-coalesced": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S11-R05-anti-null-key": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S12-R01-scalar-empty": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S12-R02-scalar-many": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S12-R03-exists-projection": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S12-R04-not-in-null": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S12-R05-any-all": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S13-R01-all-duplicates": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S13-R02-minus-direction": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S13-R03-column-compatibility": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S13-R04-set-null": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S14-R01-rollup-levels": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S14-R02-cube-levels": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S14-R03-grouping-null": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S14-R04-sets-explicit": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S15-R01-rank-gaps": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S15-R02-dense-rank": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S15-R03-partition-reset": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S15-R04-lag-offset": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S15-R05-analytic-order": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S16-R01-rows-range": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S16-R02-default-frame": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S16-R03-last-full": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S16-R04-moving-window": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S16-R05-first-boundary": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S17-R01-ties-key": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S17-R02-rownum-greater": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S17-R03-top-before-sort": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S17-R04-offset-order": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S17-R05-distinct-ranks": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S18-R01-level-root": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S18-R02-prior-parent": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S18-R03-siblings": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S18-R04-self-roles": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S18-R05-nocycle": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S19-R01-pivot-group": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S19-R02-unpivot-null": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S19-R03-pivot-loss": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S19-R04-unpivot-shape": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S20-R01-anchors": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S20-R02-class-group": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S20-R03-regexp-functions": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S20-R04-case-param": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S21-R01-delete-no-where": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S21-R02-update-null": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S21-R03-insert-column": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S21-R04-merge-branch": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "b",
+    "r4": "c"
+  },
+  "S21-R05-statement-atomic": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S22-R01-savepoint-not-commit": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S22-R02-rollback-to": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S22-R03-commit-savepoint": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S22-R04-ddl-implicit": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S22-R05-own-changes": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S23-R01-pk-null": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S23-R02-check-unknown": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S23-R03-truncate-definition": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S23-R04-fk-optional": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S23-R05-delete-cascade": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S24-R01-object-system": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S24-R02-grant-option": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S24-R03-revoke-paths": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S24-R04-least-privilege": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  }
+}

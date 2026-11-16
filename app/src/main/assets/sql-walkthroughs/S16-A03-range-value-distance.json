@@ -1,0 +1,370 @@
+{
+  "id": "S16-A03-range-value-distance",
+  "source": {
+    "id": "S16-A03-range-value-distance",
+    "version": 1,
+    "title": "키 값의 거리 1 이내 앞쪽 RANGE 합계는?",
+    "stem": "키 값의 거리 1 이내 앞쪽 RANGE 합계는?",
+    "sql": "SELECT id,SUM(v) OVER(ORDER BY k RANGE BETWEEN 1 PRECEDING AND CURRENT ROW) AS s FROM T ORDER BY id",
+    "tables": [
+      {
+        "title": "T",
+        "columns": [
+          "id",
+          "k",
+          "v"
+        ],
+        "rows": [
+          [
+            "1",
+            "1",
+            "10"
+          ],
+          [
+            "2",
+            "1",
+            "20"
+          ],
+          [
+            "3",
+            "3",
+            "5"
+          ]
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "id": "d",
+        "text": "(1, 10) / (2, 20) / (3, 5)",
+        "reason": "동점 k1 둘을함께포함 해야 한다."
+      },
+      {
+        "id": "a",
+        "text": "(1, 30) / (2, 30) / (3, 5)",
+        "reason": "최종 결과는 (1, 30) / (2, 30) / (3, 5)이다."
+      },
+      {
+        "id": "b",
+        "text": "(1, 10) / (2, 30) / (3, 25)",
+        "reason": "앞한 행기준 ROWS와 혼동했다."
+      },
+      {
+        "id": "c",
+        "text": "(1, 30) / (2, 30) / (3, 35)",
+        "reason": "k3의 하한 2보다 작은 k1을 포함 했다."
+      }
+    ],
+    "correctChoiceIds": [
+      "a"
+    ],
+    "dialect": "Oracle",
+    "dialectVersion": "19c"
+  },
+  "intro": "입력 표의 값으로 SQL의 뜻을 따라 읽는 학습용 논리 과정입니다. 실제 DB의 물리 실행 순서나 실행계획을 측정한 자료가 아닙니다. 이전·다음으로 한 단계씩 확인하세요.",
+  "steps": [
+    {
+      "id": "step-01",
+      "title": "FROM · 원래 행을 유지",
+      "text": "id, k, v 열을 가진 3행입니다. 분석 함수는 GROUP BY처럼 행을 합쳐 줄이지 않고 각 행 옆에 계산값을 붙입니다.",
+      "codeFocus": [
+        {
+          "needle": "FROM T",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "id",
+        "k",
+        "v"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 분석 함수 입력",
+        "columns": [
+          "id",
+          "k",
+          "v"
+        ],
+        "rows": [
+          [
+            "1",
+            "1",
+            "10"
+          ],
+          [
+            "2",
+            "1",
+            "20"
+          ],
+          [
+            "3",
+            "3",
+            "5"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-02",
+      "title": "SUM · id=1",
+      "text": "전체 파티션. RANGE는 행 한 개가 아니라 값의 거리입니다. 현재 k=1, 0~1 범위를 포함합니다. 10 + 20 = 30. OVER 안의 정렬은 계산 기준이며 최종 화면 순서와 구별합니다.",
+      "codeFocus": [
+        {
+          "needle": "SUM(v) OVER(ORDER BY k RANGE BETWEEN 1 PRECEDING AND CURRENT ROW)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "k"
+      ],
+      "focusRows": [
+        0
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 현재 id=1의 계산 범위",
+        "columns": [
+          "id",
+          "k",
+          "v",
+          "역할"
+        ],
+        "rows": [
+          [
+            "1",
+            "1",
+            "10",
+            "현재 보는 행"
+          ],
+          [
+            "2",
+            "1",
+            "20",
+            "계산 대상 행"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-03",
+      "title": "SUM · id=2",
+      "text": "전체 파티션. RANGE는 행 한 개가 아니라 값의 거리입니다. 현재 k=1, 0~1 범위를 포함합니다. 10 + 20 = 30. OVER 안의 정렬은 계산 기준이며 최종 화면 순서와 구별합니다.",
+      "codeFocus": [
+        {
+          "needle": "SUM(v) OVER(ORDER BY k RANGE BETWEEN 1 PRECEDING AND CURRENT ROW)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "k"
+      ],
+      "focusRows": [
+        1
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 현재 id=2의 계산 범위",
+        "columns": [
+          "id",
+          "k",
+          "v",
+          "역할"
+        ],
+        "rows": [
+          [
+            "1",
+            "1",
+            "10",
+            "계산 대상 행"
+          ],
+          [
+            "2",
+            "1",
+            "20",
+            "현재 보는 행"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-04",
+      "title": "SUM · id=3",
+      "text": "전체 파티션. RANGE는 행 한 개가 아니라 값의 거리입니다. 현재 k=3, 2~3 범위를 포함합니다. 5 = 5. OVER 안의 정렬은 계산 기준이며 최종 화면 순서와 구별합니다.",
+      "codeFocus": [
+        {
+          "needle": "SUM(v) OVER(ORDER BY k RANGE BETWEEN 1 PRECEDING AND CURRENT ROW)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "k"
+      ],
+      "focusRows": [
+        0
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 현재 id=3의 계산 범위",
+        "columns": [
+          "id",
+          "k",
+          "v",
+          "역할"
+        ],
+        "rows": [
+          [
+            "3",
+            "3",
+            "5",
+            "현재 보는 행"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-05",
+      "title": "최종 결과와 원래 답 연결",
+      "text": "최종 3행입니다. 바깥 ORDER BY의 순서를 따릅니다. 기존 보기별 해설도 함께 확인하세요.",
+      "codeFocus": [
+        {
+          "needle": "SELECT",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 최종 결과",
+        "columns": [
+          "id",
+          "s"
+        ],
+        "rows": [
+          [
+            "1",
+            "30"
+          ],
+          [
+            "2",
+            "30"
+          ],
+          [
+            "3",
+            "5"
+          ]
+        ]
+      }
+    }
+  ],
+  "terms": [
+    {
+      "token": "SELECT",
+      "kind": "키워드",
+      "meaning": "결과에 보여 줄 열과 계산식을 고른다.",
+      "role": "이 문제의 최종 출력 열을 정한다."
+    },
+    {
+      "token": "FROM",
+      "kind": "키워드",
+      "meaning": "값을 읽을 표 또는 조회 결과를 지정한다.",
+      "role": "원본 표에서 설명을 시작하는 위치다."
+    },
+    {
+      "token": "AS",
+      "kind": "키워드",
+      "meaning": "결과 열에 읽기 쉬운 임시 이름을 붙인다.",
+      "role": "원본 컬럼명을 바꾸는 명령이 아니다."
+    },
+    {
+      "token": "ORDER BY",
+      "kind": "키워드",
+      "meaning": "지정한 키에 따라 순서를 정한다.",
+      "role": "OVER 내부 정렬은 계산용이며 최종 결과 순서는 바깥 ORDER BY가 정한다."
+    },
+    {
+      "token": "SUM",
+      "kind": "함수",
+      "meaning": "NULL을 제외한 값을 더한다.",
+      "role": "집계 대상값이 없으면 NULL이다."
+    },
+    {
+      "token": "OVER",
+      "kind": "키워드",
+      "meaning": "현재 행과 함께 계산할 분석 함수의 범위를 지정한다.",
+      "role": "GROUP BY처럼 원래 행 수를 줄이지 않는다."
+    },
+    {
+      "token": "AND",
+      "kind": "논리 연산자",
+      "meaning": "연결한 조건이 모두 TRUE일 때 TRUE다.",
+      "role": "FALSE가 하나면 FALSE이고, FALSE 없이 UNKNOWN이 남으면 UNKNOWN이다."
+    },
+    {
+      "token": "BETWEEN",
+      "kind": "조건 연산자",
+      "meaning": "아래 경계 이상, 위 경계 이하인지 검사한다.",
+      "role": "경계를 모두 포함하며 NULL 비교는 UNKNOWN이 될 수 있다."
+    },
+    {
+      "token": "RANGE",
+      "kind": "키워드",
+      "meaning": "정렬값의 범위로 프레임을 정한다.",
+      "role": "동점 행을 함께 포함하며 숫자 1 PRECEDING은 값의 거리 1이다."
+    },
+    {
+      "token": "T",
+      "kind": "테이블명",
+      "meaning": "관련 정보를 행과 열로 저장한 표의 이름이다.",
+      "role": "원본의 id, k, v 열을 제공한다."
+    },
+    {
+      "token": "id",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 id 값을 읽는다."
+    },
+    {
+      "token": "k",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 k 값을 읽는다."
+    },
+    {
+      "token": "v",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 v 값을 읽는다."
+    },
+    {
+      "token": "s",
+      "kind": "별칭",
+      "meaning": "출력 열에 붙인 임시 이름이다.",
+      "role": "바로 앞 계산식의 결과를 s로 보여 준다."
+    }
+  ],
+  "verification": {
+    "method": "독립 값 계산 및 원본 fixture 대조",
+    "engine": "SQLite",
+    "engineVersion": "3.50.4",
+    "oracleEngineExecuted": false,
+    "queryMode": "SQLite에서 호환 SELECT 실행; Oracle NULL 정렬 기본값 명시; 숫자 NVL/MOD는 등록 함수",
+    "expectedRowsMatch": true,
+    "notes": [
+      "각 행의 프레임·순위·참조값을 Python으로 별도 계산하고 SQLite의 해당 값과 대조했다.",
+      "Oracle 19c 원문 실행 미실시. OVER 정렬은 최종 행 순서가 아니다."
+    ]
+  },
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Aggregate-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Using-Subqueries.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/IN-Condition.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Comparison-Conditions.html"
+  ]
+}

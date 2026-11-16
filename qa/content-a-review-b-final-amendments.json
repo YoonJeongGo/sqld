@@ -1,0 +1,1572 @@
+{
+  "schemaVersion": 1,
+  "method": "independent_ai_current_revision_semantic_reread_with_preserved_previous_review_hashes",
+  "reviewer": "content_a",
+  "reviewedAt": "2026-09-14T05:35:45.361876+00:00",
+  "partFile": "content/part-b.json",
+  "partFileSha256": "1e49f1a0fa06800fdb263ee68690e935a12db40b4e582c234253d72ff9df0146",
+  "boundary": "These are current revision rechecks after earlier answers and explanations were known, not new first-exposure blind reviews. 42 current full semantic rereads preserve previous review hashes and masked public input; no unavailable old full snapshot is invented. Seven saved full snapshots are compared by explicit diffs and current semantic rereads. No Oracle engine run or human expert review. Remaining Korean spacing and truncated titles are not globally corrected during the final freeze. Earlier immutable review evidence is preserved.",
+  "results": [
+    {
+      "questionId": "S17-R02-rownum-greater",
+      "sourceQuestionSha256": "6239124af12f98ee475d43497151a503bc5e39c10b795dc85a4bbbdfda346b73",
+      "previousSourceQuestionSha256": "8a1be9b4e22887d7bc09c4a1e0d7198b83282735a31112c8f9c37ed5c1cec37b",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "단순ROWNUM>1은첫후보1이통과하지못하므로끝까지0행이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다. 첫 ROWNUM=1을 제외하는 하한 조건으로 암기문장 범위를 한정한 수정이 타당하다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S21-A06-merge-update-insert",
+      "sourceQuestionSha256": "e70d2ce5089b6a98b8ad3f7a895f56aa6db3fc2e90c92d6d136c2513f0dc18f5",
+      "previousSourceQuestionSha256": "7b57ceb50896363fa23351be8a94ac75c9b8b5af03bfdda4b459b287ea15ed8d",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "키2는20에서7로 갱신, 소스의 새 키3은9로 삽입, 대상의 키1은10으로 보존된다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S22-A02-full-after-partial",
+      "sourceQuestionSha256": "56bae753aaf025eab853f6d3c0c8d666373bc19adb4321ad32551552d7aba26d",
+      "previousSourceQuestionSha256": "e70737c1e93c7969a85a624e7dbaefab862ee5ef7e91e91ac6bb4c4123ddf511",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "부분 롤백으로20이 남아도 전체 ROLLBACK은 최초 확정10으로 돌아간다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S22-A05-ddl-commits-prior",
+      "sourceQuestionSha256": "551b14e7834a35896f7659049d96dd421f32116a4186adaef1698b63c68f3e4e",
+      "previousSourceQuestionSha256": "4b9cdcb463e6ad97e4aeff9214a6ee411f94f1bb4b5adc4a5fc81b3244e7937c",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "정상 CREATE TABLE 뒤 ROLLBACK을 수 행 했다. T의 값은?",
+          "after": "정상 CREATE TABLE 뒤 ROLLBACK을 수행했다. T의 값은?"
+        },
+        {
+          "path": "/title",
+          "before": "정상 CREATE TABLE 뒤 ROLLBACK을 수 행 했다. T의 값은?",
+          "after": "정상 CREATE TABLE 뒤 ROLLBACK을 수행했다. T의 값은?"
+        },
+        {
+          "path": "/version",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "Oracle CREATE TABLE 전 암묵 커밋으로20이 확정되어 뒤 롤백에 남는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다. 정상 CREATE TABLE의 앞선 미확정 DML 암묵 COMMIT 경계를 명시한 문구를 확인했다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S22-A06-delete-insert-rollback",
+      "sourceQuestionSha256": "ff6ecfa8ba30c5b838ba5eb60e84baba9f293666d69d9d8fe5cd3b7190d60f0b",
+      "previousSourceQuestionSha256": "74b72f1b28c9b468437055ed1aba5aee95dd29c0b2da4046d1f00fe8b239aee7",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "확정 초기행의 삭제와 새행 삽입을 모두 취소하면(1,10)만 남는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S23-A01-check-null-versus-negative",
+      "sourceQuestionSha256": "ccfd69d3e6912ac8b8391d064fb4a5234653ed9f1c0dbc19f77dbceb5cc460a8",
+      "previousSourceQuestionSha256": "8e4b639dcdd9c88e12afc60b8c067e4437be89b01b2c5f0625b7147cb3016047",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "T(id 기본키, age NUMBER CHECK(age>=0))이며 age에 는 NOT NULL이 없다. 독립 적인 새 행 (1,NULL), (2,-1), (NULL,20)의 삽입 가능 여부는?",
+          "after": "T(id 기본키, age NUMBER CHECK(age>=0))이며 age에는 NOT NULL이 없다. 독립적 인 새 행 (1,NULL), (2,-1), (NULL,20)의 삽입 가능 여부는?"
+        },
+        {
+          "path": "/title",
+          "before": "T(id 기본키, age NUMBER CHECK(age>=0))이며 age에 는 NOT NULL이 없다. 독립 적인 새 행 (1,",
+          "after": "T(id 기본키, age NUMBER CHECK(age>=0))이며 age에는 NOT NULL이 없다. 독립적 인 새 행 (1,"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "NULL age는 CHECK UNKNOWN으로 통과하고-1은 FALSE로 거부, NULL id는 PK로 거부된다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S23-A05-truncate-versus-delete-rollback",
+      "sourceQuestionSha256": "46f30c0832f69b4ea79b93274a140f1465410fc3a3fbe192262076678e797b93",
+      "previousSourceQuestionSha256": "a48fe2b10f495d60c1a934dd7be2ca7db23d8e04cbe8ec87deb00a864a0974e3",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "Oracle TRUNCATE는 일반 롤백으로 복구되지 않고 테이블 정의를 유지한다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S23-A06-drop-versus-recreate",
+      "sourceQuestionSha256": "4c368f38704279a77a0ed1e1e481040beef74bfc19cd5dc3be969a2a1d8196a5",
+      "previousSourceQuestionSha256": "bf35050883c5bcdb0c72443c7d7630333fef70ca3fb4bee0fa43eeb0c8b7436f",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "정상 DROP 뒤 이름을 대신할 객체가 없으므로 기존 T를 SELECT할 수 없다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S24-A01-read-only-grant",
+      "sourceQuestionSha256": "eed7e4e8ce6fe184a1807ab8961ea4fdc72c7a5fc51d097a801f8e533e3e7b82",
+      "previousSourceQuestionSha256": "1e2ea6a4ac018fa080a2f2f7f1e67faf6efb32ba95b43f96d8764fc5c6926ae4",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/choices/1",
+          "before": "A.T 조회 권한을 C에 게 재부여",
+          "after": "A.T 조회 권한을 C에게 재부여"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "SELECT만 부여되었으므로 조회만 가능하고 수정이나 재부여는 별도 권한이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S24-A02-grant-chain-revoke",
+      "sourceQuestionSha256": "e0bab2bbaf334c4ed9ce8983bbdba36ee1d433203fca03f5fa29b295f322e859",
+      "previousSourceQuestionSha256": "5f9b567c6fb521286990cc3d47225ffba6eee229875f54a125f0be6e218a1724",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/choices/0",
+          "before": "B에 게 의존한 C의 권한도 회수된다",
+          "after": "B에게 의존한 C의 권한도 회수된다"
+        },
+        {
+          "path": "/stem",
+          "before": "A가 B에 게 객체 SELECT를 WITH GRANT OPTION으로 주고, B만 이 C에 게 이를 재부여 했다. A가 B의 그 객체 권한을 회수하면 C의 이 경로는?",
+          "after": "A가 B에게 객체 SELECT를 WITH GRANT OPTION으로 주고, B만이 C에게 이를 재부여했다. A가 B의 그 객체 권한을 회수하면 C의 이 경로는?"
+        },
+        {
+          "path": "/title",
+          "before": "A가 B에 게 객체 SELECT를 WITH GRANT OPTION으로 주고, B만 이 C에 게 이를 재부여 했다. A가 B의 그 객체",
+          "after": "A가 B에게 객체 SELECT를 WITH GRANT OPTION으로 주고, B만이 C에게 이를 재부여했다. A가 B의 그 객체"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "객체 권한 재부여에서 B에게만 의존하는 C의 경로는 B 권한 회수에 따라 회수된다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S24-A03-role-survives-direct-revoke",
+      "sourceQuestionSha256": "a7e112bb4569967a2aaa4b39ab56f458f806861f2c24841b7cf99464f887ace6",
+      "previousSourceQuestionSha256": "16f99129621f8fa7045c69e1d555fb0b18dfe51f42cc2162058c6264b456df24",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "B가 A.T의 SELECT를 직접 받고 활성 역할 R을 통해서도 받았다. 직접 SELECT만 회수하고 R의 부여는 유지 했다. B의 조회 가능 성은?",
+          "after": "B가 A.T의 SELECT를 직접 받고 활성 역할 R을 통해서도 받았다. 직접 SELECT만 회수하고 R의 부여는 유지 했다. B의 조회 가능성은?"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "직접 경로만 회수했으므로 활성 역할 R의 유효한 SELECT 경로가 남는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S24-A04-column-update-only",
+      "sourceQuestionSha256": "86900fece75b4c0e44950125658f82d32e4c9bf69351b80e8161c2b65bd7690a",
+      "previousSourceQuestionSha256": "d4f75866765a626580e19109392832b6e1d39628366a2de1c7b96c1c1c4cca9d",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "B에 게 T의 salary 열 UPDATE 권한만 주었다. 다른 권한 경로가 없다. 이 권한이 직접 허용하는 수정 범위는?",
+          "after": "B에게 T의 salary 열 UPDATE 권한만 주었다. 다른 권한 경로가 없다. 이 권한이 직접 허용하는 수정 범위는?"
+        },
+        {
+          "path": "/title",
+          "before": "B에 게 T의 salary 열 UPDATE 권한만 주었다. 다른 권한 경로가 없다. 이 권한이 직접 허용하는 수정 범위는?",
+          "after": "B에게 T의 salary 열 UPDATE 권한만 주었다. 다른 권한 경로가 없다. 이 권한이 직접 허용하는 수정 범위는?"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "열 단위 UPDATE 권한은 salary 수정만 직접 허용하며 다른 열이나 DDL을 허용하지 않는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S24-A05-system-not-data-read",
+      "sourceQuestionSha256": "87540e95ecd27a9a14c16be5853621517d67ce33a6e87b2e1631f125b9112941",
+      "previousSourceQuestionSha256": "e960a98bfd954ea7dfffdcf0c4d224b8a6ed2f5c0258d2c33fbeccc52bf8ec98",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/choices/2",
+          "before": "모든 사용자의암호 변경",
+          "after": "모든 사용 자의암호 변경"
+        },
+        {
+          "path": "/stem",
+          "before": "B에 게 CREATE TABLE 시스템 권한과 충분한 자기 tablespace quota만 있다. A.T에 대한 다른 권한은 없다. 이 사실만으로 가능하다 고 할 수 있는 것은?",
+          "after": "B에게 CREATE TABLE 시스템 권한과 충분한 자기 tablespace quota만 있다. A.T에 대한 다른 권한은 없다. 이 사실만으로 가능하다고 할 수 있는 것은?"
+        },
+        {
+          "path": "/title",
+          "before": "B에 게 CREATE TABLE 시스템 권한과 충분한 자기 tablespace quota만 있다. A.T에 대한 다른 권한은 없",
+          "after": "B에게 CREATE TABLE 시스템 권한과 충분한 자기 tablespace quota만 있다. A.T에 대한 다른 권한은 없"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "CREATE TABLE과 충분한 할당량은 자기 스키마 생성 능력이며 타 소유자 테이블 SELECT와 다르다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S24-A06-public-revoke-scope",
+      "sourceQuestionSha256": "3a8a73cdb73a70171a07a9a2a8ac73cebb5805a05d023fe23e23e1eb1a84d5bf",
+      "previousSourceQuestionSha256": "9b3ee4764beb6a8f8c1f6335d37ed180ca180fafc1d352c582852d41f498eb12",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "A.T의 SELECT가 PUBLIC과 B 직접 경로로 부여되어 있다. A가 PUBLIC의 SELECT만 회수 했다. B의 직접 경로는?",
+          "after": "A.T의 SELECT가 PUBLIC과 B 직접 경로로 부여되어 있다. A가 PUBLIC의 SELECT만 회수했다. B의 직접 경로는?"
+        },
+        {
+          "path": "/title",
+          "before": "A.T의 SELECT가 PUBLIC과 B 직접 경로로 부여되어 있다. A가 PUBLIC의 SELECT만 회수 했다. B의 직접",
+          "after": "A.T의 SELECT가 PUBLIC과 B 직접 경로로 부여되어 있다. A가 PUBLIC의 SELECT만 회수했다. B의 직접"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "PUBLIC 회수는 B에게 별도로 직접 부여한 경로를 없애지 않는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S09-m1-null-and-limited-order",
+      "sourceQuestionSha256": "d53d35a8c5f6499b14033c768da711b1ba4b1fa8761bae3f02429297640b27df",
+      "previousSourceQuestionSha256": "0a8d63ae0cb0598a0d4b6a1505f5b692525189978fed3edf58acefec5a2b2d67",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "ETA ASC NULLS LAST와 유일한 order_id ASC의 복합 정렬 후 제한이 요구 순서와 안정적 경계를 충족한다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S10-m1-header-amount-inflation",
+      "sourceQuestionSha256": "5a04df1063abbe7dbe9f6086b51d23a212188fba99b52c202ec298f6c8c2b4bb",
+      "previousSourceQuestionSha256": "54d7a7f81b808635a9a094d7899a7eff71f7bbe3e38a51f863af75a83eb78897",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "주문1의 total100이 상세 두 행에 반복되고 주문2의50을 더해250이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S10-m1-unique-pairs-self",
+      "sourceQuestionSha256": "97598f73b7366c3502f8be5711b67e0ae9da5be7ada8903d9a8b28889f2e8016",
+      "previousSourceQuestionSha256": "f1f2d42116e36b4a4f09a2d0a877d0a3e9d480f6d9cd407dcfb83352f529a4a7",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "A<B인 가능한 쌍은1-2,1-3,2-3 세 쌍이고 역방향과 자기 쌍은 빠진다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S11-m1-outer-or-null-leak",
+      "sourceQuestionSha256": "85c254d3a172ad88382e6003efb3f84bececc3123e8adb567ddb0d4de8a7f1d8",
+      "previousSourceQuestionSha256": "4e4934c8804060db3073605baa78e837864fcb83a6c7eef1e003b9c99cfbd9a3",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "고객1은 status0 주문과 매칭되어 둘 다 WHERE 조건 FALSE라 탈락하고 미매칭 고객2만 NULL 확장되어 남는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S11-m1-full-null-double",
+      "sourceQuestionSha256": "e6748f883afcfdd241c19114b78c688498ed691c0768671e0a56c44fe53ba54a",
+      "previousSourceQuestionSha256": "799bab7a56e3c397878324cd285942815967aa48248a21b96339afae049cd840",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "NULL=NULL은 TRUE가 아니므로 각각 미매칭으로 보존되며 두 결과 행의 양쪽 키가 모두NULL이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S12-m1-not-in-correct-filter",
+      "sourceQuestionSha256": "ced1ee7240ba251c4d2348e68b2c2c834b71520824cfb0b98980c980d9794ffc",
+      "previousSourceQuestionSha256": "200f95eebf201dc65bc4ed75a81195926a991cc1b00e3da8ae9f0ceb648f58a0",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "서브쿼리에서 NULL을 제거하면 차단집합{2}만 남아1,3이 NOT IN을 통과한다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S12-m1-scalar-grouping-cardinality",
+      "sourceQuestionSha256": "21069fc67f0955eeb1e03fd543ffa33cbde22ba946cf7c835edec88ef22515a5",
+      "previousSourceQuestionSha256": "bdb440429f4e0ab227bbdc14e7b8908cb56dcab54750efdbcb272dc956296d77",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/choices/1",
+          "before": "같은 값이 어도 두 그룹 행이므로 스칼라 다중행 오류",
+          "after": "같은 값이어도 두 그룹 행이므로 스칼라 다중행 오류"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "GROUP BY 두 그룹은 같은 MAX값이어도 두 행을 반환하므로 스칼라 위치에서 오류다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S12-m1-universal-using-not-exists",
+      "sourceQuestionSha256": "fe51401729f81846200a6e1dbfb5cddd8778b6187900c5a10f1657d4d94dc45f",
+      "previousSourceQuestionSha256": "9b64dfcbf6554f3229f45812953f94f8acec4b38619ff2a542881c51dabbcf62",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "사용자 U의 모든 주문이 paid=1인지 검사 하려 한다. paid는 NOT NULL이며 주문 0개도 조건을 충족한다고정 했다. 적절한 논리 식은?",
+          "after": "사용자 U의 모든 주문이 paid=1인지 검사 하려 한다. paid는 NOT NULL이며 주문 0개도 조건을 충족한다고 정 했다. 적절한 논리 식은?"
+        },
+        {
+          "path": "/title",
+          "before": "사용자 U의 모든 주문이 paid=1인지 검사 하려 한다. paid는 NOT NULL이며 주문 0개도 조건을 충족한다고정 했다. 적절",
+          "after": "사용자 U의 모든 주문이 paid=1인지 검사 하려 한다. paid는 NOT NULL이며 주문 0개도 조건을 충족한다고 정 했다. 적절"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "NOT NULL paid의 반례 paid<>1이 없다는 NOT EXISTS가 모두 유료임을 나타내며 빈 주문도 참이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S13-m1-projection-then-dedup",
+      "sourceQuestionSha256": "534abab6f97644ba8f8b6a3a4e400d9750b89c53c54bf263cba40696a4654083",
+      "previousSourceQuestionSha256": "196b9dc11f94df67eebc002ec2d5d404347479056bdbff48a90aec454bfb15b4",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "name만 투영한 세 A행을 UNION이 중복 제거하므로A 한 행이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S13-m1-all-filter-stage",
+      "sourceQuestionSha256": "132cbad49a274d5993d4de203d6186dcaa11fadd2f4e95e58f02e6086ddbd21d",
+      "previousSourceQuestionSha256": "8ba4f6cdcf2aefa6cc1ee7d7356f116cd5bd04e18a3c16556c022e6af2c869b3",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "A(v)에 는 1,1,2; B(v)에 는 1,3이 있다. 각 입력을 v>=2로 필터 한뒤 UNION ALL 한 결과의 COUNT(*)는?",
+          "after": "A(v)에는 1,1,2; B(v)에는 1,3이 있다. 각 입력을 v>=2로 필터 한뒤 UNION ALL 한 결과의 COUNT(*)는?"
+        },
+        {
+          "path": "/title",
+          "before": "A(v)에 는 1,1,2; B(v)에 는 1,3이 있다. 각 입력을 v>=2로 필터 한뒤 UNION ALL 한 결과의 COUNT(*)는?",
+          "after": "A(v)에는 1,1,2; B(v)에는 1,3이 있다. 각 입력을 v>=2로 필터 한뒤 UNION ALL 한 결과의 COUNT(*)는?"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "A에서2, B에서3이 살아남고 UNION ALL 두 행이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S14-m1-grouping-id-mask",
+      "sourceQuestionSha256": "2a62cd1cba1ef366446796e1c70015e4b7fe723552639490707299c7adffd09b",
+      "previousSourceQuestionSha256": "bd2c19c01a3ce9ef381b00970144f9a359242a7591b4436f3138aeb815377423",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "유지된region의 GROUPING은0, 소계로 제외된store는1이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S14-m1-null-nvl-subtotal",
+      "sourceQuestionSha256": "f93de4dde7825ad35c9e98c702fcc73272ba7d923b3cf25420fa2b6044378025",
+      "previousSourceQuestionSha256": "5fc915e3862806249f057f994b0cb25133fd7aac72af5c6672f9c43d240809a8",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "NVL은 NULL의 원인을 구별하지 않아 실제NULL 부서 그룹과 전체 합계를 같은 라벨로 만든다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S15-m1-aggregate-window-logical",
+      "sourceQuestionSha256": "b49f8b1d440655225daeef444288ea0777929673101a9c346e692162f2c42e1a",
+      "previousSourceQuestionSha256": "0de6554df1e19b6d30faf366ad1ed99ba69abf2efd4a974c6858f5cf3db28345",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "GROUP BY와 집계 후 분석 함수가 부서별 결과 행을 대상으로 순위를 붙인다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S15-m1-lag-filter-order",
+      "sourceQuestionSha256": "8e99c04879dbaded37f091e2e7c2799459a4710b4d0141a9efa7c65c886890fa",
+      "previousSourceQuestionSha256": "f8dac942d2e37de1f7204d5ba84674dd39bb1f4c65b5eb13ac9f8adc3a96628d",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "같은 블록 WHERE가 id1을 제거한 후 id2가 첫 분석행이므로 LAG의 누락 기본값0이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S16-m1-nullable-window-count",
+      "sourceQuestionSha256": "7d8025f0891457c75732fc0cebe4a20df3d7555459a3790c1b4f438f993d68b5",
+      "previousSourceQuestionSha256": "c99eb7e904f6ef9035a110f6fa62b1535bc750a228fde0cb645e16da93c841d7",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "첫 프레임은 NULL과5 두 행이라 COUNT(*)2, COUNT(v)1이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S16-m1-last-null-respect",
+      "sourceQuestionSha256": "012ba07ac5248ca1f8d7d15f794b882bdc1fd3d137fa2d3b21106677a1e1252a",
+      "previousSourceQuestionSha256": "fb423065c48bef2fe0fd4aa1afa9f1361f3c590cf71857941818f2826c287f0d",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "전체 프레임 마지막 행의NULL을 기본 RESPECT NULLS가 그대로 반환한다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S17-m1-dense-cut-groups",
+      "sourceQuestionSha256": "397eb435f780574ed7049d7aa27cb37b0f8429bc374c0150d2970fedbaf2f9a7",
+      "previousSourceQuestionSha256": "9a796a1c7b9bd7905b0966dc1f61889f4422dc9aa46b82e86b81fd85b8a72b0e",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "서로 다른 상위 값100,90에 속한100,90,90 세 행이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S17-m1-rownum-projected-page",
+      "sourceQuestionSha256": "e2ab1b60529a6d081cc713735982c3e93f9e321066ed6fd8cd3a9e5af567f84e",
+      "previousSourceQuestionSha256": "0466e024ffd5bec4cfb6fb22cc6e025e09fa25804a5cc6b78d635d4ab71e42f6",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "이미 계산된 rn 일반열에2~3 필터를 적용하면 rn2,rn3이 남는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S18-m1-hierarchy-multiple-roots",
+      "sourceQuestionSha256": "aad5e76f422ab27cd0c8df672072941f1b96d491dfcb79245d3371a4cab64d1c",
+      "previousSourceQuestionSha256": "6d24c8a2a6d1cb6e72d6cc2d3153a228761eda533a62beb6b9865172480fc7ac",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "NULL 부모인1과2가 각각 루트LEVEL1이고3과4까지 합해 전체4행이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S18-m1-root-versus-parent",
+      "sourceQuestionSha256": "8cc877d76f79d957a29b7ce6167b9f6d8ff7de66b76aa9337f00bf8123d4ccf3",
+      "previousSourceQuestionSha256": "f8d434403c3d3cb57f2ae09247d63340a7b90a475b4a671385ad3435bcecc08c",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "3의 바로 앞 부모는2, 경로 시작 CONNECT_BY_ROOT는1이다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S19-m1-pivot-avg-weight",
+      "sourceQuestionSha256": "d69ef4e5207f34558f723979d09747d3716def3c84982969661b591ca70026b4",
+      "previousSourceQuestionSha256": "4348bad3753742d9ca04e74e4ecf1f2ddd81d6160453d0df13fc5dd0e5367b79",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "원본 합130/행3이 전체평균이며 그룹 크기2와1을 무시한(20+90)/2와 다르다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S19-m1-unpivot-zero-versus-missing",
+      "sourceQuestionSha256": "cb51ca308315fd457d52d9d63026fc6837b066c71180f3ab329c0ff12bc2c3f1",
+      "previousSourceQuestionSha256": "9d067164cc5d459e63b39a5e04857515953c0be5ba66f15eb2ba95f65d227c8e",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "UNPIVOT 기본은 NULL Q2만 제외하고0인Q1과5인Q3은>=0을 통과한다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S20-m1-alternation-anchors",
+      "sourceQuestionSha256": "c19e668c09e322745e6f9f8a416953299346f0f9d8e4fd95dcf0b38a7556d908",
+      "previousSourceQuestionSha256": "bcae6393329f9e9263a06f83ac620f1a69b94dd07c639c3874632001f26111d4",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "대안은 시작A 또는 끝B이므로AX는 첫 대안, XB는 둘째 대안에 일치한다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S21-m1-update-subquery-null",
+      "sourceQuestionSha256": "f5b54838b2fd8082e1381d90a908bc176e67774d2d5684bff915c73b634a5f8b",
+      "previousSourceQuestionSha256": "fe70bb6ffe7558dd00154661b6ca2e49bf63236973a039d2e15beaf10e359364",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "0행 스칼라 결과는NULL이며 nullable v 대입으로 그 값이NULL이 된다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S21-m1-merge-unmatched-delete",
+      "sourceQuestionSha256": "25a9f6781aedae996eda4b768712e8d9b0e93879e9ef53d82c9ec0242381543e",
+      "previousSourceQuestionSha256": "8b8c81a1a17dee1eb2c768cb556813214f87bf5fa8fe9adb18dc8c7387a4a8b7",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "대상 D에 키 1,2가 있고 소스 S에 는키 2만 있다. MERGE가 매칭 UPDATE와 미매칭 INSERT만 정의 하며 DELETE 절은 없다. 대상키 1은?",
+          "after": "대상 D에 키 1,2가 있고 소스 S에는 키 2만 있다. MERGE가 매칭 UPDATE와 미매칭 INSERT만 정의 하며 DELETE 절은 없다. 대상키 1은?"
+        },
+        {
+          "path": "/title",
+          "before": "대상 D에 키 1,2가 있고 소스 S에 는키 2만 있다. MERGE가 매칭 UPDATE와 미매칭 INSERT만 정의 하며 DELETE 절은 없다. 대상키 1은?",
+          "after": "대상 D에 키 1,2가 있고 소스 S에는 키 2만 있다. MERGE가 매칭 UPDATE와 미매칭 INSERT만 정의 하며 DELETE 절은 없다. 대상키 1은?"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "MERGE 소스에서 대응 행이 없는 대상키1을 자동 삭제하는 분기는 없으므로 그대로 남는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S22-m1-failed-statement-prior-change",
+      "sourceQuestionSha256": "2fb976ecbc334cb2a9e06050dd0f66bc1bca8efc504380f5696d7a4f9efc283b",
+      "previousSourceQuestionSha256": "f3ba9fdbe0787ed9f9476bf21966a23c3f3db71f08b99abd75576fb1a07c57a8",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "초기 확정 v10을 UPDATE로 20에바꾼 뒤 다른 UPDATE 한 문장이 즉시 검사 CHECK 위반으로 실패 했다. DDL·COMMIT·전체 ROLLBACK은 없다. 첫변경 20의 상태는?",
+          "after": "초기 확정 v10을 UPDATE로 20에바꾼 뒤 다른 UPDATE 한 문장이 즉시 검사 CHECK 위반으로 실패했다. DDL·COMMIT·전체 ROLLBACK은 없다. 첫변경 20의 상태는?"
+        },
+        {
+          "path": "/title",
+          "before": "초기 확정 v10을 UPDATE로 20에바꾼 뒤 다른 UPDATE 한 문장이 즉시 검사 CHECK 위반으로 실패 했다. DDL·COMMIT·전체 ROLLB",
+          "after": "초기 확정 v10을 UPDATE로 20에바꾼 뒤 다른 UPDATE 한 문장이 즉시 검사 CHECK 위반으로 실패했다. DDL·COMMIT·전체 ROLLB"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "실패한 둘째 문장만 취소되고 앞서 성공한20은 현재 트랜잭션 미확정 변경으로 남는다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S23-m1-unique-fk-not-one-to-one",
+      "sourceQuestionSha256": "b3e7bba25414f025714b654875d8ded36373d2f0199cc51ea71d99b94265d35f",
+      "previousSourceQuestionSha256": "c6923da4f3d8ebcdfeff99bb8a206a61d0696e06a5a50a1d0a3700b6d7bdb2df",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [
+        {
+          "path": "/stem",
+          "before": "자식 C(pid)가 부모 P(id PK)를 참조하는 FK이지만 C.pid에 는 UNIQUE가 없다. 부모 1을 여러 자식이 참조 할수있는가?",
+          "after": "자식 C(pid)가 부모 P(id PK)를 참조하는 FK이지만 C.pid에는 UNIQUE가 없다. 부모 1을 여러 자식이 참조 할수있는가?"
+        },
+        {
+          "path": "/title",
+          "before": "자식 C(pid)가 부모 P(id PK)를 참조하는 FK이지만 C.pid에 는 UNIQUE가 없다. 부모 1을 여러 자식이 참조 할수있는가?",
+          "after": "자식 C(pid)가 부모 P(id PK)를 참조하는 FK이지만 C.pid에는 UNIQUE가 없다. 부모 1을 여러 자식이 참조 할수있는가?"
+        }
+      ],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "부모PK 유일성과 자식FK 유일성은 별개여서 UNIQUE 없는 자식 참조값1은 반복 가능하다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-1-S24-m1-grant-option-not-admin",
+      "sourceQuestionSha256": "ab9fc8c99c12b6350d34317ab99c38b4ead502f6a0bd7ca2f7e6532cd4eaadc9",
+      "previousSourceQuestionSha256": "cef966dfdd3400277fc15f7bda854def4d7d3fd79d22904fd95c396c05d85ac7",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Compare all allowlisted fields exactly; ignore choice IDs and display order by sorting choice texts, because previous input is masked. Preserve meaningful spaces.",
+      "publicInputDiff": [],
+      "reviewedFields": [
+        "stem",
+        "choices.text",
+        "choices.reason",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "explanation.steps including result tables",
+        "explanation.memory",
+        "fixture.expectedRows when present",
+        "SQL/tables/fixtureInput equivalence to prior independently reasoned public input"
+      ],
+      "reviewMode": "full_current_semantic_reread; previous full object snapshot unavailable, old review hash and public input preserved",
+      "currentFullReadSnapshot": "qa/content-a-review-b-final-amendments-full-read-input.json",
+      "reasoning": "WITH GRANT OPTION은 받은 객체 SELECT의 재부여이며 사용자 생성이나 시스템 권한 관리가 아니다. 현재 지문·네 보기 및 이유·해설 요약·조건·단계와 결과 표·암기문장을 모두 다시 읽고 이 풀이와 대조했다. 공개 입력에서 바뀐 문구도 직접 대조했고 정답 또는 계산 모순을 발견하지 않았다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-2-S17-m2-with-ties-needs-order",
+      "sourceQuestionSha256": "a04292dc136ce27ceb677553aae93e092b4972054ecfd37d6122536c427bc44c",
+      "previousSourceQuestionSha256": "8f5a17e5da59f962e818a9666deb6521a279e6b87f8caa48fa18c810037ff82d",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Ignore choice IDs/order only; all other allowlisted values compared exactly.",
+      "changedFields": [
+        "/choices/0/reason",
+        "/choices/0/text",
+        "/choices/1/reason",
+        "/choices/1/text",
+        "/choices/2/reason",
+        "/choices/2/text",
+        "/choices/3/reason",
+        "/choices/3/text",
+        "/explanation/memory",
+        "/explanation/steps/0/text",
+        "/explanation/steps/1/text",
+        "/explanation/summary",
+        "/stem",
+        "/title",
+        "/version"
+      ],
+      "fullQuestionDiff": [
+        {
+          "path": "/choices/0/reason",
+          "before": "동점은 정렬 키에 대한 관계이므로 키가 필요하다.",
+          "after": "WITH TIES는 마지막 선택 행과 같은 정렬 키를 가진 추가 행을 포함한다. ORDER BY가 없으면 추가 동점 행을 반환하지 않는다."
+        },
+        {
+          "path": "/choices/0/text",
+          "before": "WITH TIES에는 동점을 정할 ORDER BY가 필요하다",
+          "after": "마지막 선택 행과 동점 인지 비교할 정렬 키를 ORDER BY로 지정한다"
+        },
+        {
+          "path": "/choices/1/reason",
+          "before": "명시하지 않은 정렬 키를 만들 지 않는다.",
+          "after": "명시하지 않은 기본키를 자동 정렬 기준으로 삼지 않는다."
+        },
+        {
+          "path": "/choices/1/text",
+          "before": "기본키 동점을 자동 사용한다",
+          "after": "기본키의 동점을 자동으로 사용한다"
+        },
+        {
+          "path": "/choices/2/reason",
+          "before": "그런 암묵 기준이 없다.",
+          "after": "그런 암묵적 기준은 없다."
+        },
+        {
+          "path": "/choices/2/text",
+          "before": "SELECT 첫열 동점을 자동 사용한다",
+          "after": "SELECT의 첫 열을 자동으로 동점 기준으로 사용한다"
+        },
+        {
+          "path": "/choices/3/reason",
+          "before": "정렬 없는 동점 요구를 그렇게 정의하지 않는다.",
+          "after": "ORDER BY를 생략하면 추가 동점 행은 반환하지 않는다."
+        },
+        {
+          "path": "/choices/3/text",
+          "before": "조건이 없으면 항상 모든 행을 낸다",
+          "after": "ORDER BY를 생략하면 항상 모든 행을 반환한다"
+        },
+        {
+          "path": "/explanation/memory",
+          "before": "동점 확장은 정렬 기준 없이 는 표현 할 수 없다.",
+          "after": "ORDER BY 생략을 무조건 문법 오류 라고 단 정하지 말고, 추가 동점 행이 반환되지 않는 동작을 구분한다."
+        },
+        {
+          "path": "/explanation/steps/0/text",
+          "before": "WITH TIES가 마지막 선택 행과 같은 정렬 키를 확장하는 지 확인한다.",
+          "after": "반환할 추가 행이 마지막 선택 행과 같은 정렬 키인지 판단해 야 한다."
+        },
+        {
+          "path": "/explanation/steps/1/text",
+          "before": "그 비교 기준 ORDER BY를 명시해야 한다.",
+          "after": "동점을 포함하려는 의도에 맞는 ORDER BY를 지정한다."
+        },
+        {
+          "path": "/explanation/summary",
+          "before": "동점은 정렬 키에 대한 관계이므로 키가 필요하다.",
+          "after": "WITH TIES는 마지막 선택 행과 같은 정렬 키를 가진 추가 행을 포함한다. ORDER BY가 없으면 추가 동점 행을 반환하지 않는다."
+        },
+        {
+          "path": "/stem",
+          "before": "FETCH FIRST 3 ROWS WITH TIES로 동점 포함을 요청하면 서 ORDER BY를 생략하려 한다. 문법 설계상 문제는?",
+          "after": "FETCH FIRST 3 ROWS WITH TIES로 동점인 추가 행을 반환하려 한다. 이 의도를 구현하려면 필요한 조건은?"
+        },
+        {
+          "path": "/title",
+          "before": "FETCH FIRST 3 ROWS WITH TIES로 동점 포함을 요청하면 서 ORDER BY를 생략하려 한다. 문법 설계상 문",
+          "after": "FETCH FIRST 3 ROWS WITH TIES로 동점인 추가 행을 반환하려 한다. 이 의도를 구현하려면 필요한 조건은?"
+        },
+        {
+          "path": "/version",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "reviewedFields": [
+        "full recursive diff against saved question snapshot",
+        "current stem",
+        "all choices.text and reasons",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "all explanation.steps and result tables",
+        "explanation.memory",
+        "fixture when present"
+      ],
+      "reviewMode": "saved_full_snapshot_diff_and_current_semantic_reread",
+      "previousFullSnapshot": "qa/content-a-review-b-masked-mock23-explanation-input.json",
+      "reasoning": "지문을 동점인 추가 행을 포함하려는 의도로 한정했다. 마지막 선택 행의 정렬 키와 비교하므로 ORDER BY를 지정하는 보기가 유일하게 적절하다. ORDER BY 미지정 시 무조건 문법 오류라고 단정하지 않고 추가 동점 행을 반환하지 않는다는 수정된 네 보기와 단계·요약·암기문장 모두를 확인했다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-3-S16-m3-range-current-peers-only",
+      "sourceQuestionSha256": "f3f2a8edeba76f0e07284faafc98ecb4bf8f5ac7e940b400553238b34196ba13",
+      "previousSourceQuestionSha256": "23dae465480568df2dfb881fa610e8c5df0a1d12cba4eec3020627f4ea9d432b",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Ignore choice IDs/order only; all other allowlisted values compared exactly.",
+      "changedFields": [
+        "/stem",
+        "/title",
+        "/version"
+      ],
+      "fullQuestionDiff": [
+        {
+          "path": "/stem",
+          "before": "k,v 행이(1,5),(1,7),(2,10)이다. RANGE BETWEEN CURRENT ROW AND CURRENT ROW로 SUM(v)를 계산하면 k1 두 행에 붙는 값은?",
+          "after": "k,v 행이 (1,5),(1,7),(2,10)이다. SUM(v) OVER(ORDER BY k RANGE BETWEEN CURRENT ROW AND CURRENT ROW)를 계산하면 k=1인 두 행에 붙는 값은?"
+        },
+        {
+          "path": "/title",
+          "before": "k,v 행이(1,5),(1,7),(2,10)이다. RANGE BETWEEN CURRENT ROW AND CURRENT ROW로",
+          "after": "k,v 행이 (1,5),(1,7),(2,10)이다. SUM(v) OVER(ORDER BY k RANGE BETWEEN CURR"
+        },
+        {
+          "path": "/version",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "reviewedFields": [
+        "full recursive diff against saved question snapshot",
+        "current stem",
+        "all choices.text and reasons",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "all explanation.steps and result tables",
+        "explanation.memory",
+        "fixture when present"
+      ],
+      "reviewMode": "saved_full_snapshot_diff_and_current_semantic_reread",
+      "previousFullSnapshot": "qa/content-a-review-b-masked-mock23-explanation-input.json",
+      "reasoning": "ORDER BY k를 지문에 명시하여 RANGE의 동료 행 기준이 확정되었다. k=1인 두 행의 v=5와7을 함께 합산한12가 두 행에 붙는다. 기존 보기와 해설은 이 명시된 기준에 맞으며 물리 한 행 ROWS와 구별한다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-3-S22-m3-rollback-later-savepoint",
+      "sourceQuestionSha256": "a9005bfce37df70e2c4b4d8ef6842674698f352bdeb54187ad91dbf11b656889",
+      "previousSourceQuestionSha256": "1df5d60d1ac7d1881e4bc69bdc61be547f4f0114d41050ca28483ea1fcca17e5",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Ignore choice IDs/order only; all other allowlisted values compared exactly.",
+      "changedFields": [
+        "/choices/3/reason",
+        "/version"
+      ],
+      "fullQuestionDiff": [
+        {
+          "path": "/choices/3/reason",
+          "before": "롤백 이전 진복구기능을제공하지 않는다.",
+          "after": "롤백은 이미 취소한 변경을 다시 복원하는 기능을 제공하지 않는다."
+        },
+        {
+          "path": "/version",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "reviewedFields": [
+        "full recursive diff against saved question snapshot",
+        "current stem",
+        "all choices.text and reasons",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "all explanation.steps and result tables",
+        "explanation.memory",
+        "fixture when present"
+      ],
+      "reviewMode": "saved_full_snapshot_diff_and_current_semantic_reread",
+      "previousFullSnapshot": "qa/content-a-review-b-masked-mock23-explanation-input.json",
+      "reasoning": "ROLLBACK TO a는 그 이후 변경과 b 저장점을 없애며 트랜잭션을 COMMIT하지 않는다. 오답 이유를 취소한 변경의 복원 기능이 없다는 문장으로 수정한 것을 확인했다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-4-S21-m4-update-correlated-all-null",
+      "sourceQuestionSha256": "bcffbc581e9b52d1c9322d87b26256a09688f2895a5fbee77b0db8263c262205",
+      "previousSourceQuestionSha256": "a40cca179199c332790ec66c3fdda791b17dbf38c0cbba0b07584cd8a3ba19be",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Ignore choice IDs/order only; all other allowlisted values compared exactly.",
+      "changedFields": [
+        "/stem",
+        "/title",
+        "/version"
+      ],
+      "fullQuestionDiff": [
+        {
+          "path": "/stem",
+          "before": "부서별 평균 급여로 보정하는 UPDATE가 있다. 대상 직원의 부서는 급여가 모두 NULL이어서 해당 평균도 NULL이다. 급여 열이 NOT NULL이면 해당 대입의 판정은?",
+          "after": "별도 원본 S(dept,salary)는 salary의 NULL을 허용한다. S에 서 부서 A의 두 행은 급여가 모두 NULL이다. 갱신 대상 E의 부서 A 직원은 현재 급여 100이고 E.salary에는 NOT NULL 제약이 있다. UPDATE로 이 직원의 급여에 S의 해당 부서 AVG(salary)를 대입한다. 트리거가 없고 제약을 즉시 검사할 때 결과는?"
+        },
+        {
+          "path": "/title",
+          "before": "부서별 평균 급여로 보정하는 UPDATE가 있다. 대상 직원의 부서는 급여가 모두 NULL이어서 해당 평균도 NULL이다. 급여열",
+          "after": "별도 원본 S(dept,salary)는 salary의 NULL을 허용한다. S에 서 부서 A의 두 행은 급여가 모두 NULL이다"
+        },
+        {
+          "path": "/version",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "reviewedFields": [
+        "full recursive diff against saved question snapshot",
+        "current stem",
+        "all choices.text and reasons",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "all explanation.steps and result tables",
+        "explanation.memory",
+        "fixture when present"
+      ],
+      "reviewMode": "saved_full_snapshot_diff_and_current_semantic_reread",
+      "previousFullSnapshot": "qa/content-a-review-b-masked-mock45-explanation-input.json",
+      "reasoning": "원본 S의 nullable 급여와 대상 E의 NOT NULL 급여를 분리해 불가능했던 초기 상태의 모호성을 해소했다. S의 두 NULL에 대한 AVG는 NULL이고 이를 E.salary에 대입하면 즉시 NOT NULL 제약 검사에서 문장이 실패한다. 다른 세 보기는 자동0대체·변경건너뛰기·제약해제를 가정해 부적절하며 현재 지문과 모든 해설을 다시 확인했다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-4-S22-m4-read-committed-two-sessions",
+      "sourceQuestionSha256": "cf39d6d371eb16a1b35c16385d04ddfa73ba01245dc4a1db39c8da3377eafd09",
+      "previousSourceQuestionSha256": "527b8cbdf176aadafd046bed89eb12632ba6f0315f82264a67017e2f7a545f04",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Ignore choice IDs/order only; all other allowlisted values compared exactly.",
+      "changedFields": [
+        "/explanation/memory",
+        "/version"
+      ],
+      "fullQuestionDiff": [
+        {
+          "path": "/explanation/memory",
+          "before": "자기 변경가 시성과타세션 미확정 변경가 시성을 구별한다.",
+          "after": "자기 변경의 가시성과 다른 세션의 미확정 변경에 대한 가시성을 구별한다."
+        },
+        {
+          "path": "/version",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "reviewedFields": [
+        "full recursive diff against saved question snapshot",
+        "current stem",
+        "all choices.text and reasons",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "all explanation.steps and result tables",
+        "explanation.memory",
+        "fixture when present"
+      ],
+      "reviewMode": "saved_full_snapshot_diff_and_current_semantic_reread",
+      "previousFullSnapshot": "qa/content-a-review-b-masked-mock45-explanation-input.json",
+      "reasoning": "자기 세션은 자기 미확정20을 볼 수 있지만 다른 세션 B의 일반 SELECT는 읽기 일관성에 따라 확정 데이터를 읽는다. 암기문장의 가시성 표현만 정상 문장으로 수정했고 지문·정답·단계와 일치한다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "mock-5-S11-m5-full-on-true-empty",
+      "sourceQuestionSha256": "6d601ac6b5b78445eb4336f73eef577fc60ae5cad36dc5877b1036dc306e20fd",
+      "previousSourceQuestionSha256": "4a8fb6703d925892b5557c5b60627edbbafbb488f1c6f48a0cebfedde9738438",
+      "publicInputUnchanged": false,
+      "publicInputComparisonRule": "Ignore choice IDs/order only; all other allowlisted values compared exactly.",
+      "changedFields": [
+        "/choices/0/reason",
+        "/version"
+      ],
+      "fullQuestionDiff": [
+        {
+          "path": "/choices/0/reason",
+          "before": "FULL은 빈 반대편과 의미 매칭 A 행을 보존한다.",
+          "after": "FULL은 반대편이 비어도 미매칭 A 행을 보존한다."
+        },
+        {
+          "path": "/version",
+          "before": 1,
+          "after": 2
+        }
+      ],
+      "reviewedFields": [
+        "full recursive diff against saved question snapshot",
+        "current stem",
+        "all choices.text and reasons",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "all explanation.steps and result tables",
+        "explanation.memory",
+        "fixture when present"
+      ],
+      "reviewMode": "saved_full_snapshot_diff_and_current_semantic_reread",
+      "previousFullSnapshot": "qa/content-a-review-b-masked-mock45-explanation-input.json",
+      "reasoning": "B가 비어 매칭 쌍은0이지만 FULL OUTER JOIN은 A의 두 미매칭 행을 B열 NULL로 확장해 보존한다. 0행 오답의 이유에서 잘못 붙은 의미 매칭을 미매칭으로 고친 것을 확인했고 정답2행과 단계가 일치한다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    },
+    {
+      "questionId": "S21-A01-update-filter-rows",
+      "sourceQuestionSha256": "cb8c2c25c8ab85ef6b809522672d084e3c384d76313e03b2000b72e2387e6936",
+      "previousSourceQuestionSha256": "1703b03ba0b861857df5f9c2af0291b7b7fb6ebdb2a387aa8b2ff3fd2f2696e9",
+      "publicInputUnchanged": true,
+      "publicInputComparisonRule": "Ignore choice IDs/order only; all other allowlisted values compared exactly.",
+      "changedFields": [
+        "/choices/2/reason"
+      ],
+      "fullQuestionDiff": [
+        {
+          "path": "/choices/2/reason",
+          "before": "같은 세션은자신 의미 확정 변경을 볼 수 있다.",
+          "after": "같은 세션은 자신의 미확정 변경을 볼 수 있다."
+        }
+      ],
+      "reviewedFields": [
+        "full recursive diff against saved question snapshot",
+        "current stem",
+        "all choices.text and reasons",
+        "correctChoiceIds",
+        "explanation.summary",
+        "explanation.conditions",
+        "all explanation.steps and result tables",
+        "explanation.memory",
+        "fixture when present"
+      ],
+      "reviewMode": "saved_full_snapshot_diff_and_current_semantic_reread",
+      "previousFullSnapshot": "qa/content-a-review-b-masked-recheck80-explanation-input.json",
+      "reasoning": "이전 snapshot 대비 choices[2].reason 한 필드만 바뀌었다. v>=20이 TRUE인 id2만20에서25로 갱신되고 NULL 행은 보존된다. 같은 세션의 SELECT는 자기 미확정 변경을 보므로 수정된 이유가 정확하다. 정답·입력표·해설 최종표·fixture.expectedRows가 모두 그대로 일치한다.",
+      "status": "reviewed_no_semantic_issue_found",
+      "priorAnswerExposureAtAmendment": true
+    }
+  ]
+}

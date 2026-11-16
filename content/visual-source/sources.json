@@ -1,0 +1,66 @@
+{
+  "S01": {
+    "title": "Oracle Database 19c Concepts — Introduction",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/introduction-to-oracle-database.html"
+  },
+  "S02": {
+    "title": "Oracle SQL Developer Data Modeler — Concepts and Usage",
+    "url": "https://docs.oracle.com/en/database/oracle/sql-developer-data-modeler/24.3/dmdug/data-modeler-concepts-usage.html"
+  },
+  "S03": {
+    "title": "Oracle Database 19c SQL Reference — constraint",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/constraint.html"
+  },
+  "S04": {
+    "title": "Database System Concepts, 7th edition — Normalization",
+    "url": "https://www.db-book.com/slides-dir/PDF-dir/ch7.pdf"
+  },
+  "S05": {
+    "title": "Oracle Database 19c SQL Reference — ALTER TABLE",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ALTER-TABLE.html"
+  },
+  "S06": {
+    "title": "Oracle Database 19c SQL Reference — Nulls",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html"
+  },
+  "S07": {
+    "title": "Oracle Database 19c SQL Reference — Joins",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html"
+  },
+  "S08": {
+    "title": "Oracle Database 19c SQL Reference — Using Subqueries",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Using-Subqueries.html"
+  },
+  "S09": {
+    "title": "Oracle Database 19c — SQL for Aggregation in Data Warehouses",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/dwhsg/sql-aggregation-data-warehouses.html"
+  },
+  "S10": {
+    "title": "PostgreSQL — Window Functions",
+    "url": "https://www.postgresql.org/docs/current/tutorial-window.html"
+  },
+  "S11": {
+    "title": "Oracle Database 19c SQL Reference — RANK",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/RANK.html"
+  },
+  "S12": {
+    "title": "Oracle Database 19c SQL Reference — Hierarchical Queries",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Queries.html"
+  },
+  "S13": {
+    "title": "PostgreSQL — Transactions",
+    "url": "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+  },
+  "S14": {
+    "title": "Oracle Database 19c SQL Reference — GRANT",
+    "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/GRANT.html"
+  },
+  "S15": {
+    "title": "Database System Concepts, 7th edition — Introduction to the Relational Model / Relational Algebra",
+    "url": "https://www.db-book.com/slides-dir/PDF-dir/ch2.pdf"
+  },
+  "S16": {
+    "title": "Database System Concepts, 7th edition — Introduction",
+    "url": "https://www.db-book.com/slides-dir/PDF-dir/ch1.pdf"
+  }
+}

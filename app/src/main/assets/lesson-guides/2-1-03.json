@@ -1,0 +1,913 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-03",
+  "source": {
+    "id": "2-1-03",
+    "partId": "2-1",
+    "number": 3,
+    "title": "제약조건",
+    "lectureMinutes": 36,
+    "easy": "CREATE나 ALTER에 적어 DB가 직접 강제하게 하는 입력 규칙이다. 잘못된 입력을 프로그램의 주의력에만 맡기지 않는다.",
+    "why": "PK·FK·UNIQUE·NOT NULL·CHECK가 어떤 오류를 막는지 실제 값으로 구분한다.",
+    "concepts": [
+      {
+        "term": "PRIMARY KEY",
+        "meaning": "유일한 대표 식별 기준, NULL 금지",
+        "example": "회원ID"
+      },
+      {
+        "term": "UNIQUE",
+        "meaning": "값 또는 조합의 중복 금지",
+        "example": "단일열 이메일에 중복 문자열 금지"
+      },
+      {
+        "term": "FOREIGN KEY",
+        "meaning": "부모표의 고유한 키를 참조",
+        "example": "소속부서 번호"
+      },
+      {
+        "term": "NOT NULL",
+        "meaning": "반드시 값을 넣음",
+        "example": "이름"
+      },
+      {
+        "term": "CHECK",
+        "meaning": "허용 조건을 검사",
+        "example": "급여 >= 0"
+      },
+      {
+        "term": "복합 제약",
+        "meaning": "두 열 이상의 조합에 규칙 설정",
+        "example": "UNIQUE(학번, 과목코드)"
+      },
+      {
+        "term": "제약조건명",
+        "meaning": "규칙을 식별하고 수정하기 위한 이름",
+        "example": "CHK_점수, FK_수강_학생"
+      },
+      {
+        "term": "ON DELETE",
+        "meaning": "부모 행 삭제 시 참조 행의 처리",
+        "example": "CASCADE, SET NULL"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-03-E01",
+        "title": "CHECK와 NOT NULL을 함께 봐야 하는 이유",
+        "question": "점수 CHECK(점수 BETWEEN 0 AND 100)만 있을 때와 NOT NULL까지 있을 때를 비교하자.",
+        "tables": [
+          {
+            "title": "점수입력",
+            "columns": [
+              "번호",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1",
+                "박보성",
+                "90"
+              ],
+              [
+                "2",
+                "노우성",
+                "120"
+              ],
+              [
+                "3",
+                "장정훈",
+                null
+              ]
+            ]
+          }
+        ],
+        "sql": "CREATE TABLE 시험성적 (\n  번호 NUMBER PRIMARY KEY,\n  이름 VARCHAR2(30 CHAR) NOT NULL,\n  점수 NUMBER NOT NULL,\n  CONSTRAINT CHK_점수 CHECK (점수 BETWEEN 0 AND 100)\n);",
+        "steps": [
+          "박보성의 90은 범위 안이므로 두 설정 모두 허용한다.",
+          "노우성의 120은 CHECK가 FALSE이므로 거절한다.",
+          "장정훈의 NULL은 CHECK만으로는 거절되지 않는다. 반드시 값이 필요하면 NOT NULL도 설정한다."
+        ],
+        "results": [
+          {
+            "title": "판정",
+            "columns": [
+              "이름",
+              "CHECK만",
+              "CHECK와 NOT NULL"
+            ],
+            "rows": [
+              [
+                "박보성",
+                "허용",
+                "허용"
+              ],
+              [
+                "노우성",
+                "거절",
+                "거절"
+              ],
+              [
+                "장정훈",
+                "허용",
+                "거절"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 예상 결과를 설명한 자료입니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "범위는 CHECK, 비어 있음은 NOT NULL. 둘은 같은 역할이 아니다.",
+    "traps": [
+      "단일열 UNIQUE의 NULL 취급은 DBMS별 차이가 있다. Oracle에서는 여러 NULL이 가능하나 PK는 NULL 불가다.",
+      "FK를 걸려면 참조 열의 자료형과 참조 가능한 키를 확인한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-03-Q1",
+        "question": "점수 범위 검사에 쓸 제약은?",
+        "answer": "CHECK",
+        "explanation": "허용된 조건을 검사한다."
+      },
+      {
+        "id": "2-1-03-Q2",
+        "question": "학생 수강번호 두 개 조합을 유일하게 하려면?",
+        "answer": "복합 PK 또는 복합 UNIQUE",
+        "explanation": "각 열별 UNIQUE 두 개와는 다르다."
+      },
+      {
+        "id": "2-1-03-Q3",
+        "question": "PK가 있으면 별도로 그 열에 NULL을 허용할 수 있는가?",
+        "answer": "아니다",
+        "explanation": "PK는 유일성과 NOT NULL을 함께 강제한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S23"
+    ],
+    "sourceIds": [
+      "constraint",
+      "pgconstraint"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"제약조건 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념을 먼저</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">용어를 쉬운 말로</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실제 예시 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 값·행·열인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과와 이유</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">왜 이 답인가?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">범위는 CHECK, 비어 있음은 NOT NULL. 둘은 같은 역할이 아니다.</text></svg>",
+    "version": 1
+  },
+  "purpose": "시험성적에서 범위 밖 점수와 미입력을 따로 막고, 사원이 어느 부서에 속하는지도 올바른 열에 규칙을 붙여 확인한다.",
+  "overview": "CREATE TABLE은 시험성적의 번호·이름·점수 세 컬럼과 입력 규칙을 정의한다. 원본의 점수입력 표는 입력을 시도할 값의 목록이며 이미 저장된 성적표가 아니다.",
+  "terms": [
+    {
+      "token": "CONSTRAINT",
+      "kind": "키워드",
+      "meaning": "constraint = 제약·규칙",
+      "role": "바로 뒤 CHK_점수를 제약조건 이름으로 붙인다. 새 컬럼을 만드는 단어가 아니다."
+    },
+    {
+      "token": "CHK_점수",
+      "kind": "제약조건 이름",
+      "meaning": "설계자가 정한 규칙의 이름",
+      "role": "CHECK (점수 BETWEEN 0 AND 100)를 나중에 식별할 이름이다. CHK라는 글자 자체가 CHECK를 실행하지는 않는다."
+    },
+    {
+      "token": "CHECK",
+      "kind": "키워드",
+      "meaning": "check = 조건을 검사하다",
+      "role": "현재 행의 점수가 0 이상이면서 100 이하인지 검사한다. FALSE를 거부하지만 NULL에서 생긴 UNKNOWN만으로는 거부하지 않는다."
+    },
+    {
+      "token": "NOT NULL",
+      "kind": "제약조건",
+      "meaning": "NULL을 허용하지 않음",
+      "role": "점수 NUMBER NOT NULL에서 점수 미입력을 막는다. CHECK와 별개의 규칙이다."
+    },
+    {
+      "token": "PRIMARY KEY",
+      "kind": "제약조건",
+      "meaning": "primary = 대표, key = 식별 기준",
+      "role": "번호로 시험성적 한 행을 구분한다. 중복·NULL을 금지하며 여러 열을 묶어 한 기본키를 정의할 수도 있다."
+    },
+    {
+      "token": "FOREIGN KEY / REFERENCES",
+      "kind": "키워드",
+      "meaning": "foreign = 외부 연결, references = 참조한다",
+      "role": "보충 예제의 EMPLOYEE.DEPT_ID에 외래키를 붙여 DEPARTMENT.DEPT_ID의 키를 가리킨다."
+    },
+    {
+      "token": "VARCHAR2(30 CHAR)",
+      "kind": "자료형",
+      "meaning": "최대 30문자 길이의 가변 문자열",
+      "role": "이름의 문자열 길이 제한이다. 사람 수 30명이나 30행을 뜻하지 않는다."
+    }
+  ],
+  "pitfalls": [
+    "UNIQUE는 중복 제한, NOT NULL은 NULL 제한이다. 이름에 NOT NULL만 있으면 동명이인은 허용된다.",
+    "일반 DEFAULT는 컬럼을 생략하거나 VALUES에서 DEFAULT를 지정할 때 적용할 수 있다. 명시적 NULL에는 적용하지 않는다. DEFAULT ON NULL은 별도 문법이다.",
+    "NULL은 공백 문자와 다르다. Oracle의 길이 0 문자열 처리와 한 칸 공백 문자열도 구분한다."
+  ],
+  "questions": [
+    {
+      "question": "CONSTRAINT는 여기서 무엇을 뜻하나요?",
+      "answer": "바로 뒤 CHK_점수를 제약조건 이름으로 붙인다. 새 컬럼을 만드는 단어가 아니다."
+    },
+    {
+      "question": "CHK_점수는 여기서 무엇을 뜻하나요?",
+      "answer": "CHECK (점수 BETWEEN 0 AND 100)를 나중에 식별할 이름이다. CHK라는 글자 자체가 CHECK를 실행하지는 않는다."
+    },
+    {
+      "question": "CHECK는 여기서 무엇을 뜻하나요?",
+      "answer": "현재 행의 점수가 0 이상이면서 100 이하인지 검사한다. FALSE를 거부하지만 NULL에서 생긴 UNKNOWN만으로는 거부하지 않는다."
+    },
+    {
+      "question": "NOT NULL는 여기서 무엇을 뜻하나요?",
+      "answer": "점수 NUMBER NOT NULL에서 점수 미입력을 막는다. CHECK와 별개의 규칙이다."
+    },
+    {
+      "question": "PRIMARY KEY는 여기서 무엇을 뜻하나요?",
+      "answer": "번호로 시험성적 한 행을 구분한다. 중복·NULL을 금지하며 여러 열을 묶어 한 기본키를 정의할 수도 있다."
+    },
+    {
+      "question": "FOREIGN KEY / REFERENCES는 여기서 무엇을 뜻하나요?",
+      "answer": "보충 예제의 EMPLOYEE.DEPT_ID에 외래키를 붙여 DEPARTMENT.DEPT_ID의 키를 가리킨다."
+    },
+    {
+      "question": "VARCHAR2(30 CHAR)는 여기서 무엇을 뜻하나요?",
+      "answer": "이름의 문자열 길이 제한이다. 사람 수 30명이나 30행을 뜻하지 않는다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 9,
+      "toPage": 14,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-03-E01",
+      "why": "점수 120과 아직 입력하지 않은 점수는 서로 다른 오류이므로 두 규칙으로 나누어 막는다.",
+      "effect": "구조 정의: 시험성적 테이블 생성. INSERT 문이 없어 데이터 행은 추가하지 않는다.",
+      "prerequisites": [
+        "시험성적은 아직 없고 생성 권한이 있다고 가정한다.",
+        "점수입력의 세 행은 각각 독립된 입력 시도다. 원본 SQL 자체는 CREATE 한 문장이다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "테이블 하나와 컬럼 세 개",
+          "text": "CREATE TABLE 시험성적은 표 하나를 정의한다. 괄호 안 번호·이름·점수는 그 표의 세 컬럼이고, 쉼표는 정의를 나눈다. 마지막 CONSTRAINT 줄은 네 번째 컬럼이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "CREATE TABLE 시험성적",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "번호·이름·점수"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "생성할 구조",
+            "columns": [
+              "컬럼",
+              "입력 종류",
+              "규칙"
+            ],
+            "rows": [
+              [
+                "번호",
+                "숫자",
+                "기본키"
+              ],
+              [
+                "이름",
+                "문자열",
+                "최대 30문자, NULL 금지"
+              ],
+              [
+                "점수",
+                "숫자",
+                "NULL 금지, 0~100 범위"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "점수라는 같은 열에 두 규칙",
+          "text": "점수 NUMBER NOT NULL은 점수가 반드시 있어야 한다는 규칙이다. CHK_점수는 조건 이름이고, CHECK 안 점수는 시험성적.점수를 가리킨다. 값의 필수 여부와 범위는 따로 검사한다.",
+          "codeFocus": [
+            {
+              "needle": "CONSTRAINT CHK_점수 CHECK (점수 BETWEEN 0 AND 100)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "시험성적.점수"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "규칙 대상",
+            "columns": [
+              "규칙",
+              "대상",
+              "막는 것"
+            ],
+            "rows": [
+              [
+                "NOT NULL",
+                "시험성적.점수",
+                "미입력"
+              ],
+              [
+                "CHK_점수",
+                "시험성적.점수",
+                "0 미만·100 초과"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "90과 120을 대입",
+          "text": "박보성의 90은 90>=0 AND 90<=100이 참이어서 허용한다. 노우성의 120은 120<=100이 거짓이어서 거부한다. 거부한 120을 정상 저장된 행처럼 결과표에 넣으면 안 된다.",
+          "codeFocus": [
+            {
+              "needle": "점수 BETWEEN 0 AND 100",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "90>=0 AND 90<=100",
+            "120<=100"
+          ],
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "table": {
+            "title": "독립 입력 시도: 범위 판단",
+            "columns": [
+              "번호",
+              "이름",
+              "점수",
+              "CHECK 판정"
+            ],
+            "rows": [
+              [
+                "1",
+                "박보성",
+                "90",
+                "참·허용"
+              ],
+              [
+                "2",
+                "노우성",
+                "120",
+                "거짓·거부"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-04",
+          "title": "NULL은 두 규칙을 나누어 판단",
+          "text": "장정훈의 점수가 NULL이면 범위 비교는 알 수 없음(UNKNOWN)이다. CHECK만 있다면 거부하지 않지만, 실제 SQL에는 점수 NOT NULL도 있어 입력을 거부한다. UNKNOWN을 FALSE라고 바꾸어 외우지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "점수 NUMBER NOT NULL",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "알 수 없음(UNKNOWN)",
+            "점수 NOT NULL"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "독립 입력 시도: NULL 판단",
+            "columns": [
+              "입력값",
+              "CHECK만",
+              "NOT NULL",
+              "실제 SQL 전체"
+            ],
+            "rows": [
+              [
+                null,
+                "알 수 없음·허용",
+                "거부",
+                "거부"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-05",
+          "title": "생성 결과와 입력 판정 구분",
+          "text": "CREATE만 끝낸 시험성적은 번호·이름·점수 세 컬럼이 있는 빈 표다. 원본 판정표는 나중에 입력하려 할 때의 허용·거부 비교이며 CREATE가 박보성을 자동으로 입력했다는 뜻은 아니다.",
+          "codeFocus": [
+            {
+              "needle": "CREATE TABLE",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "빈 표"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "CREATE 직후 시험성적",
+            "columns": [
+              "번호",
+              "이름",
+              "점수"
+            ],
+            "rows": []
+          }
+        }
+      ],
+      "comparison": "CHECK만 있는 가상의 비교 설정과 실제 코드의 CHECK+NOT NULL 설정을 구별한다. UNIQUE를 추가해도 점수 범위 검사를 대신할 수 없다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다.",
+      "terms": [
+        {
+          "token": "CONSTRAINT",
+          "kind": "키워드",
+          "meaning": "constraint = 제약·규칙",
+          "role": "바로 뒤 CHK_점수를 제약조건 이름으로 붙인다. 새 컬럼을 만드는 단어가 아니다."
+        },
+        {
+          "token": "CHK_점수",
+          "kind": "제약조건 이름",
+          "meaning": "설계자가 정한 규칙의 이름",
+          "role": "CHECK (점수 BETWEEN 0 AND 100)를 나중에 식별할 이름이다. CHK라는 글자 자체가 CHECK를 실행하지는 않는다."
+        },
+        {
+          "token": "CHECK",
+          "kind": "키워드",
+          "meaning": "check = 조건을 검사하다",
+          "role": "현재 행의 점수가 0 이상이면서 100 이하인지 검사한다. FALSE를 거부하지만 NULL에서 생긴 UNKNOWN만으로는 거부하지 않는다."
+        },
+        {
+          "token": "NOT NULL",
+          "kind": "제약조건",
+          "meaning": "NULL을 허용하지 않음",
+          "role": "점수 NUMBER NOT NULL에서 점수 미입력을 막는다. CHECK와 별개의 규칙이다."
+        },
+        {
+          "token": "PRIMARY KEY",
+          "kind": "제약조건",
+          "meaning": "primary = 대표, key = 식별 기준",
+          "role": "번호로 시험성적 한 행을 구분한다. 중복·NULL을 금지하며 여러 열을 묶어 한 기본키를 정의할 수도 있다."
+        },
+        {
+          "token": "VARCHAR2(30 CHAR)",
+          "kind": "자료형",
+          "meaning": "최대 30문자 길이의 가변 문자열",
+          "role": "이름의 문자열 길이 제한이다. 사람 수 30명이나 30행을 뜻하지 않는다."
+        }
+      ]
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-03-Q1",
+      "hint": "점수가 필수인지와 허용 범위인지를 따로 보자.",
+      "reasoning": "CHECK는 현재 행의 값을 조건식에 대입한다. 120은 0~100 범위를 벗어나 거부되고, NULL 금지는 NOT NULL을 따로 확인한다."
+    },
+    {
+      "checkId": "2-1-03-Q2",
+      "hint": "두 번호 각각이 유일해야 하는지, 두 번호의 짝이 유일해야 하는지 보자.",
+      "reasoning": "예를 들어 (학생 1001, 과목C01)과 (학생 1001, 과목C02)는 학생번호는 같아도 조합은 다르다. 복합 PK 또는 복합 UNIQUE 한 개로 조합 중복을 막는다. PK는 구성 열의 NULL도 금지한다."
+    },
+    {
+      "checkId": "2-1-03-Q3",
+      "hint": "대표 식별자가 비어 있어도 같은 행을 가리킬 수 있을지 생각해 보자.",
+      "reasoning": "번호 PRIMARY KEY는 중복 금지와 NULL 금지를 함께 강제한다. NULL 허용 설정으로 PK의 필수성을 취소할 수 없다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/constraint.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/INSERT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html"
+  ],
+  "reviewNotes": [
+    "원본 보완: PDF p11의 “생략되어야만 DEFAULT” 문장은 DEFAULT 키워드 지정 경우를 빠뜨렸다. 원문은 보존하고 위 주의로 보완한다.",
+    "원본 보완: PDF의 FK 설명은 PK 중심이다. Oracle FK는 조건을 갖춘 UNIQUE 키도 참조할 수 있다.",
+    "원본 전제 부족: 점수입력은 저장된 시험성적이 아니라 독립 입력 후보로 해석해야 거부 행과 저장 행이 섞이지 않는다."
+  ],
+  "supplementalExamples": [
+    {
+      "example": {
+        "id": "supplemental-2-1-03-fk",
+        "title": "가상 보충: 같은 DEPT_ID의 소속 구분",
+        "question": "EMPLOYEE.DEPT_ID와 DEPARTMENT.DEPT_ID 중 어느 쪽이 외래키인가?",
+        "tables": [
+          {
+            "title": "이미 있는 DEPARTMENT · 가상 데이터",
+            "columns": [
+              "DEPT_ID",
+              "DEPT_NAME"
+            ],
+            "rows": [
+              [
+                "10",
+                "개발팀"
+              ],
+              [
+                "20",
+                "영업팀"
+              ]
+            ]
+          }
+        ],
+        "sql": "CREATE TABLE EMPLOYEE (\n    EMP_ID NUMBER(6) PRIMARY KEY,\n    EMP_NAME VARCHAR2(50) NOT NULL,\n    DEPT_ID NUMBER(4),\n    CONSTRAINT FK_EMP_DEPT\n        FOREIGN KEY (DEPT_ID)\n        REFERENCES DEPARTMENT(DEPT_ID)\n);",
+        "steps": [],
+        "results": [
+          {
+            "title": "CREATE 직후 EMPLOYEE",
+            "columns": [
+              "EMP_ID",
+              "EMP_NAME",
+              "DEPT_ID"
+            ],
+            "rows": []
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 19c 공식 제약조건 문서 대조. Oracle 엔진 미실행."
+      },
+      "guide": {
+        "exampleId": "supplemental-2-1-03-fk",
+        "why": "입사한 사원을 실제 존재하는 부서에 배정하려면 사원 쪽 부서번호가 어느 표를 참조하는지 알아야 한다.",
+        "effect": "구조 정의: 새 EMPLOYEE 하나와 세 컬럼을 만든다. DEPARTMENT 생성이나 데이터 복사는 하지 않는다.",
+        "prerequisites": [
+          "가상 데이터다. DEPARTMENT(DEPT_ID, DEPT_NAME)는 이미 있고 DEPT_ID가 PRIMARY KEY이다.",
+          "EMP_ID 중복 없음, 이름은 길이 제한 이내이며 나머지 제약을 만족한다고 가정한다. 아래 네 입력 후보는 각각 독립된 시도다."
+        ],
+        "steps": [
+          {
+            "id": "read-01",
+            "title": "만들 표와 이미 있는 표",
+            "text": "CREATE TABLE EMPLOYEE는 새 사원표 하나를 만든다. DEPARTMENT는 이미 있는 부서표다. EMP_ID·EMP_NAME·DEPT_ID 세 컬럼만 EMPLOYEE 안에 생긴다.",
+            "codeFocus": [
+              {
+                "needle": "CREATE TABLE EMPLOYEE",
+                "occurrence": 0
+              }
+            ],
+            "highlights": [
+              "EMPLOYEE",
+              "DEPARTMENT"
+            ],
+            "focusRows": [],
+            "focusCells": [],
+            "table": {
+              "title": "객체 역할",
+              "columns": [
+                "이름",
+                "역할",
+                "이 문장으로 생성"
+              ],
+              "rows": [
+                [
+                  "EMPLOYEE",
+                  "사원표",
+                  "생성"
+                ],
+                [
+                  "DEPARTMENT",
+                  "참조할 부서표",
+                  "이미 있음"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "read-02",
+            "title": "숫자 6과 4는 값 개수가 아니다",
+            "text": "EMP_ID NUMBER(6)의 6과 DEPT_ID NUMBER(4)의 4는 숫자의 정밀도다. 10 같은 작은 수를 저장해도 된다. 자동 번호 생성이나 행 개수 제한이 아니다. Oracle NUMBER(p)는 scale 0이며 소수 입력은 반올림과 정밀도 초과를 구별한다.",
+            "codeFocus": [
+              {
+                "needle": "EMP_ID NUMBER(6) PRIMARY KEY",
+                "occurrence": 0
+              }
+            ],
+            "highlights": [
+              "숫자의 정밀도"
+            ],
+            "focusRows": [],
+            "focusCells": [],
+            "table": {
+              "title": "설계자 지정 제한",
+              "columns": [
+                "컬럼",
+                "예시 값",
+                "뜻"
+              ],
+              "rows": [
+                [
+                  "EMP_ID",
+                  "1001",
+                  "숫자 식별값"
+                ],
+                [
+                  "DEPT_ID",
+                  "10",
+                  "부서 키 값"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "read-03",
+            "title": "규칙 이름은 컬럼이 아니다",
+            "text": "CONSTRAINT는 규칙에 이름을 붙이는 SQL 문법이다. FK_EMP_DEPT는 설계자가 지은 이름이고, 실제 외래키 종류는 다음 FOREIGN KEY가 정한다. 이 줄 때문에 FK_EMP_DEPT라는 표나 컬럼은 생기지 않는다.",
+            "codeFocus": [
+              {
+                "needle": "CONSTRAINT FK_EMP_DEPT",
+                "occurrence": 0
+              }
+            ],
+            "highlights": [
+              "FK_EMP_DEPT"
+            ],
+            "focusRows": [],
+            "focusCells": [],
+            "table": {
+              "title": "토큰 구분",
+              "columns": [
+                "토큰",
+                "종류"
+              ],
+              "rows": [
+                [
+                  "CONSTRAINT",
+                  "SQL 키워드"
+                ],
+                [
+                  "FK_EMP_DEPT",
+                  "제약조건 이름"
+                ],
+                [
+                  "FOREIGN KEY",
+                  "제약조건 종류"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "read-04",
+            "title": "왼쪽 사원 열이 오른쪽 부서 키를 참조",
+            "text": "FOREIGN KEY (DEPT_ID)는 지금 만드는 EMPLOYEE의 DEPT_ID를 말한다. REFERENCES DEPARTMENT(DEPT_ID)는 상대 부서표의 DEPARTMENT.DEPT_ID를 지정한다. 이름은 같아도 소속 표가 다르며 외래키는 EMPLOYEE.DEPT_ID다.",
+            "codeFocus": [
+              {
+                "needle": "FOREIGN KEY (DEPT_ID)",
+                "occurrence": 0
+              }
+            ],
+            "highlights": [
+              "EMPLOYEE.DEPT_ID",
+              "DEPARTMENT.DEPT_ID"
+            ],
+            "focusRows": [],
+            "focusCells": [],
+            "table": {
+              "title": "참조 방향",
+              "columns": [
+                "역할",
+                "정확한 소속",
+                "규칙"
+              ],
+              "rows": [
+                [
+                  "외래키 쪽",
+                  "EMPLOYEE.DEPT_ID",
+                  "부서 키를 참조"
+                ],
+                [
+                  "부모 키 쪽",
+                  "DEPARTMENT.DEPT_ID",
+                  "이미 PK"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "read-05",
+            "title": "10은 부모에 있고 99는 없다",
+            "text": "박강열의 10과 양지훈의 10은 DEPARTMENT에 있어 각각 허용한다. 외래키는 여러 사원이 같은 부서를 가리키는 것을 금지하지 않는다. 유성재의 99는 부모 키에 없어 거부한다. 아래는 저장 결과가 아닌 독립 입력 시도다.",
+            "codeFocus": [
+              {
+                "needle": "REFERENCES DEPARTMENT(DEPT_ID)",
+                "occurrence": 0
+              }
+            ],
+            "highlights": [
+              "부모 키에 없어 거부"
+            ],
+            "focusRows": [],
+            "focusCells": [
+              {
+                "row": 0,
+                "column": 2
+              },
+              {
+                "row": 1,
+                "column": 2
+              },
+              {
+                "row": 2,
+                "column": 2
+              }
+            ],
+            "table": {
+              "title": "독립 입력 시도 · 가상 데이터",
+              "columns": [
+                "EMP_ID",
+                "EMP_NAME",
+                "DEPT_ID",
+                "판정"
+              ],
+              "rows": [
+                [
+                  "1001",
+                  "박강열",
+                  "10",
+                  "허용"
+                ],
+                [
+                  "1002",
+                  "양지훈",
+                  "10",
+                  "허용"
+                ],
+                [
+                  "1003",
+                  "유성재",
+                  "99",
+                  "거부"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "read-06",
+            "title": "NULL은 없는 부서번호 99와 다르다",
+            "text": "DEPT_ID에는 NOT NULL이 없다. 김현수의 NULL은 특정 부서 키를 주장하지 않는 상태여서 이 단일 열 FK 자체로는 거부하지 않는다. 반드시 부서를 정해야 하는 업무라면 DEPT_ID에 NOT NULL을 별도로 둔다.",
+            "codeFocus": [
+              {
+                "needle": "DEPT_ID NUMBER(4)",
+                "occurrence": 0
+              }
+            ],
+            "highlights": [
+              "NOT NULL이 없다"
+            ],
+            "focusRows": [],
+            "focusCells": [],
+            "table": {
+              "title": "독립 입력 시도 · 가상 데이터",
+              "columns": [
+                "EMP_ID",
+                "EMP_NAME",
+                "DEPT_ID",
+                "판정"
+              ],
+              "rows": [
+                [
+                  "1004",
+                  "김현수",
+                  null,
+                  "허용: NOT NULL 없음"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "read-07",
+            "title": "실행 후에는 빈 사원표",
+            "text": "이 전체 SQL은 CREATE 한 문장이다. 줄별로 다른 테이블을 만들거나 부서의 10과 20을 사원표에 복사하지 않는다. 실제 사원 행은 이후 INSERT를 해야 생긴다.",
+            "codeFocus": [
+              {
+                "needle": "CREATE TABLE EMPLOYEE",
+                "occurrence": 0
+              }
+            ],
+            "highlights": [
+              "CREATE 한 문장"
+            ],
+            "focusRows": [],
+            "focusCells": [],
+            "table": {
+              "title": "CREATE 직후 EMPLOYEE",
+              "columns": [
+                "EMP_ID",
+                "EMP_NAME",
+                "DEPT_ID"
+              ],
+              "rows": []
+            }
+          }
+        ],
+        "comparison": "부모에 없는 숫자 99를 넣는 것과 부서번호가 NULL인 것은 다르다. FK가 있다는 이유만으로 DEPT_ID가 UNIQUE 또는 NOT NULL이 되지 않는다.",
+        "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다.",
+        "terms": [
+          {
+            "token": "EMPLOYEE",
+            "kind": "테이블명",
+            "meaning": "employee = 사원",
+            "role": "CREATE TABLE 뒤에서 새로 만들 사원표 하나를 가리킨다."
+          },
+          {
+            "token": "DEPARTMENT",
+            "kind": "테이블명",
+            "meaning": "department = 부서",
+            "role": "이미 있는 부모표다. 이 CREATE 문으로 새로 만들지 않는다."
+          },
+          {
+            "token": "EMP_ID",
+            "kind": "컬럼명",
+            "meaning": "employee identifier = 사원 식별번호",
+            "role": "EMPLOYEE의 기본키 컬럼이다. 사원 1001과 1002를 구분한다."
+          },
+          {
+            "token": "EMP_NAME",
+            "kind": "컬럼명",
+            "meaning": "employee name = 사원 이름",
+            "role": "EMPLOYEE의 이름 컬럼이다. NOT NULL이지만 UNIQUE는 없어 동명이인을 금지하지 않는다."
+          },
+          {
+            "token": "DEPT_ID",
+            "kind": "컬럼명",
+            "meaning": "department identifier = 부서 식별번호",
+            "role": "FOREIGN KEY 안에서는 EMPLOYEE.DEPT_ID, REFERENCES 안에서는 DEPARTMENT.DEPT_ID다. 같은 이름이지만 다른 소속이다."
+          },
+          {
+            "token": "CONSTRAINT",
+            "kind": "키워드",
+            "meaning": "constraint = 입력 규칙",
+            "role": "바로 뒤에 쓰인 FK_EMP_DEPT를 규칙 이름으로 지정한다."
+          },
+          {
+            "token": "FK_EMP_DEPT",
+            "kind": "제약조건 이름",
+            "meaning": "설계자가 지은 연결 규칙 이름",
+            "role": "테이블이나 컬럼이 아니다. 이름에FK가 있다고 자동으로 외래키가 되지 않는다."
+          },
+          {
+            "token": "FOREIGN KEY",
+            "kind": "제약조건 종류",
+            "meaning": "foreign key = 다른 키를 참조하는 열",
+            "role": "EMPLOYEE의 DEPT_ID에 외래키 규칙을 붙인다. 컬럼을 새로 추가하거나 값을 복사하지 않는다."
+          },
+          {
+            "token": "REFERENCES",
+            "kind": "키워드",
+            "meaning": "references = 참조한다",
+            "role": "오른쪽 DEPARTMENT 테이블의 DEPT_ID 키를 참조 대상으로 지정한다."
+          },
+          {
+            "token": "NUMBER(6)",
+            "kind": "자료형",
+            "meaning": "정밀도 6·소수 자리 0의 숫자",
+            "role": "EMP_ID의 숫자 제한이며 행 6개나 자동번호를 뜻하지 않는다. 소수 반올림과 정밀도 초과를 구분한다."
+          },
+          {
+            "token": "NUMBER(4)",
+            "kind": "자료형",
+            "meaning": "정밀도 4·소수 자리 0의 숫자",
+            "role": "DEPT_ID에 10 같은 작은 숫자도 가능하다. 문자부서코드는 이 숫자 예제에 넣지 않는다."
+          },
+          {
+            "token": "VARCHAR2(50)",
+            "kind": "자료형",
+            "meaning": "최대 길이 50의 가변 문자열",
+            "role": "EMP_NAME이 저장할 문자열의 한도다. BYTE/CHAR를 생략했으므로 환경 설정을 확인하며 무조건 한글 50글자로 말하지 않는다."
+          },
+          {
+            "token": "PRIMARY KEY / NOT NULL",
+            "kind": "제약조건",
+            "meaning": "대표 식별 / 값 필수",
+            "role": "EMP_ID는중복과NULL금지, EMP_NAME은NULL금지다. DEPT_ID에는NOT NULL이 없어NULL을허용한다."
+          }
+        ]
+      }
+    }
+  ]
+}

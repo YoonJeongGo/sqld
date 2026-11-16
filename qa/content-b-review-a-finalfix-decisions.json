@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "content_b",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "inputSha256": "4bf696569ba25d7d7c3dbe032f09439f0277258eda5b8b677622b1d6026f57c0",
+  "decisions": [
+    {
+      "questionId": "mock-1-M10-reservation-timeslot",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "2NF는 선택된 PK 하나만이 아니라 모든 후보키를 기준으로 비주요 속성의 완전 종속을 요구한다. 업무 후보키 (학생 ID,과목 ID)의 진부분집합 과목 ID가 비주요 과목명을 결정하므로 부분 종속이 남는다. 새 단일 인조 PK가 이 종속을 제거하지 않는다. 원자적이라는 조건으로 1NF는 유지되고 2NF부터 위반한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S06-mock-in-subset-null",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "IN은 x=2 OR x=NULL이다. x=2는 TRUE OR UNKNOWN으로 TRUE, x=1은 FALSE OR UNKNOWN으로 UNKNOWN, NULL은 UNKNOWN OR UNKNOWN이다. WHERE는 TRUE만 남기므로 값 2인 한 행만 반환된다.",
+      "conditionsOrIssues": []
+    }
+  ],
+  "priorExposureBoundary": "The author described the intended scope of the replacement without sharing current choice IDs or mappings. The IN item is a wording recheck of an earlier independently solved item, not a first exposure."
+}

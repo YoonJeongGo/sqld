@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-14T05:18:17.312803+00:00",
+  "method": "allowlist_without_answers_explanations_expected_results_and_masked_choice_ids",
+  "questions": [
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "9906e1c4c96c98622de9eff7463df5a1af458562c38ae925bfbfbd255c203cfb",
+      "publicInputSha256": "35f57a0be4d921f366c8c697f29322b694b72154466d51d473269e10197b3c83",
+      "question": {
+        "id": "S05-R05",
+        "version": 2,
+        "title": "Oracle NVL(x,0)이 x 대신 둘째 인자인 대체값 0을 선택하는 조건은?",
+        "stem": "Oracle NVL(x,0)이 x 대신 둘째 인자인 대체값 0을 선택하는 조건은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "x가 어떤 숫자이든 항상"
+          },
+          {
+            "id": "r2",
+            "text": "x가 NULL일 때"
+          },
+          {
+            "id": "r3",
+            "text": "입력 행이 존재하지 않을 때 새 행을 만들어서"
+          },
+          {
+            "id": "r4",
+            "text": "x가 0이 아닐 때만"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "804838009ed96d1246bdbd3235d0035054cdef2c49235f1f73d4b13c4c33fb50",
+      "publicInputSha256": "e00e507bf1274a283736551407a345b5405fba2dba699f4b07c7ffbd597480f4",
+      "question": {
+        "id": "S08-A03",
+        "version": 2,
+        "title": "dept가 NULL인 두 행과 A인 한 행을 GROUP BY한 뒤 COUNT(*)를 구한다. 그룹별 집계 값과 출력",
+        "stem": "dept가 NULL인 두 행과 A인 한 행을 GROUP BY한 뒤 COUNT(*)를 구한다. 그룹별 집계 값과 출력 행 수는?",
+        "sql": "SELECT dept,COUNT(*) FROM T GROUP BY dept",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "dept"
+            ],
+            "rows": [
+              [
+                null
+              ],
+              [
+                null
+              ],
+              [
+                "A"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "모두 한 그룹으로 합쳐 COUNT(*)=3; 출력 1행"
+          },
+          {
+            "id": "r2",
+            "text": "NULL을 서로 다른 두 그룹으로 나누어 각각 COUNT(*)=1, A 그룹도 COUNT(*)=1; 출력 3행"
+          },
+          {
+            "id": "r3",
+            "text": "NULL 그룹의 COUNT(*)=2, A 그룹의 COUNT(*)=1; 출력 2행"
+          },
+          {
+            "id": "r4",
+            "text": "NULL 그룹은 제외되고 A 그룹의 COUNT(*)=1만 남는다; 출력 1행"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (dept VARCHAR2(100));",
+          "setupSql": "INSERT INTO T VALUES (NULL);\nINSERT INTO T VALUES (NULL);\nINSERT INTO T VALUES ('A');",
+          "query": "SELECT dept,COUNT(*) FROM T GROUP BY dept",
+          "constraints": [
+            "T: 지문에 제약이 추가되지 않았다면 PK/UNIQUE/NOT NULL 제약 없음. 표시된 중복 행을 보존한다."
+          ],
+          "sessionSettings": [
+            "NLS_CALENDAR='GREGORIAN'",
+            "NLS_NUMERIC_CHARACTERS='.,'",
+            "날짜 입력은 명시적 DATE 리터럴 또는 형식 모델을 사용한다.",
+            "결과는 typed 값으로 비교하며 표시용 숫자·날짜 서식은 별도이다."
+          ],
+          "ordered": false
+        }
+      }
+    }
+  ],
+  "inputSha256": "5d3dcec9ff963fcc96e38b751c21f300f305176067a6e2a8d2abd677921fc429",
+  "choiceMapSha256": "d1dbd8543eb5461f9905dde800e1032271f02172c70b2fa55187f7de2b008049"
+}

@@ -1,0 +1,5884 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-14T04:52:30.581450+00:00",
+  "method": "allowlist_without_answers_explanations_expected_results",
+  "questions": [
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "409e42ab0b906dfa7697e5884e965b4e8a6f2e50a79be925828168cb30e9aeed",
+      "publicInputSha256": "f0c559de569632f0f2fadd8fec0ea638d545c882e79f7064c9bdf3c352eee0e8",
+      "question": {
+        "id": "S09-A01-mixed-sort",
+        "version": 1,
+        "title": "부서별 성적 명단의 id 순서는?",
+        "stem": "부서별 성적 명단의 id 순서는?",
+        "sql": "SELECT id FROM T ORDER BY dept ASC, score DESC NULLS LAST, id DESC",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "dept",
+              "score"
+            ],
+            "rows": [
+              [
+                "1",
+                "2",
+                "80"
+              ],
+              [
+                "2",
+                "1",
+                null
+              ],
+              [
+                "3",
+                "1",
+                "90"
+              ],
+              [
+                "4",
+                "1",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(4) / (3) / (2) / (1)"
+          },
+          {
+            "id": "b",
+            "text": "(3) / (4) / (2) / (1)"
+          },
+          {
+            "id": "c",
+            "text": "(2) / (4) / (3) / (1)"
+          },
+          {
+            "id": "d",
+            "text": "(4) / (3) / (1) / (2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, dept NUMBER, score NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 2, 80);\nINSERT INTO T VALUES (2, 1, NULL);\nINSERT INTO T VALUES (3, 1, 90);\nINSERT INTO T VALUES (4, 1, 90);",
+          "query": "SELECT id FROM T ORDER BY dept ASC, score DESC NULLS LAST, id DESC",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "7a61dfdf2947d0c441292d323bfa2c8f0fcf1b32b81bf77bf87fb82b8e63451b",
+      "publicInputSha256": "7481945a233cfe584ff98ebfb0575473ba9b7c047119e7549e086fc2fcbed21c",
+      "question": {
+        "id": "S09-A02-case-priority",
+        "version": 1,
+        "title": "미채점 행을 먼저 확인한 뒤 id순으로 정렬한다. 출력은?",
+        "stem": "미채점 행을 먼저 확인한 뒤 id순으로 정렬한다. 출력은?",
+        "sql": "SELECT id FROM T ORDER BY CASE WHEN score IS NULL THEN 0 ELSE 1 END, id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "dept",
+              "score"
+            ],
+            "rows": [
+              [
+                "1",
+                "2",
+                "80"
+              ],
+              [
+                "2",
+                "1",
+                null
+              ],
+              [
+                "3",
+                "1",
+                "90"
+              ],
+              [
+                "4",
+                "1",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1) / (2) / (3) / (4)"
+          },
+          {
+            "id": "c",
+            "text": "(3) / (4) / (1) / (2)"
+          },
+          {
+            "id": "d",
+            "text": "(2)만"
+          },
+          {
+            "id": "a",
+            "text": "(2) / (1) / (3) / (4)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, dept NUMBER, score NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 2, 80);\nINSERT INTO T VALUES (2, 1, NULL);\nINSERT INTO T VALUES (3, 1, 90);\nINSERT INTO T VALUES (4, 1, 90);",
+          "query": "SELECT id FROM T ORDER BY CASE WHEN score IS NULL THEN 0 ELSE 1 END, id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ac2d30cafe4a67e22253b9d6d826074188c677fdb36e3638313d46ad3bb3f347",
+      "publicInputSha256": "e0ee026bba92a7b4bd69ec30529184947ef0477a09bb2f87c86f74e18891ca5c",
+      "question": {
+        "id": "S09-A03-alias-derived",
+        "version": 1,
+        "title": "계산된 비용으로 내림차순 정렬한 결과는?",
+        "stem": "계산된 비용으로 내림차순 정렬한 결과는?",
+        "sql": "SELECT id, price-discount AS net FROM P ORDER BY net DESC, id",
+        "tables": [
+          {
+            "title": "P",
+            "columns": [
+              "id",
+              "price",
+              "discount"
+            ],
+            "rows": [
+              [
+                "1",
+                "100",
+                "40"
+              ],
+              [
+                "2",
+                "80",
+                "10"
+              ],
+              [
+                "3",
+                "90",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, 100) / (3, 90) / (2, 80)"
+          },
+          {
+            "id": "d",
+            "text": "(2, 70) / (3, 60) / (1, 60)"
+          },
+          {
+            "id": "a",
+            "text": "(2, 70) / (1, 60) / (3, 60)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 60) / (3, 60) / (2, 70)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE P (id NUMBER, price NUMBER, discount NUMBER);",
+          "setupSql": "INSERT INTO P VALUES (1, 100, 40);\nINSERT INTO P VALUES (2, 80, 10);\nINSERT INTO P VALUES (3, 90, 30);",
+          "query": "SELECT id, price-discount AS net FROM P ORDER BY net DESC, id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "879a963f6e5bc5b549e595db55a014051867063c1b3d78d4261477d9e380a170",
+      "publicInputSha256": "ee3131839568c25ddd0b42baf786c84105d44f59e91a99b77081bb6116491576",
+      "question": {
+        "id": "S09-A04-null-explicit-desc",
+        "version": 1,
+        "title": "NULLS LAST를 붙인 내림차순의 값 나열은?",
+        "stem": "NULLS LAST를 붙인 내림차순의 값 나열은?",
+        "sql": "SELECT v FROM T ORDER BY v DESC NULLS LAST",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "0"
+              ],
+              [
+                null
+              ],
+              [
+                "-2"
+              ],
+              [
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(-2) / (0) / (5) / (NULL)"
+          },
+          {
+            "id": "a",
+            "text": "(5) / (0) / (-2) / (NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(NULL) / (5) / (0) / (-2)"
+          },
+          {
+            "id": "c",
+            "text": "(5) / (NULL) / (0) / (-2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (0);\nINSERT INTO T VALUES (NULL);\nINSERT INTO T VALUES (-2);\nINSERT INTO T VALUES (5);",
+          "query": "SELECT v FROM T ORDER BY v DESC NULLS LAST",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "502adc0870fb1eaf617d77fc3980a7366097d1711b45e091c5fa6d5b3a571d3d",
+      "publicInputSha256": "ce3915226562dd9f9bb3f863a291fe3d0a6f7818acc5bed9b1c92c71e551c006",
+      "question": {
+        "id": "S09-A05-group-sort-total",
+        "version": 1,
+        "title": "부서별 합계가 큰 순서로 보인 결과는?",
+        "stem": "부서별 합계가 큰 순서로 보인 결과는?",
+        "sql": "SELECT d,SUM(v) AS total FROM T GROUP BY d ORDER BY total DESC,d",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "1",
+                "20"
+              ],
+              [
+                "2",
+                "25"
+              ],
+              [
+                "3",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 30) / (3, 30) / (2, 25)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10) / (1, 20) / (2, 25) / (3, 30)"
+          },
+          {
+            "id": "c",
+            "text": "(2, 25) / (1, 30) / (3, 30)"
+          },
+          {
+            "id": "d",
+            "text": "(3, 30) / (1, 30) / (2, 25)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nINSERT INTO T VALUES (1, 20);\nINSERT INTO T VALUES (2, 25);\nINSERT INTO T VALUES (3, 30);",
+          "query": "SELECT d,SUM(v) AS total FROM T GROUP BY d ORDER BY total DESC,d",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "e7d3e59237abd1d2feb33a501ff7856a2c565973c88ef61f8b023d946d25e2bb",
+      "publicInputSha256": "bec925fcc77e2bd042e4d8c497a0003f3eb869daa298ed0ec54c94fc04044ce4",
+      "question": {
+        "id": "S09-A06-distinct-position",
+        "version": 1,
+        "title": "중복 제거한 두 열을 SELECT 두 번째 위치로 정렬한다. 결과는?",
+        "stem": "중복 제거한 두 열을 SELECT 두 번째 위치로 정렬한다. 결과는?",
+        "sql": "SELECT DISTINCT a,b FROM T ORDER BY 2 DESC,1",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "a",
+              "b"
+            ],
+            "rows": [
+              [
+                "1",
+                "2"
+              ],
+              [
+                "1",
+                "2"
+              ],
+              [
+                "2",
+                "3"
+              ],
+              [
+                "3",
+                "2"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1, 2) / (1, 2) / (2, 3) / (3, 2)"
+          },
+          {
+            "id": "c",
+            "text": "(3, 2) / (2, 3) / (1, 2)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 2) / (3, 2) / (2, 3)"
+          },
+          {
+            "id": "a",
+            "text": "(2, 3) / (1, 2) / (3, 2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (a NUMBER, b NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 2);\nINSERT INTO T VALUES (1, 2);\nINSERT INTO T VALUES (2, 3);\nINSERT INTO T VALUES (3, 2);",
+          "query": "SELECT DISTINCT a,b FROM T ORDER BY 2 DESC,1",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "09a5017b91b364de6ff573518a007b133048f88148fe94da02e525cf063fba7d",
+      "publicInputSha256": "fa0bb2417593112bfc7d5b87df04132239280dd6d09e773ebafff75ebd20c318",
+      "question": {
+        "id": "S10-A01-duplicate-multiplication",
+        "version": 1,
+        "title": "각 주문과 각 태그를 고객번호로 결합하면 id,tag 결과는?",
+        "stem": "각 주문과 각 태그를 고객번호로 결합하면 id,tag 결과는?",
+        "sql": "SELECT O.id,G.tag FROM O JOIN G ON O.cid=G.cid ORDER BY O.id,G.tag",
+        "tables": [
+          {
+            "title": "O",
+            "columns": [
+              "id",
+              "cid"
+            ],
+            "rows": [
+              [
+                "1",
+                "7"
+              ],
+              [
+                "2",
+                "7"
+              ],
+              [
+                "3",
+                "8"
+              ]
+            ]
+          },
+          {
+            "title": "G",
+            "columns": [
+              "cid",
+              "tag"
+            ],
+            "rows": [
+              [
+                "7",
+                "10"
+              ],
+              [
+                "7",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 10) / (2, 10)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 10) / (1, 20) / (2, 10) / (2, 20)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10) / (2, 20)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 10) / (1, 20) / (2, 10) / (2, 20) / (3, NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE O (id NUMBER, cid NUMBER);\nCREATE TABLE G (cid NUMBER, tag NUMBER);",
+          "setupSql": "INSERT INTO O VALUES (1, 7);\nINSERT INTO O VALUES (2, 7);\nINSERT INTO O VALUES (3, 8);\nINSERT INTO G VALUES (7, 10);\nINSERT INTO G VALUES (7, 20);",
+          "query": "SELECT O.id,G.tag FROM O JOIN G ON O.cid=G.cid ORDER BY O.id,G.tag",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2184b21de6caa29fcfea39dec5cb06b8a152d2ef8b9eb9a761196ec16e658683",
+      "publicInputSha256": "d6be6a5d365ab4050e0488a0cb6ebdb98f150cc8d062039fef74f04f2aeed7d2",
+      "question": {
+        "id": "S10-A02-null-pair-filter",
+        "version": 1,
+        "title": "NULL 키가 있는 내부 조인의 집계 결과는?",
+        "stem": "NULL 키가 있는 내부 조인의 집계 결과는?",
+        "sql": "SELECT COUNT(*) AS n FROM A JOIN B ON A.k=B.k",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                null
+              ],
+              [
+                null
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1)"
+          },
+          {
+            "id": "b",
+            "text": "(3)"
+          },
+          {
+            "id": "c",
+            "text": "(0)"
+          },
+          {
+            "id": "d",
+            "text": "(6)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (k NUMBER);\nCREATE TABLE B (k NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (NULL);\nINSERT INTO A VALUES (NULL);\nINSERT INTO B VALUES (1);\nINSERT INTO B VALUES (NULL);",
+          "query": "SELECT COUNT(*) AS n FROM A JOIN B ON A.k=B.k",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2b7c19adb563fa5336ba9783b5565f3e6cc9995005a3ce1b0f004cdd20470953",
+      "publicInputSha256": "c3d067acb0fa4036af075f3131057655102c67021a9e6805bbb34de274e0afe6",
+      "question": {
+        "id": "S10-A03-overlap-band",
+        "version": 1,
+        "title": "등급 구간의 양 끝을 포함한다. 급여20이 붙는 등급은?",
+        "stem": "등급 구간의 양 끝을 포함한다. 급여20이 붙는 등급은?",
+        "sql": "SELECT E.id,G.grade FROM E JOIN G ON E.sal BETWEEN G.lo AND G.hi ORDER BY G.grade",
+        "tables": [
+          {
+            "title": "E",
+            "columns": [
+              "id",
+              "sal"
+            ],
+            "rows": [
+              [
+                "1",
+                "20"
+              ]
+            ]
+          },
+          {
+            "title": "G",
+            "columns": [
+              "grade",
+              "lo",
+              "hi"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "20"
+              ],
+              [
+                "2",
+                "20",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1, 1)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 2)"
+          },
+          {
+            "id": "d",
+            "text": "0행"
+          },
+          {
+            "id": "a",
+            "text": "(1, 1) / (1, 2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE E (id NUMBER, sal NUMBER);\nCREATE TABLE G (grade NUMBER, lo NUMBER, hi NUMBER);",
+          "setupSql": "INSERT INTO E VALUES (1, 20);\nINSERT INTO G VALUES (1, 10, 20);\nINSERT INTO G VALUES (2, 20, 30);",
+          "query": "SELECT E.id,G.grade FROM E JOIN G ON E.sal BETWEEN G.lo AND G.hi ORDER BY G.grade",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5d996961b477d369ddec5f20e982bb98843eb05221f1ec7f62fd278eddfe72d6",
+      "publicInputSha256": "e7acfafea0f5f37fb6a6077ba26055493b43a206aa18f10491504b5cc89a66f5",
+      "question": {
+        "id": "S10-A04-cross-filter",
+        "version": 1,
+        "title": "모든 쌍 중 a<b만 선택한 결과는?",
+        "stem": "모든 쌍 중 a<b만 선택한 결과는?",
+        "sql": "SELECT A.a,B.b FROM A CROSS JOIN B WHERE A.a<B.b ORDER BY A.a,B.b",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "a"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "b"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, 2) / (3, 3)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 2) / (1, 3) / (3, 2) / (3, 3)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 2) / (1, 3)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 2) / (1, 3) / (3, 3)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (a NUMBER);\nCREATE TABLE B (b NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (3);\nINSERT INTO B VALUES (2);\nINSERT INTO B VALUES (3);",
+          "query": "SELECT A.a,B.b FROM A CROSS JOIN B WHERE A.a<B.b ORDER BY A.a,B.b",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6a54b35c17bd09186e861d5d8cd0c20aede0e816d20bcc77b2b7b1d3f348eafb",
+      "publicInputSha256": "e8addf0ebac91290fabd2d579a885121d0ae8cd64578fdfab4b22110969d4f0c",
+      "question": {
+        "id": "S10-A05-aggregate-after-join",
+        "version": 1,
+        "title": "주문별 여러 상세행을 붙여 고객별 수량을 합친 결과는?",
+        "stem": "주문별 여러 상세행을 붙여 고객별 수량을 합친 결과는?",
+        "sql": "SELECT O.cid,SUM(L.qty) AS qty FROM O JOIN L ON O.id=L.oid GROUP BY O.cid ORDER BY O.cid",
+        "tables": [
+          {
+            "title": "O",
+            "columns": [
+              "id",
+              "cid"
+            ],
+            "rows": [
+              [
+                "1",
+                "7"
+              ],
+              [
+                "2",
+                "7"
+              ],
+              [
+                "3",
+                "8"
+              ]
+            ]
+          },
+          {
+            "title": "L",
+            "columns": [
+              "oid",
+              "qty"
+            ],
+            "rows": [
+              [
+                "1",
+                "2"
+              ],
+              [
+                "1",
+                "3"
+              ],
+              [
+                "2",
+                "1"
+              ],
+              [
+                "3",
+                "4"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(7, 10) / (8, 10)"
+          },
+          {
+            "id": "a",
+            "text": "(7, 6) / (8, 4)"
+          },
+          {
+            "id": "b",
+            "text": "(7, 3) / (8, 1)"
+          },
+          {
+            "id": "c",
+            "text": "(7, 5) / (8, 4)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE O (id NUMBER, cid NUMBER);\nCREATE TABLE L (oid NUMBER, qty NUMBER);",
+          "setupSql": "INSERT INTO O VALUES (1, 7);\nINSERT INTO O VALUES (2, 7);\nINSERT INTO O VALUES (3, 8);\nINSERT INTO L VALUES (1, 2);\nINSERT INTO L VALUES (1, 3);\nINSERT INTO L VALUES (2, 1);\nINSERT INTO L VALUES (3, 4);",
+          "query": "SELECT O.cid,SUM(L.qty) AS qty FROM O JOIN L ON O.id=L.oid GROUP BY O.cid ORDER BY O.cid",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ec57ac6b7c3a9dbc212c9d5601a2e8f6c52a43213ecdc0454d5ad3390cc4f268",
+      "publicInputSha256": "593bea9f2f58d683e59f97eb71b8a95d9c3909b5e3bb3e045de9a694195a0ab6",
+      "question": {
+        "id": "S10-A06-two-key-matching",
+        "version": 1,
+        "title": "연도와 번호를 함께 비교한 내부 조인 결과는?",
+        "stem": "연도와 번호를 함께 비교한 내부 조인 결과는?",
+        "sql": "SELECT A.y,A.no,B.v FROM A JOIN B ON A.y=B.y AND A.no=B.no ORDER BY A.y",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "y",
+              "no"
+            ],
+            "rows": [
+              [
+                "2025",
+                "1"
+              ],
+              [
+                "2026",
+                "1"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "y",
+              "no",
+              "v"
+            ],
+            "rows": [
+              [
+                "2025",
+                "1",
+                "10"
+              ],
+              [
+                "2026",
+                "2",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(2025, 1, 10)"
+          },
+          {
+            "id": "b",
+            "text": "(2025, 1, 10) / (2026, 1, 10)"
+          },
+          {
+            "id": "c",
+            "text": "(2025, 1, 10) / (2026, 1, 20)"
+          },
+          {
+            "id": "d",
+            "text": "0행"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (y NUMBER, no NUMBER);\nCREATE TABLE B (y NUMBER, no NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (2025, 1);\nINSERT INTO A VALUES (2026, 1);\nINSERT INTO B VALUES (2025, 1, 10);\nINSERT INTO B VALUES (2026, 2, 20);",
+          "query": "SELECT A.y,A.no,B.v FROM A JOIN B ON A.y=B.y AND A.no=B.no ORDER BY A.y",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "e0726bcd8c0569700cd77bdade301740a7d8676a9d78202f10737e487fb493f3",
+      "publicInputSha256": "661d4a6cd1542577713ba40e79e576fdd0d1a15d924b2f7d5d23b6c822f64bad",
+      "question": {
+        "id": "S10-A07-empty-cross",
+        "version": 1,
+        "title": "오른쪽 입력이 비어 있는 CROSS JOIN의 COUNT(*)는?",
+        "stem": "오른쪽 입력이 비어 있는 CROSS JOIN의 COUNT(*)는?",
+        "sql": "SELECT COUNT(*) AS n FROM A CROSS JOIN B",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "id"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "id"
+            ],
+            "rows": []
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(2)"
+          },
+          {
+            "id": "c",
+            "text": "0행"
+          },
+          {
+            "id": "d",
+            "text": "(NULL)"
+          },
+          {
+            "id": "a",
+            "text": "(0)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (id NUMBER);\nCREATE TABLE B (id NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);",
+          "query": "SELECT COUNT(*) AS n FROM A CROSS JOIN B",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0a7bfa161ad741d10f4b5be8e8f2eb96d2b3c85f241e34daba0eba90295342b9",
+      "publicInputSha256": "5f775a4dbbff43997f8de8a5a98473f17937506b71d011fce0c2c90c807edd57",
+      "question": {
+        "id": "S11-A01-on-paid-preserve",
+        "version": 1,
+        "title": "유료 주문만 ON에 넣은 LEFT JOIN의 결과는?",
+        "stem": "유료 주문만 ON에 넣은 LEFT JOIN의 결과는?",
+        "sql": "SELECT C.id,O.id FROM C LEFT JOIN O ON C.id=O.cid AND O.paid=1 ORDER BY C.id",
+        "tables": [
+          {
+            "title": "C",
+            "columns": [
+              "id"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "O",
+            "columns": [
+              "id",
+              "cid",
+              "paid"
+            ],
+            "rows": [
+              [
+                "10",
+                "1",
+                "1"
+              ],
+              [
+                "11",
+                "1",
+                "0"
+              ],
+              [
+                "12",
+                "2",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 10) / (2, 12) / (3, NULL)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 10) / (2, NULL) / (3, NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 10) / (1, 11) / (2, 12) / (3, NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE C (id NUMBER);\nCREATE TABLE O (id NUMBER, cid NUMBER, paid NUMBER);",
+          "setupSql": "INSERT INTO C VALUES (1);\nINSERT INTO C VALUES (2);\nINSERT INTO C VALUES (3);\nINSERT INTO O VALUES (10, 1, 1);\nINSERT INTO O VALUES (11, 1, 0);\nINSERT INTO O VALUES (12, 2, 0);",
+          "query": "SELECT C.id,O.id FROM C LEFT JOIN O ON C.id=O.cid AND O.paid=1 ORDER BY C.id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "cd682063ccd4d15414f5cd8e607b5724e5cb60726ba652d44fdcc6f979d2dbd5",
+      "publicInputSha256": "f3514f77cfd03e6145d7348888bd344d06cd7fba6754a2fb20cef6bf551940fc",
+      "question": {
+        "id": "S11-A02-where-paid-remove",
+        "version": 1,
+        "title": "같은 자료에서 paid 조건을 WHERE에 둔 결과는?",
+        "stem": "같은 자료에서 paid 조건을 WHERE에 둔 결과는?",
+        "sql": "SELECT C.id,O.id FROM C LEFT JOIN O ON C.id=O.cid WHERE O.paid=1 ORDER BY C.id",
+        "tables": [
+          {
+            "title": "C",
+            "columns": [
+              "id"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "O",
+            "columns": [
+              "id",
+              "cid",
+              "paid"
+            ],
+            "rows": [
+              [
+                "10",
+                "1",
+                "1"
+              ],
+              [
+                "11",
+                "1",
+                "0"
+              ],
+              [
+                "12",
+                "2",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 10)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10) / (2, NULL) / (3, NULL)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 10) / (1, 11)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 10) / (3, NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE C (id NUMBER);\nCREATE TABLE O (id NUMBER, cid NUMBER, paid NUMBER);",
+          "setupSql": "INSERT INTO C VALUES (1);\nINSERT INTO C VALUES (2);\nINSERT INTO C VALUES (3);\nINSERT INTO O VALUES (10, 1, 1);\nINSERT INTO O VALUES (11, 1, 0);\nINSERT INTO O VALUES (12, 2, 0);",
+          "query": "SELECT C.id,O.id FROM C LEFT JOIN O ON C.id=O.cid WHERE O.paid=1 ORDER BY C.id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "3120cebeb9ae3a8891cf0f3074fc00940145c7f8bb21707ddd30bdb62f521b6e",
+      "publicInputSha256": "507f1872fd3b8e6c5e749e19932e82b096630bced98c888563c5b6aab5ac7dbd",
+      "question": {
+        "id": "S11-A03-count-outer-null",
+        "version": 1,
+        "title": "고객마다 주문 행 수를 세는 두 COUNT의 결과는?",
+        "stem": "고객마다 주문 행 수를 세는 두 COUNT의 결과는?",
+        "sql": "SELECT C.id,COUNT(*),COUNT(O.id) FROM C LEFT JOIN O ON C.id=O.cid GROUP BY C.id ORDER BY C.id",
+        "tables": [
+          {
+            "title": "C",
+            "columns": [
+              "id"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "O",
+            "columns": [
+              "id",
+              "cid",
+              "paid"
+            ],
+            "rows": [
+              [
+                "10",
+                "1",
+                "1"
+              ],
+              [
+                "11",
+                "1",
+                "0"
+              ],
+              [
+                "12",
+                "2",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1, 2, 2) / (2, 1, 1) / (3, 0, 0)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 2, 2) / (2, 1, 1) / (3, 1, 1)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 1, 1) / (2, 1, 1) / (3, 1, 0)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 2, 2) / (2, 1, 1) / (3, 1, 0)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE C (id NUMBER);\nCREATE TABLE O (id NUMBER, cid NUMBER, paid NUMBER);",
+          "setupSql": "INSERT INTO C VALUES (1);\nINSERT INTO C VALUES (2);\nINSERT INTO C VALUES (3);\nINSERT INTO O VALUES (10, 1, 1);\nINSERT INTO O VALUES (11, 1, 0);\nINSERT INTO O VALUES (12, 2, 0);",
+          "query": "SELECT C.id,COUNT(*),COUNT(O.id) FROM C LEFT JOIN O ON C.id=O.cid GROUP BY C.id ORDER BY C.id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d4a71ad728e558b2ffd9a34ddcf75dc3c7eaebcedcff022da38649827639638c",
+      "publicInputSha256": "42394c9199027e3d86cbb240e6797fceab345bd6022f209c9ba0a8e29666c68a",
+      "question": {
+        "id": "S11-A04-full-both-unmatched",
+        "version": 1,
+        "title": "FULL OUTER JOIN 결과를 공통 키 순으로 정렬하면?",
+        "stem": "FULL OUTER JOIN 결과를 공통 키 순으로 정렬하면?",
+        "sql": "SELECT A.k,B.k FROM A FULL OUTER JOIN B ON A.k=B.k ORDER BY COALESCE(A.k,B.k)",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(2, 2)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 1) / (2, 2) / (3, 3)"
+          },
+          {
+            "id": "a",
+            "text": "(1, NULL) / (2, 2) / (NULL, 3)"
+          },
+          {
+            "id": "b",
+            "text": "(1, NULL) / (2, 2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (k NUMBER);\nCREATE TABLE B (k NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);\nINSERT INTO B VALUES (2);\nINSERT INTO B VALUES (3);",
+          "query": "SELECT A.k,B.k FROM A FULL OUTER JOIN B ON A.k=B.k ORDER BY COALESCE(A.k,B.k)",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2e0a763037df5403121dad8e76aa89dcbc4d4fa52a7a2acd1cc69abc96b588c3",
+      "publicInputSha256": "71569077348bafe8e2da23c680af9ff9aa1ac6d1ffef3ee539e44cc4145a4789",
+      "question": {
+        "id": "S11-A05-using-key-result",
+        "version": 1,
+        "title": "USING 공통 키를 반환하는 FULL JOIN 결과는?",
+        "stem": "USING 공통 키를 반환하는 FULL JOIN 결과는?",
+        "sql": "SELECT k FROM A FULL OUTER JOIN B USING(k) ORDER BY k",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(2)"
+          },
+          {
+            "id": "a",
+            "text": "(1) / (2) / (3)"
+          },
+          {
+            "id": "b",
+            "text": "(1) / (2) / (NULL)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (2) / (2) / (3)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (k NUMBER);\nCREATE TABLE B (k NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);\nINSERT INTO B VALUES (2);\nINSERT INTO B VALUES (3);",
+          "query": "SELECT k FROM A FULL OUTER JOIN B USING(k) ORDER BY k",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "eedc1f4b2d793cf7b99ec277de63723120a85e9272d37a5b5a4c6a91f1c42ed0",
+      "publicInputSha256": "cbf04f696067faf64115c45f3e4187bfa86f8884226330f02a4056944849e187",
+      "question": {
+        "id": "S11-A06-natural-extra-key",
+        "version": 1,
+        "title": "공통 열 k와 flag가 있는 NATURAL JOIN의 결과는?",
+        "stem": "공통 열 k와 flag가 있는 NATURAL JOIN의 결과는?",
+        "sql": "SELECT k,flag FROM A NATURAL JOIN B ORDER BY k",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "k",
+              "flag"
+            ],
+            "rows": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "1"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "k",
+              "flag"
+            ],
+            "rows": [
+              [
+                "1",
+                "1"
+              ],
+              [
+                "2",
+                "1"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(2, 1)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 0) / (2, 1)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 1) / (2, 1)"
+          },
+          {
+            "id": "d",
+            "text": "0행"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (k NUMBER, flag NUMBER);\nCREATE TABLE B (k NUMBER, flag NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1, 0);\nINSERT INTO A VALUES (2, 1);\nINSERT INTO B VALUES (1, 1);\nINSERT INTO B VALUES (2, 1);",
+          "query": "SELECT k,flag FROM A NATURAL JOIN B ORDER BY k",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "00ab97d76b527f8d04393d4332ecfd6479bd1e682db8442e9491e0eacfc42306",
+      "publicInputSha256": "32f332188d45b59bbed8244c7873d100b8e21d1242cd26b1f6746be5b5f9655f",
+      "question": {
+        "id": "S11-A07-anti-exists-key",
+        "version": 1,
+        "title": "주문이 전혀 없는 고객을 오른쪽 비NULL 보장 키로 찾은 결과는?",
+        "stem": "주문이 전혀 없는 고객을 오른쪽 비NULL 보장 키로 찾은 결과는?",
+        "sql": "SELECT C.id FROM C LEFT JOIN O ON C.id=O.cid WHERE O.id IS NULL ORDER BY C.id",
+        "tables": [
+          {
+            "title": "C",
+            "columns": [
+              "id"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "O",
+            "columns": [
+              "id",
+              "cid",
+              "paid"
+            ],
+            "rows": [
+              [
+                "10",
+                "1",
+                "1"
+              ],
+              [
+                "11",
+                "1",
+                "0"
+              ],
+              [
+                "12",
+                "2",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(2) / (3)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (2)"
+          },
+          {
+            "id": "d",
+            "text": "(1) / (2) / (3)"
+          },
+          {
+            "id": "a",
+            "text": "(3)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE C (id NUMBER);\nCREATE TABLE O (id NUMBER, cid NUMBER, paid NUMBER);",
+          "setupSql": "INSERT INTO C VALUES (1);\nINSERT INTO C VALUES (2);\nINSERT INTO C VALUES (3);\nINSERT INTO O VALUES (10, 1, 1);\nINSERT INTO O VALUES (11, 1, 0);\nINSERT INTO O VALUES (12, 2, 0);",
+          "query": "SELECT C.id FROM C LEFT JOIN O ON C.id=O.cid WHERE O.id IS NULL ORDER BY C.id",
+          "constraints": [
+            "O.id는 입력의 모든 실제 행에서 비NULL이고 유일하다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9919870c2b8f14e9fb2ea1c6c31d0809100fc30bbecd22737f9f844ad7e6ab93",
+      "publicInputSha256": "f46ccf36f64ed0318caafe59de4d3888417256900fe2c414bc9278cf9e8de665",
+      "question": {
+        "id": "S12-A01-above-own-dept-average",
+        "version": 1,
+        "title": "각 부서 평균보다 급여가 큰 직원은?",
+        "stem": "각 부서 평균보다 급여가 큰 직원은?",
+        "sql": "SELECT e.id FROM E e WHERE e.sal>(SELECT AVG(x.sal) FROM E x WHERE x.d=e.d) ORDER BY e.id",
+        "tables": [
+          {
+            "title": "E",
+            "columns": [
+              "id",
+              "d",
+              "sal"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "30"
+              ],
+              [
+                "3",
+                "2",
+                "50"
+              ],
+              [
+                "4",
+                "2",
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(2) / (4)"
+          },
+          {
+            "id": "a",
+            "text": "(2)"
+          },
+          {
+            "id": "b",
+            "text": "(2) / (3)"
+          },
+          {
+            "id": "c",
+            "text": "(3)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE E (id NUMBER, d NUMBER, sal NUMBER);",
+          "setupSql": "INSERT INTO E VALUES (1, 1, 10);\nINSERT INTO E VALUES (2, 1, 30);\nINSERT INTO E VALUES (3, 2, 50);\nINSERT INTO E VALUES (4, 2, NULL);",
+          "query": "SELECT e.id FROM E e WHERE e.sal>(SELECT AVG(x.sal) FROM E x WHERE x.d=e.d) ORDER BY e.id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "282463390209386f4f18fd9107d28bab0e11e182e9e1a20f90b7608fc542a1e1",
+      "publicInputSha256": "90497f1371309a87458d394236c726a29310c29283de39bcede5039a65ad3382",
+      "question": {
+        "id": "S12-A02-exists-no-multiply",
+        "version": 1,
+        "title": "EXISTS를 사용한 고객 목록의 결과는?",
+        "stem": "EXISTS를 사용한 고객 목록의 결과는?",
+        "sql": "SELECT C.id FROM C WHERE EXISTS(SELECT NULL FROM O WHERE O.cid=C.id) ORDER BY C.id",
+        "tables": [
+          {
+            "title": "C",
+            "columns": [
+              "id"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ]
+            ]
+          },
+          {
+            "title": "O",
+            "columns": [
+              "cid"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "1"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1)"
+          },
+          {
+            "id": "b",
+            "text": "(1) / (1)"
+          },
+          {
+            "id": "c",
+            "text": "0행"
+          },
+          {
+            "id": "d",
+            "text": "(1) / (2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE C (id NUMBER);\nCREATE TABLE O (cid NUMBER);",
+          "setupSql": "INSERT INTO C VALUES (1);\nINSERT INTO C VALUES (2);\nINSERT INTO O VALUES (1);\nINSERT INTO O VALUES (1);",
+          "query": "SELECT C.id FROM C WHERE EXISTS(SELECT NULL FROM O WHERE O.cid=C.id) ORDER BY C.id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d76b7ab8a68a02bd5dacd3dc3d130ec72a93ed05b308fc1069f2233247300ba0",
+      "publicInputSha256": "73474a1030256a32170cc12c17eb2f56ecb31f0787e9f1e11974417466fcb0a9",
+      "question": {
+        "id": "S12-A03-null-safe-not-exists",
+        "version": 1,
+        "title": "NULL이 섞인 제외표에서 NOT EXISTS 등호 조건으로 남는 값은?",
+        "stem": "NULL이 섞인 제외표에서 NOT EXISTS 등호 조건으로 남는 값은?",
+        "sql": "SELECT A.k FROM A WHERE NOT EXISTS(SELECT 1 FROM B WHERE B.k=A.k) ORDER BY A.k NULLS LAST",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                null
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(2)"
+          },
+          {
+            "id": "c",
+            "text": "0행"
+          },
+          {
+            "id": "d",
+            "text": "(1) / (2) / (NULL)"
+          },
+          {
+            "id": "a",
+            "text": "(2) / (NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (k NUMBER);\nCREATE TABLE B (k NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);\nINSERT INTO A VALUES (NULL);\nINSERT INTO B VALUES (1);\nINSERT INTO B VALUES (NULL);",
+          "query": "SELECT A.k FROM A WHERE NOT EXISTS(SELECT 1 FROM B WHERE B.k=A.k) ORDER BY A.k NULLS LAST",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "c65c0e36ed5b59be543c6b352571bc9ff074b1801875d94a0a6f1dd6ff0b87c0",
+      "publicInputSha256": "23a2dff63d5a14f6fdbb9e459b799a73faa983e278baf8f0df06bd7813dd90b9",
+      "question": {
+        "id": "S12-A04-not-in-empty",
+        "version": 1,
+        "title": "제외표 B가 비어 있을 때 NOT IN 결과는?",
+        "stem": "제외표 B가 비어 있을 때 NOT IN 결과는?",
+        "sql": "SELECT k FROM A WHERE k NOT IN(SELECT k FROM B) ORDER BY k NULLS LAST",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "k"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                null
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "k"
+            ],
+            "rows": []
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "0행"
+          },
+          {
+            "id": "d",
+            "text": "(NULL)"
+          },
+          {
+            "id": "a",
+            "text": "(1) / (NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (k NUMBER);\nCREATE TABLE B (k NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (NULL);",
+          "query": "SELECT k FROM A WHERE k NOT IN(SELECT k FROM B) ORDER BY k NULLS LAST",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9861ea2f66e312076af06186dca98c1aa58a3c9e297aa6e7e258c6668bd632ef",
+      "publicInputSha256": "0a7c29326b1efc213b8e45cb56bb65ea3ce33ed46c5b28f9b0c004b287786a8f",
+      "question": {
+        "id": "S12-A05-scalar-aggregate-empty",
+        "version": 1,
+        "title": "빈 조건의 AVG 스칼라 값을 조회하면?",
+        "stem": "빈 조건의 AVG 스칼라 값을 조회하면?",
+        "sql": "SELECT (SELECT AVG(v) FROM T WHERE v>100) AS a FROM dual",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "10"
+              ],
+              [
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(15)"
+          },
+          {
+            "id": "a",
+            "text": "(NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(0)"
+          },
+          {
+            "id": "c",
+            "text": "0행"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (10);\nINSERT INTO T VALUES (20);",
+          "query": "SELECT (SELECT AVG(v) FROM T WHERE v>100) AS a FROM dual",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "65bb3de20e17dfaab78543b793aa12889c7cba79a383cc9d211cfecde75a0799",
+      "publicInputSha256": "6fa28e7c5b07eeffa11302ef7af81701502f7cf657df0de42ad0664516125712",
+      "question": {
+        "id": "S12-A06-any-null-mixed",
+        "version": 1,
+        "title": "NULL이 섞인 ANY 비교를 통과하는 값은?",
+        "stem": "NULL이 섞인 ANY 비교를 통과하는 값은?",
+        "sql": "SELECT x FROM A WHERE x>ANY(SELECT v FROM B) ORDER BY x",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "x"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "5"
+              ],
+              [
+                "10"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "3"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(5) / (10)"
+          },
+          {
+            "id": "b",
+            "text": "0행"
+          },
+          {
+            "id": "c",
+            "text": "(10)"
+          },
+          {
+            "id": "d",
+            "text": "(1) / (5) / (10)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (x NUMBER);\nCREATE TABLE B (v NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (5);\nINSERT INTO A VALUES (10);\nINSERT INTO B VALUES (3);\nINSERT INTO B VALUES (NULL);",
+          "query": "SELECT x FROM A WHERE x>ANY(SELECT v FROM B) ORDER BY x",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "34c2d3d36c4566d4958c485d59c4d25350d92823c53ba6ac4fcd4576fb9fa1ec",
+      "publicInputSha256": "c8dd6b74b7f7b60a0042883e78d8789ea25734f1bfe00248f59028ce2c3c3b05",
+      "question": {
+        "id": "S12-A07-all-empty",
+        "version": 1,
+        "title": "빈 집합에 대한 >ALL의 결과는?",
+        "stem": "빈 집합에 대한 >ALL의 결과는?",
+        "sql": "SELECT x FROM A WHERE x>ALL(SELECT v FROM B) ORDER BY x",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "x"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "v"
+            ],
+            "rows": []
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "0행"
+          },
+          {
+            "id": "c",
+            "text": "(2)"
+          },
+          {
+            "id": "d",
+            "text": "(NULL)"
+          },
+          {
+            "id": "a",
+            "text": "(1) / (2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (x NUMBER);\nCREATE TABLE B (v NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);",
+          "query": "SELECT x FROM A WHERE x>ALL(SELECT v FROM B) ORDER BY x",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a92f07805dae4d71dfd2b88feabe7cde8480d1370530aa2c9c49f19b22780da2",
+      "publicInputSha256": "648c03bde20f0fc62287aadbf6ec83704cfec6cf1aba24ce3106befb16d94f72",
+      "question": {
+        "id": "S12-A08-tuple-in",
+        "version": 1,
+        "title": "두 열을 함께 IN 비교하는 결과는?",
+        "stem": "두 열을 함께 IN 비교하는 결과는?",
+        "sql": "SELECT y,no FROM A WHERE (y,no) IN(SELECT y,no FROM B) ORDER BY y,no",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "y",
+              "no"
+            ],
+            "rows": [
+              [
+                "2025",
+                "1"
+              ],
+              [
+                "2025",
+                "2"
+              ],
+              [
+                "2026",
+                "1"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "y",
+              "no"
+            ],
+            "rows": [
+              [
+                "2025",
+                "1"
+              ],
+              [
+                "2026",
+                "2"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(2025, 1) / (2026, 1)"
+          },
+          {
+            "id": "d",
+            "text": "(2025, 2)"
+          },
+          {
+            "id": "a",
+            "text": "(2025, 1)"
+          },
+          {
+            "id": "b",
+            "text": "(2025, 1) / (2025, 2) / (2026, 1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (y NUMBER, no NUMBER);\nCREATE TABLE B (y NUMBER, no NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (2025, 1);\nINSERT INTO A VALUES (2025, 2);\nINSERT INTO A VALUES (2026, 1);\nINSERT INTO B VALUES (2025, 1);\nINSERT INTO B VALUES (2026, 2);",
+          "query": "SELECT y,no FROM A WHERE (y,no) IN(SELECT y,no FROM B) ORDER BY y,no",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "020649801d3c934a6b168b158fe1d7b8dd597d91a7ab232248df1456e97c273a",
+      "publicInputSha256": "fa20eed75d8db484c78eba8c9de5591707bfc28dea7a8da341033ea92920892d",
+      "question": {
+        "id": "S13-A01-union-null-combined",
+        "version": 1,
+        "title": "두 목록을 UNION으로 합친 결과는?",
+        "stem": "두 목록을 UNION으로 합친 결과는?",
+        "sql": "SELECT v FROM A UNION SELECT v FROM B",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                null
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1) / (2) / (3) / (NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(1) / (1) / (2) / (2) / (3) / (NULL) / (NULL)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (2) / (3)"
+          },
+          {
+            "id": "d",
+            "text": "(2) / (NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (v NUMBER);\nCREATE TABLE B (v NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);\nINSERT INTO A VALUES (NULL);\nINSERT INTO B VALUES (2);\nINSERT INTO B VALUES (3);\nINSERT INTO B VALUES (NULL);",
+          "query": "SELECT v FROM A UNION SELECT v FROM B",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "3aa78f158a29f0fef46d8aa55ca80926f968b1d801c907baad7ab114b7be464a",
+      "publicInputSha256": "5b1740b24074f6409ba97d263c999437c0e27e0653fdc1261cf59077b7ec32bf",
+      "question": {
+        "id": "S13-A02-all-count",
+        "version": 1,
+        "title": "UNION ALL 결과를 바깥에서 세면 두 COUNT는?",
+        "stem": "UNION ALL 결과를 바깥에서 세면 두 COUNT는?",
+        "sql": "SELECT COUNT(*),COUNT(v) FROM (SELECT v FROM A UNION ALL SELECT v FROM B)",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                null
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(4, 3)"
+          },
+          {
+            "id": "c",
+            "text": "(7, 7)"
+          },
+          {
+            "id": "d",
+            "text": "(5, 5)"
+          },
+          {
+            "id": "a",
+            "text": "(7, 5)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (v NUMBER);\nCREATE TABLE B (v NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);\nINSERT INTO A VALUES (NULL);\nINSERT INTO B VALUES (2);\nINSERT INTO B VALUES (3);\nINSERT INTO B VALUES (NULL);",
+          "query": "SELECT COUNT(*),COUNT(v) FROM (SELECT v FROM A UNION ALL SELECT v FROM B)",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8ed944898ee5777ef2543a538f4172270fcfd0f48e44570f9320322d9275a05b",
+      "publicInputSha256": "959557294a2326e222596af3d3233eab8947b3b829627598d2c252014eed8d87",
+      "question": {
+        "id": "S13-A03-intersection-two-columns",
+        "version": 1,
+        "title": "두 열 행 전체의 공통 집합은?",
+        "stem": "두 열 행 전체의 공통 집합은?",
+        "sql": "SELECT a,b FROM X INTERSECT SELECT a,b FROM Y",
+        "tables": [
+          {
+            "title": "X",
+            "columns": [
+              "a",
+              "b"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "1",
+                "20"
+              ],
+              [
+                "2",
+                null
+              ]
+            ]
+          },
+          {
+            "title": "Y",
+            "columns": [
+              "a",
+              "b"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "20"
+              ],
+              [
+                "2",
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, 10)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 20) / (2, 20)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 10) / (2, NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10) / (1, 20) / (2, NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE X (a NUMBER, b NUMBER);\nCREATE TABLE Y (a NUMBER, b NUMBER);",
+          "setupSql": "INSERT INTO X VALUES (1, 10);\nINSERT INTO X VALUES (1, 20);\nINSERT INTO X VALUES (2, NULL);\nINSERT INTO Y VALUES (1, 10);\nINSERT INTO Y VALUES (2, 20);\nINSERT INTO Y VALUES (2, NULL);",
+          "query": "SELECT a,b FROM X INTERSECT SELECT a,b FROM Y",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "55c900761b3891c044bedd5966d87300c88a47a7f9c46ff15c97538bf3c39b84",
+      "publicInputSha256": "22f159173fa726ef09a325d13a9ef0b4448402987f2e07f7e81217c8d88805cf",
+      "question": {
+        "id": "S13-A04-minus-dedup",
+        "version": 1,
+        "title": "구매자 A 중 제외자 B를 뺀 결과는?",
+        "stem": "구매자 A 중 제외자 B를 뺀 결과는?",
+        "sql": "SELECT v FROM A MINUS SELECT v FROM B",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                null
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(3)"
+          },
+          {
+            "id": "a",
+            "text": "(1)"
+          },
+          {
+            "id": "b",
+            "text": "(1) / (1)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (v NUMBER);\nCREATE TABLE B (v NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);\nINSERT INTO A VALUES (NULL);\nINSERT INTO B VALUES (2);\nINSERT INTO B VALUES (3);\nINSERT INTO B VALUES (NULL);",
+          "query": "SELECT v FROM A MINUS SELECT v FROM B",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "bcdfd1b5e438b022b097a9a658a5b33fd460310c37d258cb921b7ac6c519d00a",
+      "publicInputSha256": "d7eb874cb604eafd5e7293c8b5976764d487214e50f538573b5fba07ef83e9f7",
+      "question": {
+        "id": "S13-A05-parenthesized-difference",
+        "version": 1,
+        "title": "괄호로 B와 C를 먼저 합집합한 뒤 제외한다. 결과는?",
+        "stem": "괄호로 B와 C를 먼저 합집합한 뒤 제외한다. 결과는?",
+        "sql": "SELECT v FROM A MINUS SELECT v FROM (SELECT v FROM B UNION SELECT v FROM C)",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "B",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "2"
+              ]
+            ]
+          },
+          {
+            "title": "C",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1)"
+          },
+          {
+            "id": "b",
+            "text": "(1) / (3) / (4)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (4)"
+          },
+          {
+            "id": "d",
+            "text": "0행"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (v NUMBER);\nCREATE TABLE B (v NUMBER);\nCREATE TABLE C (v NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (2);\nINSERT INTO A VALUES (3);\nINSERT INTO B VALUES (2);\nINSERT INTO C VALUES (3);\nINSERT INTO C VALUES (4);",
+          "query": "SELECT v FROM A MINUS SELECT v FROM (SELECT v FROM B UNION SELECT v FROM C)",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "7a39d6e97ab3011c99e08a819a3af28757425b43baa3c756bef8b2a34e479d38",
+      "publicInputSha256": "96cd6ae8c77347228c0294868f6fbee564808a2044858944b7fae1f9d74a144d",
+      "question": {
+        "id": "S13-A06-difference-count-empty",
+        "version": 1,
+        "title": "자기 자신을 뺀 집합의 바깥 COUNT는?",
+        "stem": "자기 자신을 뺀 집합의 바깥 COUNT는?",
+        "sql": "SELECT COUNT(*) FROM (SELECT v FROM A MINUS SELECT v FROM A)",
+        "tables": [
+          {
+            "title": "A",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "0행"
+          },
+          {
+            "id": "c",
+            "text": "(1)"
+          },
+          {
+            "id": "d",
+            "text": "(2)"
+          },
+          {
+            "id": "a",
+            "text": "(0)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE A (v NUMBER);",
+          "setupSql": "INSERT INTO A VALUES (1);\nINSERT INTO A VALUES (NULL);",
+          "query": "SELECT COUNT(*) FROM (SELECT v FROM A MINUS SELECT v FROM A)",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5b8dff6763277932370fd4d43f471f025c61aa0df4622c9f5ca4b03e9d854ee9",
+      "publicInputSha256": "59531dfa7f51182e019154be04d1110ee952629a9c28564f364149ab1e2ee9aa",
+      "question": {
+        "id": "S14-A01-rollup-original-null",
+        "version": 1,
+        "title": "원본에 NULL 그룹이 있는 ROLLUP의 결과는?",
+        "stem": "원본에 NULL 그룹이 있는 ROLLUP의 결과는?",
+        "sql": "SELECT d,SUM(v),GROUPING(d) FROM T GROUP BY ROLLUP(d)",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                null,
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 10, 1) / (NULL, 5, 1) / (NULL, 15, 0)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 10, 0) / (NULL, 5, 0) / (NULL, 15, 1)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10, 0) / (NULL, 15, 1)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 10, 0) / (NULL, 20, 1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nINSERT INTO T VALUES (NULL, 5);",
+          "query": "SELECT d,SUM(v),GROUPING(d) FROM T GROUP BY ROLLUP(d)",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0f0ff8a266df8c7d6b45ec78586122a113d5d674e23301490e3e58e18d48b3f1",
+      "publicInputSha256": "47d276b679958a1562646a1ed08448c51899dcee986db8d56562fb3ca4e9c035",
+      "question": {
+        "id": "S14-A02-rollup-two-keys",
+        "version": 1,
+        "title": "ROLLUP(d,t)의 결과에서 각 소계가 포함되는 형태는?",
+        "stem": "ROLLUP(d,t)의 결과에서 각 소계가 포함되는 형태는?",
+        "sql": "SELECT d,t,SUM(v) FROM X GROUP BY ROLLUP(d,t)",
+        "tables": [
+          {
+            "title": "X",
+            "columns": [
+              "d",
+              "t",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "1",
+                "2",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 1, 10) / (1, 2, 20) / (1, NULL, 30) / (NULL, NULL, 30)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 1, 10) / (1, 2, 20) / (NULL, 1, 10) / (NULL, 2, 20) / (NULL, NULL, 30)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 1, 10) / (1, 2, 20)"
+          },
+          {
+            "id": "d",
+            "text": "(1, NULL, 30) / (NULL, NULL, 30)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE X (d NUMBER, t NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO X VALUES (1, 1, 10);\nINSERT INTO X VALUES (1, 2, 20);",
+          "query": "SELECT d,t,SUM(v) FROM X GROUP BY ROLLUP(d,t)",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "589f3dc1f20bf313cb574b73f6564f27e755ef8a6c7bf798dc02acc52c3ef9ce",
+      "publicInputSha256": "ec2d2065c0fffd5b6331b4c4b6e6d7f420391386e296d81365c50ab4d6e1279c",
+      "question": {
+        "id": "S14-A03-cube-cross-subtotals",
+        "version": 1,
+        "title": "CUBE에서 d별·t별 소계와 전체를 모두 만든 행 수는?",
+        "stem": "CUBE에서 d별·t별 소계와 전체를 모두 만든 행 수는?",
+        "sql": "SELECT COUNT(*) FROM (SELECT d,t,SUM(v) FROM X GROUP BY CUBE(d,t))",
+        "tables": [
+          {
+            "title": "X",
+            "columns": [
+              "d",
+              "t",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "1",
+                "2",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(4)"
+          },
+          {
+            "id": "c",
+            "text": "(5)"
+          },
+          {
+            "id": "d",
+            "text": "(8)"
+          },
+          {
+            "id": "a",
+            "text": "(6)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE X (d NUMBER, t NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO X VALUES (1, 1, 10);\nINSERT INTO X VALUES (1, 2, 20);",
+          "query": "SELECT COUNT(*) FROM (SELECT d,t,SUM(v) FROM X GROUP BY CUBE(d,t))",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6671819300fa7fe03d66765ad672db59fa51cb117b10bee3d14eb6a5c1019078",
+      "publicInputSha256": "2b12d697a8e35d90c58a1ef1973b6eef4050f03b775a2fe4e83232ab1f4e7492",
+      "question": {
+        "id": "S14-A04-chosen-grouping-sets",
+        "version": 1,
+        "title": "선택한 GROUPING SETS의 결과는?",
+        "stem": "선택한 GROUPING SETS의 결과는?",
+        "sql": "SELECT t,SUM(v) FROM X GROUP BY GROUPING SETS((t),())",
+        "tables": [
+          {
+            "title": "X",
+            "columns": [
+              "d",
+              "t",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "2",
+                "2",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, NULL, 10) / (2, NULL, 25) / (NULL, NULL, 35)"
+          },
+          {
+            "id": "d",
+            "text": "(NULL, 1, 30) / (NULL, 2, 5)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 30) / (2, 5) / (NULL, 35)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 1, 10) / (2, 1, 20) / (2, 2, 5)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE X (d NUMBER, t NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO X VALUES (1, 1, 10);\nINSERT INTO X VALUES (2, 1, 20);\nINSERT INTO X VALUES (2, 2, 5);",
+          "query": "SELECT t,SUM(v) FROM X GROUP BY GROUPING SETS((t),())",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "3f224283eac04618e3d8eed24462c4b17c63f056c1c90fa1343b206d9c9af6b7",
+      "publicInputSha256": "2164bf88c8e78707147c474d21080f5cdee7b61dece1d0e88bb41f0ed7f159f8",
+      "question": {
+        "id": "S14-A05-having-total-only",
+        "version": 1,
+        "title": "GROUPING을 HAVING에서 검사하면 무엇이 남는가?",
+        "stem": "GROUPING을 HAVING에서 검사하면 무엇이 남는가?",
+        "sql": "SELECT d,SUM(v) FROM X GROUP BY ROLLUP(d) HAVING GROUPING(d)=1",
+        "tables": [
+          {
+            "title": "X",
+            "columns": [
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                null,
+                "7"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(NULL, 7)"
+          },
+          {
+            "id": "a",
+            "text": "(NULL, 17)"
+          },
+          {
+            "id": "b",
+            "text": "(NULL, 7) / (NULL, 17)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 10)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE X (d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO X VALUES (1, 10);\nINSERT INTO X VALUES (NULL, 7);",
+          "query": "SELECT d,SUM(v) FROM X GROUP BY ROLLUP(d) HAVING GROUPING(d)=1",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9136c6cba3d9c9f26711a7070334e506c4bb4d0a1dced9a8d979430066a58bd6",
+      "publicInputSha256": "115210399ffc70b29d25cde3a861ff750a41f23777e3dcdd52f3b2723ca388d7",
+      "question": {
+        "id": "S14-A06-repeated-sets",
+        "version": 1,
+        "title": "같은 그룹을 GROUPING SETS에 두 번 명시한 결과는?",
+        "stem": "같은 그룹을 GROUPING SETS에 두 번 명시한 결과는?",
+        "sql": "SELECT d,SUM(v) FROM X GROUP BY GROUPING SETS((d),(d))",
+        "tables": [
+          {
+            "title": "X",
+            "columns": [
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "1",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 30) / (1, 30)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 30)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 60)"
+          },
+          {
+            "id": "d",
+            "text": "(NULL, 30)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE X (d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO X VALUES (1, 10);\nINSERT INTO X VALUES (1, 20);",
+          "query": "SELECT d,SUM(v) FROM X GROUP BY GROUPING SETS((d),(d))",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "59ca22a991058eeed30b064d3acd124a7aaaafa3b32761ed70e527b14c7d8df2",
+      "publicInputSha256": "b7d7b971fc27d16851048c1eee86ab9ee0453f421ddc02d5a1dae07d5963dc49",
+      "question": {
+        "id": "S15-A01-ranks-side-by-side",
+        "version": 1,
+        "title": "부서별 RANK와 DENSE_RANK를 함께 표시한 결과는?",
+        "stem": "부서별 RANK와 DENSE_RANK를 함께 표시한 결과는?",
+        "sql": "SELECT id,RANK() OVER(PARTITION BY d ORDER BY v DESC) AS r,DENSE_RANK() OVER(PARTITION BY d ORDER BY v DESC) AS dr FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "90"
+              ],
+              [
+                "2",
+                "1",
+                "90"
+              ],
+              [
+                "3",
+                "1",
+                "70"
+              ],
+              [
+                "4",
+                "2",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, 1, 1) / (2, 1, 1) / (3, 2, 3) / (4, 1, 1)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 1, 1) / (2, 1, 1) / (3, 4, 3) / (4, 3, 2)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 1, 1) / (2, 1, 1) / (3, 3, 2) / (4, 1, 1)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 1, 1) / (2, 2, 2) / (3, 3, 3) / (4, 1, 1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 90);\nINSERT INTO T VALUES (2, 1, 90);\nINSERT INTO T VALUES (3, 1, 70);\nINSERT INTO T VALUES (4, 2, 80);",
+          "query": "SELECT id,RANK() OVER(PARTITION BY d ORDER BY v DESC) AS r,DENSE_RANK() OVER(PARTITION BY d ORDER BY v DESC) AS dr FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "3f3301d12e7e555315f46ef45361642fdd571d696ea7247531fecf2ff32e66a8",
+      "publicInputSha256": "b7e3dee236e4b537760a4afac63f66aa7b065f46c7fffaad89a0e47791cbc4ef",
+      "question": {
+        "id": "S15-A02-unique-number-with-tie-key",
+        "version": 1,
+        "title": "id를 보조 키로 쓴 ROW_NUMBER 결과는?",
+        "stem": "id를 보조 키로 쓴 ROW_NUMBER 결과는?",
+        "sql": "SELECT id,ROW_NUMBER() OVER(PARTITION BY d ORDER BY v DESC,id DESC) AS rn FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "90"
+              ],
+              [
+                "2",
+                "1",
+                "90"
+              ],
+              [
+                "3",
+                "1",
+                "70"
+              ],
+              [
+                "4",
+                "2",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 2) / (2, 1) / (3, 4) / (4, 3)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 2) / (2, 1) / (3, 3) / (4, 1)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 1) / (2, 2) / (3, 3) / (4, 1)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 1) / (2, 1) / (3, 3) / (4, 1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 90);\nINSERT INTO T VALUES (2, 1, 90);\nINSERT INTO T VALUES (3, 1, 70);\nINSERT INTO T VALUES (4, 2, 80);",
+          "query": "SELECT id,ROW_NUMBER() OVER(PARTITION BY d ORDER BY v DESC,id DESC) AS rn FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "278eadbb798ed0b74826b5dcfabba63904c0e9f1e6a63171b31f98e4638eda6e",
+      "publicInputSha256": "ae97809017c6e4fa6fe910976b61cad13f4f0a4ca1c50f26a5763204d5555dff",
+      "question": {
+        "id": "S15-A03-partition-sum-maintains-rows",
+        "version": 1,
+        "title": "부서합계를 각 직원 옆에 붙인 결과는?",
+        "stem": "부서합계를 각 직원 옆에 붙인 결과는?",
+        "sql": "SELECT id,SUM(v) OVER(PARTITION BY d) AS total FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "90"
+              ],
+              [
+                "2",
+                "1",
+                "90"
+              ],
+              [
+                "3",
+                "1",
+                "70"
+              ],
+              [
+                "4",
+                "2",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 250) / (2, 250) / (3, 250) / (4, 80)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 250) / (2, 80)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 90) / (2, 180) / (3, 250) / (4, 80)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 330) / (2, 330) / (3, 330) / (4, 330)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 90);\nINSERT INTO T VALUES (2, 1, 90);\nINSERT INTO T VALUES (3, 1, 70);\nINSERT INTO T VALUES (4, 2, 80);",
+          "query": "SELECT id,SUM(v) OVER(PARTITION BY d) AS total FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6d240d70c7d576f1fb22d980ff51e997a56ff5630bb95a9a0786851c9e739c97",
+      "publicInputSha256": "aee3a1d72e2685c16ea3e6f07915710381ea337aedcdcc6f26fb5ee660b8ef28",
+      "question": {
+        "id": "S15-A04-lag-null-default",
+        "version": 1,
+        "title": "이전 행 값이 NULL일 때 LAG 기본값은 어떻게 적용되는가?",
+        "stem": "이전 행 값이 NULL일 때 LAG 기본값은 어떻게 적용되는가?",
+        "sql": "SELECT id,LAG(v,1,0) OVER(ORDER BY id) AS prev FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                null
+              ],
+              [
+                "3",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1, 0) / (2, 10) / (3, 0)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 10) / (2, NULL) / (3, 30)"
+          },
+          {
+            "id": "d",
+            "text": "(1, NULL) / (2, 30) / (3, 0)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 0) / (2, 10) / (3, NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nINSERT INTO T VALUES (2, NULL);\nINSERT INTO T VALUES (3, 30);",
+          "query": "SELECT id,LAG(v,1,0) OVER(ORDER BY id) AS prev FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "49c4c0b51271dceca15ee97dbba37ff72d93f4a38ee791ca781e7e06f48525bf",
+      "publicInputSha256": "12ae49b19ab271fd5995b1d61525e72918b0998b1756a47f3e4163cd34cb579c",
+      "question": {
+        "id": "S15-A05-lead-gap-not-id",
+        "version": 1,
+        "title": "id가 연속하지 않는 데이터에서 LEAD 결과는?",
+        "stem": "id가 연속하지 않는 데이터에서 LEAD 결과는?",
+        "sql": "SELECT id,LEAD(v,1,-1) OVER(ORDER BY id) AS next_v FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "10",
+                "5"
+              ],
+              [
+                "30",
+                "7"
+              ],
+              [
+                "80",
+                "9"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(10, 5) / (30, 7) / (80, 9)"
+          },
+          {
+            "id": "d",
+            "text": "(10, -1) / (30, 5) / (80, 7)"
+          },
+          {
+            "id": "a",
+            "text": "(10, 7) / (30, 9) / (80, -1)"
+          },
+          {
+            "id": "b",
+            "text": "(10, -1) / (30, -1) / (80, -1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (10, 5);\nINSERT INTO T VALUES (30, 7);\nINSERT INTO T VALUES (80, 9);",
+          "query": "SELECT id,LEAD(v,1,-1) OVER(ORDER BY id) AS next_v FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2237733fc530f41fa21e0e7159cffb88326a3c99ff490c88ea74bbe288b9bb3a",
+      "publicInputSha256": "a87c5b74f56f5888ab0c81a6e1aefc74c808adadf6dbb8cc03d54761ffad7f3b",
+      "question": {
+        "id": "S15-A06-ntile-unequal",
+        "version": 1,
+        "title": "5행을 NTILE(2)로 나눈 결과는?",
+        "stem": "5행을 NTILE(2)로 나눈 결과는?",
+        "sql": "SELECT id,NTILE(2) OVER(ORDER BY id) AS bucket FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ],
+              [
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 1) / (2, 2) / (3, 3) / (4, 4) / (5, 5)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 1) / (2, 1) / (3, 1) / (4, 2) / (5, 2)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 1) / (2, 1) / (3, 2) / (4, 2) / (5, 2)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 1) / (2, 2) / (3, 1) / (4, 2) / (5, 1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1);\nINSERT INTO T VALUES (2);\nINSERT INTO T VALUES (3);\nINSERT INTO T VALUES (4);\nINSERT INTO T VALUES (5);",
+          "query": "SELECT id,NTILE(2) OVER(ORDER BY id) AS bucket FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "7c925ea8c38ff9e1736f8ceef9c3da04441591d7ac8da6ef2358480859027acc",
+      "publicInputSha256": "f2f62c424da6cf76595ab327eece4b9e337374cb11994ad045f64f2218c5929a",
+      "question": {
+        "id": "S16-A01-range-peer-cumulative",
+        "version": 1,
+        "title": "기본 RANGE 누적합에서 동점 키의 결과는?",
+        "stem": "기본 RANGE 누적합에서 동점 키의 결과는?",
+        "sql": "SELECT id,SUM(v) OVER(ORDER BY k) AS s FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "k",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "3",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1, 10) / (2, 30) / (3, 35)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 35) / (2, 35) / (3, 35)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 10) / (2, 20) / (3, 5)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 30) / (2, 30) / (3, 35)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, k NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 10);\nINSERT INTO T VALUES (2, 1, 20);\nINSERT INTO T VALUES (3, 3, 5);",
+          "query": "SELECT id,SUM(v) OVER(ORDER BY k) AS s FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "122d9a4b682de447146f9dccf3525f12db7f0868a482430e0dffc703cedb3836",
+      "publicInputSha256": "1f2f3304d97bd9de279ac10e4a3e1c7d6345d39b4eb7b0448c4bcf698bdcaa1f",
+      "question": {
+        "id": "S16-A02-rows-two-window",
+        "version": 1,
+        "title": "현재와 바로 앞 행의 이동합계는?",
+        "stem": "현재와 바로 앞 행의 이동합계는?",
+        "sql": "SELECT id,SUM(v) OVER(ORDER BY id ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS s FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "k",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "3",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, 30) / (2, 25) / (3, 5)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 0) / (2, 10) / (3, 20)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 10) / (2, 30) / (3, 25)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10) / (2, 30) / (3, 35)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, k NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 10);\nINSERT INTO T VALUES (2, 1, 20);\nINSERT INTO T VALUES (3, 3, 5);",
+          "query": "SELECT id,SUM(v) OVER(ORDER BY id ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS s FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a66c629f40ef8eb463fd336e73402fe281660b34bfba0d90eddabb7765ee8584",
+      "publicInputSha256": "6e8fb785ff644d93065d7eba5ca1277d01c06aafa522b7b1bedd394daa295e7f",
+      "question": {
+        "id": "S16-A03-range-value-distance",
+        "version": 1,
+        "title": "키 값의 거리1 이내 앞쪽 RANGE 합계는?",
+        "stem": "키 값의 거리1 이내 앞쪽 RANGE 합계는?",
+        "sql": "SELECT id,SUM(v) OVER(ORDER BY k RANGE BETWEEN 1 PRECEDING AND CURRENT ROW) AS s FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "k",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "3",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 10) / (2, 20) / (3, 5)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 30) / (2, 30) / (3, 5)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10) / (2, 30) / (3, 25)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 30) / (2, 30) / (3, 35)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, k NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 10);\nINSERT INTO T VALUES (2, 1, 20);\nINSERT INTO T VALUES (3, 3, 5);",
+          "query": "SELECT id,SUM(v) OVER(ORDER BY k RANGE BETWEEN 1 PRECEDING AND CURRENT ROW) AS s FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d43222840cfe2f3e218315262c85dfd9c2ab610c166888e1164d158cbb984557",
+      "publicInputSha256": "ab8e6df5eb1df4661447ea7a77e9fc2eade7897687efd5e64af49c344402ae49",
+      "question": {
+        "id": "S16-A04-last-value-full",
+        "version": 1,
+        "title": "전체 파티션 프레임의 LAST_VALUE 결과는?",
+        "stem": "전체 파티션 프레임의 LAST_VALUE 결과는?",
+        "sql": "SELECT id,LAST_VALUE(v) OVER(ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_v FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "k",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "3",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 5) / (2, 5) / (3, 5)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10) / (2, 20) / (3, 5)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 10) / (2, 10) / (3, 10)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 35) / (2, 35) / (3, 35)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, k NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 10);\nINSERT INTO T VALUES (2, 1, 20);\nINSERT INTO T VALUES (3, 3, 5);",
+          "query": "SELECT id,LAST_VALUE(v) OVER(ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS last_v FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "350e4a0ef673b76b34982bd00e8dd70f4e62188a96b7dec87d29f780465d7204",
+      "publicInputSha256": "260030207f2e418eddb53bb4beb8fffb45747d64f4773b93fd5ab0d71526d038",
+      "question": {
+        "id": "S16-A05-future-count-boundary",
+        "version": 1,
+        "title": "현재 이후 한 행부터 끝까지의 COUNT(*)는?",
+        "stem": "현재 이후 한 행부터 끝까지의 COUNT(*)는?",
+        "sql": "SELECT id,COUNT(*) OVER(ORDER BY id ROWS BETWEEN 1 FOLLOWING AND UNBOUNDED FOLLOWING) AS n FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "k",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "3",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1, 3) / (2, 2) / (3, 1)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 2) / (2, 1) / (3, NULL)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 0) / (2, 1) / (3, 2)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 2) / (2, 1) / (3, 0)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, k NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 10);\nINSERT INTO T VALUES (2, 1, 20);\nINSERT INTO T VALUES (3, 3, 5);",
+          "query": "SELECT id,COUNT(*) OVER(ORDER BY id ROWS BETWEEN 1 FOLLOWING AND UNBOUNDED FOLLOWING) AS n FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "e76e47cab9044601a6366790847d6bf0cf82729fbb56e904922c4cc35ec41583",
+      "publicInputSha256": "1e091e3c33eeadec6e2d3bf62a5cf5b538da4e13f6d4c7a2869abed1b32dfb40",
+      "question": {
+        "id": "S16-A06-partition-boundaries",
+        "version": 1,
+        "title": "파티션별 이동합계에서 다른 부서 앞 행이 포함되는가?",
+        "stem": "파티션별 이동합계에서 다른 부서 앞 행이 포함되는가?",
+        "sql": "SELECT id,SUM(v) OVER(PARTITION BY d ORDER BY id ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS s FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "2",
+                "100"
+              ],
+              [
+                "4",
+                "2",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, 30) / (2, 30) / (3, 105) / (4, 105)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 10) / (2, 20) / (3, 100) / (4, 5)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 10) / (2, 30) / (3, 100) / (4, 105)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10) / (2, 30) / (3, 120) / (4, 105)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 10);\nINSERT INTO T VALUES (2, 1, 20);\nINSERT INTO T VALUES (3, 2, 100);\nINSERT INTO T VALUES (4, 2, 5);",
+          "query": "SELECT id,SUM(v) OVER(PARTITION BY d ORDER BY id ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS s FROM T ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "1f23fa6214973d6472aa5a76880c5e34e4cc13873f9d562d2949eb8bb91e0ee4",
+      "publicInputSha256": "6a97333fb4253f049372e3d1a0f7a7c2176a5e36da6cdf9f58b6ca4b8fa908de",
+      "question": {
+        "id": "S17-A01-fetch-only-key",
+        "version": 1,
+        "title": "상위 두 행을 고유 키까지 정렬해 선택한 결과는?",
+        "stem": "상위 두 행을 고유 키까지 정렬해 선택한 결과는?",
+        "sql": "SELECT id FROM T ORDER BY score DESC,id DESC FETCH FIRST 2 ROWS ONLY",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "score"
+            ],
+            "rows": [
+              [
+                "1",
+                "100"
+              ],
+              [
+                "2",
+                "90"
+              ],
+              [
+                "3",
+                "90"
+              ],
+              [
+                "4",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1) / (3)"
+          },
+          {
+            "id": "b",
+            "text": "(1) / (2)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (2) / (3)"
+          },
+          {
+            "id": "d",
+            "text": "(3) / (2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, score NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 100);\nINSERT INTO T VALUES (2, 90);\nINSERT INTO T VALUES (3, 90);\nINSERT INTO T VALUES (4, 80);",
+          "query": "SELECT id FROM T ORDER BY score DESC,id DESC FETCH FIRST 2 ROWS ONLY",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "65e26bc61802bb4088996822b36a0c0bfef914d96efdee516a3e977d499b64e8",
+      "publicInputSha256": "8e30623f89a850061801337ed2d38f1fa71073541950ef39a8ab737184f685bb",
+      "question": {
+        "id": "S17-A02-fetch-ties-last-score",
+        "version": 1,
+        "title": "점수만 정렬하고 두 행까지 WITH TIES로 선택한 결과는?",
+        "stem": "점수만 정렬하고 두 행까지 WITH TIES로 선택한 결과는?",
+        "sql": "SELECT id FROM T ORDER BY score DESC FETCH FIRST 2 ROWS WITH TIES",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "score"
+            ],
+            "rows": [
+              [
+                "1",
+                "100"
+              ],
+              [
+                "2",
+                "90"
+              ],
+              [
+                "3",
+                "90"
+              ],
+              [
+                "4",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1) / (2)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (2) / (3) / (4)"
+          },
+          {
+            "id": "d",
+            "text": "(2) / (3)"
+          },
+          {
+            "id": "a",
+            "text": "(1) / (2) / (3)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, score NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 100);\nINSERT INTO T VALUES (2, 90);\nINSERT INTO T VALUES (3, 90);\nINSERT INTO T VALUES (4, 80);",
+          "query": "SELECT id FROM T ORDER BY score DESC FETCH FIRST 2 ROWS WITH TIES",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "af0eff380f2886508a7b070375714cf171c173483da106f39661e89360868898",
+      "publicInputSha256": "d393b5b083377777a5e74808a2426d0f4049c3020c86ea0eb379e5d643505b74",
+      "question": {
+        "id": "S17-A03-offset-page",
+        "version": 1,
+        "title": "첫 두 행을 건너뛴 다음 한 행의 결과는?",
+        "stem": "첫 두 행을 건너뛴 다음 한 행의 결과는?",
+        "sql": "SELECT id FROM T ORDER BY score DESC,id OFFSET 2 ROWS FETCH NEXT 1 ROW ONLY",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "score"
+            ],
+            "rows": [
+              [
+                "1",
+                "100"
+              ],
+              [
+                "2",
+                "90"
+              ],
+              [
+                "3",
+                "90"
+              ],
+              [
+                "4",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1)"
+          },
+          {
+            "id": "d",
+            "text": "(4)"
+          },
+          {
+            "id": "a",
+            "text": "(3)"
+          },
+          {
+            "id": "b",
+            "text": "(2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, score NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 100);\nINSERT INTO T VALUES (2, 90);\nINSERT INTO T VALUES (3, 90);\nINSERT INTO T VALUES (4, 80);",
+          "query": "SELECT id FROM T ORDER BY score DESC,id OFFSET 2 ROWS FETCH NEXT 1 ROW ONLY",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "beca664ca5c26c866049d9c9df667693705b7bfa1a1cb90c6b842b575979421e",
+      "publicInputSha256": "74b0f906028311bd4862210fbd79de7b46fa9cf05390ee7912586ec3e4094d0f",
+      "question": {
+        "id": "S17-A04-per-dept-top",
+        "version": 1,
+        "title": "부서별 최고 점수 동점자를 모두 구한 결과는?",
+        "stem": "부서별 최고 점수 동점자를 모두 구한 결과는?",
+        "sql": "SELECT id FROM (SELECT id,RANK() OVER(PARTITION BY d ORDER BY v DESC) AS r FROM T) WHERE r=1 ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "d",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "90"
+              ],
+              [
+                "2",
+                "1",
+                "90"
+              ],
+              [
+                "3",
+                "1",
+                "70"
+              ],
+              [
+                "4",
+                "2",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1) / (2) / (3) / (4)"
+          },
+          {
+            "id": "a",
+            "text": "(1) / (2) / (4)"
+          },
+          {
+            "id": "b",
+            "text": "(1) / (4)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, d NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 90);\nINSERT INTO T VALUES (2, 1, 90);\nINSERT INTO T VALUES (3, 1, 70);\nINSERT INTO T VALUES (4, 2, 80);",
+          "query": "SELECT id FROM (SELECT id,RANK() OVER(PARTITION BY d ORDER BY v DESC) AS r FROM T) WHERE r=1 ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6a1219b4d6d8ff57f604d72ffc92b02919aafe69889a81b69ae80ee0e943090f",
+      "publicInputSha256": "be402b120bb4ecc190383196fa776b4427b59c7827d83c3f92cee618cda1bb38",
+      "question": {
+        "id": "S17-A05-rownum-lower-bound-empty",
+        "version": 1,
+        "title": "단순 ROWNUM 하한 조건 결과의 COUNT는?",
+        "stem": "단순 ROWNUM 하한 조건 결과의 COUNT는?",
+        "sql": "SELECT COUNT(*) FROM T WHERE ROWNUM>1",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "score"
+            ],
+            "rows": [
+              [
+                "1",
+                "100"
+              ],
+              [
+                "2",
+                "90"
+              ],
+              [
+                "3",
+                "90"
+              ],
+              [
+                "4",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(0)"
+          },
+          {
+            "id": "b",
+            "text": "(3)"
+          },
+          {
+            "id": "c",
+            "text": "(4)"
+          },
+          {
+            "id": "d",
+            "text": "0행"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, score NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 100);\nINSERT INTO T VALUES (2, 90);\nINSERT INTO T VALUES (3, 90);\nINSERT INTO T VALUES (4, 80);",
+          "query": "SELECT COUNT(*) FROM T WHERE ROWNUM>1",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "31a0636929009ae7711b0e6809d89e04c5d061da60721d20e1bed37e99fbe084",
+      "publicInputSha256": "ad830ba098f8a0ee9adf5f116b886c3e9e873d0314c66389e0dd477056dcf302",
+      "question": {
+        "id": "S17-A06-rank-versus-dense-cut",
+        "version": 1,
+        "title": "상위2순위 RANK 조건에서 반환되는 행은?",
+        "stem": "상위2순위 RANK 조건에서 반환되는 행은?",
+        "sql": "SELECT id FROM (SELECT id,RANK() OVER(ORDER BY score DESC) AS r FROM T) WHERE r<=2 ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "score"
+            ],
+            "rows": [
+              [
+                "1",
+                "100"
+              ],
+              [
+                "2",
+                "100"
+              ],
+              [
+                "3",
+                "90"
+              ],
+              [
+                "4",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1) / (2) / (3)"
+          },
+          {
+            "id": "c",
+            "text": "(1)"
+          },
+          {
+            "id": "d",
+            "text": "(1) / (2) / (3) / (4)"
+          },
+          {
+            "id": "a",
+            "text": "(1) / (2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, score NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 100);\nINSERT INTO T VALUES (2, 100);\nINSERT INTO T VALUES (3, 90);\nINSERT INTO T VALUES (4, 80);",
+          "query": "SELECT id FROM (SELECT id,RANK() OVER(ORDER BY score DESC) AS r FROM T) WHERE r<=2 ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "fbe21864c4f99fb4fd21e44ff9202e8e445b1d50b521324b64d7ca031287b717",
+      "publicInputSha256": "07ffd4d7de629c0eacd422ef9ea0ffb3edf5f5eabd14cc54961a2567e9564408",
+      "question": {
+        "id": "S18-A01-hierarchy-levels",
+        "version": 1,
+        "title": "루트에서 하향 탐색한 id와 LEVEL의 집합은?",
+        "stem": "루트에서 하향 탐색한 id와 LEVEL의 집합은?",
+        "sql": "SELECT id,LEVEL AS depth FROM N START WITH pid IS NULL CONNECT BY PRIOR id=pid",
+        "tables": [
+          {
+            "title": "N",
+            "columns": [
+              "id",
+              "pid",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                null,
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "1",
+                "30"
+              ],
+              [
+                "4",
+                "2",
+                "40"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 1)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 1) / (2, 2) / (4, 3) / (3, 2)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 0) / (2, 1) / (3, 1) / (4, 2)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 1) / (2, 2) / (3, 3) / (4, 4)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE N (id NUMBER, pid NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO N VALUES (1, NULL, 10);\nINSERT INTO N VALUES (2, 1, 20);\nINSERT INTO N VALUES (3, 1, 30);\nINSERT INTO N VALUES (4, 2, 40);",
+          "query": "SELECT id,LEVEL AS depth FROM N START WITH pid IS NULL CONNECT BY PRIOR id=pid",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a0d1b98aa0b8d27d1094c5b9012ce84794c6e73c47b60a5e7e33a64e0dcbec1d",
+      "publicInputSha256": "1231e6fdf63b94182a0e502289158d0f8514651383b804b0acd191e3b85f872f",
+      "question": {
+        "id": "S18-A02-self-manager-name",
+        "version": 1,
+        "title": "상사 없는 직원도 남기는 셀프 조인 결과는?",
+        "stem": "상사 없는 직원도 남기는 셀프 조인 결과는?",
+        "sql": "SELECT e.id,m.id AS manager FROM N e LEFT JOIN N m ON e.pid=m.id ORDER BY e.id",
+        "tables": [
+          {
+            "title": "N",
+            "columns": [
+              "id",
+              "pid",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                null,
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "1",
+                "30"
+              ],
+              [
+                "4",
+                "2",
+                "40"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, NULL) / (2, 1) / (3, 1) / (4, 2)"
+          },
+          {
+            "id": "b",
+            "text": "(2, 1) / (3, 1) / (4, 2)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 2) / (1, 3) / (2, 4)"
+          },
+          {
+            "id": "d",
+            "text": "(1, NULL) / (2, 1) / (3, 1) / (4, 1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE N (id NUMBER, pid NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO N VALUES (1, NULL, 10);\nINSERT INTO N VALUES (2, 1, 20);\nINSERT INTO N VALUES (3, 1, 30);\nINSERT INTO N VALUES (4, 2, 40);",
+          "query": "SELECT e.id,m.id AS manager FROM N e LEFT JOIN N m ON e.pid=m.id ORDER BY e.id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "7a15f8a008913df1b8c566faed3f9ac3a479b2f874b496a98696f96dad42ea75",
+      "publicInputSha256": "c469ce2e04eba05eba27346641457165da7b7087ae376a9a75ff69879186dac9",
+      "question": {
+        "id": "S18-A03-subtree-start",
+        "version": 1,
+        "title": "START WITH id=2에서 시작한 부분 트리 결과는?",
+        "stem": "START WITH id=2에서 시작한 부분 트리 결과는?",
+        "sql": "SELECT id,LEVEL AS depth FROM N START WITH id=2 CONNECT BY PRIOR id=pid",
+        "tables": [
+          {
+            "title": "N",
+            "columns": [
+              "id",
+              "pid",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                null,
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "1",
+                "30"
+              ],
+              [
+                "4",
+                "2",
+                "40"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(2, 2) / (4, 3)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 1) / (2, 2) / (4, 3)"
+          },
+          {
+            "id": "d",
+            "text": "(2, 1) / (3, 1) / (4, 2)"
+          },
+          {
+            "id": "a",
+            "text": "(2, 1) / (4, 2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE N (id NUMBER, pid NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO N VALUES (1, NULL, 10);\nINSERT INTO N VALUES (2, 1, 20);\nINSERT INTO N VALUES (3, 1, 30);\nINSERT INTO N VALUES (4, 2, 40);",
+          "query": "SELECT id,LEVEL AS depth FROM N START WITH id=2 CONNECT BY PRIOR id=pid",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2e404ed7201d6076f488483b54394ec522862f729f766125fcc886caa163ed66",
+      "publicInputSha256": "8e394be20962be483dc7edbe0ceff78da80b38169169459a5d30f0042e99e651",
+      "question": {
+        "id": "S18-A04-ancestor-direction",
+        "version": 1,
+        "title": "id4에서 부모 방향으로 올라가는 결과는?",
+        "stem": "id4에서 부모 방향으로 올라가는 결과는?",
+        "sql": "SELECT id,LEVEL AS depth FROM N START WITH id=4 CONNECT BY PRIOR pid=id",
+        "tables": [
+          {
+            "title": "N",
+            "columns": [
+              "id",
+              "pid",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                null,
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "1",
+                "30"
+              ],
+              [
+                "4",
+                "2",
+                "40"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, 1) / (2, 2) / (4, 3)"
+          },
+          {
+            "id": "d",
+            "text": "(4, 1) / (2, 2) / (3, 3) / (1, 4)"
+          },
+          {
+            "id": "a",
+            "text": "(4, 1) / (2, 2) / (1, 3)"
+          },
+          {
+            "id": "b",
+            "text": "(4, 1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE N (id NUMBER, pid NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO N VALUES (1, NULL, 10);\nINSERT INTO N VALUES (2, 1, 20);\nINSERT INTO N VALUES (3, 1, 30);\nINSERT INTO N VALUES (4, 2, 40);",
+          "query": "SELECT id,LEVEL AS depth FROM N START WITH id=4 CONNECT BY PRIOR pid=id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6d30bd94dccc14e6d91535789a45b3755567c26e25454c35e9dffc3ea961f7ca",
+      "publicInputSha256": "5bbf44d8b6bc626b91dc605694563b7fc06ddec7afe3f16aa6b70b75f8481b42",
+      "question": {
+        "id": "S18-A05-where-after-path",
+        "version": 1,
+        "title": "계층을 만든 뒤 WHERE로 id2만 제외하면 id4는 남는가?",
+        "stem": "계층을 만든 뒤 WHERE로 id2만 제외하면 id4는 남는가?",
+        "sql": "SELECT id,LEVEL AS depth FROM N WHERE id<>2 START WITH id=1 CONNECT BY PRIOR id=pid",
+        "tables": [
+          {
+            "title": "N",
+            "columns": [
+              "id",
+              "pid",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                null,
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "1",
+                "30"
+              ],
+              [
+                "4",
+                "2",
+                "40"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(4, 1) / (3, 1)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 1) / (4, 3) / (3, 2)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 1) / (3, 2)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 1) / (4, 2) / (3, 2)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE N (id NUMBER, pid NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO N VALUES (1, NULL, 10);\nINSERT INTO N VALUES (2, 1, 20);\nINSERT INTO N VALUES (3, 1, 30);\nINSERT INTO N VALUES (4, 2, 40);",
+          "query": "SELECT id,LEVEL AS depth FROM N WHERE id<>2 START WITH id=1 CONNECT BY PRIOR id=pid",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4be40aca01d6960d3780ee729c26df320387167e062d5abb0df3ecf984e1609c",
+      "publicInputSha256": "3e4aed11dd5b0dda63657f8e72f17117f3cc2b8fb4efaf5f1250ce9045162302",
+      "question": {
+        "id": "S18-A06-leaf-flags",
+        "version": 1,
+        "title": "CONNECT_BY_ISLEAF를 표시한 결과는?",
+        "stem": "CONNECT_BY_ISLEAF를 표시한 결과는?",
+        "sql": "SELECT id,CONNECT_BY_ISLEAF AS leaf FROM N START WITH pid IS NULL CONNECT BY PRIOR id=pid",
+        "tables": [
+          {
+            "title": "N",
+            "columns": [
+              "id",
+              "pid",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                null,
+                "10"
+              ],
+              [
+                "2",
+                "1",
+                "20"
+              ],
+              [
+                "3",
+                "1",
+                "30"
+              ],
+              [
+                "4",
+                "2",
+                "40"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 0) / (2, 0) / (4, 1) / (3, 1)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 1) / (2, 0) / (3, 0) / (4, 0)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 0) / (2, 1) / (3, 1) / (4, 1)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 1) / (2, 2) / (3, 2) / (4, 3)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE N (id NUMBER, pid NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO N VALUES (1, NULL, 10);\nINSERT INTO N VALUES (2, 1, 20);\nINSERT INTO N VALUES (3, 1, 30);\nINSERT INTO N VALUES (4, 2, 40);",
+          "query": "SELECT id,CONNECT_BY_ISLEAF AS leaf FROM N START WITH pid IS NULL CONNECT BY PRIOR id=pid",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "16e732fcc2b5b5bae96c1d9aba0ee462a3c327f9ccb8a73f642ca0a79ad5bc16",
+      "publicInputSha256": "a771a2dd1f8fc3de8e211c2688c75a0781d34ab29e20af6d9aeee4e5a072a7b6",
+      "question": {
+        "id": "S19-A01-pivot-sum-groups",
+        "version": 1,
+        "title": "월을 열로 펼친 SUM PIVOT 결과는?",
+        "stem": "월을 열로 펼친 SUM PIVOT 결과는?",
+        "sql": "SELECT shop,m1,m2 FROM T PIVOT(SUM(amt) FOR mon IN(1 AS m1,2 AS m2)) ORDER BY shop",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "shop",
+              "mon",
+              "amt"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "1",
+                "1",
+                "5"
+              ],
+              [
+                "1",
+                "2",
+                "20"
+              ],
+              [
+                "2",
+                "1",
+                "7"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(1, 15, 20) / (2, 7, 0)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 42, 42)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 15, 20) / (2, 7, NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 10, 20) / (2, 7, NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (shop NUMBER, mon NUMBER, amt NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 10);\nINSERT INTO T VALUES (1, 1, 5);\nINSERT INTO T VALUES (1, 2, 20);\nINSERT INTO T VALUES (2, 1, 7);",
+          "query": "SELECT shop,m1,m2 FROM T PIVOT(SUM(amt) FOR mon IN(1 AS m1,2 AS m2)) ORDER BY shop",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8ba5833ca6e9a4526cadcde2290ed8739eca0f8c9c4b6d4db59e21cf5585efda",
+      "publicInputSha256": "91216c24a38277e005a1a050b79ac71695db420693ac307be50b94fc4f9b18af",
+      "question": {
+        "id": "S19-A02-pivot-count-missing",
+        "version": 1,
+        "title": "COUNT PIVOT에서 해당 월 입력이 없으면 결과는?",
+        "stem": "COUNT PIVOT에서 해당 월 입력이 없으면 결과는?",
+        "sql": "SELECT shop,m1,m2 FROM T PIVOT(COUNT(*) FOR mon IN(1 AS m1,2 AS m2)) ORDER BY shop",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "shop",
+              "mon"
+            ],
+            "rows": [
+              [
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "2"
+              ],
+              [
+                "2",
+                "1"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 3, 3) / (2, 1, 1)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 2, 1) / (2, 1, 0)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 2, 1) / (2, 1, NULL)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 1, 1) / (2, 1, 0)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (shop NUMBER, mon NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1);\nINSERT INTO T VALUES (1, 1);\nINSERT INTO T VALUES (1, 2);\nINSERT INTO T VALUES (2, 1);",
+          "query": "SELECT shop,m1,m2 FROM T PIVOT(COUNT(*) FOR mon IN(1 AS m1,2 AS m2)) ORDER BY shop",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4073528bf8826005bc5c93ab4ae50e8d4ba935b6045910d30b07e1d54659da8d",
+      "publicInputSha256": "28d5f6fc9d65219b60a3aa0823bcf39778c1392a597fe28ba450ed84616bb613",
+      "question": {
+        "id": "S19-A03-pivot-extra-id",
+        "version": 1,
+        "title": "PIVOT 입력에 id까지 남아 있으면 어떤 그룹이 생기는가?",
+        "stem": "PIVOT 입력에 id까지 남아 있으면 어떤 그룹이 생기는가?",
+        "sql": "SELECT id,shop,m1,m2 FROM T PIVOT(SUM(amt) FOR mon IN(1 AS m1,2 AS m2)) ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "shop",
+              "mon",
+              "amt"
+            ],
+            "rows": [
+              [
+                "1",
+                "7",
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "7",
+                "2",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 7, 10, NULL) / (2, 7, NULL, 20)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 7, 10, 20)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 7, 30, 30) / (2, 7, 30, 30)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 7, 10, 0) / (2, 7, 0, 20)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, shop NUMBER, mon NUMBER, amt NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 7, 1, 10);\nINSERT INTO T VALUES (2, 7, 2, 20);",
+          "query": "SELECT id,shop,m1,m2 FROM T PIVOT(SUM(amt) FOR mon IN(1 AS m1,2 AS m2)) ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "17181e4c60d8cac167bfaaa8bf351f409de08180ef3d2884dd12a0b1ccd90e3c",
+      "publicInputSha256": "7fdf83c8ab122f349d42a528efe2863e7c8513f316c5a12a7ed308f0583442a1",
+      "question": {
+        "id": "S19-A04-unpivot-default",
+        "version": 1,
+        "title": "NULL을 제외하는 기본 UNPIVOT 결과는?",
+        "stem": "NULL을 제외하는 기본 UNPIVOT 결과는?",
+        "sql": "SELECT id,quarter,amt FROM T UNPIVOT(amt FOR quarter IN(q1 AS 'Q1',q2 AS 'Q2')) ORDER BY id,quarter",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "q1",
+              "q2"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                null
+              ],
+              [
+                "2",
+                "0",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1, Q1, 10) / (1, Q2, NULL) / (2, Q1, 0) / (2, Q2, 5)"
+          },
+          {
+            "id": "c",
+            "text": "(1, Q1, 10) / (2, Q2, 5)"
+          },
+          {
+            "id": "d",
+            "text": "(1, Q1, 10)"
+          },
+          {
+            "id": "a",
+            "text": "(1, Q1, 10) / (2, Q1, 0) / (2, Q2, 5)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, q1 NUMBER, q2 NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10, NULL);\nINSERT INTO T VALUES (2, 0, 5);",
+          "query": "SELECT id,quarter,amt FROM T UNPIVOT(amt FOR quarter IN(q1 AS 'Q1',q2 AS 'Q2')) ORDER BY id,quarter",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "77ffdb167a0943cb59c6247b15ef4e399c7fffc9d64ae8a1a101389da5d3b5c2",
+      "publicInputSha256": "157ecadad670f0d8c29ee5058d2fc512ba06fba3c48df00fd8838091db5525bb",
+      "question": {
+        "id": "S19-A05-unpivot-include-count",
+        "version": 1,
+        "title": "INCLUDE NULLS 이후 COUNT 두 종류의 값은?",
+        "stem": "INCLUDE NULLS 이후 COUNT 두 종류의 값은?",
+        "sql": "SELECT COUNT(*),COUNT(amt) FROM T UNPIVOT INCLUDE NULLS(amt FOR quarter IN(q1,q2))",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "q1",
+              "q2"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                null
+              ],
+              [
+                "2",
+                null,
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(4, 4)"
+          },
+          {
+            "id": "d",
+            "text": "(2, 1)"
+          },
+          {
+            "id": "a",
+            "text": "(4, 1)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, q1 NUMBER, q2 NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10, NULL);\nINSERT INTO T VALUES (2, NULL, NULL);",
+          "query": "SELECT COUNT(*),COUNT(amt) FROM T UNPIVOT INCLUDE NULLS(amt FOR quarter IN(q1,q2))",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "9ff65c8fd7003087def07d04dbf7eb152d2553590daa77f8427093de166d9107",
+      "publicInputSha256": "39786986d30c44ee38b27dbd68fb1e84e632e3c4284781ec7994f7b7051a4a5f",
+      "question": {
+        "id": "S19-A06-conditional-pivot",
+        "version": 1,
+        "title": "조건부 집계로 특정 월의 합계를 구한 결과는?",
+        "stem": "조건부 집계로 특정 월의 합계를 구한 결과는?",
+        "sql": "SELECT shop,SUM(CASE WHEN mon=1 THEN amt END) AS m1,SUM(CASE WHEN mon=2 THEN amt END) AS m2 FROM T GROUP BY shop ORDER BY shop",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "shop",
+              "mon",
+              "amt"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10"
+              ],
+              [
+                "1",
+                "1",
+                "5"
+              ],
+              [
+                "1",
+                "2",
+                "20"
+              ],
+              [
+                "2",
+                "1",
+                "7"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(1, 10, 20) / (2, 7, NULL)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 15, 20) / (2, 7, NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 15, 20) / (2, 7, 0)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 35, 35) / (2, 7, 7)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (shop NUMBER, mon NUMBER, amt NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 1, 10);\nINSERT INTO T VALUES (1, 1, 5);\nINSERT INTO T VALUES (1, 2, 20);\nINSERT INTO T VALUES (2, 1, 7);",
+          "query": "SELECT shop,SUM(CASE WHEN mon=1 THEN amt END) AS m1,SUM(CASE WHEN mon=2 THEN amt END) AS m2 FROM T GROUP BY shop ORDER BY shop",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6955d69636a6de9c03401699d56c8f2d73e269fb7e14fba466211460411a158c",
+      "publicInputSha256": "9e9e6f6383d5e0befcf8834cd7e395542c6c79c8b92cb1122bebf0356c9ab697",
+      "question": {
+        "id": "S20-A01-regexp-whole-digits",
+        "version": 1,
+        "title": "전체가 숫자인 문자열만 찾은 결과는?",
+        "stem": "전체가 숫자인 문자열만 찾은 결과는?",
+        "sql": "SELECT id FROM T WHERE REGEXP_LIKE(txt,'^[0-9]+$','c') ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "txt"
+            ],
+            "rows": [
+              [
+                "1",
+                "123"
+              ],
+              [
+                "2",
+                "A12"
+              ],
+              [
+                "3",
+                "12-3"
+              ],
+              [
+                "4",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1) / (2) / (3) / (4)"
+          },
+          {
+            "id": "c",
+            "text": "(1)"
+          },
+          {
+            "id": "d",
+            "text": "(2) / (3)"
+          },
+          {
+            "id": "a",
+            "text": "(1) / (4)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, txt VARCHAR2(20));",
+          "setupSql": "INSERT INTO T VALUES (1, '123');\nINSERT INTO T VALUES (2, 'A12');\nINSERT INTO T VALUES (3, '12-3');\nINSERT INTO T VALUES (4, '0');",
+          "query": "SELECT id FROM T WHERE REGEXP_LIKE(txt,'^[0-9]+$','c') ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "a9311fc0371d6629e9f2af0939f351d7e7a878d021f50591f6f93926b7f1588a",
+      "publicInputSha256": "6f627b1eded3aaa2ae1cf3e84ae11a055192e6814e3085be8e0d585e94559358",
+      "question": {
+        "id": "S20-A02-regexp-second-token",
+        "version": 1,
+        "title": "두 번째 숫자 묶음을 추출한 값은?",
+        "stem": "두 번째 숫자 묶음을 추출한 값은?",
+        "sql": "SELECT REGEXP_SUBSTR('A12-B345-C6','[0-9]+',1,2,'c') AS token FROM dual",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(6)"
+          },
+          {
+            "id": "d",
+            "text": "(2)"
+          },
+          {
+            "id": "a",
+            "text": "(345)"
+          },
+          {
+            "id": "b",
+            "text": "(12)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT REGEXP_SUBSTR('A12-B345-C6','[0-9]+',1,2,'c') AS token FROM dual",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "6bcc524f885831b376178dbe002571510c01c139b543e8dde572f8a72621057b",
+      "publicInputSha256": "a8b711070cb1488e1e8e4cbde7befad7ab74972065eacc7d26aeb0c914a6dc24",
+      "question": {
+        "id": "S20-A03-regexp-clean-replace",
+        "version": 1,
+        "title": "숫자만 남기도록 치환한 결과는?",
+        "stem": "숫자만 남기도록 치환한 결과는?",
+        "sql": "SELECT REGEXP_REPLACE('02-123 A','[^0-9]','') AS cleaned FROM dual",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(2123)"
+          },
+          {
+            "id": "a",
+            "text": "(02123)"
+          },
+          {
+            "id": "b",
+            "text": "(02-123 A)"
+          },
+          {
+            "id": "c",
+            "text": "(- A)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT REGEXP_REPLACE('02-123 A','[^0-9]','') AS cleaned FROM dual",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ab5ec6974ca448f4dab1c8dc1d76e48ef2045b860282983b55380f06f92d705e",
+      "publicInputSha256": "1b8afc338e996696c583ed6c0e37d4f403e8fdc08e77cbfc82bf4eb7fe426e48",
+      "question": {
+        "id": "S20-A04-regexp-class-group-difference",
+        "version": 1,
+        "title": "(ab)+ 전체 일치 패턴을 통과하는 행은?",
+        "stem": "(ab)+ 전체 일치 패턴을 통과하는 행은?",
+        "sql": "SELECT id FROM T WHERE REGEXP_LIKE(txt,'^(ab)+$','c') ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "txt"
+            ],
+            "rows": [
+              [
+                "1",
+                "abab"
+              ],
+              [
+                "2",
+                "abba"
+              ],
+              [
+                "3",
+                "aaa"
+              ],
+              [
+                "4",
+                "ab"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1) / (4)"
+          },
+          {
+            "id": "b",
+            "text": "(1) / (2) / (3) / (4)"
+          },
+          {
+            "id": "c",
+            "text": "(4)"
+          },
+          {
+            "id": "d",
+            "text": "(2) / (3)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, txt VARCHAR2(20));",
+          "setupSql": "INSERT INTO T VALUES (1, 'abab');\nINSERT INTO T VALUES (2, 'abba');\nINSERT INTO T VALUES (3, 'aaa');\nINSERT INTO T VALUES (4, 'ab');",
+          "query": "SELECT id FROM T WHERE REGEXP_LIKE(txt,'^(ab)+$','c') ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d7bc012e6c23f25988e7c6aaa8d77824a277470adba1f1c3b22d4357ca87df44",
+      "publicInputSha256": "eb05f871b265b5b516b813f61f017c984d1c96964c6f7e11c8959618cdb584fe",
+      "question": {
+        "id": "S20-A05-regexp-case-insensitive",
+        "version": 1,
+        "title": "i 옵션을 명시한 대소문자 무시 결과는?",
+        "stem": "i 옵션을 명시한 대소문자 무시 결과는?",
+        "sql": "SELECT id FROM T WHERE REGEXP_LIKE(txt,'^ab$','i') ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "txt"
+            ],
+            "rows": [
+              [
+                "1",
+                "AB"
+              ],
+              [
+                "2",
+                "ab"
+              ],
+              [
+                "3",
+                "aB"
+              ],
+              [
+                "4",
+                "abc"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(2)"
+          },
+          {
+            "id": "c",
+            "text": "(1) / (2) / (3) / (4)"
+          },
+          {
+            "id": "d",
+            "text": "(1) / (3)"
+          },
+          {
+            "id": "a",
+            "text": "(1) / (2) / (3)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, txt VARCHAR2(20));",
+          "setupSql": "INSERT INTO T VALUES (1, 'AB');\nINSERT INTO T VALUES (2, 'ab');\nINSERT INTO T VALUES (3, 'aB');\nINSERT INTO T VALUES (4, 'abc');",
+          "query": "SELECT id FROM T WHERE REGEXP_LIKE(txt,'^ab$','i') ORDER BY id",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "2fd16c4bc13145aa076b07708df28ad2df11b767f3c06bd2bbaa9e3100847835",
+      "publicInputSha256": "fd4b2fb1f9a3859d60d17d720142190d2ed637d52fc3e2382c4c965d4f8ea701",
+      "question": {
+        "id": "S20-A06-regexp-no-match-null",
+        "version": 1,
+        "title": "일치가 없는 REGEXP_SUBSTR의 결과는?",
+        "stem": "일치가 없는 REGEXP_SUBSTR의 결과는?",
+        "sql": "SELECT REGEXP_SUBSTR('ABC','[0-9]+',1,1,'c') AS token FROM dual",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(ABC)"
+          },
+          {
+            "id": "d",
+            "text": "0행"
+          },
+          {
+            "id": "a",
+            "text": "(NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(0)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT REGEXP_SUBSTR('ABC','[0-9]+',1,1,'c') AS token FROM dual",
+          "constraints": [
+            "표에 제시한 행이 전체 입력이다. 열 자료형은 schemaSql에 명시하며 추가 제약은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "27c3645afb5e4ca2e43bdbef89f589e9377778324258f908a15251007d67dd48",
+      "publicInputSha256": "4502299b471d718154965f3e4b1e5ee90becdc7208d4dc3ffbaf92f06f024519",
+      "question": {
+        "id": "S21-A01-update-filter-rows",
+        "version": 1,
+        "title": "할인 조건에 맞는 행만 갱신했다. 같은 세션의 최종 조회는?",
+        "stem": "할인 조건에 맞는 행만 갱신했다. 같은 세션의 최종 조회는?",
+        "sql": "UPDATE T SET v=v+5 WHERE v>=20;\nSELECT id,v FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "20"
+              ],
+              [
+                "3",
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "a",
+            "text": "(1, 10) / (2, 25) / (3, NULL)"
+          },
+          {
+            "id": "b",
+            "text": "(1, 15) / (2, 25) / (3, 5)"
+          },
+          {
+            "id": "c",
+            "text": "(1, 10) / (2, 20) / (3, NULL)"
+          },
+          {
+            "id": "d",
+            "text": "(1, 10) / (2, 25)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nINSERT INTO T VALUES (2, 20);\nINSERT INTO T VALUES (3, NULL);\nCOMMIT;\nUPDATE T SET v=v+5 WHERE v>=20;",
+          "query": "SELECT id,v FROM T ORDER BY id",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8c4e0aaed59465cd3205e2e946165f82fae12d08581aeb4be8a7a3741e5fcdf3",
+      "publicInputSha256": "6d3b99ef727659bc247384671864c22790694d85324ed89ee880983c0519a72e",
+      "question": {
+        "id": "S21-A02-delete-null-condition",
+        "version": 1,
+        "title": "=NULL 조건으로 삭제한 뒤 남은 행은?",
+        "stem": "=NULL 조건으로 삭제한 뒤 남은 행은?",
+        "sql": "DELETE FROM T WHERE v=NULL;\nSELECT id,v FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "b",
+            "text": "(1, 10)"
+          },
+          {
+            "id": "c",
+            "text": "0행"
+          },
+          {
+            "id": "d",
+            "text": "(2, NULL)"
+          },
+          {
+            "id": "a",
+            "text": "(1, 10) / (2, NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10);\nINSERT INTO T VALUES (2, NULL);\nCOMMIT;\nDELETE FROM T WHERE v=NULL;",
+          "query": "SELECT id,v FROM T ORDER BY id",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d9e1ed1924478a39a38f0165a1ba1e44c903b3a12148a35108b925a519ab8e15",
+      "publicInputSha256": "24c0c0380dd3b74851d12384db3cc40d28e2a1e7ca8bed0a1e2fb7dfe44de7e3",
+      "question": {
+        "id": "S21-A03-insert-column-order",
+        "version": 1,
+        "title": "명시한 열 목록 순서대로 INSERT한 결과는?",
+        "stem": "명시한 열 목록 순서대로 INSERT한 결과는?",
+        "sql": "INSERT INTO T(v,id) VALUES(40,7);\nSELECT id,v FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": []
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "c",
+            "text": "(7, NULL)"
+          },
+          {
+            "id": "d",
+            "text": "0행"
+          },
+          {
+            "id": "a",
+            "text": "(7, 40)"
+          },
+          {
+            "id": "b",
+            "text": "(40, 7)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, v NUMBER);",
+          "setupSql": "\nCOMMIT;\nINSERT INTO T(v,id) VALUES(40,7);",
+          "query": "SELECT id,v FROM T",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "933b554e296b147f3f9995738e83b6efb78bb6c206462ba031ac0d5eb87fbcaa",
+      "publicInputSha256": "44fa82f500d225db39463c68894f246f82f35629c1404ee9c7a87e30f808f38e",
+      "question": {
+        "id": "S21-A04-update-all-original-expressions",
+        "version": 1,
+        "title": "한 UPDATE에서 두 열을 교환했다. 결과는?",
+        "stem": "한 UPDATE에서 두 열을 교환했다. 결과는?",
+        "sql": "UPDATE T SET a=b,b=a WHERE id=1;\nSELECT a,b FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "a",
+              "b"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "d",
+            "text": "(10, 20)"
+          },
+          {
+            "id": "a",
+            "text": "(20, 10)"
+          },
+          {
+            "id": "b",
+            "text": "(20, 20)"
+          },
+          {
+            "id": "c",
+            "text": "(10, 10)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER, a NUMBER, b NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1, 10, 20);\nCOMMIT;\nUPDATE T SET a=b,b=a WHERE id=1;",
+          "query": "SELECT a,b FROM T",
+          "constraints": [
+            "초기 입력은 이미 COMMIT되었다. 추가 동시 변경·트리거·자동 커밋은 없다.",
+            "명시한 명령은 같은 Oracle19c 세션에서 순서대로 수행한다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "날짜·문자 정렬에 의존하는 경우 지문에 별도 조건을 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    }
+  ],
+  "inputSha256": "755b7193b284f545b6828f795ddc267fbed7db3b507c96d47f4c5bd441fc81d2"
+}

@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-3-02",
+  "source": {
+    "id": "2-3-02",
+    "partId": "2-3",
+    "number": 2,
+    "title": "트랜잭션과 TCL",
+    "lectureMinutes": 34,
+    "easy": "여러 변경을 하나의 업무 단위로 묶어 전부 성공시키거나 취소한다. COMMIT은 확정, ROLLBACK은 미확정 변경 취소다.",
+    "why": "송금은 한 계좌에서 빼는 것과 다른 계좌에 더하는 것이 한 묶음이어야 한다. 한쪽만 되면 돈이 사라진다.",
+    "concepts": [
+      {
+        "term": "원자성 A",
+        "meaning": "전부 반영되거나 전부 취소",
+        "example": "출금만 성공한 송금은 안 됨"
+      },
+      {
+        "term": "일관성 C",
+        "meaning": "전후에 업무·무결성 규칙을 지킴",
+        "example": "송금 총잔액 유지"
+      },
+      {
+        "term": "격리성 I",
+        "meaning": "동시 작업의 중간 상태 간섭을 제어",
+        "example": "격리 수준에 따라 허용 현상 차이"
+      },
+      {
+        "term": "지속성 D",
+        "meaning": "커밋된 변경을 영속적으로 유지",
+        "example": "장애 후 회복"
+      },
+      {
+        "term": "COMMIT",
+        "meaning": "현재 트랜잭션 확정",
+        "example": "이후 일반 ROLLBACK으로 취소 안 됨"
+      },
+      {
+        "term": "ROLLBACK",
+        "meaning": "현재 미확정 변경 전체 취소",
+        "example": "마지막 커밋 이후 범위"
+      },
+      {
+        "term": "SAVEPOINT",
+        "meaning": "중간 되돌림 지점 지정",
+        "example": "ROLLBACK TO s1"
+      },
+      {
+        "term": "Oracle DDL",
+        "meaning": "DDL 전후 암묵 COMMIT 주의",
+        "example": "앞선 DML이 예상보다 먼저 확정될 수 있음"
+      },
+      {
+        "term": "동시성 현상",
+        "meaning": "더티읽기·비반복읽기·팬텀 등",
+        "example": "격리 수준별 차이, DBMS별 구현 확인"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-3-02-E01",
+        "title": "중간 지점으로만 되돌리기",
+        "question": "초기 잔액1000에서100을 빼고, 저장점 뒤200을 더했다가 저장점으로 돌아가자.",
+        "tables": [
+          {
+            "title": "계좌",
+            "columns": [
+              "계좌ID",
+              "이름",
+              "잔액"
+            ],
+            "rows": [
+              [
+                "1",
+                "이승현",
+                "1000"
+              ]
+            ]
+          }
+        ],
+        "sql": "UPDATE 계좌 SET 잔액=잔액-100 WHERE 계좌ID=1;\nSAVEPOINT s1;\nUPDATE 계좌 SET 잔액=잔액+200 WHERE 계좌ID=1;\nROLLBACK TO s1;\nCOMMIT;\nSELECT 계좌ID,이름,잔액 FROM 계좌;",
+        "steps": [
+          "100을 빼면900이다. 여기서 SAVEPOINT s1을 만든다.",
+          "200을 더하면1100이다.",
+          "ROLLBACK TO s1은 저장점 뒤의200 추가만 취소해900으로 돌아간다.",
+          "COMMIT하면900을 확정한다. 처음1000으로 전부 되돌린 것이 아니다."
+        ],
+        "results": [
+          {
+            "title": "최종 계좌",
+            "columns": [
+              "계좌ID",
+              "이름",
+              "잔액"
+            ],
+            "rows": [
+              [
+                "1",
+                "이승현",
+                "900"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 원자료의 SQLite 대체식 확인과 Oracle 실제 실행은 다릅니다. Oracle 실행 미확인."
+      },
+      {
+        "id": "2-3-02-E02",
+        "title": "송금 두 작업을 한 묶음으로",
+        "question": "이승현에서 박보성에게100 송금하려면?",
+        "tables": [
+          {
+            "title": "계좌",
+            "columns": [
+              "계좌ID",
+              "이름",
+              "잔액"
+            ],
+            "rows": [
+              [
+                "1",
+                "이승현",
+                "500"
+              ],
+              [
+                "2",
+                "박보성",
+                "300"
+              ]
+            ]
+          }
+        ],
+        "sql": "UPDATE 계좌 SET 잔액=잔액-100 WHERE 계좌ID=1;\nUPDATE 계좌 SET 잔액=잔액+100 WHERE 계좌ID=2;\nSELECT 계좌ID,이름,잔액 FROM 계좌 ORDER BY 계좌ID;",
+        "steps": [
+          "이승현 잔액에서100을 빼면400이다.",
+          "박보성 잔액에100을 더하면400이다.",
+          "두 변경을 함께 확정하면 합계800이 유지된다. 둘째 작업이 실패하면 첫 변경도 취소해야 한다."
+        ],
+        "results": [
+          {
+            "title": "성공 후 잔액",
+            "columns": [
+              "계좌ID",
+              "이름",
+              "잔액"
+            ],
+            "rows": [
+              [
+                "1",
+                "이승현",
+                "400"
+              ],
+              [
+                "2",
+                "박보성",
+                "400"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "COMMIT 확정 / ROLLBACK 취소 / SAVEPOINT 중간 표시. 송금은 두 변경 한 묶음.",
+    "traps": [
+      "격리성은 실제 모든 트랜잭션이 동시에 실행되지 못한다는 뜻이 아니다. 동시 실행을 제어해 정해진 격리 보장을 제공한다.",
+      "저장점으로 되돌리기는 그 이전 변경까지 전부 취소하는 것이 아니다.",
+      "Oracle의 DDL 암묵 커밋과 다른 DBMS의 트랜잭션 DDL은 구별한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-3-02-Q1",
+        "question": "1000→900 저장점→1100→저장점 롤백 후 잔액은?",
+        "answer": "900",
+        "explanation": "저장점 이후 추가200만 취소한다."
+      },
+      {
+        "id": "2-3-02-Q2",
+        "question": "커밋 이후 일반 ROLLBACK으로 이전 송금이 취소되는가?",
+        "answer": "아니다",
+        "explanation": "이미 확정한 트랜잭션은 현재 미확정 변경이 아니다."
+      },
+      {
+        "id": "2-3-02-Q3",
+        "question": "송금에서 출금·입금 모두 또는 아무것도 아닌 특성은?",
+        "answer": "원자성",
+        "explanation": "부분 성공을 허용하지 않는다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S22",
+      "note-M08"
+    ],
+    "sourceIds": [
+      "commit",
+      "rollback",
+      "savepoint",
+      "transaction"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"트랜잭션과 TCL 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">여러 변경 시작</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">하나의 업무 묶음</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">전부 정상인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">확정 / 취소</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">COMMIT / ROLLBACK</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"178\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#172b4d\"><tspan x=\"360\" dy=\"0\">COMMIT 확정 / ROLLBACK 취소 / SAVEPOINT 중간 표시. 송금은</tspan><tspan x=\"360\" dy=\"18\">두 변경 한 묶음.</tspan></text></svg>",
+    "version": 1
+  },
+  "purpose": "출금·입금을 함께 확정해야 하는 이유와 저장점 이후 변경만 취소하는 흐름을 잔액으로 확인한다.",
+  "overview": "트랜잭션은 함께 확정하거나 취소할 작업 묶음이다. UPDATE는 현재 잔액을 바꾸고 SAVEPOINT는 취소 기준을 기억하며 COMMIT은 남은 변경을 확정한다.",
+  "terms": [
+    {
+      "token": "SAVEPOINT s1",
+      "kind": "TCL과 저장점 이름",
+      "meaning": "save point = 되돌릴 기준점",
+      "role": "잔액 900 상태의 트랜잭션 위치에 s1이라는 이름을 붙인다. 새 계좌를 만들거나 즉시 커밋하지 않는다."
+    },
+    {
+      "token": "ROLLBACK TO s1",
+      "kind": "TCL",
+      "meaning": "저장점까지 되돌리다",
+      "role": "s1 뒤의 200 추가만 취소하고 먼저 뺀 100은 유지한다."
+    },
+    {
+      "token": "COMMIT",
+      "kind": "TCL",
+      "meaning": "변경을 확정하다",
+      "role": "현재 남은 900을 확정한다. 이후 일반 ROLLBACK으로 1000으로 돌리지 못한다."
+    },
+    {
+      "token": "잔액=잔액-100",
+      "kind": "값 지정과 계산",
+      "meaning": "오른쪽 기존값을 계산해 왼쪽에 지정",
+      "role": "현재 1000에서 100을 뺀 900을 같은 행 잔액에 넣는다."
+    }
+  ],
+  "pitfalls": [
+    "여러 UPDATE를 적었다고 자동으로 업무 전체가 원자적이 되는 것은 아니다. 같은 트랜잭션으로 묶고 실패 시 전체 취소 처리가 필요하다.",
+    "원본 송금 예제에는 BEGIN/COMMIT/ROLLBACK이 없다. 정상 계산 결과는 보이지만 확정·실패 복구 구현을 그 SQL만으로 입증하지 않는다.",
+    "다른 세션에서 보이는 시점은 커밋 여부와 격리·스냅샷 조건을 확인한다."
+  ],
+  "questions": [
+    {
+      "question": "SAVEPOINT s1는 여기서 무엇을 뜻하나요?",
+      "answer": "잔액 900 상태의 트랜잭션 위치에 s1이라는 이름을 붙인다. 새 계좌를 만들거나 즉시 커밋하지 않는다."
+    },
+    {
+      "question": "ROLLBACK TO s1는 여기서 무엇을 뜻하나요?",
+      "answer": "s1 뒤의 200 추가만 취소하고 먼저 뺀 100은 유지한다."
+    },
+    {
+      "question": "COMMIT는 여기서 무엇을 뜻하나요?",
+      "answer": "현재 남은 900을 확정한다. 이후 일반 ROLLBACK으로 1000으로 돌리지 못한다."
+    },
+    {
+      "question": "잔액=잔액-100는 여기서 무엇을 뜻하나요?",
+      "answer": "현재 1000에서 100을 뺀 900을 같은 행 잔액에 넣는다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-3",
+      "title": "관리구문과 트랜잭션",
+      "fromPage": 7,
+      "toPage": 11,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-3-02-E01",
+      "why": "먼저 한 출금은 유지하고 저장점 뒤 잘못 추가한 금액만 취소한다.",
+      "effect": "수정+부분 취소+확정:계좌 1 잔액 1000→900→1100→900.",
+      "prerequisites": [
+        "자동 커밋이 꺼져 있고 이 SQL들을 같은 트랜잭션에서 순서대로 실행한다고 가정한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "처음 100을 빼기",
+          "text": "WHERE 계좌ID=1은 이승현의 행이다. 오른쪽 잔액-100은 1000-100=900이고 왼쪽 잔액이 900으로 바뀐다. 아직 뒤 COMMIT 전이다.",
+          "codeFocus": [
+            {
+              "needle": "UPDATE 계좌 SET 잔액=잔액-100 WHERE 계좌ID=1",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "1000-100=900"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "첫 변경",
+            "columns": [
+              "계좌ID",
+              "전 잔액",
+              "계산",
+              "현재 잔액"
+            ],
+            "rows": [
+              [
+                "1",
+                "1000",
+                "1000-100",
+                "900"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "900 위치에 저장점 만들기",
+          "text": "SAVEPOINT s1은 현재 900 상태로 돌아올 수 있는 기준을 잡는다. s1은 사람이 정한 저장점 이름이며 1000의 초기 상태 이름이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "SAVEPOINT s1",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "현재 900 상태"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "저장점",
+            "columns": [
+              "이름",
+              "해당 잔액",
+              "확정 여부"
+            ],
+            "rows": [
+              [
+                "s1",
+                "900",
+                "아직 미확정"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "저장점 뒤 200 추가",
+          "text": "두 번째 UPDATE는 현재 900에 200을 더해 1100으로 만든다. 같은 계좌ID1의 잔액이며 새 행을 넣지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "UPDATE 계좌 SET 잔액=잔액+200 WHERE 계좌ID=1",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "1100"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "두 번째 변경",
+            "columns": [
+              "전",
+              "계산",
+              "후"
+            ],
+            "rows": [
+              [
+                "900",
+                "900+200",
+                "1100"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-04",
+          "title": "저장점 뒤 변경만 취소",
+          "text": "ROLLBACK TO s1은 1100으로 만든 200 추가를 취소해 900으로 돌아간다. s1보다 앞의 100 출금은 취소하지 않아 1000이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "ROLLBACK TO s1",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "1000이 아니다"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "부분 취소",
+            "columns": [
+              "변경",
+              "저장점과 관계",
+              "처리"
+            ],
+            "rows": [
+              [
+                "100출금",
+                "저장점 이전",
+                "유지"
+              ],
+              [
+                "200입금",
+                "저장점 이후",
+                "취소"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-05",
+          "title": "현재 900을 확정하고 조회",
+          "text": "COMMIT은 남은 900을 확정한다. 마지막 SELECT는 그 계좌 한 행을 보여준다. 커밋 후 저장점으로 다시 돌아가는 기능이라고 해석하지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "COMMIT",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "900을 확정"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "최종 계좌",
+            "columns": [
+              "계좌ID",
+              "이름",
+              "잔액"
+            ],
+            "rows": [
+              [
+                "1",
+                "이승현",
+                "900"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "ROLLBACK TO s1은 부분 취소이고 저장점 없는 ROLLBACK은 현재 트랜잭션의 미확정 변경 전체 취소다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    },
+    {
+      "exampleId": "2-3-02-E02",
+      "why": "이승현에게서 뺀 100이 박보성에게 더해져 총액이 유지되는 송금을 읽는다.",
+      "effect": "수정:두 계좌의 잔액 500·300을 400·400으로 계산.",
+      "prerequisites": [
+        "모두 가상 계좌다. 계좌ID1·2가 각각 한 행 존재한다.",
+        "송금 의도를 보장하려면 자동 커밋 없이 같은 트랜잭션으로 묶어 성공 시COMMIT, 실패 시ROLLBACK해야 한다. 해당 제어문은 원본에 없다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "출금할 사람을 ID로 고르기",
+          "text": "첫 WHERE 계좌ID=1은 이승현의 500을 골라 500-100=400으로 바꾼다. 박보성의 300은 이 문장의 대상이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 계좌ID=1",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "500-100=400"
+          ],
+          "focusRows": [
+            0
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "첫 UPDATE 뒤",
+            "columns": [
+              "계좌ID",
+              "이름",
+              "잔액"
+            ],
+            "rows": [
+              [
+                "1",
+                "이승현",
+                "400"
+              ],
+              [
+                "2",
+                "박보성",
+                "300"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "입금할 다른 ID 고르기",
+          "text": "둘째 WHERE 계좌ID=2는 박보성의 300을 골라 300+100=400으로 바꾼다. 두 문장의 SET은 같은 컬럼명 잔액이지만 선택한 행이 다르다.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 계좌ID=2",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "선택한 행이 다르다"
+          ],
+          "focusRows": [
+            1
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "성공 후 잔액",
+            "columns": [
+              "계좌ID",
+              "이름",
+              "잔액"
+            ],
+            "rows": [
+              [
+                "1",
+                "이승현",
+                "400"
+              ],
+              [
+                "2",
+                "박보성",
+                "400"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "합계와 확정 여부 확인",
+          "text": "처음 500+300=800이고 정상 계산 뒤 400+400=800이다. 마지막 SELECT는 현재 세션의 결과 확인이며 COMMIT 문 자체는 아니다. 둘째 작업 실패 시 첫 출금까지 취소해야 업무 원자성이 성립한다.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 계좌ID,이름,잔액 FROM 계좌 ORDER BY 계좌ID",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "COMMIT 문 자체는 아니다"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "합계 비교",
+            "columns": [
+              "시점",
+              "계산",
+              "총액"
+            ],
+            "rows": [
+              [
+                "이전",
+                "500+300",
+                "800"
+              ],
+              [
+                "정상 두 변경 뒤",
+                "400+400",
+                "800"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "출금만 확정하면 700으로 줄어드는 부분 성공이 된다. 원자성은 두 작업이 전부 성공하거나 전부 취소되어야 한다는 요구다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-3-02-Q1",
+      "hint": "저장점을 찍었을 당시의 잔액을 찾아보자.",
+      "reasoning": "s1은 900일 때 만들었다. 200 추가만 취소하므로 900이다. 최초 1000까지 전부 롤백한 것이 아니다."
+    },
+    {
+      "checkId": "2-3-02-Q2",
+      "hint": "이전 송금이 현재 트랜잭션의 미확정 변경인지 생각해 보자.",
+      "reasoning": "COMMIT으로 확정한 변경은 뒤 일반 ROLLBACK의 취소 대상이 아니다. 보정하려면 별도 업무 변경이 필요하다."
+    },
+    {
+      "checkId": "2-3-02-Q3",
+      "hint": "송금 절반만 성공하면 총액이 어떻게 되는지 보자.",
+      "reasoning": "출금과 입금 모두 성공하거나 모두 취소되어야 하므로 원자성이다. 다른 트랜잭션과의 간섭을 다루는 고립성과 구분한다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/COMMIT.html"
+  ],
+  "reviewNotes": [
+    "원본 전제 부족: 송금 SQL에는 트랜잭션 시작·성공확정·실패전체취소가 없다. 정상 값 계산을 트랜잭션 보장 구현으로 오인하지 않도록 명시했다."
+  ]
+}

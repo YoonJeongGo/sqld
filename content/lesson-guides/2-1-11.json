@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-11",
+  "source": {
+    "id": "2-1-11",
+    "partId": "2-1",
+    "number": 11,
+    "title": "WHERE절",
+    "lectureMinutes": 42,
+    "easy": "범위·목록·문자 패턴·NULL 같은 여러 조건 표현으로 원하는 행을 세밀하게 고르는 부분이다.",
+    "why": "기본 비교만 알면 BETWEEN의 경계, LIKE의 글자 수, NOT IN의 NULL을 놓치기 쉽다.",
+    "concepts": [
+      {
+        "term": "BETWEEN A AND B",
+        "meaning": "A 이상 B 이하, 양끝 포함",
+        "example": "점수 BETWEEN 70 AND 90"
+      },
+      {
+        "term": "IN 목록",
+        "meaning": "목록 중 같은 값이 하나라도 있음",
+        "example": "학과 IN('컴퓨터','전자')"
+      },
+      {
+        "term": "NOT IN",
+        "meaning": "모든 목록값과 달라야 함",
+        "example": "목록에 NULL이 있으면 특히 주의"
+      },
+      {
+        "term": "LIKE %",
+        "meaning": "0글자 이상 임의 문자열",
+        "example": "과목 LIKE '데이터%'"
+      },
+      {
+        "term": "LIKE _",
+        "meaning": "임의의 정확히 한 글자",
+        "example": "이름 LIKE '박__'"
+      },
+      {
+        "term": "ESCAPE",
+        "meaning": "%나 _ 자체를 찾을 때 이스케이프 지정",
+        "example": "LIKE '%!_%' ESCAPE '!'"
+      },
+      {
+        "term": "IS NULL",
+        "meaning": "값이 없음 검사",
+        "example": "점수 IS NULL"
+      },
+      {
+        "term": "날짜 범위",
+        "meaning": "시간이 섞이면 경계일 하루 전체를 놓칠 수 있음",
+        "example": "시작 이상 AND 다음날 미만"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-11-E01",
+        "title": "목록과 범위 조건을 함께 적용",
+        "question": "컴퓨터·전자 학과 중 70~90점인 학생은?",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "1002",
+                "양선규",
+                "전자",
+                "70"
+              ],
+              [
+                "1003",
+                "유성재",
+                "기계",
+                "80"
+              ],
+              [
+                "1004",
+                "양지훈",
+                "컴퓨터",
+                "95"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름, 점수 FROM 성적 WHERE 학과 IN ('컴퓨터','전자') AND 점수 BETWEEN 70 AND 90 ORDER BY 학번;",
+        "steps": [
+          "박강열은 학과가 목록에 있고 90은 경계값이므로 통과한다.",
+          "양선규도 전자이며 70은 범위에 포함되어 통과한다.",
+          "유성재는 점수는 맞지만 기계라 제외, 양지훈은 학과는 맞지만 95라 제외한다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "90"
+              ],
+              [
+                "양선규",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-1-11-E02",
+        "title": "LIKE의 글자 수 차이",
+        "question": "DB, JAVA, Python 중 정확히 네 글자인 과목은?",
+        "tables": [
+          {
+            "title": "과목",
+            "columns": [
+              "과목코드",
+              "과목명"
+            ],
+            "rows": [
+              [
+                "C01",
+                "DB"
+              ],
+              [
+                "C02",
+                "JAVA"
+              ],
+              [
+                "C03",
+                "Python"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 과목명 FROM 과목 WHERE 과목명 LIKE '____' ORDER BY 과목코드;",
+        "steps": [
+          "밑줄 하나는 글자 한 개다. ____는 네 글자다.",
+          "DB는 두 글자, JAVA는 네 글자, Python은 여섯 글자이므로 JAVA만 남는다.",
+          "%는 글자가 하나도 없어도 일치할 수 있으므로 밑줄과 다르다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "과목명"
+            ],
+            "rows": [
+              [
+                "JAVA"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "BETWEEN 양끝 포함 / IN 목록 / % 여러 글자 / _ 한 글자 / NULL은 IS.",
+    "traps": [
+      "NOT IN 목록에 NULL이 들어 있으면 “목록 밖”을 단순 계산하지 않는다. 3값 논리를 적용한다.",
+      "주어진 11명은 모두 세 글자 이름이므로 이름 길이 문제는 과목·상품·코드로도 연습한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-11-Q1",
+        "question": "BETWEEN 70 AND 90에 70과 90은 포함되는가?",
+        "answer": "둘 다 포함된다",
+        "explanation": ">=70 AND <=90과 같은 범위다."
+      },
+      {
+        "id": "2-1-11-Q2",
+        "question": "LIKE에서 정확히 한 글자를 나타내는 것은?",
+        "answer": "_",
+        "explanation": "%는 0개 이상이다."
+      },
+      {
+        "id": "2-1-11-Q3",
+        "question": "NULL을 찾는 올바른 조건은?",
+        "answer": "IS NULL",
+        "explanation": "= NULL은 참이 되지 않는다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S06"
+    ],
+    "sourceIds": [
+      "conditions",
+      "like",
+      "null",
+      "subquery"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"WHERE절 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">원본 표</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">각 행의 값을 읽기</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">조건 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">TRUE만 통과</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과 표</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">통과한 행 표시</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">BETWEEN 양끝 포함 / IN 목록 / % 여러 글자 / _ 한 글자 / NULL은 IS.</text></svg>",
+    "version": 1
+  },
+  "purpose": "여러 학과 중 허용 목록과 점수 범위를 만족하는 학생을 찾고 과목명의 글자 수 패턴을 판정한다.",
+  "overview": "IN은 값 목록과 같음을 비교하고 BETWEEN은 양끝을 포함한 범위를 비교한다. LIKE의 밑줄은 한 글자 자리이며 %는 0글자 이상이다. 이 예제들은 조회라 원본을 바꾸지 않는다.",
+  "terms": [
+    {
+      "token": "IN",
+      "kind": "비교 연산자",
+      "meaning": "목록 안에 있다",
+      "role": "성적.학과가 컴퓨터 또는 전자와 같은지 본다."
+    },
+    {
+      "token": "BETWEEN 70 AND 90",
+      "kind": "범위 조건",
+      "meaning": "70과 90 사이에 있다",
+      "role": "70 이상이고 90 이하인 점을 남긴다. 여기의 AND는 범위 문법 안의 연결이다."
+    },
+    {
+      "token": "LIKE",
+      "kind": "패턴 비교",
+      "meaning": "비슷한 모양과 맞다",
+      "role": "과목명 문자열이 네 개의 밑줄이 요구하는 정확히 네 글자인지 확인한다."
+    },
+    {
+      "token": "_ / %",
+      "kind": "와일드카드",
+      "meaning": "한 글자 / 0글자 이상",
+      "role": "____는 정확히 4글자, %는 빈 문자열까지 포함할 수 있는 가변 길이 패턴이다."
+    }
+  ],
+  "pitfalls": [
+    "BETWEEN은 하한·상한을 포함한다. 점수 70과 90을 빼면 다른 조건이다.",
+    "NOT IN 목록에 NULL이 있을 때 일치값은 FALSE, 불일치값은 UNKNOWN이 될 수 있다. 모두 UNKNOWN이라고 말하지 않는다. WHERE는 둘 다 남기지 않는다."
+  ],
+  "questions": [
+    {
+      "question": "IN는 여기서 무엇을 뜻하나요?",
+      "answer": "성적.학과가 컴퓨터 또는 전자와 같은지 본다."
+    },
+    {
+      "question": "BETWEEN 70 AND 90는 여기서 무엇을 뜻하나요?",
+      "answer": "70 이상이고 90 이하인 점을 남긴다. 여기의 AND는 범위 문법 안의 연결이다."
+    },
+    {
+      "question": "LIKE는 여기서 무엇을 뜻하나요?",
+      "answer": "과목명 문자열이 네 개의 밑줄이 요구하는 정확히 네 글자인지 확인한다."
+    },
+    {
+      "question": "_ / %는 여기서 무엇을 뜻하나요?",
+      "answer": "____는 정확히 4글자, %는 빈 문자열까지 포함할 수 있는 가변 길이 패턴이다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 45,
+      "toPage": 52,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-11-E01",
+      "why": "컴퓨터·전자 학과에서 점수 70~90 범위 학생만 출력한다.",
+      "effect": "조회: 4행 중 2행의 이름·점수 출력.",
+      "prerequisites": [
+        "학과는 원본 문자값 그대로 비교하며 점수는 숫자다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "목록에 들어 있는 학과 찾기",
+          "text": "학과 IN (컴퓨터, 전자)는 박강열·양선규·양지훈에게 참이다. 유성재는 기계이므로 점수 80이 맞아도 첫 조건에서 제외된다.",
+          "codeFocus": [
+            {
+              "needle": "학과 IN ('컴퓨터','전자')",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "기계"
+          ],
+          "focusRows": [
+            2
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "학과 조건",
+            "columns": [
+              "이름",
+              "학과",
+              "IN 판정"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "컴퓨터",
+                "참"
+              ],
+              [
+                "양선규",
+                "전자",
+                "참"
+              ],
+              [
+                "유성재",
+                "기계",
+                "거짓"
+              ],
+              [
+                "양지훈",
+                "컴퓨터",
+                "참"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "양 끝값 포함해서 비교",
+          "text": "점수 90과 70은 각각 상한·하한과 같아 통과한다. 95는 90보다 커서 거짓이다. 두 조건을 AND로 묶어 박강열과 양선규만 남는다.",
+          "codeFocus": [
+            {
+              "needle": "점수 BETWEEN 70 AND 90",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "90과 70"
+          ],
+          "focusRows": [
+            0,
+            1
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "점수와 최종 판정",
+            "columns": [
+              "이름",
+              "점수",
+              "범위",
+              "전체"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "90",
+                "참",
+                "통과"
+              ],
+              [
+                "양선규",
+                "70",
+                "참",
+                "통과"
+              ],
+              [
+                "유성재",
+                "80",
+                "참",
+                "학과 불일치·제외"
+              ],
+              [
+                "양지훈",
+                "95",
+                "거짓",
+                "점수 초과·제외"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "출력 항목과 순서",
+          "text": "SELECT 이름, 점수로 학과·학번을 결과 열에서는 빼고 ORDER BY 학번으로 1001 박강열,1002 양선규 순서로 보인다.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "박강열"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "90"
+              ],
+              [
+                "양선규",
+                "70"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "IN과 BETWEEN 중 하나만 맞으면 된다는 OR 조건으로 바꾸면 대상이 달라진다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    },
+    {
+      "exampleId": "2-1-11-E02",
+      "why": "정확히 네 글자인 과목명만 찾는 패턴을 읽는다.",
+      "effect": "조회: 과목명 세 개 중 JAVA 한 행 출력.",
+      "prerequisites": [
+        "문자 수는 원본 ASCII 문자열 DB·JAVA·Python 기준이다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "밑줄 네 개는 네 자리",
+          "text": "LIKE '____'의 작은따옴표 안에는 밑줄이 네 개다. 밑줄 한 개가 정확히 한 글자를 받으므로 첫째부터 넷째 자리까지 있어야 하고 다섯째 자리는 허용하지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "LIKE '____'",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "밑줄이 네 개"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "패턴 길이",
+            "columns": [
+              "패턴",
+              "요구 문자 수"
+            ],
+            "rows": [
+              [
+                "____",
+                "정확히4"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "각 문자열을 실제로 세기",
+          "text": "DB는 D·B 두 글자라 부족하고 JAVA는 J·A·V·A 네 글자라 맞는다. Python은 P·y·t·h·o·n 여섯 글자로 초과한다.",
+          "codeFocus": [
+            {
+              "needle": "과목명 LIKE '____'",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "J·A·V·A"
+          ],
+          "focusRows": [
+            1
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "패턴 판정",
+            "columns": [
+              "과목명",
+              "문자 수",
+              "판정"
+            ],
+            "rows": [
+              [
+                "DB",
+                "2",
+                "거짓·제외"
+              ],
+              [
+                "JAVA",
+                "4",
+                "참·통과"
+              ],
+              [
+                "Python",
+                "6",
+                "거짓·제외"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "맞은 과목만 출력",
+          "text": "SELECT 과목명은 JAVA 한 칸인 한 행을 돌려준다. 과목 테이블의 C01·C03 행을 삭제하지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 과목명",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "JAVA"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "과목명"
+            ],
+            "rows": [
+              [
+                "JAVA"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "%는 0글자도 맞으므로 _와 대체하면 문자 수 제약이 달라진다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-11-Q1",
+      "hint": "이상·이하인지 초과·미만인지 기호로 풀어 보자.",
+      "reasoning": "BETWEEN 70 AND 90은 >=70 AND <=90이므로 양끝 70·90 모두 포함한다."
+    },
+    {
+      "checkId": "2-1-11-Q2",
+      "hint": "밑줄 한 개의 역할을 확인해 보자.",
+      "reasoning": "_는 정확히 한 문자라 ____는 네 문자다. %는 0문자 이상이어서 길이가 고정되지 않는다."
+    },
+    {
+      "checkId": "2-1-11-Q3",
+      "hint": "일반 비교와 NULL 상태 검사를 구분하자.",
+      "reasoning": "NULL 여부는 IS NULL로 검사한다. =NULL의 결과는 TRUE가 아니므로 원하는 행을 남기지 못한다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html"
+  ],
+  "reviewNotes": []
+}

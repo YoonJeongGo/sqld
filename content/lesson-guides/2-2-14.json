@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-14",
+  "source": {
+    "id": "2-2-14",
+    "partId": "2-2",
+    "number": 14,
+    "title": "TOP-N쿼리",
+    "lectureMinutes": 38,
+    "easy": "정렬한 결과에서 상위 N행 또는 N순위까지 고르는 조회다. 동점을 얼마나 포함할지 먼저 정한다.",
+    "why": "Oracle ROWNUM을 정렬과 같은 단계에서 먼저 제한하면 최고점 두 명이 아니라 먼저 읽힌 두 명을 나중에 정렬할 수 있다.",
+    "concepts": [
+      {
+        "term": "ROW_NUMBER 필터",
+        "meaning": "인라인뷰에서 번호를 붙이고 바깥에서 rn<=N",
+        "example": "정확히 최대 N행"
+      },
+      {
+        "term": "ROWNUM",
+        "meaning": "Oracle에서 선택되는 행에 순차 부여",
+        "example": "정렬 후 인라인뷰 바깥에서 제한"
+      },
+      {
+        "term": "잘못된 ROWNUM",
+        "meaning": "같은 단계에서 WHERE ROWNUM<=2 ORDER BY 점수 DESC",
+        "example": "제한 후 정렬 위험"
+      },
+      {
+        "term": "FETCH FIRST",
+        "meaning": "Oracle12c+의 행 제한 구문",
+        "example": "FETCH FIRST 2 ROWS ONLY"
+      },
+      {
+        "term": "WITH TIES",
+        "meaning": "경계의 정렬값 동점도 포함",
+        "example": "정확히 N행보다 많을 수 있음"
+      },
+      {
+        "term": "RANK·DENSE_RANK",
+        "meaning": "등수 기준 선택",
+        "example": "공동등수·점수 단계 의미 구분"
+      },
+      {
+        "term": "페이지 처리",
+        "meaning": "OFFSET과 FETCH 또는 ROW_NUMBER 범위",
+        "example": "안정적인 정렬 기준 필요"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-14-E01",
+        "title": "정확히 두 명과 공동2등까지",
+        "question": "95·90·90·80점 중 상위 두 행을 학번으로 동점 처리하자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "95"
+              ],
+              [
+                "1002",
+                "이승현",
+                "90"
+              ],
+              [
+                "1003",
+                "양선규",
+                "90"
+              ],
+              [
+                "1004",
+                "박강열",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 학번,이름,점수 FROM (SELECT 학번,이름,점수,ROW_NUMBER() OVER(ORDER BY 점수 DESC,학번) rn FROM 성적) x WHERE rn<=2 ORDER BY 점수 DESC,학번;",
+        "steps": [
+          "ROW_NUMBER는 점수내림차순·학번순으로1·2·3·4를 붙인다.",
+          "바깥 WHERE rn<=2는 유성재와 이승현 두 명만 남긴다.",
+          "점수만 기준으로 RANK<=2나 FETCH WITH TIES를 사용하면 양선규도90점 동점으로 포함될 수 있다."
+        ],
+        "results": [
+          {
+            "title": "정확한 두 행",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "95"
+              ],
+              [
+                "1002",
+                "이승현",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-2-14-E02",
+        "title": "Oracle ROWNUM의 올바른 위치",
+        "question": "먼저 정렬한 결과에서 두 행만 고르자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "70"
+              ],
+              [
+                "1002",
+                "이승현",
+                "95"
+              ],
+              [
+                "1003",
+                "양선규",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 학번,이름,점수 FROM (SELECT 학번,이름,점수 FROM 성적 ORDER BY 점수 DESC,학번) WHERE ROWNUM<=2 ORDER BY 점수 DESC,학번;",
+        "steps": [
+          "안쪽 ORDER BY에서95→90→70으로 정렬한다.",
+          "바깥 ROWNUM<=2에서 이미 정렬한 두 행을 선택한다.",
+          "최종 ORDER BY도 명시해 결과 순서를 확정한다."
+        ],
+        "results": [
+          {
+            "title": "상위2행",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1002",
+                "이승현",
+                "95"
+              ],
+              [
+                "1003",
+                "양선규",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 예상 결과를 설명한 자료입니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "먼저 정렬, 나중 제한. 두 행인지 두 등수인지 동점 규칙 확인.",
+    "traps": [
+      "WHERE ROWNUM>1만 쓰면 첫 행이 통과하지 못해 원하는 두 번째 이후 행을 얻지 못한다.",
+      "WITH TIES에 고유 학번까지 정렬 기준으로 넣으면 정렬값 전체의 동점이 사라질 수 있다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-14-Q1",
+        "question": "점수95,90,90에서 정확히2행과 공동2등까지는 인원이 같은가?",
+        "answer": "아니다.2명과3명",
+        "explanation": "동점 포함 여부가 다르다."
+      },
+      {
+        "id": "2-2-14-Q2",
+        "question": "ROW_NUMBER 결과를 같은 단계 WHERE에서 바로 쓰는가?",
+        "answer": "Oracle19c에서는 바깥 쿼리로 필터한다",
+        "explanation": "윈도 계산 이후 단계가 필요하다."
+      },
+      {
+        "id": "2-2-14-Q3",
+        "question": "ROWNUM 제한은 정렬 전후 중 어디에 놓아야 상위N인가?",
+        "answer": "정렬된 인라인뷰 바깥",
+        "explanation": "상위 순서를 먼저 정한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S17"
+    ],
+    "sourceIds": [
+      "rownum",
+      "rownumber",
+      "select"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"TOP-N쿼리 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><text x=\"360\" y=\"25\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">동점 다음 번호가 어떻게 다른가?</text><rect x=\"25\" y=\"40\" width=\"167\" height=\"34\" fill=\"#007d7a\" stroke=\"#d3e0e7\"/><text x=\"108.5\" y=\"63\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"400\">점수</text><rect x=\"192\" y=\"40\" width=\"167\" height=\"34\" fill=\"#007d7a\" stroke=\"#d3e0e7\"/><text x=\"275.5\" y=\"63\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"400\">RANK</text><rect x=\"359\" y=\"40\" width=\"167\" height=\"34\" fill=\"#007d7a\" stroke=\"#d3e0e7\"/><text x=\"442.5\" y=\"63\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"400\">DENSE_RANK</text><rect x=\"526\" y=\"40\" width=\"167\" height=\"34\" fill=\"#007d7a\" stroke=\"#d3e0e7\"/><text x=\"609.5\" y=\"63\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#ffffff\" font-weight=\"400\">ROW_NUMBER</text><rect x=\"25\" y=\"74\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"108.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">90</text><rect x=\"192\" y=\"74\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"275.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"359\" y=\"74\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"442.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"526\" y=\"74\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"609.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"25\" y=\"108\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"108.5\" y=\"131\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">90</text><rect x=\"192\" y=\"108\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"275.5\" y=\"131\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"359\" y=\"108\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"442.5\" y=\"131\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">1</text><rect x=\"526\" y=\"108\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"609.5\" y=\"131\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">2</text><rect x=\"25\" y=\"142\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"108.5\" y=\"165\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">80</text><rect x=\"192\" y=\"142\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"275.5\" y=\"165\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">3</text><rect x=\"359\" y=\"142\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"442.5\" y=\"165\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">2</text><rect x=\"526\" y=\"142\" width=\"167\" height=\"34\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"609.5\" y=\"165\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">3</text><text x=\"360\" y=\"199\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">ROW_NUMBER 동점 순서는 별도 정렬 기준 필요 · 개념도용 3행</text></svg>",
+    "version": 1
+  },
+  "purpose": "상위 두 명을 정확히 고를지, 경계 점수 동점자까지 모두 고를지 결정하고 정렬 후 제한해요.",
+  "overview": "조회예요. ROW_NUMBER 예제는 점수·학번순 번호를 안쪽에서 만들고 바깥에서 1·2만 골라요. ROWNUM 예제는 정렬된 인라인뷰의 앞 두 행을 골라요.",
+  "terms": [
+    {
+      "token": "ROW_NUMBER()",
+      "kind": "함수",
+      "meaning": "조회행의일련번호",
+      "role": "점수 DESC, 학번순으로 rn 1·2·3·4를 만들어요."
+    },
+    {
+      "token": "rn / x",
+      "kind": "별칭",
+      "meaning": "사용자가 정한 결과 열/인라인뷰 이름",
+      "role": "rn은 번호 결과, x는 그 번호가 붙은 안쪽 조회 전체예요."
+    },
+    {
+      "token": "rn<=2",
+      "kind": "조건식",
+      "meaning": "조회번호가 2 이하",
+      "role": "원본 학번 2 이하가 아니며 최대 두 행을 고르는 조건이에요."
+    },
+    {
+      "token": "ROWNUM",
+      "kind": "Oracle 의사컬럼",
+      "meaning": "조회 중 선택하는 행의 번호",
+      "role": "원본에 저장된 번호나 ROW_NUMBER 함수와 같은 문법이 아니에요."
+    }
+  ],
+  "pitfalls": [
+    "Oracle 19c에서 윈도 결과 rn은 같은 쿼리 블록 WHERE에서 필터하지 않고 바깥 쿼리로 옮겨요.",
+    "WITH TIES는 ORDER BY 전체 키를 기준으로 경계 동점을 판정해요. 고유 학번까지 정렬하면 같은 점수라도 동점 추가가 없을 수 있어요.",
+    "원본 입력순이 물리 조회 순서를 보장하지 않아요. ROWNUM 제한과 같은 블록의 ORDER BY만으로 원하는 상위 N을 확정하지 않아요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. ROW_NUMBER 예제는 점수·학번순 번호를 안쪽에서 만들고 바깥에서 1·2만 골라요. ROWNUM 예제는 정렬된 인라인뷰의 앞 두 행을 골라요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 83,
+      "toPage": 83,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-14-E01",
+      "why": "90점 동점이 있어도 학번으로 기준을 정해 정확히 두 명만 고르려 해요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-14-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·점수 3개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "안쪽 번호와 별칭",
+          "text": "ROW_NUMBER는 점수 내림차순 다음 학번 오름차순으로 번호를 붙여요. rn은 그 번호의 출력 별칭, x는 그 결과 전체의 별칭이에요.",
+          "codeFocus": [
+            {
+              "needle": "ROW_NUMBER() OVER(ORDER BY 점수 DESC,학번) rn",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ROW_NUMBER",
+            "점수",
+            "학번"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "동점 번호까지 정하기",
+          "text": "유성재 95에 1, 이승현 90 학번 1002에 2, 양선규 90 학번 1003에 3, 박강열 80에 4예요. 같은 90점이라도 고유번호가 달라요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 점수 DESC,학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학번"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 동점 번호까지 정하기",
+            "columns": [
+              "학번",
+              "이름",
+              "점수",
+              "rn"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "95",
+                "1"
+              ],
+              [
+                "1002",
+                "이승현",
+                "90",
+                "2"
+              ],
+              [
+                "1003",
+                "양선규",
+                "90",
+                "3"
+              ],
+              [
+                "1004",
+                "박강열",
+                "80",
+                "4"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "바깥 rn 조건",
+          "text": "바깥 입력 x에는 rn열이 준비되어 있어요. rn<=2로 1·2는 참, 3·4는 거짓이라 유성재·이승현만 남아요.",
+          "codeFocus": [
+            {
+              "needle": "WHERE rn<=2",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "rn"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 바깥 rn 조건",
+            "columns": [
+              "이름",
+              "비교",
+              "판정"
+            ],
+            "rows": [
+              [
+                "유성재",
+                "1<=2",
+                "참"
+              ],
+              [
+                "이승현",
+                "2<=2",
+                "참"
+              ],
+              [
+                "양선규",
+                "3<=2",
+                "거짓"
+              ],
+              [
+                "박강열",
+                "4<=2",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 3,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "번호 대신 원래 정보 출력",
+          "text": "최종 SELECT는 학번·이름·점수만 표시해 rn을 숨겨요. 조회 중 계산 번호일 뿐 원본 학번은 그대로예요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학번,이름,점수",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "SELECT",
+            "학번",
+            "이름"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "정확한 두 행 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 정확한 두 행와 대조해요. 표시 컬럼은 학번·이름·점수, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "정확한 두 행",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "95"
+              ],
+              [
+                "1002",
+                "이승현",
+                "90"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "점수만의 RANK<=2라면 95 한 명과 90 두 명, 총 3명이에요. 현재 ROW_NUMBER는 번호 1·2만이라 양선규 90이 제외돼요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-2-14-E02",
+      "why": "Oracle에서 상위 점수 두 행을 고를 때 행수 제한이 정렬 뒤 입력에 걸리도록 해요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-14-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·점수 3개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "안쪽에서 상위 순서 준비",
+          "text": "안쪽 ORDER BY는 95 이승현 1002→90 양선규 1003→70 유성재 1001순의 입력을 준비해요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학번,이름,점수 FROM 성적 ORDER BY 점수 DESC,학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ORDER",
+            "BY"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 안쪽에서 상위 순서 준비",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1002",
+                "이승현",
+                "95"
+              ],
+              [
+                "1003",
+                "양선규",
+                "90"
+              ],
+              [
+                "1001",
+                "유성재",
+                "70"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "그 입력의 앞 두 행",
+          "text": "바깥 ROWNUM<=2는 정렬된 입력에서 앞 두 행을 선택해요. 학번<=2가 아니라 이번 조회행수의 제한이에요.",
+          "codeFocus": [
+            {
+              "needle": "WHERE ROWNUM<=2",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ROWNUM"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 그 입력의 앞 두 행",
+            "columns": [
+              "입력순위",
+              "이름",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1",
+                "이승현",
+                "유지"
+              ],
+              [
+                "2",
+                "양선규",
+                "유지"
+              ],
+              [
+                "3",
+                "유성재",
+                "제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "최종 순서 명시",
+          "text": "바깥 마지막 ORDER BY도 점수 DESC·학번이에요. 선택한 두 행을 95→90으로 표시해요. Oracle 실행은 이번 검증에서 하지 않았어요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 점수 DESC,학번",
+              "occurrence": 1
+            }
+          ],
+          "highlights": [
+            "ORDER",
+            "DESC",
+            "BY"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "상위2행 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 상위2행와 대조해요. 표시 컬럼은 학번·이름·점수, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "상위2행",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1002",
+                "이승현",
+                "95"
+              ],
+              [
+                "1003",
+                "양선규",
+                "90"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "정렬과 ROWNUM 제한을 같은 블록에 두면 임의로 먼저 고른 행을 나중에 정렬할 수 있어요. 현재는 정렬된 인라인뷰를 바깥 입력으로 해요.",
+      "verification": "원본 값의 단계별 대입·산술을 검토하고 Oracle 19c 공식 문서의 해당 구문과 대조했어요. Oracle DB 엔진에서는 실행하지 않았어요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-14-Q1",
+      "hint": "두 번째 행의 점수와 같은 다른 행을 추가로 남길지 정해요.",
+      "reasoning": "정확히 두 행은 95·90의 2명, 점수만 기준 공동 2등까지는 다른 90점도 남아 3명이에요."
+    },
+    {
+      "checkId": "2-2-14-Q2",
+      "hint": "rn을 만드는 안쪽 SELECT와 그 결과를 입력으로 받는 바깥 SELECT를 나눠 봐요.",
+      "reasoning": "Oracle 19c는 윈도 계산 후의 rn을 바깥 WHERE에서 필터해요. 같은 SELECT의 WHERE는 그 rn 출력 별칭을 쓸 수 없어요."
+    },
+    {
+      "checkId": "2-2-14-Q3",
+      "hint": "상위의 기준이 되는 정렬이 행수 제한보다 먼저 준비돼 있는지 보세요.",
+      "reasoning": "정렬한 인라인뷰를 입력으로 받는 바깥에서 ROWNUM<=N을 적어요. 마지막 표시 순서도 최종 ORDER BY로 정해요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ROWNUM-Pseudocolumn.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

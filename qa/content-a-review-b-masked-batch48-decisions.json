@@ -1,0 +1,394 @@
+{
+  "schemaVersion": 1,
+  "inputSha256": "d423a8d6dcb92539a42db6e43512f0fb4dc515850f39d5a2a6a48013c903c7e0",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "reviewer": "content_a",
+  "reviewedAt": "2026-09-14T05:13:14.922939+00:00",
+  "boundary": "All 48 stems and masked choices, shown SQL/tables and 8 fixture inputs read before answers, explanations, expected results or hidden choice map. No engine execution or human expert review.",
+  "decisions": [
+    {
+      "questionId": "S21-A05-insert-select-filter",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "v>=10은15인 id2만 선택하고 두 배30을 D에 넣는다. NULL 비교는 UNKNOWN으로 제외된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-A06-merge-update-insert",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "키2는20에서7로 갱신, 소스의 새 키3은9로 삽입, 대상의 키1은10으로 보존된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-A01-partial-then-commit",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "s는20인 시점이다.30을 s로 되돌려20을 COMMIT한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-A02-full-after-partial",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "부분 롤백으로20이 남아도 전체 ROLLBACK은 최초 확정10으로 돌아간다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-A03-commit-boundary",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "20은 COMMIT으로 확정했고 이후30만 롤백하므로20이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-A04-savepoint-name-reuse",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "같은 이름의 새 savepoint가 이전 표시를 대체하므로20 시점으로 돌아간다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-A05-ddl-commits-prior",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle CREATE TABLE 전 암묵 커밋으로20이 확정되어 뒤 롤백에 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S22-A06-delete-insert-rollback",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "확정 초기행의 삭제와 새행 삽입을 모두 취소하면(1,10)만 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-A01-check-null-versus-negative",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NULL age는 CHECK UNKNOWN으로 통과하고-1은 FALSE로 거부, NULL id는 PK로 거부된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-A02-unique-null-single",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle 단일 열 UNIQUE는 여러 NULL을 허용하고 두 번째 비NULL5는 유일성 위반이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-A03-fk-parent-required",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "pid1은 부모가 있어 통과, pid2는 없어서 거부, nullable FK의 NULL은 허용된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-A04-parent-delete-set-null",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "SET NULL은 자식 행을 지우지 않고 참조 열 두 값을 NULL로 바꾼다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-A05-truncate-versus-delete-rollback",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle TRUNCATE는 일반 롤백으로 복구되지 않고 테이블 정의를 유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S23-A06-drop-versus-recreate",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "정상 DROP 뒤 이름을 대신할 객체가 없으므로 기존 T를 SELECT할 수 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-A01-read-only-grant",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "SELECT만 부여되었으므로 조회만 가능하고 수정이나 재부여는 별도 권한이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-A02-grant-chain-revoke",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "객체 권한 재부여에서 B에게만 의존하는 C의 경로는 B 권한 회수에 따라 회수된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-A03-role-survives-direct-revoke",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "직접 경로만 회수했으므로 활성 역할 R의 유효한 SELECT 경로가 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-A04-column-update-only",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "열 단위 UPDATE 권한은 salary 수정만 직접 허용하며 다른 열이나 DDL을 허용하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-A05-system-not-data-read",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "CREATE TABLE과 충분한 할당량은 자기 스키마 생성 능력이며 타 소유자 테이블 SELECT와 다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S24-A06-public-revoke-scope",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "PUBLIC 회수는 B에게 별도로 직접 부여한 경로를 없애지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S09-m1-null-and-limited-order",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "ETA ASC NULLS LAST와 유일한 order_id ASC의 복합 정렬 후 제한이 요구 순서와 안정적 경계를 충족한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S10-m1-header-amount-inflation",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "주문1의 total100이 상세 두 행에 반복되고 주문2의50을 더해250이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S10-m1-unique-pairs-self",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "A<B인 가능한 쌍은1-2,1-3,2-3 세 쌍이고 역방향과 자기 쌍은 빠진다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S11-m1-outer-or-null-leak",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "고객1은 status0 주문과 매칭되어 둘 다 WHERE 조건 FALSE라 탈락하고 미매칭 고객2만 NULL 확장되어 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S11-m1-full-null-double",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NULL=NULL은 TRUE가 아니므로 각각 미매칭으로 보존되며 두 결과 행의 양쪽 키가 모두NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S12-m1-not-in-correct-filter",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "서브쿼리에서 NULL을 제거하면 차단집합{2}만 남아1,3이 NOT IN을 통과한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S12-m1-scalar-grouping-cardinality",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "GROUP BY 두 그룹은 같은 MAX값이어도 두 행을 반환하므로 스칼라 위치에서 오류다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S12-m1-universal-using-not-exists",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NOT NULL paid의 반례 paid<>1이 없다는 NOT EXISTS가 모두 유료임을 나타내며 빈 주문도 참이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S13-m1-projection-then-dedup",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "name만 투영한 세 A행을 UNION이 중복 제거하므로A 한 행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S13-m1-all-filter-stage",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "A에서2, B에서3이 살아남고 UNION ALL 두 행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S14-m1-grouping-id-mask",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "유지된region의 GROUPING은0, 소계로 제외된store는1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S14-m1-null-nvl-subtotal",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NVL은 NULL의 원인을 구별하지 않아 실제NULL 부서 그룹과 전체 합계를 같은 라벨로 만든다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S15-m1-aggregate-window-logical",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "GROUP BY와 집계 후 분석 함수가 부서별 결과 행을 대상으로 순위를 붙인다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S15-m1-lag-filter-order",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "같은 블록 WHERE가 id1을 제거한 후 id2가 첫 분석행이므로 LAG의 누락 기본값0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S16-m1-nullable-window-count",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "첫 프레임은 NULL과5 두 행이라 COUNT(*)2, COUNT(v)1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S16-m1-last-null-respect",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "전체 프레임 마지막 행의NULL을 기본 RESPECT NULLS가 그대로 반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S17-m1-dense-cut-groups",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "서로 다른 상위 값100,90에 속한100,90,90 세 행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S17-m1-rownum-projected-page",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "이미 계산된 rn 일반열에2~3 필터를 적용하면 rn2,rn3이 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S18-m1-hierarchy-multiple-roots",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "NULL 부모인1과2가 각각 루트LEVEL1이고3과4까지 합해 전체4행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S18-m1-root-versus-parent",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "3의 바로 앞 부모는2, 경로 시작 CONNECT_BY_ROOT는1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S19-m1-pivot-avg-weight",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "원본 합130/행3이 전체평균이며 그룹 크기2와1을 무시한(20+90)/2와 다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S19-m1-unpivot-zero-versus-missing",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "UNPIVOT 기본은 NULL Q2만 제외하고0인Q1과5인Q3은>=0을 통과한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S20-m1-alternation-anchors",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "대안은 시작A 또는 끝B이므로AX는 첫 대안, XB는 둘째 대안에 일치한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S21-m1-update-subquery-null",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "0행 스칼라 결과는NULL이며 nullable v 대입으로 그 값이NULL이 된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S21-m1-merge-unmatched-delete",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "MERGE 소스에서 대응 행이 없는 대상키1을 자동 삭제하는 분기는 없으므로 그대로 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S22-m1-failed-statement-prior-change",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "실패한 둘째 문장만 취소되고 앞서 성공한20은 현재 트랜잭션 미확정 변경으로 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S23-m1-unique-fk-not-one-to-one",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "부모PK 유일성과 자식FK 유일성은 별개여서 UNIQUE 없는 자식 참조값1은 반복 가능하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S24-m1-grant-option-not-admin",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "WITH GRANT OPTION은 받은 객체 SELECT의 재부여이며 사용자 생성이나 시스템 권한 관리가 아니다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

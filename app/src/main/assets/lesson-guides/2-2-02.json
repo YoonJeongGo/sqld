@@ -1,0 +1,536 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-02",
+  "source": {
+    "id": "2-2-02",
+    "partId": "2-2",
+    "number": 2,
+    "title": "단일행 서브쿼리",
+    "lectureMinutes": 31,
+    "easy": "비교 기준으로 최대 한 행을 돌려주는 서브쿼리다. =·>·< 같은 비교 연산자로 사용할 수 있다.",
+    "why": "한 값을 기대하는 자리에 여러 값이 나오면 Oracle에서는 오류다. 빈 결과와 여러 결과도 구분해야 한다.",
+    "concepts": [
+      {
+        "term": "비교 연산",
+        "meaning": "하나의 결과값과 비교",
+        "example": "점수=(SELECT MAX(점수)...)"
+      },
+      {
+        "term": "집계 기준",
+        "meaning": "GROUP BY 없는 MAX·AVG 등",
+        "example": "한 개 요약 행"
+      },
+      {
+        "term": "0행 스칼라",
+        "meaning": "값으로 사용할 때 NULL",
+        "example": "비교하면 UNKNOWN 가능"
+      },
+      {
+        "term": "2행 이상 스칼라",
+        "meaning": "Oracle에서 단일행 서브쿼리 오류",
+        "example": "= 안쪽에 여러 부서코드"
+      },
+      {
+        "term": "GROUP BY 주의",
+        "meaning": "집계함수가 있어도 그룹별이면 여러 행 가능",
+        "example": "학과별 평균 두 행"
+      },
+      {
+        "term": "HAVING 서브쿼리",
+        "meaning": "그룹 집계값을 다른 기준과 비교",
+        "example": "학과 평균>전체 평균"
+      },
+      {
+        "term": "최댓값 동점",
+        "meaning": "안쪽은 한 값이어도 바깥 결과는 여러 행 가능",
+        "example": "최고점90인 학생 두 명"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-02-E01",
+        "title": "최고점 동점자 모두 찾기",
+        "question": "최고점이 90이고 두 명이 같은 최고점이면 결과는?",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박보성",
+                "90"
+              ],
+              [
+                "1002",
+                "노우성",
+                "90"
+              ],
+              [
+                "1003",
+                "양선규",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름, 점수 FROM 성적 WHERE 점수=(SELECT MAX(점수) FROM 성적) ORDER BY 학번;",
+        "steps": [
+          "안쪽 MAX(점수)는 90 하나를 반환한다.",
+          "바깥에서 점수=90에 맞는 박보성과 노우성을 각각 남긴다.",
+          "안쪽이 단일행이어도 바깥 결과가 한 명으로 제한되는 것은 아니다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "박보성",
+                "90"
+              ],
+              [
+                "노우성",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-2-02-E02",
+        "title": "한 값 자리에 아무 값도 없으면",
+        "question": "9999번 학생이 없을 때 그 학생 점수와 같은 사람을 찾으면?",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박보성",
+                "90"
+              ],
+              [
+                "1002",
+                "노우성",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름 FROM 성적 WHERE 점수=(SELECT 점수 FROM 성적 WHERE 학번=9999);",
+        "steps": [
+          "안쪽 WHERE 학번=9999 결과는 0행이다. 스칼라 값은 NULL로 취급한다.",
+          "바깥의 점수=NULL 비교는 TRUE가 아니므로 통과 행이 없다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름"
+            ],
+            "rows": []
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "안쪽 한 값 ≠ 바깥 한 사람. 스칼라 0행=NULL, 여러 행은 Oracle 오류.",
+    "traps": [
+      "SQLite는 스칼라 다중행 처리에서 Oracle과 다르게 동작할 수 있다. Oracle 오류 문제를 SQLite 동작으로 판정하지 않는다.",
+      "AVG를 썼다고 단일행이라고 단정하지 말고 GROUP BY 유무도 본다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-02-Q1",
+        "question": "MAX 하나를 비교하면 최고점 동점자는 한 명만 나오는가?",
+        "answer": "아니다",
+        "explanation": "같은 최댓값인 모든 바깥 행이 나온다."
+      },
+      {
+        "id": "2-2-02-Q2",
+        "question": "Oracle 스칼라 서브쿼리가 두 행이면?",
+        "answer": "오류",
+        "explanation": "하나의 값으로 결정할 수 없다."
+      },
+      {
+        "id": "2-2-02-Q3",
+        "question": "스칼라 서브쿼리가 0행이면?",
+        "answer": "NULL",
+        "explanation": "없는 한 값을 NULL로 취급한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S12"
+    ],
+    "sourceIds": [
+      "subquery",
+      "scalar"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"단일행 서브쿼리 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 질문</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">평균·목록·존재?</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 결과</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값 / 여러 행 / 존재</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">바깥 질문</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">결과를 기준으로 검사</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">안쪽 한 값 ≠ 바깥 한 사람. 스칼라 0행=NULL, 여러 행은 Oracle 오류.</text></svg>",
+    "version": 1
+  },
+  "purpose": "최고점처럼 한 기준값과 비교하거나, 찾는 학생이 없을 때의 비교 결과를 구별해요.",
+  "overview": "조회예요. MAX가 돌려주는 기준 한 값과 바깥 결과의 행 수는 별개예요. 두 번째 예제는 안쪽0행을 한 값 자리에서 NULL로 읽어요.",
+  "terms": [
+    {
+      "token": "MAX",
+      "kind": "집계함수",
+      "meaning": "maximum = 가장 큰 값",
+      "role": "90·90·70 중 기준90을 한 값으로 반환해요."
+    },
+    {
+      "token": "스칼라",
+      "kind": "결과 형태",
+      "meaning": "한 값으로 쓰는 표현",
+      "role": "0행이면 NULL,1행1열이면 그 값이에요. Oracle에서2행 이상이면 오류예요."
+    },
+    {
+      "token": "학번=9999",
+      "kind": "조건식",
+      "meaning": "9999번 학생 행을 찾는 비교",
+      "role": "9999는 실제 비교값이며 조회할 행의 개수나 자릿수가 아니에요."
+    }
+  ],
+  "pitfalls": [
+    "SQLite는 스칼라 다중행을 Oracle처럼 오류 처리하지 않을 수 있어요. 이 규칙은 Oracle 문서 기준이며 SQLite 성공으로 검증하지 않아요.",
+    "빈 입력에 GROUP BY 없이 COUNT(*)는0, MAX·AVG는NULL을 반환해요. 모든 집계가 NULL이라고 일반화하지 않아요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. MAX가 돌려주는 기준 한 값과 바깥 결과의 행 수는 별개예요. 두 번째 예제는 안쪽0행을 한 값 자리에서 NULL로 읽어요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 7,
+      "toPage": 7,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-02-E01",
+      "why": "최고점 기준값을 계산하고 같은 최고점을 받은 사람을 빠짐없이 찾아요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-02-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·점수 3개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "최고점 한 값",
+          "text": "MAX는 90·90·70 중 가장 큰 90을 한 값으로 돌려줘요. 90을 받은 학생 이름을 여기서 하나로 고르지는 않아요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT MAX(점수) FROM 성적",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "MAX"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 최고점 한 값",
+            "columns": [
+              "입력점수",
+              "최댓값"
+            ],
+            "rows": [
+              [
+                "90·90·70",
+                "90"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 1
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "바깥 행 각각 비교",
+          "text": "박보성 90=90과 노우성 90=90은 참이에요. 양선규 70=90은 거짓이라 빠져요.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 점수=",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 바깥 행 각각 비교",
+            "columns": [
+              "학생",
+              "대입",
+              "판정"
+            ],
+            "rows": [
+              [
+                "박보성",
+                "90=90",
+                "참"
+              ],
+              [
+                "노우성",
+                "90=90",
+                "참"
+              ],
+              [
+                "양선규",
+                "70=90",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "동점 두 명 유지",
+          "text": "안쪽 기준은 1행이지만 조건을 만족한 바깥은 2행이에요. 학번 1001 박보성, 1002 노우성순으로 표시해요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학번"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름·점수, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "박보성",
+                "90"
+              ],
+              [
+                "노우성",
+                "90"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "MAX가 한 행을 반환한다는 것과 바깥 결과 한 사람을 고른다는 것은 달라요. ROWNUM 같은 행수 제한도 없어요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-2-02-E02",
+      "why": "기준 학생이 없을 때 아무 점수로 나머지 학생을 잘못 고르지 않는지 확인해요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-02-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·점수 3개, 표시 입력 2행."
+      ],
+      "steps": [
+        {
+          "title": "9999번을 찾는 안쪽",
+          "text": "학번은 1001·1002뿐이라 학번=9999에 참인 행이 없어요. 9999는 찾는 값이지 9999행을 만드는 수가 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 점수 FROM 성적 WHERE 학번=9999",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학번"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 9999번을 찾는 안쪽",
+            "columns": [
+              "학번",
+              "9999와비교",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1001",
+                "1001=9999",
+                "거짓"
+              ],
+              [
+                "1002",
+                "1002=9999",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "0행을 한 값 자리에서 읽기",
+          "text": "안쪽 결과표는 0행이에요. 스칼라값으로 사용하는 자리이므로 그 값은 NULL로 읽어요. 원본 점수가 NULL로 수정되지는 않아요.",
+          "codeFocus": [
+            {
+              "needle": "(SELECT 점수 FROM 성적 WHERE 학번=9999)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "점수"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-02"
+        },
+        {
+          "title": "90과70 모두 참이 아님",
+          "text": "바깥 박보성 90=NULL, 노우성 70=NULL은 둘 다 알 수 없음이에요. WHERE를 통과하는 참이 없어 이름 결과는 0행이에요.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 점수=",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "WHERE"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 90과70 모두 참이 아님",
+            "columns": [
+              "학생",
+              "대입",
+              "판정"
+            ],
+            "rows": [
+              [
+                "박보성",
+                "90=NULL",
+                "알수없음·제외"
+              ],
+              [
+                "노우성",
+                "70=NULL",
+                "알수없음·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름, 결과는 0행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요. 이 SQL은 ORDER BY가 없으므로 아래 표의 일반 행 나열 순서가 보장된다는 뜻은 아니에요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름"
+            ],
+            "rows": []
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "NULL=값은 거짓이라고 확정한 것이 아니라 알 수 없음이에요. 다만 WHERE가 참만 남기므로 거짓과 알 수 없음 모두 선택되지 않아요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-02-Q1",
+      "hint": "안쪽의 행수와 바깥의 일치 행수를 따로 세어요.",
+      "reasoning": "안쪽 MAX는90 하나지만 점수90인 박보성·노우성이 각각 일치해서 바깥은2행이에요."
+    },
+    {
+      "checkId": "2-2-02-Q2",
+      "hint": "한 값 자리에 서로 다른 두 행이 들어갈 수 있는지 생각해 봐요.",
+      "reasoning": "Oracle의 스칼라 서브쿼리는 두 행 이상이면 단일값을 정할 수 없어 오류예요. 내용이 같아도 두 행이면 안 돼요."
+    },
+    {
+      "checkId": "2-2-02-Q3",
+      "hint": "안쪽 결과표가 비었을 때 바깥 식에 들어갈 한 값을 생각해요.",
+      "reasoning": "Oracle의 스칼라0행은 NULL이에요. 바깥 점수=NULL은 알 수 없음이고 WHERE는 참만 통과시켜요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Scalar-Subquery-Expressions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "1-1-01",
+  "source": {
+    "id": "1-1-01",
+    "partId": "1-1",
+    "number": 1,
+    "title": "데이터베이스의 개념",
+    "lectureMinutes": 19,
+    "easy": "여러 사람이 함께 쓰는 정보를, 규칙을 정해 모아 둔 저장소다. 그 저장소를 관리하는 프로그램은 DBMS다.",
+    "why": "학생 명단을 교수별 파일로 따로 관리하면 이름·학과가 서로 달라질 수 있다. 한곳에서 관리하면서 필요한 사람에게 필요한 정보만 보여주려는 것이다.",
+    "concepts": [
+      {
+        "term": "데이터",
+        "meaning": "아직 해석하기 전의 사실·값",
+        "example": "학생번호 1001, 점수 90"
+      },
+      {
+        "term": "정보",
+        "meaning": "값을 해석해 얻은 의미",
+        "example": "DB 평균이 80점이므로 90점은 평균 이상"
+      },
+      {
+        "term": "데이터베이스(DB)",
+        "meaning": "서로 관련된 데이터를 구조화한 저장소",
+        "example": "학생표·과목표·수강표"
+      },
+      {
+        "term": "DBMS",
+        "meaning": "저장·검색·수정·권한·회복을 관리하는 소프트웨어",
+        "example": "Oracle, PostgreSQL 같은 관리 프로그램"
+      },
+      {
+        "term": "통합·저장·운영·공유",
+        "meaning": "중복을 통제하고 저장해 실제 업무에서 함께 사용",
+        "example": "학사관리의 공동 학생명단"
+      },
+      {
+        "term": "계속 변화·동시 공유",
+        "meaning": "등록·수정이 계속 일어나며 여러 이용자가 접근",
+        "example": "두 교수가 같은 학생의 성적을 조회"
+      },
+      {
+        "term": "내용 기반 참조",
+        "meaning": "저장 위치 대신 값의 조건으로 검색",
+        "example": "학과가 컴퓨터인 학생을 찾기"
+      }
+    ],
+    "examples": [
+      {
+        "id": "1-1-01-E01",
+        "title": "학생 정보를 함께 관리하기",
+        "question": "컴퓨터 학과 학생의 이름과 점수만 보여주려면?",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "1002",
+                "장정훈",
+                "전자",
+                "70"
+              ],
+              [
+                "1003",
+                "박보성",
+                "컴퓨터",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름, 점수 FROM 학생 WHERE 학과='컴퓨터' ORDER BY 학번;",
+        "steps": [
+          "학생표에는 박상현·장정훈·박보성의 정보가 각각 한 줄씩 있다.",
+          "학과가 컴퓨터인 1001번 박상현과 1003번 박보성을 고른다.",
+          "필요한 이름·점수 두 항목만 화면에 보여준다. 원본 표를 삭제한 것은 아니다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "90"
+              ],
+              [
+                "박보성",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "저장소는 DB, 관리자는 DBMS. 데이터는 값, 정보는 그 값의 의미.",
+    "traps": [
+      "DB는 중복이 절대로 없는 저장소라는 뜻이 아니다. 필요한 중복도 규칙 아래 관리한다.",
+      "실시간 접근 가능은 모든 쿼리가 무조건 즉시 끝난다는 성능 보장이 아니다."
+    ],
+    "selfChecks": [
+      {
+        "id": "1-1-01-Q1",
+        "question": "Oracle은 DB에 가까운가, DBMS에 가까운가?",
+        "answer": "DBMS",
+        "explanation": "데이터를 저장하고 조회·수정·권한·회복을 관리하는 소프트웨어다."
+      },
+      {
+        "id": "1-1-01-Q2",
+        "question": "90이라는 점수와 “평균보다 10점 높다” 중 정보에 해당하는 것은?",
+        "answer": "평균보다 10점 높다",
+        "explanation": "값에 비교와 의미를 붙였다."
+      },
+      {
+        "id": "1-1-01-Q3",
+        "question": "위 조회로 원본 학생표에서 전자과 학생이 삭제되는가?",
+        "answer": "아니다",
+        "explanation": "SELECT는 원하는 결과를 보여주는 조회다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S01"
+    ],
+    "sourceIds": [
+      "model",
+      "select"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"데이터베이스의 개념 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념을 먼저</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">용어를 쉬운 말로</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실제 예시 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 값·행·열인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과와 이유</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">왜 이 답인가?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">저장소는 DB, 관리자는 DBMS. 데이터는 값, 정보는 그 값의 의미.</text></svg>",
+    "version": 1
+  },
+  "purpose": "컴퓨터 학과 성적을 볼 때 저장된 학생 정보와 그것을 읽어 주는 프로그램을 구별하자.",
+  "overview": "학생표를 읽어 필요한 이름·점수를 보여 주는 조회다. 학생표를 만들거나 장정훈의 행을 삭제하는 작업은 아니다. SQL 문법은 뒤 단원에서 배우므로 여기서는 각 단어의 역할부터 함께 읽는다.",
+  "terms": [
+    {
+      "token": "데이터",
+      "kind": "개념",
+      "meaning": "아직 해석하기 전의 사실·값",
+      "role": "학생번호 1001, 점수 90"
+    },
+    {
+      "token": "정보",
+      "kind": "개념",
+      "meaning": "값을 해석해 얻은 의미",
+      "role": "DB 평균이 80점이므로 90점은 평균 이상"
+    },
+    {
+      "token": "데이터베이스(DB)",
+      "kind": "개념",
+      "meaning": "서로 관련된 데이터를 구조화한 저장소",
+      "role": "학생표·과목표·수강표"
+    },
+    {
+      "token": "DBMS",
+      "kind": "개념",
+      "meaning": "저장·검색·수정·권한·회복을 관리하는 소프트웨어",
+      "role": "Oracle, PostgreSQL 같은 관리 프로그램"
+    },
+    {
+      "token": "통합·저장·운영·공유",
+      "kind": "개념",
+      "meaning": "중복을 통제하고 저장해 실제 업무에서 함께 사용",
+      "role": "학사관리의 공동 학생명단"
+    },
+    {
+      "token": "계속 변화·동시 공유",
+      "kind": "개념",
+      "meaning": "등록·수정이 계속 일어나며 여러 이용자가 접근",
+      "role": "두 교수가 같은 학생의 성적을 조회"
+    },
+    {
+      "token": "내용 기반 참조",
+      "kind": "개념",
+      "meaning": "저장 위치 대신 값의 조건으로 검색",
+      "role": "학과가 컴퓨터인 학생을 찾기"
+    },
+    {
+      "token": "SELECT",
+      "kind": "키워드",
+      "meaning": "선택하여 보여 주다",
+      "role": "이름·점수 두 열을 조회 결과에 표시한다."
+    },
+    {
+      "token": "FROM",
+      "kind": "키워드",
+      "meaning": "어디에서",
+      "role": "학생표에서 값을 가져온다."
+    },
+    {
+      "token": "WHERE",
+      "kind": "키워드",
+      "meaning": "어떤 조건에서",
+      "role": "학생.학과가 컴퓨터인 행을 선택한다."
+    },
+    {
+      "token": "ORDER BY",
+      "kind": "키워드",
+      "meaning": "무엇을 기준으로 정렬",
+      "role": "학번의 오름차순을 정한다."
+    },
+    {
+      "token": "학생",
+      "kind": "테이블명",
+      "meaning": "이 예제에서 설계한 표 이름",
+      "role": "학번·이름·학과·점수의 원래 저장 위치다."
+    },
+    {
+      "token": "'컴퓨터'",
+      "kind": "문자열 값",
+      "meaning": "작은따옴표는 문자열을 감싼다",
+      "role": "학과 컬럼값과 비교할 기준이다."
+    }
+  ],
+  "pitfalls": [
+    "SQL은 DBMS에 보내는 요청 문법이며 저장 장치 이름이 아니다. 모든 DB가 관계형 테이블만 쓰는 것은 아니다.",
+    "처음 등장한 ORDER BY는 정렬이다. 이 문법을 아직 몰랐다면 DB·DBMS 개념을 틀리게 이해한 것으로 취급하지 않는다."
+  ],
+  "questions": [
+    {
+      "question": "FROM이 뭔데?",
+      "answer": "FROM은 어디에서라는 뜻이다. FROM 학생은 이미 있는 학생표를 조회 대상으로 삼는다."
+    },
+    {
+      "question": "학과와 컴퓨터는 둘 다 컬럼이야?",
+      "answer": "학과는 컬럼명, 작은따옴표로 감싼 컴퓨터는 비교할 값이다. 각 학생의 학과 칸을 그 값과 비교한다."
+    },
+    {
+      "question": "사진도 데이터야?",
+      "answer": "그렇다. 이 예제는 행·열이 정해진 정형 데이터다. 사진·음성 같은 비정형 데이터, JSON처럼 구조가 있지만 고정된 표는 아닌 반정형 데이터도 있다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "1-1",
+      "title": "데이터 모델링의 이해",
+      "fromPage": 1,
+      "toPage": 3,
+      "note": "흥달쌤 원본 PDF의 해당 단원과 문제를 대조했습니다. 아래 앱 예제의 이름·표·값은 PDF 문제와 별도 데이터이며, 원본 PDF의 보기를 옮겨 채점하지 않습니다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "1-1-01-E01",
+      "why": "학과 담당자가 컴퓨터 학과 학생의 성적만 확인하려는 상황이다.",
+      "effect": "조회: 학생표의 일부 행·열을 결과로 표시한다.",
+      "prerequisites": [
+        "학생표는 이미 있고 학번·이름·학과·점수 네 열과 박상현·장정훈·박보성의 세 행이 저장되어 있다.",
+        "SQL의 학과 조건과 이름·점수는 모두 이 학생표의 열이다. 작은따옴표 속 컴퓨터는 열 이름이 아니라 비교할 문자열이다."
+      ],
+      "steps": [
+        {
+          "title": "전체 목적과 조회 대상",
+          "text": "SELECT 이름, 점수는 최종 화면에 보여 줄 두 항목이다. FROM 학생은 이 항목들을 읽어 올 표를 정한다. DB는 이 학생 데이터이고 DBMS는 요청을 받아 조건을 확인하고 결과를 돌려주는 프로그램이다.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 이름, 점수",
+              "occurrence": 0
+            },
+            {
+              "needle": "FROM 학생",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "이름, 점수",
+            "FROM 학생"
+          ],
+          "table": {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "1002",
+                "장정훈",
+                "전자",
+                "70"
+              ],
+              [
+                "1003",
+                "박보성",
+                "컴퓨터",
+                "80"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "학생의 학과값을 한 행씩 대입",
+          "text": "박상현의 컴퓨터는 조건과 같아 참, 장정훈의 전자는 달라 거짓, 박보성의 컴퓨터는 같아 참이다. 참인 두 행만 조회 후보에 남긴다. 장정훈의 원본 행은 유지된다.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 학과='컴퓨터'",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "장정훈의 원본 행은 유지"
+          ],
+          "table": {
+            "title": "학습용 조건 판정",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "컴퓨터",
+                "참 · 통과"
+              ],
+              [
+                "1002",
+                "장정훈",
+                "전자",
+                "거짓 · 제외"
+              ],
+              [
+                "1003",
+                "박보성",
+                "컴퓨터",
+                "참 · 통과"
+              ]
+            ]
+          },
+          "focusRows": [
+            0,
+            2
+          ],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "필요한 열과 정렬을 구분",
+          "text": "통과한 1001번 박상현과 1003번 박보성에서 이름·점수만 표시한다. ORDER BY 학번은 학번이 작은 순으로 정렬한다. ASC를 생략한 오름차순이며 최종 화면에 학번 열이 없어도 이 쿼리는 학번으로 정렬한다.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "이름·점수",
+            "학번이 작은 순"
+          ],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "90"
+              ],
+              [
+                "박보성",
+                "80"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "title": "그림과 실제 표를 연결해서 읽기",
+          "text": "기존 DBMS 그림에서는 요청 → DBMS → 저장소 → 결과의 역할을 따라가자. 그림의 유성재·박강열 학생표와 지금 박상현·장정훈·박보성 표는 별개다. 현재 쿼리 후 원본 세 행과 네 열은 그대로이고 조회 결과만 두 행·두 열이다.",
+          "codeFocus": [],
+          "highlights": [
+            "원본 세 행과 네 열은 그대로"
+          ],
+          "table": {
+            "title": "조회 전후 비교",
+            "columns": [
+              "대상",
+              "이전",
+              "이후"
+            ],
+            "rows": [
+              [
+                "원본 학생표",
+                "3행 · 4열",
+                "유지 · 3행 · 4열"
+              ],
+              [
+                "조회 화면",
+                "아직 없음",
+                "박상현 90 / 박보성 80"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        }
+      ],
+      "comparison": "DB와 DBMS, 조건으로 결과에서 제외하는 일과 DELETE로 원본을 지우는 일을 구분한다. 위 순서는 학습용 논리 설명이며 DB의 실제 실행계획을 측정한 순서가 아니다.",
+      "verification": "이번 추가 해설 작업에서 원본 SQL과 입력표를 SQLite 3.50.4 메모리 DB로 실행해 원본 결과표와 값·열 순서·행 순서를 대조했습니다. Oracle·SQL Server에서 실행한 결과는 아닙니다. 별도 저장·수정 가정은 논리 검산이며 이 SELECT의 실행 결과와 구분합니다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "1-1-01-Q1",
+      "hint": "저장된 기록인지, 기록을 다루는 프로그램인지 생각해 보자.",
+      "reasoning": "Oracle 제품을 말하는 이 문항에서는 DBMS다. 학생표의 값을 보관·조회·관리하는 소프트웨어이지 박상현의 90이라는 데이터 자체가 아니다."
+    },
+    {
+      "checkId": "1-1-01-Q2",
+      "hint": "숫자 자체와 비교 기준을 붙인 문장을 나눠 보자.",
+      "reasoning": "90은 기록된 점수다. 평균보다 10점 높다는 표현은 평균과 비교해 얻은 의미라 정보다. 평균값은 원본 조회표에서 계산한 것이 아니라 확인문제의 별도 전제다."
+    },
+    {
+      "checkId": "1-1-01-Q3",
+      "hint": "원본을 바꾸는 명령인지 결과를 보여 주는 명령인지 먼저 보자.",
+      "reasoning": "SELECT이므로 장정훈의 학번 1002·전자·70은 원본에 남는다. 조건을 만족하지 않아 이번 조회 화면에 나오지 않을 뿐이다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/introduction-to-oracle-database.html"
+  ],
+  "reviewNotes": [
+    "PDF 1쪽의 테이블 중심 DB 설명은 관계형 DB 문맥으로 한정했다. 다른 DB 유형까지 모두 테이블형이라고 확장하지 않았다."
+  ]
+}

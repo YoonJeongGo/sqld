@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "comparedAt": "2026-09-14T10:37:15.966877+00:00",
+  "inputSha256": "b44faabd1cbc4f2c034e8eaa783be8a740bdf74854f60e980563e2dc3add5a2f",
+  "decisionsSha256": "e6f0d1c49245a6cb3a826c1fdea5934fd6da2a2cba4d5b428a9843f7d316c1dc",
+  "boundary": "Only recorded questions reviewed; no DBMS execution or human expert review.",
+  "counts": {
+    "answer_agrees": 35,
+    "answer_disagrees": 0,
+    "source_changed_requires_review": 0,
+    "not_reviewed": 0
+  },
+  "results": [
+    {
+      "questionId": "M11-R01-external-view",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "ab2262b1908e7f3acdab542393cc73e229e1d18e0ce82a3fe2a40727140131fa"
+    },
+    {
+      "questionId": "M11-R02-physical-independence",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "4bdecb18fec94336a26d80b2a308c8a54cb2887ed719524c4d7745b6f486a781"
+    },
+    {
+      "questionId": "M11-R03-process-versus-layer",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "a68ac36abf53158e188040fb283d3a167e88d0ed452ddde0179ab7016b9242b7"
+    },
+    {
+      "questionId": "M11-A01-split-preserved-view",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "b"
+      ],
+      "authoredChoiceIds": [
+        "b"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "0cd085ea22186078e11501a75582a47e6feaa0b5dda0239024bcc07f32b88eef"
+    },
+    {
+      "questionId": "M11-A02-index-stable-meaning",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "5d6844ee866703f2dbc7b8bfda3f65786223df597104e74d20fc8d123c03e3fd"
+    },
+    {
+      "questionId": "M12-R01-endpoint-direction",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "373252342875385132cb1d53582ecf06722e6e64174a1cfa0cf1bd13d95c4b1e"
+    },
+    {
+      "questionId": "M12-R02-cardinality-minimum",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "1bc04a27a5789438feb68a39382dc0d89f3907b6098601546d2936c4c5ff5007"
+    },
+    {
+      "questionId": "M12-R03-erd-first-business",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "b"
+      ],
+      "authoredChoiceIds": [
+        "b"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "929a64a4ae059d62c6717357b05d7a87ae5ec18af6f1258ec74d6e98fdeecec6"
+    },
+    {
+      "questionId": "M12-A01-optional-parent-not-null",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "13123c8fac70d36e07cc706b6da13741f0d941fee792f485fbc2b166a0cc2f67"
+    },
+    {
+      "questionId": "M12-A02-association-history-key",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "2594b8724eca2ae897524da3756b18d4e7b6a7979622f65fa89ef570e9b03024"
+    },
+    {
+      "questionId": "M13-R01-deliberate-redundancy",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "1ec59d9ec3d25bd7960117b4267db7cd25d55f4bccffb1fb887136846a6c36a1"
+    },
+    {
+      "questionId": "M13-R02-measure-before-choice",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "b"
+      ],
+      "authoredChoiceIds": [
+        "b"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "55c37527575440666767436a4ca2c61f6583865351d28efaeb01e96eb169ff2d"
+    },
+    {
+      "questionId": "M13-R03-snapshot-meaning",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "ae6786b4b18bb10724838cd4130da49daf182335d87be799478e64841b98866b"
+    },
+    {
+      "questionId": "M13-A01-total-cancellation",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "c1be25580d07b745a315d1c17e6de9bf6a179781d77c76d8bf68c2a3b80ec414"
+    },
+    {
+      "questionId": "M13-A02-frequent-master-update",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "d99a9b175d9a5d7e583c656c1f5ee23331444ff409c5c9113e0701d55dccec43"
+    },
+    {
+      "questionId": "S25-R01-char-varchar-storage",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "b"
+      ],
+      "authoredChoiceIds": [
+        "b"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "8e4e9e8727d206bb5f326b0c1f4aef52ebe7925ea9ae6c8c9c3b2e491a12c9dc"
+    },
+    {
+      "questionId": "S25-R02-number-precision-scale",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "655b7c6d1cd793f722e8e6c3ae77e986a870e7d5c9ebd27ecc9cdcb17c6fe3b7"
+    },
+    {
+      "questionId": "S25-R03-date-timestamp-fields",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "f19ba9bd43f4e399be67de9e869a450481b3749f23f82dd7a79f066df0b02330"
+    },
+    {
+      "questionId": "S25-A01-explicit-char-length",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "ab08e62906bac8348aed1644a998996a81c1dbeddf349b5753b87d8b567bcaf0"
+    },
+    {
+      "questionId": "S25-A02-numeric-cast-scales",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "b"
+      ],
+      "authoredChoiceIds": [
+        "b"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "ef259aeb8e345f25737e9c602b90baef09cc77da4faf0a3e361b3c16b2306ecc"
+    },
+    {
+      "questionId": "S26-R01-add-modify-update",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "2a63a021e97317cede208838990fc53e76941617d6ea4667a5978e951c0c33c4"
+    },
+    {
+      "questionId": "S26-R02-rename-column-vs-alias",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "9c3e4627722a4b70787c9b94a230e33b4090627be1d200c237bacc2c1e2f51a5"
+    },
+    {
+      "questionId": "S26-R03-drop-column-versus-delete",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "becba99d05b4d295cb957ce51620aaa6b5b21d4ed3e9d74138d78589b2d334fe"
+    },
+    {
+      "questionId": "S26-A01-add-null-existing-row",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "b"
+      ],
+      "authoredChoiceIds": [
+        "b"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "cd12ccbdbd48e537f81e71c0a227d274a8c3769fad4555745076f75564d314a8"
+    },
+    {
+      "questionId": "S26-A02-rename-retains-values",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "04b27acf248d9c47a7928b9d855388ed682e9bc98951e5828dd8c1be045e9e65"
+    },
+    {
+      "questionId": "S03-R07-instr-result-kind",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "62dc9cf9162dc045d8e34577a14818ec020c38a92b968d82d1f6a901a10d506a"
+    },
+    {
+      "questionId": "S03-A07-instr-occurrence-missing",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "e794d0a63e8b3223834d40e8f18a2489773b678d4db2db0f3888ac17e18f2f8e"
+    },
+    {
+      "questionId": "S03-A08-padding-final-length",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "b"
+      ],
+      "authoredChoiceIds": [
+        "b"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "2b23885fbed70f72725fe9736f3ad982e2af0cb1f069059b0d94e0ac70e9acbc"
+    },
+    {
+      "questionId": "S03-A09-negative-integer-directions",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "5d962809cf3cdb604206b37c503346614939ce0ea1c4a14375b0084b74f5e3d9"
+    },
+    {
+      "questionId": "S03-A10-lower-uppercase-sequence",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "14002dd5eb7ad665041f7efb5725a1ab14ca1b108fa033c300ff15b7d118eb2c"
+    },
+    {
+      "questionId": "S05-R06-nvl2-return-branch",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "43aaab9a31a38ab5fb5cc8b9437a1cf4ee05eb6ddc5fb3fd7ac63b10413a93e9"
+    },
+    {
+      "questionId": "S05-A07-decode-null-versus-case",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "b"
+      ],
+      "authoredChoiceIds": [
+        "b"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "cc7255f286c87efaa1c61ca592910a2862224176672269bc94549ae44c4c1605"
+    },
+    {
+      "questionId": "S05-A08-decode-default-omitted",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "fef9d26a0b671f0e4ef7308739fe4a8e39eeb24b78208415aa753bdca63a43db"
+    },
+    {
+      "questionId": "M06-R06-bcnf-superkey",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "d"
+      ],
+      "authoredChoiceIds": [
+        "d"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "f0d9127bf58f7e0d28cec954dd3b2d034d8b5865c104dfe4d5576bbcfa9b3685"
+    },
+    {
+      "questionId": "M02-R06-classification-two-axes",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "c"
+      ],
+      "authoredChoiceIds": [
+        "c"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "02da24c6b86b344fe0646f358669c2b44d97a6d8c58cfac79a3b12d93f324fd2"
+    }
+  ],
+  "choiceMapSha256": "c66db16dd9a1dfd9edf5defd26bac0ad59d5390b49b7a65360802cbdfc588332"
+}

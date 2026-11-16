@@ -1,0 +1,338 @@
+{
+  "mock-2-S09-m2-distinct-order-ambiguity": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-2-S10-m2-missing-join-predicate": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-2-S10-m2-condition-or-expands": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-2-S11-m2-null-note-false-anti": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-2-S11-m2-right-to-left-rewrite": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "mock-2-S12-m2-scalar-no-group-count": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-2-S12-m2-all-null-veto": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-2-S12-m2-uncorrelated-exists-mistake": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "b",
+    "r4": "d"
+  },
+  "mock-2-S13-m2-set-arity-error": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-2-S13-m2-set-datatype-groups": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-2-S14-m2-rollup-order-business": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "mock-2-S14-m2-cube-empty-full": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-2-S15-m2-rank-added-key-effect": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-2-S15-m2-row-number-where-scope": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-2-S16-m2-rows-peers-nondeterminism": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "mock-2-S16-m2-range-offset-keys": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "b",
+    "r4": "d"
+  },
+  "mock-2-S17-m2-with-ties-needs-order": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-2-S17-m2-fetch-zero": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-2-S18-m2-cycle-without-guard": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "mock-2-S18-m2-hierarchy-pruning-location": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "mock-2-S19-m2-unpivot-type-family": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-2-S19-m2-pivot-implicit-count-star": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-2-S20-m2-regex-question-mark": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-2-S21-m2-insert-default-null": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "mock-2-S21-m2-update-target-key-conflict": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "mock-2-S22-m2-commit-then-savepoint-invalid": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "b",
+    "r4": "c"
+  },
+  "mock-2-S23-m2-check-multiple-null": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "mock-2-S24-m2-role-grant-object-option": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-3-S09-m3-case-null-order-equivalent": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "mock-3-S10-m3-join-exists-equivalence-condition": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-3-S10-m3-band-gaps-no-match": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "mock-3-S11-m3-filtered-count-preserve": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-3-S11-m3-outer-swapped-column-null": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "mock-3-S12-m3-in-duplicates-no-extra": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-3-S12-m3-correlated-min-ties": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-3-S12-m3-exists-null-only-rewrite": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "mock-3-S13-m3-intersection-symmetry": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "mock-3-S13-m3-difference-reconstruct-union": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "mock-3-S14-m3-summing-rollup-double": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-3-S14-m3-grouping-null-count-fields": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "mock-3-S15-m3-ntile-more-buckets": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-3-S15-m3-null-partition-count": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-3-S16-m3-range-current-peers-only": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "c",
+    "r4": "b"
+  },
+  "mock-3-S16-m3-moving-average-null-denominator": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-3-S17-m3-offset-beyond-result": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-3-S17-m3-percent-rounding": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-3-S18-m3-overlapping-starts": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "mock-3-S18-m3-level-not-global-number": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-3-S19-m3-pivot-unlisted-category": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-3-S19-m3-pivot-count-expression-null": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-3-S20-m3-regex-repeat-bounds": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-3-S21-m3-delete-exists-no-cascade": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "mock-3-S21-m3-insert-from-self-count": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "mock-3-S22-m3-rollback-later-savepoint": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "mock-3-S23-m3-composite-primary-key": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-3-S24-m3-insert-select-source-right": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  }
+}

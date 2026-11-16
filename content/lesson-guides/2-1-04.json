@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-04",
+  "source": {
+    "id": "2-1-04",
+    "partId": "2-1",
+    "number": 4,
+    "title": "ALTER~RENAME",
+    "lectureMinutes": 23,
+    "easy": "이미 있는 표의 구조를 바꾸거나 이름을 바꾸는 명령이다. 표 안의 한 사람 점수를 바꾸는 UPDATE와 다르다.",
+    "why": "연락처 열을 추가하는 것은 구조 변경이고, 연락처 값을 고치는 것은 데이터 변경이다.",
+    "concepts": [
+      {
+        "term": "ALTER TABLE ADD",
+        "meaning": "열이나 제약을 추가",
+        "example": "연락처 VARCHAR2(20) 추가"
+      },
+      {
+        "term": "MODIFY",
+        "meaning": "Oracle에서 기존 열 정의 변경",
+        "example": "이름의 최대 길이 확대"
+      },
+      {
+        "term": "RENAME COLUMN",
+        "meaning": "열 이름 변경",
+        "example": "전화 → 연락처"
+      },
+      {
+        "term": "DROP COLUMN",
+        "meaning": "열 자체를 제거",
+        "example": "그 열의 값도 사라짐"
+      },
+      {
+        "term": "RENAME",
+        "meaning": "객체 이름 변경",
+        "example": "학생 → 재학생"
+      },
+      {
+        "term": "DROP TABLE",
+        "meaning": "표 객체 제거",
+        "example": "표와 그 데이터가 없어짐"
+      },
+      {
+        "term": "TRUNCATE TABLE",
+        "meaning": "행 전체를 비우되 표 구조 유지",
+        "example": "WHERE 없이 전체 비우기"
+      },
+      {
+        "term": "DDL 주의",
+        "meaning": "Oracle에서 암묵 COMMIT 가능",
+        "example": "취소를 전제로 실행하지 않기"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-04-E01",
+        "title": "연락처 열을 추가하고 표 이름 바꾸기",
+        "question": "학생표의 두 기존 행에 연락처 열을 추가하면?",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양선규"
+              ],
+              [
+                "1002",
+                "유성재"
+              ]
+            ]
+          }
+        ],
+        "sql": "ALTER TABLE 학생 ADD 연락처 VARCHAR2(20);\nRENAME 학생 TO 재학생;",
+        "steps": [
+          "처음에는 학번·이름 두 속성이다.",
+          "연락처를 기본값 없이 추가하면 기존 두 행의 새 열은 NULL이다. 차수는 2에서 3이 되지만 행수는 2다.",
+          "표 이름을 재학생으로 바꿔도 저장한 두 학생 자체는 변하지 않는다."
+        ],
+        "results": [
+          {
+            "title": "재학생",
+            "columns": [
+              "학번",
+              "이름",
+              "연락처"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양선규",
+                null
+              ],
+              [
+                "1002",
+                "유성재",
+                null
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 예상 결과를 설명한 자료입니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "ALTER는 구조 변경, UPDATE는 값 변경. RENAME은 이름 변경.",
+    "traps": [
+      "기존 데이터가 새 자료형·길이·NOT NULL 조건을 위반하면 변경이 실패할 수 있다.",
+      "TRUNCATE는 Oracle에서 일반 DML ROLLBACK으로 복구하지 못한다. DROP·TRUNCATE 동작을 다른 DBMS에 그대로 일반화하지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-04-Q1",
+        "question": "이름 열의 길이를 늘리는 것은 UPDATE인가 ALTER인가?",
+        "answer": "ALTER",
+        "explanation": "값이 아니라 열의 정의를 바꾼다."
+      },
+      {
+        "id": "2-1-04-Q2",
+        "question": "열을 하나 추가하면 카디널리티가 늘어나는가?",
+        "answer": "아니다",
+        "explanation": "차수가 늘어난다."
+      },
+      {
+        "id": "2-1-04-Q3",
+        "question": "조건에 맞는 학생만 지우려면 TRUNCATE인가?",
+        "answer": "아니다. DELETE ... WHERE",
+        "explanation": "TRUNCATE는 조건을 붙여 일부 행만 지우는 명령이 아니다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S26"
+    ],
+    "sourceIds": [
+      "alter",
+      "rename",
+      "truncate",
+      "commit"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"ALTER~RENAME 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념을 먼저</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">용어를 쉬운 말로</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실제 예시 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 값·행·열인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과와 이유</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">왜 이 답인가?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">ALTER는 구조 변경, UPDATE는 값 변경. RENAME은 이름 변경.</text></svg>",
+    "version": 1
+  },
+  "purpose": "기존 학생을 유지하면서 연락처를 기록할 새 항목을 만들고 테이블 이름을 재학생으로 바꾼다.",
+  "overview": "ALTER는 학생 구조에 연락처 컬럼을 추가하고 RENAME은 학생이라는 객체 이름을 재학생으로 바꾼다. 두 명의 이름을 수정하거나 새 학생을 넣는 작업이 아니다.",
+  "terms": [
+    {
+      "token": "ALTER TABLE",
+      "kind": "키워드",
+      "meaning": "alter = 바꾸다",
+      "role": "이미 있는 학생 테이블의 정의를 바꾼다."
+    },
+    {
+      "token": "ADD 연락처",
+      "kind": "키워드+컬럼 이름",
+      "meaning": "add = 추가하다",
+      "role": "기존 모든 행이 사용할 연락처 컬럼 하나를 만든다."
+    },
+    {
+      "token": "VARCHAR2(20)",
+      "kind": "자료형",
+      "meaning": "가변 문자열 최대 길이 20",
+      "role": "길이 단위가 생략됐으므로 실제 BYTE/CHAR 설정을 확인해야 한다. 새 행 20개라는 뜻이 아니다."
+    },
+    {
+      "token": "RENAME / TO",
+      "kind": "키워드",
+      "meaning": "rename = 이름을 바꾸다, to = 새 이름으로",
+      "role": "학생에서 재학생으로 테이블명을 바꾼다. 이름 컬럼의 양선규·유성재를 바꾸지 않는다."
+    }
+  ],
+  "pitfalls": [
+    "ADD는 컬럼을 늘리고 INSERT는 행을 늘린다.",
+    "이 예제는 DEFAULT 없는 NULL 허용 컬럼 추가다. 모든 ADD에서 언제나 기존 값이NULL이라고 일반화하지 않는다."
+  ],
+  "questions": [
+    {
+      "question": "ALTER TABLE는 여기서 무엇을 뜻하나요?",
+      "answer": "이미 있는 학생 테이블의 정의를 바꾼다."
+    },
+    {
+      "question": "ADD 연락처는 여기서 무엇을 뜻하나요?",
+      "answer": "기존 모든 행이 사용할 연락처 컬럼 하나를 만든다."
+    },
+    {
+      "question": "VARCHAR2(20)는 여기서 무엇을 뜻하나요?",
+      "answer": "길이 단위가 생략됐으므로 실제 BYTE/CHAR 설정을 확인해야 한다. 새 행 20개라는 뜻이 아니다."
+    },
+    {
+      "question": "RENAME / TO는 여기서 무엇을 뜻하나요?",
+      "answer": "학생에서 재학생으로 테이블명을 바꾼다. 이름 컬럼의 양선규·유성재를 바꾸지 않는다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 15,
+      "toPage": 19,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-04-E01",
+      "why": "학번·이름만 저장하던 학생표에 연락처 항목을 마련한다.",
+      "effect": "구조 변경+테이블명 변경:2컬럼→3컬럼,2행 유지.",
+      "prerequisites": [
+        "기존 학생표에 연락처 컬럼이 없으며 재학생이라는 이름도 사용 중이지 않다고 가정한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "기존 학생 두 명 확인",
+          "text": "원래 학생은 학번·이름 두 컬럼이다. (1001, 양선규), (1002, 유성재) 두 행은 ALTER의 입력이며 삭제 대상이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "ALTER TABLE 학생",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학번·이름"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양선규"
+              ],
+              [
+                "1002",
+                "유성재"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "추가되는 것은 컬럼",
+          "text": "ADD 연락처는 이름 뒤에 연락처 항목을 만든다. 기본값이 없고 NULL을 허용하므로 두 기존 학생의 새 연락처 칸은 NULL이다. 이름과 학번은 그대로 둔다.",
+          "codeFocus": [
+            {
+              "needle": "ADD 연락처 VARCHAR2(20)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "연락처 칸은 NULL"
+          ],
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "table": {
+            "title": "ALTER 뒤 학생",
+            "columns": [
+              "학번",
+              "이름",
+              "연락처"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양선규",
+                null
+              ],
+              [
+                "1002",
+                "유성재",
+                null
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "테이블 이름만 재학생으로",
+          "text": "RENAME 학생 TO 재학생의 왼쪽은 현재 테이블명, 오른쪽은 새 테이블명이다. 학생을 재학생에 복사해 두 표를 남기는 명령이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "RENAME 학생 TO 재학생",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "현재 테이블명",
+            "새 테이블명"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "재학생",
+            "columns": [
+              "학번",
+              "이름",
+              "연락처"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양선규",
+                null
+              ],
+              [
+                "1002",
+                "유성재",
+                null
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-04",
+          "title": "행수와 열수 비교",
+          "text": "학번·이름·연락처 세 컬럼으로 차수는 2→3이다. 양선규·유성재의 전체 정보 두 줄은 남으므로 카디널리티는 2→2다.",
+          "codeFocus": [
+            {
+              "needle": "ADD 연락처",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "차수는 2→3"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "변경 요약",
+            "columns": [
+              "대상",
+              "실행 전",
+              "실행 후"
+            ],
+            "rows": [
+              [
+                "테이블명",
+                "학생",
+                "재학생"
+              ],
+              [
+                "컬럼 수",
+                "2",
+                "3"
+              ],
+              [
+                "행 수",
+                "2",
+                "2"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "ALTER MODIFY는 저장 규칙 수정, UPDATE SET은 저장된 값 수정이다. 이름 컬럼의 길이를 늘리는 일과 양선규 이름값을 바꾸는 일을 구별한다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-04-Q1",
+      "hint": "이름이라는 값이 바뀌는지, 저장 허용 길이가 바뀌는지 보자.",
+      "reasoning": "컬럼 길이 변경은 구조 정의를 바꾸므로 ALTER다. UPDATE는 해당 행에 담긴 실제 값 수정이다."
+    },
+    {
+      "checkId": "2-1-04-Q2",
+      "hint": "열 이름의 개수와 학생 정보 행수를 따로 세어보자.",
+      "reasoning": "연락처 컬럼을 추가하면 차수는 늘지만 기존 학생 수 2명은 그대로여서 카디널리티는 늘지 않는다."
+    },
+    {
+      "checkId": "2-1-04-Q3",
+      "hint": "조건을 붙여 일부 행만 고르는 명령인지 확인하자.",
+      "reasoning": "TRUNCATE에는 특정 학생을 고르는 WHERE를 붙이지 않는다. 조건 삭제에는 DELETE FROM 학생 WHERE ...를 사용한다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ALTER-TABLE.html"
+  ],
+  "reviewNotes": [
+    "PDF p15의 “기존 행의 새 컬럼은NULL” 설명은 DEFAULT 없는 일반 추가 사례로 한정했다."
+  ]
+}

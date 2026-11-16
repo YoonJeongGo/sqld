@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "comparedAt": "2026-09-14T05:19:13.015548+00:00",
+  "inputSha256": "5d3dcec9ff963fcc96e38b751c21f300f305176067a6e2a8d2abd677921fc429",
+  "decisionsSha256": "008a47be833e35febad75a5a6a0da9eec202e77e7b14e00cc5d5707ce6b79ad8",
+  "boundary": "Only recorded questions reviewed; no DBMS execution or human expert review.",
+  "counts": {
+    "answer_agrees": 2,
+    "answer_disagrees": 0,
+    "source_changed_requires_review": 0,
+    "not_reviewed": 0
+  },
+  "results": [
+    {
+      "questionId": "S05-R05",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "9906e1c4c96c98622de9eff7463df5a1af458562c38ae925bfbfbd255c203cfb"
+    },
+    {
+      "questionId": "S08-A03",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "804838009ed96d1246bdbd3235d0035054cdef2c49235f1f73d4b13c4c33fb50"
+    }
+  ],
+  "choiceMapSha256": "d1dbd8543eb5461f9905dde800e1032271f02172c70b2fa55187f7de2b008049"
+}

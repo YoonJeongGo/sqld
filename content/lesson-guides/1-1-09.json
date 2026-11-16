@@ -1,0 +1,423 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "1-1-09",
+  "source": {
+    "id": "1-1-09",
+    "partId": "1-1",
+    "number": 9,
+    "title": "식별자",
+    "lectureMinutes": 47,
+    "easy": "같은 종류의 대상들 가운데 “정확히 이 한 개”를 구별하는 기준이다. 이름이 같아도 학번이 다르면 다른 학생이다.",
+    "why": "누구의 성적을 수정할지, 누구의 수강을 연결할지 정하려면 중복 없는 기준이 필요하다.",
+    "concepts": [
+      {
+        "term": "유일성",
+        "meaning": "서로 다른 인스턴스가 같은 식별값을 갖지 않음",
+        "example": "학번 1001은 한 학생"
+      },
+      {
+        "term": "최소성",
+        "meaning": "식별에 불필요한 속성이 없음",
+        "example": "학번만 충분하면 학번+이름은 최소 아님"
+      },
+      {
+        "term": "불변성",
+        "meaning": "가능하면 자주 바뀌지 않음",
+        "example": "변경 가능한 전화번호보다 학생ID"
+      },
+      {
+        "term": "존재성",
+        "meaning": "주식별자 값이 빠져서는 안 됨",
+        "example": "학번 NULL 금지"
+      },
+      {
+        "term": "주식별자·보조식별자",
+        "meaning": "대표로 선택한 기준·다른 식별 가능 기준",
+        "example": "학번·필수 고유 이메일"
+      },
+      {
+        "term": "내부·외부 식별자",
+        "meaning": "자체에서 만든 기준·관계에서 받아온 기준",
+        "example": "수강의 과목코드는 과목에서 받음"
+      },
+      {
+        "term": "단일·복합 식별자",
+        "meaning": "하나의 속성·여러 속성 조합",
+        "example": "학번 / (학번, 과목코드)"
+      },
+      {
+        "term": "본질·인조 식별자",
+        "meaning": "업무에 원래 있는 기준·설계상 만든 번호",
+        "example": "기존 업무코드 / 일련번호 ID"
+      }
+    ],
+    "examples": [
+      {
+        "id": "1-1-09-E01",
+        "title": "성적을 누구에게 저장할까?",
+        "question": "한 학기에 학생은 같은 과목을 한 번만 수강한다고 하자. 수강 한 줄의 식별자는?",
+        "tables": [
+          {
+            "title": "수강",
+            "columns": [
+              "학번",
+              "과목코드",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "C01",
+                "한창주",
+                "90"
+              ],
+              [
+                "1001",
+                "C02",
+                "한창주",
+                "80"
+              ],
+              [
+                "1002",
+                "C01",
+                "양지훈",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "학번 1001은 두 줄이므로 학번만으로 수강 한 줄을 구별하지 못한다.",
+          "C01도 두 줄이므로 과목코드만으로 구별하지 못한다.",
+          "1001+C01, 1001+C02, 1002+C01 세 조합은 서로 다르다. 업무 규칙에 의해 이 조합을 복합 식별자로 삼는다."
+        ],
+        "results": [
+          {
+            "title": "식별 검사",
+            "columns": [
+              "기준",
+              "판정"
+            ],
+            "rows": [
+              [
+                "학번",
+                "중복 → 부족"
+              ],
+              [
+                "과목코드",
+                "중복 → 부족"
+              ],
+              [
+                "학번 + 과목코드",
+                "유일하고 최소 → 적합"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "주식별자: 유일·최소·불변·존재. 한 항목이 부족하면 필요한 항목만 조합.",
+    "traps": [
+      "샘플에서 이름이 우연히 전부 달라도 앞으로 동명이인이 가능하면 이름은 식별자가 아니다.",
+      "여러 학기 재수강을 허용하면 (학번, 과목코드)만으로 부족할 수 있다. 학기 등 업무 규칙을 추가로 확인한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "1-1-09-Q1",
+        "question": "학번만 유일하면 (학번, 이름)은 최소성을 만족하는가?",
+        "answer": "아니다",
+        "explanation": "이름을 빼도 구별된다."
+      },
+      {
+        "id": "1-1-09-Q2",
+        "question": "주식별자에 NULL을 허용하는가?",
+        "answer": "허용하지 않는다",
+        "explanation": "대상을 반드시 식별할 수 있어야 한다."
+      },
+      {
+        "id": "1-1-09-Q3",
+        "question": "한 학생이 같은 과목을 여러 학기에 들으면 무엇을 확인해야 하나?",
+        "answer": "학기 등 추가 식별 기준",
+        "explanation": "기존 두 항목만으로는 여러 수강 이력이 중복된다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-M05",
+      "note-M10"
+    ],
+    "sourceIds": [
+      "model",
+      "constraint"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"식별자 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">유일성</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">한 행을 구별</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">최소성</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">불필요한 항목 없음</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">후보키</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">기본키로 선택 가능</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">주식별자: 유일·최소·불변·존재. 한 항목이 부족하면 필요한 항목만 조합.</text></svg>",
+    "version": 1
+  },
+  "purpose": "한창주의 DB 점수와 JAVA 점수를 구별할 때 필요한 최소 항목을 찾아보자.",
+  "overview": "수강 한 행을 유일하게 지정할 속성 조합을 정한다. 학번과 과목코드를 함께 쓰는 것은 한 기본키를 두 컬럼으로 구성하는 뜻이다.",
+  "terms": [
+    {
+      "token": "유일성",
+      "kind": "개념",
+      "meaning": "서로 다른 인스턴스가 같은 식별값을 갖지 않음",
+      "role": "학번 1001은 한 학생"
+    },
+    {
+      "token": "최소성",
+      "kind": "개념",
+      "meaning": "식별에 불필요한 속성이 없음",
+      "role": "학번만 충분하면 학번+이름은 최소 아님"
+    },
+    {
+      "token": "불변성",
+      "kind": "개념",
+      "meaning": "가능하면 자주 바뀌지 않음",
+      "role": "변경 가능한 전화번호보다 학생ID"
+    },
+    {
+      "token": "존재성",
+      "kind": "개념",
+      "meaning": "주식별자 값이 빠져서는 안 됨",
+      "role": "학번 NULL 금지"
+    },
+    {
+      "token": "주식별자·보조식별자",
+      "kind": "개념",
+      "meaning": "대표로 선택한 기준·다른 식별 가능 기준",
+      "role": "학번·필수 고유 이메일"
+    },
+    {
+      "token": "내부·외부 식별자",
+      "kind": "개념",
+      "meaning": "자체에서 만든 기준·관계에서 받아온 기준",
+      "role": "수강의 과목코드는 과목에서 받음"
+    },
+    {
+      "token": "단일·복합 식별자",
+      "kind": "개념",
+      "meaning": "하나의 속성·여러 속성 조합",
+      "role": "학번 / (학번, 과목코드)"
+    },
+    {
+      "token": "본질·인조 식별자",
+      "kind": "개념",
+      "meaning": "업무에 원래 있는 기준·설계상 만든 번호",
+      "role": "기존 업무코드 / 일련번호 ID"
+    },
+    {
+      "token": "복합키",
+      "kind": "키 구성",
+      "meaning": "여러 속성을 함께 묶은 하나의 키",
+      "role": "수강 한 건을 학번과과목코드의 조합으로 구별한다. 문자열 합계가 아니다."
+    }
+  ],
+  "pitfalls": [
+    "불변성은 식별자가 자주 바뀌지 않도록 선택하는 원칙이다. DB가 모든 PK 변경을 문법적으로 무조건 금지한다는 뜻은 아니다."
+  ],
+  "questions": [
+    {
+      "question": "기본키가 두 개인 거야?",
+      "answer": "기본키 제약은 하나이고 구성 컬럼이 둘이다. 학번 1001도 과목코드 C01도 단독으로는 수강표에서 반복될 수 있다."
+    },
+    {
+      "question": "인조번호만 붙이면 업무 중복도 없어져?",
+      "answer": "아니다. 새 번호가 달라도 같은 학기·학생·과목의 수강을 중복 등록할 수 있다. 업무 조합의 UNIQUE 같은 별도 규칙이 필요하다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "1-1",
+      "title": "데이터 모델링의 이해",
+      "fromPage": 23,
+      "toPage": 27,
+      "note": "흥달쌤 원본 PDF의 해당 단원과 문제를 대조했습니다. 아래 앱 예제의 이름·표·값은 PDF 문제와 별도 데이터이며, 원본 PDF의 보기를 옮겨 채점하지 않습니다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "1-1-09-E01",
+      "why": "점수를 수정할 때 한창주의 두 수강 중 어느 과목인지 빠뜨리지 않기 위한 설계다.",
+      "effect": "개념: 수강의 복합 식별자와 최소성을 판정한다.",
+      "prerequisites": [
+        "원문은 한 학기 안에서 같은 학생이 같은 과목을 한 번만 수강한다고 전제한다.",
+        "이름 열은 원본 그대로 유지하지만 연결·식별 판단은 학번과 과목코드로 한다."
+      ],
+      "steps": [
+        {
+          "title": "학번만 지정하면 두 행",
+          "text": "학번 1001을 고르면 한창주의 C01 90점과 C02 80점이 함께 나온다. 학생 한 명은 구별해도 수강 한 건은 못 고른다.",
+          "codeFocus": [],
+          "highlights": [
+            "수강 한 건은 못 고른다"
+          ],
+          "table": {
+            "title": "학번만으로 찾은 수강",
+            "columns": [
+              "학번",
+              "과목코드",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "C01",
+                "한창주",
+                "90"
+              ],
+              [
+                "1001",
+                "C02",
+                "한창주",
+                "80"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "과목코드만 지정해도 두 행",
+          "text": "과목코드 C01을 고르면 1001 한창주 90점과 1002 양지훈 70점이 함께 나온다. C01이라는 과목은 구별해도 어느 학생의 수강인지는 부족하다.",
+          "codeFocus": [],
+          "highlights": [
+            "어느 학생의 수강"
+          ],
+          "table": {
+            "title": "과목코드만으로 찾은 수강",
+            "columns": [
+              "학번",
+              "과목코드",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "C01",
+                "한창주",
+                "90"
+              ],
+              [
+                "1002",
+                "C01",
+                "양지훈",
+                "70"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-02"
+        },
+        {
+          "title": "두 값을 함께 지정하면 한 행",
+          "text": "(1001,C01)은 한창주의 C01 90점만 지정한다. (1001,C02), (1002,C01)도 각각 다른 조합이다. 어느 한 항목을 빼면 앞 단계처럼 중복되므로 이 업무 규칙에서 두 항목이 모두 필요하다.",
+          "codeFocus": [],
+          "highlights": [
+            "1001,C01",
+            "두 항목이 모두 필요"
+          ],
+          "table": {
+            "title": "식별 검사",
+            "columns": [
+              "기준",
+              "판정"
+            ],
+            "rows": [
+              [
+                "학번",
+                "중복 → 부족"
+              ],
+              [
+                "과목코드",
+                "중복 → 부족"
+              ],
+              [
+                "학번 + 과목코드",
+                "유일하고 최소 → 적합"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "title": "PK 한 개와 컬럼 두 개",
+          "text": "학번+과목코드는 문자열 덧셈이 아니라 두 속성의 조합이라는 표시다. 기본키를 이 조합으로 정하면 기본키 제약 하나가 두 컬럼을 포함한다. 두 컬럼이 각각 단독으로 유일해야 한다는 뜻이 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "기본키 제약 하나",
+            "두 컬럼"
+          ],
+          "table": {
+            "title": "식별 범위",
+            "columns": [
+              "대상",
+              "식별 기준",
+              "뜻"
+            ],
+            "rows": [
+              [
+                "학생 한 명",
+                "학번",
+                "1001 한창주"
+              ],
+              [
+                "이 학기 수강 한 건",
+                "학번 + 과목코드",
+                "1001의 C01 수강"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "title": "시간 범위가 바뀌면 재검토",
+          "text": "여러 학기의 이력을 함께 보관하면 한창주가 다음 학기에 C01을 다시 들을 수 있다. 그 경우 (1001,C01)이 두 건이 될 수 있어 학기 등 추가 기준이 필요하다. 현재 예제에 학기 컬럼이 이미 있는 것으로 표시하지 않는다.",
+          "codeFocus": [],
+          "highlights": [
+            "학기 등 추가 기준",
+            "현재 예제"
+          ],
+          "table": null,
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-05"
+        }
+      ],
+      "comparison": "유일성은 서로 다른 행을 구별하는가, 최소성은 항목을 덜 써도 가능한가라는 별도 검사다. 장래 업무 규칙 없이 현재 세 조합이 우연히 다르다는 이유만으로 키를 확정하지 않는다.",
+      "verification": "원본 표·업무 규칙과 추가 설명을 대조한 개념 검토입니다. SQL을 실행하는 예제가 아닙니다. 실제 DBMS 실행·사람 전문가 검수는 하지 않았습니다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "1-1-09-Q1",
+      "hint": "이름을 빼도 같은 한 사람을 고를 수 있는지 보자.",
+      "reasoning": "학번만 유일하다는 전제라면 이름은 식별에 불필요하다. (학번,이름)은 슈퍼키일 수 있어도 최소성을 만족하지 않는다."
+    },
+    {
+      "checkId": "1-1-09-Q2",
+      "hint": "주식별자로 행을 반드시 가리킬 수 있어야 한다는 조건을 떠올리자.",
+      "reasoning": "주식별자는 NULL을 허용하지 않는다. 복합 주식별자라면 구성 속성 모두 빠짐없이 있어야 한다."
+    },
+    {
+      "checkId": "1-1-09-Q3",
+      "hint": "현재 한 학기라는 전제가 유지되는지 확인하자.",
+      "reasoning": "여러 학기라면 같은 학생·과목 조합이 반복될 수 있다. 학기 등 추가 식별 기준을 검토해야 한다. 기존 예제의 두 컬럼 규칙을 무조건 유지하면 다른 수강 이력이 섞인다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/constraint.html",
+    "https://docs.oracle.com/en/database/oracle/sql-developer-data-modeler/24.3/dmdug/data-modeler-concepts-usage.html"
+  ],
+  "reviewNotes": []
+}

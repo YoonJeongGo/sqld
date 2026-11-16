@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-14T05:25:41.366853+00:00",
+  "method": "allowlist_without_answers_explanations_expected_results_and_masked_choice_ids",
+  "questions": [
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "849657efef32073997ed12518dbb513ded79df51c5c29c115f651613cbf36e5a",
+      "publicInputSha256": "f838dad20651d9493c1c08b613d2674d2138f2fe6b42b72da9660b959af83980",
+      "question": {
+        "id": "mock-1-M10-reservation-timeslot",
+        "version": 2,
+        "title": "수강 R(인조 ID,학생 ID,과목 ID,과목명)의 값은 원자적이다. 인조 ID를 PK로 추가한 뒤에도 (학생 ID",
+        "stem": "수강 R(인조 ID,학생 ID,과목 ID,과목명)의 값은 원자적이다. 인조 ID를 PK로 추가한 뒤에도 (학생 ID,과목 ID)는 최소 업무 후보키이며 과목 ID→과목명이 성립한다. 과목 ID는 슈퍼키가 아니고 과목명은 비주요 속성이다. 단일 인조 PK가 있으므로 자동으로 제 2정규형이라는 판단은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "인조 ID를 추가하면 원자성이 사라지므로 제 1정규형부터 반드시 위반한다."
+          },
+          {
+            "id": "r2",
+            "text": "옳지 않다. 업무 후보키의 일부인 과목 ID에 과목명이 종속하므로 제 2정규형을 위반한다."
+          },
+          {
+            "id": "r3",
+            "text": "옳다. 선택한 PK가 단일 열이면 다른 후보키의 부분 종속은 검사하지 않는다."
+          },
+          {
+            "id": "r4",
+            "text": "제 2정규형은 충족하지만 제 3정규형만 위반한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "15a7579da38f3bd9d1bf9bc12ceb19329e76409c52439cc178852dcb2232372f",
+      "publicInputSha256": "2900982c2c8a759b87e705973e702774215329e2d8d9e05b50d6d5efac87014b",
+      "question": {
+        "id": "mock-2-S06-mock-in-subset-null",
+        "version": 2,
+        "title": "x IN (2,NULL)이 남기는 값은?",
+        "stem": "x IN (2,NULL)이 남기는 값은?",
+        "sql": "SELECT x FROM T WHERE x IN (2,NULL)",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "x"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "NULL만"
+          },
+          {
+            "id": "r2",
+            "text": "2만"
+          },
+          {
+            "id": "r3",
+            "text": "0행"
+          },
+          {
+            "id": "r4",
+            "text": "2와 NULL"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (x NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1);\nINSERT INTO T VALUES (2);\nINSERT INTO T VALUES (NULL);",
+          "query": "SELECT x FROM T WHERE x IN (2,NULL)",
+          "constraints": [
+            "T: 지문에 제약이 추가되지 않았다면 PK/UNIQUE/NOT NULL 제약 없음. 표시된 중복 행을 보존한다."
+          ],
+          "sessionSettings": [
+            "NLS_CALENDAR='GREGORIAN'",
+            "NLS_NUMERIC_CHARACTERS='.,'",
+            "날짜 입력은 명시적 DATE 리터럴 또는 형식 모델을 사용한다.",
+            "결과는 typed 값으로 비교하며 표시용 숫자·날짜 서식은 별도이다."
+          ],
+          "ordered": false
+        }
+      }
+    }
+  ],
+  "inputSha256": "4bf696569ba25d7d7c3dbe032f09439f0277258eda5b8b677622b1d6026f57c0",
+  "choiceMapSha256": "9f02a6c02de3ae03e69530e7712147316edd8cc9c16b1bacefdef6e2959a4c70"
+}

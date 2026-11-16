@@ -1,0 +1,349 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "content_a",
+  "reviewedAt": "2026-09-14T05:19:05.359158+00:00",
+  "method": "independent_ai_explanation_comparison_after_masked_answer_recording",
+  "boundary": "Read all 56 summaries, conditions, steps, 4 option reasons and memories from saved explanation snapshot after independent masked answers. No DBMS execution or human expert review.",
+  "results": [
+    {
+      "questionId": "mock-2-S09-m2-distinct-order-ambiguity",
+      "sourceQuestionSha256": "8b593c2575e50fce211116659e9f85ef1631626aa115550e68dfea8b452a83b1",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S10-m2-missing-join-predicate",
+      "sourceQuestionSha256": "1b8e9e7c81268f64c4241f689b418d4c3afc3bb99d51f4dc475046b3c651ddc1",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S10-m2-condition-or-expands",
+      "sourceQuestionSha256": "377e6c0bd49b83c4f1e190d867512fdee5cd836196f7178d9f189b40ac15061c",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S11-m2-null-note-false-anti",
+      "sourceQuestionSha256": "bc9809b4e10a207f8079f992bb7d08c1f235808a3f384695e3ac9a69cd144d00",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S11-m2-right-to-left-rewrite",
+      "sourceQuestionSha256": "970932b9f1fedc74a0b613cf1221b20fb4b3b2e44314018117ea9e9cb7e84794",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S12-m2-scalar-no-group-count",
+      "sourceQuestionSha256": "bdd9d0b315e4fb8dc86551f2e751b04b5c32c0263ca1492a5d53b94cca836a4f",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S12-m2-all-null-veto",
+      "sourceQuestionSha256": "297aeb9ca185e889126bfb38a50209d683f9796524828ebc0c6522688b14f954",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S12-m2-uncorrelated-exists-mistake",
+      "sourceQuestionSha256": "bf8197ee6d7661a172ccbc07f85dcb118ffa1c2c76ce243f8a72243c9610d191",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S13-m2-set-arity-error",
+      "sourceQuestionSha256": "57ca04a57880ae4b2e908406cb32013d21193fa816fc320db636bc44dc27184f",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S13-m2-set-datatype-groups",
+      "sourceQuestionSha256": "d5ae6d254edb5c556cfae36c3072524e4f52327b82fe292b217ab4ab48abc9aa",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S14-m2-rollup-order-business",
+      "sourceQuestionSha256": "85a336de88b27724d7621c393e3e61e3d99b3198720c62a4e4f5f77b0ac6fea0",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S14-m2-cube-empty-full",
+      "sourceQuestionSha256": "faa1268e80ad15b71c0eea457960e4c925602798877f2e7c99cd2fceb9e24b73",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S15-m2-rank-added-key-effect",
+      "sourceQuestionSha256": "057b0896501fdc25081858e02b5e04151adb4f3131a8517b47514a0dd058332a",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S15-m2-row-number-where-scope",
+      "sourceQuestionSha256": "bba217702068a487234d0d6e757e0f094d33fee5ddc4f93456e1ce458643d7d8",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S16-m2-rows-peers-nondeterminism",
+      "sourceQuestionSha256": "31fd932485392e5f919b5bdab62feee948e9653eb10e40eda8486ef19eba776b",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S16-m2-range-offset-keys",
+      "sourceQuestionSha256": "948514dab3b4f2ff9202982049fbf4ded339b5a347ecd88ea8fbd240ca460cc3",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S17-m2-with-ties-needs-order",
+      "sourceQuestionSha256": "8f5a17e5da59f962e818a9666deb6521a279e6b87f8caa48fa18c810037ff82d",
+      "status": "reviewed_condition_issue_found",
+      "issues": [
+        "Clarify omitted ORDER BY has no extra ties; avoid syntax-error implication."
+      ]
+    },
+    {
+      "questionId": "mock-2-S17-m2-fetch-zero",
+      "sourceQuestionSha256": "ad36cbc4c195af21255027980c070205dfeb758626982e3729eccfeb2021b710",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S18-m2-cycle-without-guard",
+      "sourceQuestionSha256": "a39918ca05b967e158bc0c9c3d7afa886f70cb97b47d3301fc3daab63c21b73a",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S18-m2-hierarchy-pruning-location",
+      "sourceQuestionSha256": "b0bf8872388dee371b2dfb6e6bdc488edc9de08f25d5caededc4c6bfbf891c11",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S19-m2-unpivot-type-family",
+      "sourceQuestionSha256": "edeea4cda738f8d9ac96921ad7a6b11156a1f121c748a4811b14c5f247ae28ae",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S19-m2-pivot-implicit-count-star",
+      "sourceQuestionSha256": "6ba63ba6fd9e7d8d08c0804ee56b2c4b494142c5a6b6821150db7d034409860d",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S20-m2-regex-question-mark",
+      "sourceQuestionSha256": "8ebe4f1f12079b373e4efaae6b742f741c3f96de415509121dcddbd6efd8a2b2",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S21-m2-insert-default-null",
+      "sourceQuestionSha256": "dbd981f0d6fe02b445e90edcb6366023b3283bc07bb8f8f7e6786b45baa96643",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S21-m2-update-target-key-conflict",
+      "sourceQuestionSha256": "f087c78c1cbb5ceee44981569672d15fa71246411395354eaa505752a6d4f149",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S22-m2-commit-then-savepoint-invalid",
+      "sourceQuestionSha256": "9cf4508553ce9a09f18c08865ce01591bf28c39e4d24b1fb7928e707e4fff4ed",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S23-m2-check-multiple-null",
+      "sourceQuestionSha256": "1d775d669656801fa923918c2f582df8fd7990fe1d888d48f19c66c5c5236b7e",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-2-S24-m2-role-grant-object-option",
+      "sourceQuestionSha256": "a1263c189561cec74fd99a874a6cc7f430fcd4f5661062f00abcf811015d990a",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S09-m3-case-null-order-equivalent",
+      "sourceQuestionSha256": "d5910cce006a97b3b1795e1d23b9dc8851c44e2b776796174d4b26f72a156310",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S10-m3-join-exists-equivalence-condition",
+      "sourceQuestionSha256": "2d36084ad5511613a865c862c3dbc345d5d54fd8f5277d4498619a9bc7f36d2a",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S10-m3-band-gaps-no-match",
+      "sourceQuestionSha256": "a9bcdf131d247fc9520776f15845a6db6690c8c1084503ba0c1375151463fb7d",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S11-m3-filtered-count-preserve",
+      "sourceQuestionSha256": "e3ec31f0d34c141af1c104f7df71d102f708224d35cf0b54b73e5a23180ba01c",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S11-m3-outer-swapped-column-null",
+      "sourceQuestionSha256": "5b0e1ee79d438a66c80ca8fe12993195e791172d60c449982277104de1b33b95",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S12-m3-in-duplicates-no-extra",
+      "sourceQuestionSha256": "21804b56193b6403625b9c49c0ff49e1603575a13a8f67dd1600154aa9965253",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S12-m3-correlated-min-ties",
+      "sourceQuestionSha256": "cde392b7b1ae8a1c3a87cebb9953739bd4a60573d7b1439c13b69cf41e6e560b",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S12-m3-exists-null-only-rewrite",
+      "sourceQuestionSha256": "d555c23b11fe8bafa0bb6628bc96fd9c151d4eb0e5dcba06bafd7cb71a3a8a06",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S13-m3-intersection-symmetry",
+      "sourceQuestionSha256": "42107cd6c2e0a587990bb09b174a6b26dabaae0d8095e0cabb49d8ccf4789631",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S13-m3-difference-reconstruct-union",
+      "sourceQuestionSha256": "322cb4e260399bf4ff5a692b6719036d3c0c59b46cc38a2a2d236612b7903516",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S14-m3-summing-rollup-double",
+      "sourceQuestionSha256": "76f3d665bb013eef4bf93f71822b5d56c23933147e1dbe10447053eaa192ff2a",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S14-m3-grouping-null-count-fields",
+      "sourceQuestionSha256": "ea2503570a038d0a47eca030aee7b199381f5cd4c92d4ef9cf5b76cb507c9da5",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S15-m3-ntile-more-buckets",
+      "sourceQuestionSha256": "bdf16d16ff9455e959b14b0ebaf78f253a7b006db84c2a9edae564cf361cfaa6",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S15-m3-null-partition-count",
+      "sourceQuestionSha256": "285d2aa22fa65284688c5a288652fa9bc594e561b2343f403ec55b36e71356b9",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S16-m3-range-current-peers-only",
+      "sourceQuestionSha256": "23dae465480568df2dfb881fa610e8c5df0a1d12cba4eec3020627f4ea9d432b",
+      "status": "reviewed_condition_issue_found",
+      "issues": [
+        "Stem lacks analytic ORDER BY k; add it to make peer grouping explicit."
+      ]
+    },
+    {
+      "questionId": "mock-3-S16-m3-moving-average-null-denominator",
+      "sourceQuestionSha256": "ae149cb29355e0176a7b2877ab60ac3223705c61e0e028e3f10b3af4cc7c5ec3",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S17-m3-offset-beyond-result",
+      "sourceQuestionSha256": "5335e60397f634ee8f9e75a84be6b506b9813dac0ef9c66c2a57c9015a7512b4",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S17-m3-percent-rounding",
+      "sourceQuestionSha256": "62cc2b552f869a06e731ae3d32c18bd64d40f8f08de64f33b58bf85ed59073e6",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S18-m3-overlapping-starts",
+      "sourceQuestionSha256": "0977c020183176090bb67ba7dd645855349dd010168541fc6c580d5c2dc73f09",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S18-m3-level-not-global-number",
+      "sourceQuestionSha256": "730d7b46ed9febf092c6c0790f9873ea1b7381bae7a420cf04fc7826a322d156",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S19-m3-pivot-unlisted-category",
+      "sourceQuestionSha256": "78388f30d82103401114e7556d33963bfe87c7dfc5827856f063cf095f3b9ce8",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S19-m3-pivot-count-expression-null",
+      "sourceQuestionSha256": "d5ad36df92d0a9816821f93b10bbbe333a19f22b6739cc014939aca95fe8e133",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S20-m3-regex-repeat-bounds",
+      "sourceQuestionSha256": "a221fdbd93e6d1f0438f953ad7efdb6b9e8c2b98d2547dd0d0cea683fd117d71",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S21-m3-delete-exists-no-cascade",
+      "sourceQuestionSha256": "7592ef11f1d599f53ca90e1e8fb91ed8ca142f42b75e74b4ecb796af13506af5",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S21-m3-insert-from-self-count",
+      "sourceQuestionSha256": "9fa69750df1349c8c1cc9ae6e681bcf3b290aa8232dff16ea76f48ad0f688332",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S22-m3-rollback-later-savepoint",
+      "sourceQuestionSha256": "1df5d60d1ac7d1881e4bc69bdc61be547f4f0114d41050ca28483ea1fcca17e5",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S23-m3-composite-primary-key",
+      "sourceQuestionSha256": "fbed9038187874d7e30396454f203aa48292bd95a1751dc9dee3d386b0fadc5a",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    },
+    {
+      "questionId": "mock-3-S24-m3-insert-select-source-right",
+      "sourceQuestionSha256": "2489395236a0bdb755191ed6f5ad1165c2fe32f71cd11819cdf0adcf0ac49a38",
+      "status": "reviewed_no_semantic_issue_found",
+      "issues": []
+    }
+  ]
+}

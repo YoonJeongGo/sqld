@@ -1,0 +1,2292 @@
+{
+  "schemaVersion": 1,
+  "inputSha256": "5895d98f778a677427a148289c979b046eb8215277d65febdc28698a86d8962c",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "reviewer": "content_b",
+  "decisions": [
+    {
+      "questionId": "S07-R01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "COUNT(*)는 NULL 포함 원본 행 전체를 센다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-R02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "상수1은 모든 행에서 비NULL이므로 모든 입력 행을 센다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-R03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "그룹 없는 빈집계는 COUNT0과 SUM NULL의 한 행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-A01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "행3개, 비NULL2개, 합80을 비NULL수2로 나눠 평균40이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-A02",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "선치환은 10,0 평균5이고 후치환은 NULL을 제외한 평균10을 유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-A03",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "비NULL 서로 다른 값2와5 두 개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-A01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "2<>1만 TRUE이며 NULL 비교는 UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-R01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "3값 논리에서 UNKNOWN의 부정도 UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-A01",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "A그룹 합30만20이상이고 B합5는 탈락한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-R01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "WHERE는 그룹 입력행, HAVING은 그룹 결과를 제한한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M01-R01",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "추상화는 목적에 필요한 현실 특징을 선택하는 과정이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M01-R02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "DBMS 자료형과 인덱스 구체화는 물리 모델이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M01-R03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "같은 용어의 의미 합의는 명확화다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M01-R04",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "논리 모델의 업무 식별자와 관계가 해당한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-R01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "특정 회원 한 명은 엔터티의 인스턴스다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-R02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "업무상 관리하는 사건도 엔터티로 모델링할 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-R03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "빈 표라는 현재 상태만으로 업무 엔터티 설계를 부정하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-R04",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "가입일은 회원의 특성을 기술하는 속성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-R01",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "허용하는 업무 값의 범위는 도메인이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-R02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "기존 수량과 단가로 계산한 금액은 파생 속성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-R03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "설계를 위해 새로 도입한 내부번호는 설계 속성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-R04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "원자성은 선택한 업무 도메인에서 하나의 값으로 다루는 의미다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-R01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "0은 선택 참여, N은 복수 허용 최대 연결 수다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-R02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "최대 연결 수만으로 양쪽 최소 참여를 알 수 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-R03",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "부모 식별자가 자식 주식별자에 포함되면 식별 관계다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-R04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "성적은 학생과 강좌의 조합에 대한 사실이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-R01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "어느 구성 속성도 유일성을 유지하며 제거할 수 없음이 최소성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-R02",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "기본키는 유일성과 비NULL을 함께 요구한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-R03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "후보키 중 하나를 대표 기본키로 선택한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-R04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "현재 표본 중복 없음과 지속적 업무 유일성은 다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-R01",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "X가 같으면 Y가 같아야 한다는 결정 관계다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-R02",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "복합키 일부가 비주요 속성을 결정하면 부분 종속이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-R03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "종속성을 분리해 삽입·삭제·갱신 이상을 줄인다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-R04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "하나 이상의 후보키에 포함되면 주요 속성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-R01",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "미응시 NULL과 알려진 수치0은 서로 다른 정보다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-R02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "값 부재는 IS NULL로 검사한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-R03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "Oracle19c는 길이0 문자열을 현재 NULL로 취급한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-R04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "값 NULL만으로 서로 다른 부재 사유를 복구할 수 없어 별도 상태가 필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-R01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "JOIN의 적법한 비교 조건과 FK 선언의 존재는 별개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-R02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "한 부모와 세 자식 매칭은 세 결과행에 부모 속성을 반복시킨다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-R03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "FK는 유효한 부모 참조를 강제하며 부모의 최소 자식수를 강제하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-R04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "집계할 사실이 조인으로 반복되는 다중성을 먼저 확인한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-R01",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "전부 성공 또는 취소는 원자성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-R02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "확정한 변경의 장애 후 보존은 지속성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-R03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "하나의 업무 트랜잭션에 여러 SQL문을 묶을 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-R04",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "ERD 관계 정의만으로 실행 원자성이 자동 구현되지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-R01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "업무 의미 없는 새 행번호는 인조식별자다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-R02",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "인조키 유일성은 원래 업무 후보키 중복을 자동 방지하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-R03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "전화번호의 업무 유일성·필수성·변경성 모두 검토해야 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-R04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "인조키의 참조 편의와 업무 제약 유지 비용을 함께 고려한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-R01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "열·자료형·제약의 구조 정의가 스키마다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-R02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "SQL의 SELECT는 DISTINCT 등이 없으면 중복을 보존할 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-R03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "명시 ORDER BY 없는 결과 순서는 보장되지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-R04",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NOT NULL이 값 부재를 직접 금지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-R01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "DISTINCT는 선택한 a,b의 조합 전체를 비교한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-R02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "AS는 결과 별칭이며 저장 구조의 이름을 바꾸지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-R03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "논리 처리 설명과 물리 실행 계획은 반드시 같지 않다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-R04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "SELECT는 적법한 계산식과 상수도 출력한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-R01",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "Oracle SUBSTR 양수 시작점은1부터 센다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-R02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "LENGTH는 문자 수, LENGTHB는 바이트 수다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-R03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "ROUND의 음수 자리-1은 십의 자리 반올림이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-R04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "기본 TRIM은 양끝 공백을 제거하고 내부 공백은 유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-R01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle DATE는 날짜와 시각을 초까지 저장하며 시간대는 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-R02",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "TO_DATE는 형식 모델로 문자를 DATE값으로 바꾼다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-R03",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "DATE 숫자 산술의 단위는 일이며0.5일은12시간이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-R04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "명시 형식은 NLS_DATE_FORMAT 등 암묵 환경 의존을 줄인다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-R01",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "검색 CASE는 처음 TRUE인 WHEN의 결과를 선택한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-R02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "어느 조건도 TRUE가 아니고 ELSE가 없으면 NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-R03",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "COALESCE는 왼쪽부터 첫 비NULL을 반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-R04",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "두 인수가 같으면 NULLIF는 NULL을 반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-R02",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "BETWEEN은 두 숫자 경계를 모두 포함한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-R03",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "LIKE의 밑줄은 한 문자, 퍼센트는0개 이상 문자열이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-R04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "해당 집계는 일반적으로 NULL값을 제외한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-R02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "GROUP BY의 NULL키들은 같은 그룹이며 등호 TRUE 때문은 아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-R03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "GROUP BY는 출력 정렬 보장이 아니므로 ORDER BY가 필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-R05",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "모든 행에서 NULL인 식을 COUNT하면 비NULL 수가0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-R05",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "참조대상은 PK 또는 적법한 유일키여야 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-R05",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "Oracle19c 일반 WHERE는 같은 SELECT의 결과 별칭을 직접 보지 못한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-R05",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "ANSI Oracle DATE 리터럴은 YYYY-MM-DD의 날짜 형식이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-R05",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "x가NULL이면 대체값0을 반환한다. x자체0도 결과0이라는 추가상황은 있다.",
+      "conditionsOrIssues": [
+        "표현 명료화 권장: 원래 x=0인 경우도 결과0이므로 지문을 “x 대신 대체값0을 사용하는 조건은?”으로 한정하면 더 정확함. 현보기 단일최선정답은r1."
+      ]
+    },
+    {
+      "questionId": "M01-A01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "서로 다른 복본의 이력을 보존하려면 제목과 개별 소장본을 구분한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M01-A02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "같은 단어의 역할과 동일인 여부를 정의하기 전 통합하면 의미가 충돌한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M01-A03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "고객1명 필수는 업무 관계의 최소·최대 참여 규칙이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M01-A04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "새 업무 규칙은 기존 논리 식별자와 관계를 수정할 근거다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M01-A05",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "현재 검색 요구의 출판사명과 관계만 범위에 표현한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-A01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "번호와 수명 이력이 있는 계약 사건은 식별 가능한 관리 대상이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-A02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "주소별 유효기간 이력을 고객과 연결해 보관한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-A03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "명사 여부보다 식별·저장·관리 필요가 엔터티 판정 근거다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-A04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "계산 화면값 자체가 독립 저장 엔터티를 강제하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M02-A05",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "서로 다른 발생과 주문 식별자는 서로 다른 주문 인스턴스를 뜻한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-A01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "과거 주문금액은 당시 단가와 주문수량으로 계산해야 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-A02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "중복 저장한 파생 금액이 갱신된 수량과 불일치할 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-A03",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "연락처별 인증일은 회원의 연락처별 인스턴스에 귀속한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-A04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "같은 저장자료형이라도 우편번호와 전화번호 업무 도메인은 다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M03-A05",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "단위 메타데이터 또는 표준화가 없으면 값 재해석이 불가능하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-A01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "고객은0..N 주문, 주문은 정확히1고객이라는 방향별 조건이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-A02",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "M:N 연결 사실의 속성 수강일을 수강 엔터티에 둔다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-A03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "주문FK가 상세복합PK에 포함되어 식별 관계다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-A04",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "FK NOT NULL은 필수 참여, PK 미포함은 비식별이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M04-A05",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "양쪽0..1인 선택 참여1:1관계다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-A01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "학번만으로 유일해서 학번+이름은 불필요 속성을 가진 슈퍼키다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-A02",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "학생별 각 강좌 한 번 조건은 두 ID의 조합을 요구한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-A03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "각각 필수·유일한 단일 후보키이며 대표PK를 고를 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-A04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "규칙이 A와 최소 B,C를 각각 후보키로 명시한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M05-A05",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "현재 사번은 필수·유일이고 이메일은 NULL 가능이므로 사번이 요건에 맞다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-A01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "S만이 학생명을 결정하므로 학생으로 분리하고 성적은 수강 조합에 남긴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-A02",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "E→D→부서명의 비키 경유 이행 종속이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-A03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "직원 삭제로 별도 부서 사실이 함께 사라지는 삭제 이상이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-A04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "FD는 현재 표본 일치가 아니라 모든 합법적 상태의 업무 규칙이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M06-A05",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "부서 사실을 한 곳에 두고 키로 손실 없이 다시 연결한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-A01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "P1한행이 자식 두행과 매칭하고 P2는 탈락하여2행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-A02",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "납부3행과의 조인마다 계약금액100이 반복되어300이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-A03",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "같은 키의2×3매칭쌍은6개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-A04",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "존재하는 부모1 또는 허용된 NULL만 FK를 만족한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M07-A05",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "FK 선언 유무와 별개로 상품·기간 조건으로 JOIN할 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-A01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "완전 이체 규칙이면 입금 실패시 같은 트랜잭션 출금도 되돌린다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-A02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "두 변경의 전부 성공·취소를 같은 트랜잭션으로 묶는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-A03",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "확정 변경의 재시작 후 보존은 지속성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-A04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "로컬 DB경계를 넘어 외부 결제 취소까지 자동 보장할 수 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M08-A05",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "성공 트랜잭션이 업무 불변식을 유지하는 것은 일관성이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-A01",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "미응시 NULL을 제외하고 응시 점수90과0을 평균에 포함한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-A02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "유효값-1과 결측의 센티널이 충돌해 사유 구분을 잃는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-A03",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "보조 연락처는 선택, 기본 연락처는 필수이므로 서로 다른 NULL제약을 둔다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-A04",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "일반 NULL 등호는 UNKNOWN이며 WHERE는 TRUE만 통과시킨다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M09-A05",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "동일NULL값만으로 두 부재 사유를 알 수 없어 상태를 별도 저장해야 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-A01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "학생·강좌조합의 유일성을 인조ID와 별도로 강제한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-A02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "변경가능한 연락처와 안정적 참조키를 분리하는 장점이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-A03",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "추적번호의 유일성 범위가 운송사 안이므로 두 항목을 묶는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-A04",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "서로 다른 인조ID는 같은 업무 주체의 중복을 방지하지 못한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "M10-A05",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "변경 가능한 명칭을 식별자에 넣으면 식별성이 변경 속성에 결합된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-A01",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "PK는 id의NULL을 허용하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-A02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NULL>0은 UNKNOWN이며 CHECK는 FALSE만 거부한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-A03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "참조할 부모키20이 없어 참조 무결성을 위반한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-A04",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "열 추가는 스키마, 한 행 가격 수정은 데이터 변경이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S01-A05",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "PK열을 투영에서 빼면 부서값은 세번 반복될 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-A01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "qty3행만 선택하고3×100=300을 출력한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-A02",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "(1,X),(1,Y)의 서로 다른 두 조합이 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-A03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "원본 세행 각각에 상수OK를 출력해 세행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-A04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "5+NULL은NULL이고0+2는2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-A05",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "계산값14와4를 별칭DESC로14,4 정렬한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S02-A06",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "x1,2만 남겨 각10을 더하므로11,12다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A01",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "뒤에서두번째D부터두문자DE를 반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "소수첫째자리 반올림126.5와 절삭126.4다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A03",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "AB두번을X로 바꿔 XXA다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "양끝만 제거하고 내부공백을 남긴 A B다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A05",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "17=5×3+2의 나머지2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S03-A06",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "3번째부터4글자CDEF의 길이는4다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-A01",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "명시형식으로 날짜를 해석하고 YYYY-MM-DD로2026-09-14를 출력한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-A02",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "두DATE자정의 차이는 숫자 일수2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-A03",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "자정에0.5일을 더하면 같은날12시다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-A04",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "1월말의 다음달 말일은2026-02-28이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-A05",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "동일일자끼리 세달 차이이므로 정수3이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S04-A06",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "15시는자정과다른DATE시각이므로different다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-A01",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "85>=60이첫TRUE라뒤의high조건에앞서pass를선택한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-A02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "IS NULL조건이TRUE라missing을반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-A03",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "단순CASE의NULL동등비교는매칭하지않아ELSE other다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-A04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "왼쪽첫비NULL인0을반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-A05",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NULLIF(0,0)이NULL이고NULL로나눈결과도NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S05-A06",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "첫식은0+3=3,둘째는NULL+3의NULL을0으로대체한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-A02",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "1은FALSE,2와NULL은UNKNOWN이라WHERE에남는행이없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-A03",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "AND가OR보다우선하여id1과id3만TRUE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-A04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "포함경계10,20두값이남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-A05",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "A뒤에정확히한문자인AB만일치한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S06-A06",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "4<5와NULL의IS NULL이각TRUE이므로두행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-A04",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "행2개,비NULL0개,모두NULL인SUM은NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-A05",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "WHERE후빈입력이며그룹없는COUNT0/AVGNULL한행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-A06",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Y두행만CASE1이고나머지는NULL이라COUNT2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-A07",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "전체합40과서로다른10,20의합30이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S07-A08",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NULL을제외한최솟값-2와최댓값5다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-A02",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "금액10을WHERE에서빼A20,B30그룹합이된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-A03",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "NULL키행두개는한그룹으로묶여COUNT2,A그룹은COUNT1이다.",
+      "conditionsOrIssues": [
+        "보기 표현 권장: “NULL그룹의 COUNT(*)=2, A그룹의 COUNT(*)=1; 출력은2행”으로 명료화하면 그룹내행수와 출력행수 혼동을 줄임."
+      ]
+    },
+    {
+      "questionId": "S08-A04",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "A비NULL수1만HAVING통과하며B는0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-A05",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "(N,A),(N,B),(S,A)세조합이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-A06",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "A합NULL은0비교UNKNOWN,B합0만TRUE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-A07",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "그룹키를HAVING에서검사할수있으며A두행집계만남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M01-view-consistency",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "결제자와수령인이라는관점역할을공통업무규칙에맞춰야한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M02-inspection-finding",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "여러결함각각의조치이력을추적하려면개별결함인스턴스가필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M03-age-birth",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "현재나이는기준일에따라바뀌는파생값으로갱신일관성이필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M04-relationship-direction",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "팀당프로젝트복수가능만으로프로젝트당팀최대를추론할수없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M05-candidate-fd-closure",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "A폐포는A,B,C전체이며A한열이최소키다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M06-insertion-course",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "수강생 발생 없이 독립 강좌를 삽입하지 못하는 삽입 이상이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M07-count-child-meaning",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "조인행은 예약과 시도의 쌍이므로 예약 개수와 다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M08-isolation-invariant",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "동시 읽기 후 변경 충돌이 재고 불변식을 깨지 않도록 격리와 동시성 제어를 설계한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M09-missing-aggregation-target",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "미완료를0으로 넣으면 완료건만 평균과 다른 모집단·대체값 지표가 된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-M10-reservation-timeslot",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "한 회차 안 좌석 유일성은 회차ID와좌석번호 조합이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M01-metadata-definition",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "속성의 완료 사건·값 의미·부재조건 정의가 우선이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M02-price-change-event",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "각 가격변경 발생에 독립 속성과 이력이 있어 별도 관리근거다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M03-status-domain",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "허용한 상태 도메인 밖의done 표현이 일관성을 깨뜨린다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M04-self-relationship",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "동일사원 엔터티를 상사역할로 참조하는 자기관계다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M05-minimal-superkey-remove",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "AB는최소키이므로 불필요C를빼고AB를유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M06-update-mismatch",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "같은상품ID에불일치이름이저장되는갱신이상이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M07-missing-join-condition",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "모델관계가SQL의누락된매칭조건을항상자동보완하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M08-audit-history",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "값과필수로그가한업무면중간실패시모순을남기지않는경계를설계한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M09-blank-string-cross-db",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "빈문자열과NULL의DBMS별규칙차이를확인해야한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-M10-external-identifier-stability",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "내부키와외부번호의매핑및유일성·이력을별도로유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M01-denormalization-evidence",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "테이블수만이아니라무결성·질의특성·측정이설계근거다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M02-file-version",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "한문서아래버전별발생과속성을따로식별한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M03-nullable-default",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "일반DEFAULT의생략값대체와명시NULL처리·NOT NULL은별개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M04-participation-parent-limit",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "자식FK NOT NULL은모든부모의자식존재를강제하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M05-key-business-lifetime",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "영구이력에서재사용번호는단독유일성을잃을수있어발생범위를반영한키가필요하다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M06-two-nf-not-three",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "단일키는그일부의부분종속문제를피해도비키경유이행종속은남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M07-foreign-id-meaning",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "서로다른발급범위의같은숫자는같은사람이라는증거가아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M08-save-state-failure",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "중간실패시주문생성과장바구니상태가동시에일관되는지검사한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M09-unknown-vs-unbounded",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "미정과무기한은다른업무의미이며NULL을임의재해석하면안된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-M10-composite-reference-cost",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "참조키를줄일수있어도원업무조합유일성은별도유지해야한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M01-model-validation-data",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "현재표본으로필수참여를단정하지않고허용업무상태를확인한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M02-entity-boundary-account",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "같은사람과독립상태를갖는여러계정인스턴스를구분한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M03-tax-amount-rounding",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "파생금액은입력·계산식·정수화규칙까지정의해야한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M04-relationship-role-two-fk",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "송금의발신·수신역할은같은계좌엔터티에대한서로다른관계다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M05-unique-scope-tenant",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "사용자명의유일성범위가테넌트안인데전역으로잘못확대했다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M06-no-fd-split",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "AB→C에서A→C를추가추론할근거가없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M07-null-fk-join-inner",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "NULL FK의등호비교는TRUE가아니라내부매칭에서제외된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M08-commit-boundary-report",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "필수검증이전COMMIT으로완료를확정한경계를검토해야한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M09-optional-field-default",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "미평가를실제값3으로저장하면실제3점과구분할수없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-M10-surrogate-exposure",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "인조여부와무관하게부모키가자식PK에포함되어식별관계다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M01-change-impact",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "단일카테고리에서복수로변하면관계및연결사실키·속성을재검토한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M02-fact-grain",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "분할배송각각의운송장·완료일을개별배송단위에둔다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M03-attribute-source-fact",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "값이우연히같아도청구와수납은발생·정의가다른사실이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M04-mandatory-nonidentifying-review",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "독립PK는유지하고부모참조의최소참여만필수로바뀐다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M05-immutable-identifier",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "변경별명과무관한안정참조를회원번호로유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M06-normalization-performance",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "무결성개선과실행비용의판정을분리하고성능은실측한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M07-association-count",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "부모키유일성은연결표의중복행을자동없애지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M08-transaction-vs-lifecycle",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "며칠의업무상태수명과짧은실행트랜잭션경계는별도다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M09-null-unique-meaning",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "외부코드미발급회원도안정키로구분하고코드의별도제약을설계한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-M10-serial-not-count",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "최대식별값은결번을고려하지못해행수와다르다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S02-mock-coalesced-distinct",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NVL후0,0,1에서DISTINCT로0과1두행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S02-mock-distinct-constant-tuple",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "투영된두조합A/pass와A/retry만남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S03-mock-nested-clean",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "TRIM후AB AB의내부공백만하이픈으로바꾸어AB-AB다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S03-mock-negative-round",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "십자리반올림-20,0방향십자리절삭-10이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S04-mock-format-month-minute",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "MM은월11,MI는분35다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S05-mock-case-count-else-zero",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "CASE가1,0,0으로전부비NULL이되어COUNT3이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S05-mock-nullif-coalesce",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NULLIF두결과NULL,7에서첫비NULL7을선택한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S06-mock-null-or-false",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "UNKNOWN OR FALSE는UNKNOWN으로WHERE가행을제거한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S06-mock-like-escape-literal",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "이스케이프된밑줄은실제문자이며뒤%가0개도허용해A_B,A_가맞는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S07-mock-count-sum-expression",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "a+b가비NULL인행은마지막하나이고각열COUNT는2+2=4다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S07-mock-avg-zero-sum",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "비NULL-5,5의합0을2로나누면0이며COUNT2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-1-S08-mock-two-stage-group",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "WHERE후A20,B25,C30;HAVING25이상은B,C만남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S02-mock-distinct-null-two-cols",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NULL포함( NULL,1 )중복이제거되어그조합과( NULL,2 )두행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S02-mock-star-vs-expression",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "T.*두열에계산열하나를더하며원본두행을유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S03-mock-round-then-mod",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "ROUND28.6은29이고29 MOD5는4다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S03-mock-substr-beyond",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "문자열밖위치에는추출할문자가없어Oracle NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S04-mock-half-open-day",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "14일자정포함부터15일자정미만으로id1,2만포함한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S05-mock-case-null-arithmetic",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "IS NULL이TRUE여서CASE0을반환하고2를더한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S05-mock-nullif-different",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "4=NULL이TRUE가아니라NULLIF는첫값4를유지하고NVL도4다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S06-mock-not-parenthesized",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "x1과NULL은안쪽OR가TRUE여서부정FALSE,x2만부정TRUE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S06-mock-in-subset-null",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "2는명시목록값과같아TRUE,1과NULL은UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S07-mock-count-distinct-expression",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "a+b결과3,3,4,NULL에서서로다른비NULL은3,4두개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S07-mock-sum-vs-summed-columns",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "행별합은NULL,NULL,3으로SUM3;열별합11과22의합33이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-2-S08-mock-having-average-zero",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "A평균0과C평균1은통과,B평균NULL비교는UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S02-mock-arithmetic-precedence",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "곱셈우선2+12=14와괄호우선5×4=20이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S02-mock-projection-retains-input",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "id까지출력하므로(1,5),(2,5)는서로다른행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S03-mock-substr-zero-length",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "Oracle SUBSTR의길이0은NULL을반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S03-mock-replace-removal",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "치환인수생략은일치하는하이픈을제거해ABC다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S04-mock-date-fraction-difference",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "하루차이에0.25일을더한1.25일이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S05-mock-case-range-gap",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "NULL의두비교가모두UNKNOWN이어서ELSE U다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S05-mock-empty-coalesce",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "Oracle빈문자열은NULL로취급되어다음비NULL Q를택한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S06-mock-between-reversed",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "x>=20 AND x<=10을동시에만족할값이없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S06-mock-impossible-or-null",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "범위AND는모든비NULL에서FALSE,IS NULL로NULL행만TRUE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S07-mock-distinct-null-replacement-count",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "원래비NULL고유값2한개,선치환후0과2두개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S07-mock-conditional-sum-amount",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "CASE결과10,0,NULL을SUM하여10이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-3-S08-mock-complete-group",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "A는행수2=비NULL2이고B는2≠1이라탈락한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S02-mock-unary-null",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "-(-3)=3,2-(-3)=5이며NULL관련산술은둘다NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S02-mock-where-expression-equality",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "1+2=3인id1만TRUE,id2는UNKNOWN,id3은FALSE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S03-mock-case-normalization",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "UPPER로ABA를만든후대문자A를소문자x로치환하여xBx다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S03-mock-substr-zero-start",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle시작0은1로취급되어앞두문자WX다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S04-mock-year-boundary",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "하루후2027-01-01을연월만출력하여2027-01이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S05-mock-zero-conflation-case",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NULL과0은둘다선치환0분류,5는other이며세원본행을유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S05-mock-case-negative-fallback",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "음수-2는부호반전2,NULL은ELSE99,양수3은그대로다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S06-mock-like-intersection",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "A로시작하는A,AB,AX중AB접두를빼A와AX다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S06-mock-not-and-priority",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NOT(x=1) AND y=1이므로id2만둘다TRUE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S07-mock-distinct-constant-counts",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "전체3행,고유상수1종류,비NULL없는COUNT(NULL)0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S07-mock-null-aggregate-subtract",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "SUM(x)NULL에서SUM(y)12를빼도NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S08-mock-group-computed-band",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "2,8은low이고12와NULL은ELSE high라각두행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S02-mock-quoted-alias",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "큰따옴표별칭은공백포함이름을허용하며상수1한열한행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S02-mock-number-division",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NUMBER나눗셈5/2=2.5이고정수절삭은2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S03-mock-double-rounding",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "1.449를두자리반올림1.45후한자리반올림1.5;바로한자리는1.4다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S03-mock-concat-null-space",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "Oracle에서A||NULL은A로길이1,A와공백연결은길이2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S04-mock-trunc-month-date",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "월단위TRUNC는그달1일자정으로절삭한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S05-mock-space-not-null",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "공백한칸은NULL이아니라COALESCE가공백을유지하여ELSE space다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S05-mock-rounded-nullif",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "ROUND2.6=3,동일3의NULLIF는NULL,NVL대체99다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S06-mock-negated-between-null",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "포함범위1~3의밖은0,4이며NULL부정비교는UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S06-mock-null-equality-disjunction",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "비NULL1,2는두항중하나TRUE,NULL은UNKNOWN OR UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S07-mock-count-quotient-nullif",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "나눗셈결과5,NULL,NULL,0중비NULL두개를센다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S07-mock-average-vs-nonzero",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "전체평균12/3=4,0제외후12/2=6이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S08-mock-empty-versus-grouped",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "WHERE후빈입력에는dept그룹자체가없어GROUP BY결과0행이다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

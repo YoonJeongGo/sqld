@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "content_b",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "inputSha256": "5d3dcec9ff963fcc96e38b751c21f300f305176067a6e2a8d2abd677921fc429",
+  "decisions": [
+    {
+      "questionId": "S05-R05",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NVL은 첫 인자 x가 NULL이면 둘째 인자 0을 선택한다. x 자체가 0인 경우와 대체 인자를 선택한 경우를 수정 문구가 분리하므로 복수 해석이 제거되었다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S08-A03",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "GROUP BY는 두 NULL을 한 그룹으로 묶으며 COUNT(*)는 그 입력 두 행을 센다. A 한 행은 별도 그룹이므로 집계 값은 NULL:2, A:1이고 그룹마다 한 출력 행이 나와 총 2행이다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

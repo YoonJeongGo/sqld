@@ -1,0 +1,549 @@
+{
+  "schemaVersion": 1,
+  "version": "2026.10.06.1",
+  "entries": [
+    {
+      "questionId": "S07-A01",
+      "file": "S07-A01.json"
+    },
+    {
+      "questionId": "S07-A02",
+      "file": "S07-A02.json"
+    },
+    {
+      "questionId": "S07-A03",
+      "file": "S07-A03.json"
+    },
+    {
+      "questionId": "S06-A01",
+      "file": "S06-A01.json"
+    },
+    {
+      "questionId": "S08-A01",
+      "file": "S08-A01.json"
+    },
+    {
+      "questionId": "S02-A01",
+      "file": "S02-A01.json"
+    },
+    {
+      "questionId": "S02-A02",
+      "file": "S02-A02.json"
+    },
+    {
+      "questionId": "S02-A03",
+      "file": "S02-A03.json"
+    },
+    {
+      "questionId": "S02-A04",
+      "file": "S02-A04.json"
+    },
+    {
+      "questionId": "S02-A05",
+      "file": "S02-A05.json"
+    },
+    {
+      "questionId": "S02-A06",
+      "file": "S02-A06.json"
+    },
+    {
+      "questionId": "S03-A03",
+      "file": "S03-A03.json"
+    },
+    {
+      "questionId": "S03-A04",
+      "file": "S03-A04.json"
+    },
+    {
+      "questionId": "S03-A05",
+      "file": "S03-A05.json"
+    },
+    {
+      "questionId": "S03-A06",
+      "file": "S03-A06.json"
+    },
+    {
+      "questionId": "S05-A01",
+      "file": "S05-A01.json"
+    },
+    {
+      "questionId": "S05-A02",
+      "file": "S05-A02.json"
+    },
+    {
+      "questionId": "S05-A03",
+      "file": "S05-A03.json"
+    },
+    {
+      "questionId": "S05-A04",
+      "file": "S05-A04.json"
+    },
+    {
+      "questionId": "S05-A06",
+      "file": "S05-A06.json"
+    },
+    {
+      "questionId": "S06-A02",
+      "file": "S06-A02.json"
+    },
+    {
+      "questionId": "S06-A03",
+      "file": "S06-A03.json"
+    },
+    {
+      "questionId": "S06-A04",
+      "file": "S06-A04.json"
+    },
+    {
+      "questionId": "S06-A05",
+      "file": "S06-A05.json"
+    },
+    {
+      "questionId": "S06-A06",
+      "file": "S06-A06.json"
+    },
+    {
+      "questionId": "S07-A04",
+      "file": "S07-A04.json"
+    },
+    {
+      "questionId": "S07-A05",
+      "file": "S07-A05.json"
+    },
+    {
+      "questionId": "S07-A06",
+      "file": "S07-A06.json"
+    },
+    {
+      "questionId": "S07-A07",
+      "file": "S07-A07.json"
+    },
+    {
+      "questionId": "S07-A08",
+      "file": "S07-A08.json"
+    },
+    {
+      "questionId": "S08-A02",
+      "file": "S08-A02.json"
+    },
+    {
+      "questionId": "S08-A03",
+      "file": "S08-A03.json"
+    },
+    {
+      "questionId": "S08-A04",
+      "file": "S08-A04.json"
+    },
+    {
+      "questionId": "S08-A05",
+      "file": "S08-A05.json"
+    },
+    {
+      "questionId": "S08-A06",
+      "file": "S08-A06.json"
+    },
+    {
+      "questionId": "S08-A07",
+      "file": "S08-A07.json"
+    },
+    {
+      "questionId": "mock-1-S02-mock-coalesced-distinct",
+      "file": "mock-1-S02-mock-coalesced-distinct.json"
+    },
+    {
+      "questionId": "mock-1-S02-mock-distinct-constant-tuple",
+      "file": "mock-1-S02-mock-distinct-constant-tuple.json"
+    },
+    {
+      "questionId": "mock-1-S03-mock-nested-clean",
+      "file": "mock-1-S03-mock-nested-clean.json"
+    },
+    {
+      "questionId": "mock-1-S05-mock-case-count-else-zero",
+      "file": "mock-1-S05-mock-case-count-else-zero.json"
+    },
+    {
+      "questionId": "mock-1-S05-mock-nullif-coalesce",
+      "file": "mock-1-S05-mock-nullif-coalesce.json"
+    },
+    {
+      "questionId": "mock-1-S06-mock-null-or-false",
+      "file": "mock-1-S06-mock-null-or-false.json"
+    },
+    {
+      "questionId": "mock-1-S06-mock-like-escape-literal",
+      "file": "mock-1-S06-mock-like-escape-literal.json"
+    },
+    {
+      "questionId": "mock-1-S07-mock-count-sum-expression",
+      "file": "mock-1-S07-mock-count-sum-expression.json"
+    },
+    {
+      "questionId": "mock-1-S07-mock-avg-zero-sum",
+      "file": "mock-1-S07-mock-avg-zero-sum.json"
+    },
+    {
+      "questionId": "mock-1-S08-mock-two-stage-group",
+      "file": "mock-1-S08-mock-two-stage-group.json"
+    },
+    {
+      "questionId": "mock-2-S02-mock-distinct-null-two-cols",
+      "file": "mock-2-S02-mock-distinct-null-two-cols.json"
+    },
+    {
+      "questionId": "mock-2-S02-mock-star-vs-expression",
+      "file": "mock-2-S02-mock-star-vs-expression.json"
+    },
+    {
+      "questionId": "mock-2-S05-mock-case-null-arithmetic",
+      "file": "mock-2-S05-mock-case-null-arithmetic.json"
+    },
+    {
+      "questionId": "mock-2-S05-mock-nullif-different",
+      "file": "mock-2-S05-mock-nullif-different.json"
+    },
+    {
+      "questionId": "mock-2-S06-mock-not-parenthesized",
+      "file": "mock-2-S06-mock-not-parenthesized.json"
+    },
+    {
+      "questionId": "mock-2-S06-mock-in-subset-null",
+      "file": "mock-2-S06-mock-in-subset-null.json"
+    },
+    {
+      "questionId": "mock-2-S07-mock-count-distinct-expression",
+      "file": "mock-2-S07-mock-count-distinct-expression.json"
+    },
+    {
+      "questionId": "mock-2-S07-mock-sum-vs-summed-columns",
+      "file": "mock-2-S07-mock-sum-vs-summed-columns.json"
+    },
+    {
+      "questionId": "mock-2-S08-mock-having-average-zero",
+      "file": "mock-2-S08-mock-having-average-zero.json"
+    },
+    {
+      "questionId": "mock-3-S02-mock-arithmetic-precedence",
+      "file": "mock-3-S02-mock-arithmetic-precedence.json"
+    },
+    {
+      "questionId": "mock-3-S02-mock-projection-retains-input",
+      "file": "mock-3-S02-mock-projection-retains-input.json"
+    },
+    {
+      "questionId": "mock-3-S05-mock-case-range-gap",
+      "file": "mock-3-S05-mock-case-range-gap.json"
+    },
+    {
+      "questionId": "mock-3-S06-mock-between-reversed",
+      "file": "mock-3-S06-mock-between-reversed.json"
+    },
+    {
+      "questionId": "mock-3-S06-mock-impossible-or-null",
+      "file": "mock-3-S06-mock-impossible-or-null.json"
+    },
+    {
+      "questionId": "mock-3-S07-mock-distinct-null-replacement-count",
+      "file": "mock-3-S07-mock-distinct-null-replacement-count.json"
+    },
+    {
+      "questionId": "mock-3-S07-mock-conditional-sum-amount",
+      "file": "mock-3-S07-mock-conditional-sum-amount.json"
+    },
+    {
+      "questionId": "mock-3-S08-mock-complete-group",
+      "file": "mock-3-S08-mock-complete-group.json"
+    },
+    {
+      "questionId": "mock-4-S02-mock-unary-null",
+      "file": "mock-4-S02-mock-unary-null.json"
+    },
+    {
+      "questionId": "mock-4-S02-mock-where-expression-equality",
+      "file": "mock-4-S02-mock-where-expression-equality.json"
+    },
+    {
+      "questionId": "mock-4-S03-mock-case-normalization",
+      "file": "mock-4-S03-mock-case-normalization.json"
+    },
+    {
+      "questionId": "mock-4-S05-mock-zero-conflation-case",
+      "file": "mock-4-S05-mock-zero-conflation-case.json"
+    },
+    {
+      "questionId": "mock-4-S05-mock-case-negative-fallback",
+      "file": "mock-4-S05-mock-case-negative-fallback.json"
+    },
+    {
+      "questionId": "mock-4-S06-mock-like-intersection",
+      "file": "mock-4-S06-mock-like-intersection.json"
+    },
+    {
+      "questionId": "mock-4-S06-mock-not-and-priority",
+      "file": "mock-4-S06-mock-not-and-priority.json"
+    },
+    {
+      "questionId": "mock-4-S07-mock-distinct-constant-counts",
+      "file": "mock-4-S07-mock-distinct-constant-counts.json"
+    },
+    {
+      "questionId": "mock-4-S07-mock-null-aggregate-subtract",
+      "file": "mock-4-S07-mock-null-aggregate-subtract.json"
+    },
+    {
+      "questionId": "mock-4-S08-mock-group-computed-band",
+      "file": "mock-4-S08-mock-group-computed-band.json"
+    },
+    {
+      "questionId": "mock-5-S02-mock-quoted-alias",
+      "file": "mock-5-S02-mock-quoted-alias.json"
+    },
+    {
+      "questionId": "mock-5-S05-mock-space-not-null",
+      "file": "mock-5-S05-mock-space-not-null.json"
+    },
+    {
+      "questionId": "mock-5-S06-mock-negated-between-null",
+      "file": "mock-5-S06-mock-negated-between-null.json"
+    },
+    {
+      "questionId": "mock-5-S06-mock-null-equality-disjunction",
+      "file": "mock-5-S06-mock-null-equality-disjunction.json"
+    },
+    {
+      "questionId": "mock-5-S07-mock-average-vs-nonzero",
+      "file": "mock-5-S07-mock-average-vs-nonzero.json"
+    },
+    {
+      "questionId": "mock-5-S08-mock-empty-versus-grouped",
+      "file": "mock-5-S08-mock-empty-versus-grouped.json"
+    },
+    {
+      "questionId": "S03-A09-negative-integer-directions",
+      "file": "S03-A09-negative-integer-directions.json"
+    },
+    {
+      "questionId": "S03-A10-lower-uppercase-sequence",
+      "file": "S03-A10-lower-uppercase-sequence.json"
+    },
+    {
+      "questionId": "S09-A01-mixed-sort",
+      "file": "S09-A01-mixed-sort.json"
+    },
+    {
+      "questionId": "S09-A02-case-priority",
+      "file": "S09-A02-case-priority.json"
+    },
+    {
+      "questionId": "S09-A03-alias-derived",
+      "file": "S09-A03-alias-derived.json"
+    },
+    {
+      "questionId": "S09-A04-null-explicit-desc",
+      "file": "S09-A04-null-explicit-desc.json"
+    },
+    {
+      "questionId": "S09-A05-group-sort-total",
+      "file": "S09-A05-group-sort-total.json"
+    },
+    {
+      "questionId": "S09-A06-distinct-position",
+      "file": "S09-A06-distinct-position.json"
+    },
+    {
+      "questionId": "S10-A01-duplicate-multiplication",
+      "file": "S10-A01-duplicate-multiplication.json"
+    },
+    {
+      "questionId": "S10-A02-null-pair-filter",
+      "file": "S10-A02-null-pair-filter.json"
+    },
+    {
+      "questionId": "S10-A03-overlap-band",
+      "file": "S10-A03-overlap-band.json"
+    },
+    {
+      "questionId": "S10-A04-cross-filter",
+      "file": "S10-A04-cross-filter.json"
+    },
+    {
+      "questionId": "S10-A05-aggregate-after-join",
+      "file": "S10-A05-aggregate-after-join.json"
+    },
+    {
+      "questionId": "S10-A06-two-key-matching",
+      "file": "S10-A06-two-key-matching.json"
+    },
+    {
+      "questionId": "S10-A07-empty-cross",
+      "file": "S10-A07-empty-cross.json"
+    },
+    {
+      "questionId": "S11-A01-on-paid-preserve",
+      "file": "S11-A01-on-paid-preserve.json"
+    },
+    {
+      "questionId": "S11-A02-where-paid-remove",
+      "file": "S11-A02-where-paid-remove.json"
+    },
+    {
+      "questionId": "S11-A03-count-outer-null",
+      "file": "S11-A03-count-outer-null.json"
+    },
+    {
+      "questionId": "S11-A04-full-both-unmatched",
+      "file": "S11-A04-full-both-unmatched.json"
+    },
+    {
+      "questionId": "S11-A05-using-key-result",
+      "file": "S11-A05-using-key-result.json"
+    },
+    {
+      "questionId": "S11-A06-natural-extra-key",
+      "file": "S11-A06-natural-extra-key.json"
+    },
+    {
+      "questionId": "S11-A07-anti-exists-key",
+      "file": "S11-A07-anti-exists-key.json"
+    },
+    {
+      "questionId": "S12-A01-above-own-dept-average",
+      "file": "S12-A01-above-own-dept-average.json"
+    },
+    {
+      "questionId": "S12-A02-exists-no-multiply",
+      "file": "S12-A02-exists-no-multiply.json"
+    },
+    {
+      "questionId": "S12-A03-null-safe-not-exists",
+      "file": "S12-A03-null-safe-not-exists.json"
+    },
+    {
+      "questionId": "S12-A04-not-in-empty",
+      "file": "S12-A04-not-in-empty.json"
+    },
+    {
+      "questionId": "S12-A05-scalar-aggregate-empty",
+      "file": "S12-A05-scalar-aggregate-empty.json"
+    },
+    {
+      "questionId": "S12-A06-any-null-mixed",
+      "file": "S12-A06-any-null-mixed.json"
+    },
+    {
+      "questionId": "S12-A07-all-empty",
+      "file": "S12-A07-all-empty.json"
+    },
+    {
+      "questionId": "S12-A08-tuple-in",
+      "file": "S12-A08-tuple-in.json"
+    },
+    {
+      "questionId": "S13-A01-union-null-combined",
+      "file": "S13-A01-union-null-combined.json"
+    },
+    {
+      "questionId": "S13-A02-all-count",
+      "file": "S13-A02-all-count.json"
+    },
+    {
+      "questionId": "S13-A03-intersection-two-columns",
+      "file": "S13-A03-intersection-two-columns.json"
+    },
+    {
+      "questionId": "S13-A04-minus-dedup",
+      "file": "S13-A04-minus-dedup.json"
+    },
+    {
+      "questionId": "S13-A05-parenthesized-difference",
+      "file": "S13-A05-parenthesized-difference.json"
+    },
+    {
+      "questionId": "S13-A06-difference-count-empty",
+      "file": "S13-A06-difference-count-empty.json"
+    },
+    {
+      "questionId": "S15-A01-ranks-side-by-side",
+      "file": "S15-A01-ranks-side-by-side.json"
+    },
+    {
+      "questionId": "S15-A02-unique-number-with-tie-key",
+      "file": "S15-A02-unique-number-with-tie-key.json"
+    },
+    {
+      "questionId": "S15-A03-partition-sum-maintains-rows",
+      "file": "S15-A03-partition-sum-maintains-rows.json"
+    },
+    {
+      "questionId": "S15-A04-lag-null-default",
+      "file": "S15-A04-lag-null-default.json"
+    },
+    {
+      "questionId": "S15-A05-lead-gap-not-id",
+      "file": "S15-A05-lead-gap-not-id.json"
+    },
+    {
+      "questionId": "S15-A06-ntile-unequal",
+      "file": "S15-A06-ntile-unequal.json"
+    },
+    {
+      "questionId": "S16-A01-range-peer-cumulative",
+      "file": "S16-A01-range-peer-cumulative.json"
+    },
+    {
+      "questionId": "S16-A02-rows-two-window",
+      "file": "S16-A02-rows-two-window.json"
+    },
+    {
+      "questionId": "S16-A03-range-value-distance",
+      "file": "S16-A03-range-value-distance.json"
+    },
+    {
+      "questionId": "S16-A04-last-value-full",
+      "file": "S16-A04-last-value-full.json"
+    },
+    {
+      "questionId": "S16-A05-future-count-boundary",
+      "file": "S16-A05-future-count-boundary.json"
+    },
+    {
+      "questionId": "S16-A06-partition-boundaries",
+      "file": "S16-A06-partition-boundaries.json"
+    },
+    {
+      "questionId": "S18-A02-self-manager-name",
+      "file": "S18-A02-self-manager-name.json"
+    },
+    {
+      "questionId": "S19-A06-conditional-pivot",
+      "file": "S19-A06-conditional-pivot.json"
+    },
+    {
+      "questionId": "S12-SUP-A01-paired-membership",
+      "file": "S12-SUP-A01-paired-membership.json"
+    },
+    {
+      "questionId": "S15-SUP-A01-percent-rank-top-tie",
+      "file": "S15-SUP-A01-percent-rank-top-tie.json"
+    },
+    {
+      "questionId": "S15-SUP-A02-cume-desc-peers",
+      "file": "S15-SUP-A02-cume-desc-peers.json"
+    },
+    {
+      "questionId": "S16-SUP-A02-first-value-moving-frame",
+      "file": "S16-SUP-A02-first-value-moving-frame.json"
+    }
+  ],
+  "learningExamples": [
+    {
+      "id": "learning-employee-not-in-any",
+      "title": "NOT IN과 ANY를 실제 사원 값으로 따라 읽기",
+      "noteIds": [
+        "note-S06",
+        "note-S12"
+      ],
+      "file": "learning-employee-not-in-any.json"
+    }
+  ]
+}

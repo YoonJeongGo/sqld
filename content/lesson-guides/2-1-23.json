@@ -1,0 +1,735 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-23",
+  "source": {
+    "id": "2-1-23",
+    "partId": "2-1",
+    "number": 23,
+    "title": "OUTER JOIN",
+    "lectureMinutes": 34,
+    "easy": "연결되는 상대가 없어도 지정한 쪽의 행을 남기는 조인이다. 상대편 정보가 없는 칸은 NULL로 채운다.",
+    "why": "수강이 없는 학생도 명단에 보여주려면 일치한 행만 남기는 INNER JOIN으로는 부족하다.",
+    "concepts": [
+      {
+        "term": "LEFT OUTER JOIN",
+        "meaning": "왼쪽 표의 행을 보존",
+        "example": "학생 LEFT JOIN 수강"
+      },
+      {
+        "term": "RIGHT OUTER JOIN",
+        "meaning": "오른쪽 표의 행을 보존",
+        "example": "학생 RIGHT JOIN 수강"
+      },
+      {
+        "term": "FULL OUTER JOIN",
+        "meaning": "양쪽의 미일치 행까지 보존",
+        "example": "회원 없는 주문도 표시"
+      },
+      {
+        "term": "NULL 확장",
+        "meaning": "없는 상대편의 열에 NULL을 채움",
+        "example": "과목 NULL"
+      },
+      {
+        "term": "ON 조건",
+        "meaning": "상대 행과 연결되는 조건",
+        "example": "연결 전에 맞는 상대만 선택"
+      },
+      {
+        "term": "WHERE 조건",
+        "meaning": "조인 후 결과 행을 필터링",
+        "example": "상대 열 조건으로 미일치 행이 사라질 수 있음"
+      },
+      {
+        "term": "COUNT(*)·COUNT(상대키)",
+        "meaning": "미일치 확장 행 계산의 차이",
+        "example": "수강 없는 학생의 COUNT(*)=1, COUNT(수강키)=0"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-23-E01",
+        "title": "회원도 주문도 모두 남기기",
+        "question": "이 예시에는 FK 제약을 설정하지 않았다. 양쪽의 미일치까지 남기는 FULL JOIN 결과는?",
+        "tables": [
+          {
+            "title": "회원",
+            "columns": [
+              "회원ID",
+              "이름"
+            ],
+            "rows": [
+              [
+                "1",
+                "박상현"
+              ],
+              [
+                "2",
+                "한창주"
+              ],
+              [
+                "3",
+                "양지훈"
+              ]
+            ]
+          },
+          {
+            "title": "주문",
+            "columns": [
+              "주문ID",
+              "회원ID",
+              "상품"
+            ],
+            "rows": [
+              [
+                "101",
+                "1",
+                "노트북"
+              ],
+              [
+                "102",
+                "3",
+                "키보드"
+              ],
+              [
+                "103",
+                "9",
+                "모니터"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT m.이름, o.상품 FROM 회원 m FULL OUTER JOIN 주문 o ON m.회원ID=o.회원ID ORDER BY COALESCE(m.회원ID,o.회원ID);",
+        "steps": [
+          "회원ID 1의 박상현은 노트북과 연결된다. 회원ID 3의 양지훈은 키보드와 연결된다.",
+          "한창주는 주문이 없지만 왼쪽을 보존하므로 상품 NULL로 남는다.",
+          "주문 103은 회원ID 9가 회원표에 없지만 오른쪽도 보존하므로 이름 NULL로 남는다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "상품"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "노트북"
+              ],
+              [
+                "한창주",
+                null
+              ],
+              [
+                "양지훈",
+                "키보드"
+              ],
+              [
+                null,
+                "모니터"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-1-23-E02",
+        "title": "미수강 학생도 0건으로 세기",
+        "question": "LEFT JOIN으로 학생별 수강 건수를 구하자.",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현"
+              ],
+              [
+                "1002",
+                "한창주"
+              ]
+            ]
+          },
+          {
+            "title": "수강",
+            "columns": [
+              "학번",
+              "과목"
+            ],
+            "rows": [
+              [
+                "1001",
+                "DB"
+              ],
+              [
+                "1001",
+                "JAVA"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT s.이름, COUNT(*) AS 조인행수, COUNT(e.과목) AS 수강수 FROM 학생 s LEFT JOIN 수강 e ON s.학번=e.학번 GROUP BY s.학번,s.이름 ORDER BY s.학번;",
+        "steps": [
+          "박상현은 DB·JAVA 두 행이므로 COUNT(*)와 COUNT(과목)이 모두 2다.",
+          "한창주는 왼쪽을 보존하기 위해 과목 NULL인 결과 행 한 줄이 만들어진다.",
+          "이 줄은 COUNT(*)에는 포함되지만 COUNT(과목)에는 포함되지 않아 1과 0으로 갈린다."
+        ],
+        "results": [
+          {
+            "title": "집계 결과",
+            "columns": [
+              "이름",
+              "조인행수",
+              "수강수"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "2",
+                "2"
+              ],
+              [
+                "한창주",
+                "1",
+                "0"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "LEFT 왼쪽 보존 / RIGHT 오른쪽 보존 / FULL 양쪽 보존. 빈 상대는 NULL.",
+    "traps": [
+      "WHERE 상대.열=값을 추가하면 NULL 확장 행이 탈락해 원하는 외부 조인 의미가 사라질 수 있다.",
+      "없는 부모키를 가진 예시는 FK가 설정되지 않은 표라고 명시했다. 유효한 FK가 있으면 입력 단계에서 막힐 수 있다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-23-Q1",
+        "question": "학생 LEFT JOIN 수강에서 미수강 학생이 남는가?",
+        "answer": "남는다",
+        "explanation": "왼쪽 학생을 보존한다."
+      },
+      {
+        "id": "2-1-23-Q2",
+        "question": "미수강 학생 한 명의 COUNT(*)와 COUNT(수강.과목)는?",
+        "answer": "1과 0",
+        "explanation": "NULL 확장 행을 세느냐, 실제 과목값을 세느냐의 차이다."
+      },
+      {
+        "id": "2-1-23-Q3",
+        "question": "FULL JOIN의 미일치 오른쪽 행에서 왼쪽 열 값은?",
+        "answer": "NULL",
+        "explanation": "대응 정보가 없음을 표시한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S11",
+      "note-S07"
+    ],
+    "sourceIds": [
+      "tableexpressions",
+      "joins"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"OUTER JOIN 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"117.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">왼쪽 표</text><text x=\"117.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">학번 1001 · 1002</text><rect x=\"267\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"359.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">조건으로 연결</text><text x=\"359.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">같은 학번끼리</text><rect x=\"510\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"602.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과 표</text><text x=\"602.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">미대응 처리도 확인</text><path d=\"M218 100 L257 100\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M460 100 L500 100\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">INNER는 맞는 조합 · OUTER는 지정한 쪽의 미대응 행도 남긴다</text></svg>",
+    "version": 1
+  },
+  "purpose": "주문 없는 회원이나 수강 없는 학생도 빠지지 않게 조회하고, 실제 연결 건수를 정확히 세기 위해 써요.",
+  "overview": "조회예요. FULL은 회원·주문의 미일치를 양쪽에서 보존하고, LEFT는 학생 쪽 미일치를 보존해요. NULL을 붙이는 곳은 조회 결과의 상대편 칸이며 원본 데이터 수정이 아니에요.",
+  "terms": [
+    {
+      "token": "FULL OUTER JOIN",
+      "kind": "키워드",
+      "meaning": "full = 양쪽 전체, outer = 일치 밖도 보존",
+      "role": "회원ID 2와 주문의 회원ID 9처럼 서로 연결되지 않은 행도 남겨요."
+    },
+    {
+      "token": "LEFT JOIN",
+      "kind": "키워드",
+      "meaning": "left = 왼쪽 표 보존",
+      "role": "수강이 없는 한창주도 학생 쪽 한 행으로 남겨요."
+    },
+    {
+      "token": "m / o",
+      "kind": "테이블 별칭",
+      "meaning": "member/order를 연상시키는 사용자가 정한 이름",
+      "role": "m은 회원, o는 주문이에요. o.회원ID는 주문에 들어 있는 회원번호예요."
+    },
+    {
+      "token": "COALESCE",
+      "kind": "함수",
+      "meaning": "앞에서부터 NULL이 아닌 값을 고름",
+      "role": "일치 주문이 없는 회원은 m.회원ID, 회원이 없는 주문은 o.회원ID를 정렬 기준으로 써요."
+    },
+    {
+      "token": "COUNT(*) / COUNT(e.과목)",
+      "kind": "집계함수",
+      "meaning": "행 수 / NULL이 아닌 해당 값의 수",
+      "role": "한창주의 보존행은 행1개지만 실제 과목값은0개예요."
+    }
+  ],
+  "pitfalls": [
+    "회원ID 9 주문은 이 예제에 FK 제약이 없다는 전제예요. 정상 FK를 가정하고도 저장된 행이라고 설명하지 않아요.",
+    "FULL JOIN을 양쪽 OUTER 결과의 UNION으로 항상 바꿀 수 있다고 외우면 중복이 사라질 수 있어요. 원본 PDF p126의 간단한 예시와 모든 데이터의 동등성은 구별해요.",
+    "NULL 확장 뒤 WHERE e.과목=...을 적용하면 미일치행의 비교는 알 수 없음이 되어 제거될 수 있어요. ON에서 연결 대상을 제한하는 것과 달라요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. FULL은 회원·주문의 미일치를 양쪽에서 보존하고, LEFT는 학생 쪽 미일치를 보존해요. NULL을 붙이는 곳은 조회 결과의 상대편 칸이며 원본 데이터 수정이 아니에요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "흥달쌤 원본 교재 · SQL 기본",
+      "fromPage": 124,
+      "toPage": 124,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-23-E01",
+      "why": "회원이 주문을 안 했거나 회원 정보 없는 주문이 있어도 조회에서 함께 확인해요.",
+      "effect": "조회 · 회원, 주문의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-1-23-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "회원: 컬럼 회원ID·이름 2개, 표시 입력 3행.",
+        "주문: 컬럼 주문ID·회원ID·상품 3개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "바뀌지 않는 두 원본",
+          "text": "m은 회원표, o는 주문표예요. m.회원ID와 o.회원ID 값이 같은지 비교해요. 이 예제는 FK가 없어서 주문 회원ID 9가 존재할 수 있어요.",
+          "codeFocus": [
+            {
+              "needle": "ON m.회원ID=o.회원ID",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "m.회원ID",
+            "o.회원ID"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "일치 두 쌍",
+          "text": "회원 1 박상현은 주문 101 노트북, 회원 3 양지훈은 주문 102 키보드와 연결돼요. 회원 이름이 아닌 회원ID로 맞춰요.",
+          "codeFocus": [
+            {
+              "needle": "m.회원ID=o.회원ID",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 일치 두 쌍",
+            "columns": [
+              "회원ID",
+              "회원이름",
+              "주문ID",
+              "상품",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1",
+                "박상현",
+                "101",
+                "노트북",
+                "참·연결"
+              ],
+              [
+                "3",
+                "양지훈",
+                "102",
+                "키보드",
+                "참·연결"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 4
+            },
+            {
+              "row": 1,
+              "column": 4
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "양쪽 미일치를 보존",
+          "text": "회원 2 한창주는 주문이 없어 상품 NULL, 주문 103 모니터는 회원 9가 없어 이름 NULL이에요. FULL이 양쪽 미일치를 보존해요.",
+          "codeFocus": [
+            {
+              "needle": "FULL OUTER JOIN",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "FULL"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 양쪽 미일치를 보존",
+            "columns": [
+              "원본쪽",
+              "남길정보",
+              "없는상대",
+              "처리"
+            ],
+            "rows": [
+              [
+                "회원",
+                "2 한창주",
+                "주문",
+                "상품NULL·유지"
+              ],
+              [
+                "주문",
+                "103 모니터",
+                "회원 9",
+                "이름NULL·유지"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "정렬 기준과 출력",
+          "text": "COALESCE는 m.회원ID가 있으면 그 값, 없으면 o.회원ID를 써요. 기준 1·2·3·9로 정렬하고 이름·상품 두 열만 보여줘요.",
+          "codeFocus": [
+            {
+              "needle": "COALESCE(m.회원ID,o.회원ID)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "COALESCE",
+            "m.회원ID",
+            "o.회원ID"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 정렬 기준과 출력",
+            "columns": [
+              "결과이름",
+              "결과상품",
+              "정렬값"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "노트북",
+                "1"
+              ],
+              [
+                "한창주",
+                null,
+                "2"
+              ],
+              [
+                "양지훈",
+                "키보드",
+                "3"
+              ],
+              [
+                null,
+                "모니터",
+                "9"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 3,
+              "column": 2
+            }
+          ],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름·상품, 결과는 4행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름",
+              "상품"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "노트북"
+              ],
+              [
+                "한창주",
+                null
+              ],
+              [
+                "양지훈",
+                "키보드"
+              ],
+              [
+                null,
+                "모니터"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "NULL 확장은 없는 상대값 표시예요. 회원번호 9를 새 회원으로 등록하거나 모니터 주문을 지우는 동작이 아니에요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-1-23-E02",
+      "why": "학생별 수강수를 셀 때 수강이 없는 학생도 0건으로 보이게 해요.",
+      "effect": "조회 · 학생, 수강의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-1-23-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "학생: 컬럼 학번·이름 2개, 표시 입력 2행.",
+        "수강: 컬럼 학번·과목 2개, 표시 입력 2행."
+      ],
+      "steps": [
+        {
+          "title": "왼쪽 학생 보존",
+          "text": "s는 학생, e는 수강이에요. 학번이 맞는 수강을 붙이고 없어도 학생은 유지하는 LEFT예요.",
+          "codeFocus": [
+            {
+              "needle": "학생 s LEFT JOIN 수강 e",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "LEFT",
+            "학생",
+            "수강"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "집계하기 전 세 행",
+          "text": "박상현 1001은 DB·JAVA 두 연결, 한창주 1002는 수강이 없어 NULL 확장한 한 연결행이에요. 이 표는 원본 수강에 새 NULL 행을 넣은 것이 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "ON s.학번=e.학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 집계하기 전 세 행",
+            "columns": [
+              "s.학번",
+              "s.이름",
+              "e.과목",
+              "출처"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "DB",
+                "일치"
+              ],
+              [
+                "1001",
+                "박상현",
+                "JAVA",
+                "일치"
+              ],
+              [
+                "1002",
+                "한창주",
+                null,
+                "왼쪽보존"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "학생별 묶음",
+          "text": "학번과 이름을 기준으로 세 조인행을 두 학생 묶음으로 나눠요. 박상현 묶음 2행, 한창주 묶음 1행이에요.",
+          "codeFocus": [
+            {
+              "needle": "GROUP BY s.학번,s.이름",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 학생별 묶음",
+            "columns": [
+              "학생",
+              "조인 행",
+              "NULL이 아닌 과목"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "DB·JAVA의 2행",
+                "DB·JAVA의 2개 값"
+              ],
+              [
+                "한창주",
+                "NULL 확장 1행",
+                "0개 값"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "서로 다른 두 COUNT",
+          "text": "박상현은 COUNT(*) 2·COUNT(e.과목) 2예요. 한창주는 행은 1이지만 과목값은 NULL이라 COUNT(*) 1·COUNT(e.과목) 0이에요.",
+          "codeFocus": [
+            {
+              "needle": "COUNT(*) AS 조인행수, COUNT(e.과목) AS 수강수",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "COUNT",
+            "e.과목"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "집계 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 집계 결과와 대조해요. 표시 컬럼은 이름·조인행수·수강수, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "집계 결과",
+            "columns": [
+              "이름",
+              "조인행수",
+              "수강수"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "2",
+                "2"
+              ],
+              [
+                "한창주",
+                "1",
+                "0"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "COUNT(*)는 NULL 확장 행도 행으로 세고 COUNT(e.과목)는 그 칸이 NULL이면 세지 않아요. 과목이 NULL인 실제 수강행이 있다면 과목수와 수강행수도 달라질 수 있어요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-23-Q1",
+      "hint": "LEFT의 왼쪽에 적힌 표가 무엇인지 먼저 찾아요.",
+      "reasoning": "학생이 왼쪽이므로 한창주를 유지해요. 수강 쪽 과목에는 대응 값이 없어 NULL이 표시돼요."
+    },
+    {
+      "checkId": "2-1-23-Q2",
+      "hint": "보존된 결과 한 줄에서 별표는 무엇을 세고, 과목은 무엇을 세는지 나눠 봐요.",
+      "reasoning": "한창주/NULL이라는 한 행을 COUNT(*)는 1로 세요. COUNT(수강.과목)는 NULL을 제외해서 0이에요."
+    },
+    {
+      "checkId": "2-1-23-Q3",
+      "hint": "오른쪽 주문은 있는데 왼쪽 회원을 찾지 못한 상황을 떠올려요.",
+      "reasoning": "회원ID 9의 모니터 주문은 유지돼요. 해당 회원의 이름을 찾지 못했으므로 왼쪽 이름 칸은 NULL이에요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent-audit-basic-sql-agent",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "priorAnswerExposure": false,
+  "inputSha256": "17421e7fb80ae4efd76de46cc97cced299559b90cd1209f5572a2c7b3b9a7ab5",
+  "decisions": [
+    {
+      "questionId": "S27-SUP-R01-logical-definition",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "일반 VIEW는 질의에 의해 정의되는 논리적 표다. MATERIALIZED VIEW를 제외했으므로 생성 시 결과 행의 독립 사본을 저장한다고 보지 않는다. 원본 행이나 인덱스를 이동·복제하는 명령도 아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S27-SUP-R02-drop-definition",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "DROP VIEW의 대상은 V라는 뷰 객체의 정의다. 기반 테이블 T 자체나 T의 데이터 행에 DELETE/DROP TABLE을 수행한 것이 아니므로 해당 행은 유지된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S27-SUP-R03-check-readonly",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "CHECK OPTION은 뷰를 통한 변경 후 행이 뷰 조건을 만족하도록 제한한다. 조건을 유지하는 갱신까지 모두 금지하는 것은 아니다. READ ONLY는 뷰 경로의 DML을 막으며 기반 테이블 직접 권한을 자동 회수하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S27-SUP-A01-base-change-visible",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "초기 (1,10),(2,20)에서 같은 세션이 id2를 dept10으로 갱신했다. 자신이 수행한 미확정 변경을 볼 수 있고 일반 뷰는 재조회 시 기반 데이터의 dept10 조건을 적용한다. 따라서 id순 (1,10),(2,10)이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S27-SUP-A02-check-option-exit",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "id1은 뷰 조건 dept=10을 만족했지만 dept20으로 바꾸면 그 조건을 벗어난다. WITH CHECK OPTION이 해당 UPDATE를 거부한다. 실패한 문장의 변경은 남지 않아 (1,10),(2,20)이 유지된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S28-SUP-R01-selection-projection",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "선택 σ는 조건에 맞는 튜플을 남긴다. 투영 π는 지정 속성만 남긴다. 고전 관계는 집합이므로 같은 값의 투영 결과 튜플은 하나로 합쳐지고, SQL의 기본 중복 허용 SELECT와는 구별된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S28-SUP-R02-union-compatible",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "합집합과 차집합은 같은 모양의 튜플을 비교해야 한다. 이 문제는 이름 기반 관계대수이므로 필요하면 속성 이름을 변경한 후 대응 속성과 도메인이 호환되어야 한다. 관계 이름과 행 수의 같음은 요구하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S28-SUP-R03-division-universal",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "디비전은 각 후보 person이 S의 모든 skill과 R에서 짝을 이루는지 전칭 조건으로 검사한다. 한 기술만 있는 존재 조건이나 행 개수의 산술 나눗셈이 아니다. 후보는 지문대로 R에 등장한 person이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S28-SUP-A01-project-after-select",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "score≥80인 행은 id1(A80), id2(A90), id4(B85)다. dept로 투영하면 A,A,B가 후보 값이지만 고전 관계의 중복 튜플은 제거되므로 A,B 두 튜플이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S28-SUP-A02-division-required-courses",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "Need의 요구는 SQL과 MODEL 둘 모두다. A는 둘 모두, B는 SQL만, C는 둘 모두와 EXTRA를 갖는다. 추가 과목은 탈락 조건이 아니므로 A와 C가 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-SUP-R01-classification-axes",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "서브쿼리는 GROUP BY 없는 MAX 한 열이므로 각 외부 행에 값 하나를 제공하는 스칼라다. 매칭이 없어도 이 집계는 NULL 하나를 반환한다. 동시에 e.dept라는 외부 행의 열을 참조하므로 상관이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-SUP-A01-paired-membership",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "허용 튜플은 (10,1),(20,2)다. E의 id1과 id3이 각각 정확한 쌍으로 매칭된다. id2의 (10,2)는 각 값이 따로 나타나더라도 그 조합은 없으므로 제외되어 ORDER BY id 결과는 1,3이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-SUP-A01-percent-rank-top-tie",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "정렬값 10,20,20의 RANK는 1,2,2이고 전체 행 수는 3이다. PERCENT_RANK=(RANK-1)/(행수-1)이므로 id2와 id3 모두 (2-1)/(3-1)=0.5다. 최댓값 동점이라고 반드시 1이 되지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-SUP-A02-cume-desc-peers",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "내림차순 값 순서는 30,20,20,10이다. id2의 20과 같거나 분석 순서상 앞서는 행은 30 한 행과 20 두 행으로 3개다. CUME_DIST는 이를 전체 4행으로 나눈 0.75이며 동점 두 행에 같은 값이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-SUP-A01-first-value-null-frame",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "각 행의 프레임이 전체 파티션으로 명시되어 있다. id 오름차순의 첫 값은 id1의 NULL이므로 RESPECT NULLS 결과는 NULL이다. IGNORE NULLS는 이를 건너뛰고 첫 비NULL인 id2의 8을 고른다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-SUP-A02-first-value-moving-frame",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "id3의 ROWS 1 PRECEDING~CURRENT ROW 프레임에는 id2(v4)와 id3(v7)만 있다. 프레임 첫 행은 id2이므로 FIRST_VALUE는 4다. 파티션 맨 처음 id1의 9는 현재 프레임 밖이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-SUP-A03-ratio-partition-null",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "dept10의 비NULL 합은 2+6=8이므로 id1은 2/8=0.25다. dept20의 합은 8이지만 id4 자체 값이 NULL이어서 비율도 NULL이다. 자동으로 0으로 대체하거나 백분율 25로 바꾸지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-SUP-R01-ratio-over-syntax",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "RATIO_TO_REPORT는 하나의 수치 표현식에 대해 전체 분석 집합 또는 PARTITION BY로 나눈 집합의 합을 분모로 삼는다. Oracle의 이 함수에는 분석 ORDER BY나 ROWS 프레임을 붙이지 않으며 dept를 두 번째 함수 인자로 주지도 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-SUP-A01-root-to-node-path",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "START WITH id1이 LEVEL1 루트다. id4의 pid가 1이므로 루트에서 직접 이어지는 LEVEL2 행이다. 자신의 경로만 연결하여 /ROOT/OTHER가 되며 다른 가지 BRANCH와 LEAF는 포함되지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-SUP-A02-cycle-current-parent",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "하향 탐색은 루트1→2로 이어진다. 현재 id2의 자식 후보는 pid2인 id1과 id3이고, id1은 이미 조상으로 방문했다. CONNECT_BY_ISCYCLE은 조상인 자식 후보를 가진 현재 행을 표시하므로 id2에 1이다. id3은 잎이며 루트1을 다시 반환한 행에 표시하는 방식이 아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-SUP-R01-nocycle-query-scope",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "NOCYCLE은 순환 연결이 있는 계층 질의의 탐색을 다루는 SELECT 옵션이다. 별도 부작용을 배제했으므로 저장된 pid나 PK를 고치거나 행을 삭제하지 않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-SUP-A01-instr-after-end",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "A12B345의 위치는 A1, 1은2, 2는3, B4, 3은5, 4는6, 5는7이다. 숫자 연속 부분의 두 번째 일치는 345다. return_option0은 시작5, return_option1은 끝7 다음인8을 반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-SUP-A02-instr-subexpression",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "패턴의 첫 괄호는 AB, 두 번째 괄호는 123을 캡처한다. subexpr2와 return_option0은 두 번째 캡처의 시작 위치를 요구한다. A1 B2 -3 1이4이므로 결과는 4다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-SUP-A03-count-nonoverlap",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "첫 aba는 위치1~3에서 일치한다. REGEXP_COUNT는 겹치지 않게 일치 이후부터 계속 찾으므로 남은 ba에는 다음 aba가 없다. 위치3을 재사용한 겹치는 aba는 세지 않아 1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-SUP-A04-flags-newline-dot",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "m은 ^/$를 줄 경계에도 적용하도록 하며 점의 줄바꿈 일치 여부를 바꾸지 않는다. cm에서 A.B의 점은 CHR(10)을 통과하지 못해 0이다. n은 점이 줄바꿈도 매칭하도록 하므로 cn에서는 전체 세 문자에 1회 일치한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-SUP-A05-replace-captured-parts",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "전체 문자열이 패턴에 일치하고 그룹1은 AB, 그룹2는 123이다. 치환식은 그룹2, /, 그룹1을 잇도록 지정했으므로 123/AB다. 역참조 기호 자체를 출력하는 식이 아니다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

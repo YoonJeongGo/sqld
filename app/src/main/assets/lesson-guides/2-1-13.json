@@ -1,0 +1,625 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-13",
+  "source": {
+    "id": "2-1-13",
+    "partId": "2-1",
+    "number": 13,
+    "title": "단일행함수(1)",
+    "lectureMinutes": 60,
+    "easy": "행마다 값을 하나 받아 가공한 결과를 돌려주는 함수다. 여러 행을 합치는 집계함수와 구분한다.",
+    "why": "이름의 길이를 재거나 점수를 반올림해도 학생이 한 명으로 합쳐지는 것은 아니다. 각 행에 가공값이 붙는다.",
+    "concepts": [
+      {
+        "term": "UPPER·LOWER",
+        "meaning": "영문 대문자·소문자로 변환",
+        "example": "UPPER('Java') → JAVA"
+      },
+      {
+        "term": "SUBSTR",
+        "meaning": "문자열의 일부를 자름",
+        "example": "SUBSTR('Python',1,2) → Py"
+      },
+      {
+        "term": "LENGTH·LENGTHB",
+        "meaning": "문자 수·바이트 수",
+        "example": "한글 이름의 글자 수와 바이트 수는 다름"
+      },
+      {
+        "term": "INSTR",
+        "meaning": "찾는 문자열의 시작 위치, Oracle은 1부터",
+        "example": "INSTR('JAVA','V') → 3"
+      },
+      {
+        "term": "TRIM·LTRIM·RTRIM",
+        "meaning": "양쪽·왼쪽·오른쪽의 지정 문자 제거",
+        "example": "TRIM(' DB ') → DB"
+      },
+      {
+        "term": "REPLACE·CONCAT",
+        "meaning": "치환·이어 붙이기",
+        "example": "REPLACE('DB_SQL','_','-')"
+      },
+      {
+        "term": "ROUND·TRUNC",
+        "meaning": "반올림·절삭",
+        "example": "12.56을 소수 한 자리로 12.6 / 12.5"
+      },
+      {
+        "term": "CEIL·FLOOR",
+        "meaning": "이상인 최소 정수·이하인 최대 정수",
+        "example": "-1.2 → -1 / -2"
+      },
+      {
+        "term": "ABS·MOD·SIGN",
+        "meaning": "절댓값·나머지·부호",
+        "example": "ABS(-3)=3, MOD(7,3)=1"
+      },
+      {
+        "term": "LPAD·RPAD",
+        "meaning": "목표 길이까지 왼쪽·오른쪽 채움",
+        "example": "LPAD('7',3,'0') → 007"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-13-E01",
+        "title": "문자열을 행마다 가공",
+        "question": "과목명을 대문자로 만들고 앞의 두 글자와 글자 수를 보자.",
+        "tables": [
+          {
+            "title": "과목",
+            "columns": [
+              "과목코드",
+              "과목명"
+            ],
+            "rows": [
+              [
+                "C01",
+                "Java"
+              ],
+              [
+                "C02",
+                "Python"
+              ],
+              [
+                "C03",
+                "DB"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 과목명, UPPER(과목명) AS 대문자, SUBSTR(과목명,1,2) AS 앞두글자, LENGTH(과목명) AS 글자수 FROM 과목 ORDER BY 과목코드;",
+        "steps": [
+          "Java는 대문자 JAVA, 첫 두 글자 Ja, 길이 4다.",
+          "Python은 PYTHON, Py, 길이 6이다. DB는 DB, DB, 길이 2다.",
+          "원래 세 행에서 각각 값을 계산했으므로 결과도 세 행이다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "과목명",
+              "대문자",
+              "앞두글자",
+              "글자수"
+            ],
+            "rows": [
+              [
+                "Java",
+                "JAVA",
+                "Ja",
+                "4"
+              ],
+              [
+                "Python",
+                "PYTHON",
+                "Py",
+                "6"
+              ],
+              [
+                "DB",
+                "DB",
+                "DB",
+                "2"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-1-13-E02",
+        "title": "음수에서도 올림과 내림",
+        "question": "-1.2의 CEIL·FLOOR와 12.56의 ROUND·TRUNC를 비교하자.",
+        "tables": [
+          {
+            "title": "입력값",
+            "columns": [
+              "구분",
+              "값"
+            ],
+            "rows": [
+              [
+                "음수",
+                "-1.2"
+              ],
+              [
+                "소수",
+                "12.56"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "CEIL은 수직선에서 오른쪽의 가까운 정수라 -1.2보다 큰 -1이다.",
+          "FLOOR는 왼쪽의 가까운 정수라 -2다. 0 쪽으로 자르는 TRUNC(-1.2)=-1과 다르다.",
+          "ROUND(12.56,1)=12.6, TRUNC(12.56,1)=12.5다."
+        ],
+        "results": [
+          {
+            "title": "계산 결과",
+            "columns": [
+              "식",
+              "값"
+            ],
+            "rows": [
+              [
+                "CEIL(-1.2)",
+                "-1"
+              ],
+              [
+                "FLOOR(-1.2)",
+                "-2"
+              ],
+              [
+                "TRUNC(-1.2)",
+                "-1"
+              ],
+              [
+                "ROUND(12.56,1)",
+                "12.6"
+              ],
+              [
+                "TRUNC(12.56,1)",
+                "12.5"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "한 행씩 가공한다. ROUND 반올림, TRUNC 자름, CEIL 위 정수, FLOOR 아래 정수.",
+    "traps": [
+      "문자열 위치는 이 Oracle 함수 예시에서 1부터다. 프로그래밍 언어의 0부터 시작하는 배열과 혼동하지 않는다.",
+      "한글 세 글자가 언제나 3바이트는 아니다. LENGTHB는 인코딩에 영향을 받는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-13-Q1",
+        "question": "LENGTH('Python')은?",
+        "answer": "6",
+        "explanation": "P,y,t,h,o,n 여섯 글자다."
+      },
+      {
+        "id": "2-1-13-Q2",
+        "question": "FLOOR(-1.2)는 -1인가 -2인가?",
+        "answer": "-2",
+        "explanation": "-1.2 이하인 가장 큰 정수다."
+      },
+      {
+        "id": "2-1-13-Q3",
+        "question": "단일행함수 세 행을 처리하면 보통 결과가 한 행으로 줄어드는가?",
+        "answer": "아니다",
+        "explanation": "각 행에 대해 가공한 값을 반환한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S03"
+    ],
+    "sourceIds": [
+      "functions",
+      "numeric",
+      "characters"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"단일행함수(1) 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념을 먼저</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">용어를 쉬운 말로</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실제 예시 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 값·행·열인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과와 이유</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">왜 이 답인가?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"178\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#172b4d\"><tspan x=\"360\" dy=\"0\">한 행씩 가공한다. ROUND 반올림, TRUNC 자름, CEIL 위 정수,</tspan><tspan x=\"360\" dy=\"18\">FLOOR 아래 정수.</tspan></text></svg>",
+    "version": 1
+  },
+  "purpose": "과목명 한 값을 여러 표시 형태로 바꾸고 음수의 올림·내림을 수직선 기준으로 구분한다.",
+  "overview": "단일행함수는 각 행의 입력을 받아 값을 계산한다. SELECT 안의 함수는 원본 과목명을 고치지 않는다. 숫자 함수 예제는 실행 SQL 없이 계산 규칙을 비교한다.",
+  "terms": [
+    {
+      "token": "UPPER",
+      "kind": "함수",
+      "meaning": "upper = 대문자 쪽",
+      "role": "Java를 JAVA로 보이게 한다. 옆 SUBSTR의 입력까지 JAVA로 바꾸지는 않는다."
+    },
+    {
+      "token": "SUBSTR(과목명,1,2)",
+      "kind": "함수와 인수",
+      "meaning": "substring = 문자열 일부",
+      "role": "과목명 첫 글자에서 두 글자를 가져온다. 1은 시작 위치,2는 추출 길이다."
+    },
+    {
+      "token": "LENGTH",
+      "kind": "함수",
+      "meaning": "length = 길이",
+      "role": "원본 과목명의 문자 수를 센다. 바이트 수와 구분한다."
+    },
+    {
+      "token": "CEIL / FLOOR",
+      "kind": "숫자 함수",
+      "meaning": "ceiling = 위쪽 정수, floor = 아래쪽 정수",
+      "role": "-1.2 이상인 가까운 정수는 -1, 이하인 가까운 정수는 -2다."
+    },
+    {
+      "token": "ROUND / TRUNC",
+      "kind": "숫자 함수",
+      "meaning": "반올림 / 지정 자리 아래 절삭",
+      "role": "12.56의 소수 첫째 자리까지 ROUND는 12.6, TRUNC는 12.5다."
+    }
+  ],
+  "pitfalls": [
+    "SELECT 목록의 함수들이 나란히 있다고 앞 함수의 결과를 뒤 함수가 자동 입력받지 않는다. 중첩 괄호가 있어야 결과를 이어 사용한다.",
+    "FLOOR는 음수에서 0 쪽 절삭과 다르다. -1.2의 FLOOR는-2지만 TRUNC는-1이다."
+  ],
+  "questions": [
+    {
+      "question": "UPPER는 여기서 무엇을 뜻하나요?",
+      "answer": "Java를 JAVA로 보이게 한다. 옆 SUBSTR의 입력까지 JAVA로 바꾸지는 않는다."
+    },
+    {
+      "question": "SUBSTR(과목명,1,2)는 여기서 무엇을 뜻하나요?",
+      "answer": "과목명 첫 글자에서 두 글자를 가져온다. 1은 시작 위치,2는 추출 길이다."
+    },
+    {
+      "question": "LENGTH는 여기서 무엇을 뜻하나요?",
+      "answer": "원본 과목명의 문자 수를 센다. 바이트 수와 구분한다."
+    },
+    {
+      "question": "CEIL / FLOOR는 여기서 무엇을 뜻하나요?",
+      "answer": "-1.2 이상인 가까운 정수는 -1, 이하인 가까운 정수는 -2다."
+    },
+    {
+      "question": "ROUND / TRUNC는 여기서 무엇을 뜻하나요?",
+      "answer": "12.56의 소수 첫째 자리까지 ROUND는 12.6, TRUNC는 12.5다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 60,
+      "toPage": 64,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-13-E01",
+      "why": "과목명 원문을 유지하면서 대문자 표시·두 글자 약칭·문자 수를 함께 확인한다.",
+      "effect": "조회: 과목 3행에서 각 행마다 4개 표시값을 계산한다.",
+      "prerequisites": [
+        "원본 과목명은 Java, Python, DB이며 각 함수는 과목명 컬럼을 독립적으로 읽는다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "어느 값을 함수에 넣는가",
+          "text": "첫 행의 과목명은 Java다. UPPER(과목명), SUBSTR(과목명,1,2), LENGTH(과목명)는 모두 그 원본 Java를 입력으로 받는다. 앞에서 계산한 JAVA를 다음 함수가 자동으로 받지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "UPPER(과목명)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "원본 Java"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "Java 행의 독립 계산",
+            "columns": [
+              "함수",
+              "입력",
+              "결과"
+            ],
+            "rows": [
+              [
+                "UPPER",
+                "Java",
+                "JAVA"
+              ],
+              [
+                "SUBSTR(…,1,2)",
+                "Java",
+                "Ja"
+              ],
+              [
+                "LENGTH",
+                "Java",
+                "4"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "괄호 속 숫자는 위치와 길이",
+          "text": "SUBSTR의 1은 시작 위치,2는 추출할 문자 수다. Python에서 위치 1의P와 위치 2의y를 가져와 Py다. 1행부터 2행을 고르는 문법이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "SUBSTR(과목명,1,2)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "시작 위치",
+            "문자 수"
+          ],
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 1
+            },
+            {
+              "row": 0,
+              "column": 2
+            }
+          ],
+          "table": {
+            "title": "문자 위치",
+            "columns": [
+              "위치",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            "rows": [
+              [
+                "Python",
+                "P",
+                "y",
+                "t",
+                "h",
+                "o",
+                "n"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "세 행을 각각 계산",
+          "text": "Java는JAVA·Ja·4, Python은PYTHON·Py·6, DB는DB·DB·2다. 함수 세 개를 썼다고 행이 세 배로 늘거나 한 행으로 집계되지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "LENGTH(과목명)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "DB는DB·DB·2"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "과목명",
+              "대문자",
+              "앞두글자",
+              "글자수"
+            ],
+            "rows": [
+              [
+                "Java",
+                "JAVA",
+                "Ja",
+                "4"
+              ],
+              [
+                "Python",
+                "PYTHON",
+                "Py",
+                "6"
+              ],
+              [
+                "DB",
+                "DB",
+                "DB",
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-04",
+          "title": "결과 별칭과 원문 유지",
+          "text": "대문자·앞두글자·글자수는 AS로 붙인 결과 머리글이다. 원본 과목명의 Java를 JAVA로 저장한 UPDATE가 아니며 ORDER BY 과목코드가 세 행의 표시 순서를 정한다.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 과목코드",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "결과 머리글"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "과목명",
+              "대문자",
+              "앞두글자",
+              "글자수"
+            ],
+            "rows": [
+              [
+                "Java",
+                "JAVA",
+                "Ja",
+                "4"
+              ],
+              [
+                "Python",
+                "PYTHON",
+                "Py",
+                "6"
+              ],
+              [
+                "DB",
+                "DB",
+                "DB",
+                "2"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "SUM 같은 집계함수는 여러 입력을 요약하지만 UPPER 같은 단일행함수는 각 행을 가공한다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    },
+    {
+      "exampleId": "2-1-13-E02",
+      "why": "음수에서 올림·내림을 0 기준으로 착각하지 않고 두 소수 처리 방식도 구분한다.",
+      "effect": "개념: 주어진 식 다섯 개의 계산 결과 비교.",
+      "prerequisites": [
+        "원본에는 실행 SQL이 없다. Oracle 숫자 함수 정의에 따른 예상값을 설명한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "-1.2 양쪽 정수 찾기",
+          "text": "수직선에서 -2 < -1.2 < -1이다. CEIL은 입력 이상인 가장 작은 정수 -1, FLOOR는 입력 이하인 가장 큰 정수 -2를 고른다.",
+          "codeFocus": [],
+          "highlights": [
+            "-2 < -1.2 < -1"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "음수의 경계",
+            "columns": [
+              "식",
+              "선택 값",
+              "이유"
+            ],
+            "rows": [
+              [
+                "CEIL(-1.2)",
+                "-1",
+                "-1.2 이상인 가까운 정수"
+              ],
+              [
+                "FLOOR(-1.2)",
+                "-2",
+                "-1.2 이하인 가까운 정수"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "TRUNC는 아래로 내림과 다르다",
+          "text": "TRUNC(-1.2)는 소수 부분을 없애 -1이다. 음수에서 FLOOR처럼 더 작은 -2로 보내는 규칙이 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "소수 부분을 없애"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "음수 절삭 비교",
+            "columns": [
+              "입력",
+              "TRUNC",
+              "FLOOR"
+            ],
+            "rows": [
+              [
+                "-1.2",
+                "-1",
+                "-2"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "지정 자리는 남길 자리",
+          "text": "ROUND(12.56,1)에서 1은 소수 첫째 자리까지 남긴다는 뜻이다. 뒤의 6으로 반올림해 12.6이 된다. TRUNC(12.56,1)은 6을 잘라 12.5다.",
+          "codeFocus": [],
+          "highlights": [
+            "12.6",
+            "12.5"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "계산 결과",
+            "columns": [
+              "식",
+              "값"
+            ],
+            "rows": [
+              [
+                "CEIL(-1.2)",
+                "-1"
+              ],
+              [
+                "FLOOR(-1.2)",
+                "-2"
+              ],
+              [
+                "TRUNC(-1.2)",
+                "-1"
+              ],
+              [
+                "ROUND(12.56,1)",
+                "12.6"
+              ],
+              [
+                "TRUNC(12.56,1)",
+                "12.5"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "양수만 보고 FLOOR와 TRUNC가 같다고 외우면 음수에서 틀린다. ROUND의 자리 인수는 자동 입력 행수가 아니다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-13-Q1",
+      "hint": "Python을 한 글자씩 분리해 세어 보자.",
+      "reasoning": "P,y,t,h,o,n 여섯 문자이므로 6이다. 바이트 수를 묻는 LENGTHB와는 다르다."
+    },
+    {
+      "checkId": "2-1-13-Q2",
+      "hint": "입력보다 작거나 같은 정수 중 가장 가까운 수를 찾자.",
+      "reasoning": "-2는 -1.2 이하이고 -1은 -1.2보다 크다. 따라서 FLOOR(-1.2)=-2다."
+    },
+    {
+      "checkId": "2-1-13-Q3",
+      "hint": "함수가 각 행에 적용되는지 여러 행을 묶는지 구별하자.",
+      "reasoning": "세 원본 행마다 계산 결과를 내므로 이 단일행함수 조회는 세 행이다. 집계처럼 한 요약 행으로 줄이지 않는다."
+    }
+  ],
+  "sourceUrls": [],
+  "reviewNotes": []
+}

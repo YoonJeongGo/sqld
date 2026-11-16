@@ -1,0 +1,500 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "1-1-08",
+  "source": {
+    "id": "1-1-08",
+    "partId": "1-1",
+    "number": 8,
+    "title": "관계",
+    "lectureMinutes": 35,
+    "easy": "엔터티의 개별 사례들이 업무상 어떻게 연결되는지 정한 규칙이다. 학생이 어느 학과에 소속되는지가 한 예다.",
+    "why": "두 표에 비슷한 열이 있다고 자동으로 관계가 생기는 것은 아니다. 무엇을 기준으로, 몇 개까지, 반드시 연결되는지를 정해야 한다.",
+    "concepts": [
+      {
+        "term": "관계명",
+        "meaning": "연결의 업무 의미",
+        "example": "학생이 학과에 소속된다"
+      },
+      {
+        "term": "관계 차수",
+        "meaning": "상대편에 연결 가능한 수",
+        "example": "학과 1:N 학생"
+      },
+      {
+        "term": "필수·선택 관계",
+        "meaning": "관계가 꼭 있어야 하는지",
+        "example": "학생은 학과 필수, 학과는 학생 0명 가능"
+      },
+      {
+        "term": "존재 관계",
+        "meaning": "어떤 대상의 존재와 관련된 연결",
+        "example": "사원과 부서의 소속"
+      },
+      {
+        "term": "행위 관계",
+        "meaning": "업무 행위로 발생하는 연결",
+        "example": "고객이 주문한다"
+      },
+      {
+        "term": "식별 관계",
+        "meaning": "부모 식별자가 자식 식별자의 일부가 됨",
+        "example": "주문상세 PK=(주문번호, 순번)"
+      },
+      {
+        "term": "비식별 관계",
+        "meaning": "부모 키를 참조하지만 자식 PK에는 넣지 않음",
+        "example": "학생 PK=학번, 학과코드는 FK"
+      },
+      {
+        "term": "외래키",
+        "meaning": "표에서 관계를 구현하는 참조 속성",
+        "example": "학생.학과코드 → 학과.학과코드"
+      }
+    ],
+    "examples": [
+      {
+        "id": "1-1-08-E01",
+        "title": "학과 1:N 학생",
+        "question": "컴퓨터 학과에 여러 학생이 소속되어도 되는가?",
+        "tables": [
+          {
+            "title": "학과",
+            "columns": [
+              "학과코드",
+              "학과명"
+            ],
+            "rows": [
+              [
+                "D01",
+                "컴퓨터"
+              ],
+              [
+                "D02",
+                "전자"
+              ]
+            ]
+          },
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과코드"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양지훈",
+                "D01"
+              ],
+              [
+                "1002",
+                "양선규",
+                "D01"
+              ],
+              [
+                "1003",
+                "유성재",
+                "D02"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "D01은 학과표에서 컴퓨터 한 개를 가리킨다.",
+          "학생표의 양지훈과 양선규가 모두 D01을 참조한다. FK 값의 반복은 허용되는 정상적인 1:N 관계다.",
+          "D02는 유성재에게 연결된다. 학생이 어느 학과에 속하는지 코드로 일치시킨다."
+        ],
+        "results": [
+          {
+            "title": "연결 결과",
+            "columns": [
+              "학과명",
+              "소속 학생"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "양지훈, 양선규"
+              ],
+              [
+                "전자",
+                "유성재"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "관계는 연결 규칙. 개수와 필수 여부를 같이 읽는다.",
+    "traps": [
+      "외래키라고 값이 유일해야 하는 것은 아니다. 여러 학생이 같은 학과를 참조할 수 있다.",
+      "비식별 관계라고 반드시 NULL을 허용하는 것은 아니다. NOT NULL이면 필수 참조다."
+    ],
+    "selfChecks": [
+      {
+        "id": "1-1-08-Q1",
+        "question": "여러 학생이 같은 학과코드를 가져도 되는가?",
+        "answer": "된다",
+        "explanation": "학생 쪽의 FK이므로 반복 가능하다."
+      },
+      {
+        "id": "1-1-08-Q2",
+        "question": "부모 키가 자식 PK의 일부가 되는 관계는?",
+        "answer": "식별 관계",
+        "explanation": "자식을 식별하는 데 부모 키를 포함한다."
+      },
+      {
+        "id": "1-1-08-Q3",
+        "question": "관계가 1:N이면 N쪽 행이 반드시 하나 이상 있어야 하는가?",
+        "answer": "그것만으로는 알 수 없다",
+        "explanation": "최소 참여 수 0/1도 확인해야 한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-M04",
+      "note-M07"
+    ],
+    "sourceIds": [
+      "model",
+      "constraint"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"관계 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"24\" y=\"66\" width=\"175\" height=\"81\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"111.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">학생</text><text x=\"111.5\" y=\"124\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">학번 PK</text><rect x=\"270\" y=\"66\" width=\"180\" height=\"81\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">수강</text><text x=\"360.0\" y=\"124\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">학번 FK · 과목코드 FK</text><rect x=\"520\" y=\"66\" width=\"175\" height=\"81\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"607.5\" y=\"97\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">과목</text><text x=\"607.5\" y=\"124\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">과목코드 PK</text><path d=\"M207 105 L260 105\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M510 105 L462 105\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"232\" y=\"75\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">1 : N</text><text x=\"486\" y=\"75\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">N : 1</text><text x=\"360\" y=\"188\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">M:N 관계를 연결표로 풀어내는 개념도 · 상세 업무규칙은 본문 참고</text></svg>",
+    "version": 1
+  },
+  "purpose": "같은 D01이 학과표에는 한 번, 학생표에는 두 번 있어도 되는 이유와 FK의 소속을 설명하자.",
+  "overview": "학과 한 곳과 여러 학생의 관계를 해석한다. 학과.학과코드와 학생.학과코드는 이름이 같아도 서로 다른 표의 컬럼이다.",
+  "terms": [
+    {
+      "token": "관계명",
+      "kind": "개념",
+      "meaning": "연결의 업무 의미",
+      "role": "학생이 학과에 소속된다"
+    },
+    {
+      "token": "관계 차수",
+      "kind": "개념",
+      "meaning": "상대편에 연결 가능한 수",
+      "role": "학과 1:N 학생"
+    },
+    {
+      "token": "필수·선택 관계",
+      "kind": "개념",
+      "meaning": "관계가 꼭 있어야 하는지",
+      "role": "학생은 학과 필수, 학과는 학생 0명 가능"
+    },
+    {
+      "token": "존재 관계",
+      "kind": "개념",
+      "meaning": "어떤 대상의 존재와 관련된 연결",
+      "role": "사원과 부서의 소속"
+    },
+    {
+      "token": "행위 관계",
+      "kind": "개념",
+      "meaning": "업무 행위로 발생하는 연결",
+      "role": "고객이 주문한다"
+    },
+    {
+      "token": "식별 관계",
+      "kind": "개념",
+      "meaning": "부모 식별자가 자식 식별자의 일부가 됨",
+      "role": "주문상세 PK=(주문번호, 순번)"
+    },
+    {
+      "token": "비식별 관계",
+      "kind": "개념",
+      "meaning": "부모 키를 참조하지만 자식 PK에는 넣지 않음",
+      "role": "학생 PK=학번, 학과코드는 FK"
+    },
+    {
+      "token": "외래키",
+      "kind": "개념",
+      "meaning": "표에서 관계를 구현하는 참조 속성",
+      "role": "학생.학과코드 → 학과.학과코드"
+    },
+    {
+      "token": "학생.학과코드",
+      "kind": "소속 표기",
+      "meaning": "점 왼쪽은 표, 오른쪽은 그 표의 열",
+      "role": "현재 설명에서 참조값을 담은 자식 학생표의 학과코드를 가리킨다."
+    },
+    {
+      "token": "학과.학과코드",
+      "kind": "소속 표기",
+      "meaning": "점 왼쪽은 표, 오른쪽은 그 표의 열",
+      "role": "참조받는 부모 학과표의 코드다. 학생.학과코드와 이름이 같아도 다른 열이다."
+    }
+  ],
+  "pitfalls": [
+    "PDF 18~20쪽의 존재·행위 관계와 UML 연관·의존의 실선·점선을 ERD 식별·비식별의 표시와 같은 기준으로 합치지 않는다.",
+    "PDF 22쪽에서 FK가 있다는 사실만으로 필수 참여가 증명되지는 않는다. 해당 ERD의 최소 참여 표시와 컬럼 제약을 함께 읽는다."
+  ],
+  "questions": [
+    {
+      "question": "어느 학과코드가 외래키야?",
+      "answer": "이 예제에서는 학생표 안의 학생.학과코드다. 학과표의 학과.학과코드는 참조받는 키다. 같은 글자라도 소속이 다르다."
+    },
+    {
+      "question": "비식별 관계면 NULL은 항상 돼?",
+      "answer": "아니다. 자식의 FK가 PK 밖에 있다는 말일 뿐이다. FK에 NOT NULL을 지정하거나 필수 참여 규칙을 두면 부모 연결이 필요하다."
+    },
+    {
+      "question": "식별 관계면 부모 삭제할 때 자식도 자동 삭제돼?",
+      "answer": "그 사실만으로 자동 삭제되지 않는다. Oracle에서는 ON DELETE CASCADE 등 실제 제약 정의를 확인해야 한다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "1-1",
+      "title": "데이터 모델링의 이해",
+      "fromPage": 18,
+      "toPage": 22,
+      "note": "흥달쌤 원본 PDF의 해당 단원과 문제를 대조했습니다. 아래 앱 예제의 이름·표·값은 PDF 문제와 별도 데이터이며, 원본 PDF의 보기를 옮겨 채점하지 않습니다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "1-1-08-E01",
+      "why": "양지훈과 양선규가 모두 컴퓨터 학과에 소속되어도 중복 학생으로 오해하지 않는다.",
+      "effect": "개념: 학과 1:N 학생 연결과 외래키 소속을 확인한다.",
+      "prerequisites": [
+        "원본에서 학과 D01=컴퓨터, D02=전자이며 학생은 학번으로 구별한다.",
+        "학생.학과코드가 학과.학과코드를 참조한다는 관계를 전제로 한다. 삭제 옵션·NULL 허용 여부는 이 표만으로 확정할 수 없다."
+      ],
+      "steps": [
+        {
+          "title": "부모의 D01을 먼저 찾기",
+          "text": "학과표의 D01은 컴퓨터 학과 한 곳을 구별한다. 이 값에 대응하는 학과명은 컴퓨터다. 학생표의 학번 1001처럼 사람을 구별하는 번호와 다른 역할이다.",
+          "codeFocus": [],
+          "highlights": [
+            "학과표의 D01"
+          ],
+          "table": {
+            "title": "학과",
+            "columns": [
+              "학과코드",
+              "학과명"
+            ],
+            "rows": [
+              [
+                "D01",
+                "컴퓨터"
+              ],
+              [
+                "D02",
+                "전자"
+              ]
+            ]
+          },
+          "focusRows": [
+            0
+          ],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 0
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "자식의 어느 열이 참조하는가",
+          "text": "학생.학과코드가 참조하는 쪽인 FK다. 양지훈 1001의 D01, 양선규 1002의 D01을 학과표 D01과 각각 맞춘다. 학생.학번 1001과 1002는 달라 두 학생이며 FK D01의 반복은 이 1:N 설계에서 허용된다.",
+          "codeFocus": [],
+          "highlights": [
+            "학생.학과코드",
+            "FK D01의 반복"
+          ],
+          "table": {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과코드"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양지훈",
+                "D01"
+              ],
+              [
+                "1002",
+                "양선규",
+                "D01"
+              ],
+              [
+                "1003",
+                "유성재",
+                "D02"
+              ]
+            ]
+          },
+          "focusRows": [
+            0,
+            1
+          ],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "세 번째 연결도 같은 방식",
+          "text": "유성재 1003의 학과코드 D02는 전자 학과와 연결된다. 이름이 같은 열끼리 무조건 연결한 것이 아니라 이 관계의 참조 규칙에 따라 학과코드 값을 비교한 것이다.",
+          "codeFocus": [],
+          "highlights": [
+            "D02",
+            "전자"
+          ],
+          "table": {
+            "title": "학습용 참조 확인",
+            "columns": [
+              "학생.학번",
+              "학생.이름",
+              "학생.학과코드",
+              "학과.학과명"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양지훈",
+                "D01",
+                "컴퓨터"
+              ],
+              [
+                "1002",
+                "양선규",
+                "D01",
+                "컴퓨터"
+              ],
+              [
+                "1003",
+                "유성재",
+                "D02",
+                "전자"
+              ]
+            ]
+          },
+          "focusRows": [
+            2
+          ],
+          "focusCells": [
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "한 쪽에서 한 개를 고정해 세기",
+          "text": "학과 D01 한 곳에서 보면 양지훈과 양선규 두 학생이 연결된다. 학생 양지훈 한 명에서 보면 이 예제에서는 학과 하나 D01이다. 연결 결과의 학생 목록은 설명용 묶음이지 학생표의 이름 칸에 쉼표 목록을 새로 저장한 것이 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "학과 D01 한 곳",
+            "학과 하나 D01"
+          ],
+          "table": {
+            "title": "연결 결과",
+            "columns": [
+              "학과명",
+              "소속 학생"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "양지훈, 양선규"
+              ],
+              [
+                "전자",
+                "유성재"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "title": "그림의 차수와 필수 여부를 따로",
+          "text": "기존 관계 그림에서 학과에서 학생으로 갈라지는 선의 양 끝을 보고, ERD에서는 0 또는 1 같은 최소 참여 표시를 따로 본다. 비식별 관계인지 여부는 FK가 자식 PK에 포함되는지로 판단한다. 자식 FK가 필수인지와 부모 삭제 시 동작은 별도 규칙이다.",
+          "codeFocus": [],
+          "highlights": [
+            "별도 규칙"
+          ],
+          "table": {
+            "title": "서로 다른 판단 축",
+            "columns": [
+              "질문",
+              "확인할 것"
+            ],
+            "rows": [
+              [
+                "1:N인가",
+                "한 인스턴스에 연결될 최대 수"
+              ],
+              [
+                "선택·필수인가",
+                "최소 참여수 또는 NOT NULL"
+              ],
+              [
+                "식별 관계인가",
+                "FK가 자식 주식별자에 포함되는가"
+              ],
+              [
+                "삭제가 전파되는가",
+                "정의된 삭제 동작"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-05"
+        }
+      ],
+      "comparison": "부모 키의 유일성과 자식 FK의 반복 가능성을 구분한다. FK에도 별도 UNIQUE를 걸면 관계 제약이 달라질 수 있으므로 모든 FK가 어떤 상황에서든 중복 가능하다고 외우지 않는다.",
+      "verification": "원본 표·업무 규칙과 추가 설명을 대조한 개념 검토입니다. SQL을 실행하는 예제가 아닙니다. 실제 DBMS 실행·사람 전문가 검수는 하지 않았습니다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "1-1-08-Q1",
+      "hint": "두 학생을 구별하는 열과 소속을 가리키는 열이 같은가?",
+      "reasoning": "이 예제는 학번으로 양지훈과 양선규를 구별하고 학과코드 D01로 같은 학과를 가리킨다. FK 반복은 정상이다."
+    },
+    {
+      "checkId": "1-1-08-Q2",
+      "hint": "연결된 부모의 값이 자식의 대표 식별 기준 안에 들어가는지 보자.",
+      "reasoning": "부모 키가 자식 PK의 일부가 되면 식별 관계다. 부모 삭제 시 CASCADE가 자동이라는 뜻은 아니다."
+    },
+    {
+      "checkId": "1-1-08-Q3",
+      "hint": "N이 최대 대응 수인지 최소 참여수인지 생각해 보자.",
+      "reasoning": "1:N만으로 최소 한 건을 요구하는지 알 수 없다. 학과에 학생이 0명이어도 되는지는 0..N/1..N 같은 최소 참여 규칙을 확인해야 한다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/constraint.html",
+    "https://docs.oracle.com/en/database/oracle/sql-developer-data-modeler/24.3/dmdug/data-modeler-concepts-usage.html"
+  ],
+  "reviewNotes": [
+    "PDF 1-1 25~27쪽에서 비식별 관계의 독립 존재 및 식별 관계의 삭제 전파를 일반화하는 표현을 별도 주의로 연결했다. 원문·정답은 바꾸지 않았다."
+  ]
+}

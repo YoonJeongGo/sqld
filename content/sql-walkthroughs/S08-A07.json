@@ -1,0 +1,410 @@
+{
+  "id": "S08-A07",
+  "source": {
+    "id": "S08-A07",
+    "version": 1,
+    "title": "다음 HAVING은 집계함수를 직접 쓰지 않았다. 결과는?",
+    "stem": "다음 HAVING은 집계함수를 직접 쓰지 않았다. 결과는?",
+    "sql": "SELECT dept,COUNT(*) FROM T GROUP BY dept HAVING dept='A'",
+    "tables": [
+      {
+        "title": "T",
+        "columns": [
+          "dept"
+        ],
+        "rows": [
+          [
+            "A"
+          ],
+          [
+            "A"
+          ],
+          [
+            "B"
+          ]
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "id": "c",
+        "text": "A,1",
+        "reason": "A그룹의 원본 행은 두 개다."
+      },
+      {
+        "id": "d",
+        "text": "A,2와 B,1",
+        "reason": "HAVING은 B그룹을 제외한다."
+      },
+      {
+        "id": "a",
+        "text": "A,2",
+        "reason": "A,2를 반환한다."
+      },
+      {
+        "id": "b",
+        "text": "집계함수없는 HAVING은항상 오류",
+        "reason": "그룹 키조건도 HAVING에사용할수 있다."
+      }
+    ],
+    "correctChoiceIds": [
+      "a"
+    ],
+    "dialect": "Oracle",
+    "dialectVersion": "19c"
+  },
+  "intro": "입력 표의 값으로 SQL의 뜻을 따라 읽는 학습용 논리 과정입니다. 실제 DB의 물리 실행 순서나 실행계획을 측정한 자료가 아닙니다. 이전·다음으로 한 단계씩 확인하세요.",
+  "steps": [
+    {
+      "id": "step-01",
+      "title": "FROM · 어떤 값에서 시작하는가",
+      "text": "T에서 T.dept 값을 읽습니다. 입력 3행을 출발점으로 삼습니다. 여기서 보이는 순서는 설명을 위한 나열이며 원본 테이블에 고정된 행 순서가 있다는 뜻이 아닙니다.",
+      "codeFocus": [
+        {
+          "needle": "FROM T",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "T.dept"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 시작 입력",
+        "columns": [
+          "T.dept"
+        ],
+        "rows": [
+          [
+            "A"
+          ],
+          [
+            "A"
+          ],
+          [
+            "B"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-02",
+      "title": "GROUP BY · dept=A",
+      "text": "dept=A인 2행을 같은 그룹으로 묶습니다. 이 그룹 안의 T.dept 값으로 계산합니다. NULL 그룹 키도 같은 NULL 그룹으로 묶입니다.",
+      "codeFocus": [
+        {
+          "needle": "GROUP BY dept",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "T.dept"
+      ],
+      "focusRows": [
+        0,
+        1
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 그룹 입력 · dept=A",
+        "columns": [
+          "T.dept"
+        ],
+        "rows": [
+          [
+            "A"
+          ],
+          [
+            "A"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-03",
+      "title": "GROUP BY · dept=B",
+      "text": "dept=B인 1행을 같은 그룹으로 묶습니다. 이 그룹 안의 T.dept 값으로 계산합니다. NULL 그룹 키도 같은 NULL 그룹으로 묶입니다.",
+      "codeFocus": [
+        {
+          "needle": "GROUP BY dept",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "T.dept"
+      ],
+      "focusRows": [
+        0
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 그룹 입력 · dept=B",
+        "columns": [
+          "T.dept"
+        ],
+        "rows": [
+          [
+            "B"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-04",
+      "title": "집계 · COUNT(*)",
+      "text": "dept=A에서 COUNT(*)를 계산합니다. 별표는 값 하나가 아니라 행 전체를 가리킵니다. NULL이 있는 행도 셉니다. 계산 대상 2개 → 2.",
+      "codeFocus": [
+        {
+          "needle": "COUNT(*)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "COUNT(*)",
+        "dept"
+      ],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 1
+        },
+        {
+          "row": 1,
+          "column": 1
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 집계 대상 · dept=A",
+        "columns": [
+          "T.dept",
+          "* 계산값",
+          "집계 포함 여부"
+        ],
+        "rows": [
+          [
+            "A",
+            "행 1개",
+            "포함"
+          ],
+          [
+            "A",
+            "행 1개",
+            "포함"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-05",
+      "title": "집계 · COUNT(*)",
+      "text": "dept=B에서 COUNT(*)를 계산합니다. 별표는 값 하나가 아니라 행 전체를 가리킵니다. NULL이 있는 행도 셉니다. 계산 대상 1개 → 1.",
+      "codeFocus": [
+        {
+          "needle": "COUNT(*)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "COUNT(*)",
+        "dept"
+      ],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 1
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 집계 대상 · dept=B",
+        "columns": [
+          "T.dept",
+          "* 계산값",
+          "집계 포함 여부"
+        ],
+        "rows": [
+          [
+            "B",
+            "행 1개",
+            "포함"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-06",
+      "title": "HAVING · 그룹을 남길지 판단",
+      "text": "dept='A'는 개별 입력 행이 아니라 그룹별 집계 결과에 적용합니다.\ndept=A, COUNT(*)=2 → TRUE → 통과\ndept=B, COUNT(*)=1 → FALSE → 제외",
+      "codeFocus": [
+        {
+          "needle": "dept='A'",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "dept='A'",
+        "dept"
+      ],
+      "focusRows": [
+        0
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 그룹별 조건",
+        "columns": [
+          "dept",
+          "COUNT(*)",
+          "HAVING 판단"
+        ],
+        "rows": [
+          [
+            "A",
+            "2",
+            "TRUE → 통과"
+          ],
+          [
+            "B",
+            "1",
+            "FALSE → 제외"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-07",
+      "title": "SELECT · 결과 열 확인",
+      "text": "dept, COUNT(*) 순서로 1행을 출력합니다. 집계값을 이용하는 바깥 계산식도 이 결과 열에서 확인합니다.",
+      "codeFocus": [
+        {
+          "needle": "dept,COUNT(*)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "dept"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 출력 열",
+        "columns": [
+          "dept",
+          "COUNT(*)"
+        ],
+        "rows": [
+          [
+            "A",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-08",
+      "title": "최종 결과와 원래 답 연결",
+      "text": "최종 1행입니다. ORDER BY가 없으므로 여기 나열한 행 순서는 보장하지 않습니다. 행의 값과 중복 개수를 확인하세요. 원래 보기별 해설에서 같은 결과인지 확인하세요.",
+      "codeFocus": [
+        {
+          "needle": "dept,COUNT(*)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 최종 결과",
+        "columns": [
+          "dept",
+          "COUNT(*)"
+        ],
+        "rows": [
+          [
+            "A",
+            "2"
+          ]
+        ]
+      }
+    }
+  ],
+  "terms": [
+    {
+      "token": "SELECT",
+      "kind": "키워드",
+      "meaning": "결과에 보여 줄 열과 계산식을 고른다.",
+      "role": "이 문제의 최종 출력 열을 정한다."
+    },
+    {
+      "token": "FROM",
+      "kind": "키워드",
+      "meaning": "값을 읽을 표 또는 조회 결과를 지정한다.",
+      "role": "원본 표에서 설명을 시작하는 위치다."
+    },
+    {
+      "token": "GROUP BY",
+      "kind": "키워드",
+      "meaning": "그룹 기준값이 같은 입력 행을 묶는다.",
+      "role": "각 묶음에서 집계를 계산하며 출력 정렬을 보장하지 않는다."
+    },
+    {
+      "token": "HAVING",
+      "kind": "키워드",
+      "meaning": "그룹 조건이 TRUE인 그룹만 남긴다.",
+      "role": "집계 전 개별 행을 거르는 WHERE와 구별한다."
+    },
+    {
+      "token": "COUNT",
+      "kind": "함수",
+      "meaning": "행 또는 NULL이 아닌 계산값의 개수를 센다.",
+      "role": "COUNT(*)는 모든 행, COUNT(식)는 그 식이 NULL이 아닌 행을 센다."
+    },
+    {
+      "token": "T",
+      "kind": "테이블명",
+      "meaning": "관련 정보를 행과 열로 저장한 표의 이름이다.",
+      "role": "원본의 dept 열을 제공한다."
+    },
+    {
+      "token": "dept",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 dept 값을 읽는다."
+    },
+    {
+      "token": "=",
+      "kind": "연산자",
+      "meaning": "두 값을 같은지 비교한다.",
+      "role": "현재 파란 구문의 실제 값 대입을 함께 확인한다."
+    },
+    {
+      "token": "*",
+      "kind": "연산자",
+      "meaning": "a*b는 곱셈, SELECT * 또는 T.*는 전체 열, COUNT(*)는 모든 입력 행을 뜻한다.",
+      "role": "현재 파란 구문의 실제 값 대입을 함께 확인한다."
+    }
+  ],
+  "verification": {
+    "method": "독립 값 계산 및 원본 fixture 대조",
+    "engine": "SQLite",
+    "engineVersion": "3.50.4",
+    "oracleEngineExecuted": false,
+    "queryMode": "SQLite에서 호환 SELECT 실행; Oracle NULL 정렬 기본값 명시; 숫자 NVL/MOD는 등록 함수",
+    "expectedRowsMatch": true,
+    "notes": [
+      "Oracle 19c 원문 엔진 실행은 미실시. 원본 정답·보기·입력표는 변경하지 않았다.",
+      "아래 중간표는 설명용이며 실제 엔진 내부에 같은 임시표가 생긴다는 뜻이 아니다."
+    ]
+  },
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Aggregate-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Using-Subqueries.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/IN-Condition.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Comparison-Conditions.html"
+  ]
+}

@@ -1,0 +1,441 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "1-2-01",
+  "source": {
+    "id": "1-2-01",
+    "partId": "1-2",
+    "number": 1,
+    "title": "관계형 데이터베이스 개념",
+    "lectureMinutes": 18,
+    "easy": "서로 관련된 데이터를 표로 표현하고, 표 사이를 값으로 연결하는 데이터베이스 모델이다.",
+    "why": "지금까지 배운 릴레이션·튜플·속성·도메인을 한 표에 붙여 읽으면 SQL이 무엇을 다루는지 보인다.",
+    "concepts": [
+      {
+        "term": "릴레이션",
+        "meaning": "관계 모델에서의 표",
+        "example": "학생 릴레이션 전체"
+      },
+      {
+        "term": "튜플",
+        "meaning": "한 개의 정보 묶음인 행",
+        "example": "1001 / 양선규 / 컴퓨터"
+      },
+      {
+        "term": "속성",
+        "meaning": "표의 정보 항목인 열",
+        "example": "학번, 이름, 학과"
+      },
+      {
+        "term": "차수(Degree)",
+        "meaning": "속성의 개수",
+        "example": "학번·이름·학과 → 3"
+      },
+      {
+        "term": "카디널리티(Cardinality)",
+        "meaning": "릴레이션에 있는 튜플의 개수",
+        "example": "네 학생 정보 네 줄 → 4"
+      },
+      {
+        "term": "도메인",
+        "meaning": "각 속성에 허용한 값",
+        "example": "학과의 허용 코드 목록"
+      },
+      {
+        "term": "스키마·인스턴스",
+        "meaning": "표의 구조·현재 실제 데이터",
+        "example": "학생(학번,이름,학과) / 지금 저장된 행"
+      },
+      {
+        "term": "관계 모델과 SQL 차이",
+        "meaning": "수학적 릴레이션은 집합, SQL은 중복 행을 유지할 수 있음",
+        "example": "SQL SELECT와 관계대수 투영을 구별"
+      }
+    ],
+    "examples": [
+      {
+        "id": "1-2-01-E01",
+        "title": "속성과 튜플을 실제로 세기",
+        "question": "아래 학생표의 차수와 카디널리티는?",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양선규",
+                "컴퓨터"
+              ],
+              [
+                "1002",
+                "박상현",
+                "전자"
+              ],
+              [
+                "1003",
+                "양지훈",
+                "컴퓨터"
+              ],
+              [
+                "1004",
+                "유성재",
+                "기계"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "학번·이름·학과라는 서로 다른 정보 항목 세 개를 세면 차수 3이다.",
+          "1001/양선규/컴퓨터, 1002/박상현/전자, 1003/양지훈/컴퓨터, 1004/유성재/기계의 네 정보 묶음을 세면 카디널리티 4다.",
+          "컴퓨터라는 학과값이 두 번 나와도 학번 등이 다르므로 서로 다른 두 튜플이다."
+        ],
+        "results": [
+          {
+            "title": "계산",
+            "columns": [
+              "항목",
+              "값"
+            ],
+            "rows": [
+              [
+                "차수",
+                "3"
+              ],
+              [
+                "카디널리티",
+                "4"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "표 전체=릴레이션 / 한 줄=튜플 / 항목=속성 / 개수는 차수·카디널리티.",
+    "traps": [
+      "표 머리글은 튜플 수에 포함하지 않는다.",
+      "관계 모델에서 행·열의 나열 순서 자체는 의미가 없다. SQL 출력 순서를 요구하면 ORDER BY를 확인한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "1-2-01-Q1",
+        "question": "학생이 한 명 더 들어오면 바뀌는 것은?",
+        "answer": "카디널리티",
+        "explanation": "데이터 행이 하나 늘어난다."
+      },
+      {
+        "id": "1-2-01-Q2",
+        "question": "나이라는 열을 추가하면 바뀌는 것은?",
+        "answer": "차수",
+        "explanation": "기록할 속성이 하나 늘어난다."
+      },
+      {
+        "id": "1-2-01-Q3",
+        "question": "학과가 같으면 중복 튜플인가?",
+        "answer": "아니다",
+        "explanation": "튜플 전체의 값이 같은지를 보아야 한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S01"
+    ],
+    "sourceIds": [
+      "model",
+      "select"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"관계형 데이터베이스 개념 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"40\" y=\"44\" width=\"120\" height=\"36\" fill=\"#007d7a\"/><text x=\"100.0\" y=\"68\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"700\">학번</text><rect x=\"160\" y=\"44\" width=\"120\" height=\"36\" fill=\"#007d7a\"/><text x=\"220.0\" y=\"68\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"700\">이름</text><rect x=\"280\" y=\"44\" width=\"120\" height=\"36\" fill=\"#007d7a\"/><text x=\"340.0\" y=\"68\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"700\">학과</text><rect x=\"400\" y=\"44\" width=\"120\" height=\"36\" fill=\"#007d7a\"/><text x=\"460.0\" y=\"68\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"700\">학년</text><rect x=\"40\" y=\"80\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"100.0\" y=\"104\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">1001</text><rect x=\"160\" y=\"80\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"220.0\" y=\"104\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">양선규</text><rect x=\"280\" y=\"80\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"340.0\" y=\"104\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">컴퓨터</text><rect x=\"400\" y=\"80\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"460.0\" y=\"104\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">4</text><rect x=\"40\" y=\"116\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"100.0\" y=\"140\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">1002</text><rect x=\"160\" y=\"116\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"220.0\" y=\"140\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">박상현</text><rect x=\"280\" y=\"116\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"340.0\" y=\"140\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">전자</text><rect x=\"400\" y=\"116\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"460.0\" y=\"140\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">3</text><text x=\"360\" y=\"25\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"12\" fill=\"#58677f\" font-weight=\"400\">개념도용 별도 예시</text><text x=\"610\" y=\"90\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"18\" fill=\"#172b4d\" font-weight=\"700\">속성 4개</text><text x=\"610\" y=\"122\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"18\" fill=\"#007d7a\" font-weight=\"700\">→ 차수 4</text><text x=\"280\" y=\"187\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#172b4d\" font-weight=\"700\">두 사람의 정보가 두 줄 → 튜플 2개 → 카디널리티 2</text></svg>",
+    "version": 1
+  },
+  "purpose": "양선규부터 유성재까지 네 학생의 정보 묶음과 학번·이름·학과 세 항목을 따로 세어 보자.",
+  "overview": "릴레이션 구조와 현재 저장값을 구별하는 개념이다. 수학적 관계 모델의 성질을 SQL 조회 결과의 중복·정렬 규칙과 혼동하지 않는다.",
+  "terms": [
+    {
+      "token": "릴레이션",
+      "kind": "개념",
+      "meaning": "관계 모델에서의 표",
+      "role": "학생 릴레이션 전체"
+    },
+    {
+      "token": "튜플",
+      "kind": "개념",
+      "meaning": "한 개의 정보 묶음인 행",
+      "role": "1001 / 양선규 / 컴퓨터"
+    },
+    {
+      "token": "속성",
+      "kind": "개념",
+      "meaning": "표의 정보 항목인 열",
+      "role": "학번, 이름, 학과"
+    },
+    {
+      "token": "차수(Degree)",
+      "kind": "개념",
+      "meaning": "속성의 개수",
+      "role": "학번·이름·학과 → 3"
+    },
+    {
+      "token": "카디널리티(Cardinality)",
+      "kind": "개념",
+      "meaning": "릴레이션에 있는 튜플의 개수",
+      "role": "네 학생 정보 네 줄 → 4"
+    },
+    {
+      "token": "도메인",
+      "kind": "개념",
+      "meaning": "각 속성에 허용한 값",
+      "role": "학과의 허용 코드 목록"
+    },
+    {
+      "token": "스키마·인스턴스",
+      "kind": "개념",
+      "meaning": "표의 구조·현재 실제 데이터",
+      "role": "학생(학번,이름,학과) / 지금 저장된 행"
+    },
+    {
+      "token": "관계 모델과 SQL 차이",
+      "kind": "개념",
+      "meaning": "수학적 릴레이션은 집합, SQL은 중복 행을 유지할 수 있음",
+      "role": "SQL SELECT와 관계대수 투영을 구별"
+    }
+  ],
+  "pitfalls": [
+    "도메인에 NULL 허용 여부를 설명할 수 있지만 NULL은 일반 문자열이나 숫자 0과 같은 값으로 다루지 않는다."
+  ],
+  "questions": [
+    {
+      "question": "릴레이션이 표의 관계선이야?",
+      "answer": "여기서 relation은 학번·이름·학과로 구성된 학생 표를 말한다. ERD에서 엔터티끼리 연결한 relationship과 문맥을 구별한다."
+    },
+    {
+      "question": "그림에서 카디널리티 3이던데?",
+      "answer": "기존 속성 그림은 세 학생·네 열이고 이 예제는 네 학생·세 열이다. 그림의 답을 옮기지 말고 현재 표의 행과 열을 다시 센다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "1-2",
+      "title": "데이터 모델과 SQL",
+      "fromPage": 1,
+      "toPage": 3,
+      "note": "흥달쌤 원본 PDF의 해당 단원과 문제를 대조했습니다. 아래 앱 예제의 이름·표·값은 PDF 문제와 별도 데이터이며, 원본 PDF의 보기를 옮겨 채점하지 않습니다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "1-2-01-E01",
+      "why": "차수와 카디널리티를 행·열의 실제 이름에 연결해 정확히 판정한다.",
+      "effect": "개념: 학생 릴레이션의 구조와 현재 인스턴스를 읽는다.",
+      "prerequisites": [
+        "현재 학생표는 학번·이름·학과 세 열과 1001 양선규,1002 박상현,1003 양지훈,1004 유성재의 네 행이다."
+      ],
+      "steps": [
+        {
+          "title": "구조는 항목 이름으로 세기",
+          "text": "학번·이름·학과는 세 속성이다. 차수는 3이다. 각 열 아래 값이 네 개씩 있다고 차수가 4가 되지는 않는다.",
+          "codeFocus": [],
+          "highlights": [
+            "학번·이름·학과",
+            "차수는 3"
+          ],
+          "table": {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양선규",
+                "컴퓨터"
+              ],
+              [
+                "1002",
+                "박상현",
+                "전자"
+              ],
+              [
+                "1003",
+                "양지훈",
+                "컴퓨터"
+              ],
+              [
+                "1004",
+                "유성재",
+                "기계"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "실제 행 네 묶음",
+          "text": "(1001,양선규,컴퓨터), (1002,박상현,전자), (1003,양지훈,컴퓨터), (1004,유성재,기계)가 네 튜플이다. 행 제목을 빼고 세므로 카디널리티는 4다.",
+          "codeFocus": [],
+          "highlights": [
+            "카디널리티는 4"
+          ],
+          "table": {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양선규",
+                "컴퓨터"
+              ],
+              [
+                "1002",
+                "박상현",
+                "전자"
+              ],
+              [
+                "1003",
+                "양지훈",
+                "컴퓨터"
+              ],
+              [
+                "1004",
+                "유성재",
+                "기계"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-02"
+        },
+        {
+          "title": "같은 학과값과 중복 튜플",
+          "text": "1001과 1003의 학과는 모두 컴퓨터지만 학번과 이름이 다르다. 한 컬럼값이 같은 것과 행 전체가 같은 것은 다르므로 서로 다른 튜플이다.",
+          "codeFocus": [],
+          "highlights": [
+            "학번과 이름이 다르다"
+          ],
+          "table": {
+            "title": "두 튜플 비교",
+            "columns": [
+              "항목",
+              "1001번",
+              "1003번",
+              "비교"
+            ],
+            "rows": [
+              [
+                "학번",
+                "1001",
+                "1003",
+                "다름"
+              ],
+              [
+                "이름",
+                "양선규",
+                "양지훈",
+                "다름"
+              ],
+              [
+                "학과",
+                "컴퓨터",
+                "컴퓨터",
+                "같음"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 1
+            },
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 1
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "바뀌는 대상이 행인지 열인지",
+          "text": "추가 가정: 동일 구조에 학생 한 명을 더 넣으면 행이 4→5가 되지만 차수 3은 유지된다. 나이 열을 구조에 추가하면 차수 3→4가 되지만 기존 네 학생 행은 유지된다. 두 가정은 각각 독립된 변경이다.",
+          "codeFocus": [],
+          "highlights": [
+            "각각 독립된 변경"
+          ],
+          "table": {
+            "title": "독립적인 변경 가정",
+            "columns": [
+              "작업",
+              "차수",
+              "카디널리티"
+            ],
+            "rows": [
+              [
+                "현재 원본",
+                "3",
+                "4"
+              ],
+              [
+                "학생 한 명 추가",
+                "3 · 유지",
+                "5 · 변경"
+              ],
+              [
+                "나이 열 추가",
+                "4 · 변경",
+                "4 · 유지"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        }
+      ],
+      "comparison": "관계 모델의 튜플은 순서 없는 집합이다. 실제 SQL SELECT는 DISTINCT가 없으면 중복을 남길 수 있고 ORDER BY가 없으면 출력 행 순서를 보장하지 않는다.",
+      "verification": "원본 표·업무 규칙과 추가 설명을 대조한 개념 검토입니다. SQL을 실행하는 예제가 아닙니다. 실제 DBMS 실행·사람 전문가 검수는 하지 않았습니다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "1-2-01-Q1",
+      "hint": "표의 항목 이름이 추가되는지 학생 기록이 추가되는지 확인하자.",
+      "reasoning": "같은 세 열에 학생 한 행이 더 생기므로 카디널리티가 4에서 5로 바뀐다. 차수는 3으로 유지된다."
+    },
+    {
+      "checkId": "1-2-01-Q2",
+      "hint": "나이는 새로운 학생인가 새로운 항목인가?",
+      "reasoning": "나이라는 새 속성이므로 차수가 3에서 4로 바뀐다. 네 학생의 행 수는 그대로다."
+    },
+    {
+      "checkId": "1-2-01-Q3",
+      "hint": "컴퓨터 한 값만 보지 말고 학번·이름까지 비교하자.",
+      "reasoning": "1001 양선규와 1003 양지훈은 학과만 같고 행 전체는 다르다. 따라서 중복 튜플이 아니다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/introduction-to-oracle-database.html"
+  ],
+  "reviewNotes": []
+}

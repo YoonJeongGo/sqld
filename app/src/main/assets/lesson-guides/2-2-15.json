@@ -1,0 +1,522 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-15",
+  "source": {
+    "id": "2-2-15",
+    "partId": "2-2",
+    "number": 15,
+    "title": "계층형 질의 탐색원리",
+    "lectureMinutes": 47,
+    "easy": "부모·자식 번호가 있는 표를 나무 구조로 따라가며 조회한다. 조직도에서 대표→팀장→직원을 찾아 내려가는 예다.",
+    "why": "표는 평평한 행 목록이지만, 관리자번호를 이용하면 누가 누구 아래에 있는지 경로와 깊이를 알 수 있다.",
+    "concepts": [
+      {
+        "term": "START WITH",
+        "meaning": "탐색을 시작할 루트 조건",
+        "example": "관리자번호 IS NULL"
+      },
+      {
+        "term": "CONNECT BY",
+        "meaning": "부모 행과 다음 자식 행 연결 규칙",
+        "example": "PRIOR 사번=관리자번호"
+      },
+      {
+        "term": "PRIOR",
+        "meaning": "이전 단계인 부모 행의 값을 뜻함",
+        "example": "부모.사번 = 현재행.관리자번호"
+      },
+      {
+        "term": "LEVEL",
+        "meaning": "루트부터의 깊이",
+        "example": "루트1, 자식2, 손자3"
+      },
+      {
+        "term": "정방향 탐색",
+        "meaning": "부모에서 자식으로 내려감",
+        "example": "PRIOR 사번=관리자번호"
+      },
+      {
+        "term": "역방향 탐색",
+        "meaning": "현재 직원에서 관리자 쪽으로 올라감",
+        "example": "PRIOR 관리자번호=사번"
+      },
+      {
+        "term": "형제 정렬",
+        "meaning": "같은 부모의 자식들만 정렬",
+        "example": "ORDER SIBLINGS BY 사번"
+      },
+      {
+        "term": "논리 처리",
+        "meaning": "JOIN→계층 연결→남은 WHERE 검사",
+        "example": "단순 SELECT 논리 순서와 함께 구분"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-15-E01",
+        "title": "사원표를 조직도로 읽기",
+        "question": "관리자가 없는 사람에서 시작해 사번순으로 자식을 따라가자.",
+        "tables": [
+          {
+            "title": "사원",
+            "columns": [
+              "사번",
+              "이름",
+              "관리자번호"
+            ],
+            "rows": [
+              [
+                "1",
+                "노우성",
+                null
+              ],
+              [
+                "2",
+                "김현수",
+                "1"
+              ],
+              [
+                "3",
+                "박강열",
+                "1"
+              ],
+              [
+                "4",
+                "유성재",
+                "2"
+              ],
+              [
+                "5",
+                "양지훈",
+                "2"
+              ],
+              [
+                "6",
+                "장정훈",
+                "3"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 사번,이름,LEVEL AS 깊이 FROM 사원\nSTART WITH 관리자번호 IS NULL\nCONNECT BY PRIOR 사번=관리자번호\nORDER SIBLINGS BY 사번;",
+        "steps": [
+          "노우성은 관리자번호가 NULL이므로 루트, LEVEL1이다.",
+          "노우성의 사번1을 관리자번호로 가진 김현수·박강열이 LEVEL2의 자식이다.",
+          "사번순으로 김현수를 먼저 방문하고, 김현수의 자식 유성재·양지훈까지 내려간 뒤 박강열·장정훈을 방문한다.",
+          "결과 순서는1→2→4→5→3→6, 깊이는1·2·3·3·2·3이다."
+        ],
+        "results": [
+          {
+            "title": "탐색 결과",
+            "columns": [
+              "사번",
+              "이름",
+              "깊이"
+            ],
+            "rows": [
+              [
+                "1",
+                "노우성",
+                "1"
+              ],
+              [
+                "2",
+                "김현수",
+                "2"
+              ],
+              [
+                "4",
+                "유성재",
+                "3"
+              ],
+              [
+                "5",
+                "양지훈",
+                "3"
+              ],
+              [
+                "3",
+                "박강열",
+                "2"
+              ],
+              [
+                "6",
+                "장정훈",
+                "3"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 원자료의 SQLite 대체식 확인과 Oracle 실제 실행은 다릅니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "PRIOR는 부모 쪽. 부모 사번=자식 관리자번호면 아래로 간다.",
+    "traps": [
+      "PRIOR가 단순히 왼쪽에 있으면 정방향이라고 외우지 않는다. 어느 열에 붙었는지 의미로 읽는다.",
+      "일반 ORDER BY로 전체를 정렬하면 계층의 부모·자식 방문 순서가 깨질 수 있다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-15-Q1",
+        "question": "루트의 LEVEL은?",
+        "answer": "1",
+        "explanation": "자식은2, 손자는3이다."
+      },
+      {
+        "id": "2-2-15-Q2",
+        "question": "PRIOR 사번=관리자번호는 보통 어느 방향인가?",
+        "answer": "부모에서 자식으로",
+        "explanation": "부모의 사번을 현재행의 관리자번호와 비교한다."
+      },
+      {
+        "id": "2-2-15-Q3",
+        "question": "같은 부모 아래의 자식만 정렬하려면?",
+        "answer": "ORDER SIBLINGS BY",
+        "explanation": "계층을 유지하면서 형제 순서를 정한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S18"
+    ],
+    "sourceIds": [
+      "hierarchy"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"계층형 질의 탐색원리 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"272\" y=\"16\" width=\"176\" height=\"54\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"47\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">대표</text><rect x=\"96\" y=\"106\" width=\"176\" height=\"54\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"184.0\" y=\"137\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">팀장 A</text><rect x=\"448\" y=\"106\" width=\"176\" height=\"54\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"536.0\" y=\"137\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">팀장 B</text><path d=\"M355 76 L185 99\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M365 76 L536 99\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"610\" y=\"44\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">LEVEL 1</text><text x=\"650\" y=\"137\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">LEVEL 2</text><text x=\"360\" y=\"198\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"700\">아래로: PRIOR 사번 = 관리자번호 · 시작점은 START WITH</text></svg>",
+    "version": 1
+  },
+  "purpose": "사원표의 관리자번호를 따라 대표→관리자→직원 관계를 계층으로 조회해요.",
+  "overview": "조회예요. 관리자번호 NULL을 시작점으로 잡고, 방금 방문한 사원의 사번과 다음 후보의 관리자번호를 비교해요. 원본을 조직순서로 다시 저장하지 않아요.",
+  "terms": [
+    {
+      "token": "START WITH",
+      "kind": "키워드",
+      "meaning": "어디에서 시작할지",
+      "role": "관리자번호가 NULL인 노우성 1번을 이번 탐색 루트로 선택해요."
+    },
+    {
+      "token": "CONNECT BY",
+      "kind": "키워드",
+      "meaning": "어떤 관계로 이어갈지",
+      "role": "사번과 관리자번호의 관계를 따라 다음 행을 찾아요."
+    },
+    {
+      "token": "PRIOR 사번",
+      "kind": "연산자+컬럼",
+      "meaning": "prior = 바로 앞 탐색행의 값",
+      "role": "현재 후보의 사번이 아니라 부모 역할 행의 사번을 가져와요."
+    },
+    {
+      "token": "LEVEL",
+      "kind": "의사컬럼",
+      "meaning": "이번 탐색의 깊이",
+      "role": "출발 노우성은 1, 김현수·박강열은 2, 그 자식들은 3이에요."
+    },
+    {
+      "token": "ORDER SIBLINGS BY",
+      "kind": "정렬",
+      "meaning": "siblings = 같은 부모의 형제",
+      "role": "전체 사번순으로 펴지 않고 같은 부모 아래에서 사번순으로 방문해요."
+    }
+  ],
+  "pitfalls": [
+    "PRIOR가 왼쪽인지 오른쪽인지만 외우지 말고 어느 컬럼 앞인지 보세요.",
+    "계층의 방문 순서 설명은 Oracle 계층질의의 의미예요. 실제 인덱스 접근·실행계획을 측정한 것은 아니에요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. 관리자번호 NULL을 시작점으로 잡고, 방금 방문한 사원의 사번과 다음 후보의 관리자번호를 비교해요. 원본을 조직순서로 다시 저장하지 않아요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 90,
+      "toPage": 90,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-15-E01",
+      "why": "직원 명단을 관리자 관계에 따라 내려가는 조직순서로 보여줘요.",
+      "effect": "조회 · 사원의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-15-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "사원: 컬럼 사번·이름·관리자번호 3개, 표시 입력 6행."
+      ],
+      "steps": [
+        {
+          "title": "시작점은 관리자 NULL",
+          "text": "관리자번호 NULL인 사번 1 노우성이 루트예요. LEVEL 1을 붙여 시작하고 다른 사람을 동시에 루트로 잡지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "START WITH 관리자번호 IS NULL",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "관리자번호",
+            "NULL"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 시작점은 관리자 NULL",
+            "columns": [
+              "사번",
+              "이름",
+              "관리자번호",
+              "처리"
+            ],
+            "rows": [
+              [
+                "1",
+                "노우성",
+                null,
+                "루트·깊이1"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "루트의 자식 찾기",
+          "text": "PRIOR 사번은 방금 방문한 노우성의 1이에요. 후보 관리자번호=1인 김현수 2·박강열 3이 연결돼 LEVEL 2예요.",
+          "codeFocus": [
+            {
+              "needle": "PRIOR 사번=관리자번호",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "PRIOR",
+            "관리자번호",
+            "사번"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 루트의 자식 찾기",
+            "columns": [
+              "부모사번",
+              "자식사번",
+              "자식관리자번호",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1",
+                "2",
+                "1",
+                "참"
+              ],
+              [
+                "1",
+                "3",
+                "1",
+                "참"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "먼저 2번의 아래까지",
+          "text": "형제 2·3 중 2 김현수가 먼저예요. 2의 사번과 관리자번호가 맞는 4 유성재·5 양지훈으로 내려가 깊이 3을 붙여요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER SIBLINGS BY 사번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "사번"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 먼저 2번의 아래까지",
+            "columns": [
+              "방문사번",
+              "이름",
+              "깊이"
+            ],
+            "rows": [
+              [
+                "2",
+                "김현수",
+                "2"
+              ],
+              [
+                "4",
+                "유성재",
+                "3"
+              ],
+              [
+                "5",
+                "양지훈",
+                "3"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "그다음 3번의 아래",
+          "text": "2의 가지를 마친 뒤 3 박강열과 그 자식 6 장정훈을 봐요. 전체 1→2→4→5→3→6이며 LEVEL은 1·2·3·3·2·3이에요.",
+          "codeFocus": [
+            {
+              "needle": "LEVEL AS 깊이",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "LEVEL"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 그다음 3번의 아래",
+            "columns": [
+              "방문사번",
+              "이름",
+              "깊이"
+            ],
+            "rows": [
+              [
+                "3",
+                "박강열",
+                "2"
+              ],
+              [
+                "6",
+                "장정훈",
+                "3"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "탐색 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 탐색 결과와 대조해요. 표시 컬럼은 사번·이름·깊이, 결과는 6행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "탐색 결과",
+            "columns": [
+              "사번",
+              "이름",
+              "깊이"
+            ],
+            "rows": [
+              [
+                "1",
+                "노우성",
+                "1"
+              ],
+              [
+                "2",
+                "김현수",
+                "2"
+              ],
+              [
+                "4",
+                "유성재",
+                "3"
+              ],
+              [
+                "5",
+                "양지훈",
+                "3"
+              ],
+              [
+                "3",
+                "박강열",
+                "2"
+              ],
+              [
+                "6",
+                "장정훈",
+                "3"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "전체 사번 ORDER BY로 1·2·3·4·5·6을 만드는 것과 달라요. ORDER SIBLINGS BY는 같은 부모 아래만 정렬해 2의 자식 4·5를 먼저 봐요.",
+      "verification": "원본 값의 단계별 대입·산술을 검토하고 Oracle 19c 공식 문서의 해당 구문과 대조했어요. Oracle DB 엔진에서는 실행하지 않았어요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-15-Q1",
+      "hint": "이번 START WITH에서 선택한 첫행인지 보세요.",
+      "reasoning": "이번 탐색 시작은 깊이 1이에요. 조직도에서 원래 몇 직급인지와 별개예요."
+    },
+    {
+      "checkId": "2-2-15-Q2",
+      "hint": "노우성 사번 1을 오른쪽 어느 컬럼과 맞추는지 대입해요.",
+      "reasoning": "부모의 사번 1=후보의 관리자번호 1이므로 김현수·박강열 자식으로 내려가요."
+    },
+    {
+      "checkId": "2-2-15-Q3",
+      "hint": "부모·자식 구조를 유지하면서 형제만 정렬하는 영어 단어를 찾아요.",
+      "reasoning": "ORDER SIBLINGS BY예요. 김현수쪽 자식까지 본 뒤 박강열쪽으로 넘어가는 계층을 유지해요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Queries.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

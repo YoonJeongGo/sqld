@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "status": "applied",
+  "lessonId": "2-3-04",
+  "exampleId": "2-3-04-E02",
+  "before": {
+    "id": "2-3-04-E02",
+    "title": "디비전은 모두 갖춘 사람 찾기",
+    "question": "필수과목 DB와 JAVA를 모두 들은 학생은?",
+    "tables": [
+      {
+        "title": "수강",
+        "columns": [
+          "이름",
+          "과목"
+        ],
+        "rows": [
+          [
+            "박상현",
+            "DB"
+          ],
+          [
+            "박상현",
+            "JAVA"
+          ],
+          [
+            "박상현",
+            "Python"
+          ],
+          [
+            "양선규",
+            "DB"
+          ],
+          [
+            "김현수",
+            "DB"
+          ],
+          [
+            "김현수",
+            "JAVA"
+          ],
+          [
+            "유성재",
+            "JAVA"
+          ]
+        ]
+      },
+      {
+        "title": "필수",
+        "columns": [
+          "과목"
+        ],
+        "rows": [
+          [
+            "DB"
+          ],
+          [
+            "JAVA"
+          ]
+        ]
+      }
+    ],
+    "sql": "SELECT DISTINCT r.이름 FROM 수강 r WHERE NOT EXISTS (SELECT 1 FROM 필수 f WHERE NOT EXISTS (SELECT 1 FROM 수강 r2 WHERE r2.이름=r.이름 AND r2.과목=f.과목));",
+    "steps": [
+      "박상현은 DB·JAVA 둘 다 있으므로 통과한다. Python 추가 수강은 방해하지 않는다.",
+      "양선규는 JAVA가 없고 유성재는 DB가 없어 탈락한다.",
+      "김현수는 DB·JAVA가 모두 있어 통과한다. 결과는 박상현·김현수 두 이름이다."
+    ],
+    "results": [
+      {
+        "title": "디비전 결과",
+        "columns": [
+          "이름"
+        ],
+        "rows": [
+          [
+            "박상현"
+          ],
+          [
+            "김현수"
+          ]
+        ]
+      }
+    ],
+    "mode": "sqlite",
+    "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+  },
+  "after": {
+    "id": "2-3-04-E02",
+    "title": "디비전은 모두 갖춘 사람 찾기",
+    "question": "필수과목 DB와 JAVA를 모두 들은 학생은?",
+    "tables": [
+      {
+        "title": "수강",
+        "columns": [
+          "학번",
+          "이름",
+          "과목"
+        ],
+        "rows": [
+          [
+            "1001",
+            "박상현",
+            "DB"
+          ],
+          [
+            "1001",
+            "박상현",
+            "JAVA"
+          ],
+          [
+            "1001",
+            "박상현",
+            "Python"
+          ],
+          [
+            "1002",
+            "양선규",
+            "DB"
+          ],
+          [
+            "1003",
+            "김현수",
+            "DB"
+          ],
+          [
+            "1003",
+            "김현수",
+            "JAVA"
+          ],
+          [
+            "1004",
+            "유성재",
+            "JAVA"
+          ]
+        ]
+      },
+      {
+        "title": "필수",
+        "columns": [
+          "과목"
+        ],
+        "rows": [
+          [
+            "DB"
+          ],
+          [
+            "JAVA"
+          ]
+        ]
+      }
+    ],
+    "sql": "SELECT DISTINCT r.이름 FROM 수강 r WHERE NOT EXISTS (SELECT 1 FROM 필수 f WHERE NOT EXISTS (SELECT 1 FROM 수강 r2 WHERE r2.학번=r.학번 AND r2.과목=f.과목));",
+    "steps": [
+      "학번 1001인 박상현의 수강은 DB·JAVA·Python이다. 필수 DB·JAVA가 모두 있어 통과하고, 추가 과목 Python은 방해하지 않는다.",
+      "학번 1002인 양선규는 JAVA가 없고, 학번 1004인 유성재는 DB가 없어 탈락한다.",
+      "학번 1003인 김현수도 DB·JAVA가 모두 있어 통과한다. 결과의 이름은 박상현·김현수이며 원래 예제와 같다.",
+      "안쪽 r2.학번=r.학번으로 같은 학생을 연결하고 이름은 출력에만 사용한다. 이 예시의 이름은 서로 다르다. 동명이인까지 별도로 표시하려면 SELECT DISTINCT r.학번, r.이름처럼 식별자도 출력한다."
+    ],
+    "results": [
+      {
+        "title": "디비전 결과",
+        "columns": [
+          "이름"
+        ],
+        "rows": [
+          [
+            "박상현"
+          ],
+          [
+            "김현수"
+          ]
+        ]
+      }
+    ],
+    "mode": "sqlite",
+    "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+  },
+  "changes": [
+    {
+      "path": "tables[0].columns",
+      "reason": "이름을 식별자로 사용하지 않도록 학번 열을 앞에 추가한다."
+    },
+    {
+      "path": "tables[0].rows",
+      "reason": "같은 사람이 여러 과목을 수강하는 행에 동일한 학번 1001~1004를 고정 부여한다. 원래 이름·과목 셀·행 수는 보존한다."
+    },
+    {
+      "path": "sql",
+      "reason": "이름 동등 비교를 학번 동등 비교로 대체한다. 필수과목을 모두 이수했는지 묻는 의미와 결과 이름은 유지한다."
+    },
+    {
+      "path": "steps",
+      "reason": "고정 학번으로 추적하고 동명이인 출력에는 학번도 필요하다는 경계를 설명한다."
+    }
+  ],
+  "preserved": [
+    "example ID",
+    "title",
+    "question",
+    "result names and order-insensitive row multiset",
+    "mode",
+    "verification provenance",
+    "all 189 self-check IDs/questions/answers/explanations"
+  ],
+  "progressPolicy": "강의 version 2로 수정문 표시; 기존 readVersion 1/예제 확인 진도/자기점검 기록 보존. 채점 문항 변경이 아니며 점수 재계산 없음.",
+  "fixtureUpdate": "evidence/course-content-fixtures.json 의 2-3-04-E02 tables[0]에 학번 추가, sql 및 displaySql 동시 교체. fixture 원자료 표에는 학번을 정수 1001~1004로 넣어도 되며 표시 pack은 문자열로 유지.",
+  "validationRequired": [
+    "학번별 이름 단일성",
+    "원래 이름·과목 투영 및 결과표 보존",
+    "SQLite 표시 SQL 직접 실행 후 NULL/중복을 포함한 결과 비교",
+    "Oracle/SQL Server 실행 검증으로 표시하지 않음"
+  ],
+  "otherTextCorrections": [
+    {
+      "path": "lessons[1-1-06].easy",
+      "before": "업무에서 계속 정보를 관리할 대상의 종류다. “학생”은 엔터티, “학번 1001인 유성재”은 그 엔터티의 한 사례다.",
+      "after": "업무에서 계속 정보를 관리할 대상의 종류다. “학생”은 엔터티, “학번 1001인 유성재”는 그 엔터티의 한 사례다.",
+      "kind": "korean_particle",
+      "reason": "따옴표로 묶인 사례 표현 뒤 조사 오류를 수정. 예제 데이터·정의·문제 의미 불변."
+    },
+    {
+      "path": "lessons[2-1-25].examples[2-1-25-E02].steps[0]",
+      "before": "코드는 둘 다 1이지만 이름은 박강열과 박보성로 다르다.",
+      "after": "코드는 둘 다 1이지만 이름은 박강열과 박보성으로 다르다.",
+      "kind": "korean_particle",
+      "reason": "받침 있는 이름 박보성 뒤 조사 오류. NATURAL JOIN 결과 0행과 SQL 불변."
+    }
+  ],
+  "verification": "Passed SQLite 3.50.4 original-result and homonym regression checks; all 63 Python tests and final debug/release build passed. Oracle/SQL Server not executed."
+}

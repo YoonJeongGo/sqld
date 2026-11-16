@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-20",
+  "source": {
+    "id": "2-1-20",
+    "partId": "2-1",
+    "number": 20,
+    "title": "GROUP BY",
+    "lectureMinutes": 32,
+    "easy": "같은 값을 가진 행끼리 묶고, 묶음마다 집계한다. 학과별 인원수라면 학과를 묶는 기준으로 쓴다.",
+    "why": "“컴퓨터과가 몇 명인지”는 학생 다섯 줄을 하나로 세는 게 아니라 학과별 바구니를 만든 뒤 세는 것이다.",
+    "concepts": [
+      {
+        "term": "그룹 기준",
+        "meaning": "같은 기준값의 행을 한 그룹으로",
+        "example": "GROUP BY 학과"
+      },
+      {
+        "term": "그룹별 결과",
+        "meaning": "그룹마다 집계 결과 한 행",
+        "example": "컴퓨터 인원3, 전자 인원2"
+      },
+      {
+        "term": "다중 그룹 기준",
+        "meaning": "여러 열 조합으로 그룹",
+        "example": "학과+학년별"
+      },
+      {
+        "term": "SELECT 규칙",
+        "meaning": "그룹 기준 또는 집계식을 사용",
+        "example": "학과, COUNT(*)"
+      },
+      {
+        "term": "NULL 그룹",
+        "meaning": "그룹 기준의 NULL들은 한 그룹으로 모임",
+        "example": "미배정 학과 그룹"
+      },
+      {
+        "term": "순서",
+        "meaning": "그룹 형성과 정렬은 별개",
+        "example": "ORDER BY로 순서 지정"
+      },
+      {
+        "term": "WHERE와 관계",
+        "meaning": "그룹 전에 행을 제외",
+        "example": "점수>=60인 행만 그룹화"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-20-E01",
+        "title": "학과별 바구니에 넣기",
+        "question": "각 학과에 누가 있고 몇 명인지 구하자.",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과"
+            ],
+            "rows": [
+              [
+                "1001",
+                "한창주",
+                "컴퓨터"
+              ],
+              [
+                "1002",
+                "박보성",
+                "전자"
+              ],
+              [
+                "1003",
+                "유성재",
+                "컴퓨터"
+              ],
+              [
+                "1004",
+                "양선규",
+                "전자"
+              ],
+              [
+                "1005",
+                "박상현",
+                "컴퓨터"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 학과, COUNT(*) AS 인원 FROM 학생 GROUP BY 학과 ORDER BY 학과;",
+        "steps": [
+          "컴퓨터 바구니에는 1001/한창주, 1003/유성재, 1005/박상현이 들어가므로 3명이다.",
+          "전자 바구니에는 1002/박보성, 1004/양선규가 들어가므로 2명이다.",
+          "학생 정보 다섯 줄이 학과별 요약 두 줄로 바뀐다."
+        ],
+        "results": [
+          {
+            "title": "그룹 결과",
+            "columns": [
+              "학과",
+              "인원"
+            ],
+            "rows": [
+              [
+                "전자",
+                "2"
+              ],
+              [
+                "컴퓨터",
+                "3"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "GROUP BY는 바구니 기준. 바구니마다 COUNT·SUM·AVG.",
+    "traps": [
+      "GROUP BY 학과 후 이름 하나를 함께 출력하면 그 학과의 누구 이름을 말하는지 모호하다.",
+      "NULL끼리 = 비교가 TRUE가 아니어도 GROUP BY에서는 NULL을 한 그룹으로 취급한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-20-Q1",
+        "question": "컴퓨터 학생 3명·전자 2명을 학과로 그룹화하면 결과는 몇 행?",
+        "answer": "2행",
+        "explanation": "학과 그룹이 두 개다."
+      },
+      {
+        "id": "2-1-20-Q2",
+        "question": "학과별 학년별 인원이면 그룹 기준은?",
+        "answer": "학과, 학년",
+        "explanation": "두 값의 조합으로 묶는다."
+      },
+      {
+        "id": "2-1-20-Q3",
+        "question": "GROUP BY 자체가 정렬을 보장하는가?",
+        "answer": "아니다",
+        "explanation": "출력 순서는 ORDER BY로 정한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S08"
+    ],
+    "sourceIds": [
+      "select",
+      "aggregate",
+      "tableexpressions"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"GROUP BY 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">여러 사람의 행</text><text x=\"120.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">컴퓨터 · 전자 · 컴퓨터</text><rect x=\"265\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">같은 기준끼리 묶기</text><text x=\"360.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">컴퓨터 묶음 / 전자 묶음</text><rect x=\"505\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">그룹별 한 줄</text><text x=\"600.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">COUNT · SUM · AVG</text><path d=\"M223 101 L256 101\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M463 101 L496 101\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#172b4d\" font-weight=\"700\">그룹에 누가 들어가는지 먼저 확인하고 집계한다.</text></svg>",
+    "version": 1
+  },
+  "purpose": "학생 개인 목록을 학과별 인원표로 바꾸면서 누가 어느 집계에 들어가는지 확인한다.",
+  "overview": "GROUP BY 학과는 같은 학과값의 학생을 묶는다. COUNT(*)는 각 묶음의 행수를 센다. 저장된 학생 5행은 그대로이며 조회 결과만 학과별 2행이 된다.",
+  "terms": [
+    {
+      "token": "GROUP BY",
+      "kind": "키워드",
+      "meaning": "group = 묶다, by = 이 기준으로",
+      "role": "학생.학과 값이 같은 행끼리 묶는다."
+    },
+    {
+      "token": "COUNT(*)",
+      "kind": "집계 함수",
+      "meaning": "그룹 안 행수",
+      "role": "컴퓨터의 1001·1003·1005 세 행을 세고 전자의 1002·1004 두 행을 센다."
+    },
+    {
+      "token": "AS 인원",
+      "kind": "결과 별칭",
+      "meaning": "인원이라는 표시 이름",
+      "role": "그룹별 COUNT 결과 머리글이며 학생에 인원 컬럼이 새로 저장되지 않는다."
+    }
+  ],
+  "pitfalls": [
+    "GROUP BY 자체는 결과 순서를 보장하지 않는다. ORDER BY가 별도다.",
+    "학과 한 그룹에 여러 이름이 있는데 임의의 이름 한 개를 SELECT하는 것을 정답으로 가르치지 않는다. Oracle에서는 그룹 기준·집계 여부를 확인한다."
+  ],
+  "questions": [
+    {
+      "question": "GROUP BY는 여기서 무엇을 뜻하나요?",
+      "answer": "학생.학과 값이 같은 행끼리 묶는다."
+    },
+    {
+      "question": "COUNT(*)는 여기서 무엇을 뜻하나요?",
+      "answer": "컴퓨터의 1001·1003·1005 세 행을 세고 전자의 1002·1004 두 행을 센다."
+    },
+    {
+      "question": "AS 인원는 여기서 무엇을 뜻하나요?",
+      "answer": "그룹별 COUNT 결과 머리글이며 학생에 인원 컬럼이 새로 저장되지 않는다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 107,
+      "toPage": 112,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-20-E01",
+      "why": "학과별 학생 수를 보고 서로 다른 학과의 인원을 섞지 않는다.",
+      "effect": "조회 집계:학생 5행→학과 2행.",
+      "prerequisites": [
+        "원본 학과는컴퓨터·전자 두 값이다. 결과 문자순서는 원본 SQLite 비교 기준을 따른다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "누가 어느 그룹인가",
+          "text": "학번 1001 한창주,1003 유성재,1005 박상현은 학과가컴퓨터다. 1002 박보성,1004 양선규는전자다. 이름이 아니라 학과값을 기준으로 모은다.",
+          "codeFocus": [
+            {
+              "needle": "GROUP BY 학과",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학과값을 기준"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "그룹 구성",
+            "columns": [
+              "학과",
+              "소속 학생 식별값·이름"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "1001 한창주 / 1003 유성재 / 1005 박상현"
+              ],
+              [
+                "전자",
+                "1002 박보성 / 1004 양선규"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "그룹별 행수 계산",
+          "text": "컴퓨터 그룹은 학생 정보 세 행이므로 COUNT(*)=3, 전자 그룹은 두 행이므로 2다. 컴퓨터라는 단어의 글자 수나 학과 열의 개수를 세지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "COUNT(*) AS 인원",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "COUNT(*)=3"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "그룹 집계",
+            "columns": [
+              "학과",
+              "계산",
+              "인원"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "1+1+1",
+                "3"
+              ],
+              [
+                "전자",
+                "1+1",
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "두 요약행을 정렬",
+          "text": "SELECT 학과,COUNT(*)는 각 그룹을 학과·인원 한 줄로 요약한다. ORDER BY 학과에 따라 원본 결과처럼 전자 2, 컴퓨터 3을 표시한다. 실제 학생 5행은 지워지지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학과",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "실제 학생 5행"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "그룹 결과",
+            "columns": [
+              "학과",
+              "인원"
+            ],
+            "rows": [
+              [
+                "전자",
+                "2"
+              ],
+              [
+                "컴퓨터",
+                "3"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "학과, 학년을 함께 GROUP BY하면 두 값의 조합이 그룹 기준이다. 컴퓨터 1학년과컴퓨터 2학년은 서로 다른 그룹이 된다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-20-Q1",
+      "hint": "개인 수가 아니라 서로 다른 학과값의 개수를 세어 보자.",
+      "reasoning": "컴퓨터·전자 두 그룹이므로 결과 2행이다. 각 행의 인원 값은 3과 2다."
+    },
+    {
+      "checkId": "2-1-20-Q2",
+      "hint": "학과만 같으면 충분한지 학년도 같아야 하는지 보자.",
+      "reasoning": "학과별 학년별이면 학과와 학년의 조합으로 묶어 GROUP BY 학과, 학년을 쓴다."
+    },
+    {
+      "checkId": "2-1-20-Q3",
+      "hint": "그룹을 만드는 절과 표시 순서를 정하는 절을 구분하자.",
+      "reasoning": "GROUP BY는 묶음을 정하며 정렬을 보장하지 않는다. 원하는 순서는 ORDER BY로 지정한다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html"
+  ],
+  "reviewNotes": []
+}

@@ -1,0 +1,533 @@
+{
+  "id": "S09-A05-group-sort-total",
+  "source": {
+    "id": "S09-A05-group-sort-total",
+    "version": 1,
+    "title": "부서별 합계가 큰 순서로 보인 결과는?",
+    "stem": "부서별 합계가 큰 순서로 보인 결과는?",
+    "sql": "SELECT d,SUM(v) AS total FROM T GROUP BY d ORDER BY total DESC,d",
+    "tables": [
+      {
+        "title": "T",
+        "columns": [
+          "d",
+          "v"
+        ],
+        "rows": [
+          [
+            "1",
+            "10"
+          ],
+          [
+            "1",
+            "20"
+          ],
+          [
+            "2",
+            "25"
+          ],
+          [
+            "3",
+            "30"
+          ]
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "id": "a",
+        "text": "(1, 30) / (3, 30) / (2, 25)",
+        "reason": "최종 결과는 (1, 30) / (3, 30) / (2, 25)이다."
+      },
+      {
+        "id": "b",
+        "text": "(1, 10) / (1, 20) / (2, 25) / (3, 30)",
+        "reason": "GROUP BY 집계를 수행하지 않은 원본이다."
+      },
+      {
+        "id": "c",
+        "text": "(2, 25) / (1, 30) / (3, 30)",
+        "reason": "합계 오름차순이다."
+      },
+      {
+        "id": "d",
+        "text": "(3, 30) / (1, 30) / (2, 25)",
+        "reason": "합계 동점의 d ASC를 뒤집었다."
+      }
+    ],
+    "correctChoiceIds": [
+      "a"
+    ],
+    "dialect": "Oracle",
+    "dialectVersion": "19c"
+  },
+  "intro": "입력 표의 값으로 SQL의 뜻을 따라 읽는 학습용 논리 과정입니다. 실제 DB의 물리 실행 순서나 실행계획을 측정한 자료가 아닙니다. 이전·다음으로 한 단계씩 확인하세요.",
+  "steps": [
+    {
+      "id": "step-01",
+      "title": "FROM · 어떤 값에서 시작하는가",
+      "text": "T에서 T.d, T.v 값을 읽습니다. 입력 4행을 출발점으로 삼습니다. 여기서 보이는 순서는 설명을 위한 나열이며 원본 테이블에 고정된 행 순서가 있다는 뜻이 아닙니다.",
+      "codeFocus": [
+        {
+          "needle": "FROM T",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "T.d",
+        "T.v"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 시작 입력",
+        "columns": [
+          "T.d",
+          "T.v"
+        ],
+        "rows": [
+          [
+            "1",
+            "10"
+          ],
+          [
+            "1",
+            "20"
+          ],
+          [
+            "2",
+            "25"
+          ],
+          [
+            "3",
+            "30"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-02",
+      "title": "GROUP BY · d=1",
+      "text": "d=1인 2행을 같은 그룹으로 묶습니다. 이 그룹 안의 T.d, T.v 값으로 계산합니다. NULL 그룹 키도 같은 NULL 그룹으로 묶입니다.",
+      "codeFocus": [
+        {
+          "needle": "GROUP BY d",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "T.d",
+        "T.v"
+      ],
+      "focusRows": [
+        0,
+        1
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 그룹 입력 · d=1",
+        "columns": [
+          "T.d",
+          "T.v"
+        ],
+        "rows": [
+          [
+            "1",
+            "10"
+          ],
+          [
+            "1",
+            "20"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-03",
+      "title": "GROUP BY · d=2",
+      "text": "d=2인 1행을 같은 그룹으로 묶습니다. 이 그룹 안의 T.d, T.v 값으로 계산합니다. NULL 그룹 키도 같은 NULL 그룹으로 묶입니다.",
+      "codeFocus": [
+        {
+          "needle": "GROUP BY d",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "T.d",
+        "T.v"
+      ],
+      "focusRows": [
+        0
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 그룹 입력 · d=2",
+        "columns": [
+          "T.d",
+          "T.v"
+        ],
+        "rows": [
+          [
+            "2",
+            "25"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-04",
+      "title": "GROUP BY · d=3",
+      "text": "d=3인 1행을 같은 그룹으로 묶습니다. 이 그룹 안의 T.d, T.v 값으로 계산합니다. NULL 그룹 키도 같은 NULL 그룹으로 묶입니다.",
+      "codeFocus": [
+        {
+          "needle": "GROUP BY d",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "T.d",
+        "T.v"
+      ],
+      "focusRows": [
+        0
+      ],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 그룹 입력 · d=3",
+        "columns": [
+          "T.d",
+          "T.v"
+        ],
+        "rows": [
+          [
+            "3",
+            "30"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-05",
+      "title": "집계 · SUM(v)",
+      "text": "d=1에서 SUM(v)를 계산합니다. 먼저 각 행의 v 값을 구하고 NULL을 제외합니다. 10 + 20 = 30.",
+      "codeFocus": [
+        {
+          "needle": "SUM(v)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "SUM(v)",
+        "d",
+        "v"
+      ],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 2
+        },
+        {
+          "row": 1,
+          "column": 2
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 집계 대상 · d=1",
+        "columns": [
+          "T.d",
+          "T.v",
+          "v 계산값",
+          "집계 포함 여부"
+        ],
+        "rows": [
+          [
+            "1",
+            "10",
+            "10",
+            "포함"
+          ],
+          [
+            "1",
+            "20",
+            "20",
+            "포함"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-06",
+      "title": "집계 · SUM(v)",
+      "text": "d=2에서 SUM(v)를 계산합니다. 먼저 각 행의 v 값을 구하고 NULL을 제외합니다. 25 = 25.",
+      "codeFocus": [
+        {
+          "needle": "SUM(v)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "SUM(v)",
+        "d",
+        "v"
+      ],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 2
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 집계 대상 · d=2",
+        "columns": [
+          "T.d",
+          "T.v",
+          "v 계산값",
+          "집계 포함 여부"
+        ],
+        "rows": [
+          [
+            "2",
+            "25",
+            "25",
+            "포함"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-07",
+      "title": "집계 · SUM(v)",
+      "text": "d=3에서 SUM(v)를 계산합니다. 먼저 각 행의 v 값을 구하고 NULL을 제외합니다. 30 = 30.",
+      "codeFocus": [
+        {
+          "needle": "SUM(v)",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "SUM(v)",
+        "d",
+        "v"
+      ],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 2
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 집계 대상 · d=3",
+        "columns": [
+          "T.d",
+          "T.v",
+          "v 계산값",
+          "집계 포함 여부"
+        ],
+        "rows": [
+          [
+            "3",
+            "30",
+            "30",
+            "포함"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-08",
+      "title": "SELECT · 결과 열 확인",
+      "text": "d, total 순서로 3행을 출력합니다. 집계값을 이용하는 바깥 계산식도 이 결과 열에서 확인합니다.",
+      "codeFocus": [
+        {
+          "needle": "d,SUM(v) AS total",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "d"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 출력 열",
+        "columns": [
+          "d",
+          "total"
+        ],
+        "rows": [
+          [
+            "1",
+            "30"
+          ],
+          [
+            "2",
+            "25"
+          ],
+          [
+            "3",
+            "30"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-09",
+      "title": "ORDER BY · 마지막 표시 순서",
+      "text": "total DESC,d의 왼쪽 키부터 비교하고 같을 때 다음 키를 봅니다. ASC는 오름차순, DESC는 내림차순입니다. Oracle의 NULL 기본 위치는 ASC 마지막, DESC 처음이며 명시한 NULLS 절이 우선합니다.",
+      "codeFocus": [
+        {
+          "needle": "ORDER BY total DESC,d",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "d"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 정렬한 결과",
+        "columns": [
+          "d",
+          "total"
+        ],
+        "rows": [
+          [
+            "1",
+            "30"
+          ],
+          [
+            "3",
+            "30"
+          ],
+          [
+            "2",
+            "25"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-10",
+      "title": "최종 결과와 원래 답 연결",
+      "text": "최종 3행입니다. 바깥 ORDER BY로 정한 순서를 따릅니다. 원래 보기별 해설에서 같은 결과인지 확인하세요.",
+      "codeFocus": [
+        {
+          "needle": "d,SUM(v) AS total",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 최종 결과",
+        "columns": [
+          "d",
+          "total"
+        ],
+        "rows": [
+          [
+            "1",
+            "30"
+          ],
+          [
+            "3",
+            "30"
+          ],
+          [
+            "2",
+            "25"
+          ]
+        ]
+      }
+    }
+  ],
+  "terms": [
+    {
+      "token": "SELECT",
+      "kind": "키워드",
+      "meaning": "결과에 보여 줄 열과 계산식을 고른다.",
+      "role": "이 문제의 최종 출력 열을 정한다."
+    },
+    {
+      "token": "FROM",
+      "kind": "키워드",
+      "meaning": "값을 읽을 표 또는 조회 결과를 지정한다.",
+      "role": "원본 표에서 설명을 시작하는 위치다."
+    },
+    {
+      "token": "AS",
+      "kind": "키워드",
+      "meaning": "결과 열에 읽기 쉬운 임시 이름을 붙인다.",
+      "role": "원본 컬럼명을 바꾸는 명령이 아니다."
+    },
+    {
+      "token": "GROUP BY",
+      "kind": "키워드",
+      "meaning": "그룹 기준값이 같은 입력 행을 묶는다.",
+      "role": "각 묶음에서 집계를 계산하며 출력 정렬을 보장하지 않는다."
+    },
+    {
+      "token": "ORDER BY",
+      "kind": "키워드",
+      "meaning": "지정한 키에 따라 순서를 정한다.",
+      "role": "OVER 내부 정렬은 계산용이며 최종 결과 순서는 바깥 ORDER BY가 정한다."
+    },
+    {
+      "token": "SUM",
+      "kind": "함수",
+      "meaning": "NULL을 제외한 값을 더한다.",
+      "role": "집계 대상값이 없으면 NULL이다."
+    },
+    {
+      "token": "T",
+      "kind": "테이블명",
+      "meaning": "관련 정보를 행과 열로 저장한 표의 이름이다.",
+      "role": "원본의 d, v 열을 제공한다."
+    },
+    {
+      "token": "d",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 d 값을 읽는다."
+    },
+    {
+      "token": "v",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 v 값을 읽는다."
+    },
+    {
+      "token": "total",
+      "kind": "별칭",
+      "meaning": "출력 열에 붙인 임시 이름이다.",
+      "role": "바로 앞 계산식의 결과를 total로 보여 준다."
+    }
+  ],
+  "verification": {
+    "method": "독립 값 계산 및 원본 fixture 대조",
+    "engine": "SQLite",
+    "engineVersion": "3.50.4",
+    "oracleEngineExecuted": false,
+    "queryMode": "SQLite에서 호환 SELECT 실행; Oracle NULL 정렬 기본값 명시; 숫자 NVL/MOD는 등록 함수",
+    "expectedRowsMatch": true,
+    "notes": [
+      "Oracle 19c 원문 엔진 실행은 미실시. 원본 정답·보기·입력표는 변경하지 않았다.",
+      "아래 중간표는 설명용이며 실제 엔진 내부에 같은 임시표가 생긴다는 뜻이 아니다."
+    ]
+  },
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Aggregate-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Using-Subqueries.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/IN-Condition.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Comparison-Conditions.html"
+  ]
+}

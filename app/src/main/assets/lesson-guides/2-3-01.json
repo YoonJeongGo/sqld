@@ -1,0 +1,529 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-3-01",
+  "source": {
+    "id": "2-3-01",
+    "partId": "2-3",
+    "number": 1,
+    "title": "뷰의 개념과 활용",
+    "lectureMinutes": 25,
+    "easy": "자주 쓰는 조회문에 이름을 붙여 표처럼 조회하는 객체다. 일반 뷰는 보통 원본 데이터를 별도로 복제해 저장하지 않는다.",
+    "why": "전체 학생표를 공개하지 않고 필요한 열이나 조건에 맞는 학생만 보여주는 데 쓸 수 있다.",
+    "concepts": [
+      {
+        "term": "CREATE VIEW",
+        "meaning": "조회 정의를 이름으로 저장",
+        "example": "우수학생 AS SELECT ..."
+      },
+      {
+        "term": "가상 테이블",
+        "meaning": "조회할 때 원본에 기반한 결과를 제공",
+        "example": "기본 표가 바뀌면 조회 결과도 변함"
+      },
+      {
+        "term": "열·행 제한",
+        "meaning": "필요한 정보만 노출",
+        "example": "이름과 학과만 공개"
+      },
+      {
+        "term": "복잡성 숨김",
+        "meaning": "여러 표의 JOIN을 간단한 뷰 이름으로 사용",
+        "example": "수강상세뷰"
+      },
+      {
+        "term": "WITH CHECK OPTION",
+        "meaning": "뷰를 통한 변경이 뷰 조건을 벗어나지 않도록",
+        "example": "점수80미만 삽입 거절"
+      },
+      {
+        "term": "갱신 가능성",
+        "meaning": "모든 뷰가 INSERT·UPDATE 가능한 것은 아님",
+        "example": "집계·DISTINCT·조인 등에 제약"
+      },
+      {
+        "term": "일반 뷰·물리화 뷰",
+        "meaning": "정의 중심 vs 결과 저장·갱신 관리",
+        "example": "성능 특성도 다름"
+      },
+      {
+        "term": "DROP VIEW",
+        "meaning": "뷰 정의 제거",
+        "example": "기본 표의 행을 DELETE하는 것이 아님"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-3-01-E01",
+        "title": "80점 이상 학생만 보이는 뷰",
+        "question": "우수학생 뷰를 조회하면 무엇이 보이는가?",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박보성",
+                "90"
+              ],
+              [
+                "1002",
+                "김현수",
+                "70"
+              ],
+              [
+                "1003",
+                "유성재",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "sql": "CREATE VIEW 우수학생 AS SELECT 학번,이름,점수 FROM 성적 WHERE 점수>=80;\nSELECT 학번,이름,점수 FROM 우수학생 ORDER BY 학번;",
+        "steps": [
+          "뷰 정의의 WHERE 점수>=80에 박보성과 유성재가 맞는다.",
+          "뷰에는 박보성/90, 유성재/80만 보인다. 원본에서 김현수를 삭제한 것은 아니다.",
+          "원본 김현수의 점수를85로 바꾸면 다음 뷰 조회에는 김현수도 보일 수 있다."
+        ],
+        "results": [
+          {
+            "title": "뷰 조회 결과",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박보성",
+                "90"
+              ],
+              [
+                "1003",
+                "유성재",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-3-01-E02",
+        "title": "WITH CHECK OPTION의 의미",
+        "question": "Oracle에서 우수학생 뷰를 통해70점인 새 학생을 넣으려 하면?",
+        "tables": [
+          {
+            "title": "뷰 조건",
+            "columns": [
+              "규칙"
+            ],
+            "rows": [
+              [
+                "점수>=80"
+              ],
+              [
+                "WITH CHECK OPTION"
+              ]
+            ]
+          }
+        ],
+        "sql": "CREATE VIEW 우수학생 AS SELECT 학번,이름,점수 FROM 성적 WHERE 점수>=80 WITH CHECK OPTION;\nINSERT INTO 우수학생(학번,이름,점수) VALUES(1004,'노우성',70);",
+        "steps": [
+          "70은 뷰 조건 점수>=80을 벗어난다.",
+          "단순 갱신 가능한 뷰라도 WITH CHECK OPTION 때문에 이 뷰를 통한 해당 삽입은 거절된다.",
+          "기본 표를 직접 수정하는 권한까지 자동으로 막는 장치는 아니므로 권한 관리와 구별한다."
+        ],
+        "results": [
+          {
+            "title": "입력 판정",
+            "columns": [
+              "학번",
+              "이름",
+              "점수",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1004",
+                "노우성",
+                "70",
+                "거절"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 예상 결과를 설명한 자료입니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "뷰는 조회 정의에 붙인 이름. CHECK OPTION은 뷰를 통한 변경 조건 검사.",
+    "traps": [
+      "뷰를 만들었다고 원본 정보의 권한이 자동으로 완벽히 보호되는 것은 아니다. 적절한 접근권한 설정이 필요하다.",
+      "SQLite의 뷰 갱신 제한은 Oracle의 단순 갱신 가능 뷰와 다르다. 실행환경을 구분한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-3-01-Q1",
+        "question": "일반 뷰는 원본 행을 항상 복제해서 저장하는가?",
+        "answer": "아니다",
+        "explanation": "조회 정의를 통해 원본을 보여준다."
+      },
+      {
+        "id": "2-3-01-Q2",
+        "question": "DROP VIEW하면 원본 성적표 행이 삭제되는가?",
+        "answer": "아니다",
+        "explanation": "뷰 객체 정의를 제거한다."
+      },
+      {
+        "id": "2-3-01-Q3",
+        "question": "CHECK OPTION은 어떤 변경을 검사하는가?",
+        "answer": "그 뷰를 통한 변경",
+        "explanation": "변경 결과가 뷰의 조건을 만족하는지 검사한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S27"
+    ],
+    "sourceIds": [
+      "view",
+      "pgview"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"뷰의 개념과 활용 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념을 먼저</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">용어를 쉬운 말로</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실제 예시 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 값·행·열인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과와 이유</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">왜 이 답인가?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">뷰는 조회 정의에 붙인 이름. CHECK OPTION은 뷰를 통한 변경 조건 검사.</text></svg>",
+    "version": 1
+  },
+  "purpose": "반복해서 볼 80점 이상 성적 조건을 뷰로 저장하고 그 뷰를 통한 입력 제한을 구분한다.",
+  "overview": "일반 뷰는 SELECT 정의를 가진 객체다. CREATE VIEW는 조회 정의를 만들고 뒤 SELECT는 그 정의로 현재 성적을 보여준다. WITH CHECK OPTION은 그 뷰를 통한 변경이 뷰 조건을 벗어나지 않도록 검사한다.",
+  "terms": [
+    {
+      "token": "CREATE VIEW",
+      "kind": "키워드",
+      "meaning": "create view = 조회 정의 만들기",
+      "role": "우수학생이라는 뷰 이름에 성적의 80점 이상 조회를 연결한다."
+    },
+    {
+      "token": "AS SELECT",
+      "kind": "정의 연결",
+      "meaning": "뒤 SELECT를 뷰의 정의로 사용",
+      "role": "성적 전체를 별도 테이블로 복사하는 INSERT가 아니다."
+    },
+    {
+      "token": "WITH CHECK OPTION",
+      "kind": "뷰 변경 제약",
+      "meaning": "뷰 조건에 맞는 변경인지 검사",
+      "role": "우수학생을 통해 70점 행을 넣으면 >=80에 맞지 않아 거부한다."
+    },
+    {
+      "token": "우수학생 / 성적",
+      "kind": "뷰명 / 기반 테이블명",
+      "meaning": "보는 창 / 실제 원본",
+      "role": "학생 데이터는 성적에 있으며 우수학생은 그 중 조건에 맞는 결과를 보여준다."
+    }
+  ],
+  "pitfalls": [
+    "일반 뷰와 별도 결과를 저장하는 물리화 뷰를 섞지 않는다.",
+    "뷰에 조건이 있다고 기반 테이블을 직접 수정할 권한까지 자동 차단하지 않는다.",
+    "서로 다른 예제의 CREATE VIEW는 각각 독립된 시작 상태로 읽는다. 같은 이름을 그대로 연속 생성한다고 가정하지 않는다."
+  ],
+  "questions": [
+    {
+      "question": "CREATE VIEW는 여기서 무엇을 뜻하나요?",
+      "answer": "우수학생이라는 뷰 이름에 성적의 80점 이상 조회를 연결한다."
+    },
+    {
+      "question": "AS SELECT는 여기서 무엇을 뜻하나요?",
+      "answer": "성적 전체를 별도 테이블로 복사하는 INSERT가 아니다."
+    },
+    {
+      "question": "WITH CHECK OPTION는 여기서 무엇을 뜻하나요?",
+      "answer": "우수학생을 통해 70점 행을 넣으면 >=80에 맞지 않아 거부한다."
+    },
+    {
+      "question": "우수학생 / 성적는 여기서 무엇을 뜻하나요?",
+      "answer": "학생 데이터는 성적에 있으며 우수학생은 그 중 조건에 맞는 결과를 보여준다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-3",
+      "title": "관리구문과 트랜잭션",
+      "fromPage": 1,
+      "toPage": 6,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-3-01-E01",
+      "why": "매번 80점 조건을 길게 쓰지 않고 우수학생 이름으로 조회한다.",
+      "effect": "구조 정의+조회: 뷰 생성 후 2학생 출력, 성적 3행 유지.",
+      "prerequisites": [
+        "우수학생 뷰가 아직 없으며 성적 원본 3행이 존재한다고 가정한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "정의하는 대상과 읽는 원본",
+          "text": "CREATE VIEW 우수학생은 뷰를 만들고 AS 뒤 SELECT는 FROM 성적을 읽는다. 조회 정의를 저장하며 우수학생 생성 때 별도 성적 데이터 복사본을 입력하지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "CREATE VIEW 우수학생 AS",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "조회 정의"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "객체 역할",
+            "columns": [
+              "이름",
+              "종류",
+              "보유 내용"
+            ],
+            "rows": [
+              [
+                "성적",
+                "기반 테이블",
+                "학생3행"
+              ],
+              [
+                "우수학생",
+                "일반 뷰",
+                "점수>=80 조회 정의"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "뷰 조건에 실제 점수 대입",
+          "text": "박보성 90과 유성재 80은 >=80이참, 김현수 70은거짓이다. 뷰 조회에서는 통과한 두 학생만 보인다.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 점수>=80",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "두 학생"
+          ],
+          "focusRows": [
+            0,
+            2
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "뷰 조회 판정",
+            "columns": [
+              "학번",
+              "이름",
+              "점수",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박보성",
+                "90",
+                "참·표시"
+              ],
+              [
+                "1002",
+                "김현수",
+                "70",
+                "거짓·숨김"
+              ],
+              [
+                "1003",
+                "유성재",
+                "80",
+                "참·표시"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "보이지 않는 행도 원본에 남기",
+          "text": "뒤 SELECT의 FROM 우수학생은 저장된 정의를 이용한다. 김현수 70을 성적에서 DELETE한 것이 아니며 다음 조회에 보일지는 그때 보이는 성적값과 조건으로 정한다.",
+          "codeFocus": [
+            {
+              "needle": "FROM 우수학생 ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "DELETE한 것이 아니며"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "뷰 조회 결과",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박보성",
+                "90"
+              ],
+              [
+                "1003",
+                "유성재",
+                "80"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "원본 점수가 85로 바뀌면 뷰 조건을 만족할 수 있지만 이 예제 SQL 자체에는 그 UPDATE가 없다. 변경 가정과 실제 실행문을 구별한다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    },
+    {
+      "exampleId": "2-3-01-E02",
+      "why": "우수학생 뷰를 통해 조건 밖 학생이 등록되는 일을 막는다.",
+      "effect": "구조 정의+거부된 입력:70점 입력 시도는 저장 결과가 아니다.",
+      "prerequisites": [
+        "첫 뷰 예제와 독립된 시작 상태다. 우수학생 뷰가 아직 없고 기반 성적은 갱신 가능한 단순표라고 가정한다.",
+        "학번 1004는 중복되지 않고 점수 70은 기반 테이블의 다른 제약을 만족한다고 가정한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "입력 대상은 뷰",
+          "text": "INSERT INTO 우수학생은 기반 성적을 보이는 뷰를 통해 넣는 동작이다. 단순 갱신 가능한 뷰라면 기반 표 변경으로 연결되지만 여기서는 CHECK OPTION을 추가로 확인해야 한다.",
+          "codeFocus": [
+            {
+              "needle": "INSERT INTO 우수학생(학번,이름,점수)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "뷰를 통해"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "입력 시도",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1004",
+                "노우성",
+                "70"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "입력될 값에 뷰 조건 적용",
+          "text": "1004 노우성의 70은 70>=80이거짓이다. WITH CHECK OPTION은 변경 뒤에도 이 뷰로 볼 수 있는 행이어야 하므로 이번 삽입을 거부한다.",
+          "codeFocus": [
+            {
+              "needle": "WITH CHECK OPTION",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "거부"
+          ],
+          "focusRows": [
+            0
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "입력 시도 판정",
+            "columns": [
+              "점수",
+              "뷰 조건",
+              "판정"
+            ],
+            "rows": [
+              [
+                "70",
+                "70>=80 = 거짓",
+                "거부·미저장"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "거부 행을 정상 데이터에 섞지 않기",
+          "text": "원본 결과표의 1004·노우성·70·거절은 판정표다. 성적에 저장된 새 학생 목록이 아니다. 이 동작으로 성적 행수가 늘지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "VALUES(1004,'노우성',70)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "판정표"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "입력 판정",
+            "columns": [
+              "학번",
+              "이름",
+              "점수",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1004",
+                "노우성",
+                "70",
+                "거절"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "기반 성적을 직접 변경하는 것까지 이 옵션이 검사하지는 않는다. 원본 권한 관리와 뷰 조건은 별개다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-3-01-Q1",
+      "hint": "뷰 생성 시 저장하는 것이 행 복사본인지 SELECT 정의인지 보자.",
+      "reasoning": "일반 뷰는 조회 정의를 저장한다. 성적 행을 다른 표처럼 항상 복제 저장하는 물리화 뷰와 다르다."
+    },
+    {
+      "checkId": "2-3-01-Q2",
+      "hint": "삭제할 객체 이름이 뷰인지 기반 표인지 구분해 보자.",
+      "reasoning": "DROP VIEW 우수학생은 뷰 정의를 제거한다. 기반 성적의 학생 행은 삭제하지 않는다."
+    },
+    {
+      "checkId": "2-3-01-Q3",
+      "hint": "INSERT INTO 뒤에 어떤 이름이 있는지 확인하자.",
+      "reasoning": "WITH CHECK OPTION은 해당 뷰를 통해 하는 변경을 검사한다. 기반 표 직접 변경까지 같은 옵션으로 자동 금지하지 않는다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-VIEW.html"
+  ],
+  "reviewNotes": [
+    "원본 전제 부족: 두 CREATE VIEW 예제는 같은 이름을 사용하므로 별도 실습 상태라고 명시했다."
+  ]
+}

@@ -1,0 +1,460 @@
+{
+  "schemaVersion": 1,
+  "inputSha256": "d24dd21c9c5b71b4f41c97798423fd0494353a71d9d0341c4105a1833c4168ef",
+  "method": "independent_ai_blind_reasoning_masked_choice_ids",
+  "reviewer": "content_a",
+  "reviewedAt": "2026-09-14T05:20:59.979067+00:00",
+  "boundary": "All masked stems/choices read before original answers, explanations, expected values or hidden map. No engine execution or human expert review.",
+  "decisions": [
+    {
+      "questionId": "mock-4-S09-m4-collation-condition",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "혼합문자의 정확한 정렬 순서는 collation과 관련 세션 조건에 의존하므로 ASC만으로 확정할 수 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S10-m4-multi-stage-cartesian",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "주문2개 각각에 연락처3개가 결합되어2×3=6행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S10-m4-join-range-time-exclusive",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "10은 첫 구간의 미포함 끝이고 둘째 구간의 포함 시작이므로 둘째만 매칭한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S11-m4-left-chain-preservation",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "앞서 LEFT가 보존한 행도 빈 C와 INNER JOIN하면 매칭 쌍이 없어 전부 사라진다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S11-m4-outer-filter-left-on",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "ON의 A.id1 조건은 매칭만 제한하며 보존측 A2 자체는 B열NULL로 남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S12-m4-in-outer-duplicates",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "IN은 A의2 두행을 그대로 남겨COUNT(*)2이고 서로다른x는1개다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S12-m4-correlated-grand-average-choice",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "id로 상관시키면 전체직원이 아닌 자기 행만 평균하므로 전체평균 비교의 의미가 바뀐다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S12-m4-exists-all-null-policy",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NULL을 실패로 정했으므로 pass<>1뿐 아니라 pass IS NULL도 반례로 잡아야 한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S13-m4-union-count-distinct-null",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "UNION의 NULL중복제거 후NULL 한행이고 COUNT(*)1, COUNT(v)0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S13-m4-minus-column-order",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "B에서 b,a를 투영하면(1,2)라 A의(1,2)와 같고 차집합은빈다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S14-m4-cube-versus-explicit-union",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "CUBE는(a),(b)외에(a,b)와()수준도 추가한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S14-m4-having-level-total-filter",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "30,40개별합계는50미만이고 전체70만 HAVING을 통과한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S15-m4-rank-null-desc-oracle",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "Oracle DESC 기본은 NULLS FIRST라NULL이 첫 정렬위치의RANK1이 된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S15-m4-ntile-tie-split",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "NTILE은 행개수를 균등분배하므로 점수동점도 두버킷에 나뉠 수 있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S16-m4-sum-empty-following-frame",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "뒤1~2행 프레임은 마지막행에서 비어 SUM의 비NULL입력이 없어NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S16-m4-range-date-distance",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "12시의 앞1시간 하한11시에10시30분은 없지만 앞1행에는 포함된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S17-m4-ties-composite-key",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "유일id를 포함한 전체정렬키는서로달라 제한마지막행의추가동점이 없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S17-m4-top-average-stage",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "전체AVG로이미한행이면 FETCH는그집계행에작용하며원본상위10명을고르지못한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S18-m4-siblings-non-global-order",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "SIBLINGS는같은부모아래형제집합끼리정렬하고전체id순서로계층을재배열하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S18-m4-manager-count-self",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "id2의직속부하는id4 한행이므로 COUNT(e.id)1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S19-m4-unpivot-count-roundtrip",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "금액10이건수1로바뀌고NULL분기도UNPIVOT에서빠져원래금액정보를그대로복원하지못한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S19-m4-pivot-two-measures",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "월마다합계와건수두측정결과를구분할수있도록결과열이름을설계해야한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S20-m4-regex-space-not-trim",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "시작앵커바로뒤숫자조건에선행공백이맞지않고정규식이자동TRIM하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S21-m4-update-correlated-all-null",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "평균NULL을NOT NULL대상열에대입하면실패한다. 다만 같은직원급여열이원본이라면 모두NULL과NOT NULL의초기조건은동시에성립하지않으므로 별도NULL허용원본을명시해야한다.",
+      "conditionsOrIssues": [
+        "Possible contradictory input: all source employee salaries NULL while salary column is NOT NULL. Explicit separate nullable source and NOT NULL target needed."
+      ]
+    },
+    {
+      "questionId": "mock-4-S21-m4-delete-having-target",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "HAVING으로고객1을선택한후그고객의모든주문3행을DELETE한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S22-m4-read-committed-two-sessions",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle READ COMMITTED의다른세션일반조회는미확정20을더티리드하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S23-m4-fk-default-delete-protect",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "참조자식이있고삭제전파옵션없는즉시FK는부모삭제를거부한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-4-S24-m4-revoke-one-object-only",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "T1경로만회수했으므로별도로부여받은T2 SELECT가남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S09-m5-sort-arithmetic-null",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "계산 값은 id1 NULL, id2 70, id3 60이므로 DESC NULLS LAST에서2,3,1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S10-m5-distinct-after-project-join",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "등호 조인은4행이지만 A.k만 투영한 값1을 DISTINCT가 한 행으로 줄인다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S10-m5-nvl-null-sentinel-collision",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "실제-1과 NULL 대체값-1이 충돌하여 의도하지 않은 일반키와NULL 사이 매칭이 생긴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S11-m5-full-on-true-empty",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "B가 비어매칭쌍은없지만 FULL이A의두미매칭행을 NULL확장해 보존한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S11-m5-full-unmatched-where-side",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "FULL은(1,NULL),(NULL,2)인데 WHERE A.k IS NOT NULL은첫행만 남긴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S12-m5-null-left-in-mixed",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "NULL의두등호비교는 UNKNOWN이고OR도UNKNOWN이며 NOT을붙여도UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S12-m5-exists-aggregate-no-group",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "빈T에대한COUNT(*)는값0인한결과행이있어 EXISTS TRUE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S12-m5-relational-division-empty-required",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "필수과목이없으면 미이수필수과목이라는반례도없어 모든학생의NOT EXISTS가참이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S13-m5-unionall-group-frequency",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "ALL로중복을보존하면1은2+1=3행,2는1+2=3행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S13-m5-intersect-not-join-product",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "INTERSECT는값1중복제거한1행, INNER JOIN은2×3=6쌍이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S14-m5-rollup-composite-unit",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "복합단위(a,b)를함께유지/제외하므로(a,b,c),(a,b),()이며(a)만따로없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S14-m5-aggregate-null-all-levels",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "전체세행에서SUM은비NULL5,COUNT(*)3,COUNT(amount)1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S15-m5-lag-offset-partition",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "부서2파티션에는한행뿐이라앞2행이없고LAG기본값-1을쓴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S15-m5-lead-ignore-null-values",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "IGNORE NULLS는다음NULL을건너뛰어첫행에서다음비NULL30을읽는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S16-m5-negative-values-window",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "누적합은10,10-20=-10,-10+15=5이며음수때문에감소할수있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S16-m5-frame-whole-without-order",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "분석ORDER BY가없는SUM은부서전체합30을두행모두에붙인다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S17-m5-bottom-n-null-policy",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "미채점NULL을WHERE로제외하고실제점수ASC뒤2행을선택하면10,20이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S17-m5-top-after-distinct",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "DISTINCT score는사람식별을잃고서로다른점수종류100,90두행을선택한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S18-m5-leaf-before-where",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "CONNECT BY의자식2존재에따른leaf0이며나중WHERE표시필터가계층관계를재계산하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S18-m5-hierarchy-path-versus-id",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "id1,20,3과경로깊이LEVEL1,2,3은다른의미다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S19-m5-filter-before-pivot-group",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "PIVOT입력에서월2를이미제거했으므로월1SUM10, 월2는NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S19-m5-unpivot-detect-missing",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "기본UNPIVOT은NULL을제외하므로뒤에서누락분기를찾으려면INCLUDE NULLS로보존해야한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S20-m5-regexp-backreference",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "실제패턴의역슬래시는한개로확인했으며\\1은첫캡처문자재참조다. AA와BB만동일문자반복으로맞는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S21-m5-zero-update-and-rollback",
+      "choiceIds": [
+        "r4"
+      ],
+      "reasoning": "id99매칭행이없어UPDATE는0행변경이며COMMIT도기존id1값을바꾸지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S21-m5-merge-on-column-update",
+      "choiceIds": [
+        "r1"
+      ],
+      "reasoning": "Oracle MERGE는ON조건에서참조한대상열을UPDATE하는것을제한한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S22-m5-valid-ddl-failure-precommit",
+      "choiceIds": [
+        "r3"
+      ],
+      "reasoning": "문법적으로적법한DDL은실행전암묵COMMIT경계를만들수있어이후객체존재오류로실패해도앞선DML확정을되돌린다고가정할수없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S23-m5-alter-not-null-existing-data",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "기존NULL이정상검사NOT NULL조건을위반하므로데이터정리없이제약적용을성공한다고보장할수없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "mock-5-S24-m5-system-revoke-not-object-chain",
+      "choiceIds": [
+        "r2"
+      ],
+      "reasoning": "시스템권한의ADMIN재부여와객체권한의GRANT종속회수는달라B회수가C에게자동연쇄된다고단정할수없다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

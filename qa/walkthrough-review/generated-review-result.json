@@ -1,0 +1,361 @@
+{
+  "status": "PASS",
+  "appliedDocumentsChecked": 133,
+  "allStepsChecked": 849,
+  "explicitValueChecks": [
+    {
+      "questionId": "S06-A02",
+      "stage": "WHERE · 입력 1",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S06-A02",
+      "stage": "WHERE · 입력 2",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S06-A02",
+      "stage": "WHERE · 입력 3",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S07-A01",
+      "stage": "집계 · COUNT(*)",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S07-A01",
+      "stage": "집계 · COUNT(점수)",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S07-A02",
+      "stage": "집계 · AVG(NVL(x,0))",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S07-A02",
+      "stage": "집계 · AVG(x)",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S07-A05",
+      "stage": "최종 결과",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S08-A01",
+      "stage": "GROUP BY · 부서=A",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S08-A01",
+      "stage": "HAVING",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S10-A01-duplicate-multiplication",
+      "stage": "FROM",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S11-A01-on-paid-preserve",
+      "stage": "FROM",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S11-A02-where-paid-remove",
+      "stage": "WHERE · 입력 4",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S11-A02-where-paid-remove",
+      "stage": "WHERE · 남은",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S11-A03-count-outer-null",
+      "stage": "집계 · COUNT(*)",
+      "occurrence": 2,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S11-A03-count-outer-null",
+      "stage": "집계 · COUNT(O.id)",
+      "occurrence": 2,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S11-A04-full-both-unmatched",
+      "stage": "FROM",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S11-A05-using-key-result",
+      "stage": "최종 결과",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S11-A06-natural-extra-key",
+      "stage": "최종 결과",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-A01-above-own-dept-average",
+      "stage": "바깥 비교 · e.id=4",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-A02-exists-no-multiply",
+      "stage": "존재 검사 · 1",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-A03-null-safe-not-exists",
+      "stage": "존재 검사 · NULL",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-A04-not-in-empty",
+      "stage": "NOT IN",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-A05-scalar-aggregate-empty",
+      "stage": "안쪽 AVG",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-A06-any-null-mixed",
+      "stage": "ANY · x=1",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-A07-all-empty",
+      "stage": "ALL",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-A08-tuple-in",
+      "stage": "바깥 행",
+      "occurrence": 1,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S12-SUP-A01-paired-membership",
+      "stage": "바깥 행",
+      "occurrence": 1,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S13-A01-union-null-combined",
+      "stage": "집합 연산",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S13-A02-all-count",
+      "stage": "집합 연산",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S13-A03-intersection-two-columns",
+      "stage": "집합 연산",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S13-A04-minus-dedup",
+      "stage": "집합 연산",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S13-A05-parenthesized-difference",
+      "stage": "괄호 안",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S13-A06-difference-count-empty",
+      "stage": "바깥 집계",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S15-A01-ranks-side-by-side",
+      "stage": "RANK · id=3",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S15-A02-unique-number-with-tie-key",
+      "stage": "ROW_NUMBER · id=1",
+      "occurrence": 0,
+      "ordered": true,
+      "passed": true
+    },
+    {
+      "questionId": "S15-A03-partition-sum-maintains-rows",
+      "stage": "SUM · id=4",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S15-A04-lag-null-default",
+      "stage": "LAG · id=3",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S15-A05-lead-gap-not-id",
+      "stage": "LEAD · id=80",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S15-A06-ntile-unequal",
+      "stage": "최종 결과",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S16-A01-range-peer-cumulative",
+      "stage": "SUM · id=1",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S16-A02-rows-two-window",
+      "stage": "SUM · id=3",
+      "occurrence": 0,
+      "ordered": true,
+      "passed": true
+    },
+    {
+      "questionId": "S16-A03-range-value-distance",
+      "stage": "SUM · id=3",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S16-A04-last-value-full",
+      "stage": "LAST_VALUE · id=1",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S16-A05-future-count-boundary",
+      "stage": "COUNT · id=3",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S16-A06-partition-boundaries",
+      "stage": "SUM · id=3",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S15-SUP-A01-percent-rank-top-tie",
+      "stage": "최종 결과",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S15-SUP-A02-cume-desc-peers",
+      "stage": "최종 결과",
+      "occurrence": 0,
+      "ordered": false,
+      "passed": true
+    },
+    {
+      "questionId": "S16-SUP-A02-first-value-moving-frame",
+      "stage": "FIRST_VALUE · id=3",
+      "occurrence": 0,
+      "ordered": true,
+      "passed": true
+    }
+  ],
+  "failureCount": 0,
+  "failures": [],
+  "learningExamplesChecked": [
+    "learning-employee-not-in-any"
+  ],
+  "oracle19cExecuted": false,
+  "limits": [
+    "Structural/source/final-table comparison covers every currently indexed document.",
+    "Intermediate semantic checks are enumerated by ID and stage, not every sentence in every document.",
+    "This script does not certify Oracle execution or learning efficacy."
+  ]
+}

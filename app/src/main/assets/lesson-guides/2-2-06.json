@@ -1,0 +1,799 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-06",
+  "source": {
+    "id": "2-2-06",
+    "partId": "2-2",
+    "number": 6,
+    "title": "집합 연산자",
+    "lectureMinutes": 36,
+    "easy": "같은 구조의 두 조회 결과를 위아래로 합치거나 공통·차이 부분을 구한다. 조인처럼 열을 옆으로 붙이지 않는다.",
+    "why": "중복을 제거하는 UNION과 그대로 남기는 UNION ALL은 결과 행수가 다르다.",
+    "concepts": [
+      {
+        "term": "UNION",
+        "meaning": "양쪽 결과를 합치고 중복 제거",
+        "example": "1,2와2,3 → 1,2,3"
+      },
+      {
+        "term": "UNION ALL",
+        "meaning": "합치되 중복 유지",
+        "example": "1,2,2,3"
+      },
+      {
+        "term": "INTERSECT",
+        "meaning": "양쪽에 공통인 결과",
+        "example": "2"
+      },
+      {
+        "term": "MINUS·EXCEPT",
+        "meaning": "왼쪽에만 있는 결과",
+        "example": "Oracle19c MINUS, 표준/다른 DBMS EXCEPT"
+      },
+      {
+        "term": "열수·자료형",
+        "meaning": "서로 대응되는 열의 수와 형이 호환되어야 함",
+        "example": "이름+점수 결과끼리"
+      },
+      {
+        "term": "출력 열 이름",
+        "meaning": "일반적으로 첫 SELECT의 이름을 사용",
+        "example": "첫 별칭 확인"
+      },
+      {
+        "term": "정렬",
+        "meaning": "전체 집합 결과에 마지막 ORDER BY",
+        "example": "연산 후 순서 명시"
+      },
+      {
+        "term": "중복 기준",
+        "meaning": "행 전체 선택값의 조합",
+        "example": "NULL을 포함한 중복 제거 규칙도 일반 =와 구별"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-06-E01",
+        "title": "같은 구조의 두 명단 비교",
+        "question": "R은 1·2·3, S는 2·3·4일 때 네 결과는?",
+        "tables": [
+          {
+            "title": "R",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "S",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "UNION은 두 목록에 나타난 1·2·3·4를 한 번씩 남겨 4행이다.",
+          "UNION ALL은 원래 3행+3행=6행을 유지한다. 2·3이 각각 두 번 나온다.",
+          "INTERSECT는 공통 2·3, R MINUS S는 R에만 있는 1이다."
+        ],
+        "results": [
+          {
+            "title": "UNION",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          },
+          {
+            "title": "UNION ALL",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          },
+          {
+            "title": "INTERSECT",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "R MINUS S",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      },
+      {
+        "id": "2-2-06-E02",
+        "title": "두 결과를 실제로 합치기",
+        "question": "UNION ALL 결과를 정렬해서 확인하자.",
+        "tables": [
+          {
+            "title": "R",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          {
+            "title": "S",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 번호 FROM R UNION ALL SELECT 번호 FROM S ORDER BY 번호;",
+        "steps": [
+          "R 세 행과 S 세 행을 그대로 이어 붙인다.",
+          "마지막 ORDER BY로 번호순을 정한다. 중복은 유지된다."
+        ],
+        "results": [
+          {
+            "title": "결과",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "UNION 중복 제거 / ALL 중복 유지 / INTERSECT 공통 / MINUS 왼쪽만.",
+    "traps": [
+      "집합 연산과 JOIN을 같은 “합치기”로만 외우지 않는다. 집합은 행을 위아래로, JOIN은 열을 옆으로 조합한다.",
+      "여러 집합 연산을 섞을 때 우선순위는 DBMS·버전에 차이가 있다. 괄호로 의도를 명시한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-06-Q1",
+        "question": "3행과 3행의 UNION ALL은 몇 행?",
+        "answer": "6행",
+        "explanation": "중복 여부와 관계없이 둘을 합한다."
+      },
+      {
+        "id": "2-2-06-Q2",
+        "question": "차집합 R MINUS S와 S MINUS R은 같은가?",
+        "answer": "일반적으로 다르다",
+        "explanation": "왼쪽·오른쪽 방향이 중요하다."
+      },
+      {
+        "id": "2-2-06-Q3",
+        "question": "열수가 다른 두 SELECT를 바로 UNION할 수 있는가?",
+        "answer": "없다",
+        "explanation": "열수와 대응 자료형이 맞아야 한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S13"
+    ],
+    "sourceIds": [
+      "sets",
+      "select"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"집합 연산자 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">같은 열 구조</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">위·아래 결과 준비</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">집합 연산</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">∪ · ∩ · −</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">중복 정책 확인</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">UNION ALL은 유지</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">UNION 중복 제거 / ALL 중복 유지 / INTERSECT 공통 / MINUS 왼쪽만.</text></svg>",
+    "version": 1
+  },
+  "purpose": "구조가 같은 두 조회 결과의 명단을 합치거나 공통·차이를 구하기 위해 써요.",
+  "overview": "조회예요. R·S의 번호 한 열을 행 방향으로 결합해요. JOIN처럼 서로 다른 표의 컬럼을 옆으로 붙이지 않아요.",
+  "terms": [
+    {
+      "token": "UNION",
+      "kind": "집합 연산",
+      "meaning": "union = 합친 집합",
+      "role": "R1·2·3과 S2·3·4에서 중복 번호를 없애1·2·3·4를 남겨요."
+    },
+    {
+      "token": "UNION ALL",
+      "kind": "집합 연산",
+      "meaning": "all = 모든 발생을 유지",
+      "role": "양쪽에 있는2·3을 각각 두 번 남겨6행이에요."
+    },
+    {
+      "token": "INTERSECT",
+      "kind": "집합 연산",
+      "meaning": "intersect = 겹치는 부분",
+      "role": "양쪽 모두 있는2·3을 남겨요."
+    },
+    {
+      "token": "MINUS",
+      "kind": "집합 연산",
+      "meaning": "minus = 왼쪽에서 오른쪽을 제외",
+      "role": "R MINUS S에는1, 반대 방향에는4가 남아요."
+    }
+  ],
+  "pitfalls": [
+    "집합 연산은 컬럼 이름이 아니라 선택한 열의 위치를 맞춰요. 열수와 대응 자료형이 맞아야 해요.",
+    "UNION이 중복을 제거해도 결과 정렬을 보장하는 것은 아니에요. 정렬은 마지막 ORDER BY가 정해요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. R·S의 번호 한 열을 행 방향으로 결합해요. JOIN처럼 서로 다른 표의 컬럼을 옆으로 붙이지 않아요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 36,
+      "toPage": 36,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-06-E01",
+      "why": "두 번호 명단의 전체·중복·공통·차이를 구분하는 개념 연습이에요.",
+      "effect": "개념 · 원본 표와 결과 표의 의미를 비교해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-06-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "R: 컬럼 번호 1개, 표시 입력 3행.",
+        "S: 컬럼 번호 1개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "같은 번호 열의 발생 수",
+          "text": "R은 1·2·3, S는 2·3·4예요. 2와 3은 두 표에 한 번씩 존재하므로 합치면 각각 두 발생이에요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 같은 번호 열의 발생 수",
+            "columns": [
+              "번호",
+              "R횟수",
+              "S횟수",
+              "합친횟수"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "0",
+                "1"
+              ],
+              [
+                "2",
+                "1",
+                "1",
+                "2"
+              ],
+              [
+                "3",
+                "1",
+                "1",
+                "2"
+              ],
+              [
+                "4",
+                "0",
+                "1",
+                "1"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "합집합과 모두 합치기",
+          "text": "UNION은 중복 발생을 하나로 줄여 1·2·3·4의 4행이에요. UNION ALL은 발생수 1+2+2+1=6행을 유지해요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 합집합과 모두 합치기",
+            "columns": [
+              "연산",
+              "번호",
+              "행수"
+            ],
+            "rows": [
+              [
+                "UNION",
+                "1·2·3·4",
+                "4"
+              ],
+              [
+                "UNION ALL",
+                "1·2·2·3·3·4",
+                "6"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "공통과 왼쪽만",
+          "text": "INTERSECT는 R과 S 모두의 2·3, R MINUS S는 R에 있고 S에는 없는 1이에요. 반대 방향 S MINUS R은 4로 달라요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 공통과 왼쪽만",
+            "columns": [
+              "번호",
+              "양쪽공통",
+              "R에만"
+            ],
+            "rows": [
+              [
+                "1",
+                "거짓",
+                "참"
+              ],
+              [
+                "2",
+                "참",
+                "거짓"
+              ],
+              [
+                "3",
+                "참",
+                "거짓"
+              ],
+              [
+                "4",
+                "거짓",
+                "거짓"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 3,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "UNION · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 UNION와 대조해요. 표시 컬럼은 번호, 결과는 4행이에요. SQL 없는 개념 예제의 표이며 DB 실행 결과로 주장하지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "UNION",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        },
+        {
+          "id": "read-05",
+          "title": "UNION ALL · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 UNION ALL와 대조해요. 표시 컬럼은 번호, 결과는 6행이에요. SQL 없는 개념 예제의 표이며 DB 실행 결과로 주장하지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "UNION ALL",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        },
+        {
+          "id": "read-06",
+          "title": "INTERSECT · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 INTERSECT와 대조해요. 표시 컬럼은 번호, 결과는 2행이에요. SQL 없는 개념 예제의 표이며 DB 실행 결과로 주장하지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "INTERSECT",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "3"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        },
+        {
+          "id": "read-07",
+          "title": "R MINUS S · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 R MINUS S와 대조해요. 표시 컬럼은 번호, 결과는 1행이에요. SQL 없는 개념 예제의 표이며 DB 실행 결과로 주장하지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "R MINUS S",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "이 예제는 SQL 원문이 없는 집합 개념표예요. 표시 순서를 SQL 실행 순서나 자동 정렬로 해석하지 않아요.",
+      "verification": "원본 표의 개념·산술을 대조한 설명이에요. 실행할 SQL 원문이 없어 DB 엔진 검증으로 표시하지 않아요."
+    },
+    {
+      "exampleId": "2-2-06-E02",
+      "why": "중복 기록도 포함해 두 조회 목록을 합친 뒤 번호순으로 보여줘요.",
+      "effect": "조회 · R, S의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-06-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "R: 컬럼 번호 1개, 표시 입력 3행.",
+        "S: 컬럼 번호 1개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "각 SELECT의 같은 위치 열",
+          "text": "첫 SELECT는 R.번호 1·2·3, 둘째는 S.번호 2·3·4예요. 각 결과 한 열을 같은 위치로 대응시켜요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 번호 FROM R",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "SELECT",
+            "번호"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "여섯 발생을 유지",
+          "text": "UNION ALL은 첫 목록 3행과 둘째 3행을 모두 유지해요. 중간 설명용으로 출처를 표시했지만 실제 SELECT 출력에는 출처 열이 없어요.",
+          "codeFocus": [
+            {
+              "needle": "UNION ALL",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "UNION ALL"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 여섯 발생을 유지",
+            "columns": [
+              "설명용출처",
+              "번호"
+            ],
+            "rows": [
+              [
+                "R",
+                "1"
+              ],
+              [
+                "R",
+                "2"
+              ],
+              [
+                "R",
+                "3"
+              ],
+              [
+                "S",
+                "2"
+              ],
+              [
+                "S",
+                "3"
+              ],
+              [
+                "S",
+                "4"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 1
+            },
+            {
+              "row": 1,
+              "column": 1
+            },
+            {
+              "row": 2,
+              "column": 1
+            },
+            {
+              "row": 3,
+              "column": 1
+            },
+            {
+              "row": 4,
+              "column": 1
+            },
+            {
+              "row": 5,
+              "column": 1
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "전체 결과 정렬",
+          "text": "마지막 ORDER BY 번호가 여섯 값을 1·2·2·3·3·4로 정렬해요. 같은 번호의 출처 순서는 지정하지 않았지만 출력값은 같아요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 번호",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ORDER BY 번호"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 결과와 대조해요. 표시 컬럼은 번호, 결과는 6행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "결과",
+            "columns": [
+              "번호"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                "2"
+              ],
+              [
+                "2"
+              ],
+              [
+                "3"
+              ],
+              [
+                "3"
+              ],
+              [
+                "4"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "ORDER BY는 결합된 전체 결과의 정렬이에요. UNION ALL의 ALL을 빼면 2와 3 중복이 사라져 행수도 바뀌어요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-06-Q1",
+      "hint": "중복을 없애라는 키워드인지 모두 유지하라는 키워드인지 보세요.",
+      "reasoning": "UNION ALL은 R의 3행과 S의 3행을 그대로 유지해서 6행이에요. 2와 3이 반복돼도 빼지 않아요."
+    },
+    {
+      "checkId": "2-2-06-Q2",
+      "hint": "왼쪽에서만 남는 번호를 각각 찾아요.",
+      "reasoning": "R MINUS S는1이고 S MINUS R은4예요. 빼는 방향을 바꾸면 일반적으로 결과가 달라요."
+    },
+    {
+      "checkId": "2-2-06-Q3",
+      "hint": "첫 번째 결과의 각 열에 대응하는 두 번째 열이 있는지 확인해요.",
+      "reasoning": "열수가 다르면 대응 위치가 맞지 않아요. 행수가 다른 것은 괜찮지만 열수와 자료형 조건은 맞아야 해요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-25",
+  "source": {
+    "id": "2-1-25",
+    "partId": "2-1",
+    "number": 25,
+    "title": "ANSI 표준 조인",
+    "lectureMinutes": 17,
+    "easy": "조인을 JOIN·ON·USING 등 명시적인 문법으로 표현하는 방식이다. 연결 조건과 행 필터를 읽기 쉽게 나눈다.",
+    "why": "같은 열을 하나로 보여주는 USING·NATURAL JOIN과, 원하는 비교를 직접 적는 ON의 차이를 알아야 한다.",
+    "concepts": [
+      {
+        "term": "JOIN ... ON",
+        "meaning": "열 이름이 달라도 자유롭게 조건 지정",
+        "example": "s.학과코드=d.코드"
+      },
+      {
+        "term": "JOIN ... USING",
+        "meaning": "같은 이름의 연결 열을 명시",
+        "example": "USING(학과코드)"
+      },
+      {
+        "term": "NATURAL JOIN",
+        "meaning": "양쪽의 같은 이름 열 모두로 동등 연결",
+        "example": "의도하지 않은 동명 열도 조건이 됨"
+      },
+      {
+        "term": "USING 출력 열",
+        "meaning": "공통 연결 열을 한 번 출력",
+        "example": "학과코드 하나"
+      },
+      {
+        "term": "ON 출력 열",
+        "meaning": "SELECT *이면 양쪽 연결 열이 모두 나올 수 있음",
+        "example": "중복 이름에 별칭 지정"
+      },
+      {
+        "term": "N개 표 조인",
+        "meaning": "각 관계의 조건을 명시해 연결",
+        "example": "학생→수강→과목"
+      },
+      {
+        "term": "구식 외부 조인",
+        "meaning": "Oracle (+) 등 제품별 문법",
+        "example": "표준 OUTER JOIN과 구별"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-25-E01",
+        "title": "공통 코드 열을 하나만 표시",
+        "question": "USING(학과코드)로 학생과 학과를 연결하자.",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과코드"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "D01"
+              ],
+              [
+                "1002",
+                "박보성",
+                "D02"
+              ]
+            ]
+          },
+          {
+            "title": "학과",
+            "columns": [
+              "학과코드",
+              "학과명"
+            ],
+            "rows": [
+              [
+                "D01",
+                "컴퓨터"
+              ],
+              [
+                "D02",
+                "전자"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 학번, 이름, 학과코드, 학과명 FROM 학생 JOIN 학과 USING(학과코드) ORDER BY 학번;",
+        "steps": [
+          "양쪽 열 이름이 학과코드로 같으므로 USING에 그 이름 하나를 적는다.",
+          "D01인 박강열에 컴퓨터, D02인 박보성에 전자가 붙는다.",
+          "SELECT에서 학과코드는 공통 열 하나로 표시한다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "학번",
+              "이름",
+              "학과코드",
+              "학과명"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "D01",
+                "컴퓨터"
+              ],
+              [
+                "1002",
+                "박보성",
+                "D02",
+                "전자"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-1-25-E02",
+        "title": "NATURAL JOIN에서 숨은 조건 찾기",
+        "question": "두 표에 코드뿐 아니라 이름이라는 열도 공통이면?",
+        "tables": [
+          {
+            "title": "R",
+            "columns": [
+              "코드",
+              "이름"
+            ],
+            "rows": [
+              [
+                "1",
+                "박강열"
+              ]
+            ]
+          },
+          {
+            "title": "S",
+            "columns": [
+              "코드",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1",
+                "박보성",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 코드, 이름, 점수 FROM R NATURAL JOIN S;",
+        "steps": [
+          "코드는 둘 다 1이지만 이름은 박강열과 박보성으로 다르다.",
+          "NATURAL JOIN은 코드와 이름을 모두 비교하므로 일치 행이 없다.",
+          "코드만으로 연결하려던 의도였다면 ON R.코드=S.코드나 USING(코드)를 명시해야 한다."
+        ],
+        "results": [
+          {
+            "title": "자연조인 결과",
+            "columns": [
+              "코드",
+              "이름",
+              "점수"
+            ],
+            "rows": []
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "ON 직접 조건 / USING 같은 이름의 지정 열 / NATURAL 동명 열 전부.",
+    "traps": [
+      "NATURAL JOIN이 알아서 올바른 업무 관계를 추론해 주는 것은 아니다. 같은 이름 열이 추가되면 결과도 바뀔 수 있다.",
+      "Oracle에서 USING에 지정한 공통 열은 해당 쿼리에서 표 별칭으로 한정해 쓰지 않는 규칙을 확인한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-25-Q1",
+        "question": "양쪽 연결 열 이름이 다르면 무엇이 편한가?",
+        "answer": "ON",
+        "explanation": "왼쪽 열과 오른쪽 열을 직접 비교할 수 있다."
+      },
+      {
+        "id": "2-1-25-Q2",
+        "question": "NATURAL JOIN은 공통 열 하나만 골라 연결하는가?",
+        "answer": "아니다",
+        "explanation": "같은 이름을 가진 열을 모두 연결 조건으로 사용한다."
+      },
+      {
+        "id": "2-1-25-Q3",
+        "question": "USING(학과코드)에서 공통 코드는 몇 번 출력되는가?",
+        "answer": "한 번",
+        "explanation": "공통 연결 열을 하나로 취급한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S11"
+    ],
+    "sourceIds": [
+      "joins",
+      "tableexpressions"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"ANSI 표준 조인 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"117.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">왼쪽 표</text><text x=\"117.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">학번 1001 · 1002</text><rect x=\"267\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"359.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">조건으로 연결</text><text x=\"359.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">같은 학번끼리</text><rect x=\"510\" y=\"55\" width=\"185\" height=\"92\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"602.5\" y=\"86\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과 표</text><text x=\"602.5\" y=\"113\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">미대응 처리도 확인</text><path d=\"M218 100 L257 100\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M460 100 L500 100\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">INNER는 맞는 조합 · OUTER는 지정한 쪽의 미대응 행도 남긴다</text></svg>",
+    "version": 1
+  },
+  "purpose": "같은 학과코드로 학생과 학과명을 연결할 때 연결 열을 명확히 고르고, NATURAL의 숨은 조건을 확인해요.",
+  "overview": "조회예요. USING은 지정한 동명 열을 비교하고, NATURAL은 양쪽의 모든 동명 열을 비교해요. R·S의 코드는 같아도 이름이 다르면 NATURAL 결과가 없어요.",
+  "terms": [
+    {
+      "token": "USING(학과코드)",
+      "kind": "연결 조건",
+      "meaning": "using = 이 컬럼을 사용하여",
+      "role": "양쪽에 있는 학과코드를 비교하고 공통 연결 열로 취급해요."
+    },
+    {
+      "token": "NATURAL JOIN",
+      "kind": "키워드",
+      "meaning": "natural = 공통 열 이름으로 자동 연결",
+      "role": "R과 S는 코드·이름이 모두 공통이므로 두 값이 모두 같아야 해요."
+    },
+    {
+      "token": "ON",
+      "kind": "키워드",
+      "meaning": "비교할 식을 직접 적음",
+      "role": "왼쪽과 오른쪽 컬럼 이름이 달라도 R.코드=S.다른코드처럼 지정할 수 있어요."
+    },
+    {
+      "token": "학과코드",
+      "kind": "컬럼명",
+      "meaning": "학생의 소속 코드와 학과의 코드",
+      "role": "D01·D02는 문자 코드예요. 같은 이름의 컬럼이 두 원본 표에 각각 존재해요."
+    }
+  ],
+  "pitfalls": [
+    "Oracle USING의 공통 열 참조에는 표 별칭을 붙이지 않아요. ON으로 바꾸면 양쪽 컬럼 소속을 직접 지정할 수 있어요.",
+    "NATURAL이 기본키나 외래키를 자동으로 골라 주지는 않아요. 새 동명 열이 추가되면 연결 조건도 바뀔 수 있어요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. USING은 지정한 동명 열을 비교하고, NATURAL은 양쪽의 모든 동명 열을 비교해요. R·S의 코드는 같아도 이름이 다르면 NATURAL 결과가 없어요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "흥달쌤 원본 교재 · SQL 기본",
+      "fromPage": 134,
+      "toPage": 134,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-25-E01",
+      "why": "학생의 학과코드에 학과명을 붙이고 공통 코드는 한 열로 보여줘요.",
+      "effect": "조회 · 학생, 학과의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-1-25-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "학생: 컬럼 학번·이름·학과코드 3개, 표시 입력 2행.",
+        "학과: 컬럼 학과코드·학과명 2개, 표시 입력 2행."
+      ],
+      "steps": [
+        {
+          "title": "양쪽 학과코드 찾기",
+          "text": "학생에는 학번·이름·학과코드, 학과에는 학과코드·학과명이 있어요. USING은 같은 이름인 학과코드를 양쪽에서 비교해요.",
+          "codeFocus": [
+            {
+              "needle": "USING(학과코드)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "USING",
+            "학과코드"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "실제 코드로 연결",
+          "text": "박강열의 D01은 학과 D01 컴퓨터와 맞고, 박보성의 D02는 학과 D02 전자와 맞아요. 이름 대신 코드를 연결해요.",
+          "codeFocus": [
+            {
+              "needle": "JOIN 학과",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학과"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 실제 코드로 연결",
+            "columns": [
+              "학생",
+              "학생코드",
+              "학과코드",
+              "학과명",
+              "판정"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "D01",
+                "D01",
+                "컴퓨터",
+                "참"
+              ],
+              [
+                "박보성",
+                "D02",
+                "D02",
+                "전자",
+                "참"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 4
+            },
+            {
+              "row": 1,
+              "column": 4
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "공통열 한 번 출력",
+          "text": "SELECT에 학번·이름·학과코드·학과명 네 열을 적었어요. USING의 공통 학과코드는 하나로 취급하고 학번 1001→1002순으로 보여줘요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학번, 이름, 학과코드, 학과명",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "SELECT",
+            "학과코드",
+            "학과명"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 학번·이름·학과코드·학과명, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "학번",
+              "이름",
+              "학과코드",
+              "학과명"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박강열",
+                "D01",
+                "컴퓨터"
+              ],
+              [
+                "1002",
+                "박보성",
+                "D02",
+                "전자"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "USING의 괄호에는 공통 열 이름을 적어요. 학과이름 문자 컴퓨터나 실제 코드 D01을 적는 자리가 아니에요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-1-25-E02",
+      "why": "자연조인이 코드만 보는 줄 알았다가 결과가 없어지는 이유를 확인해요.",
+      "effect": "조회 · R, S의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-1-25-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "R: 컬럼 코드·이름 2개, 표시 입력 1행.",
+        "S: 컬럼 코드·이름·점수 3개, 표시 입력 1행."
+      ],
+      "steps": [
+        {
+          "title": "동명 열 전부 찾기",
+          "text": "R에는 코드·이름, S에는 코드·이름·점수가 있어요. NATURAL은 공통 열 코드와 이름을 둘 다 조건으로 선택해요.",
+          "codeFocus": [
+            {
+              "needle": "NATURAL JOIN",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "NATURAL"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "코드 비교와 이름 비교",
+          "text": "코드는 1=1로 참이지만 이름은 박강열=박보성으로 거짓이에요. 두 조건을 모두 만족해야 하므로 이 쌍은 연결되지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "FROM R NATURAL JOIN S",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 코드 비교와 이름 비교",
+            "columns": [
+              "조건",
+              "왼쪽",
+              "오른쪽",
+              "판정"
+            ],
+            "rows": [
+              [
+                "코드",
+                "1",
+                "1",
+                "참"
+              ],
+              [
+                "이름",
+                "박강열",
+                "박보성",
+                "거짓"
+              ],
+              [
+                "두조건모두",
+                "참",
+                "거짓",
+                "거짓·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "빈 결과의 의미",
+          "text": "조회 결과는 0행이에요. R·S의 원본 한 행씩은 그대로 있고 조건에 맞는 연결 조합만 없는 것이에요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 코드, 이름, 점수",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "자연조인 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 자연조인 결과와 대조해요. 표시 컬럼은 코드·이름·점수, 결과는 0행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요. 이 SQL은 ORDER BY가 없으므로 아래 표의 일반 행 나열 순서가 보장된다는 뜻은 아니에요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "자연조인 결과",
+            "columns": [
+              "코드",
+              "이름",
+              "점수"
+            ],
+            "rows": []
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "코드만 연결하려면 ON R.코드=S.코드 등으로 조건을 명시해야 해요. 그때 두 이름 열이 남으므로 어느 이름을 출력할지도 지정해야 해요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-25-Q1",
+      "hint": "동명 열 이름 하나를 쓰는 방식과 두 식을 직접 쓰는 방식을 비교해요.",
+      "reasoning": "ON은 학생.학과코드=학과.코드처럼 이름이 다른 열도 비교할 수 있어요. USING은 같은 이름의 열을 지정해요."
+    },
+    {
+      "checkId": "2-1-25-Q2",
+      "hint": "R·S의 컬럼 목록에서 겹치는 이름을 전부 찾아요.",
+      "reasoning": "코드뿐 아니라 이름도 공통이에요. 코드1=1은 참이지만 박강열=박보성은 거짓이라 연결되지 않아요."
+    },
+    {
+      "checkId": "2-1-25-Q3",
+      "hint": "USING에서 두 원본의 연결 열이 결과에 어떻게 합쳐지는지 보세요.",
+      "reasoning": "공통 연결 열은 하나로 취급돼요. 이 예제 SELECT 목록에도 학과코드를 한 번 적어 한 번 표시해요. 임의로 같은 식을 반복 선택할 수 없다는 뜻은 아니에요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

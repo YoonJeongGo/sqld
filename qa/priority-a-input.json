@@ -1,0 +1,1283 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-14T10:36:18.365844+00:00",
+  "method": "allowlist_without_answers_explanations_expected_results_and_masked_choice_ids",
+  "questions": [
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "ab2262b1908e7f3acdab542393cc73e229e1d18e0ce82a3fe2a40727140131fa",
+      "publicInputSha256": "80684eed6e421a244f680a43589662dce537b48d0630cfd4e53abc6c029c3273",
+      "question": {
+        "id": "M11-R01-external-view",
+        "version": 1,
+        "title": "접수 담당자가 회원 이름과 예약시간만 보는 사용자별 관점을 설명하는 스키마는?",
+        "stem": "접수 담당자가 회원 이름과 예약시간만 보는 사용자별 관점을 설명하는 스키마는?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "내부 스키마"
+          },
+          {
+            "id": "r2",
+            "text": "외부 스키마"
+          },
+          {
+            "id": "r3",
+            "text": "트랜잭션 로그"
+          },
+          {
+            "id": "r4",
+            "text": "개념 스키마"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "4bdecb18fec94336a26d80b2a308c8a54cb2887ed719524c4d7745b6f486a781",
+      "publicInputSha256": "f7095a01af8977c9ec991da57ec1172e0416dcf1abae11992dd4f75ee241ef15",
+      "question": {
+        "id": "M11-R02-physical-independence",
+        "version": 1,
+        "title": "내부 저장 배치를 변경해도 테이블의 논리 구조와 응용의 데이터 의미를 유지할 수 있는 성질은?",
+        "stem": "내부 저장 배치를 변경해도 테이블의 논리 구조와 응용의 데이터 의미를 유지할 수 있는 성질은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "참조 무결성"
+          },
+          {
+            "id": "r2",
+            "text": "논리적 데이터 독립성"
+          },
+          {
+            "id": "r3",
+            "text": "속성의 원자성"
+          },
+          {
+            "id": "r4",
+            "text": "물리적 데이터 독립성"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "a68ac36abf53158e188040fb283d3a167e88d0ed452ddde0179ab7016b9242b7",
+      "publicInputSha256": "893340f6ef11c9215fabce156c79054a3fdb308548a9b8fb744f8cbc558e49f2",
+      "question": {
+        "id": "M11-R03-process-versus-layer",
+        "version": 1,
+        "title": "개념·논리·물리 모델링과 외부·개념·내부 스키마의 관계를 바르게 구분한 것은?",
+        "stem": "개념·논리·물리 모델링과 외부·개념·내부 스키마의 관계를 바르게 구분한 것은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "앞은 설계 구체화 과정, 뒤는 DB의 관점·추상화 계층이다."
+          },
+          {
+            "id": "r2",
+            "text": "물리 모델링을 끝내면 사용자별 외부 관점은 없어야 한다."
+          },
+          {
+            "id": "r3",
+            "text": "두 목록은 서로 완전히 같은 명칭의 번역이다."
+          },
+          {
+            "id": "r4",
+            "text": "외부 스키마는 디스크 블록의 배치만 의미한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "0cd085ea22186078e11501a75582a47e6feaa0b5dda0239024bcc07f32b88eef",
+      "publicInputSha256": "c35956ec9e4a4cd2ba3511cef6393c6adfc8f80f869c36a34ec4d32ccc35fb70",
+      "question": {
+        "id": "M11-A01-split-preserved-view",
+        "version": 1,
+        "title": "회원의 연락처를 별도 표로 분리했지만 기존 응용에는 같은 열과 의미의 회원정보 뷰를 제공했다. 이 설계가 목표로 하는 독립성은?",
+        "stem": "회원의 연락처를 별도 표로 분리했지만 기존 응용에는 같은 열과 의미의 회원정보 뷰를 제공했다. 이 설계가 목표로 하는 독립성은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "스키마 변경과 무관하게 SQL 문법 오류를 없애는 성질이다."
+          },
+          {
+            "id": "r2",
+            "text": "물리적 데이터 독립성만 해당한다."
+          },
+          {
+            "id": "r3",
+            "text": "외래키 값이 자동으로 모두 NULL이 되는 성질이다."
+          },
+          {
+            "id": "r4",
+            "text": "논리적 데이터 독립성"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "5d6844ee866703f2dbc7b8bfda3f65786223df597104e74d20fc8d123c03e3fd",
+      "publicInputSha256": "fbd6821761da2369c87fcf7b2c77a167311f6d92dc64f6d9e3c577f96a3c2ca1",
+      "question": {
+        "id": "M11-A02-index-stable-meaning",
+        "version": 1,
+        "title": "예약 조회를 빠르게 하려고 인덱스를 추가했다. 열·관계·조회 의미는 그대로이며 응용 SQL도 바꾸지 않았다. 바른 판단은?",
+        "stem": "예약 조회를 빠르게 하려고 인덱스를 추가했다. 열·관계·조회 의미는 그대로이며 응용 SQL도 바꾸지 않았다. 바른 판단은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "독립성이 있으므로 실행 계획과 소요시간도 반드시 같아야 한다."
+          },
+          {
+            "id": "r2",
+            "text": "물리적 독립성이 있으면 인덱스를 만들 수 없다."
+          },
+          {
+            "id": "r3",
+            "text": "인덱스 추가만으로 외부 스키마의 열 이름도 바뀐다."
+          },
+          {
+            "id": "r4",
+            "text": "물리적 독립성의 사례이며 속도나 실행 계획은 달라질 수 있다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "373252342875385132cb1d53582ecf06722e6e64174a1cfa0cf1bd13d95c4b1e",
+      "publicInputSha256": "2805ea98b6b2f7f72f7049f9d3c099b7f49a4e944bda1bda8fbc1bdb3aec52fc",
+      "question": {
+        "id": "M12-R01-endpoint-direction",
+        "version": 1,
+        "title": "이 노트의 Crow’s Foot 도식에서 회원 ||──o{ 예약의 예약 쪽 o{는 무엇을 뜻하는가?",
+        "stem": "이 노트의 Crow’s Foot 도식에서 회원 ||──o{ 예약의 예약 쪽 o{는 무엇을 뜻하는가?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "회원은 정확히 한 개의 예약을 반드시 가져야 한다."
+          },
+          {
+            "id": "r2",
+            "text": "예약 하나에 회원이 0명 이상 연결된다."
+          },
+          {
+            "id": "r3",
+            "text": "회원 한 명에 예약이 0개 이상 연결될 수 있다."
+          },
+          {
+            "id": "r4",
+            "text": "예약의 모든 속성에 NULL을 저장해야 한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "1bc04a27a5789438feb68a39382dc0d89f3907b6098601546d2936c4c5ff5007",
+      "publicInputSha256": "22519d509fda5460aed3b7c913e63ce232cba661e075ae7a2f8d96f77023e602",
+      "question": {
+        "id": "M12-R02-cardinality-minimum",
+        "version": 1,
+        "title": "관계의 최대 개수와 최소 참여를 구분한 설명으로 바른 것은?",
+        "stem": "관계의 최대 개수와 최소 참여를 구분한 설명으로 바른 것은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "최대가 N이면 최소도 항상 N이다."
+          },
+          {
+            "id": "r2",
+            "text": "최대 1:N과 최소 0/1은 따로 확인해야 한다."
+          },
+          {
+            "id": "r3",
+            "text": "최소 참여는 저장된 행의 정렬 순서를 뜻한다."
+          },
+          {
+            "id": "r4",
+            "text": "최대가 1이면 반드시 1이므로 선택 참여는 없다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "929a64a4ae059d62c6717357b05d7a87ae5ec18af6f1258ec74d6e98fdeecec6",
+      "publicInputSha256": "c35b7d5ae6dd462f5f4f81a173a2d79a8239b8cc89907d9cb8a6e178f52ba838",
+      "question": {
+        "id": "M12-R03-erd-first-business",
+        "version": 1,
+        "title": "회원·예약 ERD를 작성할 때 관계선을 확정하기 전에 가장 직접적으로 확인할 것은?",
+        "stem": "회원·예약 ERD를 작성할 때 관계선을 확정하기 전에 가장 직접적으로 확인할 것은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "테이블을 화면의 어느 색으로 칠할 것인지"
+          },
+          {
+            "id": "r2",
+            "text": "모든 엔터티를 반드시 동일한 행 수로 만들 수 있는지"
+          },
+          {
+            "id": "r3",
+            "text": "현재 표의 첫 행이 어떤 순서로 저장되어 있는지"
+          },
+          {
+            "id": "r4",
+            "text": "각 방향에서 한 인스턴스가 연결될 수 있는 최소·최대 개수와 업무 의미"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "13123c8fac70d36e07cc706b6da13741f0d941fee792f485fbc2b166a0cc2f67",
+      "publicInputSha256": "ffb6e230364f21bf853c59803afc919ee577bfb33c86df42b0528efd039cfbcb",
+      "question": {
+        "id": "M12-A01-optional-parent-not-null",
+        "version": 1,
+        "title": "장비 ||──o{ 점검이며 각 점검은 장비 한 대에 속한다. 점검번호는 PK다. 이 의미에 맞는 점검.장비번호 설계는?",
+        "stem": "장비 ||──o{ 점검이며 각 점검은 장비 한 대에 속한다. 점검번호는 PK다. 이 의미에 맞는 점검.장비번호 설계는?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "유효한 장비를 참조하는 FK와 NOT NULL을 둔다."
+          },
+          {
+            "id": "r2",
+            "text": "FK만 있으면 자동으로 NOT NULL도 적용되므로 별도 정의는 불필요하다."
+          },
+          {
+            "id": "r3",
+            "text": "장비번호를 UNIQUE로 하여 장비별 점검을 최대 한 번만 허용한다."
+          },
+          {
+            "id": "r4",
+            "text": "점검 쪽 원이 있으므로 장비번호는 반드시 NULL이어야 한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "2594b8724eca2ae897524da3756b18d4e7b6a7979622f65fa89ef570e9b03024",
+      "publicInputSha256": "8a74cd839a9f30fc7c6fe39385b3dc708bb0ca1078bd541af7a806b94d083b56",
+      "question": {
+        "id": "M12-A02-association-history-key",
+        "version": 1,
+        "title": "참가자와 행사 사이에 참가 기록을 둔다. 같은 사람이 같은 행사에 취소 후 재신청한 이력을 여러 건 보존해야 한다. (참가자번호,행사번호)만 PK로 쓰려는 설계의 문제는?",
+        "stem": "참가자와 행사 사이에 참가 기록을 둔다. 같은 사람이 같은 행사에 취소 후 재신청한 이력을 여러 건 보존해야 한다. (참가자번호,행사번호)만 PK로 쓰려는 설계의 문제는?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "같은 쌍의 여러 이력 행을 구분하지 못하므로 이력 식별 규칙을 추가 검토해야 한다."
+          },
+          {
+            "id": "r2",
+            "text": "재신청을 저장하면 참가자와 행사 원본을 반드시 복제해야 한다."
+          },
+          {
+            "id": "r3",
+            "text": "다대다 관계이면 키를 전혀 둘 수 없다."
+          },
+          {
+            "id": "r4",
+            "text": "연결 엔터티에는 속성을 둘 수 없다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "1ec59d9ec3d25bd7960117b4267db7cd25d55f4bccffb1fb887136846a6c36a1",
+      "publicInputSha256": "cd3196b023a682d02db7b38ea4518049265e5b8e61622dbc85a0323baca2347d",
+      "question": {
+        "id": "M13-R01-deliberate-redundancy",
+        "version": 1,
+        "title": "조회 비용을 줄이려고 원본에서 계산 가능한 합계 값을 별도로 유지하는 선택을 가장 잘 설명한 것은?",
+        "stem": "조회 비용을 줄이려고 원본에서 계산 가능한 합계 값을 별도로 유지하는 선택을 가장 잘 설명한 것은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "정규화이므로 갱신 이상이 원천적으로 생길 수 없다."
+          },
+          {
+            "id": "r2",
+            "text": "인덱스의 이름만 변경한 것이므로 추가 저장값은 없다."
+          },
+          {
+            "id": "r3",
+            "text": "반정규화의 한 방식이며 원본 변경과 합계의 일관성을 관리해야 한다."
+          },
+          {
+            "id": "r4",
+            "text": "SQL 구문을 짧게 쓰면 데이터 일관성이 자동 보장되는 성질이다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "55c37527575440666767436a4ca2c61f6583865351d28efaeb01e96eb169ff2d",
+      "publicInputSha256": "30eca8a7470435f8c2db88dcab993a6ef10852d96ded92f7db0dd2dde6328e43",
+      "question": {
+        "id": "M13-R02-measure-before-choice",
+        "version": 1,
+        "title": "반정규화를 결정할 때 적절한 순서는?",
+        "stem": "반정규화를 결정할 때 적절한 순서는?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "읽기 속도만 보고 쓰기와 오류 복구는 제외한다."
+          },
+          {
+            "id": "r2",
+            "text": "정규화된 구조의 병목을 측정하고 대안을 검토한 뒤 일관성 유지 비용과 함께 판단한다."
+          },
+          {
+            "id": "r3",
+            "text": "반정규화를 했다는 이유만으로 모든 제약을 삭제한다."
+          },
+          {
+            "id": "r4",
+            "text": "테이블이 둘 이상이면 측정 없이 모두 합친다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "ae6786b4b18bb10724838cd4130da49daf182335d87be799478e64841b98866b",
+      "publicInputSha256": "6f06673303e596dee8ece13153bdca57e97115e48b2898736dd26e3a45cc2d19",
+      "question": {
+        "id": "M13-R03-snapshot-meaning",
+        "version": 1,
+        "title": "현재 회원 주소의 사본과 계약 당시 주소를 보존하는 값에 대한 바른 설명은?",
+        "stem": "현재 회원 주소의 사본과 계약 당시 주소를 보존하는 값에 대한 바른 설명은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "문자열이 한때 같았으면 언제나 같은 현재값으로 동기화해야 한다."
+          },
+          {
+            "id": "r2",
+            "text": "과거 주소는 어떤 업무에서도 저장할 필요가 없다."
+          },
+          {
+            "id": "r3",
+            "text": "목적과 시점이 다르므로 현재값 중복과 과거 사실 보존을 구분해야 한다."
+          },
+          {
+            "id": "r4",
+            "text": "현재 사본의 낡은 값과 의도적으로 보존한 이력은 구분할 수 없다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "c1be25580d07b745a315d1c17e6de9bf6a179781d77c76d8bf68c2a3b80ec414",
+      "publicInputSha256": "a70c9ebc83c98ad46e6d9ab7fb6ae47c5ebc2bfafb8b3577667929ea5363f9f1",
+      "question": {
+        "id": "M13-A01-total-cancellation",
+        "version": 1,
+        "title": "대여 30분과 50분의 상세에 맞춰 저장한 합계는 80분이었다. 50분 대여를 취소하면서 상세만 삭제했다. 현재 상태에 대한 판단은?",
+        "stem": "대여 30분과 50분의 상세에 맞춰 저장한 합계는 80분이었다. 50분 대여를 취소하면서 상세만 삭제했다. 현재 상태에 대한 판단은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "상세를 되살리는 것만이 유일한 정답이다."
+          },
+          {
+            "id": "r2",
+            "text": "한 행을 삭제하면 별도 합계 열도 언제나 자동으로 30으로 바뀐다."
+          },
+          {
+            "id": "r3",
+            "text": "상세 합 30분과 저장 합 80분이 어긋나므로 합계 갱신·재계산 규칙이 필요하다."
+          },
+          {
+            "id": "r4",
+            "text": "80과 30은 표시 형식만 다른 같은 값이다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "d99a9b175d9a5d7e583c656c1f5ee23331444ff409c5c9113e0701d55dccec43",
+      "publicInputSha256": "e3dbfe5c54f1c95d8775d7e4e2b3614b67900f187f1aad1a1754fccd5555d054",
+      "question": {
+        "id": "M13-A02-frequent-master-update",
+        "version": 1,
+        "title": "회원의 현재 전화번호를 매일 자주 수정한다. 조회를 줄이려고 모든 대여 상세에 현재 전화번호 사본을 넣으려 한다. 우선 평가할 비용은?",
+        "stem": "회원의 현재 전화번호를 매일 자주 수정한다. 조회를 줄이려고 모든 대여 상세에 현재 전화번호 사본을 넣으려 한다. 우선 평가할 비용은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "사본이 많을수록 제약이 없어도 무결성이 강해지는 효과"
+          },
+          {
+            "id": "r2",
+            "text": "전화번호를 복사하면 변경은 더 이상 발생하지 않는다는 이득"
+          },
+          {
+            "id": "r3",
+            "text": "테이블 이름의 글자 수만 줄어드는 효과"
+          },
+          {
+            "id": "r4",
+            "text": "번호 변경 시 다수 사본의 갱신량과 불일치·복구 비용"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "8e4e9e8727d206bb5f326b0c1f4aef52ebe7925ea9ae6c8c9c3b2e491a12c9dc",
+      "publicInputSha256": "5f1c67af143d451af9b7c72910b375f4470615471cc213678856f9d08e3fd13f",
+      "question": {
+        "id": "S25-R01-char-varchar-storage",
+        "version": 1,
+        "title": "ASCII의 AB를 CHAR(4 CHAR)와 VARCHAR2(4 CHAR)에 각각 저장했다. 뒤 공백 채우기에 대한 바른 설명은?",
+        "stem": "ASCII의 AB를 CHAR(4 CHAR)와 VARCHAR2(4 CHAR)에 각각 저장했다. 뒤 공백 채우기에 대한 바른 설명은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "짧은 값은 두 자료형 모두 저장 오류다."
+          },
+          {
+            "id": "r2",
+            "text": "VARCHAR2만 공백을 채우고 CHAR는 길이 2를 유지한다."
+          },
+          {
+            "id": "r3",
+            "text": "CHAR는 길이 4로 공백을 채우고 VARCHAR2는 입력 길이 2를 유지한다."
+          },
+          {
+            "id": "r4",
+            "text": "둘 다 무조건 AB00으로 저장한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "655b7c6d1cd793f722e8e6c3ae77e986a870e7d5c9ebd27ecc9cdcb17c6fe3b7",
+      "publicInputSha256": "bc9cb7fdbfa401aff0ea711407e95c57de293e2a2a7b3a0ead935d3e7bc7cfea",
+      "question": {
+        "id": "S25-R02-number-precision-scale",
+        "version": 1,
+        "title": "Oracle NUMBER(5,2)의 5와 2를 바르게 설명한 것은?",
+        "stem": "Oracle NUMBER(5,2)의 5와 2를 바르게 설명한 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "5는 정밀도, 2는 스케일이며 이 선언에서는 정수부에 3자리를 둘 수 있다."
+          },
+          {
+            "id": "r2",
+            "text": "5는 정수부만의 자리 수이고 소수부 2자리는 별도 추가다."
+          },
+          {
+            "id": "r3",
+            "text": "2는 소수점 아래 값을 항상 버리라는 뜻이다."
+          },
+          {
+            "id": "r4",
+            "text": "5는 고정 저장 바이트 수이고 2는 시간대다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "f19ba9bd43f4e399be67de9e869a450481b3749f23f82dd7a79f066df0b02330",
+      "publicInputSha256": "43ff11e85ea5fd339eef8c72d3ab2d6ad97d32fb64351c35b75c7f9650f7873f",
+      "question": {
+        "id": "S25-R03-date-timestamp-fields",
+        "version": 1,
+        "title": "Oracle DATE와 기본 TIMESTAMP의 차이를 바르게 설명한 것은?",
+        "stem": "Oracle DATE와 기본 TIMESTAMP의 차이를 바르게 설명한 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "기본 TIMESTAMP에는 어떤 선언에서도 시간대가 자동 포함된다."
+          },
+          {
+            "id": "r2",
+            "text": "TO_CHAR로 날짜를 보이면 원래 자료형도 항상 문자로 영구 변경된다."
+          },
+          {
+            "id": "r3",
+            "text": "DATE에도 시분초가 있으며 TIMESTAMP는 소수 초를 표현할 수 있다."
+          },
+          {
+            "id": "r4",
+            "text": "DATE에는 항상 날짜만 있고 시각은 무조건 사라진다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "ab08e62906bac8348aed1644a998996a81c1dbeddf349b5753b87d8b567bcaf0",
+      "publicInputSha256": "4f104d7b6e63ce3018cd863d13d20188692094918e3dc79f2e1fcee4dfea63df",
+      "question": {
+        "id": "S25-A01-explicit-char-length",
+        "version": 1,
+        "title": "같은 ASCII 문자열을 명시적으로 두 자료형으로 변환했다. 두 LENGTH 결과는?",
+        "stem": "같은 ASCII 문자열을 명시적으로 두 자료형으로 변환했다. 두 LENGTH 결과는?",
+        "sql": "SELECT LENGTH(CAST('AB' AS CHAR(4 CHAR))), LENGTH(CAST('AB' AS VARCHAR2(4 CHAR))) FROM DUAL",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "2, 2"
+          },
+          {
+            "id": "r2",
+            "text": "4, 4"
+          },
+          {
+            "id": "r3",
+            "text": "4, 2"
+          },
+          {
+            "id": "r4",
+            "text": "2, 4"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT LENGTH(CAST('AB' AS CHAR(4 CHAR))), LENGTH(CAST('AB' AS VARCHAR2(4 CHAR))) FROM DUAL",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "ef259aeb8e345f25737e9c602b90baef09cc77da4faf0a3e361b3c16b2306ecc",
+      "publicInputSha256": "16a27b5333c27a0b61349380ad43312912fa6e8cabaa6062d9ffef3c59821f4a",
+      "question": {
+        "id": "S25-A02-numeric-cast-scales",
+        "version": 1,
+        "title": "두 NUMBER 선언의 서로 다른 스케일을 적용한 값은?",
+        "stem": "두 NUMBER 선언의 서로 다른 스케일을 적용한 값은?",
+        "sql": "SELECT CAST(12.346 AS NUMBER(5,2)), CAST(246 AS NUMBER(5,-1)) FROM DUAL",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "12.35, 250"
+          },
+          {
+            "id": "r2",
+            "text": "12.34, 240"
+          },
+          {
+            "id": "r3",
+            "text": "12.346, 246"
+          },
+          {
+            "id": "r4",
+            "text": "12.35, -250"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT CAST(12.346 AS NUMBER(5,2)), CAST(246 AS NUMBER(5,-1)) FROM DUAL",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "2a63a021e97317cede208838990fc53e76941617d6ea4667a5978e951c0c33c4",
+      "publicInputSha256": "a9e5e552d87c3349b4091d695530f904b5bd0f65aea41f1e99b9ab16020b877d",
+      "question": {
+        "id": "S26-R01-add-modify-update",
+        "version": 1,
+        "title": "새 메모 열 생성, 기존 메모 열의 허용 길이 확대, 특정 행의 메모 값 변경을 순서대로 대응한 것은?",
+        "stem": "새 메모 열 생성, 기존 메모 열의 허용 길이 확대, 특정 행의 메모 값 변경을 순서대로 대응한 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "INSERT / UPDATE / RENAME"
+          },
+          {
+            "id": "r2",
+            "text": "ALTER TABLE MODIFY / ALTER TABLE ADD / DELETE"
+          },
+          {
+            "id": "r3",
+            "text": "ALTER TABLE ADD / ALTER TABLE MODIFY / UPDATE"
+          },
+          {
+            "id": "r4",
+            "text": "SELECT AS / DROP TABLE / COMMIT"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "9c3e4627722a4b70787c9b94a230e33b4090627be1d200c237bacc2c1e2f51a5",
+      "publicInputSha256": "523f074c8c8e8fb8ad9eb88507c02f0a6a4628f272d2bcda7c02be57ffcf1319",
+      "question": {
+        "id": "S26-R02-rename-column-vs-alias",
+        "version": 1,
+        "title": "테이블 T의 memo 열 이름 자체를 comment_text로 바꾸는 Oracle 구문은?",
+        "stem": "테이블 T의 memo 열 이름 자체를 comment_text로 바꾸는 Oracle 구문은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "RENAME memo TO comment_text"
+          },
+          {
+            "id": "r2",
+            "text": "UPDATE T SET memo = 'comment_text'"
+          },
+          {
+            "id": "r3",
+            "text": "ALTER TABLE T RENAME COLUMN memo TO comment_text"
+          },
+          {
+            "id": "r4",
+            "text": "SELECT memo AS comment_text FROM T"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "becba99d05b4d295cb957ce51620aaa6b5b21d4ed3e9d74138d78589b2d334fe",
+      "publicInputSha256": "5d4b14644b485a6374f65255bd1c70b7ff8b5764dbbbf4afdcbfc075019b4590",
+      "question": {
+        "id": "S26-R03-drop-column-versus-delete",
+        "version": 1,
+        "title": "ALTER TABLE T DROP COLUMN memo와 DELETE FROM T의 차이는?",
+        "stem": "ALTER TABLE T DROP COLUMN memo와 DELETE FROM T의 차이는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "두 명령 모두 memo만 NULL로 바꾼다."
+          },
+          {
+            "id": "r2",
+            "text": "앞은 memo가 NULL인 행만 지운다."
+          },
+          {
+            "id": "r3",
+            "text": "앞은 memo 열과 그 값을 제거하고 뒤는 열 정의를 유지한 채 행을 삭제한다."
+          },
+          {
+            "id": "r4",
+            "text": "뒤는 T라는 테이블 객체 자체를 제거한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "cd12ccbdbd48e537f81e71c0a227d274a8c3769fad4555745076f75564d314a8",
+      "publicInputSha256": "6819e2f3f6fff88923c9d0be34b4474635671a3b844be09ec40208736624b30d",
+      "question": {
+        "id": "S26-A01-add-null-existing-row",
+        "version": 1,
+        "title": "T에는 id=5 한 행만 있다. DEFAULT와 NOT NULL 없이 새 열을 추가한 뒤 조회했다. 결과는?",
+        "stem": "T에는 id=5 한 행만 있다. DEFAULT와 NOT NULL 없이 새 열을 추가한 뒤 조회했다. 결과는?",
+        "sql": "ALTER TABLE T ADD (score NUMBER);\nSELECT id,score FROM T",
+        "tables": [
+          {
+            "title": "추가 전 T",
+            "columns": [
+              "id"
+            ],
+            "rows": [
+              [
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "id가 있는 표에는 열을 추가할 수 없어 오류"
+          },
+          {
+            "id": "r2",
+            "text": "(5, 0)"
+          },
+          {
+            "id": "r3",
+            "text": "0행"
+          },
+          {
+            "id": "r4",
+            "text": "(5, NULL)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T(id NUMBER PRIMARY KEY);",
+          "setupSql": "INSERT INTO T(id) VALUES(5); COMMIT;\nALTER TABLE T ADD (score NUMBER);",
+          "query": "SELECT id,score FROM T",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "04b27acf248d9c47a7928b9d855388ed682e9bc98951e5828dd8c1be045e9e65",
+      "publicInputSha256": "e9a14e2e6773929ef4d325d9e442672e025efd9b336f35169d533c6573eaadfd",
+      "question": {
+        "id": "S26-A02-rename-retains-values",
+        "version": 1,
+        "title": "T(code)에 8 한 행이 있다. 열 이름과 테이블 이름을 차례로 바꿨다. 마지막 조회 결과는?",
+        "stem": "T(code)에 8 한 행이 있다. 열 이름과 테이블 이름을 차례로 바꿨다. 마지막 조회 결과는?",
+        "sql": "ALTER TABLE T RENAME COLUMN code TO item_code;\nRENAME T TO T_ARCHIVE;\nSELECT item_code FROM T_ARCHIVE",
+        "tables": [
+          {
+            "title": "변경 전 T",
+            "columns": [
+              "code"
+            ],
+            "rows": [
+              [
+                "8"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0행"
+          },
+          {
+            "id": "r2",
+            "text": "새 이름으로는 조회할 수 없고 옛 이름만 가능하다."
+          },
+          {
+            "id": "r3",
+            "text": "NULL 한 행"
+          },
+          {
+            "id": "r4",
+            "text": "8 한 행"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T(code NUMBER);",
+          "setupSql": "INSERT INTO T(code) VALUES(8); COMMIT;\nALTER TABLE T RENAME COLUMN code TO item_code;\nRENAME T TO T_ARCHIVE;",
+          "query": "SELECT item_code FROM T_ARCHIVE",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "62dc9cf9162dc045d8e34577a14818ec020c38a92b968d82d1f6a901a10d506a",
+      "publicInputSha256": "10c59fbeb595800c6a358f9e19ad911cfc9f3d5258cde5f1ea334dd0473b8301",
+      "question": {
+        "id": "S03-R07-instr-result-kind",
+        "version": 1,
+        "title": "INSTR와 SUBSTR의 반환 결과 종류를 바르게 구분한 것은?",
+        "stem": "INSTR와 SUBSTR의 반환 결과 종류를 바르게 구분한 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "INSTR는 찾은 위치 숫자, SUBSTR는 잘라낸 문자열을 반환한다."
+          },
+          {
+            "id": "r2",
+            "text": "두 함수 모두 찾은 문자열의 길이만 반환한다."
+          },
+          {
+            "id": "r3",
+            "text": "SUBSTR는 원래 테이블 문자열을 영구적으로 잘라 저장한다."
+          },
+          {
+            "id": "r4",
+            "text": "INSTR는 항상 0 아니면 1만 반환한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "e794d0a63e8b3223834d40e8f18a2489773b678d4db2db0f3888ac17e18f2f8e",
+      "publicInputSha256": "a4a08545f5e42cce81c8c47c485347640cb03a1207da87dd77be933161920ad9",
+      "question": {
+        "id": "S03-A07-instr-occurrence-missing",
+        "version": 1,
+        "title": "INSTR의 발생순번과 미발견 규칙을 적용한 두 결과는?",
+        "stem": "INSTR의 발생순번과 미발견 규칙을 적용한 두 결과는?",
+        "sql": "SELECT INSTR('BANANA','AN',1,2), INSTR('BANANA','ZX') FROM DUAL",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "4, 0"
+          },
+          {
+            "id": "r2",
+            "text": "4, 6"
+          },
+          {
+            "id": "r3",
+            "text": "AN, ZX"
+          },
+          {
+            "id": "r4",
+            "text": "2, NULL"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT INSTR('BANANA','AN',1,2), INSTR('BANANA','ZX') FROM DUAL",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "2b23885fbed70f72725fe9736f3ad982e2af0cb1f069059b0d94e0ac70e9acbc",
+      "publicInputSha256": "c30096e6dacc0c488753e33e184195ebfc84113eb0a86f68a60af55498ec3895",
+      "question": {
+        "id": "S03-A08-padding-final-length",
+        "version": 1,
+        "title": "ASCII 문자에 LPAD와 RPAD를 적용했다. 최종 결과는?",
+        "stem": "ASCII 문자에 LPAD와 RPAD를 적용했다. 최종 결과는?",
+        "sql": "SELECT LPAD('7',4,'0'), RPAD('Q',4,'.') FROM DUAL",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "00007, Q...."
+          },
+          {
+            "id": "r2",
+            "text": "0007, Q..."
+          },
+          {
+            "id": "r3",
+            "text": "7000, ...Q"
+          },
+          {
+            "id": "r4",
+            "text": "7, Q"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT LPAD('7',4,'0'), RPAD('Q',4,'.') FROM DUAL",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "5d962809cf3cdb604206b37c503346614939ce0ea1c4a14375b0084b74f5e3d9",
+      "publicInputSha256": "335998bc8edade31f31d083772a497c76878bda5e32bf3265d8a8c8456145ef8",
+      "question": {
+        "id": "S03-A09-negative-integer-directions",
+        "version": 1,
+        "title": "유한한 Oracle NUMBER -2.4에 네 함수를 적용했다. 결과 순서는?",
+        "stem": "유한한 Oracle NUMBER -2.4에 네 함수를 적용했다. 결과 순서는?",
+        "sql": "SELECT ABS(-2.4), SIGN(-2.4), CEIL(-2.4), FLOOR(-2.4) FROM DUAL",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "2.4, -1, -3, -2"
+          },
+          {
+            "id": "r2",
+            "text": "2.4, -1, -2, -3"
+          },
+          {
+            "id": "r3",
+            "text": "2.4, 0, -2, -2"
+          },
+          {
+            "id": "r4",
+            "text": "-2.4, -1, -2, -3"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT ABS(-2.4), SIGN(-2.4), CEIL(-2.4), FLOOR(-2.4) FROM DUAL",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "14002dd5eb7ad665041f7efb5725a1ab14ca1b108fa033c300ff15b7d118eb2c",
+      "publicInputSha256": "5968d6303c7c2bec98a4feca0f20523f54c2660dec26e95b9ac3e8225fc79dde",
+      "question": {
+        "id": "S03-A10-lower-uppercase-sequence",
+        "version": 1,
+        "title": "ASCII 문자열에 대소문자 함수를 중첩 적용했다. 최종 문자열은?",
+        "stem": "ASCII 문자열에 대소문자 함수를 중첩 적용했다. 최종 문자열은?",
+        "sql": "SELECT LOWER(UPPER('SqL')) FROM DUAL",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "SQL"
+          },
+          {
+            "id": "r2",
+            "text": "SqL"
+          },
+          {
+            "id": "r3",
+            "text": "문법 오류"
+          },
+          {
+            "id": "r4",
+            "text": "sql"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT LOWER(UPPER('SqL')) FROM DUAL",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "43aaab9a31a38ab5fb5cc8b9437a1cf4ee05eb6ddc5fb3fd7ac63b10413a93e9",
+      "publicInputSha256": "8dfce994ca4d67b0c78f862eaad047c782b551d2b9d1e1db9891a8cb0cfcfb2c",
+      "question": {
+        "id": "S05-R06-nvl2-return-branch",
+        "version": 1,
+        "title": "NVL2(x,7,9)에서 x가 0이면 무엇을 반환하는가?",
+        "stem": "NVL2(x,7,9)에서 x가 0이면 무엇을 반환하는가?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "7"
+          },
+          {
+            "id": "r2",
+            "text": "9"
+          },
+          {
+            "id": "r3",
+            "text": "NULL"
+          },
+          {
+            "id": "r4",
+            "text": "0"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "cc7255f286c87efaa1c61ca592910a2862224176672269bc94549ae44c4c1605",
+      "publicInputSha256": "531bd7fbbcf5a41c54e25aff6d8660cfb81e2bcc67caa93f51b127dd243d7073",
+      "question": {
+        "id": "S05-A07-decode-null-versus-case",
+        "version": 1,
+        "title": "Oracle DECODE의 NULL 검색과 단순 CASE의 NULL 비교를 나란히 평가했다. 결과는?",
+        "stem": "Oracle DECODE의 NULL 검색과 단순 CASE의 NULL 비교를 나란히 평가했다. 결과는?",
+        "sql": "SELECT DECODE(NULL,NULL,'hit','miss'), CASE NULL WHEN NULL THEN 'hit' ELSE 'miss' END FROM DUAL",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "hit, miss"
+          },
+          {
+            "id": "r2",
+            "text": "hit, hit"
+          },
+          {
+            "id": "r3",
+            "text": "NULL, NULL"
+          },
+          {
+            "id": "r4",
+            "text": "miss, miss"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT DECODE(NULL,NULL,'hit','miss'), CASE NULL WHEN NULL THEN 'hit' ELSE 'miss' END FROM DUAL",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "fef9d26a0b671f0e4ef7308739fe4a8e39eeb24b78208415aa753bdca63a43db",
+      "publicInputSha256": "f01ab5658efcd13f1a4ec7d6a93184c8e06fcef090297d50146867356950513e",
+      "question": {
+        "id": "S05-A08-decode-default-omitted",
+        "version": 1,
+        "title": "코드 3에 대해 DECODE의 검색값·반환값 쌍만 있고 기본값은 없다. 결과는?",
+        "stem": "코드 3에 대해 DECODE의 검색값·반환값 쌍만 있고 기본값은 없다. 결과는?",
+        "sql": "SELECT DECODE(3,1,'A',2,'B') FROM DUAL",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "인자 수가 짝수가 아니므로 문법 오류"
+          },
+          {
+            "id": "r2",
+            "text": "NULL"
+          },
+          {
+            "id": "r3",
+            "text": "B"
+          },
+          {
+            "id": "r4",
+            "text": "3"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "",
+          "setupSql": "",
+          "query": "SELECT DECODE(3,1,'A',2,'B') FROM DUAL",
+          "constraints": [
+            "입력은 제시된 전체 데이터이며 명시하지 않은 행·제약·트리거는 없다."
+          ],
+          "sessionSettings": [
+            "Oracle 19c. ASCII 문자 예시. 암시적 날짜 변환은 사용하지 않는다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "f0d9127bf58f7e0d28cec954dd3b2d034d8b5865c104dfe4d5576bbcfa9b3685",
+      "publicInputSha256": "277940d5061008086ac9a3434e2225ba2226ad42acda6c76cc7314d9bcd9f3fc",
+      "question": {
+        "id": "M06-R06-bcnf-superkey",
+        "version": 1,
+        "title": "BCNF의 정확한 조건을 고른 것은?",
+        "stem": "BCNF의 정확한 조건을 고른 것은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "모든 비자명 함수 종속 X→Y에서 X가 슈퍼키다."
+          },
+          {
+            "id": "r2",
+            "text": "현재 행의 개수가 1개이면 업무 규칙과 무관하게 BCNF다."
+          },
+          {
+            "id": "r3",
+            "text": "기본키가 존재하면 다른 함수 종속과 무관하게 BCNF다."
+          },
+          {
+            "id": "r4",
+            "text": "모든 결정자는 최소성이 없는 속성 집합이어야 한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-a.json",
+      "sourceQuestionSha256": "02da24c6b86b344fe0646f358669c2b44d97a6d8c58cfac79a3b12d93f324fd2",
+      "publicInputSha256": "bea0549f3a26ad7ae54c8a6c7047591cd929c2b1a57524b07f8167a9569bbc1e",
+      "question": {
+        "id": "M02-R06-classification-two-axes",
+        "version": 1,
+        "title": "이 노트에서 대조한 학습 자료의 엔터티 분류축을 바르게 짝지은 것은?",
+        "stem": "이 노트에서 대조한 학습 자료의 엔터티 분류축을 바르게 짝지은 것은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "유무형: 개념·논리·물리 / 발생 시점: 외부·개념·내부"
+          },
+          {
+            "id": "r2",
+            "text": "유무형: 기본·중심·행위 / 발생 시점: 유형·개념·사건"
+          },
+          {
+            "id": "r3",
+            "text": "유무형: PRIMARY·FOREIGN / 발생 시점: CHAR·NUMBER"
+          },
+          {
+            "id": "r4",
+            "text": "유무형: 유형·개념·사건 / 발생 시점: 기본·중심·행위"
+          }
+        ]
+      }
+    }
+  ],
+  "inputSha256": "b44faabd1cbc4f2c034e8eaa783be8a740bdf74854f60e980563e2dc3add5a2f",
+  "choiceMapSha256": "c66db16dd9a1dfd9edf5defd26bac0ad59d5390b49b7a65360802cbdfc588332"
+}

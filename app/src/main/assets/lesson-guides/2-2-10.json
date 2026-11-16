@@ -1,0 +1,421 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-10",
+  "source": {
+    "id": "2-2-10",
+    "partId": "2-2",
+    "number": 10,
+    "title": "윈도우 함수의 개념 OVER절",
+    "lectureMinutes": 20,
+    "easy": "원래 행을 유지하면서, 그 행과 관련된 다른 행들을 참조해 합계·순위 같은 계산값을 붙이는 함수다.",
+    "why": "GROUP BY는 여러 사람을 학과 요약 한 줄로 줄이지만, 윈도우 함수는 각 사람 옆에 학과 평균을 붙일 수 있다.",
+    "concepts": [
+      {
+        "term": "OVER()",
+        "meaning": "계산할 대상 집합의 범위를 정의",
+        "example": "전체 행에 대한 합계"
+      },
+      {
+        "term": "PARTITION BY",
+        "meaning": "계산 묶음을 나눔",
+        "example": "학과별 평균을 각 학생 옆에"
+      },
+      {
+        "term": "OVER 안 ORDER BY",
+        "meaning": "함수 계산의 순서",
+        "example": "점수순 순위, 날짜순 누적"
+      },
+      {
+        "term": "윈도 프레임",
+        "meaning": "현재 행 주변 어디까지 계산할지",
+        "example": "ROWS BETWEEN ... AND ..."
+      },
+      {
+        "term": "행수 유지",
+        "meaning": "단순 윈도 SELECT는 입력 행을 요약해 줄이지 않음",
+        "example": "학생4행→결과4행"
+      },
+      {
+        "term": "논리 순서",
+        "meaning": "WHERE·GROUP BY·HAVING 뒤 윈도 계산",
+        "example": "이미 필터된 입력을 기준으로 함"
+      },
+      {
+        "term": "필터 방법",
+        "meaning": "Oracle19c에서는 바깥 쿼리로 순위 조건 적용",
+        "example": "인라인뷰 WHERE rn<=3"
+      },
+      {
+        "term": "최종 출력 정렬",
+        "meaning": "OVER의 ORDER BY만으로 결과 순서 보장 안 함",
+        "example": "바깥 ORDER BY도 사용"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-10-E01",
+        "title": "학생마다 자기 학과 평균 붙이기",
+        "question": "학생 네 줄을 유지하면서 평균을 표시하자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "양지훈",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "1002",
+                "박보성",
+                "컴퓨터",
+                "70"
+              ],
+              [
+                "1003",
+                "양선규",
+                "전자",
+                "80"
+              ],
+              [
+                "1004",
+                "장정훈",
+                "전자",
+                "60"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름,점수,AVG(점수) OVER(PARTITION BY 학과) AS 학과평균 FROM 성적 ORDER BY 학번;",
+        "steps": [
+          "컴퓨터 묶음의 양지훈·박보성 평균은80이다. 그80을 두 학생 각각의 줄 옆에 붙인다.",
+          "전자 묶음의 양선규·장정훈 평균은70이다. 각 줄 옆에70을 붙인다.",
+          "학과를 두 줄로 요약하지 않았으므로 결과는 학생 수와 같은 네 줄이다."
+        ],
+        "results": [
+          {
+            "title": "윈도 결과",
+            "columns": [
+              "이름",
+              "점수",
+              "학과평균"
+            ],
+            "rows": [
+              [
+                "양지훈",
+                "90",
+                "80"
+              ],
+              [
+                "박보성",
+                "70",
+                "80"
+              ],
+              [
+                "양선규",
+                "80",
+                "70"
+              ],
+              [
+                "장정훈",
+                "60",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "GROUP BY는 묶어서 줄인다. OVER는 줄을 유지하며 옆에 계산값.",
+    "traps": [
+      "PARTITION BY와 테이블의 물리 파티셔닝은 다른 용어 사용이다. 여기서는 쿼리 안 계산 묶음이다.",
+      "윈도 함수 별칭을 같은 SELECT 단계 WHERE에서 바로 사용할 수 있다고 가정하지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-10-Q1",
+        "question": "학생 네 명에 학과별 평균을 OVER로 붙이면 몇 행?",
+        "answer": "4행",
+        "explanation": "각 학생 행을 유지한다."
+      },
+      {
+        "id": "2-2-10-Q2",
+        "question": "PARTITION BY 학과는 무엇을 나누는가?",
+        "answer": "함수의 계산 묶음",
+        "explanation": "학과마다 별도의 집계 범위를 만든다."
+      },
+      {
+        "id": "2-2-10-Q3",
+        "question": "OVER 안 ORDER BY가 최종 화면 순서를 항상 보장하는가?",
+        "answer": "아니다",
+        "explanation": "최종 ORDER BY를 따로 쓴다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S15",
+      "note-S16"
+    ],
+    "sourceIds": [
+      "analytic",
+      "window"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"윈도우 함수의 개념 OVER절 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"26\" y=\"62\" width=\"180\" height=\"85\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"116.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">원본 행 유지</text><text x=\"116.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">학생 한 사람 한 줄</text><rect x=\"266\" y=\"62\" width=\"188\" height=\"85\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">창의 범위 선택</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">PARTITION · ORDER · 범위</text><rect x=\"514\" y=\"62\" width=\"180\" height=\"85\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"604.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">계산 열 추가</text><text x=\"604.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">평균·누적·이전값</text><path d=\"M216 103 L254 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M466 103 L503 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">GROUP BY는 그룹당 한 줄 · 윈도우 함수는 원래 행에 결과를 붙임</text></svg>",
+    "version": 1
+  },
+  "purpose": "각 학생의 점수를 보면서 같은 학과 평균과 비교하려고 학생 행 옆에 평균을 붙여요.",
+  "overview": "조회 계산이에요. 성적4행을 유지하고 학과평균이라는 결과 열을 덧붙여요. GROUP BY처럼 학과2줄로 줄이지 않아요.",
+  "terms": [
+    {
+      "token": "OVER",
+      "kind": "키워드",
+      "meaning": "계산 범위를 정하는 창",
+      "role": "AVG를 각 학생 행에 붙이는 윈도 함수로 사용해요."
+    },
+    {
+      "token": "PARTITION BY 학과",
+      "kind": "범위 구분",
+      "meaning": "partition = 계산할 묶음을 나눔",
+      "role": "컴퓨터 90·70과 전자 80·60을 각각 계산해요."
+    },
+    {
+      "token": "AS 학과평균",
+      "kind": "결과 별칭",
+      "meaning": "계산 결과의 표시 이름",
+      "role": "성적표를ALTER하지 않고 조회 결과에만 평균 열을 보여줘요."
+    }
+  ],
+  "pitfalls": [
+    "이 AVG에는 OVER 안 ORDER BY가 없어 학과 묶음 전체 평균이에요. 프레임 생략을 언제나 현재행까지라고 설명하면 틀려요.",
+    "윈도 계산의 ORDER BY는 계산 순서용이고 화면의 최종 정렬은 바깥 ORDER BY가 정해요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회 계산이에요. 성적4행을 유지하고 학과평균이라는 결과 열을 덧붙여요. GROUP BY처럼 학과2줄로 줄이지 않아요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 63,
+      "toPage": 63,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-10-E01",
+      "why": "개별 학생 점수와 자기 학과 평균을 한눈에 비교해요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-10-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·학과·점수 4개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "계산 묶음부터 나누기",
+          "text": "PARTITION BY 학과는 컴퓨터 양지훈 90·박보성 70과 전자 양선규 80·장정훈 60으로 나눠요. 학생 행을 삭제하거나 합치는 명령이 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "PARTITION BY 학과",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "PARTITION BY 학과"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 계산 묶음부터 나누기",
+            "columns": [
+              "학과묶음",
+              "대상학생",
+              "점수"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "양지훈·박보성",
+                "90·70"
+              ],
+              [
+                "전자",
+                "양선규·장정훈",
+                "80·60"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "묶음 전체 평균",
+          "text": "이 OVER에는 ORDER BY가 없어요. 컴퓨터 묶음 전체 (90+70)/2=80, 전자 전체 (80+60)/2=70을 구해요.",
+          "codeFocus": [
+            {
+              "needle": "AVG(점수) OVER(PARTITION BY 학과)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "OVER",
+            "BY"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 묶음 전체 평균",
+            "columns": [
+              "학과",
+              "계산",
+              "평균"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "160/2",
+                "80"
+              ],
+              [
+                "전자",
+                "140/2",
+                "70"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "각 행에 같은 묶음 평균",
+          "text": "컴퓨터 학생 두 행에 80을 각각 붙이고 전자 학생 두 행에 70을 붙여요. 학과평균은 결과 별칭이며 원본에 새 컬럼을 저장하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "AS 학과평균",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학과평균"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "title": "최종 표시 순서",
+          "text": "바깥 ORDER BY 학번으로 1001 양지훈→1002 박보성→1003 양선규→1004 장정훈순이에요. 계산 묶음과 표시 순서를 구분해요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ORDER BY 학번"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "윈도 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 윈도 결과와 대조해요. 표시 컬럼은 이름·점수·학과평균, 결과는 4행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "윈도 결과",
+            "columns": [
+              "이름",
+              "점수",
+              "학과평균"
+            ],
+            "rows": [
+              [
+                "양지훈",
+                "90",
+                "80"
+              ],
+              [
+                "박보성",
+                "70",
+                "80"
+              ],
+              [
+                "양선규",
+                "80",
+                "70"
+              ],
+              [
+                "장정훈",
+                "60",
+                "70"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "GROUP BY 학과로 조회하면 학과 2행으로 요약할 수 있지만 이 OVER 예제는 학생 4행 각각에 평균을 붙여요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-10-Q1",
+      "hint": "집계값만 남기는지 각 학생에 붙이는지 구별해요.",
+      "reasoning": "양지훈·박보성·양선규·장정훈 네 행 각각에 평균을 붙여4행이에요. 평균80·70두값이라고2행이 되지 않아요."
+    },
+    {
+      "checkId": "2-2-10-Q2",
+      "hint": "PARTITION 뒤의 학과가 출력행을 삭제하는지 계산 대상만 나누는지 봐요.",
+      "reasoning": "같은학과 학생끼리AVG를 계산할 묶음을 나눠요. 컴퓨터평균80이전자학생에게 붙지 않게 해요."
+    },
+    {
+      "checkId": "2-2-10-Q3",
+      "hint": "OVER 괄호 안의 정렬과 괄호 밖 맨 마지막 정렬을 구별해요.",
+      "reasoning": "OVER의 정렬은 함수 계산용이에요. 최종 화면 순서를 보장하려면 쿼리 끝 ORDER BY를 지정해야 해요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

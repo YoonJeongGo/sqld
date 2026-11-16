@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "1-1-07",
+  "source": {
+    "id": "1-1-07",
+    "partId": "1-1",
+    "number": 7,
+    "title": "속성",
+    "lectureMinutes": 28,
+    "easy": "엔터티에 대해 기록하는 정보 항목이다. 학생의 학번·이름·학과·학년은 각각 속성이다.",
+    "why": "“학생 4명”과 “속성 4개”를 구분한다. 사람 수는 튜플 수이고, 기록 항목의 수가 차수다.",
+    "concepts": [
+      {
+        "term": "속성",
+        "meaning": "한 대상을 설명하는 정보 항목",
+        "example": "이름, 학과, 학년"
+      },
+      {
+        "term": "속성값",
+        "meaning": "특정 사례에 들어 있는 실제 값",
+        "example": "학년 속성에 들어 있는 4"
+      },
+      {
+        "term": "도메인",
+        "meaning": "속성에 허용한 값의 집합",
+        "example": "학년을 1·2·3·4로 제한"
+      },
+      {
+        "term": "기본속성",
+        "meaning": "업무에서 원래 수집하는 값",
+        "example": "이름, 주문수량"
+      },
+      {
+        "term": "설계속성",
+        "meaning": "시스템 설계 과정에서 만든 관리 항목",
+        "example": "인조 학생ID, 코드"
+      },
+      {
+        "term": "파생속성",
+        "meaning": "다른 값으로 계산한 항목",
+        "example": "주문금액 = 수량 × 단가"
+      },
+      {
+        "term": "단일값·다중값",
+        "meaning": "사례 하나가 한 값·여러 값을 가지는가",
+        "example": "연락처 여러 개는 별도 연락처표 검토"
+      },
+      {
+        "term": "복합속성",
+        "meaning": "의미 있는 하위 항목으로 나눌 수 있음",
+        "example": "주소를 도시·상세주소로 나눔"
+      }
+    ],
+    "examples": [
+      {
+        "id": "1-1-07-E01",
+        "title": "속성 네 개를 실제로 세기",
+        "question": "속성과 속성값, 차수와 카디널리티를 구분하자.",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "학년"
+            ],
+            "rows": [
+              [
+                "1001",
+                "이승현",
+                "컴퓨터",
+                "4"
+              ],
+              [
+                "1002",
+                "양지훈",
+                "전자",
+                "3"
+              ],
+              [
+                "1003",
+                "박보성",
+                "컴퓨터",
+                "2"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "항목은 학번·이름·학과·학년이다. 각각 하나의 속성이므로 총 네 개, 차수는 4다.",
+          "1001 / 이승현 / 컴퓨터 / 4가 첫 튜플, 1002 / 양지훈 / 전자 / 3이 둘째, 1003 / 박보성 / 컴퓨터 / 2가 셋째다. 따라서 카디널리티는 3이다.",
+          "이승현의 학년값 4와 속성의 개수 4는 우연히 같은 숫자일 뿐 의미는 다르다."
+        ],
+        "results": [
+          {
+            "title": "속성별 값과 허용 범위",
+            "columns": [
+              "속성",
+              "이 표의 값 예",
+              "허용 규칙 예"
+            ],
+            "rows": [
+              [
+                "학번",
+                "1001",
+                "중복 없이 부여"
+              ],
+              [
+                "이름",
+                "이승현",
+                "필수 문자열"
+              ],
+              [
+                "학과",
+                "컴퓨터",
+                "학과 목록의 값"
+              ],
+              [
+                "학년",
+                "4",
+                "1, 2, 3, 4"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "속성은 항목, 속성값은 그 칸의 값. 차수는 항목 수.",
+    "traps": [
+      "도메인은 현재 표에 보이는 값만 모은 목록이 아니다. 아직 등장하지 않았어도 허용된 값은 도메인에 포함된다.",
+      "나이는 시간이 지나면 달라지는 값이다. 업무에 따라 생년월일을 저장하고 기준일로 계산하는 설계가 가능하다."
+    ],
+    "selfChecks": [
+      {
+        "id": "1-1-07-Q1",
+        "question": "학번·이름·학과·학년이면 차수는?",
+        "answer": "4",
+        "explanation": "네 속성의 개수를 센다."
+      },
+      {
+        "id": "1-1-07-Q2",
+        "question": "현재 학년이 2·3·4만 있어도 1이 도메인에 포함될 수 있는가?",
+        "answer": "그렇다",
+        "explanation": "도메인은 현재 값이 아니라 허용한 값의 범위다."
+      },
+      {
+        "id": "1-1-07-Q3",
+        "question": "수량×단가로 계산한 금액은?",
+        "answer": "파생속성",
+        "explanation": "다른 항목으로부터 계산된다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-M03"
+    ],
+    "sourceIds": [
+      "model"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"속성 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"40\" y=\"44\" width=\"120\" height=\"36\" fill=\"#007d7a\"/><text x=\"100.0\" y=\"68\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"700\">학번</text><rect x=\"160\" y=\"44\" width=\"120\" height=\"36\" fill=\"#007d7a\"/><text x=\"220.0\" y=\"68\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"700\">이름</text><rect x=\"280\" y=\"44\" width=\"120\" height=\"36\" fill=\"#007d7a\"/><text x=\"340.0\" y=\"68\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"700\">학과</text><rect x=\"400\" y=\"44\" width=\"120\" height=\"36\" fill=\"#007d7a\"/><text x=\"460.0\" y=\"68\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"700\">학년</text><rect x=\"40\" y=\"80\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"100.0\" y=\"104\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">1001</text><rect x=\"160\" y=\"80\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"220.0\" y=\"104\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">이승현</text><rect x=\"280\" y=\"80\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"340.0\" y=\"104\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">컴퓨터</text><rect x=\"400\" y=\"80\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"460.0\" y=\"104\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">4</text><rect x=\"40\" y=\"116\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"100.0\" y=\"140\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">1002</text><rect x=\"160\" y=\"116\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"220.0\" y=\"140\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">양지훈</text><rect x=\"280\" y=\"116\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"340.0\" y=\"140\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">전자</text><rect x=\"400\" y=\"116\" width=\"120\" height=\"36\" fill=\"#ffffff\" stroke=\"#d3e0e7\"/><text x=\"460.0\" y=\"140\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"15\" fill=\"#172b4d\" font-weight=\"400\">3</text><text x=\"360\" y=\"25\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"12\" fill=\"#58677f\" font-weight=\"400\">개념도용 별도 예시</text><text x=\"610\" y=\"90\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"18\" fill=\"#172b4d\" font-weight=\"700\">속성 4개</text><text x=\"610\" y=\"122\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"18\" fill=\"#007d7a\" font-weight=\"700\">→ 차수 4</text><text x=\"280\" y=\"187\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#172b4d\" font-weight=\"700\">두 사람의 정보가 두 줄 → 튜플 2개 → 카디널리티 2</text></svg>",
+    "version": 1
+  },
+  "purpose": "학년값 4와 열 개수 4를 구별하고 현재 없는 값도 도메인에 포함될 수 있음을 확인하자.",
+  "overview": "학생표의 열 제목·행·허용 규칙을 읽는 개념 학습이다. 학번·이름·학과·학년을 구체적으로 세고 한 행의 값과 구분한다.",
+  "terms": [
+    {
+      "token": "속성",
+      "kind": "개념",
+      "meaning": "한 대상을 설명하는 정보 항목",
+      "role": "이름, 학과, 학년"
+    },
+    {
+      "token": "속성값",
+      "kind": "개념",
+      "meaning": "특정 사례에 들어 있는 실제 값",
+      "role": "학년 속성에 들어 있는 4"
+    },
+    {
+      "token": "도메인",
+      "kind": "개념",
+      "meaning": "속성에 허용한 값의 집합",
+      "role": "학년을 1·2·3·4로 제한"
+    },
+    {
+      "token": "기본속성",
+      "kind": "개념",
+      "meaning": "업무에서 원래 수집하는 값",
+      "role": "이름, 주문수량"
+    },
+    {
+      "token": "설계속성",
+      "kind": "개념",
+      "meaning": "시스템 설계 과정에서 만든 관리 항목",
+      "role": "인조 학생ID, 코드"
+    },
+    {
+      "token": "파생속성",
+      "kind": "개념",
+      "meaning": "다른 값으로 계산한 항목",
+      "role": "주문금액 = 수량 × 단가"
+    },
+    {
+      "token": "단일값·다중값",
+      "kind": "개념",
+      "meaning": "사례 하나가 한 값·여러 값을 가지는가",
+      "role": "연락처 여러 개는 별도 연락처표 검토"
+    },
+    {
+      "token": "복합속성",
+      "kind": "개념",
+      "meaning": "의미 있는 하위 항목으로 나눌 수 있음",
+      "role": "주소를 도시·상세주소로 나눔"
+    },
+    {
+      "token": "차수(Degree)",
+      "kind": "개념",
+      "meaning": "열의 수",
+      "role": "현재 학생표의 학번·이름·학과·학년 네 속성을 세면4다."
+    },
+    {
+      "token": "카디널리티(Cardinality)",
+      "kind": "개념",
+      "meaning": "이 문맥에서는 행의 수",
+      "role": "이승현·양지훈·박보성의 정보 묶음 세 행을 세면3이다."
+    },
+    {
+      "token": "튜플(Tuple)",
+      "kind": "개념",
+      "meaning": "한 행을 이루는 값의 묶음",
+      "role": "1001·이승현·컴퓨터·4 전체가 한 튜플이지 이름 한 값만이 튜플은 아니다."
+    }
+  ],
+  "pitfalls": [
+    "PDF 17쪽 원자성 문항은 업무에서 이름·날짜를 어떻게 다루는지 조건이 충분하지 않아 보충 주의가 필요하다. 날짜만 항상 원자값이고 이름은 항상 비원자값이라는 규칙으로 확장하지 않는다.",
+    "도메인의 정수형이 반드시 양수만 허용한다는 뜻은 아니다. 1~4처럼 실제 업무 제한을 따로 정한다."
+  ],
+  "questions": [
+    {
+      "question": "이승현은 속성이야?",
+      "answer": "이름이라는 열이 속성이고 이승현은 그 열에 저장된 속성값이다."
+    },
+    {
+      "question": "주소는 무조건 원자값이 아니야?",
+      "answer": "업무에서 어떤 하나의 값으로 다루는지에 따라 판단한다. 이름이나 날짜도 글자·연월일로 나눌 수 있다는 이유만으로 무조건 1NF 위반이 되는 것은 아니다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "1-1",
+      "title": "데이터 모델링의 이해",
+      "fromPage": 15,
+      "toPage": 18,
+      "note": "흥달쌤 원본 PDF의 해당 단원과 문제를 대조했습니다. 아래 앱 예제의 이름·표·값은 PDF 문제와 별도 데이터이며, 원본 PDF의 보기를 옮겨 채점하지 않습니다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "1-1-07-E01",
+      "why": "표에서 차수와 카디널리티를 묻는 문제를 숫자 모양만 보고 풀지 않도록 한다.",
+      "effect": "개념: 속성·속성값·허용 범위·행과 열의 수를 판정한다.",
+      "prerequisites": [
+        "원본의 학생표는 이승현·양지훈·박보성 세 학생과 학번·이름·학과·학년 네 열이다.",
+        "허용 규칙 예 표의 학년 1~4와 이름 필수 등은 설계 규칙 예시다. 실제 DDL이 실행된 상태로 단정하지 않는다."
+      ],
+      "steps": [
+        {
+          "title": "항목 네 개를 하나씩 짚기",
+          "text": "학번, 이름, 학과, 학년이라는 열 제목 네 개가 속성이다. 차수는 이 속성 개수인 4다. 첫 학생의 학년값 4를 보고 세는 것이 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "학번, 이름, 학과, 학년",
+            "차수"
+          ],
+          "table": {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "학년"
+            ],
+            "rows": [
+              [
+                "1001",
+                "이승현",
+                "컴퓨터",
+                "4"
+              ],
+              [
+                "1002",
+                "양지훈",
+                "전자",
+                "3"
+              ],
+              [
+                "1003",
+                "박보성",
+                "컴퓨터",
+                "2"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "행은 정보 묶음 전체",
+          "text": "(1001, 이승현, 컴퓨터, 4), (1002, 양지훈, 전자, 3), (1003, 박보성, 컴퓨터, 2)가 각각 한 행이다. 정보 묶음 세 개이므로 카디널리티는 3이다.",
+          "codeFocus": [],
+          "highlights": [
+            "카디널리티는 3"
+          ],
+          "table": {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "학년"
+            ],
+            "rows": [
+              [
+                "1001",
+                "이승현",
+                "컴퓨터",
+                "4"
+              ],
+              [
+                "1002",
+                "양지훈",
+                "전자",
+                "3"
+              ],
+              [
+                "1003",
+                "박보성",
+                "컴퓨터",
+                "2"
+              ]
+            ]
+          },
+          "focusRows": [
+            0,
+            1,
+            2
+          ],
+          "focusCells": [],
+          "id": "read-02"
+        },
+        {
+          "title": "허용된 값과 현재 들어 있는 값",
+          "text": "학년에는 지금 2·3·4가 보인다. 허용 규칙을 1·2·3·4로 정했다면 현재 학생이 없어도 1은 허용된다. 반대로 표에 없다는 이유만으로 9를 넣어도 되는 것은 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "현재 학생이 없어도 1은 허용",
+            "9"
+          ],
+          "table": {
+            "title": "학년 도메인 판정 · 설계 규칙 예",
+            "columns": [
+              "입력값",
+              "현재 보이는가",
+              "1~4 규칙 판정"
+            ],
+            "rows": [
+              [
+                "1",
+                "아니오",
+                "허용"
+              ],
+              [
+                "4",
+                "예",
+                "허용"
+              ],
+              [
+                "9",
+                "아니오",
+                "거부"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 0
+            },
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 0
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "다른 분류 축을 구별하기",
+          "text": "이름은 업무에서 수집하는 기본속성이다. 다른 값으로 계산하는 금액은 파생속성이고 설계 편의를 위해 만든 관리 번호는 설계속성일 수 있다. 현재 학생표에는 수량·단가·금액이 없으므로 별도 개념 예로만 비교한다.",
+          "codeFocus": [],
+          "highlights": [
+            "별도 개념 예"
+          ],
+          "table": {
+            "title": "속성별 값과 허용 범위",
+            "columns": [
+              "속성",
+              "이 표의 값 예",
+              "허용 규칙 예"
+            ],
+            "rows": [
+              [
+                "학번",
+                "1001",
+                "중복 없이 부여"
+              ],
+              [
+                "이름",
+                "이승현",
+                "필수 문자열"
+              ],
+              [
+                "학과",
+                "컴퓨터",
+                "학과 목록의 값"
+              ],
+              [
+                "학년",
+                "4",
+                "1, 2, 3, 4"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "title": "그림에서는 열 제목과 테두리 행",
+          "text": "기존 그림의 학번·이름·학과·학년 화살표는 속성을, 테두리는 한 튜플 전체를 가리킨다. 그 그림의 노우성 행과 현재 양지훈 행을 섞지 않는다. 학년의 4와 차수 4가 우연히 같아도 세는 대상이 다르다.",
+          "codeFocus": [],
+          "highlights": [
+            "한 튜플 전체",
+            "세는 대상이 다르다"
+          ],
+          "table": null,
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-05"
+        }
+      ],
+      "comparison": "속성은 학년이라는 항목, 속성값은 이승현 행의 4, 도메인은 넣어도 되는 1~4의 범위다. 이 세 가지를 하나의 숫자로 뭉뚱그리지 않는다.",
+      "verification": "원본 표·업무 규칙과 추가 설명을 대조한 개념 검토입니다. SQL을 실행하는 예제가 아닙니다. 실제 DBMS 실행·사람 전문가 검수는 하지 않았습니다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "1-1-07-Q1",
+      "hint": "맨 위 열 제목을 소리 내어 한 번씩 세어 보자.",
+      "reasoning": "학번·이름·학과·학년 네 항목이라 차수는 4다. 학생 세 명이라는 행 수와 구별한다."
+    },
+    {
+      "checkId": "1-1-07-Q2",
+      "hint": "현재 관측된 값만 허용 규칙의 전부인가?",
+      "reasoning": "아니다. 규칙이 1~4이면 지금 1학년 학생이 없어도 1은 허용 범위에 포함된다."
+    },
+    {
+      "checkId": "1-1-07-Q3",
+      "hint": "값을 직접 수집했는지 다른 항목에서 계산했는지 보자.",
+      "reasoning": "수량과 단가를 곱해 얻는 금액은 파생속성이다. 현재 학생표 계산이 아니라 확인문제에서 제시한 별도 계산 예다."
+    }
+  ],
+  "sourceUrls": [
+    "https://www.db-book.com/slides-dir/PDF-dir/ch7.pdf"
+  ],
+  "reviewNotes": []
+}

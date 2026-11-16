@@ -1,0 +1,422 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-21",
+  "source": {
+    "id": "2-1-21",
+    "partId": "2-1",
+    "number": 21,
+    "title": "HAVING",
+    "lectureMinutes": 33,
+    "easy": "그룹을 만든 뒤, 그 그룹 전체의 집계 조건으로 남길 그룹을 고르는 절이다.",
+    "why": "학생 개인의 점수 조건은 WHERE, 학과 평균 조건은 HAVING이다. 두 조건은 적용 대상이 다르다.",
+    "concepts": [
+      {
+        "term": "WHERE",
+        "meaning": "그룹을 만들기 전 개별 행 검사",
+        "example": "점수>=60"
+      },
+      {
+        "term": "GROUP BY",
+        "meaning": "남은 행을 묶음으로 구성",
+        "example": "학과별"
+      },
+      {
+        "term": "HAVING",
+        "meaning": "그룹 결과에 조건 적용",
+        "example": "AVG(점수)>=75"
+      },
+      {
+        "term": "SELECT",
+        "meaning": "통과한 그룹의 출력값",
+        "example": "학과, AVG(점수)"
+      },
+      {
+        "term": "ORDER BY",
+        "meaning": "마지막 결과 정렬",
+        "example": "평균 DESC"
+      },
+      {
+        "term": "집계함수 위치",
+        "meaning": "WHERE에서 같은 단계의 AVG를 직접 검사하지 않음",
+        "example": "HAVING AVG(점수)>... 사용"
+      },
+      {
+        "term": "GROUP BY 없는 HAVING",
+        "meaning": "전체를 하나의 그룹으로 검사할 수도 있음",
+        "example": "상황에 따라 결과 0 또는 1행"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-21-E01",
+        "title": "행 조건과 그룹 조건을 순서대로",
+        "question": "60점 이상인 학생만 모아 학과 평균을 구하고, 평균 75 이상 학과만 남기자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "학과",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "컴퓨터",
+                "90"
+              ],
+              [
+                "1002",
+                "유성재",
+                "컴퓨터",
+                "70"
+              ],
+              [
+                "1003",
+                "장정훈",
+                "컴퓨터",
+                "50"
+              ],
+              [
+                "1004",
+                "박강열",
+                "전자",
+                "80"
+              ],
+              [
+                "1005",
+                "노우성",
+                "전자",
+                "60"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 학과, AVG(점수) AS 평균 FROM 성적 WHERE 점수>=60 GROUP BY 학과 HAVING AVG(점수)>=75 ORDER BY 학과;",
+        "steps": [
+          "WHERE에서 장정훈의 50점은 제외한다. 박상현 90, 유성재 70, 박강열 80, 노우성 60은 남는다.",
+          "학과로 묶으면 컴퓨터 평균=(90+70)/2=80, 전자 평균=(80+60)/2=70이다.",
+          "HAVING AVG(점수)>=75는 컴퓨터 그룹만 통과시킨다.",
+          "결과는 컴퓨터/80 한 줄이다."
+        ],
+        "results": [
+          {
+            "title": "최종 결과",
+            "columns": [
+              "학과",
+              "평균"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "WHERE는 개인 검사, HAVING은 모임 검사.",
+    "traps": [
+      "WHERE에서 50점을 먼저 빼면 평균이 달라진다. 원본 전체 평균으로 HAVING을 계산하지 않는다.",
+      "HAVING을 단순히 WHERE의 다른 이름으로 외우지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-21-Q1",
+        "question": "학과 평균 75 이상 조건은 어디에 쓰는가?",
+        "answer": "HAVING",
+        "explanation": "그룹의 집계 결과에 대한 조건이다."
+      },
+      {
+        "id": "2-1-21-Q2",
+        "question": "학생 점수 60 이상 조건은?",
+        "answer": "WHERE",
+        "explanation": "개별 행 조건이다."
+      },
+      {
+        "id": "2-1-21-Q3",
+        "question": "이 예에서 컴퓨터의 평균을 70으로 계산하면 왜 틀리는가?",
+        "answer": "WHERE에서 50점 행이 먼저 제외되기 때문이다",
+        "explanation": "90과 70 두 점수로 계산해야 한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S08",
+      "note-S02"
+    ],
+    "sourceIds": [
+      "select",
+      "tableexpressions"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"HAVING 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"3\" markerHeight=\"3\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><g font-family=\"sans-serif\"><rect x=\"15\" y=\"60\" width=\"106\" height=\"85\" rx=\"10\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"68\" y=\"94\" text-anchor=\"middle\" font-size=\"14\" fill=\"#172b4d\">FROM</text><text x=\"68\" y=\"122\" text-anchor=\"middle\" font-size=\"12\" fill=\"#58677f\">어느 표?</text><path d=\"M124 103 L131 103\" stroke=\"#007d7a\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><rect x=\"133\" y=\"60\" width=\"106\" height=\"85\" rx=\"10\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"186\" y=\"94\" text-anchor=\"middle\" font-size=\"14\" fill=\"#172b4d\">WHERE</text><text x=\"186\" y=\"122\" text-anchor=\"middle\" font-size=\"12\" fill=\"#58677f\">어느 행?</text><path d=\"M242 103 L249 103\" stroke=\"#007d7a\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><rect x=\"251\" y=\"60\" width=\"106\" height=\"85\" rx=\"10\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"304\" y=\"94\" text-anchor=\"middle\" font-size=\"14\" fill=\"#172b4d\">GROUP BY</text><text x=\"304\" y=\"122\" text-anchor=\"middle\" font-size=\"12\" fill=\"#58677f\">어떤 묶음?</text><path d=\"M360 103 L367 103\" stroke=\"#007d7a\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><rect x=\"369\" y=\"60\" width=\"106\" height=\"85\" rx=\"10\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"422\" y=\"94\" text-anchor=\"middle\" font-size=\"14\" fill=\"#172b4d\">HAVING</text><text x=\"422\" y=\"122\" text-anchor=\"middle\" font-size=\"12\" fill=\"#58677f\">어느 그룹?</text><path d=\"M478 103 L485 103\" stroke=\"#007d7a\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><rect x=\"487\" y=\"60\" width=\"106\" height=\"85\" rx=\"10\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"540\" y=\"94\" text-anchor=\"middle\" font-size=\"14\" fill=\"#172b4d\">SELECT</text><text x=\"540\" y=\"122\" text-anchor=\"middle\" font-size=\"12\" fill=\"#58677f\">무엇을 출력?</text><path d=\"M596 103 L603 103\" stroke=\"#007d7a\" stroke-width=\"2\" marker-end=\"url(#arr)\"/><rect x=\"605\" y=\"60\" width=\"106\" height=\"85\" rx=\"10\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"658\" y=\"94\" text-anchor=\"middle\" font-size=\"14\" fill=\"#172b4d\">ORDER BY</text><text x=\"658\" y=\"122\" text-anchor=\"middle\" font-size=\"12\" fill=\"#58677f\">어떤 순서?</text><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-size=\"13\" fill=\"#172b4d\">개념적인 처리 순서이며, 실제 실행계획의 순서와는 다를 수 있습니다.</text></g></svg>",
+    "version": 1
+  },
+  "purpose": "학생별 최소 점수 조건을 먼저 적용한 뒤 학과 평균으로 학과를 고른다.",
+  "overview": "WHERE는 집계에 들어갈 학생 행을 고르고 HAVING은 집계된 학과 그룹을 고른다. 논리적 풀이 순서로 필터→그룹→평균→그룹 조건을 추적한다.",
+  "terms": [
+    {
+      "token": "WHERE 점수>=60",
+      "kind": "개별 행 조건",
+      "meaning": "학생 한 명의 점수 검사",
+      "role": "장정훈 50점을 제외하고 네 학생만 평균 계산에 넣는다."
+    },
+    {
+      "token": "GROUP BY 학과",
+      "kind": "그룹 기준",
+      "meaning": "같은 학과끼리 묶기",
+      "role": "WHERE 통과 행에서 컴퓨터 두 명·전자 두 명을 묶는다."
+    },
+    {
+      "token": "HAVING AVG(점수)>=75",
+      "kind": "그룹 조건",
+      "meaning": "요약한 평균을 검사",
+      "role": "컴퓨터 80은 통과, 전자 70은 제외한다."
+    },
+    {
+      "token": "AVG(점수) AS 평균",
+      "kind": "계산과 별칭",
+      "meaning": "점수 평균을 평균이라고 표시",
+      "role": "원본 학생 점수를 바꾸지 않고 학과 요약값을 만든다."
+    }
+  ],
+  "pitfalls": [
+    "WHERE를 빼면 평균의 입력 자체가 달라진다. HAVING만 마지막에 붙여 같아질 것이라고 보지 않는다.",
+    "이 설명은 쿼리 의미를 읽는 논리 단계다. 옵티마이저의 물리 실행계획을 실측한 결과가 아니다."
+  ],
+  "questions": [
+    {
+      "question": "WHERE 점수>=60는 여기서 무엇을 뜻하나요?",
+      "answer": "장정훈 50점을 제외하고 네 학생만 평균 계산에 넣는다."
+    },
+    {
+      "question": "GROUP BY 학과는 여기서 무엇을 뜻하나요?",
+      "answer": "WHERE 통과 행에서 컴퓨터 두 명·전자 두 명을 묶는다."
+    },
+    {
+      "question": "HAVING AVG(점수)>=75는 여기서 무엇을 뜻하나요?",
+      "answer": "컴퓨터 80은 통과, 전자 70은 제외한다."
+    },
+    {
+      "question": "AVG(점수) AS 평균는 여기서 무엇을 뜻하나요?",
+      "answer": "원본 학생 점수를 바꾸지 않고 학과 요약값을 만든다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 112,
+      "toPage": 118,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-21-E01",
+      "why": "60점 이상 성적을 대상으로 학과 평균 75 이상인 곳을 찾는다.",
+      "effect": "조회 집계:5행중 4행을 집계해 2그룹, 최종 1그룹 출력.",
+      "prerequisites": [
+        "점수에NULL이 없는 원본 표를 사용한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "각 학생의 60점 조건",
+          "text": "박상현 90, 유성재 70, 박강열 80, 노우성 60은 >=60이참이다. 장정훈 50은거짓이므로 컴퓨터 평균을 계산하기 전에 제외한다.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 점수>=60",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "계산하기 전에 제외"
+          ],
+          "focusRows": [
+            2
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "집계 전 행 판정",
+            "columns": [
+              "이름",
+              "학과",
+              "점수",
+              "판정"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "컴퓨터",
+                "90",
+                "참·통과"
+              ],
+              [
+                "유성재",
+                "컴퓨터",
+                "70",
+                "참·통과"
+              ],
+              [
+                "장정훈",
+                "컴퓨터",
+                "50",
+                "거짓·제외"
+              ],
+              [
+                "박강열",
+                "전자",
+                "80",
+                "참·통과"
+              ],
+              [
+                "노우성",
+                "전자",
+                "60",
+                "참·통과"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "남은 행을 학과별로 묶기",
+          "text": "컴퓨터에는 90·70만 남고 전자에는 80·60이 남는다. 컴퓨터의 50을 다시 꺼내 넣으면 WHERE를 무시한 계산이 된다.",
+          "codeFocus": [
+            {
+              "needle": "GROUP BY 학과",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "90·70만"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "평균 입력",
+            "columns": [
+              "학과",
+              "남은 점수",
+              "합",
+              "개수"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "90,70",
+                "160",
+                "2"
+              ],
+              [
+                "전자",
+                "80,60",
+                "140",
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "평균을 75와 비교",
+          "text": "컴퓨터는 160÷2=80이고 80>=75가참이다. 전자는 140÷2=70이고 70>=75가거짓이다. HAVING은 학생 한 명의 점수를 지우는 대신 전자라는 요약그룹을 제외한다.",
+          "codeFocus": [
+            {
+              "needle": "HAVING AVG(점수)>=75",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "요약그룹"
+          ],
+          "focusRows": [
+            0
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "그룹 조건",
+            "columns": [
+              "학과",
+              "평균",
+              ">=75",
+              "처리"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "80",
+                "참",
+                "유지"
+              ],
+              [
+                "전자",
+                "70",
+                "거짓",
+                "제외"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-04",
+          "title": "최종 조회와 원본 구별",
+          "text": "최종 결과는컴퓨터·80 한 행이다. 원본성적의 전자학생이나 장정훈 50점을 삭제한 DML은 아니다. 이 조회에서만 집계대상과 출력그룹을 제한했다.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학과, AVG(점수) AS 평균",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "한 행"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "최종 결과",
+            "columns": [
+              "학과",
+              "평균"
+            ],
+            "rows": [
+              [
+                "컴퓨터",
+                "80"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "컴퓨터 평균 70은(90+70+50)/3이다. 그 50은WHERE에서 빠지므로 이 쿼리의 평균 80과 다르다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-21-Q1",
+      "hint": "개별 점수가 아니라 여러 학생의 평균에 대한 조건인지 보자.",
+      "reasoning": "학과 평균 75 이상은 AVG 결과를 검사하므로 HAVING에 쓴다. 이 예에서 컴퓨터 80만 통과한다."
+    },
+    {
+      "checkId": "2-1-21-Q2",
+      "hint": "평균을 내기 전에 제외할 학생을 찾는 조건인지 보자.",
+      "reasoning": "학생별 점수 60 이상은 WHERE다. 장정훈 50은그룹 집계 전에빠진다."
+    },
+    {
+      "checkId": "2-1-21-Q3",
+      "hint": "컴퓨터 평균의 분자와 분모에 50점이 들어갔는지 확인하자.",
+      "reasoning": "WHERE가 50점 행을 제외해 90·70만 남는다. 160÷2=80이며 210÷3=70은 다른 입력으로 계산한 값이다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html"
+  ],
+  "reviewNotes": []
+}

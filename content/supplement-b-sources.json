@@ -1,0 +1,239 @@
+{
+  "sources": [
+    {
+      "sourceId": "oracle19-create-view",
+      "publisher": "Oracle",
+      "title": "CREATE VIEW",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-VIEW.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "일반 뷰 정의, OR REPLACE, 직접 객체 권한, 본래 갱신 가능성, CHECK OPTION과 READ ONLY",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-drop-view",
+      "publisher": "Oracle",
+      "title": "DROP VIEW",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/DROP-VIEW.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "뷰 정의 제거와 의존 뷰 무효화",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-first-value",
+      "publisher": "Oracle",
+      "title": "FIRST_VALUE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/FIRST_VALUE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "현재 프레임의 첫 값과 RESPECT/IGNORE NULLS, 동률 결정성",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-ratio-to-report",
+      "publisher": "Oracle",
+      "title": "RATIO_TO_REPORT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/RATIO_TO_REPORT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "파티션 합계에 대한 비율, NULL과 분석 구문",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-percent-rank",
+      "publisher": "Oracle",
+      "title": "PERCENT_RANK",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/PERCENT_RANK.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "분석 함수의 순위 기반 계산식과 첫 행 0",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-cume-dist",
+      "publisher": "Oracle",
+      "title": "CUME_DIST",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CUME_DIST.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "동점을 포함한 누적 분포",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-sys-connect-by-path",
+      "publisher": "Oracle",
+      "title": "SYS_CONNECT_BY_PATH",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SYS_CONNECT_BY_PATH.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "루트부터 현재 행까지 경로 문자열",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-hierarchy-pseudocolumns",
+      "publisher": "Oracle",
+      "title": "Hierarchical Query Pseudocolumns",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Query-Pseudocolumns.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "NOCYCLE 요구와 현재 행의 순환 표시",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-regexp-instr",
+      "publisher": "Oracle",
+      "title": "REGEXP_INSTR",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REGEXP_INSTR.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "검색 시작 위치, 일치 회차, 끝 다음 위치, 부분식 번호",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-regexp-count",
+      "publisher": "Oracle",
+      "title": "REGEXP_COUNT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REGEXP_COUNT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "겹치지 않는 일치 횟수, 부분식과 매칭 플래그",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-regexp-replace",
+      "publisher": "Oracle",
+      "title": "REGEXP_REPLACE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REGEXP_REPLACE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "캡처 역참조와 전체/회차별 치환",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "wisc-cs564-ra-2018",
+      "publisher": "University of Wisconsin–Madison",
+      "title": "CS 564: Relational Algebra",
+      "url": "https://pages.cs.wisc.edu/~paris/cs564-s18/lectures/lecture-08.pdf",
+      "version": "Spring 2018; Paris Koutris",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Relational algebra and division"
+      ],
+      "usageScope": "집합 의미, 선택·투영·곱·집합 연산·이름 변경·조인과 SQL 대응",
+      "license": "강의 원문·도표·문항을 재수록하지 않음. 사실 확인 후 독자 예제와 설명 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "cornell-cs4320-ra-2008",
+      "publisher": "Cornell University",
+      "title": "CS4320: Relational Algebra",
+      "url": "https://www.cs.cornell.edu/courses/cs4320/2008fa/slides/20080915_Algebra.pdf",
+      "version": "Fall 2008",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Relational algebra and division"
+      ],
+      "usageScope": "집합 관계대수와 디비전의 기본 연산 표현",
+      "license": "강의 원문·도표·문항을 재수록하지 않음. 사실 확인 후 독자 예제와 설명 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "wellesley-cs304-division",
+      "publisher": "Wellesley College",
+      "title": "CS 304: Division in Relational Algebra",
+      "url": "https://cs.wellesley.edu/~cs304flask/lectures/relational-algebra/division.html",
+      "version": "CS 304 online course notes; page date unspecified",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Relational algebra and division"
+      ],
+      "usageScope": "디비전의 모든 요구 값 충족 해석",
+      "license": "강의 원문·도표·문항을 재수록하지 않음. 사실 확인 후 독자 예제와 설명 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    }
+  ]
+}

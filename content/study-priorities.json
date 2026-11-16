@@ -1,0 +1,908 @@
+{
+  "checkedAt": "2026-09-14",
+  "methodology": "강의·교재의 공개 자료를 대조하고, 다른 개념과의 연결 및 결과를 틀리게 만드는 영향을 고려해 학습 우선도를 정했습니다. ‘교재·강사 강조’는 해당 자료의 학습 강조이며 공식 빈출 통계가 아닙니다. 길벗 저자의 출제 비중 분석은 확인했지만 표본과 분석법은 이번 조사에서 확인하지 못했습니다. 강의 시간이나 앱 문제 수를 출제 빈도로 환산하지 않았으며, ‘기초 보충’도 생략해도 된다는 뜻은 아닙니다.",
+  "sources": [
+    {
+      "sourceId": "oracle19-nulls",
+      "publisher": "Oracle",
+      "title": "Nulls",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Nulls with Comparison Conditions",
+        "Nulls in Conditions"
+      ],
+      "usageScope": "NULL, UNKNOWN, Oracle zero-length strings; M09/S06",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-joins",
+      "publisher": "Oracle",
+      "title": "Joins",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Join Conditions",
+        "Inner Joins",
+        "Outer Joins",
+        "Self Joins"
+      ],
+      "usageScope": "Join matching, multiplication and NULL extension; M07/S10/S11/S18",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-analytic",
+      "publisher": "Oracle",
+      "title": "Analytic Functions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "analytic_clause",
+        "order_by_clause",
+        "windowing_clause"
+      ],
+      "usageScope": "Ranking ties, ROWS/RANGE and final result ordering; S15/S16",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "wikibook-sqld2026",
+      "publisher": "위키북스",
+      "title": "이지패스 2026 SQLD SQL 개발자",
+      "url": "https://wikibook.co.kr/sqld2026/",
+      "version": "2026 edition / ISBN 9791158396589",
+      "publicationDate": "2026-01-16",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "도서 정보",
+        "목차"
+      ],
+      "usageScope": "Publisher chapter-list cross-check only. Neither current official scope nor question answer evidence.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_scope_crosscheck"
+    },
+    {
+      "sourceId": "dataq-sqld",
+      "publisher": "한국데이터산업진흥원 데이터자격검정",
+      "title": "SQL 개발자 종목 안내 (접근 시도)",
+      "url": "https://www.dataq.or.kr/www/sub/a_04.do",
+      "version": "current version unconfirmed",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "종목 안내",
+        "출제기준 (미확인)"
+      ],
+      "usageScope": "Current official exam specification lookup target. Must not be cited as verified.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "failed_fetch_400",
+      "verificationMethod": "attempted_not_verified"
+    },
+    {
+      "sourceId": "dataq-main",
+      "publisher": "한국데이터산업진흥원 데이터자격검정",
+      "title": "데이터자격검정 메인 (접근 시도)",
+      "url": "https://www.dataq.or.kr/www/main.do",
+      "version": "current version unconfirmed",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "공지사항 (미확인)",
+        "자료실·정오표 (미확인)"
+      ],
+      "usageScope": "Attempted notices and errata navigation; current contents unavailable.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "failed_fetch_400",
+      "verificationMethod": "attempted_not_verified"
+    },
+    {
+      "sourceId": "eraon-sqld2026-curriculum",
+      "publisher": "이라온에듀 · 흥달쌤",
+      "title": "2026 SQLD(SQL 개발자)(30일) 공개 커리큘럼",
+      "url": "https://eraonedu.com/course/CI_00000017",
+      "version": "2026 강좌",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "커리큘럼"
+      ],
+      "usageScope": "사용자가 제시한 강의 주제와 앱 학습목표 대조. 강의 내용·문항 재수록이나 강의 시간으로 빈도 추정하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "educator_public_material_review"
+    },
+    {
+      "sourceId": "eraon-sqld-exam-guide",
+      "publisher": "이라온에듀 · 흥달쌤",
+      "title": "SQLD 안내 · 과목 및 내용",
+      "url": "https://eraonedu.com/exam/03",
+      "version": "2026-09-14 열람본",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "과목 및 내용",
+        "출제문항수"
+      ],
+      "usageScope": "강사가 게시한 시험 안내의 보조 교차 확인. 시행기관 현행 원문을 대신하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "educator_public_material_review"
+    },
+    {
+      "sourceId": "eraon-sqld-public-lectures",
+      "publisher": "이라온에듀 · 흥달쌤",
+      "title": "SQLD 공개강좌 목록",
+      "url": "https://eraonedu.com/support/lecture/07",
+      "version": "2026-09-14 열람본",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "정규식 특강 #01~#04"
+      ],
+      "usageScope": "S20에서 강사가 별도 보충 특강을 제공하는 사실 확인. 시험 출제 횟수의 증거가 아님.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "educator_public_material_review"
+    },
+    {
+      "sourceId": "gilbut-sqld2027-info",
+      "publisher": "길벗 · 서동재(데이널)",
+      "title": "2027 한 권으로 끝내는 시나공 SQLD · 출판사 소개",
+      "url": "https://www.gilbut.co.kr/book/view?bookcode=BN004870",
+      "version": "ISBN 9791140719457",
+      "publicationDate": "2026-07-13",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "도서소개",
+        "목차"
+      ],
+      "usageScope": "최근 출간 수험서의 학습 방향과 공개 미리보기 연결 확인. 홍보 문구의 합격 보장·학습 효과 수치를 앱 주장으로 전환하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_public_material_review"
+    },
+    {
+      "sourceId": "gilbut-sqld2027-guide-model",
+      "publisher": "길벗 · 서동재(데이널)",
+      "title": "2027 시나공 SQLD 공개 미리보기 10쪽 · 시험 분석 및 학습 가이드",
+      "url": "https://gfile.gilbut.co.kr/gilbut/bookdata/BN004870/preview/files/basic-html/page10.html",
+      "version": "2027판, 인쇄면 10쪽",
+      "publicationDate": "2026-07-13",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "1과목 출제 경향"
+      ],
+      "usageScope": "저자의 관계·정규화 및 ERD 적용 강조를 출처 표시와 함께 요약. 공식 빈도나 독립 재현한 출제 통계로 사용하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_public_material_review"
+    },
+    {
+      "sourceId": "gilbut-sqld2027-guide-sql",
+      "publisher": "길벗 · 서동재(데이널)",
+      "title": "2027 시나공 SQLD 공개 미리보기 11쪽 · SQL 출제 경향",
+      "url": "https://gfile.gilbut.co.kr/gilbut/bookdata/BN004870/preview/files/basic-html/page11.html",
+      "version": "2027판, 인쇄면 11쪽",
+      "publicationDate": "2026-07-13",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "2과목 출제 경향"
+      ],
+      "usageScope": "저자가 제시한 단원 강조와 출제 비중 주장의 존재를 확인. 공개면의 표본·분모·분석법은 미확인으로 숫자를 공식 확률로 사용하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_public_material_review"
+    },
+    {
+      "sourceId": "gilbut-sqld2027-killer-guide",
+      "publisher": "길벗 · 서동재(데이널)",
+      "title": "2027 시나공 SQLD 공개 미리보기 15쪽 · 별책 활용 소개",
+      "url": "https://gfile.gilbut.co.kr/gilbut/bookdata/BN004870/preview/files/basic-html/page15.html",
+      "version": "2027판, 인쇄면 15쪽",
+      "publicationDate": "2026-07-13",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "킬러문항 32제 소개"
+      ],
+      "usageScope": "NULL·JOIN·서브쿼리·윈도우 함수의 별도 점검 강조 확인. 부록 문제는 복사·수록하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_public_material_review"
+    }
+  ],
+  "priorities": [
+    {
+      "objectiveId": "M01",
+      "level": "important",
+      "reason": "업무 규칙을 모델로 바꾸는 출발점이며 엔터티·관계 판단의 기준이 된다.",
+      "focusPoints": [
+        "추상화·단순화·명확화의 차이",
+        "개념·논리·물리 모델의 구체화 수준",
+        "물리 설계 중 발견한 규칙을 논리 모델에 되먹이기"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M02",
+      "level": "important",
+      "reason": "무엇을 독립적으로 관리할지 정해야 속성과 관계를 올바르게 배치할 수 있다.",
+      "focusPoints": [
+        "엔터티·인스턴스·속성 구별",
+        "유형·개념·사건 및 기본·중심·행위 분류의 기준",
+        "관리 필요·식별·발생 단위 판단"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M03",
+      "level": "important",
+      "reason": "같은 값처럼 보이는 속성의 의미와 도메인을 구별해야 설계 오류를 줄인다.",
+      "focusPoints": [
+        "기본·설계·파생 속성 구별",
+        "도메인과 자료형의 차이",
+        "파생값 저장 시 원천값·유효 시점·단위의 일관성"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M04",
+      "level": "core",
+      "reason": "관계의 최소·최대 참여와 식별 여부는 ERD 해석, 외래키, 조인 결과를 함께 좌우한다.",
+      "focusPoints": [
+        "양방향 최소·최대 참여 읽기",
+        "식별 관계와 필수 참여를 별도 기준으로 판단",
+        "M:N 해소와 연결 엔터티의 속성"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "gilbut-sqld2027-guide-model"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자가 모델링 응용 및 관계·정규화를 강조했다. 공식 통계와 표본은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "M05",
+      "level": "core",
+      "reason": "키의 유일성과 최소성은 정규화·무결성·식별 관계를 판단하는 공통 기준이다.",
+      "focusPoints": [
+        "슈퍼키와 후보키의 최소성",
+        "복합키에서 각 속성이 필요한 이유",
+        "현재 데이터의 우연한 유일성과 업무 규칙의 구별"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M06",
+      "level": "core",
+      "reason": "함수 종속과 후보키를 해석하는 능력은 정규형과 이상 현상 문제를 함께 해결한다.",
+      "focusPoints": [
+        "업무 규칙으로 함수 종속 확인",
+        "부분·이행 종속 및 1~3NF 구별",
+        "삽입·수정·삭제 이상과 손실 없는 분해"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "gilbut-sqld2027-guide-model"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자가 모델링 응용 및 관계·정규화를 강조했다. 공식 통계와 표본은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "M07",
+      "level": "important",
+      "reason": "논리 관계와 SQL 조인의 차이를 알아야 외래키 선언 유무와 결과 행 수를 혼동하지 않는다.",
+      "focusPoints": [
+        "FK 없이 가능한 JOIN",
+        "1:N 결합의 중복 행과 부모 합계",
+        "업무 관계와 조회 조건의 차이"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-joins"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M08",
+      "level": "important",
+      "reason": "함께 성공해야 하는 업무 변경을 정의하는 능력은 TCL 문법을 이해하는 바탕이다.",
+      "focusPoints": [
+        "업무 작업 단위와 SQL 문장 단위의 구별",
+        "ACID와 부분 변경 실패",
+        "ERD 구조와 실제 트랜잭션 경계의 차이"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M09",
+      "level": "important",
+      "reason": "NULL의 업무 의미를 알아야 필수 속성과 누락값 처리 방식을 정할 수 있다.",
+      "focusPoints": [
+        "미정·미입력·해당 없음의 의미",
+        "NULL·0·빈 문자열의 구별",
+        "별도 상태 속성으로 의미를 보존하는 경우"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-nulls"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M10",
+      "level": "important",
+      "reason": "인조키를 도입해도 업무 중복 규칙이 남는다는 점은 키와 정규화의 혼동을 줄인다.",
+      "focusPoints": [
+        "본질 식별자와 인조 식별자",
+        "인조 PK와 별도 업무 UNIQUE",
+        "식별 안정성과 변경 가능한 업무번호"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M11",
+      "level": "foundation",
+      "reason": "모델링 단계와 데이터베이스의 세 관점을 구분하는 기초 보충이며 후속 용어 해석을 돕는다.",
+      "focusPoints": [
+        "외부·개념·내부 스키마의 관점",
+        "논리적·물리적 데이터 독립성",
+        "개념·논리·물리 모델링 단계와 구별"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "M12",
+      "level": "important",
+      "reason": "텍스트의 업무 규칙을 그림으로 읽고 검증하는 연결 학습으로 관계·키 이해를 확인한다.",
+      "focusPoints": [
+        "엔터티·속성·식별자·관계의 일관된 표기",
+        "선택·필수 및 양쪽 카디널리티 읽기",
+        "표기법 차이와 업무 의미의 분리"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "gilbut-sqld2027-guide-model"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자가 모델링 응용 및 관계·정규화를 강조했다. 공식 통계와 표본은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "M13",
+      "level": "foundation",
+      "reason": "정규화를 이해한 뒤 성능과 중복 유지 비용을 함께 검토하는 보충 주제다.",
+      "focusPoints": [
+        "반정규화 목적과 사전 측정",
+        "테이블·컬럼·관계 조정의 구별",
+        "중복 데이터의 갱신 일관성과 대안 검토"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S01",
+      "level": "foundation",
+      "reason": "행·열·스키마·제약과 SQL의 중복 특성을 익히는 출발점이다.",
+      "focusPoints": [
+        "관계 모델과 SQL 결과의 중복 차이",
+        "스키마와 현재 인스턴스",
+        "DB·DBMS와 DDL/DML/TCL/DCL"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S02",
+      "level": "core",
+      "reason": "논리 처리 단계와 출력 행을 추적하는 능력은 거의 모든 조회 학습에 재사용된다.",
+      "focusPoints": [
+        "작성 순서와 논리 처리 순서",
+        "SELECT 투영과 DISTINCT의 대상",
+        "별칭 사용 범위와 물리 실행 순서의 구별"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S03",
+      "level": "important",
+      "reason": "함수 중첩과 인수 해석을 연습하면 외운 이름이 아닌 실제 결과를 판단할 수 있다.",
+      "focusPoints": [
+        "문자 위치·길이·치환·연결",
+        "ROUND·TRUNC·MOD의 인수와 부호",
+        "NULL·빈 문자열 및 중첩 함수 순서"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자가 함수 영역을 강조했다. 개별 함수의 빈도나 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S04",
+      "level": "important",
+      "reason": "날짜·숫자·문자 변환은 형식과 DBMS 조건에 따라 결과 또는 오류가 달라진다.",
+      "focusPoints": [
+        "명시적 변환과 암묵적 변환",
+        "날짜 형식 요소와 시간 포함 여부",
+        "반개구간 날짜 조건과 날짜 산술"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자가 함수 영역을 강조했다. 개별 함수의 빈도나 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S05",
+      "level": "core",
+      "reason": "조건 분기와 NULL 대체는 집계·비교·표시 결과를 함께 바꾸므로 반복 적용이 필요하다.",
+      "focusPoints": [
+        "검색 CASE·단순 CASE·DECODE의 차이",
+        "NVL·COALESCE·NULLIF·NVL2의 조건",
+        "대체 전후의 계산 순서와 반환 자료형"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-nulls",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S06",
+      "level": "core",
+      "reason": "WHERE에서 TRUE인 행을 정확히 고르는 능력은 조인·집계·서브쿼리의 공통 전제다.",
+      "focusPoints": [
+        "TRUE/FALSE/UNKNOWN과 NOT",
+        "AND/OR 우선순위와 괄호",
+        "IN·NOT IN·LIKE·BETWEEN·IS NULL"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-nulls",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S07",
+      "level": "core",
+      "reason": "무엇을 세고 평균의 분모에 무엇을 넣는지 틀리면 집계 결과 전체가 달라진다.",
+      "focusPoints": [
+        "COUNT(*)·COUNT(열)·COUNT(DISTINCT 열)",
+        "NULL 제외와 실제 0의 포함",
+        "빈 입력의 집계 및 조건부 집계"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-nulls",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S08",
+      "level": "core",
+      "reason": "행 필터와 그룹 필터를 구분해야 결과 행 수와 집계 대상을 함께 계산할 수 있다.",
+      "focusPoints": [
+        "WHERE와 HAVING의 적용 대상",
+        "그룹 키와 SELECT 가능한 표현식",
+        "NULL 그룹 및 그룹 없는 집계와 빈 그룹 결과"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S09",
+      "level": "important",
+      "reason": "명시적 정렬과 동률 기준을 확인해야 Top N·윈도우 결과를 과도하게 단정하지 않는다.",
+      "focusPoints": [
+        "다중 열·ASC/DESC 정렬",
+        "ORDER BY 없는 순서 비보장",
+        "DBMS별 NULL 정렬과 최종 출력 순서"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S10",
+      "level": "core",
+      "reason": "매칭되는 행 쌍을 세는 능력은 복합 조회의 결과와 중복 집계 판단에 직접 필요하다.",
+      "focusPoints": [
+        "등가·비등가·자기·교차 조인",
+        "1:N·N:M 매칭과 행 증가",
+        "3개 이상 테이블의 결합 조건"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-joins",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S11",
+      "level": "core",
+      "reason": "외부 조인의 미매칭 행과 ON/WHERE 위치는 작은 문법 차이로 결과를 크게 바꾼다.",
+      "focusPoints": [
+        "LEFT/RIGHT/FULL의 보존 행",
+        "ON 필터와 WHERE 필터",
+        "USING·NATURAL 및 NULL 확장 행"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-joins",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S12",
+      "level": "core",
+      "reason": "반환 행·열 수와 존재 조건을 읽어야 단일행 오류와 NULL 함정을 구별할 수 있다.",
+      "focusPoints": [
+        "스칼라·인라인뷰·상관 서브쿼리",
+        "IN/ANY/ALL/EXISTS의 의미",
+        "NOT IN의 NULL 및 0행·다중행 반환"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S13",
+      "level": "important",
+      "reason": "중복 보존과 열 대응 규칙을 구분하면 집합 연산 결과를 안정적으로 계산할 수 있다.",
+      "focusPoints": [
+        "UNION과 UNION ALL",
+        "INTERSECT·MINUS의 결과",
+        "열 개수·대응 자료형·최종 정렬"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S14",
+      "level": "core",
+      "reason": "어떤 그룹이 생성되는지와 집계용 NULL을 읽어야 소계·총계의 행과 값을 계산할 수 있다.",
+      "focusPoints": [
+        "ROLLUP의 순서와 접두 그룹",
+        "CUBE·GROUPING SETS·복합 그룹",
+        "GROUPING/GROUPING_ID와 실제 NULL"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S15",
+      "level": "core",
+      "reason": "동률 순위와 행을 유지하는 계산을 구분하는 능력은 Top N과 분석 함수의 중심이다.",
+      "focusPoints": [
+        "RANK·DENSE_RANK·ROW_NUMBER 동률",
+        "PARTITION BY와 OVER의 ORDER BY",
+        "그룹 집계와 분석 함수의 결과 행 수"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-analytic",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S16",
+      "level": "important",
+      "reason": "프레임 경계는 누적합과 마지막 값의 의미를 바꾸므로 기본값까지 확인해야 한다.",
+      "focusPoints": [
+        "ROWS와 RANGE의 행·값 기준",
+        "기본 프레임과 동률 행",
+        "CURRENT ROW·UNBOUNDED 및 LAST_VALUE"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-analytic",
+        "gilbut-sqld2027-guide-sql"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "길벗 저자 분석에서 강조한 영역이다. 공식 빈도와 공개 분석의 표본·방법은 이번 조사에서 확인하지 못했다."
+    },
+    {
+      "objectiveId": "S17",
+      "level": "important",
+      "reason": "정렬과 제한을 적용하는 단계가 다르면 뽑히는 대상이 달라진다.",
+      "focusPoints": [
+        "ROWNUM과 정렬의 적용 위치",
+        "TOP·FETCH·WITH TIES의 차이",
+        "동률을 포함할지와 결정적 정렬"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "oracle19-analytic"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S18",
+      "level": "important",
+      "reason": "계층 탐색 방향과 필터 단계를 따로 읽어야 부모·자식 및 경로 결과를 설명할 수 있다.",
+      "focusPoints": [
+        "START WITH·CONNECT BY·PRIOR 방향",
+        "LEVEL·경로·루트·리프",
+        "WHERE와 가지 확장 조건 및 순환"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S19",
+      "level": "important",
+      "reason": "행과 열 전환에서 암묵적 그룹과 NULL 처리를 놓치지 않는 연습이 필요하다.",
+      "focusPoints": [
+        "PIVOT의 집계 대상과 그룹 키",
+        "고정 IN 목록과 출력 열",
+        "UNPIVOT INCLUDE/EXCLUDE NULLS"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S20",
+      "level": "important",
+      "reason": "복잡한 패턴은 작은 문자열 사례로 검증해야 하며 강사가 별도 보충 특강도 제공한다.",
+      "focusPoints": [
+        "문자 집합·앵커·수량자",
+        "그룹·역참조·일치 범위",
+        "REGEXP_LIKE·SUBSTR·INSTR·REPLACE·COUNT"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026",
+        "eraon-sqld-public-lectures"
+      ],
+      "frequencyStatus": "educator_emphasis",
+      "frequencyNote": "흥달쌤 공개강좌 목록에 정규식 특강 4편이 있고 본강에도 별도 특강이 있다. 강사의 보충 제공 사실이며 단원별 시험 출제 횟수나 공식 빈출을 확인한 것은 아니다."
+    },
+    {
+      "objectiveId": "S21",
+      "level": "important",
+      "reason": "데이터 변경 대상과 문장 실패 범위를 구분해야 전후 상태를 정확히 추적할 수 있다.",
+      "focusPoints": [
+        "INSERT 열·값 대응과 기본값",
+        "UPDATE/DELETE의 WHERE 생략",
+        "MERGE ON 매칭과 문장 원자성"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S22",
+      "level": "core",
+      "reason": "확정·취소의 경계는 여러 SQL 뒤에 남는 데이터를 결정하므로 상태 추적 연습이 필요하다.",
+      "focusPoints": [
+        "COMMIT·ROLLBACK·SAVEPOINT",
+        "ROLLBACK TO와 전체 취소",
+        "Oracle DDL의 암묵적 COMMIT과 DBMS 차이"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S23",
+      "level": "important",
+      "reason": "객체 구조와 데이터 허용 규칙을 읽으면 저장 가능 여부와 명령 차이를 판단할 수 있다.",
+      "focusPoints": [
+        "PK·UNIQUE·NOT NULL·CHECK·FK",
+        "CHECK와 UNKNOWN",
+        "DELETE·TRUNCATE·DROP 구별"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S24",
+      "level": "important",
+      "reason": "권한의 종류와 부여 경로를 구분해야 회수 후에도 접근 가능한 경우를 설명할 수 있다.",
+      "focusPoints": [
+        "객체 권한·시스템 권한·역할",
+        "GRANT OPTION과 ADMIN OPTION",
+        "REVOKE와 남아 있는 다른 권한 경로"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S25",
+      "level": "foundation",
+      "reason": "자료형의 저장·비교·변환 규칙은 함수와 DDL을 이해하는 선수지식이다.",
+      "focusPoints": [
+        "문자·숫자·날짜 자료형",
+        "CHAR/VARCHAR2와 길이 기준",
+        "정밀도·스케일·형 변환 조건"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S26",
+      "level": "important",
+      "reason": "구조 변경과 이름 변경의 대상을 구별하는 보충으로 DDL 적용 범위를 완성한다.",
+      "focusPoints": [
+        "ADD·MODIFY·DROP COLUMN",
+        "RENAME과 테이블/열 이름 변경",
+        "기존 데이터·제약과 변경 가능 조건"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S27",
+      "level": "important",
+      "reason": "뷰의 조회 정의와 저장 데이터를 구별해야 인라인뷰·권한·갱신 제약을 이해할 수 있다.",
+      "focusPoints": [
+        "일반 뷰와 기본 테이블·인라인뷰",
+        "CREATE VIEW와 원본 데이터 의존",
+        "갱신 가능성·WITH CHECK OPTION·읽기 전용"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    },
+    {
+      "objectiveId": "S28",
+      "level": "foundation",
+      "reason": "관계 연산의 기호를 SQL 조회에 연결하는 기초 보충이며 깊은 최적화 이론으로 확대하지 않는다.",
+      "focusPoints": [
+        "선택·투영·조인·곱집합",
+        "합집합·차집합·교집합의 전제",
+        "관계의 집합 의미와 SQL 중복의 차이"
+      ],
+      "sourceIds": [
+        "eraon-sqld2026-curriculum",
+        "wikibook-sqld2026"
+      ],
+      "frequencyStatus": "not_measured",
+      "frequencyNote": "이번 조사에서 이 세부 목표의 검증 가능한 출제 빈도 자료를 확보하지 못했다. 학습 연결성과 오류 영향을 기준으로 정한 우선도다."
+    }
+  ]
+}

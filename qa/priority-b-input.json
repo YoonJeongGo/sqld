@@ -1,0 +1,1431 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-09-14T10:39:02.541744+00:00",
+  "method": "allowlist_without_answers_explanations_expected_results_and_masked_choice_ids",
+  "questions": [
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "17fdbb9e8d8d2243ed25f2a4c4d5cbb51273eab2793099f6674a89830ff5c230",
+      "publicInputSha256": "fe3796e08815e9d006d6f70b91535ebb2884169727f090edc5aba0b7e924e8aa",
+      "question": {
+        "id": "S27-SUP-R01-logical-definition",
+        "version": 1,
+        "title": "일반 뷰가 저장하는 것",
+        "stem": "Oracle 19c의 일반 VIEW에 대한 설명으로 옳은 것은? MATERIALIZED VIEW는 제외한다.",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "기반 테이블의 행을 뷰로 옮겨 원본을 비운다."
+          },
+          {
+            "id": "r2",
+            "text": "기반 테이블의 모든 인덱스를 복사하는 객체다."
+          },
+          {
+            "id": "r3",
+            "text": "생성 시 조회 결과 행을 독립된 사본으로 영구 저장한다."
+          },
+          {
+            "id": "r4",
+            "text": "기반 데이터에서 조회할 논리적 테이블의 정의를 저장한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "7d4c58b44dc730bd69ed1e9e603e6d02f2f98a0cd77efe5df96367c1ba3eed21",
+      "publicInputSha256": "21cfdcb02f12a59abcec326ae9b6839485cc7e8be42c17790d347a36c7c0379c",
+      "question": {
+        "id": "S27-SUP-R02-drop-definition",
+        "version": 1,
+        "title": "DROP VIEW의 대상",
+        "stem": "V가 테이블 T를 단순 조회하는 일반 뷰다. 권한과 의존성 문제 없이 DROP VIEW V를 성공적으로 실행했다. 이 명령 자체의 효과는?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "T의 모든 행을 삭제한다."
+          },
+          {
+            "id": "r2",
+            "text": "V의 정의를 제거하며 T의 행은 이 명령으로 삭제되지 않는다."
+          },
+          {
+            "id": "r3",
+            "text": "V를 빈 결과를 반환하는 뷰로 바꿔 유지한다."
+          },
+          {
+            "id": "r4",
+            "text": "T 테이블 정의도 함께 삭제한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0c93e6228d788ef2ab2fd107862ec6c02dc768bff5bb82f6a652e393fd77f037",
+      "publicInputSha256": "5f1c86010958946b44a6ac2e597e6e4d60e1ae747a1db7f55d669ae1be47dad1",
+      "question": {
+        "id": "S27-SUP-R03-check-readonly",
+        "version": 1,
+        "title": "두 뷰 제한의 차이",
+        "stem": "그 밖에는 갱신 가능한 단순 뷰이며 INSTEAD OF 트리거는 없다. WITH CHECK OPTION과 WITH READ ONLY를 바르게 비교한 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "CHECK OPTION은 모든 UPDATE를 막고 READ ONLY는 DELETE만 막는다."
+          },
+          {
+            "id": "r2",
+            "text": "CHECK OPTION은 조건 이탈 변경을 막고 READ ONLY는 뷰를 통한 DML을 막는다."
+          },
+          {
+            "id": "r3",
+            "text": "두 절 모두 뷰의 SELECT 조회를 금지한다."
+          },
+          {
+            "id": "r4",
+            "text": "두 절 모두 기반 테이블에 대한 직접 UPDATE 권한을 자동 회수한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "12108eda4ffe7741c1c87eb5270fa9bc7dc41b35c803af2cbce7ef17098a5f90",
+      "publicInputSha256": "86399ae2270a891df46e8337a17f26ed19fa3ac4aa98cd9dfeee887760c3c534",
+      "question": {
+        "id": "S27-SUP-A01-base-change-visible",
+        "version": 1,
+        "title": "기반 행 변경 뒤 뷰 재조회",
+        "stem": "E의 초기 입력은 표와 같고 COMMIT되었다. 같은 세션에서 CREATE VIEW V10 AS SELECT id,dept FROM E WHERE dept=10을 만든 뒤 UPDATE E SET dept=10 WHERE id=2를 성공적으로 실행했다. 아직 COMMIT하지 않았으며 트리거·다른 변경은 없다. 이 세션에서 다음 조회 결과는?",
+        "sql": "SELECT id,dept FROM V10 ORDER BY id",
+        "tables": [
+          {
+            "title": "E 초기 입력",
+            "columns": [
+              "id",
+              "dept"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(1,10), (2,10) 두 행"
+          },
+          {
+            "id": "r2",
+            "text": "(2,10) 한 행"
+          },
+          {
+            "id": "r3",
+            "text": "(1,10) 한 행"
+          },
+          {
+            "id": "r4",
+            "text": "0행"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE E (id NUMBER PRIMARY KEY, dept NUMBER NOT NULL);",
+          "setupSql": "INSERT INTO E VALUES (1,10);\nINSERT INTO E VALUES (2,20);\nCOMMIT;\nCREATE VIEW V10 AS SELECT id,dept FROM E WHERE dept=10;\nUPDATE E SET dept=10 WHERE id=2;",
+          "query": "SELECT id,dept FROM V10 ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "5fedb5d7704fd2e4894b32d7a48acbde70b2aa6f513943ee5208c254ee253859",
+      "publicInputSha256": "7546715c976cb3fd7b4438f2b6d146e702f2a4ce57878582b821660a393e1099",
+      "question": {
+        "id": "S27-SUP-A02-check-option-exit",
+        "version": 1,
+        "title": "뷰에서 사라질 UPDATE",
+        "stem": "Oracle 19c. E(id NUMBER PRIMARY KEY,dept NUMBER NOT NULL)의 전체 입력은 표와 같고 COMMIT되었다. 소유자가 CREATE VIEW V10 AS SELECT id,dept FROM E WHERE dept=10 WITH CHECK OPTION을 성공시켰다. 트리거·동시 변경·다른 제약은 없다. UPDATE V10 SET dept=20 WHERE id=1을 실행한 직후의 결과 설명은?",
+        "tables": [
+          {
+            "title": "E 초기 입력",
+            "columns": [
+              "id",
+              "dept"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "실패하지만 E의 id=1은 20으로 바뀐다."
+          },
+          {
+            "id": "r2",
+            "text": "성공하며 E에는 (1,20),(2,20)이 남는다."
+          },
+          {
+            "id": "r3",
+            "text": "실패하며 E에는 (1,10),(2,20)이 그대로 남는다."
+          },
+          {
+            "id": "r4",
+            "text": "성공하며 E에서 id=1 행이 삭제된다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "75129d6ac0bfa0e38f8ddeccc5d1510d22e56fef59e6716d6749ec9276e77f3d",
+      "publicInputSha256": "056504a56b2fcddacd690fcd245bd98dc6a2879cfd07c32d8d8e636a5f478187",
+      "question": {
+        "id": "S28-SUP-R01-selection-projection",
+        "version": 1,
+        "title": "선택과 투영의 의미",
+        "stem": "고전 관계대수에서 σ와 π를 바르게 설명한 것은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "σ는 열을 고르고 π는 행을 정렬한다."
+          },
+          {
+            "id": "r2",
+            "text": "σ는 조건에 맞는 행을 고르고 π는 지정 열을 남기며 중복 튜플을 제거한다."
+          },
+          {
+            "id": "r3",
+            "text": "σ는 두 관계를 합치고 π는 두 관계의 차를 구한다."
+          },
+          {
+            "id": "r4",
+            "text": "σ와 π는 모두 중복을 허용하는 SQL SELECT와 항상 같다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ec565f58344ed1214121f41953190816d7ea31c8cdc473db78d1d6acc3208189",
+      "publicInputSha256": "cf58716407f766bad30958ee9d41df63c4e273c31717f3a7b96e06483e5c9ca7",
+      "question": {
+        "id": "S28-SUP-R02-union-compatible",
+        "version": 1,
+        "title": "집합 연산의 호환 조건",
+        "stem": "속성 이름으로 표현하는 고전 관계대수에서 R∪S와 R−S를 적용하기 위한 조건으로 가장 적절한 것은?",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "양쪽 모든 튜플이 달라야 한다."
+          },
+          {
+            "id": "r2",
+            "text": "필요한 이름 변경 후 대응 속성과 도메인이 맞는 호환 스키마여야 한다."
+          },
+          {
+            "id": "r3",
+            "text": "두 관계의 행 수가 같아야 한다."
+          },
+          {
+            "id": "r4",
+            "text": "두 관계의 이름이 같아야 한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ac3c777143f60b593872083c27598ac454fe2214a92097f656557f220d60a97e",
+      "publicInputSha256": "3fff6d42de3adc91f8f11d1488f1fbf75613ed1a6c9d37b0bdf0026979c1be69",
+      "question": {
+        "id": "S28-SUP-R03-division-universal",
+        "version": 1,
+        "title": "디비전의 모든 조건",
+        "stem": "R(person,skill)÷S(skill)의 의미로 옳은 것은? 고전 관계대수이며 후보 person은 R에 나타난 값으로 제한한다.",
+        "tables": [],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "R과 S의 전체 행 수를 산술적으로 나눈 숫자를 구한다."
+          },
+          {
+            "id": "r2",
+            "text": "R에 없는 person까지 포함한 모든 문자열을 구한다."
+          },
+          {
+            "id": "r3",
+            "text": "S의 모든 skill과 R에서 짝을 이루는 person을 구한다."
+          },
+          {
+            "id": "r4",
+            "text": "S의 skill 중 하나라도 가진 person을 구한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4209d29af18cb91747c502c052024bdaf8ddfc1e29e44a1c258eaa7438850093",
+      "publicInputSha256": "26d8e06b478212fd9cf2b8cd582a9fa2bbd9a60f65d7190edc469635f01bbd5c",
+      "question": {
+        "id": "S28-SUP-A01-project-after-select",
+        "version": 1,
+        "title": "투영 후 남는 튜플 수",
+        "stem": "표의 고전 관계 R에 π_dept(σ_score≥80(R))를 적용했다. 결과는? dept는 문자열이고 score는 숫자이며 NULL은 없다.",
+        "tables": [
+          {
+            "title": "R",
+            "columns": [
+              "id",
+              "dept",
+              "score"
+            ],
+            "rows": [
+              [
+                "1",
+                "A",
+                "80"
+              ],
+              [
+                "2",
+                "A",
+                "90"
+              ],
+              [
+                "3",
+                "B",
+                "60"
+              ],
+              [
+                "4",
+                "B",
+                "85"
+              ]
+            ]
+          }
+        ],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "A, A, B 세 튜플"
+          },
+          {
+            "id": "r2",
+            "text": "A, B 두 튜플"
+          },
+          {
+            "id": "r3",
+            "text": "A 한 튜플"
+          },
+          {
+            "id": "r4",
+            "text": "id, dept, score 세 열의 세 튜플"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "96221ad977bcbe9cc00be52b7a154d134a6a07ad4380d9def1665769ddd0eeea",
+      "publicInputSha256": "23f402f7bb6548fff596aa32f447625ef567e7a4795aa6e7b4c5892fd1154320",
+      "question": {
+        "id": "S28-SUP-A02-division-required-courses",
+        "version": 1,
+        "title": "추가 과목이 있어도 모든 필수를 충족한다",
+        "stem": "고전 관계 Done(person,course)와 Need(course)의 전체 입력이 표와 같다. Done÷Need의 결과 person 집합은?",
+        "tables": [
+          {
+            "title": "Done",
+            "columns": [
+              "person",
+              "course"
+            ],
+            "rows": [
+              [
+                "A",
+                "SQL"
+              ],
+              [
+                "A",
+                "MODEL"
+              ],
+              [
+                "B",
+                "SQL"
+              ],
+              [
+                "C",
+                "MODEL"
+              ],
+              [
+                "C",
+                "SQL"
+              ],
+              [
+                "C",
+                "EXTRA"
+              ]
+            ]
+          },
+          {
+            "title": "Need",
+            "columns": [
+              "course"
+            ],
+            "rows": [
+              [
+                "SQL"
+              ],
+              [
+                "MODEL"
+              ]
+            ]
+          }
+        ],
+        "dialect": "conceptual",
+        "dialectVersion": "n/a",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "{A}"
+          },
+          {
+            "id": "r2",
+            "text": "{A,B,C}"
+          },
+          {
+            "id": "r3",
+            "text": "{C}"
+          },
+          {
+            "id": "r4",
+            "text": "{A,C}"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "d3671719ad9cad1cda351a96cbdb24315d8c250f527cb8e40ff6ad8421cba533",
+      "publicInputSha256": "7c63be0048e69581393ae75109aec3c6e3d911c90de6446bb8e4207af559d1f7",
+      "question": {
+        "id": "S12-SUP-R01-classification-axes",
+        "version": 1,
+        "title": "스칼라와 상관은 함께 성립한다",
+        "stem": "SELECT e.id,(SELECT MAX(p.amount) FROM P p WHERE p.dept=e.dept) AS m FROM E e에서 SELECT 목록의 서브쿼리를 분류한 설명으로 옳은 것은? E와 P의 참조 열은 유효한 NUMBER 열이며 GROUP BY는 없다.",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "한 열의 집계 값을 반환하는 스칼라이면서 e.dept를 참조하는 상관 서브쿼리다."
+          },
+          {
+            "id": "r2",
+            "text": "MAX를 썼으므로 외부 열을 참조해도 항상 비상관이다."
+          },
+          {
+            "id": "r3",
+            "text": "0개가 매칭될 수 있으므로 스칼라 서브쿼리가 될 수 없다."
+          },
+          {
+            "id": "r4",
+            "text": "SELECT 목록에 있으므로 반드시 여러 열을 반환하는 인라인 뷰다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "614a6c46575b8c158e9d5f049fff472c8436526cfa78fb4b9b716129c3e10b54",
+      "publicInputSha256": "5aaa5cc2ec0bd0197da68c303961e156864a637dcfbeb94f0573a8ed8fd527ba",
+      "question": {
+        "id": "S12-SUP-A01-paired-membership",
+        "version": 1,
+        "title": "열별 존재와 행 조합의 존재",
+        "stem": "E와 Allowed의 모든 열은 NUMBER NOT NULL이며 E.id는 고유하다. 허용된 부서·등급 조합만 고르는 다음 SQL의 id 결과는?",
+        "sql": "SELECT id FROM E WHERE (dept,grade) IN (SELECT dept,grade FROM Allowed) ORDER BY id",
+        "tables": [
+          {
+            "title": "E",
+            "columns": [
+              "id",
+              "dept",
+              "grade"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "1"
+              ],
+              [
+                "2",
+                "10",
+                "2"
+              ],
+              [
+                "3",
+                "20",
+                "2"
+              ]
+            ]
+          },
+          {
+            "title": "Allowed",
+            "columns": [
+              "dept",
+              "grade"
+            ],
+            "rows": [
+              [
+                "10",
+                "1"
+              ],
+              [
+                "20",
+                "2"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "2"
+          },
+          {
+            "id": "r2",
+            "text": "1"
+          },
+          {
+            "id": "r3",
+            "text": "1,2,3"
+          },
+          {
+            "id": "r4",
+            "text": "1,3"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE E (id NUMBER PRIMARY KEY,dept NUMBER NOT NULL,grade NUMBER NOT NULL);\nCREATE TABLE Allowed (dept NUMBER NOT NULL,grade NUMBER NOT NULL);",
+          "setupSql": "INSERT INTO E VALUES (1,10,1);\nINSERT INTO E VALUES (2,10,2);\nINSERT INTO E VALUES (3,20,2);\nINSERT INTO Allowed VALUES (10,1);\nINSERT INTO Allowed VALUES (20,2);",
+          "query": "SELECT id FROM E WHERE (dept,grade) IN (SELECT dept,grade FROM Allowed) ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "8997599c7d849037bb79d6c21dfa10089b3ea5fe7029779cda11c43b71b8ce28",
+      "publicInputSha256": "17ae525bf30c452f1fd7c73452bc50dd2e9b72101a2b5db52901d07c406ebad2",
+      "question": {
+        "id": "S15-SUP-A01-percent-rank-top-tie",
+        "version": 1,
+        "title": "최댓값 동점과 PERCENT_RANK",
+        "stem": "T.id는 고유하고 v는 NUMBER NOT NULL이다. 다음 결과에서 id=2와 id=3의 PR은 각각 얼마인가?",
+        "sql": "SELECT id,PERCENT_RANK() OVER(ORDER BY v) AS pr FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "20"
+              ],
+              [
+                "3",
+                "20"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "2/3과 1"
+          },
+          {
+            "id": "r2",
+            "text": "0.5와 0.5"
+          },
+          {
+            "id": "r3",
+            "text": "1과 1"
+          },
+          {
+            "id": "r4",
+            "text": "0과 0"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER PRIMARY KEY,v NUMBER NOT NULL);",
+          "setupSql": "INSERT INTO T VALUES (1,10);\nINSERT INTO T VALUES (2,20);\nINSERT INTO T VALUES (3,20);",
+          "query": "SELECT id,PERCENT_RANK() OVER(ORDER BY v) AS pr FROM T ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "90b1e8385998ab1e128682d1152cfee7d9d81bdfe8833469ed7fde9692ad351a",
+      "publicInputSha256": "cfa6b0a3f4510dce0ab0830797ab13b540dd2c25ff80b7e189700d895233274d",
+      "question": {
+        "id": "S15-SUP-A02-cume-desc-peers",
+        "version": 1,
+        "title": "내림차순의 누적 분포",
+        "stem": "T의 v는 NUMBER NOT NULL이고 id는 고유하다. 분석 정렬은 v DESC다. id=2의 CD 값은?",
+        "sql": "SELECT id,CUME_DIST() OVER(ORDER BY v DESC) AS cd FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "30"
+              ],
+              [
+                "2",
+                "20"
+              ],
+              [
+                "3",
+                "20"
+              ],
+              [
+                "4",
+                "10"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0.5"
+          },
+          {
+            "id": "r2",
+            "text": "0.75"
+          },
+          {
+            "id": "r3",
+            "text": "0.25"
+          },
+          {
+            "id": "r4",
+            "text": "1"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER PRIMARY KEY,v NUMBER NOT NULL);",
+          "setupSql": "INSERT INTO T VALUES (1,30);\nINSERT INTO T VALUES (2,20);\nINSERT INTO T VALUES (3,20);\nINSERT INTO T VALUES (4,10);",
+          "query": "SELECT id,CUME_DIST() OVER(ORDER BY v DESC) AS cd FROM T ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "54e223dc1f5e30f4ccc56008be64afa685bd971dd663b04ac1c77735a20910d7",
+      "publicInputSha256": "7c12e05e8503dba2ea97f6a0a8155cfd8836da2d6a66d4055f9af4121f7723ee",
+      "question": {
+        "id": "S16-SUP-A01-first-value-null-frame",
+        "version": 1,
+        "title": "FIRST_VALUE의 NULL 처리",
+        "stem": "id는 고유 NUMBER이며 분석 프레임은 전체 파티션이다. id=3의 (FV,FN)은?",
+        "sql": "SELECT id,FIRST_VALUE(v) RESPECT NULLS OVER(ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS fv,FIRST_VALUE(v) IGNORE NULLS OVER(ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS fn FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                null
+              ],
+              [
+                "2",
+                "8"
+              ],
+              [
+                "3",
+                "5"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(NULL,8)"
+          },
+          {
+            "id": "r2",
+            "text": "(5,5)"
+          },
+          {
+            "id": "r3",
+            "text": "(8,8)"
+          },
+          {
+            "id": "r4",
+            "text": "(NULL,5)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER PRIMARY KEY,v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1,NULL);\nINSERT INTO T VALUES (2,8);\nINSERT INTO T VALUES (3,5);",
+          "query": "SELECT id,FIRST_VALUE(v) RESPECT NULLS OVER(ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS fv,FIRST_VALUE(v) IGNORE NULLS OVER(ORDER BY id ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS fn FROM T ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "4ae5aea8f537f35da52fba950941924abe30e4d7c855765b54b528bd97d08c11",
+      "publicInputSha256": "1576d153a688ba00167eb70cbe63ca9a8e9574967ab2e09578a606161f82bb92",
+      "question": {
+        "id": "S16-SUP-A02-first-value-moving-frame",
+        "version": 1,
+        "title": "이동 프레임의 첫 값",
+        "stem": "T.id는 고유하며 v는 NUMBER NOT NULL이다. 다음 SQL에서 id=3의 FV는?",
+        "sql": "SELECT id,FIRST_VALUE(v) OVER(ORDER BY id ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS fv FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "9"
+              ],
+              [
+                "2",
+                "4"
+              ],
+              [
+                "3",
+                "7"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "4"
+          },
+          {
+            "id": "r2",
+            "text": "9"
+          },
+          {
+            "id": "r3",
+            "text": "7"
+          },
+          {
+            "id": "r4",
+            "text": "20"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER PRIMARY KEY,v NUMBER NOT NULL);",
+          "setupSql": "INSERT INTO T VALUES (1,9);\nINSERT INTO T VALUES (2,4);\nINSERT INTO T VALUES (3,7);",
+          "query": "SELECT id,FIRST_VALUE(v) OVER(ORDER BY id ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS fv FROM T ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "f9ca8652f87da0f1fc00ece899e2e8e01da02f95199c7c966904ef6f87765ed2",
+      "publicInputSha256": "5bd2828bb23550d4e9980ee0f2bfc09984c2077025d4c93da05158f1f110542c",
+      "question": {
+        "id": "S16-SUP-A03-ratio-partition-null",
+        "version": 1,
+        "title": "합계 비율의 NULL과 분모",
+        "stem": "T.id는 고유하며 각 부서의 v 합계는 0이 아니다. 다음 SQL에서 id=1과 id=4의 R은 각각?",
+        "sql": "SELECT id,RATIO_TO_REPORT(v) OVER(PARTITION BY dept) AS r FROM T ORDER BY id",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "id",
+              "dept",
+              "v"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "2"
+              ],
+              [
+                "2",
+                "10",
+                "6"
+              ],
+              [
+                "3",
+                "20",
+                "8"
+              ],
+              [
+                "4",
+                "20",
+                null
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "25와 NULL"
+          },
+          {
+            "id": "r2",
+            "text": "0.25와 NULL"
+          },
+          {
+            "id": "r3",
+            "text": "0.25와 0"
+          },
+          {
+            "id": "r4",
+            "text": "0.125와 0"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (id NUMBER PRIMARY KEY,dept NUMBER NOT NULL,v NUMBER);",
+          "setupSql": "INSERT INTO T VALUES (1,10,2);\nINSERT INTO T VALUES (2,10,6);\nINSERT INTO T VALUES (3,20,8);\nINSERT INTO T VALUES (4,20,NULL);",
+          "query": "SELECT id,RATIO_TO_REPORT(v) OVER(PARTITION BY dept) AS r FROM T ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "55be570e0198afea0588c09cef39f61a3f11001527209459d63924de11bf1827",
+      "publicInputSha256": "40cd3cf65bcc22e11c9c2236250aded749987db3b6b11104a947a35d82c7dd20",
+      "question": {
+        "id": "S16-SUP-R01-ratio-over-syntax",
+        "version": 1,
+        "title": "비율 함수와 누적 합계의 구분",
+        "stem": "Oracle 19c에서 부서별 전체 합계에 대한 v 비율을 RATIO_TO_REPORT로 구하려 한다. T에는 dept와 v 열이 존재한다. 올바른 함수 표현식은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "RATIO_TO_REPORT(v,dept) OVER()"
+          },
+          {
+            "id": "r2",
+            "text": "RATIO_TO_REPORT(v) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)"
+          },
+          {
+            "id": "r3",
+            "text": "RATIO_TO_REPORT(v) OVER(PARTITION BY dept ORDER BY v)"
+          },
+          {
+            "id": "r4",
+            "text": "RATIO_TO_REPORT(v) OVER(PARTITION BY dept)"
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "70e335b0d426c1439b5eb3f0931b478a6db225df324f20eb30095d53887c1fd9",
+      "publicInputSha256": "d861659f14109a6d5bd199cf210016cf15cef068164c2e6a34f37becedefb630",
+      "question": {
+        "id": "S18-SUP-A01-root-to-node-path",
+        "version": 1,
+        "title": "분기한 계층의 현재 경로",
+        "stem": "N.id는 고유 NUMBER이고 label은 /와 NULL을 포함하지 않는 VARCHAR2다. START WITH id=1로 조회한다. id=4의 (LV,PATH)는?",
+        "sql": "SELECT id,LEVEL AS lv,SYS_CONNECT_BY_PATH(label,'/') AS path FROM N START WITH id=1 CONNECT BY PRIOR id=pid ORDER BY id",
+        "tables": [
+          {
+            "title": "N",
+            "columns": [
+              "id",
+              "pid",
+              "label"
+            ],
+            "rows": [
+              [
+                "1",
+                null,
+                "ROOT"
+              ],
+              [
+                "2",
+                "1",
+                "BRANCH"
+              ],
+              [
+                "3",
+                "2",
+                "LEAF"
+              ],
+              [
+                "4",
+                "1",
+                "OTHER"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(1,/OTHER)"
+          },
+          {
+            "id": "r2",
+            "text": "(2,/ROOT/OTHER)"
+          },
+          {
+            "id": "r3",
+            "text": "(3,/ROOT/BRANCH/OTHER)"
+          },
+          {
+            "id": "r4",
+            "text": "(4,/ROOT/BRANCH/LEAF/OTHER)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE N (id NUMBER PRIMARY KEY,pid NUMBER,label VARCHAR2(20) NOT NULL);",
+          "setupSql": "INSERT INTO N VALUES (1,NULL,'ROOT');\nINSERT INTO N VALUES (2,1,'BRANCH');\nINSERT INTO N VALUES (3,2,'LEAF');\nINSERT INTO N VALUES (4,1,'OTHER');",
+          "query": "SELECT id,LEVEL AS lv,SYS_CONNECT_BY_PATH(label,'/') AS path FROM N START WITH id=1 CONNECT BY PRIOR id=pid ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "0ee0a1d3533c93fbbcfc2326ebee3efd82bfd50a471ad15abe1304c390befb80",
+      "publicInputSha256": "89779a3e4d36c0a87d3a74002dd0258e54e6d3fd0a128d0ebd7ce4c9e2e92390",
+      "question": {
+        "id": "S18-SUP-A02-cycle-current-parent",
+        "version": 1,
+        "title": "순환을 닫을 자식을 가진 현재 행",
+        "stem": "N.id는 PK이며 pid에는 외래키 제약이 없다. 표가 전체 입력이다. 다음 SQL의 CYC=1은 어느 id에 표시되는가?",
+        "sql": "SELECT id,LEVEL AS lv,CONNECT_BY_ISCYCLE AS cyc FROM N START WITH id=1 CONNECT BY NOCYCLE PRIOR id=pid ORDER BY id",
+        "tables": [
+          {
+            "title": "N",
+            "columns": [
+              "id",
+              "pid"
+            ],
+            "rows": [
+              [
+                "1",
+                "2"
+              ],
+              [
+                "2",
+                "1"
+              ],
+              [
+                "3",
+                "2"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "id=3만"
+          },
+          {
+            "id": "r2",
+            "text": "id=2만"
+          },
+          {
+            "id": "r3",
+            "text": "id=1만"
+          },
+          {
+            "id": "r4",
+            "text": "모든 id"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE N (id NUMBER PRIMARY KEY,pid NUMBER);",
+          "setupSql": "INSERT INTO N VALUES (1,2);\nINSERT INTO N VALUES (2,1);\nINSERT INTO N VALUES (3,2);",
+          "query": "SELECT id,LEVEL AS lv,CONNECT_BY_ISCYCLE AS cyc FROM N START WITH id=1 CONNECT BY NOCYCLE PRIOR id=pid ORDER BY id",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": true
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "c3b5adc127f2f6c2d239d4e23fc0b1029b6fa436634f3ec6af6b3d29a246cf7c",
+      "publicInputSha256": "4be05cd93e88e1789f41a362f4641d9938befd94d38f3e4db548bd553c3659a9",
+      "question": {
+        "id": "S18-SUP-R01-nocycle-query-scope",
+        "version": 1,
+        "title": "NOCYCLE은 데이터를 수리하는가",
+        "stem": "순환 부모 연결이 있는 테이블에서 CONNECT BY NOCYCLE을 포함한 SELECT만 실행했다. 함수 부작용이나 트리거 등 별도 변경은 없다. 설명으로 옳은 것은?",
+        "tables": [],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "PK 값의 중복을 자동으로 해소한 뒤 조회한다."
+          },
+          {
+            "id": "r2",
+            "text": "순환이 있어도 가능한 조회 결과를 구하게 하며 저장된 부모 연결은 이 SELECT로 바뀌지 않는다."
+          },
+          {
+            "id": "r3",
+            "text": "순환을 만든 행을 테이블에서 자동 DELETE한다."
+          },
+          {
+            "id": "r4",
+            "text": "순환하는 pid를 자동으로 NULL로 UPDATE한다."
+          }
+        ]
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "429e6484aaca2d32c50c1852822bad0f1874415411ac5ae7c8acfa521baa6d7e",
+      "publicInputSha256": "c0f4cb5b70db12dea832a5b888eebaedac4af194a0a08a76c7b1dd1443934ffb",
+      "question": {
+        "id": "S20-SUP-A01-instr-after-end",
+        "version": 1,
+        "title": "끝 문자 다음 위치",
+        "stem": "T(v VARCHAR2(20) NOT NULL)는 A12B345 한 행이다. 다음 SQL의 (P0,P1)은?",
+        "sql": "SELECT REGEXP_INSTR(v,'[0-9]+',1,2,0,'c') AS p0,REGEXP_INSTR(v,'[0-9]+',1,2,1,'c') AS p1 FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "A12B345"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(3,3)"
+          },
+          {
+            "id": "r2",
+            "text": "(5,8)"
+          },
+          {
+            "id": "r3",
+            "text": "(5,7)"
+          },
+          {
+            "id": "r4",
+            "text": "(2,4)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (v VARCHAR2(20) NOT NULL);",
+          "setupSql": "INSERT INTO T VALUES ('A12B345');",
+          "query": "SELECT REGEXP_INSTR(v,'[0-9]+',1,2,0,'c') AS p0,REGEXP_INSTR(v,'[0-9]+',1,2,1,'c') AS p1 FROM T",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "ae33b70ded61cb60b7c446bf97b77dd87b5ce4a1a42b8b5b149faf380d80d704",
+      "publicInputSha256": "666dc73ea1c02b21f2a96037a25c7706ab1e34f6152aa3c618991fa19c97ba73",
+      "question": {
+        "id": "S20-SUP-A02-instr-subexpression",
+        "version": 1,
+        "title": "부분식 번호와 시작 위치",
+        "stem": "T(v VARCHAR2(20) NOT NULL)는 AB-123 한 행이다. 마지막 인자 subexpr=2인 다음 SQL의 P는?",
+        "sql": "SELECT REGEXP_INSTR(v,'([A-Z]+)-([0-9]+)',1,1,0,'c',2) AS p FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "AB-123"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "7"
+          },
+          {
+            "id": "r2",
+            "text": "2"
+          },
+          {
+            "id": "r3",
+            "text": "1"
+          },
+          {
+            "id": "r4",
+            "text": "4"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (v VARCHAR2(20) NOT NULL);",
+          "setupSql": "INSERT INTO T VALUES ('AB-123');",
+          "query": "SELECT REGEXP_INSTR(v,'([A-Z]+)-([0-9]+)',1,1,0,'c',2) AS p FROM T",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "dd3f1c151595f7b0ab6740af00c491fea563d7d344f56a9d71219eb0142be76f",
+      "publicInputSha256": "70836a0cbdf62da9afb4a7d30393344fd832e12ef48753ee1232acab98f5010f",
+      "question": {
+        "id": "S20-SUP-A03-count-nonoverlap",
+        "version": 1,
+        "title": "겹쳐 보이는 일치를 세는가",
+        "stem": "T(v VARCHAR2(20) NOT NULL)는 ababa 한 행이다. 다음 SQL의 C는?",
+        "sql": "SELECT REGEXP_COUNT(v,'aba',1,'c') AS c FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "ababa"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "0"
+          },
+          {
+            "id": "r2",
+            "text": "2"
+          },
+          {
+            "id": "r3",
+            "text": "1"
+          },
+          {
+            "id": "r4",
+            "text": "3"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (v VARCHAR2(20) NOT NULL);",
+          "setupSql": "INSERT INTO T VALUES ('ababa');",
+          "query": "SELECT REGEXP_COUNT(v,'aba',1,'c') AS c FROM T",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "1aa9021dc37596f037e44a059398bde69496f5cf51bfaf24b5d7d098cef36f1a",
+      "publicInputSha256": "dd3a415170a8599ce45b6da883227e6204ed6b8855c4c6fbe3227416ad8c6d50",
+      "question": {
+        "id": "S20-SUP-A04-flags-newline-dot",
+        "version": 1,
+        "title": "m과 n이 바꾸는 것은 다르다",
+        "stem": "T(v VARCHAR2(20) NOT NULL)의 한 값은 문자 A, 줄바꿈 CHR(10), 문자 B를 연결한 세 문자다. 다음 SQL의 (M,N)은?",
+        "sql": "SELECT REGEXP_COUNT(v,'A.B',1,'cm') AS m,REGEXP_COUNT(v,'A.B',1,'cn') AS n FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "A\nB"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "(0,1)"
+          },
+          {
+            "id": "r2",
+            "text": "(0,0)"
+          },
+          {
+            "id": "r3",
+            "text": "(1,0)"
+          },
+          {
+            "id": "r4",
+            "text": "(1,1)"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (v VARCHAR2(20) NOT NULL);",
+          "setupSql": "INSERT INTO T VALUES ('A'||CHR(10)||'B');",
+          "query": "SELECT REGEXP_COUNT(v,'A.B',1,'cm') AS m,REGEXP_COUNT(v,'A.B',1,'cn') AS n FROM T",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    },
+    {
+      "sourceFile": "content\\part-b.json",
+      "sourceQuestionSha256": "73ad0c20d9da27b7ada748551388b322c854947fca8314a3c0ed29b5f631d5d0",
+      "publicInputSha256": "1a21eab273be6d36433654e6868868c38152b3bef9d8ba6855dc5e57f74ee56e",
+      "question": {
+        "id": "S20-SUP-A05-replace-captured-parts",
+        "version": 1,
+        "title": "캡처 조각을 바꿔 이어 붙인다",
+        "stem": "T(v VARCHAR2(20) NOT NULL)는 AB-123 한 행이다. 다음 SQL의 CHANGED는?",
+        "sql": "SELECT REGEXP_REPLACE(v,'^([A-Z]+)-([0-9]+)$','\\2/\\1',1,0,'c') AS changed FROM T",
+        "tables": [
+          {
+            "title": "T",
+            "columns": [
+              "v"
+            ],
+            "rows": [
+              [
+                "AB-123"
+              ]
+            ]
+          }
+        ],
+        "dialect": "Oracle",
+        "dialectVersion": "19c",
+        "choices": [
+          {
+            "id": "r1",
+            "text": "AB-123"
+          },
+          {
+            "id": "r2",
+            "text": "\\2/\\1"
+          },
+          {
+            "id": "r3",
+            "text": "123/AB"
+          },
+          {
+            "id": "r4",
+            "text": "AB/123"
+          }
+        ],
+        "fixtureInput": {
+          "schemaSql": "CREATE TABLE T (v VARCHAR2(20) NOT NULL);",
+          "setupSql": "INSERT INTO T VALUES ('AB-123');",
+          "query": "SELECT REGEXP_REPLACE(v,'^([A-Z]+)-([0-9]+)$','\\2/\\1',1,0,'c') AS changed FROM T",
+          "constraints": [
+            "제시한 행이 전체 입력이다. 자료형·키·NULL 제약은 schemaSql 및 지문에 명시한다. 트리거와 동시 변경은 없다."
+          ],
+          "sessionSettings": [
+            "Oracle Database 19c",
+            "문자 정렬이 필요한 경우 NLS_SORT=BINARY, NLS_COMP=BINARY. 정규식 예제는 c 또는 i를 명시한다."
+          ],
+          "ordered": false
+        }
+      }
+    }
+  ],
+  "inputSha256": "17421e7fb80ae4efd76de46cc97cced299559b90cd1209f5572a2c7b3b9a7ab5",
+  "choiceMapSha256": "5b8435b1ede5c013edb157229ec23a0b9a73a6ccafbfd085e1c11598de81c980"
+}

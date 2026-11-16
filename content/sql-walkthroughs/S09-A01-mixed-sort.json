@@ -1,0 +1,438 @@
+{
+  "id": "S09-A01-mixed-sort",
+  "source": {
+    "id": "S09-A01-mixed-sort",
+    "version": 1,
+    "title": "부서별 성적 명단의 id 순서는?",
+    "stem": "부서별 성적 명단의 id 순서는?",
+    "sql": "SELECT id FROM T ORDER BY dept ASC, score DESC NULLS LAST, id DESC",
+    "tables": [
+      {
+        "title": "T",
+        "columns": [
+          "id",
+          "dept",
+          "score"
+        ],
+        "rows": [
+          [
+            "1",
+            "2",
+            "80"
+          ],
+          [
+            "2",
+            "1",
+            null
+          ],
+          [
+            "3",
+            "1",
+            "90"
+          ],
+          [
+            "4",
+            "1",
+            "90"
+          ]
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "id": "a",
+        "text": "(4) / (3) / (2) / (1)",
+        "reason": "최종 결과는 (4) / (3) / (2) / (1)이다."
+      },
+      {
+        "id": "b",
+        "text": "(3) / (4) / (2) / (1)",
+        "reason": "동점에서 id DESC를 누락했다."
+      },
+      {
+        "id": "c",
+        "text": "(2) / (4) / (3) / (1)",
+        "reason": "명시한 NULLS LAST를 기본 DESC 위치로 덮어썼다."
+      },
+      {
+        "id": "d",
+        "text": "(4) / (3) / (1) / (2)",
+        "reason": "dept 우선순위를 무시했다."
+      }
+    ],
+    "correctChoiceIds": [
+      "a"
+    ],
+    "dialect": "Oracle",
+    "dialectVersion": "19c"
+  },
+  "intro": "입력 표의 값으로 SQL의 뜻을 따라 읽는 학습용 논리 과정입니다. 실제 DB의 물리 실행 순서나 실행계획을 측정한 자료가 아닙니다. 이전·다음으로 한 단계씩 확인하세요.",
+  "steps": [
+    {
+      "id": "step-01",
+      "title": "FROM · 어떤 값에서 시작하는가",
+      "text": "T에서 T.id, T.dept, T.score 값을 읽습니다. 입력 4행을 출발점으로 삼습니다. 여기서 보이는 순서는 설명을 위한 나열이며 원본 테이블에 고정된 행 순서가 있다는 뜻이 아닙니다.",
+      "codeFocus": [
+        {
+          "needle": "FROM T",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "T.id",
+        "T.dept",
+        "T.score"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 시작 입력",
+        "columns": [
+          "T.id",
+          "T.dept",
+          "T.score"
+        ],
+        "rows": [
+          [
+            "1",
+            "2",
+            "80"
+          ],
+          [
+            "2",
+            "1",
+            null
+          ],
+          [
+            "3",
+            "1",
+            "90"
+          ],
+          [
+            "4",
+            "1",
+            "90"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-02",
+      "title": "SELECT · 남은 1번째 행 계산",
+      "text": "1 = 1\n원본 값을 고쳐 쓰는 것이 아니라 출력할 값으로 계산합니다.",
+      "codeFocus": [
+        {
+          "needle": "id",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 3
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 입력값과 출력식",
+        "columns": [
+          "T.id",
+          "T.dept",
+          "T.score",
+          "id"
+        ],
+        "rows": [
+          [
+            "1",
+            "2",
+            "80",
+            "1"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-03",
+      "title": "SELECT · 남은 2번째 행 계산",
+      "text": "2 = 2\n원본 값을 고쳐 쓰는 것이 아니라 출력할 값으로 계산합니다.",
+      "codeFocus": [
+        {
+          "needle": "id",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 3
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 입력값과 출력식",
+        "columns": [
+          "T.id",
+          "T.dept",
+          "T.score",
+          "id"
+        ],
+        "rows": [
+          [
+            "2",
+            "1",
+            null,
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-04",
+      "title": "SELECT · 남은 3번째 행 계산",
+      "text": "3 = 3\n원본 값을 고쳐 쓰는 것이 아니라 출력할 값으로 계산합니다.",
+      "codeFocus": [
+        {
+          "needle": "id",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 3
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 입력값과 출력식",
+        "columns": [
+          "T.id",
+          "T.dept",
+          "T.score",
+          "id"
+        ],
+        "rows": [
+          [
+            "3",
+            "1",
+            "90",
+            "3"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-05",
+      "title": "SELECT · 남은 4번째 행 계산",
+      "text": "4 = 4\n원본 값을 고쳐 쓰는 것이 아니라 출력할 값으로 계산합니다.",
+      "codeFocus": [
+        {
+          "needle": "id",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [
+        {
+          "row": 0,
+          "column": 3
+        }
+      ],
+      "table": {
+        "title": "학습용 중간 결과 · 입력값과 출력식",
+        "columns": [
+          "T.id",
+          "T.dept",
+          "T.score",
+          "id"
+        ],
+        "rows": [
+          [
+            "4",
+            "1",
+            "90",
+            "4"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-06",
+      "title": "SELECT · 결과 열 확인",
+      "text": "id 순서로 4행을 출력합니다. SELECT만으로 중복 행을 없애지는 않습니다.",
+      "codeFocus": [
+        {
+          "needle": "id",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "id"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 출력 열",
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            "1"
+          ],
+          [
+            "2"
+          ],
+          [
+            "3"
+          ],
+          [
+            "4"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-07",
+      "title": "ORDER BY · 마지막 표시 순서",
+      "text": "dept ASC, score DESC NULLS LAST, id DESC의 왼쪽 키부터 비교하고 같을 때 다음 키를 봅니다. ASC는 오름차순, DESC는 내림차순입니다. Oracle의 NULL 기본 위치는 ASC 마지막, DESC 처음이며 명시한 NULLS 절이 우선합니다.",
+      "codeFocus": [
+        {
+          "needle": "ORDER BY dept ASC, score DESC NULLS LAST, id DESC",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [
+        "id",
+        "dept",
+        "score"
+      ],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 정렬한 결과",
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            "4"
+          ],
+          [
+            "3"
+          ],
+          [
+            "2"
+          ],
+          [
+            "1"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "step-08",
+      "title": "최종 결과와 원래 답 연결",
+      "text": "최종 4행입니다. 바깥 ORDER BY로 정한 순서를 따릅니다. 원래 보기별 해설에서 같은 결과인지 확인하세요.",
+      "codeFocus": [
+        {
+          "needle": "id",
+          "occurrence": 0
+        }
+      ],
+      "highlights": [],
+      "focusRows": [],
+      "focusCells": [],
+      "table": {
+        "title": "학습용 중간 결과 · 최종 결과",
+        "columns": [
+          "id"
+        ],
+        "rows": [
+          [
+            "4"
+          ],
+          [
+            "3"
+          ],
+          [
+            "2"
+          ],
+          [
+            "1"
+          ]
+        ]
+      }
+    }
+  ],
+  "terms": [
+    {
+      "token": "SELECT",
+      "kind": "키워드",
+      "meaning": "결과에 보여 줄 열과 계산식을 고른다.",
+      "role": "이 문제의 최종 출력 열을 정한다."
+    },
+    {
+      "token": "FROM",
+      "kind": "키워드",
+      "meaning": "값을 읽을 표 또는 조회 결과를 지정한다.",
+      "role": "원본 표에서 설명을 시작하는 위치다."
+    },
+    {
+      "token": "ORDER BY",
+      "kind": "키워드",
+      "meaning": "지정한 키에 따라 순서를 정한다.",
+      "role": "OVER 내부 정렬은 계산용이며 최종 결과 순서는 바깥 ORDER BY가 정한다."
+    },
+    {
+      "token": "T",
+      "kind": "테이블명",
+      "meaning": "관련 정보를 행과 열로 저장한 표의 이름이다.",
+      "role": "원본의 id, dept, score 열을 제공한다."
+    },
+    {
+      "token": "id",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 id 값을 읽는다."
+    },
+    {
+      "token": "dept",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 dept 값을 읽는다."
+    },
+    {
+      "token": "score",
+      "kind": "컬럼명",
+      "meaning": "표에서 한 종류의 정보를 담는 열의 이름이다.",
+      "role": "T 표의 score 값을 읽는다."
+    }
+  ],
+  "verification": {
+    "method": "독립 값 계산 및 원본 fixture 대조",
+    "engine": "SQLite",
+    "engineVersion": "3.50.4",
+    "oracleEngineExecuted": false,
+    "queryMode": "SQLite에서 호환 SELECT 실행; Oracle NULL 정렬 기본값 명시; 숫자 NVL/MOD는 등록 함수",
+    "expectedRowsMatch": true,
+    "notes": [
+      "Oracle 19c 원문 엔진 실행은 미실시. 원본 정답·보기·입력표는 변경하지 않았다.",
+      "아래 중간표는 설명용이며 실제 엔진 내부에 같은 임시표가 생긴다는 뜻이 아니다."
+    ]
+  },
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Aggregate-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Using-Subqueries.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/IN-Condition.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Comparison-Conditions.html"
+  ]
+}

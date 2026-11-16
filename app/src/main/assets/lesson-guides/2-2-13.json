@@ -1,0 +1,652 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-13",
+  "source": {
+    "id": "2-2-13",
+    "partId": "2-2",
+    "number": 13,
+    "title": "기타 윈도우 함수",
+    "lectureMinutes": 42,
+    "easy": "이전·다음 값, 첫·마지막 값, 누적 분포, 비율처럼 주변 행과의 관계를 계산한다.",
+    "why": "마지막 값 LAST_VALUE도 “현재 프레임의 마지막”이지 무조건 표 전체의 마지막은 아니다.",
+    "concepts": [
+      {
+        "term": "LAG",
+        "meaning": "정렬 순서상 이전 행의 값",
+        "example": "LAG(금액,1,0)"
+      },
+      {
+        "term": "LEAD",
+        "meaning": "다음 행의 값",
+        "example": "LEAD(금액,1,0)"
+      },
+      {
+        "term": "기본값",
+        "meaning": "이전·다음 행이 없을 때 대체",
+        "example": "행은 있는데 값이 NULL인 경우와 구별"
+      },
+      {
+        "term": "FIRST_VALUE",
+        "meaning": "윈도 프레임의 첫 값",
+        "example": "처음부터 현재까지이면 첫 값"
+      },
+      {
+        "term": "LAST_VALUE",
+        "meaning": "윈도 프레임의 마지막 값",
+        "example": "전체 마지막은 UNBOUNDED FOLLOWING 명시"
+      },
+      {
+        "term": "NTILE(n)",
+        "meaning": "행을 비슷한 크기의 n묶음으로 나눔",
+        "example": "4행을3그룹이면2·1·1행"
+      },
+      {
+        "term": "CUME_DIST",
+        "meaning": "현재 정렬값까지 누적 행수/전체 행수",
+        "example": "동점 포함 분포"
+      },
+      {
+        "term": "PERCENT_RANK",
+        "meaning": "(RANK-1)/(전체행수-1), 한 행이면0",
+        "example": "첫 순위0"
+      },
+      {
+        "term": "RATIO_TO_REPORT",
+        "meaning": "Oracle: 현재값/파티션 합계",
+        "example": "10/80=0.125"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-13-E01",
+        "title": "이전·다음·전체 마지막을 나란히",
+        "question": "번호순 금액10·20·30을 비교하자.",
+        "tables": [
+          {
+            "title": "입금",
+            "columns": [
+              "번호",
+              "이름",
+              "금액"
+            ],
+            "rows": [
+              [
+                "1",
+                "유성재",
+                "10"
+              ],
+              [
+                "2",
+                "김현수",
+                "20"
+              ],
+              [
+                "3",
+                "양선규",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 번호,LAG(금액,1,0) OVER(ORDER BY 번호) AS 이전,LEAD(금액,1,0) OVER(ORDER BY 번호) AS 다음,LAST_VALUE(금액) OVER(ORDER BY 번호 ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS 전체마지막 FROM 입금 ORDER BY 번호;",
+        "steps": [
+          "유성재의 이전 행은 없어서 기본값0, 다음은 김현수의20이다.",
+          "김현수의 이전은10, 다음은30이다. 양선규의 다음은 없어서0이다.",
+          "LAST_VALUE 범위를 전체 마지막까지로 명시했으므로 모든 행에30이 붙는다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "번호",
+              "이전",
+              "다음",
+              "전체마지막"
+            ],
+            "rows": [
+              [
+                "1",
+                "0",
+                "20",
+                "30"
+              ],
+              [
+                "2",
+                "10",
+                "30",
+                "30"
+              ],
+              [
+                "3",
+                "20",
+                "0",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-2-13-E02",
+        "title": "동점의 누적 분포",
+        "question": "금액10·20·20·30의 CUME_DIST를 보자.",
+        "tables": [
+          {
+            "title": "입금",
+            "columns": [
+              "번호",
+              "금액"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "20"
+              ],
+              [
+                "3",
+                "20"
+              ],
+              [
+                "4",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 번호,금액,CUME_DIST() OVER(ORDER BY 금액) AS 누적분포 FROM 입금 ORDER BY 번호;",
+        "steps": [
+          "10 이하인 행은1개이므로1/4=0.25다.",
+          "20 이하인 행은3개이므로20 두 행 모두3/4=0.75다.",
+          "30 이하이면4/4=1이다."
+        ],
+        "results": [
+          {
+            "title": "분포",
+            "columns": [
+              "번호",
+              "금액",
+              "누적분포"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "0.25"
+              ],
+              [
+                "2",
+                "20",
+                "0.75"
+              ],
+              [
+                "3",
+                "20",
+                "0.75"
+              ],
+              [
+                "4",
+                "30",
+                "1"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "LAG 이전 / LEAD 다음 / FIRST·LAST는 프레임 확인 / CUME는 누적 비율.",
+    "traps": [
+      "LAG(값,1,0)의0은 직전 행이 없는 경우의 기본값이다. 직전 행 값이 NULL이라고 항상0이 되지는 않는다.",
+      "LAST_VALUE에 기본 프레임을 두면 현재 정렬값 동료의 마지막 값이 될 수 있다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-13-Q1",
+        "question": "LAG는 다음 값인가 이전 값인가?",
+        "answer": "이전 값",
+        "explanation": "LEAD가 다음 값이다."
+      },
+      {
+        "id": "2-2-13-Q2",
+        "question": "LAST_VALUE로 전체 마지막을 보려면 무엇을 확인하나?",
+        "answer": "프레임 끝 UNBOUNDED FOLLOWING",
+        "explanation": "현재행까지 범위이면 전체 마지막이 아니다."
+      },
+      {
+        "id": "2-2-13-Q3",
+        "question": "4행 중20 이하가3행이면 CUME_DIST는?",
+        "answer": "0.75",
+        "explanation": "3÷4다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S16"
+    ],
+    "sourceIds": [
+      "analytic",
+      "window",
+      "lag",
+      "lastvalue",
+      "cumedist"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"기타 윈도우 함수 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"26\" y=\"62\" width=\"180\" height=\"85\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"116.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">원본 행 유지</text><text x=\"116.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">학생 한 사람 한 줄</text><rect x=\"266\" y=\"62\" width=\"188\" height=\"85\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">창의 범위 선택</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">PARTITION · ORDER · 범위</text><rect x=\"514\" y=\"62\" width=\"180\" height=\"85\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"604.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">계산 열 추가</text><text x=\"604.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">평균·누적·이전값</text><path d=\"M216 103 L254 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M466 103 L503 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">GROUP BY는 그룹당 한 줄 · 윈도우 함수는 원래 행에 결과를 붙임</text></svg>",
+    "version": 1
+  },
+  "purpose": "직전·다음 거래와 비교하거나 전체 마지막 값과 누적 비율을 각 행에서 함께 보고 싶을 때 써요.",
+  "overview": "조회 계산이에요. 번호 1·2·3의 금액 10·20·30을 수정하지 않고 이전·다음·전체 마지막 값을 표시해요. 분포 예제는 별도의 10·20·20·30 데이터예요.",
+  "terms": [
+    {
+      "token": "LAG / LEAD",
+      "kind": "함수",
+      "meaning": "lag = 뒤처진 이전 / lead = 앞선 다음",
+      "role": "정렬한 순서에서 현재행의 앞·뒤 행값을 가져와요."
+    },
+    {
+      "token": "LAG(금액,1,0)",
+      "kind": "함수 인수",
+      "meaning": "금액 컬럼, 이동행수 1, 없는 행의 기본값 0",
+      "role": "1은 금액이 아니라 이전 1행이며 0은 이전 행이 없을 때 반환할 값이에요."
+    },
+    {
+      "token": "LAST_VALUE",
+      "kind": "함수",
+      "meaning": "last value = 지정한 범위의 마지막 값",
+      "role": "프레임 끝을 UNBOUNDED FOLLOWING으로 적어 전체 마지막 30을 봐요."
+    },
+    {
+      "token": "CUME_DIST",
+      "kind": "함수",
+      "meaning": "cumulative distribution = 누적분포",
+      "role": "오름차순에서 현재 금액 이하인 행수÷전체행수로 읽어요."
+    }
+  ],
+  "pitfalls": [
+    "LAG의 기본값 0은 찾을 앞행이 없을 때예요. 앞행은 있고 그 금액이 NULL인 경우를 0으로 바꾸는 NVL과 다르며 이 예제 입력에는 NULL이 없어요.",
+    "LAST_VALUE는 이름만 보고 전체 마지막이라고 확정하지 않아요. 프레임의 시작·끝을 확인해요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회 계산이에요. 번호 1·2·3의 금액 10·20·30을 수정하지 않고 이전·다음·전체 마지막 값을 표시해요. 분포 예제는 별도의 10·20·20·30 데이터예요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 78,
+      "toPage": 78,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-13-E01",
+      "why": "현재 거래 앞뒤 금액을 비교하고 전체 마지막 금액을 같은 행에서 확인해요.",
+      "effect": "조회 · 입금의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-13-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "입금: 컬럼 번호·이름·금액 3개, 표시 입력 3행."
+      ],
+      "steps": [
+        {
+          "title": "번호순과 함수 인수",
+          "text": "번호순 1 유성재 10→2 김현수 20→3 양선규 30이에요. LAG(금액,1,0)의 1은 이전 한 행, 0은 이전 행이 없을 때 쓸 값이에요.",
+          "codeFocus": [
+            {
+              "needle": "LAG(금액,1,0)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "LAG(금액,1,0)"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "이전·다음 값 대입",
+          "text": "유성재 앞행 없음→0, 뒤 김현수→20이에요. 김현수는 앞 10·뒤 30, 양선규는 앞 20·뒤 없음→0이에요.",
+          "codeFocus": [
+            {
+              "needle": "LEAD(금액,1,0)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 이전·다음 값 대입",
+            "columns": [
+              "현재번호",
+              "이전대상",
+              "이전값",
+              "다음대상",
+              "다음값"
+            ],
+            "rows": [
+              [
+                "1",
+                "없음",
+                "0",
+                "2",
+                "20"
+              ],
+              [
+                "2",
+                "1",
+                "10",
+                "3",
+                "30"
+              ],
+              [
+                "3",
+                "2",
+                "20",
+                "없음",
+                "0"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 4
+            },
+            {
+              "row": 1,
+              "column": 4
+            },
+            {
+              "row": 2,
+              "column": 4
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "마지막까지 프레임 확장",
+          "text": "UNBOUNDED FOLLOWING은 파티션의 끝인 3번까지예요. LAST_VALUE는 그 끝 금액 30을 1·2·3번 모두에 붙여요.",
+          "codeFocus": [
+            {
+              "needle": "ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "UNBOUNDED",
+            "FOLLOWING"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 마지막까지 프레임 확장",
+            "columns": [
+              "현재번호",
+              "범위끝",
+              "LAST_VALUE"
+            ],
+            "rows": [
+              [
+                "1",
+                "번호3",
+                "30"
+              ],
+              [
+                "2",
+                "번호3",
+                "30"
+              ],
+              [
+                "3",
+                "번호3",
+                "30"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 번호·이전·다음·전체마지막, 결과는 3행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "번호",
+              "이전",
+              "다음",
+              "전체마지막"
+            ],
+            "rows": [
+              [
+                "1",
+                "0",
+                "20",
+                "30"
+              ],
+              [
+                "2",
+                "10",
+                "30",
+                "30"
+              ],
+              [
+                "3",
+                "20",
+                "0",
+                "30"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "LAG·LEAD의 없는 행 기본값 0과 실제 금액 0은 원인이 다를 수 있어요. LAST_VALUE의 전체 마지막은 현재 프레임 끝을 명시했기 때문이에요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-2-13-E02",
+      "why": "전체 거래 중 현재 금액 이하가 어느 비율인지 동점까지 포함해 읽어요.",
+      "effect": "조회 · 입금의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-13-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "입금: 컬럼 번호·금액 2개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "전체 네 행과 정렬값",
+          "text": "입금 금액은 10·20·20·30, 전체 4행이에요. OVER ORDER BY 금액은 작은 금액부터 누적분포를 계산해요.",
+          "codeFocus": [
+            {
+              "needle": "CUME_DIST() OVER(ORDER BY 금액)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ORDER",
+            "OVER",
+            "금액"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "10과 20의 누적 분자",
+          "text": "10 이하에는 1번만 있어 1/4=0.25예요. 20 이하에는 1·2·3번이 있어 3/4=0.75이고 20 동점 두 행 모두 같아요.",
+          "codeFocus": [
+            {
+              "needle": "CUME_DIST()",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 10과 20의 누적 분자",
+            "columns": [
+              "현재 금액",
+              "이하인 번호",
+              "비율"
+            ],
+            "rows": [
+              [
+                "10",
+                "1",
+                "1/4=0.25"
+              ],
+              [
+                "20",
+                "1·2·3",
+                "3/4=0.75"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "30은 전체 포함",
+          "text": "30 이하에는 1·2·3·4번 모두 있어 4/4=1이에요. 결과는 최종 ORDER BY 번호로 보여주며 원본 금액을 바꾸지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 번호",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ORDER BY 번호"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 30은 전체 포함",
+            "columns": [
+              "현재금액",
+              "이하인번호",
+              "비율"
+            ],
+            "rows": [
+              [
+                "30",
+                "1·2·3·4",
+                "4/4=1"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "분포 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 분포와 대조해요. 표시 컬럼은 번호·금액·누적분포, 결과는 4행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "분포",
+            "columns": [
+              "번호",
+              "금액",
+              "누적분포"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "0.25"
+              ],
+              [
+                "2",
+                "20",
+                "0.75"
+              ],
+              [
+                "3",
+                "20",
+                "0.75"
+              ],
+              [
+                "4",
+                "30",
+                "1"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "CUME_DIST는 동점 20의 두 행을 같은 누적 위치로 봐요. ROW_NUMBER/전체행수처럼 각 동점에 다른 비율을 주는 계산이 아니에요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-13-Q1",
+      "hint": "현재 김현수 20행에서 앞쪽으로 한 행 이동해 봐요.",
+      "reasoning": "번호순 앞행 유성재의 금액 10을 LAG가 가져와요. 뒤의 양선규 30은 LEAD예요."
+    },
+    {
+      "checkId": "2-2-13-Q2",
+      "hint": "함수명 다음 OVER 괄호 안의 범위 끝을 확인해요.",
+      "reasoning": "현재행까지만이면 그 범위 끝만 봐요. 전체 마지막 30을 모든 행에 붙이려면 UNBOUNDED FOLLOWING을 확인해요."
+    },
+    {
+      "checkId": "2-2-13-Q3",
+      "hint": "동점 20 두 행을 포함한 누적행수와 전체행수를 나눠요.",
+      "reasoning": "10·20·20의 3행을 전체 4행으로 나눠 3/4=0.75예요. 20 두 행에 같은 값이 붙어요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LAG.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

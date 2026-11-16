@@ -1,0 +1,782 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-03",
+  "source": {
+    "id": "2-2-03",
+    "partId": "2-2",
+    "number": 3,
+    "title": "다중행 서브쿼리",
+    "lectureMinutes": 62,
+    "easy": "안쪽 조회가 만든 여러 값의 목록을 IN·ANY·ALL·EXISTS 같은 조건으로 비교한다.",
+    "why": "“개발부 누구보다도 높다”와 “개발부 누군가보다 높다”는 전혀 다른 조건이다.",
+    "concepts": [
+      {
+        "term": "IN",
+        "meaning": "목록 중 같은 값이 존재",
+        "example": "부서번호 IN(10,20)"
+      },
+      {
+        "term": "ANY·SOME",
+        "meaning": "비교가 하나라도 TRUE",
+        "example": "급여>ANY(250,300)"
+      },
+      {
+        "term": "ALL",
+        "meaning": "모든 비교가 TRUE",
+        "example": "급여>ALL(250,300)"
+      },
+      {
+        "term": ">ANY와 최솟값",
+        "meaning": "NULL 없는 비어 있지 않은 목록에서 >최솟값과 같음",
+        "example": ">250"
+      },
+      {
+        "term": ">ALL과 최댓값",
+        "meaning": "NULL 없는 비어 있지 않은 목록에서 >최댓값과 같음",
+        "example": ">300"
+      },
+      {
+        "term": "EXISTS",
+        "meaning": "서브쿼리에 행이 하나라도 있음",
+        "example": "선택한 값 자체가 NULL이어도 존재"
+      },
+      {
+        "term": "NOT IN 함정",
+        "meaning": "목록 NULL로 UNKNOWN이 발생",
+        "example": "2 NOT IN(1,NULL)은 TRUE 아님"
+      },
+      {
+        "term": "빈 목록",
+        "meaning": "ANY는 FALSE, ALL은 TRUE",
+        "example": "단순 MIN/MAX 치환의 예외"
+      },
+      {
+        "term": "<>ANY와 NOT IN",
+        "meaning": "같지 않은 것이 하나만 있으면 <>ANY",
+        "example": "NOT IN은 <>ALL 의미"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-03-E01",
+        "title": "하나보다 높음과 전부보다 높음",
+        "question": "개발부 급여 250·300을 기준으로 ANY와 ALL을 비교하자.",
+        "tables": [
+          {
+            "title": "사원",
+            "columns": [
+              "사번",
+              "이름",
+              "부서",
+              "급여"
+            ],
+            "rows": [
+              [
+                "1",
+                "장정훈",
+                "개발",
+                "250"
+              ],
+              [
+                "2",
+                "박강열",
+                "개발",
+                "300"
+              ],
+              [
+                "3",
+                "양지훈",
+                "영업",
+                "280"
+              ],
+              [
+                "4",
+                "한창주",
+                "영업",
+                "350"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름, 급여 FROM 사원 WHERE 급여 > ANY (SELECT 급여 FROM 사원 WHERE 부서='개발');\nSELECT 이름, 급여 FROM 사원 WHERE 급여 > ALL (SELECT 급여 FROM 사원 WHERE 부서='개발');",
+        "steps": [
+          "기준 목록은 250과 300이다.",
+          ">ANY: 250보다만 커도 참이 하나 있으므로 박강열 300, 양지훈 280, 한창주 350이 통과한다.",
+          ">ALL: 250과 300 둘보다 모두 커야 하므로 한창주 350만 통과한다.",
+          "NULL 없는 비어 있지 않은 이 예시에서만 MIN/MAX로 바꾸어 검증할 수 있다."
+        ],
+        "results": [
+          {
+            "title": "ANY 결과",
+            "columns": [
+              "이름",
+              "급여"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "300"
+              ],
+              [
+                "양지훈",
+                "280"
+              ],
+              [
+                "한창주",
+                "350"
+              ]
+            ]
+          },
+          {
+            "title": "ALL 결과",
+            "columns": [
+              "이름",
+              "급여"
+            ],
+            "rows": [
+              [
+                "한창주",
+                "350"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 예상 결과를 설명한 자료입니다. Oracle 실행 미확인."
+      },
+      {
+        "id": "2-2-03-E02",
+        "title": "NOT IN에 NULL이 섞였을 때",
+        "question": "회원번호 1·2·3 중 제외목록 1·NULL에 없는 회원을 찾으면?",
+        "tables": [
+          {
+            "title": "회원",
+            "columns": [
+              "회원ID",
+              "이름"
+            ],
+            "rows": [
+              [
+                "1",
+                "장정훈"
+              ],
+              [
+                "2",
+                "박강열"
+              ],
+              [
+                "3",
+                "양지훈"
+              ]
+            ]
+          },
+          {
+            "title": "제외목록",
+            "columns": [
+              "회원ID"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                null
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 이름 FROM 회원 WHERE 회원ID NOT IN (SELECT 회원ID FROM 제외목록);",
+        "steps": [
+          "1은 목록의 1과 같으므로 NOT IN 결과 FALSE다.",
+          "2는 1과 다르지만 NULL과 다른지는 모른다. TRUE AND UNKNOWN이므로 UNKNOWN이다. 3도 같다.",
+          "WHERE는 TRUE만 남겨 결과가 0행이다. NULL을 무시하려던 의도라면 안쪽 IS NOT NULL 또는 적절한 NOT EXISTS를 검토한다."
+        ],
+        "results": [
+          {
+            "title": "조회 결과",
+            "columns": [
+              "이름"
+            ],
+            "rows": []
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "ANY 하나라도 / ALL 전부 / IN 같은 값 / EXISTS 행 존재. NOT IN은 NULL 확인.",
+    "traps": [
+      "ANY/ALL을 항상 MIN/MAX로 바꾸면 빈 집합과 NULL에서 잘못된다.",
+      "NOT EXISTS와 NOT IN은 NULL을 포함한 모든 상황에서 같은 뜻이 아니다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-03-Q1",
+        "question": "급여>ALL(250,300)에 300이 포함되는가?",
+        "answer": "아니다",
+        "explanation": "300>300은 거짓이다."
+      },
+      {
+        "id": "2-2-03-Q2",
+        "question": "2 NOT IN(1,NULL)은 TRUE인가?",
+        "answer": "아니다. UNKNOWN",
+        "explanation": "NULL과 다르다는 비교를 확정할 수 없다."
+      },
+      {
+        "id": "2-2-03-Q3",
+        "question": "빈 서브쿼리에 대해 >ALL은?",
+        "answer": "TRUE",
+        "explanation": "반례가 없어서 모든 비교를 만족한다. MIN/MAX로 단순 치환하지 않는다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S12",
+      "note-S06"
+    ],
+    "sourceIds": [
+      "subquery"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"다중행 서브쿼리 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 질문</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">평균·목록·존재?</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">안쪽 결과</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">값 / 여러 행 / 존재</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">바깥 질문</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">결과를 기준으로 검사</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"178\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#172b4d\"><tspan x=\"360\" dy=\"0\">ANY 하나라도 / ALL 전부 / IN 같은 값 / EXISTS 행 존재. NOT</tspan><tspan x=\"360\" dy=\"18\">IN은 NULL 확인.</tspan></text></svg>",
+    "version": 1
+  },
+  "purpose": "여러 급여 중 하나와만 비교해도 되는지, 모두와 비교해야 하는지 구분하고 NULL을 빠뜨리지 않아요.",
+  "overview": "조회예요. 사원의 급여를 개발부 급여250·300 목록과 각각 비교해요. ANY와 ALL 두 SELECT는 독립 조회이며 첫 결과가 다음 입력을 바꾸지 않아요.",
+  "terms": [
+    {
+      "token": "ANY / SOME",
+      "kind": "비교 조건",
+      "meaning": "any = 어느 하나",
+      "role": "각 비교 중 참이 하나면 전체가 참이에요. SOME도 같은 뜻이에요."
+    },
+    {
+      "token": "ALL",
+      "kind": "비교 조건",
+      "meaning": "all = 전부",
+      "role": "거짓인 비교가 하나라도 있으면 전체가 거짓이에요."
+    },
+    {
+      "token": "NOT IN",
+      "kind": "비교 조건",
+      "meaning": "목록의 어느 값과도 같지 않음",
+      "role": "회원ID 1·2·3 각각을 1·NULL 목록과 비교해요."
+    },
+    {
+      "token": "UNKNOWN",
+      "kind": "논리값",
+      "meaning": "알 수 없음",
+      "role": "NULL과의 일반 비교는 참·거짓으로 확정하지 못해요. WHERE에서 제외돼도 거짓과 같은 값은 아니에요."
+    }
+  ],
+  "pitfalls": [
+    "MIN/MAX 치환은 NULL 없는 비어 있지 않은 기준 목록에서만 이 예시의 요령으로 써요.",
+    "가상 경계 비교: 500>ANY(600,300)은 300과 비교가 참이어서 참이에요. 500>ANY(600,NULL)은 알 수 없음이에요.",
+    "빈 서브쿼리에 >ANY는 거짓, >ALL은 참이에요. MAX(빈 입력)는 NULL이라 >MAX로 바꾸면 이 의미가 달라져요.",
+    "NOT IN(1,NULL)에서 1의 판정은 거짓, 2·3은 알 수 없음이에요. 전부 UNKNOWN이라고 쓰지 않아요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회예요. 사원의 급여를 개발부 급여250·300 목록과 각각 비교해요. ANY와 ALL 두 SELECT는 독립 조회이며 첫 결과가 다음 입력을 바꾸지 않아요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 13,
+      "toPage": 13,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-03-E01",
+      "why": "개발부의 누구보다라도 급여가 높으면 되는 조건과 개발부 모두보다 높아야 하는 조건을 비교해요.",
+      "effect": "조회 · 사원의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-03-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "사원: 컬럼 사번·이름·부서·급여 4개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "개발부 기준 목록",
+          "text": "안쪽 WHERE 부서=개발은 장정훈 250과 박강열 300을 남겨요. 바깥 사원은 영업부로 제한하지 않았으므로 개발부 본인도 비교 대상이에요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 급여 FROM 사원 WHERE 부서='개발'",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "WHERE",
+            "부서",
+            "개발"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 개발부 기준 목록",
+            "columns": [
+              "부서",
+              "이름",
+              "급여",
+              "판정"
+            ],
+            "rows": [
+              [
+                "개발",
+                "장정훈",
+                "250",
+                "참·기준"
+              ],
+              [
+                "개발",
+                "박강열",
+                "300",
+                "참·기준"
+              ],
+              [
+                "영업",
+                "양지훈",
+                "280",
+                "거짓·기준제외"
+              ],
+              [
+                "영업",
+                "한창주",
+                "350",
+                "거짓·기준제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "ANY: 참이 하나면 통과",
+          "text": "250은 250·300보다 모두 크지 않아요. 300은 250보다 크고, 280도 250보다 커요. 350은 둘보다 커요. 참이 있는 300·280·350만 통과해요.",
+          "codeFocus": [
+            {
+              "needle": "> ANY",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · ANY: 참이 하나면 통과",
+            "columns": [
+              "급여",
+              ">250",
+              ">300",
+              "ANY"
+            ],
+            "rows": [
+              [
+                "250",
+                "거짓",
+                "거짓",
+                "거짓"
+              ],
+              [
+                "300",
+                "참",
+                "거짓",
+                "참"
+              ],
+              [
+                "280",
+                "참",
+                "거짓",
+                "참"
+              ],
+              [
+                "350",
+                "참",
+                "참",
+                "참"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "ALL: 전부 참인지 확인",
+          "text": "300은 300보다 크지 않아서 ALL에 실패해요. 280도 300 비교에서 실패해요. 350만 두 비교가 모두 참이라 남아요.",
+          "codeFocus": [
+            {
+              "needle": "> ALL",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ALL"
+          ],
+          "table": {
+            "title": "학습용 중간표 · ALL: 전부 참인지 확인",
+            "columns": [
+              "급여",
+              ">250",
+              ">300",
+              "ALL"
+            ],
+            "rows": [
+              [
+                "250",
+                "거짓",
+                "거짓",
+                "거짓"
+              ],
+              [
+                "300",
+                "참",
+                "거짓",
+                "거짓"
+              ],
+              [
+                "280",
+                "참",
+                "거짓",
+                "거짓"
+              ],
+              [
+                "350",
+                "참",
+                "참",
+                "참"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "두 독립 결과 읽기",
+          "text": "첫 SELECT는 박강열 300·양지훈 280·한창주 350, 둘째는 한창주 350이에요. ORDER BY가 없으므로 목록의 표시 순서는 보장하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 이름, 급여",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "SELECT"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "ANY 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 ANY 결과와 대조해요. 표시 컬럼은 이름·급여, 결과는 3행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요. 이 SQL은 ORDER BY가 없으므로 아래 표의 일반 행 나열 순서가 보장된다는 뜻은 아니에요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "ANY 결과",
+            "columns": [
+              "이름",
+              "급여"
+            ],
+            "rows": [
+              [
+                "박강열",
+                "300"
+              ],
+              [
+                "양지훈",
+                "280"
+              ],
+              [
+                "한창주",
+                "350"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        },
+        {
+          "id": "read-06",
+          "title": "ALL 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 ALL 결과와 대조해요. 표시 컬럼은 이름·급여, 결과는 1행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요. 이 SQL은 ORDER BY가 없으므로 아래 표의 일반 행 나열 순서가 보장된다는 뜻은 아니에요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "ALL 결과",
+            "columns": [
+              "이름",
+              "급여"
+            ],
+            "rows": [
+              [
+                "한창주",
+                "350"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "이 목록 250·300은 NULL 없고 비어 있지 않아요. 여기서는 최소·최대 요령이 맞지만 NULL·빈 목록에는 그대로 확장하지 않아요.",
+      "verification": "원본 값의 단계별 대입·산술을 검토하고 Oracle 19c 공식 문서의 해당 구문과 대조했어요. Oracle DB 엔진에서는 실행하지 않았어요."
+    },
+    {
+      "exampleId": "2-2-03-E02",
+      "why": "제외 목록에 NULL이 있을 때 NOT IN이 의도한 미등록 회원 목록을 만들지 못하는 이유를 봐요.",
+      "effect": "조회 · 회원, 제외목록의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-03-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "회원: 컬럼 회원ID·이름 2개, 표시 입력 3행.",
+        "제외목록: 컬럼 회원ID 1개, 표시 입력 2행."
+      ],
+      "steps": [
+        {
+          "title": "제외 목록의 실제 값",
+          "text": "제외목록이 반환하는 회원ID는 1과 NULL이에요. 안쪽 SELECT가 NULL을 자동 제거하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 회원ID FROM 제외목록",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "SELECT",
+            "제외목록",
+            "회원ID"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 제외 목록의 실제 값",
+            "columns": [
+              "제외목록회원ID"
+            ],
+            "rows": [
+              [
+                "1"
+              ],
+              [
+                null
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 0
+            },
+            {
+              "row": 1,
+              "column": 0
+            }
+          ],
+          "id": "read-01"
+        },
+        {
+          "title": "1의 판정은 거짓",
+          "text": "1 NOT IN(1,NULL)은 1<>1 AND 1<>NULL로 읽을 수 있어요. 첫 비교가 거짓이라 거짓 AND 알 수 없음은 거짓이에요.",
+          "codeFocus": [
+            {
+              "needle": "회원ID NOT IN",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "NOT",
+            "IN"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 1의 판정은 거짓",
+            "columns": [
+              "회원ID",
+              "<>1",
+              "<>NULL",
+              "최종"
+            ],
+            "rows": [
+              [
+                "1",
+                "거짓",
+                "알수없음",
+                "거짓·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "2와 3은 알 수 없음",
+          "text": "2·3은 1과 다르지만 NULL과 다른지는 확정하지 못해요. 참 AND 알 수 없음은 알 수 없음이라 WHERE를 통과하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 회원ID NOT IN",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "WHERE"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 2와 3은 알 수 없음",
+            "columns": [
+              "회원ID",
+              "<>1",
+              "<>NULL",
+              "최종"
+            ],
+            "rows": [
+              [
+                "2",
+                "참",
+                "알 수 없음",
+                "알 수 없음·제외"
+              ],
+              [
+                "3",
+                "참",
+                "알 수 없음",
+                "알 수 없음·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "빈 결과와 원본 보존",
+          "text": "세 회원 중 참인 판정이 없어 이름 결과 0행이에요. 회원 행을 DELETE한 것이 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 이름 FROM 회원",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "회원",
+            "이름"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "조회 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 조회 결과와 대조해요. 표시 컬럼은 이름, 결과는 0행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요. 이 SQL은 ORDER BY가 없으므로 아래 표의 일반 행 나열 순서가 보장된다는 뜻은 아니에요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "조회 결과",
+            "columns": [
+              "이름"
+            ],
+            "rows": []
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "NOT IN을 무조건 NOT EXISTS로 이름만 바꾸는 것이 아니라 회원ID를 상관 조건으로 연결해야 해요. NULL을 제외하려는 업무 의도도 먼저 정해야 해요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-03-Q1",
+      "hint": "300을 기준 목록의 각 수와 따로 비교해 봐요.",
+      "reasoning": "300>250은 참이지만 300>300은 거짓이에요. ALL은 모든 비교가 참이어야 하므로 제외해요."
+    },
+    {
+      "checkId": "2-2-03-Q2",
+      "hint": "2<>1과 2<>NULL을 나누어 판단하고 AND로 합쳐요.",
+      "reasoning": "2<>1은 참, 2<>NULL은 알 수 없음이에요. 참 AND 알 수 없음은 알 수 없음이므로 WHERE를 통과하지 않아요."
+    },
+    {
+      "checkId": "2-2-03-Q3",
+      "hint": "실패하는 비교 대상이 있는지 생각해요. MIN/MAX 치환은 잠시 빼요.",
+      "reasoning": "빈 목록의 ALL은 거짓인 비교가 하나도 없어 참이에요. ANY는 참인 비교가 하나도 없어 거짓이라는 차이가 있어요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Comparison-Conditions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

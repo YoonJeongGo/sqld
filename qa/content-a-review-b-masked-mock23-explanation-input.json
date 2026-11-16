@@ -1,0 +1,4574 @@
+[
+  {
+    "question": {
+      "id": "mock-2-S09-m2-distinct-order-ambiguity",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S09"
+      ],
+      "familyId": "authored-S09-m2-distinct-order-ambiguity",
+      "kind": "mock",
+      "title": "조회는 DISTINCT dept만 반환한다. 한 부서에 서로 다른 salary가 여러 개 있다. 부서별 대표 급여 정의 없이",
+      "stem": "조회는 DISTINCT dept만 반환한다. 한 부서에 서로 다른 salary가 여러 개 있다. 부서별 대표 급여 정의 없이 원본 salary로 정렬 하려는 설계의 문제는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "어떤 부서 급여로 정렬 할지 결정되지 않았고 Oracle DISTINCT 정렬식 제약에도 맞지 않을 수 있다",
+          "reason": "반환 단위 dept와 정렬값 salary의 단위가 달라 대표 집계 또는 일관된 선택이 필요하다."
+        },
+        {
+          "id": "b",
+          "text": "DISTINCT가 최댓값 급여를 자동 선택한다",
+          "reason": "대표값 집계를 요청하지 않았다."
+        },
+        {
+          "id": "c",
+          "text": "DISTINCT가 최솟값 급여를 자동 선택한다",
+          "reason": "정렬의 업무 기준을 암묵 적으로만들지 않는다."
+        },
+        {
+          "id": "d",
+          "text": "salary가 숫자이면 언제나 명확하다",
+          "reason": "자료형이 대표값선택문제를해결하지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "반환 단위 dept와 정렬값 salary의 단위가 달라 대표 집계 또는 일관된 선택이 필요하다.",
+        "prerequisites": [
+          "S02"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "한 dept에 여러 salary가 연결되어 단일 정렬값이 없다."
+          },
+          {
+            "title": "2단계",
+            "text": "MAX 등요구에맞는대표 값을 명시한 그룹 결과를 정렬해야 한다."
+          }
+        ],
+        "memory": "DISTINCT로 열을줄일때 정렬의 단위와 Oracle 허용 조건을 확인한다.",
+        "relatedNoteId": "note-S09"
+      },
+      "sourceIds": [
+        "oracle19-select"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "8b593c2575e50fce211116659e9f85ef1631626aa115550e68dfea8b452a83b1"
+  },
+  {
+    "question": {
+      "id": "mock-2-S10-m2-missing-join-predicate",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S10"
+      ],
+      "familyId": "authored-S10-m2-missing-join-predicate",
+      "kind": "mock",
+      "title": "상품 P(id PK) 3행과 주문 O(id PK,pid) 4행을 결합했는데 상품 연결 조건을 빠뜨려 모든 조합을 만들 었다. 행",
+      "stem": "상품 P(id PK) 3행과 주문 O(id PK,pid) 4행을 결합했는데 상품 연결 조건을 빠뜨려 모든 조합을 만들 었다. 행 수는?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "7행",
+          "reason": "조인은 두 입력 행 수를 더하지 않는다."
+        },
+        {
+          "id": "d",
+          "text": "3행",
+          "reason": "상품 수만 유지 하는 집계가 아니다."
+        },
+        {
+          "id": "a",
+          "text": "12행",
+          "reason": "조건 없는 모든 쌍은 3×4개다."
+        },
+        {
+          "id": "b",
+          "text": "4행",
+          "reason": "원래 주문 단위 매칭 수를 가정했지만 조건이 없다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "조건 없는 모든 쌍은 3×4개다.",
+        "prerequisites": [
+          "S02",
+          "S06"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "각 상품이 네 주문 모두 와결합 한다."
+          },
+          {
+            "title": "2단계",
+            "text": "상품세 개에 각 네 쌍이므로 12행이다."
+          }
+        ],
+        "memory": "누락된 조인 조건은 의도하지않은데카르트곱을 만들 수 있다.",
+        "relatedNoteId": "note-S10"
+      },
+      "sourceIds": [
+        "oracle19-joins"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "1b8e9e7c81268f64c4241f689b418d4c3afc3bb99d51f4dc475046b3c651ddc1"
+  },
+  {
+    "question": {
+      "id": "mock-2-S10-m2-condition-or-expands",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S10"
+      ],
+      "familyId": "authored-S10-m2-condition-or-expands",
+      "kind": "mock",
+      "title": "A(k,flag)에(1,1),(2,0), B(k)에 1,2가 있다. ON이 A.k=B.k OR A.flag=1이면 매칭 쌍 수는",
+      "stem": "A(k,flag)에(1,1),(2,0), B(k)에 1,2가 있다. ON이 A.k=B.k OR A.flag=1이면 매칭 쌍 수는?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "1쌍",
+          "reason": "OR 조건의 일반 키 매칭을 빠뜨렸다."
+        },
+        {
+          "id": "a",
+          "text": "3쌍",
+          "reason": "flag1 조건이 행 쌍마다 TRUE 여서그 A 행은 모든 B 행과 만난다."
+        },
+        {
+          "id": "b",
+          "text": "2쌍",
+          "reason": "flag1 인 A1은 다른 키 B2와 도 OR 조건으로 매칭된다."
+        },
+        {
+          "id": "c",
+          "text": "4쌍",
+          "reason": "A2와 B1은 등호 FALSE,flag1도 FALSE다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "flag1 조건이 행 쌍마다 TRUE 여서그 A 행은 모든 B 행과 만난다.",
+        "prerequisites": [
+          "S02",
+          "S06"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "A1은 B1,B2와 두 쌍이다."
+          },
+          {
+            "title": "2단계",
+            "text": "A2는 B2와 만일치하여한쌍, 총 3쌍이다."
+          }
+        ],
+        "memory": "ON의 OR는 추가 매칭 경로를 열 수 있다.",
+        "relatedNoteId": "note-S10"
+      },
+      "sourceIds": [
+        "oracle19-joins"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "377e6c0bd49b83c4f1e190d867512fdee5cd836196f7178d9f189b40ac15061c"
+  },
+  {
+    "question": {
+      "id": "mock-2-S11-m2-null-note-false-anti",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S11"
+      ],
+      "familyId": "authored-S11-m2-null-note-false-anti",
+      "kind": "mock",
+      "title": "고객 1은 실제 주문(id10,memo NULL)이 있고 고객 2는 주문이 없다. LEFT JOIN 후 O.memo IS NULL",
+      "stem": "고객 1은 실제 주문(id10,memo NULL)이 있고 고객 2는 주문이 없다. LEFT JOIN 후 O.memo IS NULL로 주문 없는 고객을 찾았다. 나오는 고객과 결함은?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "고객 2만나오므로 항상 정확",
+          "reason": "memo는 실제 주문에서도 NULL가 능하다."
+        },
+        {
+          "id": "c",
+          "text": "고객 1만나온다",
+          "reason": "고객 2의 NULL 확장 memo도 IS NULL이다."
+        },
+        {
+          "id": "d",
+          "text": "아무도나오지 않는다",
+          "reason": "IS NULL은 두 행에서 TRUE다."
+        },
+        {
+          "id": "a",
+          "text": "고객 1,2 모두 나오며 실제 주문의 NULL 메모를 미매칭과 혼동 한다",
+          "reason": "미매칭 검사는 실제 매칭 행의 NULL가 능 열을 사용하면 거짓양성이 생긴다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "미매칭 검사는 실제 매칭 행의 NULL가 능 열을 사용하면 거짓양성이 생긴다.",
+        "prerequisites": [
+          "S10"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "고객 1은실제 memoNULL,고객 2는확장 memoNULL이다."
+          },
+          {
+            "title": "2단계",
+            "text": "둘다필터를통과하므로비NULL 보장 주문 키로 검사해야 한다."
+          }
+        ],
+        "memory": "안티 조인 판별 열에는 실제 행에서 의비NULL 보장이 필요하다.",
+        "relatedNoteId": "note-S11"
+      },
+      "sourceIds": [
+        "oracle19-joins"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "bc9809b4e10a207f8079f992bb7d08c1f235808a3f384695e3ac9a69cd144d00"
+  },
+  {
+    "question": {
+      "id": "mock-2-S11-m2-right-to-left-rewrite",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S11"
+      ],
+      "familyId": "authored-S11-m2-right-to-left-rewrite",
+      "kind": "mock",
+      "title": "A RIGHT OUTER JOIN B ON A.k=B.k를 같은 결과 열 의미로 재작성 하려 한다. 보존 방향을 유지 하는 것은?",
+      "stem": "A RIGHT OUTER JOIN B ON A.k=B.k를 같은 결과 열 의미로 재작성 하려 한다. 보존 방향을 유지 하는 것은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "B INNER JOIN A",
+          "reason": "미매칭 B 보존을 잃는다."
+        },
+        {
+          "id": "d",
+          "text": "A CROSS JOIN B",
+          "reason": "키 조건과 외부 보존 의미가 사라진다."
+        },
+        {
+          "id": "a",
+          "text": "B LEFT OUTER JOIN A에 동일한 키 조건 사용",
+          "reason": "입력 위치를 바꾸면 서 RIGHT를 LEFT로 바꾸면 동일한 B 보존을 유지한다."
+        },
+        {
+          "id": "b",
+          "text": "A LEFT OUTER JOIN B",
+          "reason": "보존 입력을 A로 바꾼다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "입력 위치를 바꾸면 서 RIGHT를 LEFT로 바꾸면 동일한 B 보존을 유지한다.",
+        "prerequisites": [
+          "S10"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "원래 RIGHT가 보존하는 입력은 B다."
+          },
+          {
+            "title": "2단계",
+            "text": "B를 왼쪽으로 옮기고 LEFT를 써 같은 입력을 보존한다."
+          }
+        ],
+        "memory": "조인 방향 재작성은 표 이름의 순서와 보존 대상을 함께 바꾼다.",
+        "relatedNoteId": "note-S11"
+      },
+      "sourceIds": [
+        "oracle19-joins"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "970932b9f1fedc74a0b613cf1221b20fb4b3b2e44314018117ea9e9cb7e84794"
+  },
+  {
+    "question": {
+      "id": "mock-2-S12-m2-scalar-no-group-count",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S12"
+      ],
+      "familyId": "authored-S12-m2-scalar-no-group-count",
+      "kind": "mock",
+      "title": "서브쿼리는 빈 주문 표에서 GROUP BY 없이 COUNT(*)만 반환한다. 스칼라 위치에서 받는 값은?",
+      "stem": "서브쿼리는 빈 주문 표에서 GROUP BY 없이 COUNT(*)만 반환한다. 스칼라 위치에서 받는 값은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "0 한 값",
+          "reason": "빈 원본과 집계 결과 행 수를 구분하면 COUNT0 한 행이다."
+        },
+        {
+          "id": "b",
+          "text": "NULL",
+          "reason": "COUNT의 빈 입력 결과는 0이다."
+        },
+        {
+          "id": "c",
+          "text": "스칼라 0행오류",
+          "reason": "서브쿼리도 집계 결과한 행을 반환 하며 0행은 원래 오류도 아니다."
+        },
+        {
+          "id": "d",
+          "text": "두 행이 상 오류",
+          "reason": "그룹 없는 단일 집계는 한 행이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "빈 원본과 집계 결과 행 수를 구분하면 COUNT0 한 행이다.",
+        "prerequisites": [
+          "S02",
+          "S06",
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "원본 주문 행 수는 0이다."
+          },
+          {
+            "title": "2단계",
+            "text": "COUNT(*) 집계 결과한 행의 값은 0이므로 스칼라 0이된다."
+          }
+        ],
+        "memory": "COUNT 집계 0한 행과 행을 전혀 반환하지 않는 서브쿼리는 다르다.",
+        "relatedNoteId": "note-S12"
+      },
+      "sourceIds": [
+        "oracle19-subqueries",
+        "oracle19-in",
+        "oracle19-exists",
+        "oracle19-comparison"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "bdd9d0b315e4fb8dc86551f2e751b04b5c32c0263ca1492a5d53b94cca836a4f"
+  },
+  {
+    "question": {
+      "id": "mock-2-S12-m2-all-null-veto",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S12"
+      ],
+      "familyId": "authored-S12-m2-all-null-veto",
+      "kind": "mock",
+      "title": "비NULLx=20을값 집합{10,NULL}의 모든 값보다 큰지 >ALL로 비교한다. WHERE에서 통과 하는가?",
+      "stem": "비NULLx=20을값 집합{10,NULL}의 모든 값보다 큰지 >ALL로 비교한다. WHERE에서 통과 하는가?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "통과한다.10보다 크기만 하면 된다",
+          "reason": "ANY와 ALL을 혼동했다."
+        },
+        {
+          "id": "c",
+          "text": "문법 오류로 실패한다",
+          "reason": "NULL을 포함한 비교는 적법한 3값논리다."
+        },
+        {
+          "id": "d",
+          "text": "FALSE이므로 NULL과 무관하다",
+          "reason": "20>10은 TRUE이고 NULL 비교 때문에 UNKNOWN이다."
+        },
+        {
+          "id": "a",
+          "text": "통과하지 않는다. TRUE AND UNKNOWN은 UNKNOWN이다",
+          "reason": "ALL은 모든 비교가 TRUE 여야하는데 NULL 비교가 UNKNOWN이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "ALL은 모든 비교가 TRUE 여야하는데 NULL 비교가 UNKNOWN이다.",
+        "prerequisites": [
+          "S02",
+          "S06",
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "20>10은 TRUE,20>NULL은 UNKNOWN이다."
+          },
+          {
+            "title": "2단계",
+            "text": "AND 결과 UNKNOWN은 WHERE를 통과하지 못 한다."
+          }
+        ],
+        "memory": "ALL의 NULL 영향은 ANY와 다르게나타날수 있다.",
+        "relatedNoteId": "note-S12"
+      },
+      "sourceIds": [
+        "oracle19-subqueries",
+        "oracle19-in",
+        "oracle19-exists",
+        "oracle19-comparison"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "297aeb9ca185e889126bfb38a50209d683f9796524828ebc0c6522688b14f954"
+  },
+  {
+    "question": {
+      "id": "mock-2-S12-m2-uncorrelated-exists-mistake",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S12"
+      ],
+      "familyId": "authored-S12-m2-uncorrelated-exists-mistake",
+      "kind": "mock",
+      "title": "C 고객 1,2가 있고 O에는 고객 1의 주문만 있다. EXISTS 내부에 C와 O를 연결하는 상관 조건이 없고 O의 전체 행 존재만",
+      "stem": "C 고객 1,2가 있고 O에는 고객 1의 주문만 있다. EXISTS 내부에 C와 O를 연결하는 상관 조건이 없고 O의 전체 행 존재만 검사한다. 반환 고객은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "고객 2만",
+          "reason": "주문 없는 고객 판정 조건이 아니다."
+        },
+        {
+          "id": "d",
+          "text": "0행",
+          "reason": "O에는 한 행이 있으므로 EXISTS가 TRUE다."
+        },
+        {
+          "id": "a",
+          "text": "고객 1과 고객 2",
+          "reason": "비상관 EXISTS는 바깥고객과무관하게 O 전체가 비었는지만 판단한다."
+        },
+        {
+          "id": "b",
+          "text": "고객 1만",
+          "reason": "상관 조건이 없어 고객 2도 같은 존재 판정을 받는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "비상관 EXISTS는 바깥고객과무관하게 O 전체가 비었는지만 판단한다.",
+        "prerequisites": [
+          "S02",
+          "S06",
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "O 전체 존재 판정은 TRUE다."
+          },
+          {
+            "title": "2단계",
+            "text": "바깥각 고객에 같은 TRUE가 적용되어 두 행이 남는다."
+          }
+        ],
+        "memory": "EXISTS가 업무 관계를 검사 하려면필요한상관 조건을 명시해야 한다.",
+        "relatedNoteId": "note-S12"
+      },
+      "sourceIds": [
+        "oracle19-subqueries",
+        "oracle19-in",
+        "oracle19-exists",
+        "oracle19-comparison"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "bf8197ee6d7661a172ccbc07f85dcb118ffa1c2c76ce243f8a72243c9610d191"
+  },
+  {
+    "question": {
+      "id": "mock-2-S13-m2-set-arity-error",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S13"
+      ],
+      "familyId": "authored-S13-m2-set-arity-error",
+      "kind": "mock",
+      "title": "왼쪽 SELECT는 id,name 두 열이고 오른쪽 SELECT는 id 한 열이다. UNION ALL로 결합하려는 문장의 판단",
+      "stem": "왼쪽 SELECT는 id,name 두 열이고 오른쪽 SELECT는 id 한 열이다. UNION ALL로 결합하려는 문장의 판단은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "열 개수가 달라 집합 연산이 성립하지 않는다",
+          "reason": "각 행의 대응구조가같아야결합할 수 있다."
+        },
+        {
+          "id": "b",
+          "text": "ALL이므로 열 개수가 달라 도 된다",
+          "reason": "ALL은 중복 보존 옵션이며 열 구조 호환을 없애지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "name을 자동 NULL로 추가한다",
+          "reason": "누락 열을 자동 보충하지 않는다."
+        },
+        {
+          "id": "d",
+          "text": "오른쪽 id를 두 열에 복사 한다",
+          "reason": "값을 임의 복제하지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "각 행의 대응구조가같아야결합할 수 있다.",
+        "prerequisites": [
+          "S02"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "왼쪽열 수 2와 오른쪽 1을 비교한다."
+          },
+          {
+            "title": "2단계",
+            "text": "자료형 검토전에열 개수 조건부터 실패한다."
+          }
+        ],
+        "memory": "UNION ALL에도 열 개수·대응 자료형 호환이 필요하다.",
+        "relatedNoteId": "note-S13"
+      },
+      "sourceIds": [
+        "oracle19-setops"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "57ca04a57880ae4b2e908406cb32013d21193fa816fc320db636bc44dc27184f"
+  },
+  {
+    "question": {
+      "id": "mock-2-S13-m2-set-datatype-groups",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S13"
+      ],
+      "familyId": "authored-S13-m2-set-datatype-groups",
+      "kind": "mock",
+      "title": "Oracle19c에 서 한 SELECT의 대응 열은 NUMBER, 다른 SELECT의 대응 열은 VARCHAR2 문자열 리터럴이",
+      "stem": "Oracle19c에 서 한 SELECT의 대응 열은 NUMBER, 다른 SELECT의 대응 열은 VARCHAR2 문자열 리터럴이다. 명시 변환 없이 집합 연산에서 이를 무조건 호환된다고 해도 되는가?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "문자가 숫자처럼 보이면 항상 자동 호환",
+          "reason": "집합 연산은 자료형 그룹 간 암묵 변환에 제약이 있다."
+        },
+        {
+          "id": "c",
+          "text": "UNION을 쓰면 모두 문자로 자동 변환",
+          "reason": "그렇게일반화할 수 없다."
+        },
+        {
+          "id": "d",
+          "text": "열 별칭을 같게하면해결",
+          "reason": "별칭은 자료형 호환을 바꾸지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "안 된다. 숫자와 문자 자료형 그룹의 호환을 명시 적으로 맞춰야 한다",
+          "reason": "Oracle 집합 연산은 대응 열의 자료형 그룹을 확인하며 명시 변환으로 의도를 표현해야 한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "Oracle 집합 연산은 대응 열의 자료형 그룹을 확인하며 명시 변환으로 의도를 표현해야 한다.",
+        "prerequisites": [
+          "S02"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "대응 위치의 NUMBER와 VARCHAR2를 확인한다."
+          },
+          {
+            "title": "2단계",
+            "text": "값모양이 아니라 자료형을 맞춘후결합 한다."
+          }
+        ],
+        "memory": "집합 연산호환은 표시 문자 모양으로 판단하지 않는다.",
+        "relatedNoteId": "note-S13"
+      },
+      "sourceIds": [
+        "oracle19-setops"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "d5ae6d254edb5c556cfae36c3072524e4f52327b82fe292b217ab4ab48abc9aa"
+  },
+  {
+    "question": {
+      "id": "mock-2-S14-m2-rollup-order-business",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S14"
+      ],
+      "familyId": "authored-S14-m2-rollup-order-business",
+      "kind": "mock",
+      "title": "지역별 소계가 필요하지 만 GROUP BY ROLLUP(store,region)을 사용했다. store가 지역마다 유일한 번호라",
+      "stem": "지역별 소계가 필요하지 만 GROUP BY ROLLUP(store,region)을 사용했다. store가 지역마다 유일한 번호 라는 추가 규칙은 없다. 왜 요구와 다를 수 있는가?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "전체 합계는 어떤 ROLLUP에 도 없다",
+          "reason": "빈 그룹 전체 합계 수준이 있다."
+        },
+        {
+          "id": "a",
+          "text": "중간 소계가 store 별이며 region 단독 소계는 생성하지 않는다",
+          "reason": "ROLLUP(store,region)은(store,region),(store),()다."
+        },
+        {
+          "id": "b",
+          "text": "ROLLUP은 키 순서를 무시한다",
+          "reason": "접두 키 소계를 만들 므로 순서에 영향 받는다."
+        },
+        {
+          "id": "c",
+          "text": "region이 두 번째이므로 region 소계만 생긴다",
+          "reason": "오른쪽 키부터 빠진다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "ROLLUP(store,region)은(store,region),(store),()다.",
+        "prerequisites": [
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "필요한 수준(region)과 실제 수준(store)을 대조한다."
+          },
+          {
+            "title": "2단계",
+            "text": "키 순서 변경이 나 GROUPING SETS로 필요 소계를 명시해야 한다."
+          }
+        ],
+        "memory": "ROLLUP 키 순서는 단순 표시 순서가 아니라 집계 수준 설계다.",
+        "relatedNoteId": "note-S14"
+      },
+      "sourceIds": [
+        "oracle19-select",
+        "oracle19-grouping"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "85a336de88b27724d7621c393e3e61e3d99b3198720c62a4e4f5f77b0ac6fea0"
+  },
+  {
+    "question": {
+      "id": "mock-2-S14-m2-cube-empty-full",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S14"
+      ],
+      "familyId": "authored-S14-m2-cube-empty-full",
+      "kind": "mock",
+      "title": "입력이 완전히 비어 있는 표에서 CUBE(d)의 그룹 결과를 만든다. GROUPING(d)=1인 전체 합계 행의 COUNT(*)",
+      "stem": "입력이 완전히 비어 있는 표에서 CUBE(d)의 그룹 결과를 만든다. GROUPING(d)=1인 전체 합계 행의 COUNT(*) 값은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "0",
+          "reason": "빈그룹()전체 집계는 빈 입력의 COUNT0을 반환한다."
+        },
+        {
+          "id": "b",
+          "text": "NULL",
+          "reason": "COUNT 빈 입력은 0이다."
+        },
+        {
+          "id": "c",
+          "text": "1",
+          "reason": "전체 합계 결과 행 하나 와그 안에서 센 입력 행 수는 다르다."
+        },
+        {
+          "id": "d",
+          "text": "원본 dNULL 행 수에 따라 달라진다",
+          "reason": "입력 전체가 비어 있다는 조건이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "빈그룹()전체 집계는 빈 입력의 COUNT0을 반환한다.",
+        "prerequisites": [
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "CUBE(d)에는(d)와()수준이 있다."
+          },
+          {
+            "title": "2단계",
+            "text": "전체 합계 수준의 입력은 0행이라 COUNT0이다."
+          }
+        ],
+        "memory": "전체 합계 행의 존재와 집계 대상 행 수를 구분한다.",
+        "relatedNoteId": "note-S14"
+      },
+      "sourceIds": [
+        "oracle19-select",
+        "oracle19-grouping"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "faa1268e80ad15b71c0eea457960e4c925602798877f2e7c99cd2fceb9e24b73"
+  },
+  {
+    "question": {
+      "id": "mock-2-S15-m2-rank-added-key-effect",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S15"
+      ],
+      "familyId": "authored-S15-m2-rank-added-key-effect",
+      "kind": "mock",
+      "title": "점수 90인 서로 다른 학생 id1,2가 있다. RANK의 OVER ORDER BY를 score DESC에 서 score DESC,",
+      "stem": "점수 90인 서로 다른 학생 id1,2가 있다. RANK의 OVER ORDER BY를 score DESC에 서 score DESC,id로 바꾸면 어떤 변화가 생기는가?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "둘다 순위 0이된다",
+          "reason": "순위는 1부터다."
+        },
+        {
+          "id": "d",
+          "text": "출력 행이한 개로 줄어든다",
+          "reason": "분석 순위는 행 제거 집계가 아니다."
+        },
+        {
+          "id": "a",
+          "text": "점수 동점이 id로 해소 되어 서로 다른 순위를 받는다",
+          "reason": "점수만 의 동점과 복합 정렬 키의 동점은 다르다."
+        },
+        {
+          "id": "b",
+          "text": "점수가 같으므로 항상 같은 순위",
+          "reason": "RANK는 ORDER BY 키 전체를 비교한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "점수만 의 동점과 복합 정렬 키의 동점은 다르다.",
+        "prerequisites": [
+          "S07",
+          "S09"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "복합 키는(90,1),(90,2)로 서로 다르다."
+          },
+          {
+            "title": "2단계",
+            "text": "따라서 RANK 값이 1,2로갈라진다."
+          }
+        ],
+        "memory": "동점 보존 순위에 고유보조 키를 추가하면 업무 상 동점 의미가 바뀔 수 있다.",
+        "relatedNoteId": "note-S15"
+      },
+      "sourceIds": [
+        "oracle19-analytic",
+        "oracle19-lag",
+        "oracle19-lead",
+        "oracle19-ntile"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "057b0896501fdc25081858e02b5e04151adb4f3131a8517b47514a0dd058332a"
+  },
+  {
+    "question": {
+      "id": "mock-2-S15-m2-row-number-where-scope",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S15"
+      ],
+      "familyId": "authored-S15-m2-row-number-where-scope",
+      "kind": "mock",
+      "title": "같은 SELECT 블록에서 계산한 ROW_NUMBER 별칭 rn을 일반 WHERE rn<=3으로 바로 참조 하려 한다. 일반적 인",
+      "stem": "같은 SELECT 블록에서 계산한 ROW_NUMBER 별칭 rn을 일반 WHERE rn<=3으로 바로 참조 하려 한다. 일반적 인 수정 방향은?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "ROW_NUMBER를 SUM으로 바꾸면 된다",
+          "reason": "요구한 순위 선택이 아니다."
+        },
+        {
+          "id": "a",
+          "text": "분석 계산을 안쪽 쿼리에 두고 바깥 WHERE에 서 rn을 필터한다",
+          "reason": "분석 계산 결과 열을 다음 쿼리 블록의 입력으로 만들어 필터할 수 있다."
+        },
+        {
+          "id": "b",
+          "text": "ORDER BY만 삭제하면 rn을 WHERE에 서 사용 가능",
+          "reason": "별칭 범위·분석 처리 단계 문제가해결되지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "rn을 문자열상수로감싸면동일해진다",
+          "reason": "별칭이 아닌 리터럴을비교하게 된다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "분석 계산 결과 열을 다음 쿼리 블록의 입력으로 만들어 필터할 수 있다.",
+        "prerequisites": [
+          "S07",
+          "S09"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "WHERE에서 아직그 SELECT 분석 별칭을 직접 사용하는 설계 인지 확인한다."
+          },
+          {
+            "title": "2단계",
+            "text": "인라인뷰에서 rn을 출력하고 외부에서 일반 열처럼 비교한다."
+          }
+        ],
+        "memory": "분석 결과로 행을 고르려면 쿼리 블록 경계를 설계한다.",
+        "relatedNoteId": "note-S15"
+      },
+      "sourceIds": [
+        "oracle19-analytic",
+        "oracle19-lag",
+        "oracle19-lead",
+        "oracle19-ntile"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "bba217702068a487234d0d6e757e0f094d33fee5ddc4f93456e1ce458643d7d8"
+  },
+  {
+    "question": {
+      "id": "mock-2-S16-m2-rows-peers-nondeterminism",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S16"
+      ],
+      "familyId": "authored-S16-m2-rows-peers-nondeterminism",
+      "kind": "mock",
+      "title": "id는 고유하지만 분석 ORDER BY에는 중복되는 timestamp만 두었다. ROWS로 현재까지 누 적합을 계산할 때 같은",
+      "stem": "id는 고유하지만 분석 ORDER BY에는 중복되는 timestamp만 두었다. ROWS로 현재까지 누 적합을 계산할 때 같은 timestamp 행별 누적 값의 문제는?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "ROWS가 timestamp 동점 모두 를 항상 동시포함",
+          "reason": "RANGE 동료값 기준과 혼동했다."
+        },
+        {
+          "id": "c",
+          "text": "고유 id가 자동 정렬 키로 추가된다",
+          "reason": "명시하지 않은 보조 키를 보장하지 않는다."
+        },
+        {
+          "id": "d",
+          "text": "SUM은 언제나 각 행원래 값만 낸다",
+          "reason": "누적 프레임을 무시했다."
+        },
+        {
+          "id": "a",
+          "text": "동점 내부 순서가 고정되지 않아 행별 누적 값이 달라질 수 있다",
+          "reason": "ROWS는 물리 행 위치를 사용하므로 동점 순서를 정하지 않으면 행별 창이 다르게 될 수 있다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "ROWS는 물리 행 위치를 사용하므로 동점 순서를 정하지 않으면 행별 창이 다르게 될 수 있다.",
+        "prerequisites": [
+          "S15"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "같은 timestamp 두 행중어느것이 먼저 인지미정이다."
+          },
+          {
+            "title": "2단계",
+            "text": "행별 누적값을안정시키려면 id 같은 보조 키로 전체 순서를 정한다."
+          }
+        ],
+        "memory": "ROWS의 재현성에는 분석 ORDER BY의 동점 처리가 필요하다.",
+        "relatedNoteId": "note-S16"
+      },
+      "sourceIds": [
+        "oracle19-analytic",
+        "oracle19-last-value"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "31fd932485392e5f919b5bdab62feee948e9653eb10e40eda8486ef19eba776b"
+  },
+  {
+    "question": {
+      "id": "mock-2-S16-m2-range-offset-keys",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S16"
+      ],
+      "familyId": "authored-S16-m2-range-offset-keys",
+      "kind": "mock",
+      "title": "숫자 key1,key2 두 열로 분석 정렬하며 RANGE BETWEEN 2 PRECEDING AND CURRENT ROW를 쓰",
+      "stem": "숫자 key1,key2 두 열로 분석 정렬하며 RANGE BETWEEN 2 PRECEDING AND CURRENT ROW를 쓰려 한다. Oracle19c에 서 먼저 확인할 제약은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "ROWS도 항상 한 키만 가능",
+          "reason": "물리행 프레임과 값 오프셋 제약을 혼동했다."
+        },
+        {
+          "id": "d",
+          "text": "정렬 별칭을 바꾸면 제약이 사라진다",
+          "reason": "별칭이 범위 의미를 바꾸지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "값 오프셋 RANGE에서 는 여러 정렬 키 사용이 제한 된다",
+          "reason": "2 PRECEDING 같은 값거리는 단일 정렬 키의 차이를 기준으로 하며 Oracle 문법 제약을 확인해야 한다."
+        },
+        {
+          "id": "b",
+          "text": "모든 RANGE 프레임은 여러 키가 절대 불가능",
+          "reason": "일부특정경계는복수 키를 허용한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "2 PRECEDING 같은 값거리는 단일 정렬 키의 차이를 기준으로 하며 Oracle 문법 제약을 확인해야 한다.",
+        "prerequisites": [
+          "S15"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "프레임이 값 오프셋 RANGE 인지 확인한다."
+          },
+          {
+            "title": "2단계",
+            "text": "복수 키가 허용되는 예외 경계와 현재 경계를 구별한다."
+          }
+        ],
+        "memory": "RANGE의 복수 정렬 키 허용은 프레임 경계 형태에 따라 다르다.",
+        "relatedNoteId": "note-S16"
+      },
+      "sourceIds": [
+        "oracle19-analytic",
+        "oracle19-last-value"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "948514dab3b4f2ff9202982049fbf4ded339b5a347ecd88ea8fbd240ca460cc3"
+  },
+  {
+    "question": {
+      "id": "mock-2-S17-m2-with-ties-needs-order",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S17"
+      ],
+      "familyId": "authored-S17-m2-with-ties-needs-order",
+      "kind": "mock",
+      "title": "FETCH FIRST 3 ROWS WITH TIES로 동점 포함을 요청하면 서 ORDER BY를 생략하려 한다. 문법 설계상 문",
+      "stem": "FETCH FIRST 3 ROWS WITH TIES로 동점 포함을 요청하면 서 ORDER BY를 생략하려 한다. 문법 설계상 문제는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "WITH TIES에는 동점을 정할 ORDER BY가 필요하다",
+          "reason": "동점은 정렬 키에 대한 관계이므로 키가 필요하다."
+        },
+        {
+          "id": "b",
+          "text": "기본키 동점을 자동 사용한다",
+          "reason": "명시하지 않은 정렬 키를 만들 지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "SELECT 첫열 동점을 자동 사용한다",
+          "reason": "그런 암묵 기준이 없다."
+        },
+        {
+          "id": "d",
+          "text": "조건이 없으면 항상 모든 행을 낸다",
+          "reason": "정렬 없는 동점 요구를 그렇게 정의하지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "동점은 정렬 키에 대한 관계이므로 키가 필요하다.",
+        "prerequisites": [
+          "S09",
+          "S15"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "WITH TIES가 마지막 선택 행과 같은 정렬 키를 확장하는 지 확인한다."
+          },
+          {
+            "title": "2단계",
+            "text": "그 비교 기준 ORDER BY를 명시해야 한다."
+          }
+        ],
+        "memory": "동점 확장은 정렬 기준 없이 는 표현 할 수 없다.",
+        "relatedNoteId": "note-S17"
+      },
+      "sourceIds": [
+        "oracle19-select",
+        "oracle19-rownum"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "8f5a17e5da59f962e818a9666deb6521a279e6b87f8caa48fa18c810037ff82d"
+  },
+  {
+    "question": {
+      "id": "mock-2-S17-m2-fetch-zero",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S17"
+      ],
+      "familyId": "authored-S17-m2-fetch-zero",
+      "kind": "mock",
+      "title": "Oracle19c에 서 적법한 정렬 뒤 FETCH FIRST 0 ROWS ONLY를 지정 했다. 입력은 여러 행이다. 결과는?",
+      "stem": "Oracle19c에 서 적법한 정렬 뒤 FETCH FIRST 0 ROWS ONLY를 지정 했다. 입력은 여러 행이다. 결과는?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "첫 행한 개",
+          "reason": "0은 선택 할 행 수가 없다는 뜻이다."
+        },
+        {
+          "id": "c",
+          "text": "모든 행",
+          "reason": "0을제한없음으로해석하지 않는다."
+        },
+        {
+          "id": "d",
+          "text": "NULL 한 행",
+          "reason": "행제한은 NULL 행을 생성하지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "0행",
+          "reason": "요청한 최대행 수가 0이므로 행을 반환하지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "요청한 최대행 수가 0이므로 행을 반환하지 않는다.",
+        "prerequisites": [
+          "S09",
+          "S15"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "입력 행 수와 요청 행 수를 분리 한다."
+          },
+          {
+            "title": "2단계",
+            "text": "선택한 계 0을 적용하면 빈 결과다."
+          }
+        ],
+        "memory": "행제한 0은무제한이 아니라 빈 결과다.",
+        "relatedNoteId": "note-S17"
+      },
+      "sourceIds": [
+        "oracle19-select",
+        "oracle19-rownum"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "ad36cbc4c195af21255027980c070205dfeb758626982e3729eccfeb2021b710"
+  },
+  {
+    "question": {
+      "id": "mock-2-S18-m2-cycle-without-guard",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S18"
+      ],
+      "familyId": "authored-S18-m2-cycle-without-guard",
+      "kind": "mock",
+      "title": "N의 부모 연결이 1→2→1로 순환 한다. 이 경로를 시작점에서 NOCYCLE 없이 계속 확장 하려는 Oracle 계층 질의의 위",
+      "stem": "N의 부모 연결이 1→2→1로 순환 한다. 이 경로를 시작점에서 NOCYCLE 없이 계속 확장 하려는 Oracle 계층 질의의 위험은?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "두 행중하나를 자동 삭제",
+          "reason": "SELECT가 원본을 삭제하지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "순환 관계로 오류가 발생할 수 있다",
+          "reason": "계층 탐색 경로에 이미 존재하는 행으로 돌아가는 순환은 별도 처리가 필요하다."
+        },
+        {
+          "id": "b",
+          "text": "LEVEL이 자동 0으로초기화 되어 정상 완료",
+          "reason": "그런순환 처리 규칙이 아니다."
+        },
+        {
+          "id": "c",
+          "text": "DISTINCT가 탐색전순환을 항상 제거",
+          "reason": "출력 중복 제거는 경로 순환제어대체가 아니다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "계층 탐색 경로에 이미 존재하는 행으로 돌아가는 순환은 별도 처리가 필요하다.",
+        "prerequisites": [
+          "S10"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "1에서 2를따라가고 다시 1을만나는경로를그린다."
+          },
+          {
+            "title": "2단계",
+            "text": "NOCYCLE 등의 명시한 처리 없이 단순 트리라 가정하면 안 된다."
+          }
+        ],
+        "memory": "계층 데이터는 트리라는 가정을 실제 관계 조건으로 확인해야 한다.",
+        "relatedNoteId": "note-S18"
+      },
+      "sourceIds": [
+        "oracle19-hierarchy"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "a39918ca05b967e158bc0c9c3d7afa886f70cb97b47d3301fc3daab63c21b73a"
+  },
+  {
+    "question": {
+      "id": "mock-2-S18-m2-hierarchy-pruning-location",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S18"
+      ],
+      "familyId": "authored-S18-m2-hierarchy-pruning-location",
+      "kind": "mock",
+      "title": "루트 1→중간 2→잎 3 경로에서 중간 2를 통과한 가지 전체를 확장하지 않으려 한다. 단순 WHERE id<>2와 다른 설계가 필요",
+      "stem": "루트 1→중간 2→잎 3 경로에서 중간 2를 통과한 가지 전체를 확장하지 않으려 한다. 단순 WHERE id<>2와 다른 설계가 필요한 이유는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "WHERE의 결과 행 제거만으로 자손 확장 자체를 차단하지 않기 때문이다",
+          "reason": "경로 확장 제한은 CONNECT BY 조건 등의 관계 선택과 구별해 설계한다."
+        },
+        {
+          "id": "b",
+          "text": "WHERE는 어떤 계층 쿼리에도 쓸수 없다",
+          "reason": "사용 가능하지 만 적용 의미가 다르다."
+        },
+        {
+          "id": "c",
+          "text": "START WITH가 항상 모든 행을 루트로 만든다",
+          "reason": "명시 조건으로 루트를 고른다."
+        },
+        {
+          "id": "d",
+          "text": "LEVEL은 원본값이라 조건에 못쓴다",
+          "reason": "LEVEL은 계층의사 열이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "경로 확장 제한은 CONNECT BY 조건 등의 관계 선택과 구별해 설계한다.",
+        "prerequisites": [
+          "S10"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "행 2출력 제거와 2를통한 3도 탐색하지 않음은 다른 요구다."
+          },
+          {
+            "title": "2단계",
+            "text": "연결 확장 단계에서 제외할 조건을 명시해야 한다."
+          }
+        ],
+        "memory": "계층의 출력 필터와 가지치기는같지 않다.",
+        "relatedNoteId": "note-S18"
+      },
+      "sourceIds": [
+        "oracle19-hierarchy"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "b0bf8872388dee371b2dfb6e6bdc488edc9de08f25d5caededc4c6bfbf891c11"
+  },
+  {
+    "question": {
+      "id": "mock-2-S19-m2-unpivot-type-family",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S19"
+      ],
+      "familyId": "authored-S19-m2-unpivot-type-family",
+      "kind": "mock",
+      "title": "q1은 NUMBER, q2는 DATE다. 한 amt 값 열로 UNPIVOT 하려는 설계에서 필요한 검토는?",
+      "stem": "q1은 NUMBER, q2는 DATE다. 한 amt 값 열로 UNPIVOT 하려는 설계에서 필요한 검토는?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "q1,q2 값이 우연히하나씩이면 된다",
+          "reason": "행 수로 자료형 호환을해결하지못 한다."
+        },
+        {
+          "id": "d",
+          "text": "UNPIVOT이 모두 문자로 자동 변환한다",
+          "reason": "무 조건 자동 변환으로 일반 화 하면 안 된다."
+        },
+        {
+          "id": "a",
+          "text": "변환할 값 열의 자료형 그룹 호환",
+          "reason": "한 출력 값 열에 들어갈 여러 입력 열은 호환 자료형 그룹이 어야 한다."
+        },
+        {
+          "id": "b",
+          "text": "열 이름 길이가 같아야 한다",
+          "reason": "이름 길이는 핵심호환 조건이 아니다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "한 출력 값 열에 들어갈 여러 입력 열은 호환 자료형 그룹이 어야 한다.",
+        "prerequisites": [
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "숫자와 날짜를 같은 값 열에 모을 의미를 정한다."
+          },
+          {
+            "title": "2단계",
+            "text": "필요하면 명시 변환 하되 날짜·숫자의 원래 의미 손실을 검토한다."
+          }
+        ],
+        "memory": "형태변환전 출력 값 열의 자료형을 설계한다.",
+        "relatedNoteId": "note-S19"
+      },
+      "sourceIds": [
+        "oracle19-select"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "edeea4cda738f8d9ac96921ad7a6b11156a1f121c748a4811b14c5f247ae28ae"
+  },
+  {
+    "question": {
+      "id": "mock-2-S19-m2-pivot-implicit-count-star",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S19"
+      ],
+      "familyId": "authored-S19-m2-pivot-implicit-count-star",
+      "kind": "mock",
+      "title": "PIVOT(COUNT(*) FOR mon ...) 입력에 mon 이외에 금액 amt까지 남아 있다. 의도는 shop 별 월별 건",
+      "stem": "PIVOT(COUNT(*) FOR mon ...) 입력에 mon 이외에 금액 amt까지 남아 있다. 의도는 shop 별 월별 건수인데 결과가 amt 별로 나뉜다. 원인은?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "amt가 숫자여서 항상 합계가 된다",
+          "reason": "자료형만으로 집계를 지정하지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "COUNT(*)는 amt를 집계 인수 열로 제거하지 않으므로 amt가 암묵 그룹 키로 남는다",
+          "reason": "COUNT(*)의 입력열 사용과 암묵 그룹 규칙을 함께 읽어야 한다."
+        },
+        {
+          "id": "b",
+          "text": "COUNT가 항상 SUM으로 변환된다",
+          "reason": "집계 함수 종류가 자동으로 바뀌지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "PIVOT은 shop 열을 전혀 그룹 화할 수 없다",
+          "reason": "미 참조열이 그룹 키가 된다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "COUNT(*)의 입력열 사용과 암묵 그룹 규칙을 함께 읽어야 한다.",
+        "prerequisites": [
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "FOR 열 mon을 제외한 입력 shop,amt가 남는다."
+          },
+          {
+            "title": "2단계",
+            "text": "원하는 shop 별건수라면입력뷰에불 필요한 amt를 제거한다."
+          }
+        ],
+        "memory": "PIVOT에 들어가는 입력열을 최소한 으로구성 한다.",
+        "relatedNoteId": "note-S19"
+      },
+      "sourceIds": [
+        "oracle19-select"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "6ba63ba6fd9e7d8d08c0804ee56b2c4b494142c5a6b6821150db7d034409860d"
+  },
+  {
+    "question": {
+      "id": "mock-2-S20-m2-regex-question-mark",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S20"
+      ],
+      "familyId": "authored-S20-m2-regex-question-mark",
+      "kind": "mock",
+      "title": "ASCII 패턴 ^colou?r$를 c 옵션으로 적용한다. color,colour,colouur 중 맞는 문자열은?",
+      "stem": "ASCII 패턴 ^colou?r$를 c 옵션으로 적용한다. color,colour,colouur 중 맞는 문자열은?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "colour만",
+          "reason": "?는앞 u의 0회도 허용한다."
+        },
+        {
+          "id": "c",
+          "text": "세 문자열 모두",
+          "reason": "u 두 개는 0회또는 1회 범위를 넘는 다."
+        },
+        {
+          "id": "d",
+          "text": "color와 colouur",
+          "reason": "colouur는 u 반복 2회로 불일치다."
+        },
+        {
+          "id": "a",
+          "text": "color와 colour",
+          "reason": "?는 바로 앞 u의 존재를 0회또는 1회로 선택한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "?는 바로 앞 u의 존재를 0회또는 1회로 선택한다.",
+        "prerequisites": [
+          "S04"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "u 없음 color,u 한 개 colour는 허용한다."
+          },
+          {
+            "title": "2단계",
+            "text": "u 두 개 colouur는 허용하지 않는다."
+          }
+        ],
+        "memory": "반복 기호가 적용되는 바로 앞요소와횟수 범위를 읽는다.",
+        "relatedNoteId": "note-S20"
+      },
+      "sourceIds": [
+        "oracle19-regexp",
+        "oracle19-regexp-substr"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "8ebe4f1f12079b373e4efaae6b742f741c3f96de415509121dcddbd6efd8a2b2"
+  },
+  {
+    "question": {
+      "id": "mock-2-S21-m2-insert-default-null",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S21"
+      ],
+      "familyId": "authored-S21-m2-insert-default-null",
+      "kind": "mock",
+      "title": "T(id PK, v NUMBER DEFAULT 9)이며 v는 NULL 허용이다. 첫 INSERT는 v 열을 생략하고 둘째 INSERT는 v에 명",
+      "stem": "T(id PK, v NUMBER DEFAULT 9)이며 v는 NULL 허용이다. 첫 INSERT는 v 열을 생략하고 둘째 INSERT는 v에 명시 NULL을 넣었다. DEFAULT ON NULL은 없다. 두 v 값은?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "생략행 NULL,명시 NULL 행 9",
+          "reason": "적용 상황을 뒤집었다."
+        },
+        {
+          "id": "a",
+          "text": "생략 행 9, 명시 NULL 행 NULL",
+          "reason": "일반 DEFAULT의 열생략과 명시 NULL 대입은 다르다."
+        },
+        {
+          "id": "b",
+          "text": "두 행모두 9",
+          "reason": "일반 DEFAULT는 명시 NULL을 자동대체하지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "두 행모두 NULL",
+          "reason": "열생략시 기본값 9가 적용된다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "일반 DEFAULT의 열생략과 명시 NULL 대입은 다르다.",
+        "prerequisites": [
+          "S06"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "열을 생략한 행은 정의된 기본값 9를 사용한다."
+          },
+          {
+            "title": "2단계",
+            "text": "NULL을 명시한 행은 NULL 허용이므로 그 값을 저장한다."
+          }
+        ],
+        "memory": "기본값과 NULL 대체기능을 구별한다.",
+        "relatedNoteId": "note-S21"
+      },
+      "sourceIds": [
+        "oracle19-insert",
+        "oracle19-update",
+        "oracle19-delete",
+        "oracle19-merge"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "dbd981f0d6fe02b445e90edcb6366023b3283bc07bb8f8f7e6786b45baa96643"
+  },
+  {
+    "question": {
+      "id": "mock-2-S21-m2-update-target-key-conflict",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S21"
+      ],
+      "familyId": "authored-S21-m2-update-target-key-conflict",
+      "kind": "mock",
+      "title": "T(id PRIMARY KEY)에는 1,2가 있다. 한 UPDATE로 id1을 2로바꾸려 한다. 즉시 검사 제약이며 다른 조건 없다. 결과는?",
+      "stem": "T(id PRIMARY KEY)에는 1,2가 있다. 한 UPDATE로 id1을 2로바꾸려 한다. 즉시 검사 제약이며 다른 조건 없다. 결과는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "기본키 중복으로 그 UPDATE가 실패하고 기존 두 행이 유지 된다",
+          "reason": "변경 후키 2가 중복되어 제약을 만족하지 못 하므로 문장이 취소된다."
+        },
+        {
+          "id": "b",
+          "text": "id2 기존 행을 자동 덮어쓴다",
+          "reason": "UPDATE는 중복 키 충돌을 자동 대체하지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "두 id2행을 허용한다",
+          "reason": "PK 유일성 위반이다."
+        },
+        {
+          "id": "d",
+          "text": "표 전체가 자동 삭제된다",
+          "reason": "제약 위반은 객체 삭제가 아니다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "변경 후키 2가 중복되어 제약을 만족하지 못 하므로 문장이 취소된다.",
+        "prerequisites": [
+          "S06"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "기존 id2행의 존재를 확인한다."
+          },
+          {
+            "title": "2단계",
+            "text": "id1→2변경이 중복을 만들어 해당 문장 전체가 실패한다."
+          }
+        ],
+        "memory": "UPDATE도 변경후 값으로 무결성 제약을 검사한다.",
+        "relatedNoteId": "note-S21"
+      },
+      "sourceIds": [
+        "oracle19-insert",
+        "oracle19-update",
+        "oracle19-delete",
+        "oracle19-merge"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "f087c78c1cbb5ceee44981569672d15fa71246411395354eaa505752a6d4f149"
+  },
+  {
+    "question": {
+      "id": "mock-2-S22-m2-commit-then-savepoint-invalid",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S22"
+      ],
+      "familyId": "authored-S22-m2-commit-then-savepoint-invalid",
+      "kind": "mock",
+      "title": "SAVEPOINT a 이후 UPDATE 하고 COMMIT했다. 바로 ROLLBACK TO a를 시도 했다. 기대할 결과는?",
+      "stem": "SAVEPOINT a 이후 UPDATE 하고 COMMIT했다. 바로 ROLLBACK TO a를 시도 했다. 기대할 결과는?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "새 savepoint를 자동 생성 후 롤백",
+          "reason": "존재하지 않는 지점을 자동 복원하지 않는다."
+        },
+        {
+          "id": "d",
+          "text": "최근 UPDATE가 자동 취소되어 NULL",
+          "reason": "오류와 값 치환을 혼동했다."
+        },
+        {
+          "id": "a",
+          "text": "savepoint가 소멸했으므로 되돌릴 수 없다",
+          "reason": "COMMIT은 현재 트랜잭션의 모든 savepoint를 지운다."
+        },
+        {
+          "id": "b",
+          "text": "COMMIT 전 상태로 정상 복구",
+          "reason": "COMMIT은 트랜잭션과 savepoint 수명을 끝낸다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "COMMIT은 현재 트랜잭션의 모든 savepoint를 지운다.",
+        "prerequisites": [
+          "S21"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "a 생성후 COMMIT이 라는종료 경계를 확인한다."
+          },
+          {
+            "title": "2단계",
+            "text": "다음 명령의 a는 유효하지 않으며 이미 확정한 UPDATE는 남는다."
+          }
+        ],
+        "memory": "COMMIT 후과거 savepoint를 복구수단으로 사용 할 수 없다.",
+        "relatedNoteId": "note-S22"
+      },
+      "sourceIds": [
+        "oracle19-commit",
+        "oracle19-rollback",
+        "oracle19-savepoint"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "9cf4508553ce9a09f18c08865ce01591bf28c39e4d24b1fb7928e707e4fff4ed"
+  },
+  {
+    "question": {
+      "id": "mock-2-S23-m2-check-multiple-null",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S23"
+      ],
+      "familyId": "authored-S23-m2-check-multiple-null",
+      "kind": "mock",
+      "title": "T의 CHECK(a<b)만 으로 반드시 a와 b가 둘다 존재하고 a가 작다는 업무 규칙을 보장 하려 한다. 추가로 필요한 것은?",
+      "stem": "T의 CHECK(a<b)만 으로 반드시 a와 b가 둘다 존재하고 a가 작다는 업무 규칙을 보장 하려 한다. 추가로 필요한 것은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "a와 b 각각의 NOT NULL 제약",
+          "reason": "CHECK는 UNKNOWN을 거부하지 않아 양쪽 필수 입력은 별도로 요구해야 한다."
+        },
+        {
+          "id": "b",
+          "text": "ORDER BY a,b",
+          "reason": "표시 순서는 입력 무결성을 강제하지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "CHECK만 으로 이미 둘다 필수",
+          "reason": "한쪽 NULL이면 UNKNOWN으로 통과할 수 있다."
+        },
+        {
+          "id": "d",
+          "text": "두 열의 이름을 같게만들기",
+          "reason": "열 이름은 필수 입력 규칙이 아니다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "CHECK는 UNKNOWN을 거부하지 않아 양쪽 필수 입력은 별도로 요구해야 한다.",
+        "prerequisites": [
+          "S01"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "a 나 b가 NULL이면 비교는 UNKNOWN이다."
+          },
+          {
+            "title": "2단계",
+            "text": "두 열 NOT NULL과 CHECK를 함께두어 존재와 순서 규칙을 나눈다."
+          }
+        ],
+        "memory": "논리 비교 CHECK는 NOT NULL의 대체가 아니다.",
+        "relatedNoteId": "note-S23"
+      },
+      "sourceIds": [
+        "oracle19-create-table",
+        "oracle19-alter-table",
+        "oracle19-truncate",
+        "oracle19-drop-table"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "1d775d669656801fa923918c2f582df8fd7990fe1d888d48f19c66c5c5236b7e"
+  },
+  {
+    "question": {
+      "id": "mock-2-S24-m2-role-grant-object-option",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S24"
+      ],
+      "familyId": "authored-S24-m2-role-grant-object-option",
+      "kind": "mock",
+      "title": "관리 자는 여러 객체 권한을 역할 R에 묶어 B에게 전달하려 한다. 역할의 목적에 가장 맞는 설명은?",
+      "stem": "관리 자는 여러 객체 권한을 역할 R에 묶어 B에게 전달하려 한다. 역할의 목적에 가장 맞는 설명은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "역할을 받으면 모든 시스템 권한을 얻는다",
+          "reason": "역할에 실제로 포함된 권한 범위다."
+        },
+        {
+          "id": "d",
+          "text": "역할은 로그인암호를대신 한다",
+          "reason": "권한 묶음과인증수단을 혼동했다."
+        },
+        {
+          "id": "a",
+          "text": "권한을 묶어 사용 자에게 관리 하기 쉽게 부여한다",
+          "reason": "역할은 허용 작업 들의 묶음이며 그 실제 내용과 활성 조건을 확인해야 한다."
+        },
+        {
+          "id": "b",
+          "text": "역할은 항상 표 데이터를 복사 한다",
+          "reason": "권한 관리 객체이 지데이터복사본이 아니다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "역할은 허용 작업 들의 묶음이며 그 실제 내용과 활성 조건을 확인해야 한다.",
+        "prerequisites": [
+          "S23"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "R에 들어있는 객체·권한 목록을 확인한다."
+          },
+          {
+            "title": "2단계",
+            "text": "R 부여로 사용 자 관리의 반복을 줄이되범위를확대해 가정하지 않는다."
+          }
+        ],
+        "memory": "역할의 이름보다 실제 포함 권한과 활성 상태를 확인한다.",
+        "relatedNoteId": "note-S24"
+      },
+      "sourceIds": [
+        "oracle19-grant",
+        "oracle19-revoke"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-2"
+    },
+    "sourceQuestionSha256": "a1263c189561cec74fd99a874a6cc7f430fcd4f5661062f00abcf811015d990a"
+  },
+  {
+    "question": {
+      "id": "mock-3-S09-m3-case-null-order-equivalent",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S09"
+      ],
+      "familyId": "authored-S09-m3-case-null-order-equivalent",
+      "kind": "mock",
+      "title": "정렬값 x는 NUMBER다. x ASC NULLS FIRST와 같은 NULL 우선 규칙을 CASE로 표현 하려 한다. 올바른 정",
+      "stem": "정렬값 x는 NUMBER다. x ASC NULLS FIRST와 같은 NULL 우선 규칙을 CASE로 표현 하려 한다. 올바른 정렬 키 조합은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "CASE WHEN x IS NULL THEN 0 ELSE 1 END ASC, x ASC",
+          "reason": "NULL 그룹을 작은 우선 값 0으로주고 나머지 숫자는 원래 ASC로 정렬한다."
+        },
+        {
+          "id": "b",
+          "text": "CASE WHEN x IS NULL THEN 1 ELSE 0 END ASC,x ASC",
+          "reason": "NULL이 마지막으로 간다."
+        },
+        {
+          "id": "c",
+          "text": "CASE WHEN x IS NULL THEN 0 ELSE 1 END ASC,x DESC",
+          "reason": "NULL 위치는 같지만비NULL 방향이 반대다."
+        },
+        {
+          "id": "d",
+          "text": "x ASC만 사용",
+          "reason": "Oracle 기본 ASC는 NULLS LAST다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "NULL 그룹을 작은 우선 값 0으로주고 나머지 숫자는 원래 ASC로 정렬한다.",
+        "prerequisites": [
+          "S02"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "첫 CASE 키가 NULL·비NULL을 분리 한다."
+          },
+          {
+            "title": "2단계",
+            "text": "둘째 키가 비NULL 값의 오름차순을 결정한다."
+          }
+        ],
+        "memory": "NULL 우선순위와 값 방향을 각각 표현하면 정렬 의미를 분해할 수 있다.",
+        "relatedNoteId": "note-S09"
+      },
+      "sourceIds": [
+        "oracle19-select"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "d5910cce006a97b3b1795e1d23b9dc8851c44e2b776796174d4b26f72a156310"
+  },
+  {
+    "question": {
+      "id": "mock-3-S10-m3-join-exists-equivalence-condition",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S10"
+      ],
+      "familyId": "authored-S10-m3-join-exists-equivalence-condition",
+      "kind": "mock",
+      "title": "C의 각 행을 O와 내부 조인한 뒤 C 열만 반환하는 결과와 C에 서 O의 존재만 검사한 결과가 같은 중복 개수를 가지려면 중요한",
+      "stem": "C의 각 행을 O와 내부 조인한 뒤 C 열만 반환하는 결과와 C에 서 O의 존재만 검사한 결과가 같은 중복 개수를 가지려면 중요한 조건은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "C에 NULL 열이 전혀 없어 야 한다",
+          "reason": "일반 출력 NULL은 매칭 개수 조건의 핵심이 아니다."
+        },
+        {
+          "id": "d",
+          "text": "두 표의 전체 행 수가 같아야 한다",
+          "reason": "전체 행 수같음은각 행 매칭 수를 보장하지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "각 C 행에 대해 O의 매칭 행이 최대 한 개여야 한다",
+          "reason": "EXISTS는 바깥 행을 증식 시키지않으므로 JOIN과 맞추려면 매칭 다중성을제한 해야 한다."
+        },
+        {
+          "id": "b",
+          "text": "O에 같은 고객 주문이 여러 개 있어 야 한다",
+          "reason": "내부 조인만 중복 C 행을 만들어 차이가 난다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "EXISTS는 바깥 행을 증식 시키지않으므로 JOIN과 맞추려면 매칭 다중성을제한 해야 한다.",
+        "prerequisites": [
+          "S02",
+          "S06"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "한 C 행에 O가 두 개 매칭되면 JOIN은 두 행,EXISTS는 한 행이다."
+          },
+          {
+            "title": "2단계",
+            "text": "매칭 0또는 1이면둘의 C 행 중복 개수가 같아진다."
+          }
+        ],
+        "memory": "JOIN과 EXISTS의 동등성에는 매칭 다중성 조건이 필요하다.",
+        "relatedNoteId": "note-S10"
+      },
+      "sourceIds": [
+        "oracle19-joins"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "2d36084ad5511613a865c862c3dbc345d5d54fd8f5277d4498619a9bc7f36d2a"
+  },
+  {
+    "question": {
+      "id": "mock-3-S10-m3-band-gaps-no-match",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S10"
+      ],
+      "familyId": "authored-S10-m3-band-gaps-no-match",
+      "kind": "mock",
+      "title": "등급 구간은[0,10],[20,30] 두 개이며 양끝을 포함한다. 급여 15인 직원 한 행을 범위 INNER JOIN 한 결과는?",
+      "stem": "등급 구간은[0,10],[20,30] 두 개이며 양끝을 포함한다. 급여 15인 직원 한 행을 범위 INNER JOIN 한 결과는?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "NULL 등급한 행보존",
+          "reason": "INNER JOIN에는 미매칭 보존이 없다."
+        },
+        {
+          "id": "a",
+          "text": "매칭이 없어 0행",
+          "reason": "범위 조건을 직접 만족 하는 구간이 없으며 중간 공백을 자동 보정하지 않는다."
+        },
+        {
+          "id": "b",
+          "text": "가까운첫등급으로 자동 매칭",
+          "reason": "가장가까운 구간 선택은 정의하지 않았다."
+        },
+        {
+          "id": "c",
+          "text": "둘째 등급으로 자동 매칭",
+          "reason": "15는하한 20미만이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "범위 조건을 직접 만족 하는 구간이 없으며 중간 공백을 자동 보정하지 않는다.",
+        "prerequisites": [
+          "S02",
+          "S06"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "15는 0~10에도 20~30에도속하지 않는다."
+          },
+          {
+            "title": "2단계",
+            "text": "TRUE 행 쌍이 없어 내부 조인 결과는 비었다."
+          }
+        ],
+        "memory": "등급구간의겹침뿐 아니라 공백도 조인 결과에 영향을 준다.",
+        "relatedNoteId": "note-S10"
+      },
+      "sourceIds": [
+        "oracle19-joins"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "a9bcdf131d247fc9520776f15845a6db6690c8c1084503ba0c1375151463fb7d"
+  },
+  {
+    "question": {
+      "id": "mock-3-S11-m3-filtered-count-preserve",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S11"
+      ],
+      "familyId": "authored-S11-m3-filtered-count-preserve",
+      "kind": "mock",
+      "title": "모든 고객을 남기면서 유료주문 건수만 세려 한다. LEFT JOIN으로 전체 주문을 붙인 뒤 조건부 COUNT를 쓰는 설계에서",
+      "stem": "모든 고객을 남기면서 유료주문 건수만 세려 한다. LEFT JOIN으로 전체 주문을 붙인 뒤 조건부 COUNT를 쓰는 설계에서 적절한 집계 대상은?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "CASE WHEN paid=1 THEN 1 ELSE 0 END",
+          "reason": "COUNT는 숫자 0도세므로 비유료까지 포함한다."
+        },
+        {
+          "id": "c",
+          "text": "COUNT(*)만 사용",
+          "reason": "미매칭 확장행과 비유료 행까지 센다."
+        },
+        {
+          "id": "d",
+          "text": "고객 키만 COUNT",
+          "reason": "고객 키는 유료 여부와 관계 없이 비NULL이다."
+        },
+        {
+          "id": "a",
+          "text": "CASE WHEN paid=1 THEN 주문의 비NULL 키 END",
+          "reason": "COUNT는 비NULL을 세므로 해당 조건 밖의 행은 NULL로 만들어야 한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "COUNT는 비NULL을 세므로 해당 조건 밖의 행은 NULL로 만들어야 한다.",
+        "prerequisites": [
+          "S10"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "유료 매칭 행에는 비NULL 키를 반환한다."
+          },
+          {
+            "title": "2단계",
+            "text": "비유료·미매칭 행에는 NULL이 되어 COUNT에서 제외 된다."
+          }
+        ],
+        "memory": "조건부 COUNT의 ELSE0은 0도세어진다는 점을 확인한다.",
+        "relatedNoteId": "note-S11"
+      },
+      "sourceIds": [
+        "oracle19-joins"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "e3ec31f0d34c141af1c104f7df71d102f708224d35cf0b54b73e5a23180ba01c"
+  },
+  {
+    "question": {
+      "id": "mock-3-S11-m3-outer-swapped-column-null",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "C",
+      "objectiveIds": [
+        "S11"
+      ],
+      "familyId": "authored-S11-m3-outer-swapped-column-null",
+      "kind": "mock",
+      "title": "A LEFT JOIN B에 서 B에 매칭이 없는 A 행은 B 열이 NULL이다. 표 위치만 B LEFT JOIN A로 바꾸고 나머지",
+      "stem": "A LEFT JOIN B에 서 B에 매칭이 없는 A 행은 B 열이 NULL이다. 표 위치만 B LEFT JOIN A로 바꾸고 나머지를 같은 뜻이라 설명하면 왜 틀릴 수 있는가?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "NULL은 항상 A 열에 만 생긴다",
+          "reason": "보존 방향과 미매칭 여부에 따라 다르다."
+        },
+        {
+          "id": "d",
+          "text": "INNER JOIN으로 자동 변환된다",
+          "reason": "문법 변경 그자체의 결과가 아니다."
+        },
+        {
+          "id": "a",
+          "text": "보존되는 입력이 A에 서 B로 바뀐다",
+          "reason": "LEFT 라는단어는구체적인 왼쪽 입력을 보존한다."
+        },
+        {
+          "id": "b",
+          "text": "LEFT JOIN은 표 순서와 항상 무관하다",
+          "reason": "방향 성있는외부 조인이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "LEFT 라는단어는구체적인 왼쪽 입력을 보존한다.",
+        "prerequisites": [
+          "S10"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "원문 왼쪽은 A,재작성 왼쪽은 B다."
+          },
+          {
+            "title": "2단계",
+            "text": "미매칭 A와 미매칭 B의 보존이바뀌므로 일반적으로 동등하지 않다."
+          }
+        ],
+        "memory": "외부 조인은 교환할때 보존 방향도 함께 조정 해야 한다.",
+        "relatedNoteId": "note-S11"
+      },
+      "sourceIds": [
+        "oracle19-joins"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "5b0e1ee79d438a66c80ca8fe12993195e791172d60c449982277104de1b33b95"
+  },
+  {
+    "question": {
+      "id": "mock-3-S12-m3-in-duplicates-no-extra",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S12"
+      ],
+      "familyId": "authored-S12-m3-in-duplicates-no-extra",
+      "kind": "mock",
+      "title": "A(x)에 1,2가 있고 B(v)에 2,2,2가 있다. A에 서 x IN(B의 v)로 고른 결과의 x2는 몇 번 나오는 가?",
+      "stem": "A(x)에 1,2가 있고 B(v)에 2,2,2가 있다. A에 서 x IN(B의 v)로 고른 결과의 x2는 몇 번 나오는 가?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "한 번",
+          "reason": "IN의 목록 중복은 참거짓 소속 판정을 증식 시키지 않는다."
+        },
+        {
+          "id": "b",
+          "text": "세 번",
+          "reason": "IN은 소속 조건이며 매칭 행만큼 바깥을증식시키지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "0번",
+          "reason": "2는목록에 존재한다."
+        },
+        {
+          "id": "d",
+          "text": "두 번",
+          "reason": "A에 x2행은한 개다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "IN의 목록 중복은 참거짓 소속 판정을 증식 시키지 않는다.",
+        "prerequisites": [
+          "S02",
+          "S06",
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "x1은 소속 FALSE,x2는 TRUE다."
+          },
+          {
+            "title": "2단계",
+            "text": "바깥 A의 x2 한 행만 남는다."
+          }
+        ],
+        "memory": "IN의 비교목록 중복과 바깥 원본 중복은 별 개다.",
+        "relatedNoteId": "note-S12"
+      },
+      "sourceIds": [
+        "oracle19-subqueries",
+        "oracle19-in",
+        "oracle19-exists",
+        "oracle19-comparison"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "21804b56193b6403625b9c49c0ff49e1603575a13a8f67dd1600154aa9965253"
+  },
+  {
+    "question": {
+      "id": "mock-3-S12-m3-correlated-min-ties",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S12"
+      ],
+      "familyId": "authored-S12-m3-correlated-min-ties",
+      "kind": "mock",
+      "title": "E(id,d,sal)는(1,7,10),(2,7,10),(3,7,20)이다. 부서별 MIN(sal)와 같은 급여인 모든 행을 상",
+      "stem": "E(id,d,sal)는(1,7,10),(2,7,10),(3,7,20)이다. 부서별 MIN(sal)와 같은 급여인 모든 행을 상관 서브쿼리로 선택하면?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "id1만",
+          "reason": "최소 급여 동점 행도 모두 같음 조건을 만족한다."
+        },
+        {
+          "id": "c",
+          "text": "id3만",
+          "reason": "MAX 조건이 아니다."
+        },
+        {
+          "id": "d",
+          "text": "스칼라 오류",
+          "reason": "상관 MIN 집계는 부서마다 단일값 10을 반환한다."
+        },
+        {
+          "id": "a",
+          "text": "id1과 id2",
+          "reason": "서브쿼리의 최솟값 한 개와 그 값을 가진 바깥 행 여러 개를 구별한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "서브쿼리의 최솟값 한 개와 그 값을 가진 바깥 행 여러 개를 구별한다.",
+        "prerequisites": [
+          "S02",
+          "S06",
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "부서 7의 MIN은 10이다."
+          },
+          {
+            "title": "2단계",
+            "text": "바깥 id1,2의 sal이 10과같으므로 둘다 남는다."
+          }
+        ],
+        "memory": "단일 스칼라 값이 바깥행하나만 선택 한다는 뜻은 아니다.",
+        "relatedNoteId": "note-S12"
+      },
+      "sourceIds": [
+        "oracle19-subqueries",
+        "oracle19-in",
+        "oracle19-exists",
+        "oracle19-comparison"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "cde392b7b1ae8a1c3a87cebb9953739bd4a60573d7b1439c13b69cf41e6e560b"
+  },
+  {
+    "question": {
+      "id": "mock-3-S12-m3-exists-null-only-rewrite",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S12"
+      ],
+      "familyId": "authored-S12-m3-exists-null-only-rewrite",
+      "kind": "mock",
+      "title": "B(v)에는 NULL만 있다. 비상관 EXISTS로 B 행 존재를 묻는 것과 숫자 1 IN(B의 v)를 묻는것의 판정은?",
+      "stem": "B(v)에는 NULL만 있다. 비상관 EXISTS로 B 행 존재를 묻는 것과 숫자 1 IN(B의 v)를 묻는것의 판정은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "둘다 FALSE",
+          "reason": "NULL 값이어도 B 행은 존재한다."
+        },
+        {
+          "id": "d",
+          "text": "EXISTS는 UNKNOWN,IN은 FALSE",
+          "reason": "존재 판정과 NULL 동등 비교를 뒤집었다."
+        },
+        {
+          "id": "a",
+          "text": "EXISTS는 TRUE, IN은 UNKNOWN",
+          "reason": "행의 존재와 값의 소속은 NULL에서 다른논리질문이다."
+        },
+        {
+          "id": "b",
+          "text": "둘다 TRUE",
+          "reason": "1=NULL은 TRUE가 아니다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "행의 존재와 값의 소속은 NULL에서 다른논리질문이다.",
+        "prerequisites": [
+          "S02",
+          "S06",
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "B는 한 행이므로 EXISTS는 TRUE다."
+          },
+          {
+            "title": "2단계",
+            "text": "1 IN(NULL)은 1=NULL 비교로 UNKNOWN이다."
+          }
+        ],
+        "memory": "EXISTS와 IN을 치환하려면검사하려는 의미와 NULL 조건을 확인한다.",
+        "relatedNoteId": "note-S12"
+      },
+      "sourceIds": [
+        "oracle19-subqueries",
+        "oracle19-in",
+        "oracle19-exists",
+        "oracle19-comparison"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "d555c23b11fe8bafa0bb6628bc96fd9c151d4eb0e5dcba06bafd7cb71a3a8a06"
+  },
+  {
+    "question": {
+      "id": "mock-3-S13-m3-intersection-symmetry",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S13"
+      ],
+      "familyId": "authored-S13-m3-intersection-symmetry",
+      "kind": "mock",
+      "title": "같은 호환 열 구조의 결과 A,B에 대해 A INTERSECT B와 B INTERSECT A를 정렬 없는 중복 제거 집합으로",
+      "stem": "같은 호환 열 구조의 결과 A,B에 대해 A INTERSECT B와 B INTERSECT A를 정렬 없는 중복 제거 집합으로 비교하면?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "같은 행 집합이다",
+          "reason": "공통 행이라는 조건은 양쪽 입력의 위치를 바꾸어 도 동일하다."
+        },
+        {
+          "id": "b",
+          "text": "항상 반대부호가 된다",
+          "reason": "집합 행에 숫자 부호변환을하지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "A가 더많은행이면첫 식만 중복 유지",
+          "reason": "INTERSECT는 방향에 관계 없이 중복 제거한다."
+        },
+        {
+          "id": "d",
+          "text": "NULL이 있으면 반드시 다르다",
+          "reason": "양쪽 공통 NULL 행의 집합 취급은 대칭이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "공통 행이라는 조건은 양쪽 입력의 위치를 바꾸어 도 동일하다.",
+        "prerequisites": [
+          "S02"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "양쪽 모두 에 존재하는 행만 선택한다."
+          },
+          {
+            "title": "2단계",
+            "text": "A에 도 있고 B에도 있음은 B에 도 있고 A에도 있음과 같다."
+          }
+        ],
+        "memory": "INTERSECT의 대칭성과 MINUS의 방향성을 구분한다.",
+        "relatedNoteId": "note-S13"
+      },
+      "sourceIds": [
+        "oracle19-setops"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "42107cd6c2e0a587990bb09b174a6b26dabaae0d8095e0cabb49d8ccf4789631"
+  },
+  {
+    "question": {
+      "id": "mock-3-S13-m3-difference-reconstruct-union",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S13"
+      ],
+      "familyId": "authored-S13-m3-difference-reconstruct-union",
+      "kind": "mock",
+      "title": "A에 1,1,2, B에 2,3이 있다. (A MINUS B) UNION (A INTERSECT B)의 결과는?",
+      "stem": "A에 1,1,2, B에 2,3이 있다. (A MINUS B) UNION (A INTERSECT B)의 결과는?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "1,1,2 세 행",
+          "reason": "중복 제거 집합 연산들의 조합이다."
+        },
+        {
+          "id": "c",
+          "text": "1,2,3 각한 행",
+          "reason": "B에 만있는 3은어느 부분에도 포함되지 않는다."
+        },
+        {
+          "id": "d",
+          "text": "2만한 행",
+          "reason": "차집합 부분의 1도합쳐진다."
+        },
+        {
+          "id": "a",
+          "text": "1,2 각 한 행",
+          "reason": "A를 B와 공통인 부분과 아닌 부분으로 나눴다 다시 합치면 A의 서로 다른 행 집합이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "A를 B와 공통인 부분과 아닌 부분으로 나눴다 다시 합치면 A의 서로 다른 행 집합이다.",
+        "prerequisites": [
+          "S02"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "A MINUS B는 1,교집합은 2다."
+          },
+          {
+            "title": "2단계",
+            "text": "두부분 UNION은 1,2로 A의 중복 제거 결과와 같다."
+          }
+        ],
+        "memory": "집합 분해·재결합은 중복 보존까지 복구하지 는 않는다.",
+        "relatedNoteId": "note-S13"
+      },
+      "sourceIds": [
+        "oracle19-setops"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "322cb4e260399bf4ff5a692b6719036d3c0c59b46cc38a2a2d236612b7903516"
+  },
+  {
+    "question": {
+      "id": "mock-3-S14-m3-summing-rollup-double",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S14"
+      ],
+      "familyId": "authored-S14-m3-summing-rollup-double",
+      "kind": "mock",
+      "title": "d1의 원본 금액 10,20을 ROLLUP(d)로 집계하면 상세 소계 30과전체 합계 30이 있다. 이두 집계 결과의 SUM을 다시 구해 원본총액이라고 하면?",
+      "stem": "d1의 원본 금액 10,20을 ROLLUP(d)로 집계하면 상세 소계 30과전체 합계 30이 있다. 이두 집계 결과의 SUM을 다시 구해 원본총액이라고 하면?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "NULL이 된다",
+          "reason": "두 집계값 모두 30으로비NULL이다."
+        },
+        {
+          "id": "a",
+          "text": "60으로 이중 계산되어 원본 총액 30과 다르다",
+          "reason": "여러 집계 수준은 같은 원본 행을 반복 포함 하므로 모두 더하면 중복 계산된다."
+        },
+        {
+          "id": "b",
+          "text": "항상 30이므로 올바르다",
+          "reason": "서로 겹치는 집계 수준을 모두 더했다."
+        },
+        {
+          "id": "c",
+          "text": "0이된다",
+          "reason": "합계 행을 자동 제외하지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "여러 집계 수준은 같은 원본 행을 반복 포함 하므로 모두 더하면 중복 계산된다.",
+        "prerequisites": [
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "부서 소계 30과전체 합계 30이 동일 원본을 포함한다."
+          },
+          {
+            "title": "2단계",
+            "text": "결과 행 SUM은 30+30=60이므로 한 수준만 선택해야 한다."
+          }
+        ],
+        "memory": "소계와 총계를 다시 모두 더하면 같은 원본을 중복 계산할 수 있다.",
+        "relatedNoteId": "note-S14"
+      },
+      "sourceIds": [
+        "oracle19-select",
+        "oracle19-grouping"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "76f3d665bb013eef4bf93f71822b5d56c23933147e1dbe10447053eaa192ff2a"
+  },
+  {
+    "question": {
+      "id": "mock-3-S14-m3-grouping-null-count-fields",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S14"
+      ],
+      "familyId": "authored-S14-m3-grouping-null-count-fields",
+      "kind": "mock",
+      "title": "NULL 부서에 금액 NULL 한 행이 있다. ROLLUP(d)의 실제 NULL 그룹에서 COUNT(*)와 COUNT(amount),GROUPIN",
+      "stem": "NULL 부서에 금액 NULL 한 행이 있다. ROLLUP(d)의 실제 NULL 그룹에서 COUNT(*)와 COUNT(amount),GROUPING(d)는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "(1,0,0)",
+          "reason": "원본 NULL 그룹의 존재와 금액 NULL,그룹 수준 표시를 각각 판단한다."
+        },
+        {
+          "id": "b",
+          "text": "(0,0,1)",
+          "reason": "실제 원본 그룹한 행이며 집계 생성 NULL이 아니다."
+        },
+        {
+          "id": "c",
+          "text": "(1,1,0)",
+          "reason": "금액 NULL은 COUNT(amount)에서 제외 된다."
+        },
+        {
+          "id": "d",
+          "text": "(1,0,1)",
+          "reason": "GROUPING1은 전체 합계 수준이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "원본 NULL 그룹의 존재와 금액 NULL,그룹 수준 표시를 각각 판단한다.",
+        "prerequisites": [
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "실제 dNULL 행 하나 가 그룹을 만들어 COUNT(*)1이다."
+          },
+          {
+            "title": "2단계",
+            "text": "amount는 NULL로 COUNT0이며 d는 그룹 키로 남아 GROUPING0이다."
+          }
+        ],
+        "memory": "NULL의 열별 역할과 소계 용 NULL 표시를 함께 구분한다.",
+        "relatedNoteId": "note-S14"
+      },
+      "sourceIds": [
+        "oracle19-select",
+        "oracle19-grouping"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "ea2503570a038d0a47eca030aee7b199381f5cd4c92d4ef9cf5b76cb507c9da5"
+  },
+  {
+    "question": {
+      "id": "mock-3-S15-m3-ntile-more-buckets",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S15"
+      ],
+      "familyId": "authored-S15-m3-ntile-more-buckets",
+      "kind": "mock",
+      "title": "행이 3개이고 고유 id 순으로 NTILE(5)를 계산한다. 실제 반환 버킷 번호는?",
+      "stem": "행이 3개이고 고유 id 순으로 NTILE(5)를 계산한다. 실제 반환 버킷 번호는?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "1,1,1",
+          "reason": "버킷 수 5는최대한나누는 요청이다."
+        },
+        {
+          "id": "d",
+          "text": "1,2,3,4,5다섯행",
+          "reason": "분석 함수는 없는 원본 행을 생성하지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "1,2,3",
+          "reason": "버킷 수가 행 수보다 크면 실제 행에는 앞 번호 버킷이 하나씩 배정 된다."
+        },
+        {
+          "id": "b",
+          "text": "1,3,5",
+          "reason": "빈 버킷을 중간에 교대로끼우지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "버킷 수가 행 수보다 크면 실제 행에는 앞 번호 버킷이 하나씩 배정 된다.",
+        "prerequisites": [
+          "S07",
+          "S09"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "세 행을 첫세 버킷에 한 개씩배분 한다."
+          },
+          {
+            "title": "2단계",
+            "text": "남은 버킷은 행을 생성하지 않아 표시되지 않는다."
+          }
+        ],
+        "memory": "NTILE은 행 수보다 많은 출력 행을 만들 지 않는다.",
+        "relatedNoteId": "note-S15"
+      },
+      "sourceIds": [
+        "oracle19-analytic",
+        "oracle19-lag",
+        "oracle19-lead",
+        "oracle19-ntile"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "bdf16d16ff9455e959b14b0ebaf78f253a7b006db84c2a9edae564cf361cfaa6"
+  },
+  {
+    "question": {
+      "id": "mock-3-S15-m3-null-partition-count",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S15"
+      ],
+      "familyId": "authored-S15-m3-null-partition-count",
+      "kind": "mock",
+      "title": "d가 NULL 인행두 개와 d1행한 개가 있다. COUNT(*) OVER(PARTITION BY d)를 계산 할 때 NULL 행에 붙는 값은?",
+      "stem": "d가 NULL 인행두 개와 d1행한 개가 있다. COUNT(*) OVER(PARTITION BY d)를 계산 할 때 NULL 행에 붙는 값은?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "모든 행에 3",
+          "reason": "PARTITION BY를 무시했다."
+        },
+        {
+          "id": "a",
+          "text": "각 NULL 행에 2",
+          "reason": "NULL 파티션은 두 행으로 구성 되어 각 행에 같은 개수 2가붙는다."
+        },
+        {
+          "id": "b",
+          "text": "각 NULL 행에 1",
+          "reason": "분석 PARTITION에 서 NULL 값들은 같은 그룹으로 묶인다."
+        },
+        {
+          "id": "c",
+          "text": "각 NULL 행에 0",
+          "reason": "COUNT(*)는 NULL 키 행도 센다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "NULL 파티션은 두 행으로 구성 되어 각 행에 같은 개수 2가붙는다.",
+        "prerequisites": [
+          "S07",
+          "S09"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "d1 파티션과 dNULL 파티션을 나눈다."
+          },
+          {
+            "title": "2단계",
+            "text": "NULL 파티션의 행 두 개를 COUNT(*)로 센다."
+          }
+        ],
+        "memory": "그룹·파티션의 NULL 묶음과 WHERE 등호 UNKNOWN을 혼동하지 않는다.",
+        "relatedNoteId": "note-S15"
+      },
+      "sourceIds": [
+        "oracle19-analytic",
+        "oracle19-lag",
+        "oracle19-lead",
+        "oracle19-ntile"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "285d2aa22fa65284688c5a288652fa9bc594e561b2343f403ec55b36e71356b9"
+  },
+  {
+    "question": {
+      "id": "mock-3-S16-m3-range-current-peers-only",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S16"
+      ],
+      "familyId": "authored-S16-m3-range-current-peers-only",
+      "kind": "mock",
+      "title": "k,v 행이(1,5),(1,7),(2,10)이다. RANGE BETWEEN CURRENT ROW AND CURRENT ROW로",
+      "stem": "k,v 행이(1,5),(1,7),(2,10)이다. RANGE BETWEEN CURRENT ROW AND CURRENT ROW로 SUM(v)를 계산하면 k1 두 행에 붙는 값은?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "5와 7각각",
+          "reason": "물리한 행 ROWS 창과 다르다."
+        },
+        {
+          "id": "c",
+          "text": "각각 22",
+          "reason": "현재 값 1과다른 k2는 범위 밖이다."
+        },
+        {
+          "id": "d",
+          "text": "각각 0",
+          "reason": "현재 값동료 행들이 프레임에 있다."
+        },
+        {
+          "id": "a",
+          "text": "각각 12",
+          "reason": "RANGE의 양끝 현재 값은 같은 정렬값의 동료 행 전체를 포함한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "RANGE의 양끝 현재 값은 같은 정렬값의 동료 행 전체를 포함한다.",
+        "prerequisites": [
+          "S15"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "현재 k1과 같은 값 1두 행을 찾는다."
+          },
+          {
+            "title": "2단계",
+            "text": "v5+7=12를두 행에 동일하게 붙인다."
+          }
+        ],
+        "memory": "RANGE CURRENT ROW는 반드시 물리한 행이 아니다.",
+        "relatedNoteId": "note-S16"
+      },
+      "sourceIds": [
+        "oracle19-analytic",
+        "oracle19-last-value"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "23dae465480568df2dfb881fa610e8c5df0a1d12cba4eec3020627f4ea9d432b"
+  },
+  {
+    "question": {
+      "id": "mock-3-S16-m3-moving-average-null-denominator",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S16"
+      ],
+      "familyId": "authored-S16-m3-moving-average-null-denominator",
+      "kind": "mock",
+      "title": "고유 id 순 v 값은 10,NULL,30이다. 현재와 앞 한 행 ROWS 프레임의 AVG(v)에 서 마지막 행값은?",
+      "stem": "고유 id 순 v 값은 10,NULL,30이다. 현재와 앞 한 행 ROWS 프레임의 AVG(v)에 서 마지막 행값은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "20",
+          "reason": "두 행전 10은현재창 밖이다."
+        },
+        {
+          "id": "d",
+          "text": "NULL",
+          "reason": "NULL이 섞였다는이유로 AVG 전체가 NULL이 되지는 않는다."
+        },
+        {
+          "id": "a",
+          "text": "30",
+          "reason": "마지막 창은 NULL과 30이며 AVG는 비NULL30 한 개만 계산한다."
+        },
+        {
+          "id": "b",
+          "text": "15",
+          "reason": "NULL을 0으로보고 분모 2로 나누지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "마지막 창은 NULL과 30이며 AVG는 비NULL30 한 개만 계산한다.",
+        "prerequisites": [
+          "S15"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "프레임에 들어오는두 행을 먼저 선택한다."
+          },
+          {
+            "title": "2단계",
+            "text": "AVG 분모는 비NULL 값수 1이고 분자 30이므로 30이다."
+          }
+        ],
+        "memory": "윈도우 AVG의 분모도비NULL 집계값 개수다.",
+        "relatedNoteId": "note-S16"
+      },
+      "sourceIds": [
+        "oracle19-analytic",
+        "oracle19-last-value"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "ae149cb29355e0176a7b2877ab60ac3223705c61e0e028e3f10b3af4cc7c5ec3"
+  },
+  {
+    "question": {
+      "id": "mock-3-S17-m3-offset-beyond-result",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S17"
+      ],
+      "familyId": "authored-S17-m3-offset-beyond-result",
+      "kind": "mock",
+      "title": "필터 후 결과가 3행인데 안정 정렬 뒤 OFFSET 5 ROWS FETCH NEXT 2 ROWS ONLY를 적용했다. 결과는?",
+      "stem": "필터 후 결과가 3행인데 안정 정렬 뒤 OFFSET 5 ROWS FETCH NEXT 2 ROWS ONLY를 적용했다. 결과는?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "0행",
+          "reason": "건너뛸 개수가 결과 행 수보다 커 남은 행이 없다."
+        },
+        {
+          "id": "b",
+          "text": "마지막 두 행을 반환",
+          "reason": "OFFSET은 뒤에서세는 명령이 아니다."
+        },
+        {
+          "id": "c",
+          "text": "앞에서 다시 순환해두 행",
+          "reason": "결과가 끝나면순환하지 않는다."
+        },
+        {
+          "id": "d",
+          "text": "NULL 두 행 생성",
+          "reason": "부족분을 NULL 행으로 채우지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "건너뛸 개수가 결과 행 수보다 커 남은 행이 없다.",
+        "prerequisites": [
+          "S09",
+          "S15"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "정렬된 3행을 모두 지난뒤 아직 OFFSET이 남는다."
+          },
+          {
+            "title": "2단계",
+            "text": "반환할입력이없으므로 빈 결과다."
+          }
+        ],
+        "memory": "행제한은 부족분을 중복·가상 행으로 채우지 않는다.",
+        "relatedNoteId": "note-S17"
+      },
+      "sourceIds": [
+        "oracle19-select",
+        "oracle19-rownum"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "5335e60397f634ee8f9e75a84be6b506b9813dac0ef9c66c2a57c9015a7512b4"
+  },
+  {
+    "question": {
+      "id": "mock-3-S17-m3-percent-rounding",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S17"
+      ],
+      "familyId": "authored-S17-m3-percent-rounding",
+      "kind": "mock",
+      "title": "Oracle19c에 서 결과 7행에 FETCH FIRST 50 PERCENT ROWS ONLY를 적용한다. 양수 비율이고 그외 필터 없다",
+      "stem": "Oracle19c에 서 결과 7행에 FETCH FIRST 50 PERCENT ROWS ONLY를 적용한다. 양수 비율이고 그외 필터 없다. 선택 행 수는?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "3행",
+          "reason": "계산한 3.5행은 다음 정수로 올림한다."
+        },
+        {
+          "id": "c",
+          "text": "7행",
+          "reason": "50퍼센트제한을 무시했다."
+        },
+        {
+          "id": "d",
+          "text": "0행",
+          "reason": "소수행 결과가 빈 결과를 뜻하지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "4행",
+          "reason": "7×50%=3.5이며행 수는 위 정수 4로 올림된다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "7×50%=3.5이며행 수는 위 정수 4로 올림된다.",
+        "prerequisites": [
+          "S09",
+          "S15"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "비율을 행 수에 곱하여 3.5를 얻는다."
+          },
+          {
+            "title": "2단계",
+            "text": "Oracle의 비율행제한 반올림이 아닌 올림 규칙을 적용한다."
+          }
+        ],
+        "memory": "PERCENT 행제한의정수화 규칙을 DBMS 문 서로 확인한다.",
+        "relatedNoteId": "note-S17"
+      },
+      "sourceIds": [
+        "oracle19-select",
+        "oracle19-rownum"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "62cc2b552f869a06e731ae3d32c18bd64d40f8f08de64f33b58bf85ed59073e6"
+  },
+  {
+    "question": {
+      "id": "mock-3-S18-m3-overlapping-starts",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S18"
+      ],
+      "familyId": "authored-S18-m3-overlapping-starts",
+      "kind": "mock",
+      "title": "N은 1→2→3의 연결이며 START WITH가 id1과 id2를 모두 선택한다. 같은 id3이 결과에 여러 번나올수있는가?",
+      "stem": "N은 1→2→3의 연결이며 START WITH가 id1과 id2를 모두 선택한다. 같은 id3이 결과에 여러 번나올수있는가?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "항상 순환 오류다",
+          "reason": "중복 시작 경로와 사이클은 다르다."
+        },
+        {
+          "id": "a",
+          "text": "가능하다. 서로 다른 시작 경로에서 각각 도달할 수 있다",
+          "reason": "시작점 1경로와 시작점 2경로가 같은 자손 3에도달 한다."
+        },
+        {
+          "id": "b",
+          "text": "불가능.id가 유일하면 출력도 자동 유일",
+          "reason": "원본 키 유일성이 여러 탐색 경로의 출력 중복을 없애지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "SELECT가 id3 원본을 복제 저장한다",
+          "reason": "반환 중복과 데이터 저장은 다르다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "시작점 1경로와 시작점 2경로가 같은 자손 3에도달 한다.",
+        "prerequisites": [
+          "S10"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "루트 1의경로 1→2→3에서 id3이 한 번나온다."
+          },
+          {
+            "title": "2단계",
+            "text": "루트 2의경로 2→3에서도 다시 나오며이번 LEVEL은 다르다."
+          }
+        ],
+        "memory": "원본 키 유일성과 경로 별 결과 유일성은 별 개다.",
+        "relatedNoteId": "note-S18"
+      },
+      "sourceIds": [
+        "oracle19-hierarchy"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "0977c020183176090bb67ba7dd645855349dd010168541fc6c580d5c2dc73f09"
+  },
+  {
+    "question": {
+      "id": "mock-3-S18-m3-level-not-global-number",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S18"
+      ],
+      "familyId": "authored-S18-m3-level-not-global-number",
+      "kind": "mock",
+      "title": "두 루트의 각 자식 한 명씩을 포함한 숲에서 LEVEL=2로 필터하면 무엇을 뜻하는 가?",
+      "stem": "두 루트의 각 자식 한 명씩을 포함한 숲에서 LEVEL=2로 필터하면 무엇을 뜻하는 가?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "각 시작 루트에서 한 단계 아래인 모든 행",
+          "reason": "LEVEL은 각 경로의 상대 깊이이며 여러 루트에서 같은 값을 가질 수 있다."
+        },
+        {
+          "id": "b",
+          "text": "최종 표시 순서두 번째한 행",
+          "reason": "LEVEL은 ROWNUM이 아니다."
+        },
+        {
+          "id": "c",
+          "text": "id 값 2인행만",
+          "reason": "깊이와 식별자는 다르다."
+        },
+        {
+          "id": "d",
+          "text": "모든 잎행",
+          "reason": "잎은 다른 깊이에도 있을수 있다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "LEVEL은 각 경로의 상대 깊이이며 여러 루트에서 같은 값을 가질 수 있다.",
+        "prerequisites": [
+          "S10"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "루트마다 LEVEL1부터 깊이를 계산한다."
+          },
+          {
+            "title": "2단계",
+            "text": "LEVEL2는 각 루트의 직접 자식 단계다."
+          }
+        ],
+        "memory": "LEVEL 조건은 순번·식별자·잎 조건과 다르다.",
+        "relatedNoteId": "note-S18"
+      },
+      "sourceIds": [
+        "oracle19-hierarchy"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "730d7b46ed9febf092c6c0790f9873ea1b7381bae7a420cf04fc7826a322d156"
+  },
+  {
+    "question": {
+      "id": "mock-3-S19-m3-pivot-unlisted-category",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S19"
+      ],
+      "familyId": "authored-S19-m3-pivot-unlisted-category",
+      "kind": "mock",
+      "title": "shop1의 mon1 금액 10,mon3 금액 30이 있다. PIVOT은 SUM(amt)를 mon IN(1 AS m1,2 AS m2)로 만펼친",
+      "stem": "shop1의 mon1 금액 10,mon3 금액 30이 있다. PIVOT은 SUM(amt)를 mon IN(1 AS m1,2 AS m2)로 만펼친다. 출력 월 열은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "m1=40,m2=40",
+          "reason": "FOR 범주별 집계 구분을 무시했다."
+        },
+        {
+          "id": "d",
+          "text": "자동 m3 열 30이 추가된다",
+          "reason": "일반 명시 IN 목록이자동동적확장을하지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "m1=10, m2=NULL이며 mon3 용 열은 생성되지 않는다",
+          "reason": "명시한 PIVOT 범주목록에대해서만 출력열을 만든다."
+        },
+        {
+          "id": "b",
+          "text": "m1=10,m2=30",
+          "reason": "목록밖 mon3을 월 2에옮기지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "명시한 PIVOT 범주목록에대해서만 출력열을 만든다.",
+        "prerequisites": [
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "mon1은 m1 집계에 포함 되고 mon2 입력은 없다."
+          },
+          {
+            "title": "2단계",
+            "text": "mon3은 명시된 출력 범주에없으므로 새열이되지 않는다."
+          }
+        ],
+        "memory": "PIVOT IN 목록밖의범주가 자동 열로 추가된다 고 가정하지 않는다.",
+        "relatedNoteId": "note-S19"
+      },
+      "sourceIds": [
+        "oracle19-select"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "78388f30d82103401114e7556d33963bfe87c7dfc5827856f063cf095f3b9ce8"
+  },
+  {
+    "question": {
+      "id": "mock-3-S19-m3-pivot-count-expression-null",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S19"
+      ],
+      "familyId": "authored-S19-m3-pivot-count-expression-null",
+      "kind": "mock",
+      "title": "shop1·mon1의 amt가 NULL,NULL이고 mon2의 amt는 5다. COUNT(amt) PIVOT의 m1,m2 값은?",
+      "stem": "shop1·mon1의 amt가 NULL,NULL이고 mon2의 amt는 5다. COUNT(amt) PIVOT의 m1,m2 값은?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "2,5",
+          "reason": "COUNT를 행 수·금액 합으로섞었다."
+        },
+        {
+          "id": "a",
+          "text": "0,1",
+          "reason": "COUNT(amt)는 각범주의비NULL 값만 센다."
+        },
+        {
+          "id": "b",
+          "text": "2,1",
+          "reason": "COUNT(*)와 COUNT(amt)를 혼동했다."
+        },
+        {
+          "id": "c",
+          "text": "NULL,1",
+          "reason": "COUNT의 빈비NULL 입력 결과는 0이다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "COUNT(amt)는 각범주의비NULL 값만 센다.",
+        "prerequisites": [
+          "S07"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "mon1 두 행은 amt가 모두 NULL이 라 COUNT0이다."
+          },
+          {
+            "title": "2단계",
+            "text": "mon2에는 비NULL5 한 개이므로 COUNT1이다."
+          }
+        ],
+        "memory": "PIVOT의 집계 인수를 확인해야 행 수와 값 수를 구분 할 수 있다.",
+        "relatedNoteId": "note-S19"
+      },
+      "sourceIds": [
+        "oracle19-select"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "d5ad36df92d0a9816821f93b10bbbe333a19f22b6739cc014939aca95fe8e133"
+  },
+  {
+    "question": {
+      "id": "mock-3-S20-m3-regex-repeat-bounds",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "D",
+      "objectiveIds": [
+        "S20"
+      ],
+      "familyId": "authored-S20-m3-regex-repeat-bounds",
+      "kind": "mock",
+      "title": "정규식 ^[A-Z]{2,3}[0-9]{2}$, c 옵션을 적용한다. AB12,ABC12,AB123 중 일치하는 문자열은?",
+      "stem": "정규식 ^[A-Z]{2,3}[0-9]{2}$, c 옵션을 적용한다. AB12,ABC12,AB123 중 일치하는 문자열은?",
+      "choices": [
+        {
+          "id": "b",
+          "text": "AB12만",
+          "reason": "영문 3자도{2,3}범위다."
+        },
+        {
+          "id": "c",
+          "text": "세 문자열 모두",
+          "reason": "숫자는 정확히 2자여야해 AB123은 실패한다."
+        },
+        {
+          "id": "d",
+          "text": "ABC12와 AB123",
+          "reason": "AB12도 정상이며 AB123은 숫자 수가 많다."
+        },
+        {
+          "id": "a",
+          "text": "AB12와 ABC12",
+          "reason": "앞영문은 2~3개, 뒤 숫자는 정확히 2개이며 양 끝이 전체를 제한 한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "앞영문은 2~3개, 뒤 숫자는 정확히 2개이며 양 끝이 전체를 제한 한다.",
+        "prerequisites": [
+          "S04"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "문자 종류 별 개수를 나누어 센다."
+          },
+          {
+            "title": "2단계",
+            "text": "AB12는 2+2,ABC12는 3+2로 성공하고 AB123은 2+3으로 실패한다."
+          }
+        ],
+        "memory": "반복 범위는 각 바로 앞 패턴에 따로 적용한다.",
+        "relatedNoteId": "note-S20"
+      },
+      "sourceIds": [
+        "oracle19-regexp",
+        "oracle19-regexp-substr"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "a221fdbd93e6d1f0438f953ad7efdb6b9e8c2b98d2547dd0d0cea683fd117d71"
+  },
+  {
+    "question": {
+      "id": "mock-3-S21-m3-delete-exists-no-cascade",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S21"
+      ],
+      "familyId": "authored-S21-m3-delete-exists-no-cascade",
+      "kind": "mock",
+      "title": "고객 C에 1,2가 있고 주문 O에는 고객 1의행이 있다. 주문 존재가 TRUE 인 고객을 DELETE했다. FK·트리거·연쇄 삭제는 없다. O의",
+      "stem": "고객 C에 1,2가 있고 주문 O에는 고객 1의행이 있다. 주문 존재가 TRUE 인 고객을 DELETE했다. FK·트리거·연쇄 삭제는 없다. O의 행은?",
+      "choices": [
+        {
+          "id": "d",
+          "text": "새고객 2에게 자동 이동",
+          "reason": "관계를 재배정 하는 명령이 아니다."
+        },
+        {
+          "id": "a",
+          "text": "그대로 남는다",
+          "reason": "DELETE 대상은 고객 표이며 존재 검사에 읽은 표를 자동 변경하지 않는다."
+        },
+        {
+          "id": "b",
+          "text": "고객 삭제가 언제나 주문도 삭제",
+          "reason": "연쇄 삭제 조건이 없다."
+        },
+        {
+          "id": "c",
+          "text": "고객 번호가 자동 NULL",
+          "reason": "SET NULL 참조 옵션도 없다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "DELETE 대상은 고객 표이며 존재 검사에 읽은 표를 자동 변경하지 않는다.",
+        "prerequisites": [
+          "S06"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "O는 고객 1의 대상 선택 근거로 읽었다."
+          },
+          {
+            "title": "2단계",
+            "text": "실제 변경 대상 C에서 만 행을 지우며 O는 유지 된다."
+          }
+        ],
+        "memory": "DML의 변경 대상과 조건 검사에 읽은 입력을 구분한다.",
+        "relatedNoteId": "note-S21"
+      },
+      "sourceIds": [
+        "oracle19-insert",
+        "oracle19-update",
+        "oracle19-delete",
+        "oracle19-merge"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "7592ef11f1d599f53ca90e1e8fb91ed8ca142f42b75e74b4ecb796af13506af5"
+  },
+  {
+    "question": {
+      "id": "mock-3-S21-m3-insert-from-self-count",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S21"
+      ],
+      "familyId": "authored-S21-m3-insert-from-self-count",
+      "kind": "mock",
+      "title": "T에 1,2두 행이 있고 중복 허용이다. T를 한 번읽은 SELECT의 각 v+10을같은 T에 INSERT하는 단일 문장을 실행했다. 새로 추가하는 값은?",
+      "stem": "T에 1,2두 행이 있고 중복 허용이다. T를 한 번읽은 SELECT의 각 v+10을같은 T에 INSERT하는 단일 문장을 실행했다. 새로 추가하는 값은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "11과 12 두 값",
+          "reason": "단일 문장의 SELECT가 정의 한 입력 두 행에서 변환한 결과 두 행을 삽입한다."
+        },
+        {
+          "id": "b",
+          "text": "11,12,21,22를계속 생성",
+          "reason": "단일 INSERT SELECT가 새로넣은행을무한재 입력하지 않는다."
+        },
+        {
+          "id": "c",
+          "text": "1과 2",
+          "reason": "SELECT의+10계산을 누락했다."
+        },
+        {
+          "id": "d",
+          "text": "10한 행",
+          "reason": "원본각 행의 값을 사용한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "단일 문장의 SELECT가 정의 한 입력 두 행에서 변환한 결과 두 행을 삽입한다.",
+        "prerequisites": [
+          "S06"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "기존 읽기 대상 v1,2에각 10을 더한다."
+          },
+          {
+            "title": "2단계",
+            "text": "결과 11,12를 추가하며 같은 문장 삽입 분을재귀 반복하지 않는다."
+          }
+        ],
+        "memory": "INSERT SELECT와 재귀 반복 작업은 서로 다르다.",
+        "relatedNoteId": "note-S21"
+      },
+      "sourceIds": [
+        "oracle19-insert",
+        "oracle19-update",
+        "oracle19-delete",
+        "oracle19-merge"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "9fa69750df1349c8c1cc9ae6e681bcf3b290aa8232dff16ea76f48ad0f688332"
+  },
+  {
+    "question": {
+      "id": "mock-3-S22-m3-rollback-later-savepoint",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S22"
+      ],
+      "familyId": "authored-S22-m3-rollback-later-savepoint",
+      "kind": "mock",
+      "title": "SAVEPOINT a 후변경, SAVEPOINT b 후 변경을 했다. ROLLBACK TO a 이후 b로 다시 ROLLBACK TO 하",
+      "stem": "SAVEPOINT a 후변경, SAVEPOINT b 후 변경을 했다. ROLLBACK TO a 이후 b로 다시 ROLLBACK TO 하려 한다. b의 상태는?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "b가 자동 COMMIT 된다",
+          "reason": "savepoint는 확정 단위가 아니다."
+        },
+        {
+          "id": "d",
+          "text": "a도 반드시 COMMIT 되어 끝난다",
+          "reason": "부분 롤백은 트랜잭션을 종료하지 않는다."
+        },
+        {
+          "id": "a",
+          "text": "a 이후의 savepoint b는 소멸하여 유효하지 않다",
+          "reason": "이른 지점으로 부분 롤백하면 그 뒤의 변경과 그 뒤 savepoint도 제거된다."
+        },
+        {
+          "id": "b",
+          "text": "b가 남아 취소한 변경을 자동 다시 살린다",
+          "reason": "롤백 이전 진복구기능을제공하지 않는다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "이른 지점으로 부분 롤백하면 그 뒤의 변경과 그 뒤 savepoint도 제거된다.",
+        "prerequisites": [
+          "S21"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "시간 순서 a→b를 확인한다."
+          },
+          {
+            "title": "2단계",
+            "text": "a로 되돌린후 a보다 뒤의 b는 더이상 유효하지 않다."
+          }
+        ],
+        "memory": "부분 롤백 후남아있는 savepoint의 범위를 확인한다.",
+        "relatedNoteId": "note-S22"
+      },
+      "sourceIds": [
+        "oracle19-commit",
+        "oracle19-rollback",
+        "oracle19-savepoint"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "1df5d60d1ac7d1881e4bc69bdc61be547f4f0114d41050ca28483ea1fcca17e5"
+  },
+  {
+    "question": {
+      "id": "mock-3-S23-m3-composite-primary-key",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S23"
+      ],
+      "familyId": "authored-S23-m3-composite-primary-key",
+      "kind": "mock",
+      "title": "PRIMARY KEY(year,no) 인 표에(2025,1),(2026,1)이 있다. 각 열단독 중복과 키 유일성의 판정은?",
+      "stem": "PRIMARY KEY(year,no) 인 표에(2025,1),(2026,1)이 있다. 각 열단독 중복과 키 유일성의 판정은?",
+      "choices": [
+        {
+          "id": "a",
+          "text": "no가 같아도 두 열 조합이 달라 허용된다",
+          "reason": "두 행의 전체 키(2025,1),(2026,1)는 서로 다르다."
+        },
+        {
+          "id": "b",
+          "text": "no1 중복만으로 반드시 실패",
+          "reason": "복합 PK의 유일성은 조합 전체 기준이다."
+        },
+        {
+          "id": "c",
+          "text": "year 열은 PK에 포함되어도 NULL 허용",
+          "reason": "PK 구성 열은 NULL 불가다."
+        },
+        {
+          "id": "d",
+          "text": "복합 PK는 두 열 모두 각각 UNIQUE를 자동 요구",
+          "reason": "각단독 유일성과 복합 유일성은 다르다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "두 행의 전체 키(2025,1),(2026,1)는 서로 다르다.",
+        "prerequisites": [
+          "S01"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "복합 키 구성 열을 빠짐 없이 비교한다."
+          },
+          {
+            "title": "2단계",
+            "text": "no 부분이 같더라도 year가 달라 키 중복이 아니다."
+          }
+        ],
+        "memory": "복합 키는 전체 조합의 유일성과 각구성열비NULL을 요구한다.",
+        "relatedNoteId": "note-S23"
+      },
+      "sourceIds": [
+        "oracle19-create-table",
+        "oracle19-alter-table",
+        "oracle19-truncate",
+        "oracle19-drop-table"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "fbed9038187874d7e30396454f203aa48292bd95a1751dc9dee3d386b0fadc5a"
+  },
+  {
+    "question": {
+      "id": "mock-3-S24-m3-insert-select-source-right",
+      "version": 1,
+      "subjectId": "sql",
+      "topicId": "E",
+      "objectiveIds": [
+        "S24"
+      ],
+      "familyId": "authored-S24-m3-insert-select-source-right",
+      "kind": "mock",
+      "title": "B가 대상 D의 INSERT 권한은 있지만 소스 S의 SELECT 권한은 없다. S를 조회한 결과를 D에 INSERT 하려면현재부족한 능력은?",
+      "stem": "B가 대상 D의 INSERT 권한은 있지만 소스 S의 SELECT 권한은 없다. S를 조회한 결과를 D에 INSERT 하려면현재부족한 능력은?",
+      "choices": [
+        {
+          "id": "c",
+          "text": "S의 DELETE 권한",
+          "reason": "소스 행을 삭제 할 요구가 아니다."
+        },
+        {
+          "id": "d",
+          "text": "D의 DROP 권한",
+          "reason": "대상 구조 제거와 무관하다."
+        },
+        {
+          "id": "a",
+          "text": "S를 읽는 SELECT 권한",
+          "reason": "데이터 이동 문장은 대상 변경 권한과 소스 읽기 권한을 각각 필요로 한다."
+        },
+        {
+          "id": "b",
+          "text": "D의 INSERT 권한을 한 번더주기",
+          "reason": "이미 있는 대상 권한을 반복 해도 소스 접근 문제를해결하지못 한다."
+        }
+      ],
+      "correctChoiceIds": [
+        "a"
+      ],
+      "explanation": {
+        "summary": "데이터 이동 문장은 대상 변경 권한과 소스 읽기 권한을 각각 필요로 한다.",
+        "prerequisites": [
+          "S23"
+        ],
+        "conditions": [
+          "Oracle Database 19c. 지문에 적은 입력·제약이 전체 조건이다.",
+          "다른 제약·트리거·동시 변경·추가 권한·정렬은 가정하지 않는다."
+        ],
+        "steps": [
+          {
+            "title": "1단계",
+            "text": "D 쓰기 경로는 허용되어 있다."
+          },
+          {
+            "title": "2단계",
+            "text": "S를 읽는 단계가 권한 부족이므로 그 권한을 검토해 야 한다."
+          }
+        ],
+        "memory": "한 문장이 여러 객체를 다룰때각 객체의 작업 권한을 분리 한다.",
+        "relatedNoteId": "note-S24"
+      },
+      "sourceIds": [
+        "oracle19-grant",
+        "oracle19-revoke"
+      ],
+      "sourceType": "original_mock",
+      "verification": "document_review",
+      "status": "published",
+      "dialect": "Oracle",
+      "dialectVersion": "19c",
+      "difficulty": "intermediate",
+      "difficultyReason": "입력과 연산 순서를 추적하여 결과 또는 오류를 판단한다.",
+      "importanceReason": "학습목 표의 핵심 규칙을 확인한다. 실제 시험 출제 빈도를 의미하지 않는다.",
+      "tables": [],
+      "validationEvidence": [
+        "독자 창작; 저술자가 명시 조건·정답·보기별 이유를 문서 규칙과 대조함.",
+        "독립 풀이 및 사람 전문가 검수 미실시. Oracle 19c 실행 미실시."
+      ],
+      "mockSetId": "mock-3"
+    },
+    "sourceQuestionSha256": "2489395236a0bdb755191ed6f5ad1165c2fe32f71cd11819cdf0adcf0ac49a38"
+  }
+]

@@ -1,0 +1,490 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-02",
+  "source": {
+    "id": "2-1-02",
+    "partId": "2-1",
+    "number": 2,
+    "title": "자료형",
+    "lectureMinutes": 27,
+    "easy": "각 열에 어떤 종류의 값을 저장할지 정하는 규칙이다. 숫자·문자·날짜는 다르게 비교하고 계산한다.",
+    "why": "학번이 숫자처럼 보여도 앞의 0을 보존해야 하면 문자형이 적합할 수 있다. 모양이 아니라 의미로 고른다.",
+    "concepts": [
+      {
+        "term": "CHAR(n)",
+        "meaning": "고정 길이 문자형",
+        "example": "일정 길이 코드"
+      },
+      {
+        "term": "VARCHAR2(n)",
+        "meaning": "Oracle 가변 길이 문자형",
+        "example": "길이가 다른 이름"
+      },
+      {
+        "term": "NUMBER(p,s)",
+        "meaning": "전체 유효 자리 p, 소수 자리 s",
+        "example": "NUMBER(5,2)에 123.45"
+      },
+      {
+        "term": "DATE",
+        "meaning": "Oracle에서는 날짜와 시·분·초까지 포함",
+        "example": "DATE '2026-09-28'"
+      },
+      {
+        "term": "TIMESTAMP",
+        "meaning": "더 정밀한 시간 표현",
+        "example": "소수 초까지 저장"
+      },
+      {
+        "term": "문자형 숫자",
+        "meaning": "문자 정렬과 숫자 정렬은 다름",
+        "example": "문자 '10'은 '2'보다 앞설 수 있음"
+      },
+      {
+        "term": "명시적 형변환",
+        "meaning": "원하는 형식으로 직접 바꿈",
+        "example": "TO_NUMBER, TO_DATE, TO_CHAR"
+      },
+      {
+        "term": "NULL·빈 문자열",
+        "meaning": "Oracle은 길이 0인 문자열을 NULL로 처리",
+        "example": "공백 한 칸 ' '과는 다름"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-02-E01",
+        "title": "숫자와 문자의 순서 비교",
+        "question": "값 2와 10을 문자형·숫자형으로 정렬하면?",
+        "tables": [
+          {
+            "title": "자료형비교",
+            "columns": [
+              "문자값",
+              "숫자값"
+            ],
+            "rows": [
+              [
+                "2",
+                "2"
+              ],
+              [
+                "10",
+                "10"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "문자형은 각 글자의 비교 규칙으로 정렬하므로 이 예에서는 10의 첫 글자 1이 2보다 앞선다.",
+          "숫자형은 크기를 비교하므로 2 다음 10이다.",
+          "앞의 0이 중요한 0010 같은 코드는 숫자로 바꾸면 10이 되어 원래 표기가 사라진다."
+        ],
+        "results": [
+          {
+            "title": "문자 정렬",
+            "columns": [
+              "문자값"
+            ],
+            "rows": [
+              [
+                "10"
+              ],
+              [
+                "2"
+              ]
+            ]
+          },
+          {
+            "title": "숫자 정렬",
+            "columns": [
+              "숫자값"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "10"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      },
+      {
+        "id": "2-1-02-E02",
+        "title": "숫자의 전체 자리와 소수 자리",
+        "question": "NUMBER(5,2)는 어떻게 읽는가?",
+        "tables": [
+          {
+            "title": "입력후보",
+            "columns": [
+              "값"
+            ],
+            "rows": [
+              [
+                "123.45"
+              ],
+              [
+                "1234.56"
+              ],
+              [
+                "12.345"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "5는 전체 자리, 2는 소수 자리다. 일반적인 이 예에서는 정수부가 세 자리까지 들어간다.",
+          "123.45는 들어간다. 1234.56은 정밀도를 초과한다.",
+          "12.345는 Oracle NUMBER의 소수 자리 반올림으로 12.35가 될 수 있다. “소수 셋째 자리는 무조건 오류”가 아니다."
+        ],
+        "results": [
+          {
+            "title": "판정",
+            "columns": [
+              "입력",
+              "결과"
+            ],
+            "rows": [
+              [
+                "123.45",
+                "저장 가능"
+              ],
+              [
+                "1234.56",
+                "정밀도 초과 오류"
+              ],
+              [
+                "12.345",
+                "12.35로 반올림"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "값의 모양보다 의미로 자료형. NUMBER(p,s)는 전체 p, 소수 s.",
+    "traps": [
+      "Oracle DATE에 시간이 없다고 외우지 않는다.",
+      "CHAR 비교의 공백 처리와 문자 정렬은 자료형·콜레이션에 영향을 받는다. 모든 문자형에서 같다고 단정하지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-02-Q1",
+        "question": "앞의 0이 중요한 우편번호·학번 코드에는 무엇을 검토하나?",
+        "answer": "문자형",
+        "explanation": "수치 계산보다 코드의 원래 표기 보존이 중요하다."
+      },
+      {
+        "id": "2-1-02-Q2",
+        "question": "Oracle DATE는 시각도 저장하는가?",
+        "answer": "저장한다",
+        "explanation": "시·분·초를 포함하며 소수 초는 TIMESTAMP에서 다룬다."
+      },
+      {
+        "id": "2-1-02-Q3",
+        "question": "NUMBER(5,2)의 5는 정수부 자리만 뜻하는가?",
+        "answer": "아니다",
+        "explanation": "전체 정밀도를 뜻한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S25"
+    ],
+    "sourceIds": [
+      "datatypes",
+      "null",
+      "conversion"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"자료형 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념을 먼저</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">용어를 쉬운 말로</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실제 예시 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 값·행·열인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과와 이유</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">왜 이 답인가?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">값의 모양보다 의미로 자료형. NUMBER(p,s)는 전체 p, 소수 s.</text></svg>",
+    "version": 1
+  },
+  "purpose": "같이 보이는 2와 10도 문자와 숫자로 저장하면 정렬 의미가 다르고, NUMBER의 숫자는 입력값이 아니라 허용 범위임을 구분한다.",
+  "overview": "이 강의 원본 두 예제에는 실행 SQL이 없다. 자료형 비교와 NUMBER(5,2)의 저장 판정을 하는 개념 학습이며 가상의 SQL 실행 단계를 만들지 않는다.",
+  "terms": [
+    {
+      "token": "NUMBER(5,2)",
+      "kind": "자료형",
+      "meaning": "precision5 = 전체 정밀도, scale2 = 소수 자리",
+      "role": "123.45는 저장하고 12.345는 12.35로 반올림한다. 정수부가 5자리라는 뜻이 아니다."
+    },
+    {
+      "token": "VARCHAR2",
+      "kind": "자료형",
+      "meaning": "길이가 달라지는 문자 데이터",
+      "role": "0010처럼 앞의 0이 중요한 코드를 문자열로 보존한다. 길이 단위를 BYTE/CHAR 또는 환경 설정으로 확인한다."
+    },
+    {
+      "token": "CHAR",
+      "kind": "자료형",
+      "meaning": "고정 길이 문자",
+      "role": "짧은 값을 넣으면 공백 채움이 생길 수 있다. 비교 결과는 양쪽 자료형과 비교 규칙을 함께 확인한다."
+    },
+    {
+      "token": "DATE / TIMESTAMP",
+      "kind": "자료형",
+      "meaning": "날짜·시간 / 더 정밀한 시각",
+      "role": "Oracle DATE는 시·분·초를 포함한다. 소수 초가 필요하면 TIMESTAMP의 정밀도를 본다."
+    }
+  ],
+  "pitfalls": [
+    "NUMBER(p)를 소수 입력 무조건 오류라고 외우지 않는다. 반올림과 정밀도 초과는 다른 판단이다.",
+    "VARCHAR2(10)을 무조건 한글 10글자라고 읽지 않는다. BYTE면 문자셋의 실제 바이트 크기가 중요하다.",
+    "정렬은 데이터형·콜레이션에 영향을 받는다. 이 예제는 숫자문자 1이 2보다 앞서는 통상 비교를 전제로 한다."
+  ],
+  "questions": [
+    {
+      "question": "NUMBER(5,2)는 여기서 무엇을 뜻하나요?",
+      "answer": "123.45는 저장하고 12.345는 12.35로 반올림한다. 정수부가 5자리라는 뜻이 아니다."
+    },
+    {
+      "question": "VARCHAR2는 여기서 무엇을 뜻하나요?",
+      "answer": "0010처럼 앞의 0이 중요한 코드를 문자열로 보존한다. 길이 단위를 BYTE/CHAR 또는 환경 설정으로 확인한다."
+    },
+    {
+      "question": "CHAR는 여기서 무엇을 뜻하나요?",
+      "answer": "짧은 값을 넣으면 공백 채움이 생길 수 있다. 비교 결과는 양쪽 자료형과 비교 규칙을 함께 확인한다."
+    },
+    {
+      "question": "DATE / TIMESTAMP는 여기서 무엇을 뜻하나요?",
+      "answer": "Oracle DATE는 시·분·초를 포함한다. 소수 초가 필요하면 TIMESTAMP의 정밀도를 본다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 4,
+      "toPage": 8,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-02-E01",
+      "why": "수치 비교용 점수와 표기 자체가 중요한 코드를 같은 방식으로 정렬하지 않기 위해 비교한다.",
+      "effect": "개념: 문자순서와 숫자크기를 비교. 원본 값 자체를 바꾸지 않는다.",
+      "prerequisites": [
+        "이 예제의 문자 비교에서는 첫 글자 1이 2보다 먼저 온다는 비교 규칙을 가정한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "같은 표시, 다른 뜻",
+          "text": "문자값 2와 10은 글자열이다. 숫자값 2와 10은 계산 가능한 수다. 표에서 같은 모양으로 보여도 어느 열의 자료형을 비교하는지 먼저 정해야 한다.",
+          "codeFocus": [],
+          "highlights": [
+            "글자열",
+            "계산 가능한 수"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "자료형비교",
+            "columns": [
+              "문자값",
+              "숫자값"
+            ],
+            "rows": [
+              [
+                "2",
+                "2"
+              ],
+              [
+                "10",
+                "10"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "문자는 첫 글자부터 비교",
+          "text": "문자 10의 첫 글자는 1이고 문자 2의 첫 글자는 2다. 이 예제의 비교 규칙에서 1이 2보다 앞이므로 문자 10이 먼저다.",
+          "codeFocus": [],
+          "highlights": [
+            "첫 글자는 1"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "문자 정렬",
+            "columns": [
+              "문자값"
+            ],
+            "rows": [
+              [
+                "10"
+              ],
+              [
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "숫자는 양의 크기로 비교",
+          "text": "숫자에서는 2<10이므로 2가 먼저다. 코드 0010을 숫자로 바꾸면 값 10만 남아 앞의 0 두 개를 보존하지 못한다. 표기 보존과 계산 목적을 구분한다.",
+          "codeFocus": [],
+          "highlights": [
+            "2<10"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "숫자 정렬",
+            "columns": [
+              "숫자값"
+            ],
+            "rows": [
+              [
+                "2"
+              ],
+              [
+                "10"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "문자 10이 먼저라고 10이 수학적으로 2보다 작다는 뜻은 아니다. 비교하는 대상의 자료형이 다르다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    },
+    {
+      "exampleId": "2-1-02-E02",
+      "why": "가격 등을 소수 둘째 자리까지 저장하면서 너무 큰 수는 막는 제한을 읽는다.",
+      "effect": "개념: 세 입력 후보를 각각 독립적으로 NUMBER(5,2) 저장 규칙에 대입.",
+      "prerequisites": [
+        "각 후보는 독립된 시도이며 실제 입력 SQL은 없다. Oracle NUMBER 의미로 해석한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "괄호의 5와 2 읽기",
+          "text": "5는 정밀도이고 2는 소수 자리다. 이 양수 scale 예제는 정수부 3자리와 소수부 2자리 범위를 갖는다. 행 5개를 넣거나 값 2를 자동 생성한다는 뜻이 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "정수부 3자리"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "선언 분해",
+            "columns": [
+              "숫자",
+              "역할"
+            ],
+            "rows": [
+              [
+                "5",
+                "전체 정밀도"
+              ],
+              [
+                "2",
+                "소수 자리"
+              ],
+              [
+                "3",
+                "이 예의 정수부 허용 자리"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "정밀도와 반올림을 따로 검사",
+          "text": "123.45는 정수 3자리·소수 2자리여서 저장 가능하다. 1234.56은 정수부가 4자리여서 범위를 넘는다. 12.345는 소수 셋째 자리 5를 반올림해 12.35가 되고 그 값은 범위 안이다.",
+          "codeFocus": [],
+          "highlights": [
+            "12.35"
+          ],
+          "focusRows": [
+            2
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "판정",
+            "columns": [
+              "입력",
+              "결과"
+            ],
+            "rows": [
+              [
+                "123.45",
+                "저장 가능"
+              ],
+              [
+                "1234.56",
+                "정밀도 초과 오류"
+              ],
+              [
+                "12.345",
+                "12.35로 반올림"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "반올림 뒤 범위를 다시 확인",
+          "text": "가상 독립 후보 999.995는 소수 둘째 자리로 반올림하면 1000.00이 된다. 정수부 4자리로 커져 NUMBER(5,2)에 들어가지 못한다. 소수 자릿수만 보고 언제나 허용한다고 결론 내리지 않는다.",
+          "codeFocus": [],
+          "highlights": [
+            "1000.00"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "가상 추가 후보",
+            "columns": [
+              "입력",
+              "반올림 값",
+              "판정"
+            ],
+            "rows": [
+              [
+                "999.995",
+                "1000.00",
+                "정밀도 초과·거부"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "소수 자리가 넘는 것과 정밀도가 넘는 것은 같은 오류가 아니다. 반올림 결과가 허용 범위 안인지까지 본다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-02-Q1",
+      "hint": "값으로 계산할지, 원래 표기를 유지할지 목적을 보자.",
+      "reasoning": "0010을 숫자로 저장하면 10이 된다. 앞의 0이 식별코드의 일부라면 문자형을 검토해야 한다."
+    },
+    {
+      "checkId": "2-1-02-Q2",
+      "hint": "Oracle과 SQL Server의 같은 DATE 이름을 섞지 말자.",
+      "reasoning": "Oracle DATE는 년·월·일과 시·분·초를 저장한다. 소수 초는 TIMESTAMP의 역할이다."
+    },
+    {
+      "checkId": "2-1-02-Q3",
+      "hint": "괄호 안 두 숫자의 이름을 먼저 구별해 보자.",
+      "reasoning": "NUMBER(5,2)의 5는 전체 정밀도다. 일반적인 이 양수scale 예에서는 정수부 3자리·소수 2자리로 읽는다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html"
+  ],
+  "reviewNotes": [
+    "원본 PDF p6의 CLOB/BLOB 최대 4GB는 현대 Oracle 전체 한계를 나타내지 않는 축약이다. 이 가이드의 예제 결과에 그 값을 전제로 사용하지 않는다."
+  ]
+}

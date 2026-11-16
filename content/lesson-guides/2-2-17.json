@@ -1,0 +1,653 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-17",
+  "source": {
+    "id": "2-2-17",
+    "partId": "2-2",
+    "number": 17,
+    "title": "PIVOT & UNPIVOT",
+    "lectureMinutes": 35,
+    "easy": "PIVOT은 행에 있던 분류값을 열로 펼치고, UNPIVOT은 여러 열을 다시 행의 분류값으로 세운다.",
+    "why": "학생별 DB·JAVA 점수를 한 화면에서 비교할 때 세로 성적표를 가로로 바꿀 수 있다.",
+    "concepts": [
+      {
+        "term": "PIVOT",
+        "meaning": "분류값을 열로 바꾸며 집계",
+        "example": "DB·JAVA 값이 출력 열이 됨"
+      },
+      {
+        "term": "집계함수",
+        "meaning": "같은 묶음·과목에 여러 행이 있으면 합침",
+        "example": "SUM(점수), MAX(점수)"
+      },
+      {
+        "term": "암묵적 그룹",
+        "meaning": "피벗 대상과 집계에 쓰지 않은 나머지 열이 그룹 기준",
+        "example": "학번·이름"
+      },
+      {
+        "term": "PIVOT IN",
+        "meaning": "어떤 값들을 열로 펼칠지 지정",
+        "example": "'DB' AS DB, 'JAVA' AS JAVA"
+      },
+      {
+        "term": "UNPIVOT",
+        "meaning": "여러 열을 분류 열+값 열로 세움",
+        "example": "DB열·JAVA열→과목·점수"
+      },
+      {
+        "term": "NULL 제외",
+        "meaning": "Oracle UNPIVOT 기본은 NULL값 행 제외",
+        "example": "INCLUDE NULLS로 포함 가능"
+      },
+      {
+        "term": "완전한 역연산 아님",
+        "meaning": "집계·NULL제외로 원래 행을 잃을 수 있음",
+        "example": "중복 점수의 합은 원상복원 불가"
+      },
+      {
+        "term": "조건부 집계 대안",
+        "meaning": "CASE와 SUM으로 같은 가로표를 만들 수 있음",
+        "example": "이식성이 높은 표현"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-17-E01",
+        "title": "과목별 점수를 가로로 펼치기",
+        "question": "학생마다 DB·JAVA 점수를 옆으로 놓자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "과목",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "DB",
+                "90"
+              ],
+              [
+                "1001",
+                "박상현",
+                "JAVA",
+                "80"
+              ],
+              [
+                "1002",
+                "유성재",
+                "DB",
+                "70"
+              ],
+              [
+                "1002",
+                "유성재",
+                "JAVA",
+                null
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 학번,이름,DB,JAVA FROM (SELECT 학번,이름,과목,점수 FROM 성적)\nPIVOT(SUM(점수) FOR 과목 IN ('DB' AS DB,'JAVA' AS JAVA))\nORDER BY 학번;",
+        "steps": [
+          "박상현의 DB90·JAVA80을 한 행의 두 열에 넣는다.",
+          "유성재는 DB70이고 JAVA는 NULL이다.",
+          "학번·이름이 그룹 기준이어서 두 학생의 두 행으로 펼쳐진다."
+        ],
+        "results": [
+          {
+            "title": "가로 결과",
+            "columns": [
+              "학번",
+              "이름",
+              "DB",
+              "JAVA"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "90",
+                "80"
+              ],
+              [
+                "1002",
+                "유성재",
+                "70",
+                null
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 원자료의 SQLite 대체식 확인과 Oracle 실제 실행은 다릅니다. Oracle 실행 미확인."
+      },
+      {
+        "id": "2-2-17-E02",
+        "title": "가로 점수표를 세로로 세우기",
+        "question": "기본 UNPIVOT에서 NULL 점수는 어떻게 되는가?",
+        "tables": [
+          {
+            "title": "가로성적",
+            "columns": [
+              "학번",
+              "이름",
+              "DB",
+              "JAVA"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "90",
+                "80"
+              ],
+              [
+                "1002",
+                "유성재",
+                "70",
+                null
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 학번,이름,과목,점수 FROM 가로성적\nUNPIVOT(점수 FOR 과목 IN (DB AS 'DB',JAVA AS 'JAVA'))\nORDER BY 학번,과목;",
+        "steps": [
+          "박상현에서 DB90과 JAVA80 두 행을 만든다.",
+          "유성재에서는 DB70 한 행을 만든다. JAVA NULL은 기본 EXCLUDE NULLS이므로 빠진다.",
+          "INCLUDE NULLS를 쓰면 유성재/JAVA/NULL도 포함되어 네 행이 된다."
+        ],
+        "results": [
+          {
+            "title": "기본 UNPIVOT",
+            "columns": [
+              "학번",
+              "이름",
+              "과목",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "DB",
+                "90"
+              ],
+              [
+                "1001",
+                "박상현",
+                "JAVA",
+                "80"
+              ],
+              [
+                "1002",
+                "유성재",
+                "DB",
+                "70"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 원자료의 SQLite 대체식 확인과 Oracle 실제 실행은 다릅니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "PIVOT 세로 분류를 가로 열로 / UNPIVOT 가로 열을 세로 행으로.",
+    "traps": [
+      "PIVOT 전에 불필요한 고유번호 열을 남기면 그 열이 암묵적 그룹 기준이 되어 기대한 합산이 안 될 수 있다.",
+      "UNPIVOT 기본 NULL 제외 때문에 행수가 줄어드는 것을 놓치지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-17-Q1",
+        "question": "PIVOT에서 같은 학생·과목의 점수가 여러 줄이면?",
+        "answer": "지정한 집계함수로 합쳐진다",
+        "explanation": "단순 자리 이동만 하는 것이 아니다."
+      },
+      {
+        "id": "2-2-17-Q2",
+        "question": "UNPIVOT 기본값에서 NULL 점수 행은?",
+        "answer": "제외된다",
+        "explanation": "INCLUDE NULLS로 포함할 수 있다."
+      },
+      {
+        "id": "2-2-17-Q3",
+        "question": "PIVOT 뒤 UNPIVOT하면 원본이 항상 복원되는가?",
+        "answer": "아니다",
+        "explanation": "집계와 NULL 처리로 정보가 사라질 수 있다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S19"
+    ],
+    "sourceIds": [
+      "select",
+      "pivot"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"PIVOT &amp; UNPIVOT 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">세로 표</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">이름 / 과목 / 점수</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">열로 펼치기</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">과목 값이 열 제목</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">가로 표</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">이름 / DB / JAVA</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">PIVOT 세로 분류를 가로 열로 / UNPIVOT 가로 열을 세로 행으로.</text></svg>",
+    "version": 1
+  },
+  "purpose": "학생마다 과목 점수를 옆으로 비교하거나, 가로 점수표를 과목별 행으로 다시 읽기 위해 써요.",
+  "overview": "조회 변환이에요. PIVOT 결과 DB·JAVA열은 출력 모양이며 원본 성적표에 ALTER로 추가되는 열이 아니에요. UNPIVOT은 별도 가로성적표를 입력으로 써요.",
+  "terms": [
+    {
+      "token": "PIVOT",
+      "kind": "키워드",
+      "meaning": "pivot = 축을돌리기",
+      "role": "과목값 DB·JAVA를 조회 결과의 열로 펼쳐요."
+    },
+    {
+      "token": "FOR 과목",
+      "kind": "분류 열 지정",
+      "meaning": "어떤 열의 값을 펼칠지",
+      "role": "성적.과목에 들어 있는 문자값 DB·JAVA를 기준으로 해요."
+    },
+    {
+      "token": "'DB' AS DB",
+      "kind": "값과 별칭",
+      "meaning": "따옴표 안은 입력값, 뒤는 출력 열 이름",
+      "role": "DB 과목값을 모은 결과를 DB라는 열로 불러요."
+    },
+    {
+      "token": "UNPIVOT",
+      "kind": "키워드",
+      "meaning": "가로열을 분류와 값의 행으로 세움",
+      "role": "DB·JAVA열을 과목·점수열의 행으로 펼쳐요."
+    },
+    {
+      "token": "EXCLUDE / INCLUDE NULLS",
+      "kind": "옵션",
+      "meaning": "NULL값 제외/포함",
+      "role": "Oracle 기본 UNPIVOT은 유성재의 JAVA NULL을 빼요."
+    }
+  ],
+  "pitfalls": [
+    "PIVOT 입력의 학번·이름은 집계·분류에 쓰이지 않아 그룹 기준이 돼요. 불필요한 고유 행번호를 추가하면 기대와 다르게 쪼개질 수 있어요.",
+    "SUM의 NULL 결과를 0으로 바꾸지 않아요. 유성재 JAVA는 유효 점수가 없어 NULL이에요.",
+    "PIVOT에서 합친 중복행과 UNPIVOT에서 제외한 NULL행은 역변환으로 자동 복구되지 않아요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회 변환이에요. PIVOT 결과 DB·JAVA열은 출력 모양이며 원본 성적표에 ALTER로 추가되는 열이 아니에요. UNPIVOT은 별도 가로성적표를 입력으로 써요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 101,
+      "toPage": 101,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-17-E01",
+      "why": "DB 점수와 JAVA 점수를 학생별 한 줄에서 나란히 비교해요.",
+      "effect": "조회 · 성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-17-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "성적: 컬럼 학번·이름·과목·점수 4개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "필요한 네 입력 열",
+          "text": "안쪽 SELECT는 학번·이름·과목·점수만 가져와요. 과목은 펼칠 축, 점수는 SUM 대상이고 남은 학번·이름이 그룹 기준이에요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학번,이름,과목,점수 FROM 성적",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "SELECT",
+            "학번",
+            "이름"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "문자값과 결과 열 이름",
+          "text": "FOR 과목은 과목값을 보라는 뜻이에요. IN의 문자값 DB는 DB열로, JAVA는 JAVA열로 표시해요. 작은따옴표 안 값과 AS 뒤 별칭을 구분해요.",
+          "codeFocus": [
+            {
+              "needle": "FOR 과목 IN ('DB' AS DB,'JAVA' AS JAVA)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "JAVA",
+            "FOR",
+            "과목"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-02"
+        },
+        {
+          "title": "학생별 셀의 집계",
+          "text": "1001 박상현의 DB 90·JAVA 80, 1002 유성재의 DB 70·JAVA NULL을 각 셀에 SUM해요. NULL만 있는 SUM은 NULL이지 0이 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "SUM(점수)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "SUM"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 학생별 셀의 집계",
+            "columns": [
+              "학생그룹",
+              "과목",
+              "집계입력",
+              "결과"
+            ],
+            "rows": [
+              [
+                "1001 박상현",
+                "DB",
+                "90",
+                "90"
+              ],
+              [
+                "1001 박상현",
+                "JAVA",
+                "80",
+                "80"
+              ],
+              [
+                "1002 유성재",
+                "DB",
+                "70",
+                "70"
+              ],
+              [
+                "1002 유성재",
+                "JAVA",
+                null,
+                null
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "가로 결과 두 행",
+          "text": "학번·이름별 두 행에 DB·JAVA 결과 열을 붙이고 학번순으로 보여줘요. 원본 성적은 여전히 세로 4행이에요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학번,이름,DB,JAVA",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "JAVA",
+            "학번",
+            "이름"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "가로 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 가로 결과와 대조해요. 표시 컬럼은 학번·이름·DB·JAVA, 결과는 2행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "가로 결과",
+            "columns": [
+              "학번",
+              "이름",
+              "DB",
+              "JAVA"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "90",
+                "80"
+              ],
+              [
+                "1002",
+                "유성재",
+                "70",
+                null
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "PIVOT은 집계를 포함해요. 유성재 JAVA NULL은 유효 점수가 없다는 결과이고 점수 0을 받았다는 뜻이 아니에요.",
+      "verification": "원본 값의 단계별 대입·산술을 검토하고 Oracle 19c 공식 문서의 해당 구문과 대조했어요. Oracle DB 엔진에서는 실행하지 않았어요."
+    },
+    {
+      "exampleId": "2-2-17-E02",
+      "why": "가로성적의 과목열들을 과목명·점수행으로 풀어서 읽어요.",
+      "effect": "조회 · 가로성적의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-17-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "가로성적: 컬럼 학번·이름·DB·JAVA 4개, 표시 입력 2행."
+      ],
+      "steps": [
+        {
+          "title": "입력은 가로성적",
+          "text": "이 예제는 학번·이름·DB·JAVA의 가로표를 읽어요. 앞 예제의 조회가 원본에 자동 저장되었다고 가정하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "FROM 가로성적",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "열 이름을 과목값으로",
+          "text": "UNPIVOT의 점수는 셀값을 받을 결과 열, 과목은 DB·JAVA 표시값을 받을 결과 열이에요. DB AS 'DB'는 DB 컬럼을 과목값 DB로 표시한다는 뜻이에요.",
+          "codeFocus": [
+            {
+              "needle": "UNPIVOT(점수 FOR 과목 IN (DB AS 'DB',JAVA AS 'JAVA'))",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "UNPIVOT",
+            "JAVA",
+            "점수"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-02"
+        },
+        {
+          "title": "네 셀을 판정",
+          "text": "박상현 DB 90·JAVA 80과 유성재 DB 70은 값이 있어 남아요. 유성재 JAVA는 NULL이라 기본 EXCLUDE NULLS로 해당 행을 제외해요.",
+          "codeFocus": [
+            {
+              "needle": "UNPIVOT",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 네 셀을 판정",
+            "columns": [
+              "학생",
+              "과목",
+              "점수",
+              "판정"
+            ],
+            "rows": [
+              [
+                "박상현",
+                "DB",
+                "90",
+                "유지"
+              ],
+              [
+                "박상현",
+                "JAVA",
+                "80",
+                "유지"
+              ],
+              [
+                "유성재",
+                "DB",
+                "70",
+                "유지"
+              ],
+              [
+                "유성재",
+                "JAVA",
+                null,
+                "NULL·제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "세 행 결과",
+          "text": "학번 다음 과목순으로 3행을 보여줘요. NULL행이 결과에서 제외돼도 원본 가로성적의 JAVA 컬럼 자체를 DROP한 것은 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 학번,과목",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "학번",
+            "과목"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "기본 UNPIVOT · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 기본 UNPIVOT와 대조해요. 표시 컬럼은 학번·이름·과목·점수, 결과는 3행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "기본 UNPIVOT",
+            "columns": [
+              "학번",
+              "이름",
+              "과목",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "박상현",
+                "DB",
+                "90"
+              ],
+              [
+                "1001",
+                "박상현",
+                "JAVA",
+                "80"
+              ],
+              [
+                "1002",
+                "유성재",
+                "DB",
+                "70"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "기본 NULL 제외 때문에 2학생×2과목=4개 칸이 최종 3행이에요. INCLUDE NULLS는 현재 SQL에 없는 비교 옵션이에요.",
+      "verification": "원본 값의 단계별 대입·산술을 검토하고 Oracle 19c 공식 문서의 해당 구문과 대조했어요. Oracle DB 엔진에서는 실행하지 않았어요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-17-Q1",
+      "hint": "PIVOT 괄호 첫부분에 어떤 함수가 있는지 보세요.",
+      "reasoning": "SUM(점수)이면 같은 학번·이름·과목의 점수를 더해요. 중복행을 각각 따로 보존하는 단순 이동이 아니에요."
+    },
+    {
+      "checkId": "2-2-17-Q2",
+      "hint": "원본 가로성적의 유성재 JAVA칸을 찾아봐요.",
+      "reasoning": "그 칸은 NULL이고 기본 EXCLUDE NULLS라 해당 세로행은 제외돼요. INCLUDE NULLS를 선택하면 포함할 수 있어요."
+    },
+    {
+      "checkId": "2-2-17-Q3",
+      "hint": "집계 전 행 개수와 NULL행 정보가 남아 있는지 확인해요.",
+      "reasoning": "합계 90만으로 원래 90 한 행인지 40·50 두 행인지 알 수 없어요. NULL 제외도 있어 항상 복원되지는 않아요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

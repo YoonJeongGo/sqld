@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "scope": "User-supplied reference example; independent Python three-valued value trace and SQLite transformed-query cross-check",
+  "python": "3.14.4",
+  "sqlite": "3.50.4",
+  "oracle19cExecuted": false,
+  "transformation": "Oracle > ANY subquery syntax was replaced by >600 OR >300 after independently computing the exact non-NULL two-value subquery result. This is not Oracle SQL execution.",
+  "subquery1": [
+    10,
+    20,
+    null
+  ],
+  "subquery2": [
+    600,
+    300
+  ],
+  "decisions": [
+    {
+      "emp_id": 1001,
+      "name": "박강열",
+      "dept": 10,
+      "salary": 900,
+      "not_in": "FALSE",
+      "greater_any": "TRUE",
+      "and": "FALSE",
+      "included": false
+    },
+    {
+      "emp_id": 1002,
+      "name": "유성재",
+      "dept": 20,
+      "salary": 700,
+      "not_in": "FALSE",
+      "greater_any": "TRUE",
+      "and": "FALSE",
+      "included": false
+    },
+    {
+      "emp_id": 1003,
+      "name": "양지훈",
+      "dept": 20,
+      "salary": 500,
+      "not_in": "FALSE",
+      "greater_any": "TRUE",
+      "and": "FALSE",
+      "included": false
+    },
+    {
+      "emp_id": 1004,
+      "name": "박보성",
+      "dept": 30,
+      "salary": 600,
+      "not_in": "UNKNOWN",
+      "greater_any": "TRUE",
+      "and": "UNKNOWN",
+      "included": false
+    },
+    {
+      "emp_id": 1005,
+      "name": "이승현",
+      "dept": 30,
+      "salary": 300,
+      "not_in": "UNKNOWN",
+      "greater_any": "FALSE",
+      "and": "FALSE",
+      "included": false
+    },
+    {
+      "emp_id": 1006,
+      "name": "김현수",
+      "dept": null,
+      "salary": 800,
+      "not_in": "UNKNOWN",
+      "greater_any": "TRUE",
+      "and": "UNKNOWN",
+      "included": false
+    }
+  ],
+  "finalRows": [],
+  "finalRowCount": 0,
+  "correctOption": 4,
+  "notes": [
+    "Names and salaries are the user's supplied fictional example.",
+    "No top-level ORDER BY in the original example; no result ordering is claimed.",
+    "Both outer conditions were evaluated for explanation even though NOT IN suffices to conclude zero result rows."
+  ]
+}

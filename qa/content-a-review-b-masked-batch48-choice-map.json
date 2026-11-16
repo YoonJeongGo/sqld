@@ -1,0 +1,290 @@
+{
+  "S21-A05-insert-select-filter": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S21-A06-merge-update-insert": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "a",
+    "r4": "d"
+  },
+  "S22-A01-partial-then-commit": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S22-A02-full-after-partial": {
+    "r1": "b",
+    "r2": "c",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S22-A03-commit-boundary": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S22-A04-savepoint-name-reuse": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "S22-A05-ddl-commits-prior": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "S22-A06-delete-insert-rollback": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S23-A01-check-null-versus-negative": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "d",
+    "r4": "a"
+  },
+  "S23-A02-unique-null-single": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S23-A03-fk-parent-required": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "S23-A04-parent-delete-set-null": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "S23-A05-truncate-versus-delete-rollback": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "b",
+    "r4": "d"
+  },
+  "S23-A06-drop-versus-recreate": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S24-A01-read-only-grant": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "b",
+    "r4": "a"
+  },
+  "S24-A02-grant-chain-revoke": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S24-A03-role-survives-direct-revoke": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "S24-A04-column-update-only": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "S24-A05-system-not-data-read": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "S24-A06-public-revoke-scope": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-1-S09-m1-null-and-limited-order": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "mock-1-S10-m1-header-amount-inflation": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-1-S10-m1-unique-pairs-self": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-1-S11-m1-outer-or-null-leak": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-1-S11-m1-full-null-double": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "b",
+    "r4": "a"
+  },
+  "mock-1-S12-m1-not-in-correct-filter": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-1-S12-m1-scalar-grouping-cardinality": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-1-S12-m1-universal-using-not-exists": {
+    "r1": "d",
+    "r2": "a",
+    "r3": "c",
+    "r4": "b"
+  },
+  "mock-1-S13-m1-projection-then-dedup": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-1-S13-m1-all-filter-stage": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "mock-1-S14-m1-grouping-id-mask": {
+    "r1": "c",
+    "r2": "d",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-1-S14-m1-null-nvl-subtotal": {
+    "r1": "b",
+    "r2": "a",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-1-S15-m1-aggregate-window-logical": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-1-S15-m1-lag-filter-order": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "b",
+    "r4": "d"
+  },
+  "mock-1-S16-m1-nullable-window-count": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "c",
+    "r4": "d"
+  },
+  "mock-1-S16-m1-last-null-respect": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-1-S17-m1-dense-cut-groups": {
+    "r1": "d",
+    "r2": "b",
+    "r3": "c",
+    "r4": "a"
+  },
+  "mock-1-S17-m1-rownum-projected-page": {
+    "r1": "a",
+    "r2": "d",
+    "r3": "c",
+    "r4": "b"
+  },
+  "mock-1-S18-m1-hierarchy-multiple-roots": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-1-S18-m1-root-versus-parent": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "a",
+    "r4": "c"
+  },
+  "mock-1-S19-m1-pivot-avg-weight": {
+    "r1": "c",
+    "r2": "b",
+    "r3": "a",
+    "r4": "d"
+  },
+  "mock-1-S19-m1-unpivot-zero-versus-missing": {
+    "r1": "a",
+    "r2": "b",
+    "r3": "d",
+    "r4": "c"
+  },
+  "mock-1-S20-m1-alternation-anchors": {
+    "r1": "a",
+    "r2": "c",
+    "r3": "d",
+    "r4": "b"
+  },
+  "mock-1-S21-m1-update-subquery-null": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-1-S21-m1-merge-unmatched-delete": {
+    "r1": "d",
+    "r2": "c",
+    "r3": "a",
+    "r4": "b"
+  },
+  "mock-1-S22-m1-failed-statement-prior-change": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  },
+  "mock-1-S23-m1-unique-fk-not-one-to-one": {
+    "r1": "c",
+    "r2": "a",
+    "r3": "b",
+    "r4": "d"
+  },
+  "mock-1-S24-m1-grant-option-not-admin": {
+    "r1": "b",
+    "r2": "d",
+    "r3": "c",
+    "r4": "a"
+  }
+}

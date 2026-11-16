@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "authorAndReviewer": "content_a",
+  "savedAt": "2026-09-14T05:36:45.881996+00:00",
+  "authored": {
+    "sourceFile": "content/part-a.json",
+    "sha256": "1194bc9e2f9b28358d70e629969f7892fd6a90813f88c05635bdacac6f8ab41f",
+    "objectives": 18,
+    "notes": 18,
+    "questions": 285,
+    "kinds": {
+      "recall": 75,
+      "application": 100,
+      "mock": 110
+    },
+    "fixtures": 105,
+    "status": "frozen after necessary reviewed corrections",
+    "semanticDuplicateReplacement": {
+      "questionId": "mock-1-M10-reservation-timeslot",
+      "version": 2,
+      "reviewedBy": [
+        "content_b masked answers and explanations",
+        "sources_scope normalization correctness and family independence"
+      ],
+      "priorDuplicateRetainedInCorrectionHistory": true,
+      "publishedTransitionOnly": true
+    }
+  },
+  "crossReviewed": {
+    "sourceFile": "content/part-b.json",
+    "sha256": "1e49f1a0fa06800fdb263ee68690e935a12db40b4e582c234253d72ff9df0146",
+    "questions": 315,
+    "firstExposureChoiceIdAndOrderMaskedAnswerReasoning": 235,
+    "maskedRecalculationWithDeclaredPriorAnswerExposure": 80,
+    "allCurrentExplanationsRead": 315,
+    "currentRevisionAmendments": 49,
+    "amendmentsFile": "qa/content-a-review-b-final-amendments.json",
+    "initial235Batches": [
+      "masked-recall75",
+      "masked-batch48",
+      "masked-mock23",
+      "masked-mock45"
+    ],
+    "recalculation80Batch": "masked-recheck80"
+  },
+  "boundaries": [
+    "Independent AI document reasoning and explanation comparison only; no Oracle engine execution.",
+    "No human expert validation or proven learning efficacy.",
+    "The original80 answer review exposed stable authored answer identifiers; later ID-masked recalculation does not erase prior answer exposure.",
+    "Later amended revisions were explicitly reread with previous hashes retained; earlier review files were not rewritten.",
+    "General Korean spacing issues and truncated titles remain; optional global edits stopped at final freeze."
+  ]
+}

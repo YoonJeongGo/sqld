@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "1-1-03",
+  "source": {
+    "id": "1-1-03",
+    "partId": "1-1",
+    "number": 3,
+    "title": "데이터 모델링과정",
+    "lectureMinutes": 16,
+    "easy": "큰 그림부터 정한 뒤, 표의 구조를 구체화하고, 실제 DBMS에서 저장될 모습까지 정하는 과정이다.",
+    "why": "처음부터 VARCHAR2 길이나 인덱스만 고민하면 어떤 정보를 관리하려는지 놓칠 수 있다. 단계마다 해결하는 문제가 다르다.",
+    "concepts": [
+      {
+        "term": "요구사항 분석",
+        "meaning": "업무에 필요한 데이터와 규칙을 듣는다",
+        "example": "한 학생은 여러 과목을 수강할 수 있다"
+      },
+      {
+        "term": "개념적 모델링",
+        "meaning": "핵심 대상과 관계를 큰 그림으로 표현",
+        "example": "학생－수강－과목"
+      },
+      {
+        "term": "논리적 모델링",
+        "meaning": "속성·식별자·관계를 상세화하고 정규화",
+        "example": "학생(학번, 이름), 수강(학번, 과목코드, 점수)"
+      },
+      {
+        "term": "물리적 모델링",
+        "meaning": "선택한 DBMS의 자료형·제약·인덱스·저장 방식을 결정",
+        "example": "학번 NUMBER(6), 이름 VARCHAR2(30 CHAR)"
+      },
+      {
+        "term": "논리적 독립성",
+        "meaning": "전체 논리 구조 변경의 영향을 사용자 관점에서 줄임",
+        "example": "전체 표가 분해되어도 기존 조회 뷰 유지"
+      },
+      {
+        "term": "물리적 독립성",
+        "meaning": "저장 방법 변경이 논리 구조에 미치는 영향을 줄임",
+        "example": "인덱스를 추가해도 학생의 개념은 그대로"
+      }
+    ],
+    "examples": [
+      {
+        "id": "1-1-03-E01",
+        "title": "학생 관리 요구를 단계별로 구체화",
+        "question": "“학번과 이름으로 학생을 관리한다”는 요구는 어떻게 구체화될까?",
+        "tables": [
+          {
+            "title": "요구",
+            "columns": [
+              "업무 규칙"
+            ],
+            "rows": [
+              [
+                "학번은 중복되지 않는다"
+              ],
+              [
+                "이름은 반드시 기록한다"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "개념 단계: 관리 대상이 학생임을 파악한다.",
+          "논리 단계: 학생에 학번과 이름이 있고 학번으로 구별한다고 정한다.",
+          "물리 단계: Oracle 기준 자료형과 실제 제약조건을 선택한다."
+        ],
+        "results": [
+          {
+            "title": "단계별 산출물",
+            "columns": [
+              "단계",
+              "산출물"
+            ],
+            "rows": [
+              [
+                "개념",
+                "학생이라는 엔터티"
+              ],
+              [
+                "논리",
+                "학생(학번 PK, 이름 필수)"
+              ],
+              [
+                "물리",
+                "학번 NUMBER(6) PK, 이름 VARCHAR2(30 CHAR) NOT NULL"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "개념은 큰 그림 → 논리는 구조와 규칙 → 물리는 실제 저장.",
+    "traps": [
+      "ERD는 개념 단계에서만 쓰는 도구로 한정되지 않는다. 논리·물리 수준으로도 상세화할 수 있다.",
+      "물리적 모델링과 내부 스키마가 관련은 있지만, 단계 이름과 스키마 관점을 무조건 같은 용어로 취급하지 않는다."
+    ],
+    "selfChecks": [
+      {
+        "id": "1-1-03-Q1",
+        "question": "정규화와 식별자 상세화는 어느 단계에 가까운가?",
+        "answer": "논리적 모델링",
+        "explanation": "DB 구조의 논리적 일관성을 정한다."
+      },
+      {
+        "id": "1-1-03-Q2",
+        "question": "인덱스와 구체적인 자료형을 정하는 단계는?",
+        "answer": "물리적 모델링",
+        "explanation": "특정 DBMS에서 실제로 저장·접근할 방법이다."
+      },
+      {
+        "id": "1-1-03-Q3",
+        "question": "요구사항에서 먼저 확인할 것은?",
+        "answer": "저장해야 할 사실과 업무 규칙",
+        "explanation": "그다음 대상·속성·관계를 결정한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-M01"
+    ],
+    "sourceIds": [
+      "model",
+      "datatypes"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"데이터 모델링과정 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념적 모델</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">무엇을 저장하나?</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">논리적 모델</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 표·키로 표현?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">물리적 모델</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 타입·인덱스?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">개념은 큰 그림 → 논리는 구조와 규칙 → 물리는 실제 저장.</text></svg>",
+    "version": 1
+  },
+  "purpose": "학번 중복 금지와 이름 필수라는 요구가 어떻게 실제 정의로 구체화되는지 구별하자.",
+  "overview": "학생표의 값을 바꾸는 과정이 아니라 설계를 구체화하는 세 단계다. 각 단계의 산출물은 같은 학생 관리 요구를 서로 다른 상세 수준으로 표현한다.",
+  "terms": [
+    {
+      "token": "요구사항 분석",
+      "kind": "개념",
+      "meaning": "업무에 필요한 데이터와 규칙을 듣는다",
+      "role": "한 학생은 여러 과목을 수강할 수 있다"
+    },
+    {
+      "token": "개념적 모델링",
+      "kind": "개념",
+      "meaning": "핵심 대상과 관계를 큰 그림으로 표현",
+      "role": "학생－수강－과목"
+    },
+    {
+      "token": "논리적 모델링",
+      "kind": "개념",
+      "meaning": "속성·식별자·관계를 상세화하고 정규화",
+      "role": "학생(학번, 이름), 수강(학번, 과목코드, 점수)"
+    },
+    {
+      "token": "물리적 모델링",
+      "kind": "개념",
+      "meaning": "선택한 DBMS의 자료형·제약·인덱스·저장 방식을 결정",
+      "role": "학번 NUMBER(6), 이름 VARCHAR2(30 CHAR)"
+    },
+    {
+      "token": "논리적 독립성",
+      "kind": "개념",
+      "meaning": "전체 논리 구조 변경의 영향을 사용자 관점에서 줄임",
+      "role": "전체 표가 분해되어도 기존 조회 뷰 유지"
+    },
+    {
+      "token": "물리적 독립성",
+      "kind": "개념",
+      "meaning": "저장 방법 변경이 논리 구조에 미치는 영향을 줄임",
+      "role": "인덱스를 추가해도 학생의 개념은 그대로"
+    },
+    {
+      "token": "PK",
+      "kind": "제약 역할 약어",
+      "meaning": "Primary Key · 기본키",
+      "role": "학번으로 학생 한 명을 구별하도록 정한 대표 키다."
+    },
+    {
+      "token": "NUMBER(6)",
+      "kind": "Oracle 자료형",
+      "meaning": "숫자를 저장하는 자료형과 정밀도",
+      "role": "여기서 6은 학번의 숫자 정밀도다. 행 여섯 개를 만들거나 번호를 자동 생성하지 않는다."
+    },
+    {
+      "token": "VARCHAR2(30 CHAR)",
+      "kind": "Oracle 자료형",
+      "meaning": "길이가 달라지는 문자열",
+      "role": "이름을 문자 수 기준 최대30으로 정의한 물리 설계 조각이다."
+    },
+    {
+      "token": "NOT NULL",
+      "kind": "제약조건",
+      "meaning": "NULL이 아니다 · 값의 부재를 금지",
+      "role": "이름 값을 빠뜨리지 않도록 한다. 동명이인을 금지하는 규칙은 아니다."
+    }
+  ],
+  "pitfalls": [
+    "이 강의의 정의 조각은 독립 실행문이 아니다. CREATE TABLE 전체 문장은 SQL 기본 단원에서 배운다."
+  ],
+  "questions": [
+    {
+      "question": "PK면 이름도 중복 금지야?",
+      "answer": "아니다. 여기서 PK 대상은 학번이다. 이름의 필수 조건은 값을 빠뜨리지 말라는 규칙이다."
+    },
+    {
+      "question": "NUMBER(6)은 6자리만 넣어야 해?",
+      "answer": "아니다. 1001처럼 작은 정수도 가능하다. 정확히 여섯 자리를 강제하거나 번호를 자동 생성하는 설정이 아니다."
+    },
+    {
+      "question": "CHAR 없는 VARCHAR2(30)도 무조건 한글 30글자야?",
+      "answer": "아니다. BYTE/CHAR와 길이 의미 설정을 확인해야 한다. 이 원본 예시는 CHAR를 명시했다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "1-1",
+      "title": "데이터 모델링의 이해",
+      "fromPage": 5,
+      "toPage": 7,
+      "note": "흥달쌤 원본 PDF의 해당 단원과 문제를 대조했습니다. 아래 앱 예제의 이름·표·값은 PDF 문제와 별도 데이터이며, 원본 PDF의 보기를 옮겨 채점하지 않습니다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "1-1-03-E01",
+      "why": "학번은 중복되면 안 되고 이름은 빠지면 안 된다는 요구를 설계자가 받았다.",
+      "effect": "개념: 요구사항에서 논리 규칙과 Oracle 물리 정의로 구체화한다.",
+      "prerequisites": [
+        "이 예제는 실행할 CREATE TABLE 문이 아니라 단계별 산출물을 비교하는 표다.",
+        "학번 NUMBER(6)와 이름 VARCHAR2(30 CHAR)는 Oracle 기준 물리 설계 예시다."
+      ],
+      "steps": [
+        {
+          "title": "먼저 저장할 사실과 업무 규칙",
+          "text": "요구에는 학생의 학번과 이름이 있다. 학번 중복 금지는 학생을 구별해야 한다는 요구이고 이름 필수는 입력값을 빠뜨리지 않겠다는 별도 요구다. 아직 몇 행이 저장될지는 정하지 않는다.",
+          "codeFocus": [],
+          "highlights": [
+            "학번 중복 금지",
+            "이름 필수"
+          ],
+          "table": {
+            "title": "요구",
+            "columns": [
+              "업무 규칙"
+            ],
+            "rows": [
+              [
+                "학번은 중복되지 않는다"
+              ],
+              [
+                "이름은 반드시 기록한다"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "개념 단계: 학생이라는 대상",
+          "text": "먼저 관리 대상이 학생이라는 점을 정한다. 현실에서 필요하지 않은 특징은 제외한다. 이 단계에서 학생이라는 이름을 적는 것은 DB에 학생 행을 입력한 것이 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "관리 대상이 학생"
+          ],
+          "table": {
+            "title": "개념 단계",
+            "columns": [
+              "결정할 내용",
+              "이 예제"
+            ],
+            "rows": [
+              [
+                "관리 대상",
+                "학생"
+              ],
+              [
+                "업무 요구",
+                "학생을 구별하고 이름을 기록"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-02"
+        },
+        {
+          "title": "논리 단계: 항목과 식별 규칙",
+          "text": "학생(학번 PK, 이름 필수)에서 학번·이름은 두 항목이고 PK는 학번을 대표 식별자로 삼는다는 표시다. 이름 필수는 이름이 유일하다는 뜻이 아니다. 동명이인 허용 여부와 필수 여부는 서로 다른 규칙이다.",
+          "codeFocus": [],
+          "highlights": [
+            "학번·이름",
+            "이름 필수"
+          ],
+          "table": {
+            "title": "논리 단계",
+            "columns": [
+              "속성",
+              "규칙",
+              "이유"
+            ],
+            "rows": [
+              [
+                "학번",
+                "주식별자",
+                "학생 한 명 구별"
+              ],
+              [
+                "이름",
+                "필수",
+                "누구인지 이름 기록"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-03"
+        },
+        {
+          "title": "물리 단계: 숫자는 행 수가 아니다",
+          "text": "NUMBER(6)의 6은 학번 숫자의 정밀도 제한이다. 학생 여섯 명이나 자동 일련번호라는 뜻이 아니다. 이 예시의 NUMBER(6)은 소수 자릿수 0으로 취급되어 소수 입력은 반올림될 수 있고 반올림한 값이 정밀도를 넘으면 오류다. VARCHAR2(30 CHAR)의 30은 이름 문자열의 문자 수 기준 길이다.",
+          "codeFocus": [],
+          "highlights": [
+            "숫자의 정밀도 제한",
+            "문자 수 기준 길이"
+          ],
+          "table": {
+            "title": "단계별 산출물",
+            "columns": [
+              "단계",
+              "산출물"
+            ],
+            "rows": [
+              [
+                "개념",
+                "학생이라는 엔터티"
+              ],
+              [
+                "논리",
+                "학생(학번 PK, 이름 필수)"
+              ],
+              [
+                "물리",
+                "학번 NUMBER(6) PK, 이름 VARCHAR2(30 CHAR) NOT NULL"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "title": "개념도에서 무엇이 늘어났는지 보기",
+          "text": "기존 모델링 그림의 학생이라는 대상에서 학번·이름으로, 다시 NUMBER·VARCHAR2·PRIMARY KEY로 구체화되는 부분을 보자. 설계 설명이 상세해진 것이며 데이터를 세 번 따로 저장하는 동작은 아니다.",
+          "codeFocus": [],
+          "highlights": [
+            "설계 설명이 상세해진"
+          ],
+          "table": {
+            "title": "단계마다 새로 정한 것",
+            "columns": [
+              "단계",
+              "추가한 결정"
+            ],
+            "rows": [
+              [
+                "개념",
+                "학생이라는 관리 대상"
+              ],
+              [
+                "논리",
+                "학번으로 식별 · 이름 필수"
+              ],
+              [
+                "물리",
+                "Oracle 자료형과 실제 제약 정의"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-05"
+        }
+      ],
+      "comparison": "논리적 모델링은 어떤 사실과 규칙을 저장할지, 물리적 모델링은 선택한 DBMS에서 이를 어떻게 정의할지 정한다. 논리 모델링과 논리적 독립성은 서로 다른 질문이다.",
+      "verification": "원본 표·업무 규칙과 추가 설명을 대조한 개념 검토입니다. SQL을 실행하는 예제가 아닙니다. 실제 DBMS 실행·사람 전문가 검수는 하지 않았습니다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "1-1-03-Q1",
+      "hint": "제품별 저장 방식인지, 표의 논리 규칙인지 살펴보자.",
+      "reasoning": "식별자와 정규화는 학생·수강 같은 표의 논리 구조를 정하므로 논리적 모델링에 가깝다."
+    },
+    {
+      "checkId": "1-1-03-Q2",
+      "hint": "NUMBER와 인덱스가 특정 DBMS에서 쓰이는 정의인지 생각해 보자.",
+      "reasoning": "물리적 모델링이다. 학생이라는 개념을 찾는 단계를 넘어 실제 자료형·인덱스·저장 방법을 정한다."
+    },
+    {
+      "checkId": "1-1-03-Q3",
+      "hint": "형식의 길이를 고르기 전에 어떤 정보를 왜 저장해야 할까?",
+      "reasoning": "저장할 사실과 업무 규칙을 먼저 확인한다. 이 예제에서는 학번으로 학생을 구별하고 이름을 빠뜨리지 않는다는 요구다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/sql-developer-data-modeler/24.3/dmdug/data-modeler-concepts-usage.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html"
+  ],
+  "reviewNotes": []
+}

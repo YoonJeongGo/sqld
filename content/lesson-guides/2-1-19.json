@@ -1,0 +1,417 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-19",
+  "source": {
+    "id": "2-1-19",
+    "partId": "2-1",
+    "number": 19,
+    "title": "집계 함수",
+    "lectureMinutes": 35,
+    "easy": "여러 행의 값을 모아 개수·합계·평균·최댓값·최솟값처럼 요약하는 함수다.",
+    "why": "각 사람에게 함수를 적용하는 단일행함수와 달리 여러 사람의 점수를 한 요약값으로 만들 수 있다.",
+    "concepts": [
+      {
+        "term": "COUNT(*)",
+        "meaning": "전체 행수",
+        "example": "NULL이 있어도 행은 센다"
+      },
+      {
+        "term": "COUNT(열)",
+        "meaning": "그 열이 NULL이 아닌 행수",
+        "example": "값 0은 포함"
+      },
+      {
+        "term": "COUNT(DISTINCT 열)",
+        "meaning": "NULL 제외 후 서로 다른 값의 수",
+        "example": "90,90,70,NULL → 2"
+      },
+      {
+        "term": "SUM",
+        "meaning": "NULL 제외 합계",
+        "example": "90+90+70=250"
+      },
+      {
+        "term": "AVG",
+        "meaning": "NULL 제외 합계/NULL 제외 개수",
+        "example": "250/3"
+      },
+      {
+        "term": "MIN·MAX",
+        "meaning": "NULL 제외 최솟값·최댓값",
+        "example": "70·90"
+      },
+      {
+        "term": "GROUP BY 없는 집계",
+        "meaning": "입력 전체를 하나의 집계 대상으로 봄",
+        "example": "결과 한 행"
+      },
+      {
+        "term": "그룹별 집계",
+        "meaning": "그룹마다 집계값 생성",
+        "example": "학과별 평균"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-19-E01",
+        "title": "값·종류·행수를 각각 세기",
+        "question": "90, 90, 70, NULL을 집계하자.",
+        "tables": [
+          {
+            "title": "성적",
+            "columns": [
+              "학번",
+              "이름",
+              "점수"
+            ],
+            "rows": [
+              [
+                "1001",
+                "김현수",
+                "90"
+              ],
+              [
+                "1002",
+                "노우성",
+                "90"
+              ],
+              [
+                "1003",
+                "박보성",
+                "70"
+              ],
+              [
+                "1004",
+                "이승현",
+                null
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT COUNT(*) AS 전체, COUNT(점수) AS 입력, COUNT(DISTINCT 점수) AS 종류, SUM(점수) AS 합계, ROUND(AVG(점수),2) AS 평균, MIN(점수) AS 최소, MAX(점수) AS 최대 FROM 성적;",
+        "steps": [
+          "네 학생 정보는 네 행이므로 COUNT(*)=4다. 점수 있는 학생은 세 명이다.",
+          "서로 다른 점수값은 90과 70 두 종류이므로 COUNT(DISTINCT 점수)=2다.",
+          "합계 250, 평균 약 83.33, 최솟값 70, 최댓값 90이다.",
+          "이 여러 집계값은 같은 SELECT 결과의 한 행에 나란히 담긴다."
+        ],
+        "results": [
+          {
+            "title": "집계 결과",
+            "columns": [
+              "전체",
+              "입력",
+              "종류",
+              "합계",
+              "평균",
+              "최소",
+              "최대"
+            ],
+            "rows": [
+              [
+                "4",
+                "3",
+                "2",
+                "250",
+                "83.33",
+                "70",
+                "90"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "COUNT(*) 행 / COUNT(열) 입력된 값 / COUNT(DISTINCT 열) 값 종류.",
+    "traps": [
+      "집계 결과 4는 결과표가 4행이라는 뜻이 아니다. 위 쿼리는 한 결과 행이다.",
+      "GROUP BY 없이 비집계 이름과 전체 평균을 함께 SELECT하면 일반적으로 올바른 그룹 쿼리가 아니다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-19-Q1",
+        "question": "90,90,70,NULL의 COUNT(DISTINCT 점수)는?",
+        "answer": "2",
+        "explanation": "서로 다른 값 90과 70만 센다."
+      },
+      {
+        "id": "2-1-19-Q2",
+        "question": "위 예제 쿼리의 결과 행수는?",
+        "answer": "1",
+        "explanation": "일곱 개 집계값을 한 요약 행으로 표시한다."
+      },
+      {
+        "id": "2-1-19-Q3",
+        "question": "SUM이 없는 입력을 0으로 자동 취급하는가?",
+        "answer": "아니다. 일반적으로 NULL",
+        "explanation": "필요한 업무 의미에 따라 COALESCE 등으로 대체한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S07"
+    ],
+    "sourceIds": [
+      "aggregate"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"집계 함수 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">여러 사람의 행</text><text x=\"120.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">컴퓨터 · 전자 · 컴퓨터</text><rect x=\"265\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">같은 기준끼리 묶기</text><text x=\"360.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">컴퓨터 묶음 / 전자 묶음</text><rect x=\"505\" y=\"61\" width=\"190\" height=\"82\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"92\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">그룹별 한 줄</text><text x=\"600.0\" y=\"119\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">COUNT · SUM · AVG</text><path d=\"M223 101 L256 101\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M463 101 L496 101\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"16\" fill=\"#172b4d\" font-weight=\"700\">그룹에 누가 들어가는지 먼저 확인하고 집계한다.</text></svg>",
+    "version": 1
+  },
+  "purpose": "학생 수, 입력된 점수 수, 점수 종류 수를 나누고 같은 자료에서 합계·평균·최솟값·최댓값을 구한다.",
+  "overview": "집계는 여러 행에서 요약값을 만든다. COUNT의 괄호 안이 *, 점수, DISTINCT 점수 중 무엇인지에 따라 세는 대상이 달라진다.",
+  "terms": [
+    {
+      "token": "COUNT(DISTINCT 점수)",
+      "kind": "집계 함수",
+      "meaning": "서로 다른 NULL 아닌 점수 개수",
+      "role": "90이 두 번 있어도 한 종류로 세어 90·70 두 종류다."
+    },
+    {
+      "token": "SUM / AVG",
+      "kind": "집계 함수",
+      "meaning": "합계 / 평균",
+      "role": "90+90+70=250, NULL 제외 세 값으로 나눈다."
+    },
+    {
+      "token": "MIN / MAX",
+      "kind": "집계 함수",
+      "meaning": "최솟값 / 최댓값",
+      "role": "점수값 70과 90을 반환하며 그 점수 학생의 전체 행을 자동 반환하지 않는다."
+    },
+    {
+      "token": "ROUND(AVG(점수),2)",
+      "kind": "중첩 함수",
+      "meaning": "평균을 소수 둘째 자리까지 반올림",
+      "role": "250÷3의 결과 83.333…을 83.33으로 표시한다."
+    }
+  ],
+  "pitfalls": [
+    "집계함수 개수는 결과 행수가 아니다. 이 SELECT는 일곱 열의 한 행이다.",
+    "빈 입력에서 SUM은 일반적으로NULL이다. 필요에 따라 명시적으로 대체하며 0점이 있었던 것으로 해석하지 않는다."
+  ],
+  "questions": [
+    {
+      "question": "COUNT(DISTINCT 점수)는 여기서 무엇을 뜻하나요?",
+      "answer": "90이 두 번 있어도 한 종류로 세어 90·70 두 종류다."
+    },
+    {
+      "question": "SUM / AVG는 여기서 무엇을 뜻하나요?",
+      "answer": "90+90+70=250, NULL 제외 세 값으로 나눈다."
+    },
+    {
+      "question": "MIN / MAX는 여기서 무엇을 뜻하나요?",
+      "answer": "점수값 70과 90을 반환하며 그 점수 학생의 전체 행을 자동 반환하지 않는다."
+    },
+    {
+      "question": "ROUND(AVG(점수),2)는 여기서 무엇을 뜻하나요?",
+      "answer": "250÷3의 결과 83.333…을 83.33으로 표시한다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 99,
+      "toPage": 107,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-19-E01",
+      "why": "네 학생 성적을 한 줄 통계로 요약한다.",
+      "effect": "조회 집계:4행→1행,7개 집계열.",
+      "prerequisites": [
+        "점수는 90,90,70,NULL이며 원본에 DISTINCT는 COUNT의 점수종류에만 붙어 있다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "행과 값과 종류를 나누기",
+          "text": "COUNT(*)는 김현수·노우성·박보성·이승현 네 행을 센다. COUNT(점수)는NULL을 뺀 90,90,70 세 입력이다. COUNT(DISTINCT 점수)는 중복 90을 합쳐 90,70 두 종류다.",
+          "codeFocus": [
+            {
+              "needle": "COUNT(DISTINCT 점수)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "두 종류"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "세 COUNT 비교",
+            "columns": [
+              "식",
+              "대상",
+              "값"
+            ],
+            "rows": [
+              [
+                "COUNT(*)",
+                "원본4행",
+                "4"
+              ],
+              [
+                "COUNT(점수)",
+                "90,90,70",
+                "3"
+              ],
+              [
+                "COUNT(DISTINCT 점수)",
+                "90,70",
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "합계는 중복 점수도 더하기",
+          "text": "SUM(점수)에 DISTINCT가 없으므로 90점 두 명을 각각 포함한다. 90+90+70=250이다. 점수 종류 90+70=160을 답하면 다른 계산이다.",
+          "codeFocus": [
+            {
+              "needle": "SUM(점수)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "90+90+70=250"
+          ],
+          "focusRows": [
+            0,
+            1,
+            2
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "합산 대상",
+            "columns": [
+              "학번",
+              "점수",
+              "합계 참여"
+            ],
+            "rows": [
+              [
+                "1001",
+                "90",
+                "포함"
+              ],
+              [
+                "1002",
+                "90",
+                "포함"
+              ],
+              [
+                "1003",
+                "70",
+                "포함"
+              ],
+              [
+                "1004",
+                null,
+                "제외"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "평균과 양 끝값",
+          "text": "평균은 250÷3≈83.33이다. 분모 4는NULL을 0점으로 취급한 오답이다. MIN은 70, MAX는 90을 고르며 이름을 함께 고르는 함수가 아니다.",
+          "codeFocus": [
+            {
+              "needle": "ROUND(AVG(점수),2)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "분모 4"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "계산 요약",
+            "columns": [
+              "평균 식",
+              "MIN",
+              "MAX"
+            ],
+            "rows": [
+              [
+                "250÷3→83.33",
+                "70",
+                "90"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-04",
+          "title": "일곱 값이 한 행에 담기기",
+          "text": "SELECT의 전체·입력·종류·합계·평균·최소·최대가 일곱 머리글이다. 각 값 4,3,2,250,83.33,70,90을 하나의 요약 행에 나란히 담는다.",
+          "codeFocus": [
+            {
+              "needle": "SELECT COUNT(*)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "하나의 요약 행"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "집계 결과",
+            "columns": [
+              "전체",
+              "입력",
+              "종류",
+              "합계",
+              "평균",
+              "최소",
+              "최대"
+            ],
+            "rows": [
+              [
+                "4",
+                "3",
+                "2",
+                "250",
+                "83.33",
+                "70",
+                "90"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "COUNT(DISTINCT 점수)의 2는 학생 두 명이라는 뜻이 아니라 실제 점수 종류 두 개라는 뜻이다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-19-Q1",
+      "hint": "NULL 제외 후 같은 점수를 하나로 묶어 보자.",
+      "reasoning": "90 두 개는 한 종류,70은 한 종류여서 2다. NULL은 COUNT(DISTINCT 점수)에 포함되지 않는다."
+    },
+    {
+      "checkId": "2-1-19-Q2",
+      "hint": "집계열 개수와 요약행 개수를 따로 세어 보자.",
+      "reasoning": "GROUP BY 없는 전체 집계라 일곱 집계값을 한 요약 행에 담는다. 따라서 1행이다."
+    },
+    {
+      "checkId": "2-1-19-Q3",
+      "hint": "더할 숫자가 없다는 상태와 숫자 0이 있다는 상태를 구별하자.",
+      "reasoning": "집계 입력이 없거나 모두NULL이면 SUM은NULL이다. 0이 필요하면 COALESCE 등의 명시적 대체와 업무 의미를 정한다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html"
+  ],
+  "reviewNotes": []
+}

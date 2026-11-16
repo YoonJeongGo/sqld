@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-3-03",
+  "source": {
+    "id": "2-3-03",
+    "partId": "2-3",
+    "number": 3,
+    "title": "DCL",
+    "lectureMinutes": 26,
+    "easy": "사용자가 어떤 표에 어떤 작업을 할 수 있는지 권한을 주고 회수하는 명령이다.",
+    "why": "표를 읽을 수 있다고 수정·삭제할 수 있는 것은 아니다. 권한은 작업 종류별로 다르게 줄 수 있다.",
+    "concepts": [
+      {
+        "term": "GRANT",
+        "meaning": "권한 부여",
+        "example": "SELECT·UPDATE 권한"
+      },
+      {
+        "term": "REVOKE",
+        "meaning": "권한 회수",
+        "example": "UPDATE만 회수 가능"
+      },
+      {
+        "term": "ON",
+        "meaning": "어느 객체의 권한인가",
+        "example": "ON 학생"
+      },
+      {
+        "term": "TO·FROM",
+        "meaning": "누구에게 주고 누구에게서 거둘까",
+        "example": "GRANT ... TO, REVOKE ... FROM"
+      },
+      {
+        "term": "WITH GRANT OPTION",
+        "meaning": "받은 객체 권한을 다시 다른 사용자에게 부여 가능",
+        "example": "A→B 재부여"
+      },
+      {
+        "term": "WITH ADMIN OPTION",
+        "meaning": "시스템 권한·역할 관리의 재부여 옵션",
+        "example": "객체 권한 GRANT OPTION과 구별"
+      },
+      {
+        "term": "역할 ROLE",
+        "meaning": "여러 권한을 묶어 관리",
+        "example": "조회자 역할"
+      },
+      {
+        "term": "최소 권한",
+        "meaning": "업무에 필요한 권한만 부여",
+        "example": "읽기 전용 사용자는 SELECT만"
+      },
+      {
+        "term": "회수 전파·다른 경로",
+        "meaning": "재부여·다른 역할·직접 권한에 따라 효과 확인",
+        "example": "DBMS별 회수 규칙 구별"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-3-03-E01",
+        "title": "조회·수정 중 수정만 회수",
+        "question": "계정 U01에 학생 조회와 수정 권한을 주고, 나중에 수정만 회수하자.",
+        "tables": [
+          {
+            "title": "권한 초기상태",
+            "columns": [
+              "계정",
+              "SELECT",
+              "UPDATE"
+            ],
+            "rows": [
+              [
+                "U01",
+                "없음",
+                "없음"
+              ]
+            ]
+          }
+        ],
+        "sql": "GRANT SELECT, UPDATE ON 학생 TO U01 WITH GRANT OPTION;\nREVOKE UPDATE ON 학생 FROM U01;",
+        "steps": [
+          "GRANT SELECT, UPDATE ON 학생 TO U01로 두 권한을 준다.",
+          "WITH GRANT OPTION을 붙이면 U01이 받은 객체 권한을 다른 사용자에게도 부여할 수 있다.",
+          "REVOKE UPDATE ON 학생 FROM U01은 UPDATE만 거둔다. 다른 경로의 권한이 없다는 가정에서 SELECT는 남는다."
+        ],
+        "results": [
+          {
+            "title": "권한 결과",
+            "columns": [
+              "계정",
+              "SELECT",
+              "UPDATE"
+            ],
+            "rows": [
+              [
+                "U01",
+                "있음",
+                "없음"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 예상 결과를 설명한 자료입니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "GRANT TO 준다 / REVOKE FROM 거둔다 / ON 어느 표.",
+    "traps": [
+      "DCL은 학생표의 데이터 행을 직접 삽입·삭제하는 명령이 아니다.",
+      "Oracle의 객체 권한 재부여 회수와 다른 DBMS의 CASCADE/RESTRICT 문법을 섞어 쓰지 않는다.",
+      "SELECT가 여러 역할·직접 권한으로 부여되어 있으면 한 경로만 회수해도 접근이 남을 수 있다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-3-03-Q1",
+        "question": "권한을 주는 쪽의 전치사는 TO인가 FROM인가?",
+        "answer": "TO",
+        "explanation": "GRANT ... TO 사용자다."
+      },
+      {
+        "id": "2-3-03-Q2",
+        "question": "UPDATE만 회수하면 SELECT도 반드시 없어지는가?",
+        "answer": "아니다",
+        "explanation": "지정한 권한만 회수하며 다른 권한 경로도 확인한다."
+      },
+      {
+        "id": "2-3-03-Q3",
+        "question": "받은 객체 권한을 남에게 다시 줄 수 있는 옵션은?",
+        "answer": "WITH GRANT OPTION",
+        "explanation": "시스템 권한·역할의 ADMIN OPTION과 구별한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S24"
+    ],
+    "sourceIds": [
+      "grant",
+      "revoke"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"DCL 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">개념을 먼저</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">용어를 쉬운 말로</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실제 예시 확인</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">어떤 값·행·열인가?</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">결과와 이유</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">왜 이 답인가?</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">GRANT TO 준다 / REVOKE FROM 거둔다 / ON 어느 표.</text></svg>",
+    "version": 1
+  },
+  "purpose": "계정U01이 학생표를 조회·수정할 수 있게 한 뒤 수정 권한만 거둔다.",
+  "overview": "GRANT·REVOKE는 학생 데이터가 아니라 계정의 권한을 바꾼다. ON 뒤 객체, TO/FROM 뒤 사용자를 찾고 어떤 작업 권한을 나열했는지 읽는다.",
+  "terms": [
+    {
+      "token": "GRANT / TO",
+      "kind": "키워드",
+      "meaning": "grant = 주다, to = 받을 사용자",
+      "role": "학생의 SELECT·UPDATE 권한을U01에게 부여한다."
+    },
+    {
+      "token": "REVOKE / FROM",
+      "kind": "키워드",
+      "meaning": "revoke = 회수하다, from = 누구에게서",
+      "role": "U01에게 직접 준 UPDATE를 회수한다."
+    },
+    {
+      "token": "ON 학생",
+      "kind": "권한 대상",
+      "meaning": "어느 객체에 대한 권한인가",
+      "role": "학생 테이블의 객체 권한이며 다른 모든 테이블 권한이 아니다."
+    },
+    {
+      "token": "WITH GRANT OPTION",
+      "kind": "재부여 옵션",
+      "meaning": "받은 객체 권한을 다른 사용자에게 줄 수 있음",
+      "role": "U01은 받은 학생 SELECT·UPDATE를 다른 계정에 부여할 수 있다. 시스템권한·역할의 ADMIN OPTION과 다르다."
+    }
+  ],
+  "pitfalls": [
+    "권한 회수 뒤 실제 가능 작업은 직접 권한뿐 아니라 역할·PUBLIC 등 다른 경로도 확인한다.",
+    "GRANT SELECT는 SELECT를 즉시 실행하는 명령이 아니다. GRANT UPDATE도 값을 바로 수정하지 않는다."
+  ],
+  "questions": [
+    {
+      "question": "GRANT / TO는 여기서 무엇을 뜻하나요?",
+      "answer": "학생의 SELECT·UPDATE 권한을U01에게 부여한다."
+    },
+    {
+      "question": "REVOKE / FROM는 여기서 무엇을 뜻하나요?",
+      "answer": "U01에게 직접 준 UPDATE를 회수한다."
+    },
+    {
+      "question": "ON 학생는 여기서 무엇을 뜻하나요?",
+      "answer": "학생 테이블의 객체 권한이며 다른 모든 테이블 권한이 아니다."
+    },
+    {
+      "question": "WITH GRANT OPTION는 여기서 무엇을 뜻하나요?",
+      "answer": "U01은 받은 학생 SELECT·UPDATE를 다른 계정에 부여할 수 있다. 시스템권한·역할의 ADMIN OPTION과 다르다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-3",
+      "title": "관리구문과 트랜잭션",
+      "fromPage": 12,
+      "toPage": 15,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-3-03-E01",
+      "why": "자료 열람은 유지하면서 수정 업무만 종료한 계정의 권한을 줄인다.",
+      "effect": "권한 변경:U01의 학생 조회·수정 권한 부여 후 수정만 회수.",
+      "prerequisites": [
+        "권한 부여자가 학생표 소유자 등 필요한 권한을 갖는다고 가정한다.",
+        "U01은 다른 역할·PUBLIC·시스템권한 경로로 학생 UPDATE를 받지 않는다는 원본 가정을 유지한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "누가 무엇을 할 수 있게 되는가",
+          "text": "GRANT SELECT, UPDATE에서 두 단어는 줄 권한이다. ON 학생은 객체를 지정하고 TO U01은 받는 계정을 지정한다. U01이라는 테이블에 학생을 입력하는 것이 아니다.",
+          "codeFocus": [
+            {
+              "needle": "GRANT SELECT, UPDATE ON 학생 TO U01",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "받는 계정"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "GRANT 분해",
+            "columns": [
+              "조각",
+              "역할"
+            ],
+            "rows": [
+              [
+                "SELECT, UPDATE",
+                "줄 객체 권한 두 개"
+              ],
+              [
+                "학생",
+                "권한 대상 테이블"
+              ],
+              [
+                "U01",
+                "받는 계정"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "부여 직후 상태",
+          "text": "첫 명령 뒤 U01은 학생 조회와 수정을 모두 할 수 있다. WITH GRANT OPTION으로 그 객체 권한을 남에게 다시 줄 수도 있다. 아직 다른 사용자에게 실제 부여했다는 문장은 없다.",
+          "codeFocus": [
+            {
+              "needle": "WITH GRANT OPTION",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "모두 할 수 있다"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "첫 명령 뒤",
+            "columns": [
+              "계정",
+              "SELECT",
+              "UPDATE",
+              "재부여"
+            ],
+            "rows": [
+              [
+                "U01",
+                "있음",
+                "있음",
+                "허용"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "UPDATE 하나만 거두기",
+          "text": "REVOKE UPDATE는 회수할 작업을 UPDATE로 지정했다. FROM U01은 그 계정에게서 거둔다는 뜻이다. SELECT까지 함께 적지 않았으므로 조회 권한은 남는다.",
+          "codeFocus": [
+            {
+              "needle": "REVOKE UPDATE ON 학생 FROM U01",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "조회 권한은 남는다"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "권한 결과",
+            "columns": [
+              "계정",
+              "SELECT",
+              "UPDATE"
+            ],
+            "rows": [
+              [
+                "U01",
+                "있음",
+                "없음"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-04",
+          "title": "데이터와 권한을 구분",
+          "text": "최종 권한은 SELECT 있음,UPDATE 없음이다. 학생표의 학번·이름·행수에는 이 명령이 직접 값을 넣거나 지우는 동작이 없다. 다른 권한 경로가 있으면 실제 수정 가능 여부를 다시 확인해야 한다.",
+          "codeFocus": [
+            {
+              "needle": "REVOKE UPDATE",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "다른 권한 경로"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "바뀌는 대상",
+            "columns": [
+              "항목",
+              "변화"
+            ],
+            "rows": [
+              [
+                "직접 UPDATE 권한",
+                "회수"
+              ],
+              [
+                "직접 SELECT 권한",
+                "유지"
+              ],
+              [
+                "학생 데이터",
+                "직접 변경 없음"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "WITH GRANT OPTION은 권한 전달 가능성이고 테이블 내용 복사 허용 기능이 아니다. 실제 다른 계정에게 준 권한의 연쇄 회수는 별도 상황이다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-3-03-Q1",
+      "hint": "권한이 누구 쪽으로 이동하는 문장인지 보자.",
+      "reasoning": "줄 때는 GRANT ... TO U01이다. 회수할 때 REVOKE ... FROM U01을 쓴다."
+    },
+    {
+      "checkId": "2-3-03-Q2",
+      "hint": "REVOKE 뒤 나열한 작업 이름을 확인하자.",
+      "reasoning": "UPDATE만 나열했으므로 SELECT는 이 회수로 없어지지 않는다. 실제 UPDATE 가능 여부는 다른 부여 경로도 확인한다."
+    },
+    {
+      "checkId": "2-3-03-Q3",
+      "hint": "지금 받은 것이 특정 테이블의 객체 권한인지 보자.",
+      "reasoning": "객체 권한의 재부여는 WITH GRANT OPTION이다. 시스템 권한·역할의 WITH ADMIN OPTION과 혼용하지 않는다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/GRANT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REVOKE.html"
+  ],
+  "reviewNotes": []
+}

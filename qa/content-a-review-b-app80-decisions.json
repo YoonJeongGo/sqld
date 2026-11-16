@@ -1,0 +1,654 @@
+{
+  "schemaVersion": 1,
+  "inputSha256": "755b7193b284f545b6828f795ddc267fbed7db3b507c96d47f4c5bd441fc81d2",
+  "method": "independent_ai_blind_reasoning",
+  "reviewer": "content_a",
+  "reviewedAt": "2026-09-14T04:55:23.865411+00:00",
+  "boundary": "Only allowlisted stem, choices, SQL and fixture inputs read. No original answers/explanations/expected rows read before recording. No DBMS engine or human expert review.",
+  "decisions": [
+    {
+      "questionId": "S09-A01-mixed-sort",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "부서1이 먼저다. 그 안에서90점의 id4와3을 id내림차순으로 둔 뒤 NULL인2, 마지막 부서2의1을 둬4,3,2,1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-A02-case-priority",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "CASE 정렬키는 id2만0이고 나머지는1이다. 0그룹 뒤에 나머지를id오름차순으로 두면2,1,3,4이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-A03-alias-derived",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "net은id1=60,id2=70,id3=60이다. 내림차순과id오름차순을 순차 적용하면(2,70),(1,60),(3,60)이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-A04-null-explicit-desc",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "비NULL 숫자를5,0,-2로 내림차순 정렬하고 명시한NULLS LAST에 따라NULL을 뒤에 둔다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-A05-group-sort-total",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "d1합30,d2합25,d3합30이다. 합내림차순 동률을d오름차순으로 해결해1,3,2순이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S09-A06-distinct-position",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "DISTINCT로(1,2)를한번만남긴 뒤 두번째열b내림차순, 첫열a오름차순으로(2,3),(1,2),(3,2)이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-A01-duplicate-multiplication",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "고객7인주문1,2가각각태그10,20과매칭된다. 고객8주문3은INNER JOIN매칭이없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-A02-null-pair-filter",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "A의1과B의1한쌍만매칭된다. NULL동등비교는TRUE가아니므로COUNT=1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-A03-overlap-band",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "BETWEEN은양끝을포함하므로급여20은10..20과20..30둘모두에포함된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-A04-cross-filter",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "가능한네쌍중1<2와1<3만TRUE이며3<3은FALSE다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-A05-aggregate-after-join",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "고객7의상세수량은2+3+1=6,고객8은4다. 주문키로연결한뒤고객별합계를계산한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-A06-two-key-matching",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "연도와번호가모두같은것은2025,1뿐이며값10과연결된다. 2026은번호1과2가달라불일치다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S10-A07-empty-cross",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "왼쪽2행과오른쪽0행의곱은0행이다. GROUP BY없는COUNT전체집계는값0의한행을반환한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-A01-on-paid-preserve",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "ON에서paid1만매칭하면고객1은주문10,고객2와3은매칭이없어NULL확장된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-A02-where-paid-remove",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "먼저연결된행에WHERE paid1을적용하므로주문10만TRUE다. 미매칭NULL은UNKNOWN으로제외된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-A03-count-outer-null",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "고객1은두실제주문,고객2는한실제주문,고객3은NULL확장한행이다. 각COUNT쌍은2/2,1/1,1/0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-A04-full-both-unmatched",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "키2는양쪽매칭,키1은왼쪽만,키3은오른쪽만존재한다. COALESCE키1,2,3순으로정렬한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-A05-using-key-result",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "USING의공통출력키는FULL JOIN의양쪽키를통합하므로1,2,3이다. 키2는한매칭쌍이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-A06-natural-extra-key",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "NATURAL JOIN은k와flag를모두비교한다. 키1은flag불일치이고키2의(2,1)만매칭된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S11-A07-anti-exists-key",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "O.id가실제행에서비NULL이라는조건상O.id NULL은미매칭을뜻한다. 주문없는고객3만남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-A01-above-own-dept-average",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "부서1평균20이라id2의30만초과한다. 부서2비NULL평균50은id3과동률이고id4급여NULL은UNKNOWN이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-A02-exists-no-multiply",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "고객1에대해서브쿼리행이존재하므로TRUE이다. SELECT NULL이어도행존재를검사하며바깥행을복제하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-A03-null-safe-not-exists",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "A1은매칭이있어제외된다. A2와ANULL은등호조건TRUE인B행이없어NOT EXISTS가TRUE이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-A04-not-in-empty",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "제외서브쿼리가빈집합이면NOT IN은반례가없어TRUE이다. A의1과NULL둘모두남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-A05-scalar-aggregate-empty",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "v>100입력은빈집합이다. AVG전체집계는NULL한행이며DUAL바깥스칼라출력도NULL한행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-A06-any-null-mixed",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "5와10은3보다크다는비교가TRUE라UNKNOWN과OR되어도TRUE다. 1은TRUE비교가없어제외된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-A07-all-empty",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "빈집합에대한ALL은모든조건을위반하는대상이없으므로TRUE이다. 1과2모두남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S12-A08-tuple-in",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "행값비교는연도와번호를한조합으로본다. B와완전히같은A조합은2025,1뿐이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-A01-union-null-combined",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "UNION은두입력의중복을제거해1,2,3,NULL을한번씩남긴다. 정렬순서는보장하지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-A02-all-count",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "UNION ALL은4+3=7행을보존한다. NULL은각입력한개씩2개라COUNT(v)=5이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-A03-intersection-two-columns",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "두열조합이양쪽에모두있는것은(1,10)과(2,NULL)이다. 집합중복판정은NULL조합도일치시킨다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-A04-minus-dedup",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "B의2와NULL을A에서제외하고남은1의중복을제거하면1한행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-A05-parenthesized-difference",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "B UNION C={2,3,4}이다. A={1,2,3}에서이를빼면1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S13-A06-difference-count-empty",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "A MINUS A는빈집합이다. 이를바깥COUNT로세면0의한요약행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-A01-rollup-original-null",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "원본d1합10과원본NULL합5는GROUPING0이다. 전체합15의소계표지NULL은GROUPING1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-A02-rollup-two-keys",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "ROLLUP(d,t)는(d,t),(d),()를만든다. 상세2행,d소계30한행,전체30한행으로4행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-A03-cube-cross-subtotals",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "CUBE의네그룹조합행수는(d,t)2+(d)1+(t)2+전체1=6이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-A04-chosen-grouping-sets",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "t별합은t1=30,t2=5이고빈그룹셋()의전체35를함께출력한다. SELECT열은t와SUM두개다.",
+      "conditionsOrIssues": [
+        "보기 c,d는 SELECT가 출력하는 두 열과 다른 세 열/부분 열 표현이어서 형식 단서로 쉽게 배제될 수 있다. 정답의 유일성 문제는 없으나 보기 편향 개선 권장."
+      ]
+    },
+    {
+      "questionId": "S14-A05-having-total-only",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "GROUPING(d)=1은전체소계행을뜻한다. 원본NULL그룹7은GROUPING0이므로제외되고전체17만남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S14-A06-repeated-sets",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "동일GROUPING SET을두번명시해(d=1,SUM30)결과가두번반환된다. 자동중복제거요구가없다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-A01-ranks-side-by-side",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "부서1의90두행은RANK1,DENSE1이다. 다음70은RANK3,DENSE2이다. 부서2는별도첫행이라1,1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-A02-unique-number-with-tie-key",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "부서1정렬은90동점에서id내림차순으로2,1다음3이다. 각ROW_NUMBER는id1=2,id2=1,id3=3,부서2의id4=1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-A03-partition-sum-maintains-rows",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "부서1합90+90+70=250을그부서세행모두에붙인다. 부서2합80은id4옆에붙고원본4행을유지한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-A04-lag-null-default",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "LAG첫행은이전행이없어기본0이다. id2이전값은10,id3이전의실제값은NULL이라기본값이아닌NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-A05-lead-gap-not-id",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "LEAD는id숫자차가아니라정렬된다음행을본다. 10뒤30값7,30뒤80값9,80은없어-1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S15-A06-ntile-unequal",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "5행을2버킷으로가능한균등분배하며남는1행을앞버킷에둔다. 앞3행버킷1,뒤2행버킷2다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-A01-range-peer-cumulative",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "ORDER BY만있는SUM기본RANGE는현재키동점전체를포함한다. k1두행은30,k3까지는35이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-A02-rows-two-window",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "현재와직전한행만SUM하므로id1=10,id2=10+20=30,id3=20+5=25이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-A03-range-value-distance",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "RANGE값거리1이므로k1의두행은함께30, k3의프레임[2,3]에는자기값5만있다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-A04-last-value-full",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "프레임이파티션처음부터끝까지명시되어모든행의마지막값은id3의5이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-A05-future-count-boundary",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "현재다음행부터끝까지개수는id1에2,id2에1,id3에0이다. 빈프레임COUNT는NULL이아닌0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S16-A06-partition-boundaries",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "PARTITION BY d로부서경계를넘지않는다. d1은10,30이고d2첫행100에는d1의20이포함되지않아100,105이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-A01-fetch-only-key",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "전체정렬은점수내림차순동점id내림차순이라1,3,2,4이다. 앞두행은1,3이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-A02-fetch-ties-last-score",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "두번째경계점수는90이다. WITH TIES가점수90의id2와3을모두포함하여id1,2,3집합이다. 동점둘순서는보장되지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-A03-offset-page",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "점수내림차순,id오름차순전체순서는1,2,3,4이다. 두행건너뛰고다음한행은id3이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-A04-per-dept-top",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "부서1의공동최고90인id1,2가RANK1이고부서2의id4도RANK1이다. id3은RANK3이라제외된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-A05-rownum-lower-bound-empty",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "단순WHERE ROWNUM>1은첫후보가1로탈락해그이후도조건을만족하지못한다. 빈입력COUNT는0의한행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S17-A06-rank-versus-dense-cut",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "점수100동점둘은RANK1이고90은RANK3이다. r<=2에는id1,2만포함된다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-A01-hierarchy-levels",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "루트id1의LEVEL1,자식id2,3의LEVEL2, id2자식id4의LEVEL3이다. 순서는집합으로만판정한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-A02-self-manager-name",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "각e.pid를m.id와매칭하면2와3은상사1,4는상사2이다. 루트1은LEFT JOIN으로NULL상사를보존한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-A03-subtree-start",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "START WITH id2가이질의루트라LEVEL1이고자식id4가LEVEL2이다. 원래전체트리깊이를그대로쓰지않는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-A04-ancestor-direction",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "현재행의pid를다음행id와맞춰상향한다. id4→2→1이며질의시작부터LEVEL1,2,3이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-A05-where-after-path",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "계층구성후WHERE가각행을걸러id2만제외한다. 자식id4는원래LEVEL3으로남고id1,3도남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S18-A06-leaf-flags",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "자식없는id3과4가ISLEAF1,자식있는id1과2가0이다. 출력순서는집합기준으로판정한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-A01-pivot-sum-groups",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "암시적그룹키shop별로mon1을합하면shop1=15,shop2=7이고mon2는shop1=20,shop2빈입력SUM=NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-A02-pivot-count-missing",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "shop1mon1에는2행,mon2에는1행이고shop2는mon1한행,mon2없음으로COUNT0이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-A03-pivot-extra-id",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "PIVOT에소비되지않은id와shop이암시적그룹키다. id1은m1=10,m2NULL; id2는m1NULL,m2=20으로갈린다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-A04-unpivot-default",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "기본UNPIVOT은NULL값셀을제외한다. id1q2만제외하고실제0인id2q1은남긴다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-A05-unpivot-include-count",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "2원본행×2열이INCLUDE NULLS로4행이된다. amt비NULL은10하나이므로COUNT쌍4,1이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S19-A06-conditional-pivot",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "각월에해당할때만amt를반환하므로shop1합은15,20이다. shop2m1=7,m2는모두NULL이어서NULL이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-A01-regexp-whole-digits",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "^와$로전체문자열을제한하고[0-9]+로숫자한개이상을요구하므로123과0인id1,4만일치한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-A02-regexp-second-token",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "숫자연속묶음은12,345,6이며시작위치1에서두번째발생은345이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-A03-regexp-clean-replace",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "숫자가아닌문자-,공백,A를제거하면문자열02123이남는다. 숫자변환이아니라선행0을보존한다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-A04-regexp-class-group-difference",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "전체가ab그룹의한번이상반복인문자열은abab와ab이다. abba와aaa는그형식이아니다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-A05-regexp-case-insensitive",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "i는대소문자를무시하므로AB,ab,aB가모두^ab$에일치한다. abc는추가문자가있어불일치다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S20-A06-regexp-no-match-null",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "ABC에는숫자묶음이없다. REGEXP_SUBSTR는NULL을반환하고DUAL은한행이므로NULL한행이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-A01-update-filter-rows",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "v>=20이TRUE인id2만5를더해25가된다. id1=10과id3NULL은조건을통과하지않아유지된다.",
+      "conditionsOrIssues": [
+        "문장에 할인이라고 했으나 실제연산은v+5이다. 값의업무의미가명시되지않아수학정답에는영향없지만가산/조정등문구로명확화권장."
+      ]
+    },
+    {
+      "questionId": "S21-A02-delete-null-condition",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "v=NULL비교는모든행에서UNKNOWN이라DELETE대상이없다. 두원본행이그대로남는다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-A03-insert-column-order",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "INSERT열목록이(v,id)이므로40은v,7은id에저장된다. SELECT id,v출력은7,40이다.",
+      "conditionsOrIssues": []
+    },
+    {
+      "questionId": "S21-A04-update-all-original-expressions",
+      "choiceIds": [
+        "a"
+      ],
+      "reasoning": "Oracle의한UPDATE에서우변은변경전행값을참조한다. a는옛b20,b는옛a10이되어20,10으로교환된다.",
+      "conditionsOrIssues": []
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "comparedAt": "2026-09-14T05:26:09.476019+00:00",
+  "inputSha256": "4bf696569ba25d7d7c3dbe032f09439f0277258eda5b8b677622b1d6026f57c0",
+  "decisionsSha256": "35ade1d9926e70160dba9f55a92c0e3c92bb021cc91a704e0406f44fcaea9189",
+  "boundary": "Only recorded questions reviewed; no DBMS execution or human expert review.",
+  "counts": {
+    "answer_agrees": 2,
+    "answer_disagrees": 0,
+    "source_changed_requires_review": 0,
+    "not_reviewed": 0
+  },
+  "results": [
+    {
+      "questionId": "mock-1-M10-reservation-timeslot",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "849657efef32073997ed12518dbb513ded79df51c5c29c115f651613cbf36e5a"
+    },
+    {
+      "questionId": "mock-2-S06-mock-in-subset-null",
+      "status": "answer_agrees",
+      "independentChoiceIds": [
+        "a"
+      ],
+      "authoredChoiceIds": [
+        "a"
+      ],
+      "conditionsOrIssues": [],
+      "sourceQuestionSha256": "15a7579da38f3bd9d1bf9bc12ceb19329e76409c52439cc178852dcb2232372f"
+    }
+  ],
+  "choiceMapSha256": "9f02a6c02de3ae03e69530e7712147316edd8cc9c16b1bacefdef6e2959a4c70"
+}

@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-1-09",
+  "source": {
+    "id": "2-1-09",
+    "partId": "2-1",
+    "number": 9,
+    "title": "DELETE",
+    "lectureMinutes": 15,
+    "easy": "표 안에서 조건에 맞는 행을 삭제한다. 표의 열 구조 자체는 남는다.",
+    "why": "행을 지우는 DELETE와 열을 지우는 DROP COLUMN, 표 객체를 지우는 DROP TABLE을 구분한다.",
+    "concepts": [
+      {
+        "term": "DELETE FROM",
+        "meaning": "행을 지울 표",
+        "example": "DELETE FROM 학생"
+      },
+      {
+        "term": "WHERE",
+        "meaning": "어느 행을 지울지",
+        "example": "WHERE 학번=1002"
+      },
+      {
+        "term": "WHERE 생략",
+        "meaning": "모든 행 삭제",
+        "example": "표 구조는 남음"
+      },
+      {
+        "term": "참조 무결성",
+        "meaning": "부모 행을 참조 중이면 삭제가 거절될 수 있음",
+        "example": "학생을 참조하는 수강"
+      },
+      {
+        "term": "ON DELETE CASCADE",
+        "meaning": "부모 삭제에 따라 자식 행도 삭제",
+        "example": "과목 삭제 시 그 과목 수강 삭제"
+      },
+      {
+        "term": "ON DELETE SET NULL",
+        "meaning": "자식 FK를 NULL로 바꿈",
+        "example": "해당 FK가 NULL 허용이어야 함"
+      },
+      {
+        "term": "TRUNCATE·DROP 비교",
+        "meaning": "전체 비우기·객체 제거는 DDL",
+        "example": "Oracle에서 트랜잭션 동작 차이"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-1-09-E01",
+        "title": "한 학생의 행 지우기",
+        "question": "1002번 장정훈을 삭제한 뒤 남는 표는?",
+        "tables": [
+          {
+            "title": "학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학년"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "4"
+              ],
+              [
+                "1002",
+                "장정훈",
+                "2"
+              ],
+              [
+                "1003",
+                "박상현",
+                "1"
+              ]
+            ]
+          }
+        ],
+        "sql": "DELETE FROM 학생 WHERE 학번=1002;\nSELECT 학번, 이름, 학년 FROM 학생 ORDER BY 학번;",
+        "steps": [
+          "WHERE 학번=1002로 장정훈의 한 줄을 찾는다.",
+          "1002/장정훈/2라는 정보 묶음 전체를 삭제한다. 이름 칸만 비우는 작업이 아니다.",
+          "학번·이름·학년의 세 열은 그대로, 남은 행은 유성재·박상현 두 줄이다."
+        ],
+        "results": [
+          {
+            "title": "삭제 후 학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학년"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "4"
+              ],
+              [
+                "1003",
+                "박상현",
+                "1"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-1-09-E02",
+        "title": "참조 중인 과목 삭제",
+        "question": "수강.과목코드는 과목.과목코드를 ON DELETE CASCADE로 참조한다고 하자. C02를 삭제하면?",
+        "tables": [
+          {
+            "title": "과목",
+            "columns": [
+              "과목코드",
+              "과목명"
+            ],
+            "rows": [
+              [
+                "C01",
+                "DB"
+              ],
+              [
+                "C02",
+                "JAVA"
+              ]
+            ]
+          },
+          {
+            "title": "수강",
+            "columns": [
+              "학번",
+              "과목코드"
+            ],
+            "rows": [
+              [
+                "1001",
+                "C01"
+              ],
+              [
+                "1001",
+                "C02"
+              ],
+              [
+                "1002",
+                "C02"
+              ]
+            ]
+          }
+        ],
+        "sql": "",
+        "steps": [
+          "과목 C02의 JAVA 행을 삭제한다.",
+          "수강에서 C02를 참조하던 1001/C02와 1002/C02도 함께 삭제한다.",
+          "C01 과목과 1001/C01 수강은 남는다."
+        ],
+        "results": [
+          {
+            "title": "남은 과목",
+            "columns": [
+              "과목코드",
+              "과목명"
+            ],
+            "rows": [
+              [
+                "C01",
+                "DB"
+              ]
+            ]
+          },
+          {
+            "title": "남은 수강",
+            "columns": [
+              "학번",
+              "과목코드"
+            ],
+            "rows": [
+              [
+                "1001",
+                "C01"
+              ]
+            ]
+          }
+        ],
+        "mode": "theory",
+        "verification": "개념 설명 예제 · SQL 엔진 실행 결과가 아닙니다."
+      }
+    ],
+    "memory": "DELETE는 행, DROP은 객체. CASCADE는 연결된 자식 행도 함께.",
+    "traps": [
+      "DELETE문에 열 이름을 적어 “한 열 삭제”를 하지 않는다. 열의 값만 비우려면 UPDATE ... SET 열=NULL이다.",
+      "ON DELETE CASCADE와 DROP ... CASCADE는 같은 개념의 작업이 아니다. 하나는 행 참조 동작, 다른 것은 객체 의존 처리다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-1-09-Q1",
+        "question": "DELETE 후 표 머리글이 사라지는가?",
+        "answer": "아니다",
+        "explanation": "구조는 남고 데이터 행만 지운다."
+      },
+      {
+        "id": "2-1-09-Q2",
+        "question": "참조 동작이 없으면 부모 삭제가 항상 가능한가?",
+        "answer": "아니다",
+        "explanation": "참조 중인 자식 때문에 거절될 수 있다."
+      },
+      {
+        "id": "2-1-09-Q3",
+        "question": "한 사람 이름만 NULL로 바꾸려면?",
+        "answer": "UPDATE ... SET 이름=NULL",
+        "explanation": "NOT NULL이면 그것도 거절된다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S21",
+      "note-S23"
+    ],
+    "sourceIds": [
+      "delete",
+      "constraint",
+      "truncate"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"DELETE 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실행 전</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">원래 데이터 확인</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">조건 대상 선택</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">WHERE를 먼저 확인</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">실행 후</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">변경·삭제한 행 확인</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">DELETE는 행, DROP은 객체. CASCADE는 연결된 자식 행도 함께.</text></svg>",
+    "version": 1
+  },
+  "purpose": "탈퇴한 학생 기록 한 행을 지우는 일과, 참조 규칙 때문에 관련 수강 행까지 지워지는 일을 구별한다.",
+  "overview": "DELETE는 데이터 행을 지운다. 학번·이름·학년 컬럼 정의는 유지한다. ON DELETE CASCADE가 정의된 두 표에서는 부모 행 삭제가 자식 행 삭제로 이어질 수 있다.",
+  "terms": [
+    {
+      "token": "DELETE FROM",
+      "kind": "키워드",
+      "meaning": "delete = 지우다, from = 어느 표에서",
+      "role": "학생표에서 WHERE에 맞는 행 전체를 제거한다."
+    },
+    {
+      "token": "WHERE",
+      "kind": "키워드",
+      "meaning": "행 선택 조건",
+      "role": "학번 1002의 장정훈 행만 삭제한다."
+    },
+    {
+      "token": "ON DELETE CASCADE",
+      "kind": "참조 동작",
+      "meaning": "cascade = 연결을 따라 전파하다",
+      "role": "부모 과목C02를 지우면 그 키를 참조하는 수강의C02행도 지운다."
+    }
+  ],
+  "pitfalls": [
+    "DELETE 이름처럼 특정 칸만 삭제하는 것으로 읽지 않는다. 값만 NULL로 바꾸려면 UPDATE다.",
+    "CASCADE는 실제 FK 정의에 있어야 한다. 참조 중인 부모를 언제나 삭제할 수 있는 것은 아니다."
+  ],
+  "questions": [
+    {
+      "question": "DELETE FROM는 여기서 무엇을 뜻하나요?",
+      "answer": "학생표에서 WHERE에 맞는 행 전체를 제거한다."
+    },
+    {
+      "question": "WHERE는 여기서 무엇을 뜻하나요?",
+      "answer": "학번 1002의 장정훈 행만 삭제한다."
+    },
+    {
+      "question": "ON DELETE CASCADE는 여기서 무엇을 뜻하나요?",
+      "answer": "부모 과목C02를 지우면 그 키를 참조하는 수강의C02행도 지운다."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-1",
+      "title": "SQL 기본",
+      "fromPage": 37,
+      "toPage": 40,
+      "note": "흥달쌤 원본 PDF의 해당 절을 확인했다. 아래 앱 예제의 표와 이름은 PDF 예제와 다를 수 있으며 서로 섞지 않는다."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-1-09-E01",
+      "why": "1002번 장정훈의 학생 등록을 제거한다.",
+      "effect": "삭제: 학생의 1002행 제거,2행·3컬럼 유지.",
+      "prerequisites": [
+        "다른 표의 참조나 트리거가 삭제를 막거나 추가 변경하지 않는다고 가정한다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "삭제할 한 행 찾기",
+          "text": "WHERE 학번=1002는 1002 장정훈만 참이다. 유성재 1001과 박상현 1003은 거짓이므로 유지한다.",
+          "codeFocus": [
+            {
+              "needle": "WHERE 학번=1002",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "장정훈만 참"
+          ],
+          "focusRows": [
+            1
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "삭제 전 판정",
+            "columns": [
+              "학번",
+              "이름",
+              "학년",
+              "판정"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "4",
+                "유지"
+              ],
+              [
+                "1002",
+                "장정훈",
+                "2",
+                "삭제"
+              ],
+              [
+                "1003",
+                "박상현",
+                "1",
+                "유지"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "이름 칸만 비우는 것이 아니다",
+          "text": "DELETE FROM 학생은 선택된 (1002, 장정훈, 2) 한 행 전체를 지운다. 학번 1002와 학년 2만 남는 행을 만들지 않는다.",
+          "codeFocus": [
+            {
+              "needle": "DELETE FROM 학생",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "한 행 전체"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "제거할 튜플",
+            "columns": [
+              "학번",
+              "이름",
+              "학년"
+            ],
+            "rows": [
+              [
+                "1002",
+                "장정훈",
+                "2"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "머리글과 남은 두 행",
+          "text": "원본의 학번·이름·학년 구조는 남는다. 뒤 SELECT는 1001 유성재 4,1003 박상현 1 두 행을 학번 순으로 확인한다.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 학번, 이름, 학년 FROM 학생 ORDER BY 학번",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "두 행"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "삭제 후 학생",
+            "columns": [
+              "학번",
+              "이름",
+              "학년"
+            ],
+            "rows": [
+              [
+                "1001",
+                "유성재",
+                "4"
+              ],
+              [
+                "1003",
+                "박상현",
+                "1"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "DROP TABLE은 테이블 자체 제거, DELETE는 행 제거다. 이름값만 지우는 UPDATE와도 다르다.",
+      "verification": "원본 SQL을 SQLite 3.50.4 메모리 fixture에서 실행해 결과 열·값·행수를 대조했다. 표 값에 맞춘 가상 스키마이며 원본에 없는 제약·트리거 및 Oracle 호환성은 검증하지 않았다."
+    },
+    {
+      "exampleId": "2-1-09-E02",
+      "why": "폐강된C02 과목과 그 과목 수강 신청을 참조 규칙에 맞게 함께 제거한다.",
+      "effect": "개념: 부모 과목C02 삭제와 자식 수강C02 연결 삭제.",
+      "prerequisites": [
+        "원본 질문에 ON DELETE CASCADE 외래키가 있다고 명시되어 있다. 실행 SQL 없는 개념 예제다."
+      ],
+      "steps": [
+        {
+          "id": "read-01",
+          "title": "부모와 자식의 같은 이름 구분",
+          "text": "부모는 과목.과목코드이고 외래키는 수강.과목코드다. 둘 다 과목코드라고 써 있어도 다른 테이블에 속한다. C02 삭제의 출발점은 부모 과목의JAVA행이다.",
+          "codeFocus": [],
+          "highlights": [
+            "수강.과목코드",
+            "과목.과목코드"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "참조 방향",
+            "columns": [
+              "자식 외래키",
+              "부모 키"
+            ],
+            "rows": [
+              [
+                "수강.과목코드",
+                "과목.과목코드"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-02",
+          "title": "C02를 참조한 자식만 고르기",
+          "text": "수강의 (1001,C02), (1002,C02)는 지울 부모C02를 가리켜 연쇄 삭제된다. (1001,C01)은 다른 부모C01을 가리키므로 유지된다.",
+          "codeFocus": [],
+          "highlights": [
+            "다른 부모C01"
+          ],
+          "focusRows": [
+            1,
+            2
+          ],
+          "focusCells": [],
+          "table": {
+            "title": "수강 행별 판단",
+            "columns": [
+              "학번",
+              "과목코드",
+              "처리"
+            ],
+            "rows": [
+              [
+                "1001",
+                "C01",
+                "유지"
+              ],
+              [
+                "1001",
+                "C02",
+                "삭제"
+              ],
+              [
+                "1002",
+                "C02",
+                "삭제"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "read-03",
+          "title": "학생 전체를 지우지 않는다",
+          "text": "과목에는C01 DB가 남고 수강에는 1001/C01이 남는다. 학번 1001이C02도 들었다는 이유로 그 학생의C01 수강까지 지우지 않는다.",
+          "codeFocus": [],
+          "highlights": [
+            "1001/C01"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "table": {
+            "title": "남은 수강",
+            "columns": [
+              "학번",
+              "과목코드"
+            ],
+            "rows": [
+              [
+                "1001",
+                "C01"
+              ]
+            ]
+          }
+        }
+      ],
+      "comparison": "CASCADE가 없으면 참조 중인 부모 삭제가 거부될 수 있다. SET NULL은 자식행을 유지하며FK값을NULL로 바꾸는 다른 동작이다.",
+      "verification": "원본 값과 문서를 대조한 학습용 설명이다. 이 자료 저술 과정에서 Oracle 엔진은 실행하지 않았다."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-1-09-Q1",
+      "hint": "삭제 대상이 구조인지 데이터 한 줄인지 구분해 보자.",
+      "reasoning": "DELETE는 행만 지워 테이블 컬럼 정의가 남는다. 전부 삭제해도 빈 테이블이 된다."
+    },
+    {
+      "checkId": "2-1-09-Q2",
+      "hint": "부모 키를 가리키는 자식 행이 남아 있는지 확인해 보자.",
+      "reasoning": "자식이 참조 중이고 허용된 삭제 동작이 없으면 부모 삭제가 거부될 수 있다. ON DELETE CASCADE가 있는 원본 개념 예제와 구분한다."
+    },
+    {
+      "checkId": "2-1-09-Q3",
+      "hint": "사람 전체 행을 없앨지 이름 한 칸만 바꿀지 결정해 보자.",
+      "reasoning": "이름만NULL로 바꾸려면 UPDATE ... SET 이름=NULL이다. 이름에NOT NULL이 있으면 그 변경도거부된다."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/constraint.html"
+  ],
+  "reviewNotes": []
+}

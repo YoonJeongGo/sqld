@@ -1,0 +1,697 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-12",
+  "source": {
+    "id": "2-2-12",
+    "partId": "2-2",
+    "number": 12,
+    "title": "집계 윈도우 함수",
+    "lectureMinutes": 39,
+    "easy": "SUM·AVG·MIN·MAX·COUNT에 OVER를 붙여, 전체·그룹·누적·이동 범위의 계산값을 각 행에 표시한다.",
+    "why": "누적합은 “현재 행까지”의 의미를 정확히 정해야 한다. ROWS는 행 위치, RANGE는 정렬값의 범위를 따른다.",
+    "concepts": [
+      {
+        "term": "SUM() OVER()",
+        "meaning": "전체 합계를 각 행에",
+        "example": "합계80을 모든 행 옆에"
+      },
+      {
+        "term": "PARTITION BY",
+        "meaning": "그룹마다 집계 다시 시작",
+        "example": "학과별 합계"
+      },
+      {
+        "term": "ROWS",
+        "meaning": "행의 물리적 위치 개수 기준",
+        "example": "앞1행부터 현재행"
+      },
+      {
+        "term": "RANGE",
+        "meaning": "정렬값의 논리적 범위, 동점 처리",
+        "example": "현재값20과 같은 행을 함께 포함"
+      },
+      {
+        "term": "UNBOUNDED PRECEDING",
+        "meaning": "범위의 맨 처음",
+        "example": "처음부터 누적"
+      },
+      {
+        "term": "CURRENT ROW",
+        "meaning": "현재 행 또는 현재 정렬값 동료 그룹",
+        "example": "ROWS/RANGE에 따라 해석 차이"
+      },
+      {
+        "term": "UNBOUNDED FOLLOWING",
+        "meaning": "범위의 맨 끝",
+        "example": "전체 프레임"
+      },
+      {
+        "term": "기본 프레임",
+        "meaning": "Oracle의 프레임 지원 함수에서 ORDER BY만 주면 보통 RANGE 처음~현재값",
+        "example": "전체합으로 착각 금지"
+      },
+      {
+        "term": "결정적 ROWS",
+        "meaning": "동점에 보조 순서를 지정",
+        "example": "금액, 번호"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-12-E01",
+        "title": "동점20 두 행에서 누적합이 갈리는 이유",
+        "question": "금액10·20·20·30을 ROWS와 RANGE로 누적하자.",
+        "tables": [
+          {
+            "title": "입금",
+            "columns": [
+              "번호",
+              "이름",
+              "금액"
+            ],
+            "rows": [
+              [
+                "1",
+                "양선규",
+                "10"
+              ],
+              [
+                "2",
+                "박강열",
+                "20"
+              ],
+              [
+                "3",
+                "유성재",
+                "20"
+              ],
+              [
+                "4",
+                "김현수",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 번호,금액,SUM(금액) OVER(ORDER BY 금액,번호 ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS 행누적,SUM(금액) OVER(ORDER BY 금액 RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS 값누적 FROM 입금 ORDER BY 금액,번호;",
+        "steps": [
+          "ROWS는 금액·번호순의 현재 행까지라10, 10+20=30, 10+20+20=50, 80이다.",
+          "RANGE는 금액만 정렬해 현재값 이하 동점행을 함께 포함한다. 첫20을 볼 때 다른20도 포함하여50이다.",
+          "따라서 RANGE는10·50·50·80이다. 박강열의 줄에서30과50으로 차이 난다."
+        ],
+        "results": [
+          {
+            "title": "누적 결과",
+            "columns": [
+              "번호",
+              "금액",
+              "행누적",
+              "값누적"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "10",
+                "10"
+              ],
+              [
+                "2",
+                "20",
+                "30",
+                "50"
+              ],
+              [
+                "3",
+                "20",
+                "50",
+                "50"
+              ],
+              [
+                "4",
+                "30",
+                "80",
+                "80"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      },
+      {
+        "id": "2-2-12-E02",
+        "title": "이전 한 행과 현재 행만 더하기",
+        "question": "번호순으로 두 행 이동합을 구하자.",
+        "tables": [
+          {
+            "title": "입금",
+            "columns": [
+              "번호",
+              "금액"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "20"
+              ],
+              [
+                "3",
+                "20"
+              ],
+              [
+                "4",
+                "30"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 번호,SUM(금액) OVER(ORDER BY 번호 ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS 이동합 FROM 입금 ORDER BY 번호;",
+        "steps": [
+          "1번은 이전 행이 없어10만 더한다.",
+          "2번은10+20=30, 3번은20+20=40, 4번은20+30=50이다.",
+          "처음부터 전부 누적하는 합계가 아니다."
+        ],
+        "results": [
+          {
+            "title": "이동합",
+            "columns": [
+              "번호",
+              "이동합"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "30"
+              ],
+              [
+                "3",
+                "40"
+              ],
+              [
+                "4",
+                "50"
+              ]
+            ]
+          }
+        ],
+        "mode": "sqlite",
+        "verification": "SQLite용 예제 · 원자료는 직접 실행 확인으로 기록했습니다. 앱에서는 실행하지 않습니다."
+      }
+    ],
+    "memory": "ROWS는 몇 줄, RANGE는 값 범위. 누적 범위는 OVER 안에서 확인.",
+    "traps": [
+      "금액 동점에서 ROWS 순서를 정하지 않으면 중간 누적값이 어느 사람에게 붙을지 확정되지 않을 수 있다.",
+      "ORDER BY를 붙인 SUM을 무조건 전체합이라고 읽지 않는다. 프레임 기본값을 확인한다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-12-Q1",
+        "question": "금액10,20,20에서 금액 RANGE 누적합은?",
+        "answer": "10,50,50",
+        "explanation": "20 동점 두 줄을 함께 포함한다."
+      },
+      {
+        "id": "2-2-12-Q2",
+        "question": "ROWS 1 PRECEDING~CURRENT ROW는 몇 줄까지 포함하나?",
+        "answer": "최대2줄",
+        "explanation": "앞1줄과 현재1줄이다."
+      },
+      {
+        "id": "2-2-12-Q3",
+        "question": "UNBOUNDED FOLLOWING의 의미는?",
+        "answer": "범위의 마지막까지",
+        "explanation": "현재 행 뒤의 모든 해당 행까지 확장한다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S16"
+    ],
+    "sourceIds": [
+      "analytic",
+      "window"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"집계 윈도우 함수 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"26\" y=\"62\" width=\"180\" height=\"85\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"116.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">원본 행 유지</text><text x=\"116.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">학생 한 사람 한 줄</text><rect x=\"266\" y=\"62\" width=\"188\" height=\"85\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">창의 범위 선택</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">PARTITION · ORDER · 범위</text><rect x=\"514\" y=\"62\" width=\"180\" height=\"85\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"604.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">계산 열 추가</text><text x=\"604.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">평균·누적·이전값</text><path d=\"M216 103 L254 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M466 103 L503 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">GROUP BY는 그룹당 한 줄 · 윈도우 함수는 원래 행에 결과를 붙임</text></svg>",
+    "version": 1
+  },
+  "purpose": "현재 행까지 얼마가 쌓였는지 계산하되, 동점행을 같이 넣는 범위와 실제 행 개수 범위를 구별해요.",
+  "overview": "조회 계산이에요. 입금 원본은 그대로이며 행누적·값누적·이동합을 계산해 보여줘요.20두행을 포함하는 기준이 다르므로30과50이갈려요.",
+  "terms": [
+    {
+      "token": "ROWS",
+      "kind": "프레임 단위",
+      "meaning": "rows = 정해진 순서의 행 단위",
+      "role": "금액·번호순에서 현재 번호 2행까지만 포함해 10+20이에요."
+    },
+    {
+      "token": "RANGE",
+      "kind": "프레임 단위",
+      "meaning": "range = 정렬값의 범위",
+      "role": "금액 20까지이므로 번호 2·3의 20을 함께 포함해요."
+    },
+    {
+      "token": "UNBOUNDED PRECEDING",
+      "kind": "범위 시작",
+      "meaning": "이전 쪽에 경계를 두지 않음",
+      "role": "이 파티션의 첫행부터 시작해요."
+    },
+    {
+      "token": "CURRENT ROW",
+      "kind": "범위 끝",
+      "meaning": "현재행 또는 현재 정렬값",
+      "role": "ROWS와 RANGE에서 현재의 단위가 달라져요."
+    },
+    {
+      "token": "1 PRECEDING",
+      "kind": "범위 시작",
+      "meaning": "현재보다 한 행 앞",
+      "role": "두 번째 예제의 1은 금액 1원이 아니라 앞행 1개를 뜻해요."
+    }
+  ],
+  "pitfalls": [
+    "ROWS는 순서가 완전히 정해지지 않으면 동점행 결과가 달라질 수 있어요. 첫 예제는 번호를 추가해 정해요.",
+    "이 예제 RANGE는 금액만 기준이에요. 번호까지 기준에 추가한 가상 쿼리와 같은 동점 묶음이라 가정하지 않아요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회 계산이에요. 입금 원본은 그대로이며 행누적·값누적·이동합을 계산해 보여줘요.20두행을 포함하는 기준이 다르므로30과50이갈려요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 73,
+      "toPage": 73,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-12-E01",
+      "why": "20원 동점의 첫 행에서 왜 행누적 30과 값누적 50이 다른지 계산 대상을 직접 세어요.",
+      "effect": "조회 · 입금의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-12-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "입금: 컬럼 번호·이름·금액 3개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "두 범위의 정렬 키",
+          "text": "행누적은 금액·번호순, 값누적은 금액만 정렬해요. 번호는 20인 박강열 2번과 유성재 3번의 ROWS 순서를 정해요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 금액,번호 ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ROWS",
+            "금액",
+            "번호"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "번호 2의 ROWS 범위",
+          "text": "번호 2 박강열 행까지 포함하면 번호 1의 10과 번호 2의 20만 대상이에요. 유성재 번호 3은 아직 뒤라 합계 10+20=30이에요.",
+          "codeFocus": [
+            {
+              "needle": "ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 번호 2의 ROWS 범위",
+            "columns": [
+              "번호",
+              "금액",
+              "번호 2까지 포함"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "포함"
+              ],
+              [
+                "2",
+                "20",
+                "포함"
+              ],
+              [
+                "3",
+                "20",
+                "제외"
+              ],
+              [
+                "4",
+                "30",
+                "제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 3,
+              "column": 2
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "같은 번호 2의 RANGE 범위",
+          "text": "금액 20 이하인 모든 동점값을 포함해 번호 1·2·3을 더해요. 10+20+20=50이고 번호 3의 값누적도 50이에요.",
+          "codeFocus": [
+            {
+              "needle": "RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 같은 번호 2의 RANGE 범위",
+            "columns": [
+              "번호",
+              "금액",
+              "금액 20까지 포함"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "포함"
+              ],
+              [
+                "2",
+                "20",
+                "포함"
+              ],
+              [
+                "3",
+                "20",
+                "포함"
+              ],
+              [
+                "4",
+                "30",
+                "제외"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            },
+            {
+              "row": 1,
+              "column": 2
+            },
+            {
+              "row": 2,
+              "column": 2
+            },
+            {
+              "row": 3,
+              "column": 2
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "첫 행과 마지막도 검산",
+          "text": "첫 10은 두 범위 모두 10, 마지막 30은 10+20+20+30=80이에요. 중간 두 20의 행누적은 30·50, 값누적은 50·50으로 갈려요.",
+          "codeFocus": [
+            {
+              "needle": "SELECT 번호,금액",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "누적 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 누적 결과와 대조해요. 표시 컬럼은 번호·금액·행누적·값누적, 결과는 4행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "누적 결과",
+            "columns": [
+              "번호",
+              "금액",
+              "행누적",
+              "값누적"
+            ],
+            "rows": [
+              [
+                "1",
+                "10",
+                "10",
+                "10"
+              ],
+              [
+                "2",
+                "20",
+                "30",
+                "50"
+              ],
+              [
+                "3",
+                "20",
+                "50",
+                "50"
+              ],
+              [
+                "4",
+                "30",
+                "80",
+                "80"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "ROWS의 현재행과 RANGE의 현재값 동점 그룹을 구별해요. 물리적 저장 순서가 아니라 OVER에 명시한 정렬 기준으로 범위를 읽어요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    },
+    {
+      "exampleId": "2-2-12-E02",
+      "why": "거래마다 바로 이전 한 건과 현재 한 건만 합쳐 짧은 이동합을 구해요.",
+      "effect": "조회 · 입금의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-12-E02의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "입금: 컬럼 번호·금액 2개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "1은 행 개수",
+          "text": "ROWS BETWEEN 1 PRECEDING AND CURRENT ROW는 번호순에서 앞 1행~현재행이에요. 금액 1원 범위가 아니에요.",
+          "codeFocus": [
+            {
+              "needle": "ROWS BETWEEN 1 PRECEDING AND CURRENT ROW",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ROWS BETWEEN 1 PRECEDING AND CURRENT ROW"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "앞 두 위치",
+          "text": "번호 1은 앞행이 없어 10, 번호 2는 1번 10+2번 20=30이에요. 없는 앞행을 0행으로 가정해 추가 저장하지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 번호",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "번호"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 앞 두 위치",
+            "columns": [
+              "현재번호",
+              "포함번호",
+              "계산",
+              "이동합"
+            ],
+            "rows": [
+              [
+                "1",
+                "1",
+                "10",
+                "10"
+              ],
+              [
+                "2",
+                "1·2",
+                "10+20",
+                "30"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "창이 움직이면 옛 행 제외",
+          "text": "번호 3은 2·3번의 20+20=40, 번호 4는 3·4번의 20+30=50이에요. 현재 창 밖 1번은 마지막 합계에 포함되지 않아요.",
+          "codeFocus": [
+            {
+              "needle": "SUM(금액)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [],
+          "table": {
+            "title": "학습용 중간표 · 창이 움직이면 옛 행 제외",
+            "columns": [
+              "현재번호",
+              "포함번호",
+              "계산",
+              "이동합"
+            ],
+            "rows": [
+              [
+                "3",
+                "2·3",
+                "20+20",
+                "40"
+              ],
+              [
+                "4",
+                "3·4",
+                "20+30",
+                "50"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "id": "read-04",
+          "title": "이동합 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 이동합와 대조해요. 표시 컬럼은 번호·이동합, 결과는 4행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "이동합",
+            "columns": [
+              "번호",
+              "이동합"
+            ],
+            "rows": [
+              [
+                "1",
+                "10"
+              ],
+              [
+                "2",
+                "30"
+              ],
+              [
+                "3",
+                "40"
+              ],
+              [
+                "4",
+                "50"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "UNBOUNDED PRECEDING 누적과 다르게 옛 행이 범위에서 빠져요. 3번의 합계는 10+20+20이 아닌 2번 20+3번 20이에요.",
+      "verification": "원본 SQL을 SQLite 3.50.4에서 표시 입력으로 재실행해 원본 결과와 대조했어요. 원문에 DDL이 없어 숫자형으로 보이는 열은 NUMERIC, 나머지는 TEXT로 둔 재현 조건이에요. Oracle 실행 검증은 아니에요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-12-Q1",
+      "hint": "첫 금액 20행에서 정렬값 20과 같은 다른 행도 포함되는지 보세요.",
+      "reasoning": "RANGE는 10+20+20=50을 두 20행 모두에 붙여요. 따라서 10·50·50이에요."
+    },
+    {
+      "checkId": "2-2-12-Q2",
+      "hint": "현재행 하나와 앞행 하나를 더해요. 첫행은 앞행이 있는지도 보세요.",
+      "reasoning": "최대 2행이에요. 첫행에는 앞행이 없어 1행만, 3번은 2번과 3번만 계산해 20+20=40이에요."
+    },
+    {
+      "checkId": "2-2-12-Q3",
+      "hint": "FOLLOWING은 뒤쪽, UNBOUNDED는 끝 경계를 두지 않는 뜻으로 읽어요.",
+      "reasoning": "현재 파티션의 마지막까지 포함해요. 다른 파티션까지 넘어간다는 뜻은 아니에요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

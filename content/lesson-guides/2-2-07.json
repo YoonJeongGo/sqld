@@ -1,0 +1,501 @@
+{
+  "schemaVersion": 1,
+  "lessonId": "2-2-07",
+  "source": {
+    "id": "2-2-07",
+    "partId": "2-2",
+    "number": 7,
+    "title": "ROLLUP",
+    "lectureMinutes": 51,
+    "easy": "앞쪽 기준을 유지하면서 뒤쪽 기준을 차례로 빼, 상세 집계·중간 소계·전체 합계를 만드는 GROUP BY 확장이다.",
+    "why": "지역·과목별 매출에 지역 소계와 전체 합계를 붙일 때 매번 쿼리를 따로 쓰는 대신 묶어서 표현한다.",
+    "concepts": [
+      {
+        "term": "ROLLUP(a,b)",
+        "meaning": "상세(a,b), a 소계(a), 전체()",
+        "example": "오른쪽 b부터 제거"
+      },
+      {
+        "term": "기준 순서",
+        "meaning": "ROLLUP(a,b)와 ROLLUP(b,a)는 소계가 다름",
+        "example": "지역 소계 vs 과목 소계"
+      },
+      {
+        "term": "빈 그룹 ()",
+        "meaning": "모든 입력에 대한 전체 합계",
+        "example": "금액1000"
+      },
+      {
+        "term": "집계용 NULL",
+        "meaning": "소계에서 사용하지 않는 열을 NULL로 표시",
+        "example": "지역 소계의 과목 NULL"
+      },
+      {
+        "term": "GROUPING",
+        "meaning": "실제 NULL과 소계 NULL을 구별",
+        "example": "GROUPING(과목)=1이면 그 열의 소계 표시"
+      },
+      {
+        "term": "그룹 집합 수",
+        "meaning": "독립된 일반 n열 ROLLUP은 n+1가지",
+        "example": "두 열이면 3가지"
+      },
+      {
+        "term": "결과 행수",
+        "meaning": "그룹 집합의 개수와 다름",
+        "example": "상세4+지역2+전체1=7행"
+      },
+      {
+        "term": "복합 열",
+        "meaning": "괄호로 묶은 항목은 한 단위로 제거",
+        "example": "ROLLUP((a,b),c)"
+      }
+    ],
+    "examples": [
+      {
+        "id": "2-2-07-E01",
+        "title": "상세 네 줄 → 지역 소계 두 줄 → 전체 한 줄",
+        "question": "지역·과목별 매출에 지역 소계와 전체 합계를 붙이자.",
+        "tables": [
+          {
+            "title": "매출",
+            "columns": [
+              "지역",
+              "과목",
+              "금액"
+            ],
+            "rows": [
+              [
+                "부산",
+                "DB",
+                "100"
+              ],
+              [
+                "부산",
+                "JAVA",
+                "200"
+              ],
+              [
+                "서울",
+                "DB",
+                "300"
+              ],
+              [
+                "서울",
+                "JAVA",
+                "400"
+              ]
+            ]
+          }
+        ],
+        "sql": "SELECT 지역, 과목, SUM(금액) AS 합계\nFROM 매출 GROUP BY ROLLUP(지역,과목)\nORDER BY 지역 NULLS LAST, 과목 NULLS LAST;",
+        "steps": [
+          "상세 그룹은 부산/DB100, 부산/JAVA200, 서울/DB300, 서울/JAVA400 네 줄이다.",
+          "과목을 빼고 지역만 묶으면 부산100+200=300, 서울300+400=700의 두 소계가 생긴다.",
+          "지역도 빼면 전체100+200+300+400=1000 한 줄이다.",
+          "그룹 방식은 세 가지지만 결과 행수는 4+2+1=7이다."
+        ],
+        "results": [
+          {
+            "title": "ROLLUP 결과",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                "DB",
+                "100"
+              ],
+              [
+                "부산",
+                "JAVA",
+                "200"
+              ],
+              [
+                "부산",
+                null,
+                "300"
+              ],
+              [
+                "서울",
+                "DB",
+                "300"
+              ],
+              [
+                "서울",
+                "JAVA",
+                "400"
+              ],
+              [
+                "서울",
+                null,
+                "700"
+              ],
+              [
+                null,
+                null,
+                "1000"
+              ]
+            ]
+          }
+        ],
+        "mode": "oracle",
+        "verification": "Oracle 문법 예제 · 원자료의 SQLite 대체식 확인과 Oracle 실제 실행은 다릅니다. Oracle 실행 미확인."
+      }
+    ],
+    "memory": "ROLLUP은 오른쪽부터 지운다. (지역,과목)→(지역)→전체.",
+    "traps": [
+      "그룹 집합 3개라는 말이 결과가 3행이라는 뜻은 아니다.",
+      "소계 NULL을 단순 IS NULL로만 구분하면 실제 데이터 NULL과 섞일 수 있다."
+    ],
+    "selfChecks": [
+      {
+        "id": "2-2-07-Q1",
+        "question": "ROLLUP(지역,과목)에 과목만의 소계가 있는가?",
+        "answer": "없다",
+        "explanation": "(지역,과목),(지역),()를 만든다."
+      },
+      {
+        "id": "2-2-07-Q2",
+        "question": "예제에서 결과 행수는?",
+        "answer": "7",
+        "explanation": "상세4+지역소계2+전체1이다."
+      },
+      {
+        "id": "2-2-07-Q3",
+        "question": "ROLLUP(과목,지역)으로 바꾸면 어느 소계가 생기는가?",
+        "answer": "과목 소계",
+        "explanation": "오른쪽 지역이 먼저 제거된다."
+      }
+    ],
+    "relatedNoteIds": [
+      "note-S14"
+    ],
+    "sourceIds": [
+      "select",
+      "grouping"
+    ],
+    "bridge": "정보처리기사 DB에서 배운 용어를 같은 예시표의 구조·행·값에 연결한다.",
+    "diagramSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 720 215\" role=\"img\" aria-label=\"ROLLUP 개념도\"><defs><marker id=\"arr\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10\" fill=\"#007d7a\"/></marker></defs><rect width=\"720\" height=\"215\" rx=\"18\" fill=\"#f0f6f8\"/><rect x=\"25\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"120.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">상세</text><text x=\"120.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">지역 + 과목</text><rect x=\"265\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#ffffff\" stroke=\"#b7d2d5\"/><text x=\"360.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">지역 소계</text><text x=\"360.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">지역만 남김</text><rect x=\"505\" y=\"62\" width=\"190\" height=\"83\" rx=\"12\" fill=\"#dff3ed\" stroke=\"#b7d2d5\"/><text x=\"600.0\" y=\"93\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"17\" fill=\"#172b4d\" font-weight=\"700\">전체 합계</text><text x=\"600.0\" y=\"120\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"13\" fill=\"#58677f\" font-weight=\"400\">기준 모두 제거</text><path d=\"M221 103 L255 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><path d=\"M461 103 L495 103\" fill=\"none\" stroke=\"#007d7a\" stroke-width=\"2.3\" marker-end=\"url(#arr)\"/><text x=\"360\" y=\"185\" text-anchor=\"middle\" font-family=\"Noto Sans CJK KR,Malgun Gothic,sans-serif\" font-size=\"14\" fill=\"#172b4d\" font-weight=\"400\">ROLLUP(지역, 과목) 기본 예 · CUBE는 과목만의 소계도 포함</text></svg>",
+    "version": 1
+  },
+  "purpose": "지역·과목 상세 매출 옆에 지역 소계와 전체 합계를 함께 보여줄 때 써요.",
+  "overview": "조회 집계예요. 매출4행은 그대로 있고 조회 결과에 상세4줄·지역소계2줄·전체1줄이 생겨요. ROLLUP의 열 순서가 소계 종류를 결정해요.",
+  "terms": [
+    {
+      "token": "ROLLUP(지역,과목)",
+      "kind": "그룹 확장",
+      "meaning": "roll up = 묶음을 큰 단위로 말아 올림",
+      "role": "(지역,과목)→(지역)→() 순서의 그룹 집합을 요청해요."
+    },
+    {
+      "token": "SUM(금액)",
+      "kind": "집계함수",
+      "meaning": "sum = 합계",
+      "role": "각 묶음의 금액값만 더해요. 결과 행수7을 더하는 함수가 아니에요."
+    },
+    {
+      "token": "NULLS LAST",
+      "kind": "정렬 옵션",
+      "meaning": "NULL을 뒤에 놓기",
+      "role": "이 예제는 지역·과목별 정렬에서 소계 표시의 NULL을 뒤로 놓아요."
+    },
+    {
+      "token": "()",
+      "kind": "그룹 집합 표기",
+      "meaning": "분류 열을 하나도 쓰지 않음",
+      "role": "원본SQL의 ROLLUP이 만드는 전체 합계 수준을 설명하는 표기예요."
+    }
+  ],
+  "pitfalls": [
+    "3가지 그룹 집합과7개 결과 행은 다른 수예요. 실제 그룹값의 개수에 따라 행수가 달라져요.",
+    "가상 문법 비교: GROUP BY 지역, ROLLUP(과목)은 지역을 계속 유지해(지역,과목),(지역)만 만들고 전체()는 만들지 않아요. 이 입력이면6행이에요.",
+    "소계의 NULL과 원본 NULL은 GROUPING으로 구별해요. 화면에NULL이라고 보이는 것만으로 합계라 단정하지 않아요."
+  ],
+  "questions": [
+    {
+      "question": "이 코드는 원본 데이터를 바꾸나요?",
+      "answer": "조회 집계예요. 매출4행은 그대로 있고 조회 결과에 상세4줄·지역소계2줄·전체1줄이 생겨요. ROLLUP의 열 순서가 소계 종류를 결정해요."
+    },
+    {
+      "question": "어디부터 읽으면 되나요?",
+      "answer": "현재 예제의 출력 목적과 입력 표를 본 뒤, 추가 해설의 첫 단계부터 현재 값의 소속을 따라가세요. 정답을 먼저 보지 않아도 확인문제 힌트에서 시작할 수 있어요."
+    }
+  ],
+  "pdfRefs": [
+    {
+      "sectionId": "2-2",
+      "title": "흥달쌤 원본 교재 · SQL 활용",
+      "fromPage": 46,
+      "toPage": 46,
+      "note": "이 페이지의 해당 단원 설명을 대조했어요. PDF의 EMPLOYEE 등 원본 예시와 앱의 학생·성적·매출 예시는 서로 다른 자료이며 표/숫자를 섞지 않아요."
+    }
+  ],
+  "examples": [
+    {
+      "exampleId": "2-2-07-E01",
+      "why": "과목별 상세와 지역 소계, 전체 매출을 같은 조회에서 확인하려 해요.",
+      "effect": "조회 · 매출의 저장값은 유지해요.",
+      "prerequisites": [
+        "기존 앱 원본 예제 2-2-07-E01의 표·SQL·결과를 그대로 사용해요. 강사 PDF와 추가 그림은 같은 숫자·이름을 쓰는 예제라고 가정하지 않아요.",
+        "매출: 컬럼 지역·과목·금액 3개, 표시 입력 4행."
+      ],
+      "steps": [
+        {
+          "title": "그룹 기준의 세 단계",
+          "text": "ROLLUP(지역,과목)은 (지역,과목), (지역), ()를 요청해요. 괄호 열이 두 개라는 것과 결과행 두 개라는 것은 달라요.",
+          "codeFocus": [
+            {
+              "needle": "ROLLUP(지역,과목)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ROLLUP(지역,과목)"
+          ],
+          "focusRows": [],
+          "focusCells": [],
+          "id": "read-01"
+        },
+        {
+          "title": "상세 네 묶음",
+          "text": "부산 DB 100·부산 JAVA 200·서울 DB 300·서울 JAVA 400은 각각 별도 상세 묶음이에요. 각 묶음에 원본 1행씩 있어 합계가 그 금액 그대로예요.",
+          "codeFocus": [
+            {
+              "needle": "SUM(금액)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "금액"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 상세 네 묶음",
+            "columns": [
+              "지역",
+              "과목",
+              "더할값",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                "DB",
+                "100",
+                "100"
+              ],
+              [
+                "부산",
+                "JAVA",
+                "200",
+                "200"
+              ],
+              [
+                "서울",
+                "DB",
+                "300",
+                "300"
+              ],
+              [
+                "서울",
+                "JAVA",
+                "400",
+                "400"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            },
+            {
+              "row": 2,
+              "column": 3
+            },
+            {
+              "row": 3,
+              "column": 3
+            }
+          ],
+          "id": "read-02"
+        },
+        {
+          "title": "과목을 빼서 지역 소계",
+          "text": "부산은 과목을 구별하지 않아 100+200=300, 서울은 300+400=700이에요. 소계의 과목 NULL은 입력 과목을 지운 것이 아니라 이번 집계에서 과목을 뺐다는 표시예요.",
+          "codeFocus": [
+            {
+              "needle": "GROUP BY ROLLUP(지역,과목)",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "과목"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 과목을 빼서 지역 소계",
+            "columns": [
+              "지역",
+              "과목표시",
+              "계산",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                null,
+                "100+200",
+                "300"
+              ],
+              [
+                "서울",
+                null,
+                "300+400",
+                "700"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 3
+            },
+            {
+              "row": 1,
+              "column": 3
+            }
+          ],
+          "id": "read-03"
+        },
+        {
+          "title": "지역도 빼서 전체",
+          "text": "지역·과목을 모두 구별하지 않으면 100+200+300+400=1000 한 행이에요. 상세 4+소계 2+전체 1=7행이며 ORDER BY로 소계 NULL을 뒤에 놓아요.",
+          "codeFocus": [
+            {
+              "needle": "ORDER BY 지역 NULLS LAST, 과목 NULLS LAST",
+              "occurrence": 0
+            }
+          ],
+          "highlights": [
+            "ORDER",
+            "지역",
+            "과목"
+          ],
+          "table": {
+            "title": "학습용 중간표 · 지역도 빼서 전체",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                null,
+                null,
+                "1000"
+              ]
+            ]
+          },
+          "focusRows": [],
+          "focusCells": [
+            {
+              "row": 0,
+              "column": 2
+            }
+          ],
+          "id": "read-04"
+        },
+        {
+          "id": "read-05",
+          "title": "ROLLUP 결과 · 원본 결과 대조",
+          "text": "앞에서 판정한 값을 원본의 ROLLUP 결과와 대조해요. 표시 컬럼은 지역·과목·합계, 결과는 7행이에요. 조회 결과이며 입력 표에 값을 저장하거나 지우지 않아요.",
+          "codeFocus": [],
+          "highlights": [],
+          "table": {
+            "title": "ROLLUP 결과",
+            "columns": [
+              "지역",
+              "과목",
+              "합계"
+            ],
+            "rows": [
+              [
+                "부산",
+                "DB",
+                "100"
+              ],
+              [
+                "부산",
+                "JAVA",
+                "200"
+              ],
+              [
+                "부산",
+                null,
+                "300"
+              ],
+              [
+                "서울",
+                "DB",
+                "300"
+              ],
+              [
+                "서울",
+                "JAVA",
+                "400"
+              ],
+              [
+                "서울",
+                null,
+                "700"
+              ],
+              [
+                null,
+                null,
+                "1000"
+              ]
+            ]
+          },
+          "focusCells": [],
+          "focusRows": []
+        }
+      ],
+      "comparison": "ROLLUP은 오른쪽 과목을 빼면서 지역 소계를 만들어요. 과목 단독 소계까지 원하면 CUBE나 GROUPING SETS처럼 다른 그룹 집합을 요청해야 해요.",
+      "verification": "원본 값의 단계별 대입·산술을 검토하고 Oracle 19c 공식 문서의 해당 구문과 대조했어요. Oracle DB 엔진에서는 실행하지 않았어요."
+    }
+  ],
+  "checkGuides": [
+    {
+      "checkId": "2-2-07-Q1",
+      "hint": "오른쪽 열부터 제거해서 남는 열 목록을 써 봐요.",
+      "reasoning": "(지역,과목),(지역),()만 만들어 과목 단독 그룹이 없어요. DB400·JAVA600만의 소계는 이 ROLLUP에 없어요."
+    },
+    {
+      "checkId": "2-2-07-Q2",
+      "hint": "각 그룹 집합에서 실제 묶음이 몇 개인지 따로 세요.",
+      "reasoning": "상세는 부산 DB·부산 JAVA·서울 DB·서울 JAVA 4개, 지역 2개, 전체 1개라 7행이에요."
+    },
+    {
+      "checkId": "2-2-07-Q3",
+      "hint": "괄호 안 첫 열을 마지막까지 남기는 규칙을 적용해요.",
+      "reasoning": "ROLLUP(과목,지역)은(과목,지역),(과목),()라서 DB400·JAVA600이라는 과목 소계가 생겨요."
+    }
+  ],
+  "sourceUrls": [
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+    "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/GROUPING.html"
+  ],
+  "reviewNotes": [
+    "추가 해설은 앱 course-pack의 원본 예제에 연결한 별도 자료예요. 원본 PDF 전체 문제의 상세 해설을 모두 이식했다는 뜻은 아니에요.",
+    "단계는 SQL의 의미를 학습하기 위한 대입 과정이며 실행계획을 실측한 순서가 아니에요."
+  ]
+}

@@ -1,0 +1,2043 @@
+{
+  "schemaVersion": 1,
+  "registryVersion": "2026.09.14.9",
+  "checkedAt": "2026-09-14",
+  "policy": {
+    "externalQuestionImportCount": 0,
+    "officialReleasedQuestionsObtained": false,
+    "licensedReconstructionsObtained": false,
+    "humanExpertReviewPerformed": false,
+    "engineExecutionPerformed": false,
+    "contentDefaultSourceTypes": [
+      "original_practice",
+      "original_mock"
+    ],
+    "sourceAccessDoesNotEqualQuestionValidation": true
+  },
+  "officialExamStatus": {
+    "status": "provisional_official_unavailable",
+    "effectiveDate": null,
+    "currentSyllabusVersion": null,
+    "currentChangeNoticesVerified": false,
+    "currentErrataVerified": false,
+    "defaultSpecBasis": "User-provided draft plus publisher cross-check and historical official search index. Current official confirmation is still missing."
+  },
+  "sources": [
+    {
+      "sourceId": "oracle19-ntile",
+      "publisher": "Oracle",
+      "title": "NTILE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/NTILE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose"
+      ],
+      "usageScope": "Ordered bucket allocation; remainder rows assigned from bucket 1.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-lag",
+      "publisher": "Oracle",
+      "title": "LAG",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LAG.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose"
+      ],
+      "usageScope": "Previous physical offset, absent-row default versus stored NULL, RESPECT NULLS.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-lead",
+      "publisher": "Oracle",
+      "title": "LEAD",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LEAD.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose"
+      ],
+      "usageScope": "Following physical offset and default arguments.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-last-value",
+      "publisher": "Oracle",
+      "title": "LAST_VALUE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LAST_VALUE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose"
+      ],
+      "usageScope": "Window endpoint, default RANGE and deterministic ordering.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-nvl",
+      "publisher": "Oracle",
+      "title": "NVL",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/NVL.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "NULL replacement",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-coalesce",
+      "publisher": "Oracle",
+      "title": "COALESCE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/COALESCE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "First non-NULL expression and short-circuit evaluation",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-nullif",
+      "publisher": "Oracle",
+      "title": "NULLIF",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/NULLIF.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Equality comparison with conditional NULL result",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-substr",
+      "publisher": "Oracle",
+      "title": "SUBSTR",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SUBSTR.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Character positions, negative offset, length",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-length",
+      "publisher": "Oracle",
+      "title": "LENGTH",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LENGTH.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Character length, CHAR trailing blanks and NULL",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-round",
+      "publisher": "Oracle",
+      "title": "ROUND (number)",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ROUND-number.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Numeric rounding and precision",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-trunc",
+      "publisher": "Oracle",
+      "title": "TRUNC (number)",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/TRUNC-number.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Numeric truncation",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-mod",
+      "publisher": "Oracle",
+      "title": "MOD",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/MOD.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Remainder",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-replace",
+      "publisher": "Oracle",
+      "title": "REPLACE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REPLACE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Substring replacement",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-trim",
+      "publisher": "Oracle",
+      "title": "TRIM",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/TRIM.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Leading/trailing character removal",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-upper",
+      "publisher": "Oracle",
+      "title": "UPPER",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/UPPER.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Uppercase conversion",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-tochar-date",
+      "publisher": "Oracle",
+      "title": "TO_CHAR (datetime)",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/TO_CHAR-datetime.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Explicit format model and language",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-add-months",
+      "publisher": "Oracle",
+      "title": "ADD_MONTHS",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ADD_MONTHS.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Month shifts with NLS_CALENDAR",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-months-between",
+      "publisher": "Oracle",
+      "title": "MONTHS_BETWEEN",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/MONTHS_BETWEEN.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Month difference, same-day/end-of-month and NLS_CALENDAR",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-between",
+      "publisher": "Oracle",
+      "title": "BETWEEN Condition",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/BETWEEN-Condition.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Inclusive bounds and NULL",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-logical",
+      "publisher": "Oracle",
+      "title": "Logical Conditions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Logical-Conditions.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "AND OR NOT and UNKNOWN truth tables",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-subqueries",
+      "publisher": "Oracle",
+      "title": "Using Subqueries",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Using-Subqueries.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Correlated subqueries",
+        "Inline views",
+        "Scalar subqueries"
+      ],
+      "usageScope": "Subquery forms and conceptual versus physical evaluation; S12",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-create-table",
+      "publisher": "Oracle",
+      "title": "CREATE TABLE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-TABLE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "relational_properties"
+      ],
+      "usageScope": "Ordinary relational table definitions; S23",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-alter-table",
+      "publisher": "Oracle",
+      "title": "ALTER TABLE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ALTER-TABLE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "column_clauses"
+      ],
+      "usageScope": "Changing columns and constraints; S23",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-truncate",
+      "publisher": "Oracle",
+      "title": "TRUNCATE TABLE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/TRUNCATE-TABLE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Prerequisites"
+      ],
+      "usageScope": "Ordinary-table TRUNCATE, rollback restrictions; S23",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-drop-table",
+      "publisher": "Oracle",
+      "title": "DROP TABLE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/DROP-TABLE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "PURGE"
+      ],
+      "usageScope": "Removing table definition and rows; S23",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-savepoint",
+      "publisher": "Oracle",
+      "title": "SAVEPOINT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SAVEPOINT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "Named transaction rollback positions; S22",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-nulls",
+      "publisher": "Oracle",
+      "title": "Nulls",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Nulls.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Nulls with Comparison Conditions",
+        "Nulls in Conditions"
+      ],
+      "usageScope": "NULL, UNKNOWN, Oracle zero-length strings; M09/S06",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-aggregate",
+      "publisher": "Oracle",
+      "title": "Aggregate Functions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Aggregate-Functions.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Aggregate functions and GROUP BY",
+        "NULL handling"
+      ],
+      "usageScope": "COUNT/SUM/AVG and groups; S07/S08",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-count",
+      "publisher": "Oracle",
+      "title": "COUNT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/COUNT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "COUNT(expr), COUNT(*)"
+      ],
+      "usageScope": "Row count versus non-NULL count; S07",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-in",
+      "publisher": "Oracle",
+      "title": "IN Condition",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/IN-Condition.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "NOT IN",
+        "NULL and empty subquery"
+      ],
+      "usageScope": "Scalar membership and NULL traps; S06/S12",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-exists",
+      "publisher": "Oracle",
+      "title": "EXISTS Condition",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/EXISTS-Condition.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose"
+      ],
+      "usageScope": "Existence of subquery rows; S12",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-joins",
+      "publisher": "Oracle",
+      "title": "Joins",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Joins.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Join Conditions",
+        "Inner Joins",
+        "Outer Joins",
+        "Self Joins"
+      ],
+      "usageScope": "Join matching, multiplication and NULL extension; M07/S10/S11/S18",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-select",
+      "publisher": "Oracle",
+      "title": "SELECT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SELECT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "select_list",
+        "where_clause",
+        "group_by_clause",
+        "order_by_clause",
+        "row_limiting_clause",
+        "pivot_clause",
+        "unpivot_clause"
+      ],
+      "usageScope": "Clause semantics, explicit ordering, grouping sets, PIVOT/UNPIVOT and FETCH; S02/S08/S09/S11/S14/S17/S19",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-analytic",
+      "publisher": "Oracle",
+      "title": "Analytic Functions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Analytic-Functions.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "analytic_clause",
+        "order_by_clause",
+        "windowing_clause"
+      ],
+      "usageScope": "Ranking ties, ROWS/RANGE and final result ordering; S15/S16",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-setops",
+      "publisher": "Oracle",
+      "title": "The UNION [ALL], INTERSECT, MINUS Operators",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/The-UNION-ALL-INTERSECT-MINUS-Operators.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Set operators",
+        "Restrictions",
+        "UNION ALL"
+      ],
+      "usageScope": "Duplicate preservation, positional columns and type groups; S13",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-rownum",
+      "publisher": "Oracle",
+      "title": "ROWNUM Pseudocolumn",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ROWNUM-Pseudocolumn.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Top-N subquery",
+        "ROWNUM greater than 1"
+      ],
+      "usageScope": "ROWNUM and ordering; S17",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-hierarchy",
+      "publisher": "Oracle",
+      "title": "Hierarchical Queries",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Queries.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "START WITH",
+        "CONNECT BY",
+        "PRIOR",
+        "Query processing"
+      ],
+      "usageScope": "Explicit acyclic parent-child fixtures; S18",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-regexp",
+      "publisher": "Oracle",
+      "title": "Pattern-matching Conditions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Pattern-matching-Conditions.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "LIKE",
+        "REGEXP_LIKE"
+      ],
+      "usageScope": "Oracle pattern and regular expression conditions; S06/S20",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-regexp-substr",
+      "publisher": "Oracle",
+      "title": "REGEXP_SUBSTR",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REGEXP_SUBSTR.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Arguments"
+      ],
+      "usageScope": "Oracle regex extraction; S20",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-commit",
+      "publisher": "Oracle",
+      "title": "COMMIT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/COMMIT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Implicit COMMIT"
+      ],
+      "usageScope": "Ordinary DDL implicit commit and transaction completion; S22/S23",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-rollback",
+      "publisher": "Oracle",
+      "title": "ROLLBACK",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ROLLBACK.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "TO SAVEPOINT"
+      ],
+      "usageScope": "Full versus savepoint rollback; S22",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-grouping",
+      "publisher": "Oracle",
+      "title": "GROUPING",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/GROUPING.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose"
+      ],
+      "usageScope": "Generated subtotal NULL versus stored NULL; S14",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-case",
+      "publisher": "Oracle",
+      "title": "CASE Expressions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CASE-Expressions.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Simple CASE",
+        "Searched CASE",
+        "Short-circuit evaluation"
+      ],
+      "usageScope": "Conditional expressions; S05",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-todate",
+      "publisher": "Oracle",
+      "title": "TO_DATE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/TO_DATE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "fmt and NLS_DATE_FORMAT"
+      ],
+      "usageScope": "Date conversion with explicit format; S04",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-datatypes",
+      "publisher": "Oracle",
+      "title": "Data Types",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Oracle Built-in Data Types",
+        "Data Conversion"
+      ],
+      "usageScope": "Types and implicit conversion boundaries; S01/S04",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-constraints",
+      "publisher": "Oracle",
+      "title": "constraint",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/constraint.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "NOT NULL",
+        "UNIQUE",
+        "PRIMARY KEY",
+        "REFERENCES",
+        "CHECK"
+      ],
+      "usageScope": "Keys, domain and referential constraints; M03/M05/M10/S23",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-grant",
+      "publisher": "Oracle",
+      "title": "GRANT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/GRANT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Object Privileges",
+        "Roles"
+      ],
+      "usageScope": "Privilege assignment; S24",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-revoke",
+      "publisher": "Oracle",
+      "title": "REVOKE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REVOKE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Object privileges"
+      ],
+      "usageScope": "Privilege removal; S24",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-insert",
+      "publisher": "Oracle",
+      "title": "INSERT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/INSERT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Values clause"
+      ],
+      "usageScope": "Explicit column-list insertion; S21",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-update",
+      "publisher": "Oracle",
+      "title": "UPDATE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/UPDATE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "update_set_clause",
+        "where_clause"
+      ],
+      "usageScope": "Matching rows and updated values; S21",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-delete",
+      "publisher": "Oracle",
+      "title": "DELETE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/DELETE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "where_clause"
+      ],
+      "usageScope": "Row deletion without dropping structure; S21",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-merge",
+      "publisher": "Oracle",
+      "title": "MERGE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/MERGE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "merge_update_clause",
+        "merge_insert_clause"
+      ],
+      "usageScope": "Conditional matched/not-matched changes; S21",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-functions",
+      "publisher": "Oracle",
+      "title": "Single-Row Functions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Single-Row-Functions.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Numeric Functions",
+        "Character Functions",
+        "Datetime Functions",
+        "Conversion Functions"
+      ],
+      "usageScope": "Function categories and links; S03/S04",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-transactions",
+      "publisher": "Oracle",
+      "title": "Transactions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/transactions.html",
+      "version": "Oracle Database 19c Concepts",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "ACID",
+        "End of a Transaction",
+        "Statement-Level Atomicity",
+        "Savepoints"
+      ],
+      "usageScope": "Transaction conceptual model and statement versus transaction atomicity; M08/S22",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle-modeler243",
+      "publisher": "Oracle",
+      "title": "Data Modeler Concepts and Usage",
+      "url": "https://docs.oracle.com/en/database/oracle/sql-developer-data-modeler/24.3/dmdug/data-modeler-concepts-usage.html",
+      "version": "SQL Developer Data Modeler 24.3",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "1.3.4 Logical Model",
+        "1.3.4.2 Entities",
+        "1.3.4.3 Attributes",
+        "1.3.4.4 Unique Identifiers",
+        "1.3.4.6 Relations",
+        "1.3.5 Relational Models"
+      ],
+      "usageScope": "Entity/attribute/identifier/cardinality and model mapping; M01-M05/M07/M10. Does not establish SQLD scope.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "waterloo-normalization",
+      "publisher": "University of Waterloo / M. Tamer Özsu",
+      "title": "CS448: Normalization",
+      "url": "https://cs.uwaterloo.ca/~tozsu/courses/cs448/notes/5.Normalization.pdf",
+      "version": "CS448 lecture slides, 33 pages",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Functional dependencies",
+        "Normal Forms Based on FDs",
+        "Third Normal Form"
+      ],
+      "usageScope": "Mathematical normalization definitions and dependency preconditions; M06. Educational primary source, not a SQLD exam standard.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "academic_primary_document_review"
+    },
+    {
+      "sourceId": "sfu-normalization",
+      "publisher": "Simon Fraser University / John Edgar",
+      "title": "CMPT354: Database Normalization",
+      "url": "https://www2.cs.sfu.ca/CourseCentral/354/johnwill/cmpt354_06normal.pdf",
+      "version": "CMPT354 lecture slides, 82 pages",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Functional Dependencies",
+        "Keys",
+        "BCNF",
+        "Third Normal Form Definition"
+      ],
+      "usageScope": "Independent cross-check of FD/candidate key/3NF meanings; M06. No lecture examples copied.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "academic_primary_document_review"
+    },
+    {
+      "sourceId": "mssql-select",
+      "publisher": "Microsoft",
+      "title": "SELECT (Transact-SQL)",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-transact-sql?view=sql-server-ver16",
+      "version": "SQL Server 2022 documentation view (ver16)",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Syntax",
+        "Logical processing order of the SELECT statement"
+      ],
+      "usageScope": "Logical binding order differs from physical execution order; S02.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "mssql-top",
+      "publisher": "Microsoft",
+      "title": "TOP (Transact-SQL)",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/top-transact-sql?view=sql-server-ver16",
+      "version": "SQL Server 2022 documentation view (ver16); page also contains shared newer-product examples",
+      "publicationDate": "2026-07-20",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Arguments",
+        "WITH TIES",
+        "Best practices"
+      ],
+      "usageScope": "TOP with ORDER BY and ties; S17. Do not infer version-specific 2025 examples apply to 2022.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review",
+      "dateType": "page_last_updated"
+    },
+    {
+      "sourceId": "mssql-implicit-transactions",
+      "publisher": "Microsoft",
+      "title": "SET IMPLICIT_TRANSACTIONS (Transact-SQL)",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-implicit-transactions-transact-sql?view=sql-server-ver17",
+      "version": "SQL Server 2025 documentation view (ver17)",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Remarks"
+      ],
+      "usageScope": "ON/OFF autocommit and explicit transaction distinctions. Not evidence of local engine execution.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "mssql-truncate",
+      "publisher": "Microsoft",
+      "title": "TRUNCATE TABLE (Transact-SQL)",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/truncate-table-transact-sql?view=sql-server-ver17",
+      "version": "SQL Server 2025 documentation view (ver17)",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Remarks",
+        "Limitations",
+        "C. Roll back a truncate operation"
+      ],
+      "usageScope": "SQL Server TRUNCATE inside a transaction can be rolled back; separate Synapse/PDW limitations.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "sqlite-quirks",
+      "publisher": "SQLite project",
+      "title": "Quirks, Caveats, and Gotchas In SQLite",
+      "url": "https://www.sqlite.org/quirks.html",
+      "version": "Live documentation; engine version unspecified",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Flexible Typing",
+        "Aggregate Queries Can Contain Non-Aggregate Result Columns"
+      ],
+      "usageScope": "SQLite is the app storage engine, not an Oracle/SQL Server correctness oracle.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "wikibook-sqld2026",
+      "publisher": "위키북스",
+      "title": "이지패스 2026 SQLD SQL 개발자",
+      "url": "https://wikibook.co.kr/sqld2026/",
+      "version": "2026 edition / ISBN 9791158396589",
+      "publicationDate": "2026-01-16",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "도서 정보",
+        "목차"
+      ],
+      "usageScope": "Publisher chapter-list cross-check only. Neither current official scope nor question answer evidence.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_scope_crosscheck"
+    },
+    {
+      "sourceId": "eduwill-sqld2026",
+      "publisher": "에듀윌",
+      "title": "에듀윌, 데이터분석 SQLD 신간 출간",
+      "url": "https://company.eduwill.net/pr/newsInfo?bIdx=315451&page=&searchTarget=all",
+      "version": "2026-edition book press release",
+      "publicationDate": "2025-07-10",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "보도자료",
+        "시험 설명"
+      ],
+      "usageScope": "Secondary corroboration: 50 MCQ, 2 points each, 90 minutes, >=60 total and each subject >=40%. Does not confirm current official scope, updates or subject split.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_exam_crosscheck",
+      "dateType": "page_registration_date",
+      "publicationDateNote": "본문 행사일은 2025-06-10으로 기재되어 등록일과 다름."
+    },
+    {
+      "sourceId": "dataq-sqld",
+      "publisher": "한국데이터산업진흥원 데이터자격검정",
+      "title": "SQL 개발자 종목 안내 (접근 시도)",
+      "url": "https://www.dataq.or.kr/www/sub/a_04.do",
+      "version": "current version unconfirmed",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "종목 안내",
+        "출제기준 (미확인)"
+      ],
+      "usageScope": "Current official exam specification lookup target. Must not be cited as verified.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "failed_fetch_400",
+      "verificationMethod": "attempted_not_verified"
+    },
+    {
+      "sourceId": "dataq-main",
+      "publisher": "한국데이터산업진흥원 데이터자격검정",
+      "title": "데이터자격검정 메인 (접근 시도)",
+      "url": "https://www.dataq.or.kr/www/main.do",
+      "version": "current version unconfirmed",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "공지사항 (미확인)",
+        "자료실·정오표 (미확인)"
+      ],
+      "usageScope": "Attempted notices and errata navigation; current contents unavailable.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "failed_fetch_400",
+      "verificationMethod": "attempted_not_verified"
+    },
+    {
+      "sourceId": "dataq-brochure-2022",
+      "publisher": "한국데이터산업진흥원 데이터자격검정",
+      "title": "2022 데이터자격검정 브로슈어 (과거 검색 색인)",
+      "url": "https://www.dataq.or.kr/www/dataq_brochure_2022.pdf",
+      "version": "2022; pre-revision historical material",
+      "publicationDate": "2022",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "SQLD page 8 (search-index text only)"
+      ],
+      "usageScope": "Historical 10/40 split cross-check only. Old scope includes SQL optimization/performance and short answers; prohibited as current scope proof.",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "direct_fetch_failed_search_index_only",
+      "verificationMethod": "historical_search_index_only",
+      "dateType": "year_only_from_document_filename"
+    },
+    {
+      "sourceId": "oracle19-concat",
+      "publisher": "Oracle",
+      "title": "Concatenation Operator",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Concatenation-Operator.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose"
+      ],
+      "usageScope": "NULL/empty-string concatenation and preservation of trailing blanks in Oracle19c.",
+      "license": "Original question and prose reproduction rights not obtained; facts and reference links only. App prose and examples independently authored.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-trunc-date",
+      "publisher": "Oracle",
+      "title": "TRUNC (date)",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/TRUNC-date.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose"
+      ],
+      "usageScope": "Gregorian calendar behavior, DATE result type and default midnight truncation; independent of NLS_CALENDAR.",
+      "license": "Original question and prose reproduction rights not obtained; facts and reference links only. App prose and examples independently authored.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-comparison",
+      "publisher": "Oracle",
+      "title": "Comparison Conditions",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Comparison-Conditions.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Comparison Conditions table: op ANY/SOME and op ALL",
+        "Group Comparison Conditions"
+      ],
+      "usageScope": "ANY/ALL three-valued comparison and empty-subquery cases; tuple arity/type restrictions.",
+      "license": "Original question and prose reproduction rights not obtained; facts and reference links only. App prose and examples independently authored.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "android-compose-accessibility-defaults",
+      "publisher": "Google Android Developers",
+      "title": "API defaults: Jetpack Compose accessibility",
+      "url": "https://developer.android.com/develop/ui/compose/accessibility/api-defaults",
+      "version": "Last updated 2026-07-21 UTC",
+      "publicationDate": "2026-07-21",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Minimum touch target sizes",
+        "Graphic elements",
+        "Interactive elements"
+      ],
+      "usageScope": "UI implementation reference only: 48dp minimum targets, appropriate contentDescription and native component semantics. Documentation reading is not device TalkBack validation.",
+      "license": "Facts and links used only; source document text and code not reproduced in the app from this review. The publisher retains its stated content/document-use policies.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "w3c-wcag22",
+      "publisher": "World Wide Web Consortium (W3C)",
+      "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "version": "W3C Recommendation 12 December 2024",
+      "publicationDate": "2024-12-12",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "1.4.1 Use of Color",
+        "1.4.3 Contrast (Minimum)",
+        "1.4.4 Resize Text",
+        "1.4.11 Non-text Contrast"
+      ],
+      "usageScope": "Accessibility design reference: text contrast, non-color identification and text resizing. Checking selected palettes does not establish full WCAG conformance of the Android app.",
+      "license": "Facts and links used only; source document text and code not reproduced in the app from this review. The publisher retains its stated content/document-use policies.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "android-auto-backup",
+      "publisher": "Google Android Developers",
+      "title": "Back up user data with Auto Backup",
+      "url": "https://developer.android.com/identity/data/autobackup",
+      "version": "Android 12/API 31+ data-extraction-rules; documentation checked 2026-09-14",
+      "publicationDate": "2026-02-26",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Enable and disable backup",
+        "Android 12 or higher XML config syntax",
+        "Syntax for include and exclude elements"
+      ],
+      "usageScope": "클라우드와 D2D 규칙 분리, allowBackup=false 제조사별 D2D 한계, 9개 exclude domain 및 재귀 디렉터리 path 의미 확인. 실제 백업 서비스·제조사 D2D 실행 검증은 아님.",
+      "license": "페이지의 Content License 적용. 본 프로젝트는 사실 확인과 출처 링크만 사용하며 원문 코드·본문을 재수록하지 않음.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "eraon-sqld2026-curriculum",
+      "publisher": "이라온에듀 · 흥달쌤",
+      "title": "2026 SQLD(SQL 개발자)(30일) 공개 커리큘럼",
+      "url": "https://eraonedu.com/course/CI_00000017",
+      "version": "2026 강좌",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "커리큘럼"
+      ],
+      "usageScope": "사용자가 제시한 강의 주제와 앱 학습목표 대조. 강의 내용·문항 재수록이나 강의 시간으로 빈도 추정하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "educator_public_material_review"
+    },
+    {
+      "sourceId": "eraon-sqld-exam-guide",
+      "publisher": "이라온에듀 · 흥달쌤",
+      "title": "SQLD 안내 · 과목 및 내용",
+      "url": "https://eraonedu.com/exam/03",
+      "version": "2026-09-14 열람본",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "과목 및 내용",
+        "출제문항수"
+      ],
+      "usageScope": "강사가 게시한 시험 안내의 보조 교차 확인. 시행기관 현행 원문을 대신하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "educator_public_material_review"
+    },
+    {
+      "sourceId": "eraon-sqld-public-lectures",
+      "publisher": "이라온에듀 · 흥달쌤",
+      "title": "SQLD 공개강좌 목록",
+      "url": "https://eraonedu.com/support/lecture/07",
+      "version": "2026-09-14 열람본",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "정규식 특강 #01~#04"
+      ],
+      "usageScope": "S20에서 강사가 별도 보충 특강을 제공하는 사실 확인. 시험 출제 횟수의 증거가 아님.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "educator_public_material_review"
+    },
+    {
+      "sourceId": "gilbut-sqld2027-info",
+      "publisher": "길벗 · 서동재(데이널)",
+      "title": "2027 한 권으로 끝내는 시나공 SQLD · 출판사 소개",
+      "url": "https://www.gilbut.co.kr/book/view?bookcode=BN004870",
+      "version": "ISBN 9791140719457",
+      "publicationDate": "2026-07-13",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "도서소개",
+        "목차"
+      ],
+      "usageScope": "최근 출간 수험서의 학습 방향과 공개 미리보기 연결 확인. 홍보 문구의 합격 보장·학습 효과 수치를 앱 주장으로 전환하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_public_material_review"
+    },
+    {
+      "sourceId": "gilbut-sqld2027-guide-model",
+      "publisher": "길벗 · 서동재(데이널)",
+      "title": "2027 시나공 SQLD 공개 미리보기 10쪽 · 시험 분석 및 학습 가이드",
+      "url": "https://gfile.gilbut.co.kr/gilbut/bookdata/BN004870/preview/files/basic-html/page10.html",
+      "version": "2027판, 인쇄면 10쪽",
+      "publicationDate": "2026-07-13",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "1과목 출제 경향"
+      ],
+      "usageScope": "저자의 관계·정규화 및 ERD 적용 강조를 출처 표시와 함께 요약. 공식 빈도나 독립 재현한 출제 통계로 사용하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_public_material_review"
+    },
+    {
+      "sourceId": "gilbut-sqld2027-guide-sql",
+      "publisher": "길벗 · 서동재(데이널)",
+      "title": "2027 시나공 SQLD 공개 미리보기 11쪽 · SQL 출제 경향",
+      "url": "https://gfile.gilbut.co.kr/gilbut/bookdata/BN004870/preview/files/basic-html/page11.html",
+      "version": "2027판, 인쇄면 11쪽",
+      "publicationDate": "2026-07-13",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "2과목 출제 경향"
+      ],
+      "usageScope": "저자가 제시한 단원 강조와 출제 비중 주장의 존재를 확인. 공개면의 표본·분모·분석법은 미확인으로 숫자를 공식 확률로 사용하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_public_material_review"
+    },
+    {
+      "sourceId": "gilbut-sqld2027-killer-guide",
+      "publisher": "길벗 · 서동재(데이널)",
+      "title": "2027 시나공 SQLD 공개 미리보기 15쪽 · 별책 활용 소개",
+      "url": "https://gfile.gilbut.co.kr/gilbut/bookdata/BN004870/preview/files/basic-html/page15.html",
+      "version": "2027판, 인쇄면 15쪽",
+      "publicationDate": "2026-07-13",
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "킬러문항 32제 소개"
+      ],
+      "usageScope": "NULL·JOIN·서브쿼리·윈도우 함수의 별도 점검 강조 확인. 부록 문제는 복사·수록하지 않음.",
+      "license": "원문·문항·도표의 재수록 권한은 확보하지 않음. 짧은 사실 요약과 출처 링크만 사용하며 앱 설명과 예시는 독자 작성한다.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_public_material_review"
+    },
+    {
+      "sourceId": "oracle19-decode",
+      "publisher": "Oracle",
+      "title": "DECODE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/DECODE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-nvl2",
+      "publisher": "Oracle",
+      "title": "NVL2",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/NVL2.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-rename",
+      "publisher": "Oracle",
+      "title": "RENAME",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/RENAME.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-abs",
+      "publisher": "Oracle",
+      "title": "ABS",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ABS.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-sign",
+      "publisher": "Oracle",
+      "title": "SIGN",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SIGN.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-ceil",
+      "publisher": "Oracle",
+      "title": "CEIL",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CEIL.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-floor",
+      "publisher": "Oracle",
+      "title": "FLOOR",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/FLOOR.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-instr",
+      "publisher": "Oracle",
+      "title": "INSTR",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/INSTR.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-lpad",
+      "publisher": "Oracle",
+      "title": "LPAD",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LPAD.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-rpad",
+      "publisher": "Oracle",
+      "title": "RPAD",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/RPAD.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-lower",
+      "publisher": "Oracle",
+      "title": "LOWER",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/LOWER.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-cast",
+      "publisher": "Oracle",
+      "title": "CAST",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CAST.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "독자 설명과 예제의 개념·조건 대조",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "ucdavis-three-schema",
+      "publisher": "University of California, Davis",
+      "title": "ECS 165A Introduction: database schemas and data independence",
+      "url": "https://www.cs.ucdavis.edu/~green/courses/ecs165a/1-intro.pdf",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Different Views of Data",
+        "Data Models, Schemas, and Instances",
+        "Data Independence"
+      ],
+      "usageScope": "DB/DBMS, 추상화 3단계 및 논리적·물리적 독립성",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "uiowa-erd-conceptual",
+      "publisher": "University of Iowa",
+      "title": "Conceptual Model – Fundamentals of Database Management",
+      "url": "https://pressbooks.uiowa.edu/fundamentalsofdatabasemanagement/chapter/chapter-2/",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Entities",
+        "Relationships",
+        "Cardinality and Modality"
+      ],
+      "usageScope": "ERD의 실체·속성·관계, Crow’s Foot 각 끝점의 최소·최대 해석",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "juniata-bcnf",
+      "publisher": "Juniata College",
+      "title": "Normalization: Boyce/Codd Normal Form",
+      "url": "https://jcsites.juniata.edu/faculty/rhodes/dbms/normalization.htm",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Boyce/Codd Normal Form"
+      ],
+      "usageScope": "비자명 함수 종속 결정자가 슈퍼키라는 BCNF 정의와 3NF 차이",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "cornell-denormalization",
+      "publisher": "Cornell University",
+      "title": "Denormalization – Cornell Virtual Workshop",
+      "url": "https://cvw.cac.cornell.edu/RelationalDBs/design-create/denormalization",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Denormalization"
+      ],
+      "usageScope": "반정규화의 성능·일관성 교환 및 먼저 측정하는 판단",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "aalto-denormalization",
+      "publisher": "Aalto University",
+      "title": "Denormalization as a Deliberate Trade-Off",
+      "url": "https://opencs.aalto.fi/en/courses/databases/part-8/5-denormalization-as-a-deliberate-trade-off",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Denormalization as a Deliberate Trade-Off"
+      ],
+      "usageScope": "중복·파생값 관리, 변경 전파와 재계산",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "university_document_review"
+    },
+    {
+      "sourceId": "kimnbuk-entity-classification",
+      "publisher": "김앤북 (알라딘 공개 배포)",
+      "title": "내일은 SQL 개발자 요약집: Section 02 엔터티 분류",
+      "url": "https://image.aladin.co.kr/img/banner/cid/react/K352036335.pdf",
+      "version": null,
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "PDF 5쪽 Section 02, 3. 분류"
+      ],
+      "usageScope": "PDF 5쪽의 두 분류축 명칭만 대조. 이 자료의 다른 단순화된 정의·문항은 검증 근거로 사용하지 않는다.",
+      "license": "원문과 문항을 복제하지 않음. 사실 확인과 출처 링크에 사용하며 설명·예제·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "publisher_summary_review_limited_section"
+    },
+    {
+      "sourceId": "oracle19-create-view",
+      "publisher": "Oracle",
+      "title": "CREATE VIEW",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CREATE-VIEW.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "일반 뷰 정의, OR REPLACE, 직접 객체 권한, 본래 갱신 가능성, CHECK OPTION과 READ ONLY",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-drop-view",
+      "publisher": "Oracle",
+      "title": "DROP VIEW",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/DROP-VIEW.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Semantics"
+      ],
+      "usageScope": "뷰 정의 제거와 의존 뷰 무효화",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-first-value",
+      "publisher": "Oracle",
+      "title": "FIRST_VALUE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/FIRST_VALUE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "현재 프레임의 첫 값과 RESPECT/IGNORE NULLS, 동률 결정성",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-ratio-to-report",
+      "publisher": "Oracle",
+      "title": "RATIO_TO_REPORT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/RATIO_TO_REPORT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "파티션 합계에 대한 비율, NULL과 분석 구문",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-percent-rank",
+      "publisher": "Oracle",
+      "title": "PERCENT_RANK",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/PERCENT_RANK.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "분석 함수의 순위 기반 계산식과 첫 행 0",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-cume-dist",
+      "publisher": "Oracle",
+      "title": "CUME_DIST",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/CUME_DIST.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "동점을 포함한 누적 분포",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-sys-connect-by-path",
+      "publisher": "Oracle",
+      "title": "SYS_CONNECT_BY_PATH",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SYS_CONNECT_BY_PATH.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "루트부터 현재 행까지 경로 문자열",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-hierarchy-pseudocolumns",
+      "publisher": "Oracle",
+      "title": "Hierarchical Query Pseudocolumns",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Hierarchical-Query-Pseudocolumns.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "NOCYCLE 요구와 현재 행의 순환 표시",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-regexp-instr",
+      "publisher": "Oracle",
+      "title": "REGEXP_INSTR",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REGEXP_INSTR.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "검색 시작 위치, 일치 회차, 끝 다음 위치, 부분식 번호",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-regexp-count",
+      "publisher": "Oracle",
+      "title": "REGEXP_COUNT",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REGEXP_COUNT.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "겹치지 않는 일치 횟수, 부분식과 매칭 플래그",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "oracle19-regexp-replace",
+      "publisher": "Oracle",
+      "title": "REGEXP_REPLACE",
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REGEXP_REPLACE.html",
+      "version": "Oracle Database 19c SQL Language Reference",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Purpose",
+        "Examples"
+      ],
+      "usageScope": "캡처 역참조와 전체/회차별 치환",
+      "license": "원문·문항 재수록 권한은 확보하지 않음. 사실 확인과 링크 안내만 사용. 앱 설명·예시·문항은 독자 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "wisc-cs564-ra-2018",
+      "publisher": "University of Wisconsin–Madison",
+      "title": "CS 564: Relational Algebra",
+      "url": "https://pages.cs.wisc.edu/~paris/cs564-s18/lectures/lecture-08.pdf",
+      "version": "Spring 2018; Paris Koutris",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Relational algebra and division"
+      ],
+      "usageScope": "집합 의미, 선택·투영·곱·집합 연산·이름 변경·조인과 SQL 대응",
+      "license": "강의 원문·도표·문항을 재수록하지 않음. 사실 확인 후 독자 예제와 설명 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "cornell-cs4320-ra-2008",
+      "publisher": "Cornell University",
+      "title": "CS4320: Relational Algebra",
+      "url": "https://www.cs.cornell.edu/courses/cs4320/2008fa/slides/20080915_Algebra.pdf",
+      "version": "Fall 2008",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Relational algebra and division"
+      ],
+      "usageScope": "집합 관계대수와 디비전의 기본 연산 표현",
+      "license": "강의 원문·도표·문항을 재수록하지 않음. 사실 확인 후 독자 예제와 설명 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    },
+    {
+      "sourceId": "wellesley-cs304-division",
+      "publisher": "Wellesley College",
+      "title": "CS 304: Division in Relational Algebra",
+      "url": "https://cs.wellesley.edu/~cs304flask/lectures/relational-algebra/division.html",
+      "version": "CS 304 online course notes; page date unspecified",
+      "publicationDate": null,
+      "checkedAt": "2026-09-14",
+      "sections": [
+        "Relational algebra and division"
+      ],
+      "usageScope": "디비전의 모든 요구 값 충족 해석",
+      "license": "강의 원문·도표·문항을 재수록하지 않음. 사실 확인 후 독자 예제와 설명 작성.",
+      "accessStatus": "retrieved",
+      "verificationMethod": "official_document_review"
+    }
+  ],
+  "accessAttempts": [
+    {
+      "url": "https://www.dataq.or.kr/",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Failed to fetch (400) Bad Request"
+    },
+    {
+      "url": "https://www.dataq.or.kr/www/sub/a_04.do",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Failed to fetch (400) Bad Request"
+    },
+    {
+      "url": "https://www.dataq.or.kr/www/main.do",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Failed to fetch (400) Bad Request"
+    },
+    {
+      "url": "https://www.dataq.or.kr/www/sub/introduction.do",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Failed to fetch (400) Bad Request"
+    },
+    {
+      "url": "https://www.dataq.or.kr/www/dataq_brochure_2022.pdf",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Failed to fetch (400) Bad Request; old search index available"
+    },
+    {
+      "url": "https://www.dataq.or.kr/www/main.do",
+      "method": "PowerShell Invoke-WebRequest -UseBasicParsing -TimeoutSec 15",
+      "checkedAt": "2026-09-14",
+      "result": "Socket access denied by environment at www.dataq.or.kr:443"
+    },
+    {
+      "query": "site:dataq.or.kr/www/board SQL 정오표; site:dataq.or.kr 2024년 출제기준 SQL; site:dataq.or.kr 자료실 SQL 개발자",
+      "method": "web.search",
+      "checkedAt": "2026-09-14",
+      "result": "No matching current notice or errata original obtained"
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/REGEXP_LIKE.html",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Internal Error; successfully used Pattern-matching-Conditions.html instead"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/queries/select-over-clause-transact-sql?view=sql-server-ver16",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Tool safe-open error; not used as evidence"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/set-implicit-transactions-transact-sql?view=sql-server-ver16",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Tool safe-open error; ver17 retrieved and version explicitly recorded"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/statements/truncate-table-transact-sql?view=sql-server-ver16",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Tool safe-open error; ver17 retrieved and version explicitly recorded"
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SQL-Statements.html",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Tool safe-open error; not used as evidence"
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SQL-Statements-Types.html",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Internal Error; not used as evidence"
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/SQL-Functions.html",
+      "method": "web.open",
+      "checkedAt": "2026-09-14",
+      "result": "Internal Error; Single-Row-Functions.html retrieved instead"
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Group-Comparison-Conditions.html",
+      "checkedAt": "2026-09-14",
+      "result": "web safe-open non-retryable; no source record created. Actual section found at Comparison-Conditions.html and directly retrieved."
+    }
+  ]
+}
